@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #table {
+            margin: auto;
+            width: 500px;
+            border: 1px solid;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        
+        td {
+            border: 1px solid;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="table"></table>
+    <script>
+        var data = [{
+            name: "zhangsan",
+            age: 18,
+            salary: 12000
+        }, {
+            name: "lisi",
+            age: 20,
+            salary: 13500
+        }, {
+            name: "zhaoliu",
+            age: 28,
+            salary: 23000
+        }, {
+            name: "wanganshi",
+            age: 48,
+            salary: 23200
+        }, {
+            name: "sushi",
+            age: 19,
+            salary: 13230
+        }]
+        var table = document.getElementById("table")
+        var tr = document.createElement('tr')
+        table.appendChild(tr)
+        for (let key in data[0]) {
+            var td = document.createElement('td')
+            tr.appendChild(td)
+            td.innerHTML = key
+        }
+
+        for (let i = 0; i < data.length; i++) {
+            var tr = document.createElement('tr')
+            table.appendChild(tr)
+            for (let key in data[i]) {
+                var td = document.createElement('td')
+                tr.appendChild(td)
+                td.innerHTML = data[i][key]
+                    // 这里要用data[i][key]，而不是data[i].key，因为key是一个变量
+                    // 使用后者会找不到对象中的key属性名
+            }
+
+        }
+
+
+        /*
+            1 create tag
+            2 append this tag to the father tag
+            3 add innerHTML and attr
+        */
+    </script>
+</body>
+
+</html>

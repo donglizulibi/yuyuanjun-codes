@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <ul>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul>
+    <script>
+        var ul = document.querySelectorAll("ul")[1]
+        var lis = ul.getElementsByTagName("li")
+        console.log(typeof(lis))
+        console.log(lis)
+            // change No.6 to red
+        if (lis) {
+            for (let i = 0; i < lis.length; i++) {
+                if (lis[i].innerHTML == 6) {
+                    lis[i].style.color = "red"
+                }
+            }
+        }
+
+        // delete No.7
+        if (lis) {
+            for (let i = 0; i < lis.length; i++) {
+                if (lis[i].innerHTML == 7) {
+                    ul.removeChild(lis[i])
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
