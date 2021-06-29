@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #userTip,
+        #psdTip {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <span>用户名：</span><input id="user" type="text"><span id="userTip">请输入4到8位数字字母组合</span>
+        </div>
+        <div>
+            <span>密码：</span><input id="psd" type="password"><span id="psdTip">请输入6位数字</span>
+        </div>
+        <button id="btn">注册</button>
+    </div>
+
+    <script>
+        let user = document.getElementById("user")
+        let psd = document.getElementById("psd")
+        let userTip = document.getElementById("userTip")
+        let psdTip = document.getElementById("psdTip")
+        let userReg = /^\w{4,8}$/
+        let psdReg = /^\d{6}$/
+        let btn = document.getElementById("btn")
+
+        function check(reg, info, tip) {
+            let bool = false
+            info.onblur = function() {
+                if (!reg.test(info.value)) {
+                    tip.style.display = "inline"
+                } else {
+                    tip.style.display = "none"
+                    bool = true
+                }
+            }
+            return bool
+        }
+
+        check(userReg, user, userTip)
+        check(psdReg, psd, psdTip)
+
+        btn.onclick = function() {
+            if (check(userReg, user, userTip) && check(psdReg, psd, psdTip)) {
+                alert("注册成功")
+            } else {
+                alert('请输入正确信息')
+            }
+        }
+    </script>
+</body>
+
+</html>

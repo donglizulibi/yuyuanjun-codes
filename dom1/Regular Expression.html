@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var reg = /[1][3-9][0-9]{9}/ //电话号码的正则表达式
+        var reg1 = /[0-9]{9,}/ //表示0-9最少出现9次，最多不限制
+        var reg2 = /[0-9]{9,11}/ //表示0-9最少出现9次，最多11次
+            // 预定义字符集
+        var reg3 = /[\d]{9,11}/ //表示0-9最少出现9次，最多11次 \d代表所有数字 与上面等价
+        var reg4 = /[\w]{9,11}/ //表示所有数字字母下划线最少出现9次，最多11次 
+        var reg5 = /[.]{9,11}/ // [.]表示任意字符 最少出现9次，最多11次 
+        var reg6 = /[\+]86[\s]([\d]{11})/ // [\s]表示空格 最少出现9次，最多11次 
+            // reg6.("+86 13311111111")
+
+        //特殊数量词 如果某个正则规则中需要用到这些字符 就\+ \? \*
+        // ？ 可有可无 最多一位 相当于{0,1}
+        // * 可有可无 最多不限 {0,}
+        // + 至少一次 {1,}
+
+        //解决正则表达式的部分匹配问题（问题：用户输入的数据中只要有连续的可匹配的字符就可以匹配）
+        //用^ $锁死
+        var reg7 = /^\d{11}$/
+        console.log(reg7.test("13311111111"))
+
+        /*
+            12343214@qq.com
+            yyj@163.com
+            yyj@sina.com.cn
+            yyj_123@dev-web.edu
+        */
+        var reg8 = /^\w+@\w+([-]\w+)*(\.[0-9a-zA-Z]+)+$/
+            /*
+            1.以@为分割线
+            2.@的左边是任意数字字母下划线组合，且至少出现一次 \w+
+            3.@的右边 -连带后面的字符可能不出现或者出现多次，-需要用[]括起来 \w+([-]\w+)*
+            4.@的右边.edu .cn 至少出现一次，多的次数不限，且只能是数字字母，不能是下划线 \.[0-9a-zA-Z]+
+            5.以上部分作为一个整体又可以出现多次，至少一次(\.[0-9a-zA-Z]+)+
+            */
+        console.log(reg8.test('12343214@qq.com'))
+        console.log(reg8.test('yyj@163.com'))
+        console.log(reg8.test('yyj@sina.com.cn'))
+        console.log(reg8.test('yyj_123@dev-web.edu'))
+    </script>
+</body>
+
+</html>
