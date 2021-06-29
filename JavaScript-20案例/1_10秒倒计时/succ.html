@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>恭喜你 支付成功</h2>
+    <span id="count">10</span><span>秒后自动返回首页</span>
+    <button id="backNow">立即返回</button>
+    <script>
+        let timer = 10
+        setInterval(() => {
+            timer--;
+            document.getElementById('count').innerHTML = timer;
+            if (timer == 0) {
+                window.location.href = './confirm.html'
+            }
+        }, 1000);
+        document.getElementById("backNow").onclick = function() {
+            window.location.href = './confirm.html'
+        }
+    </script>
+</body>
+
+</html>
