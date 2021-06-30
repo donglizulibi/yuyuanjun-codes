@@ -14,6 +14,24 @@
         var arr = [1, 2, 3, 4, 5, 6]
         arr.splice(1, 0, 9)
         console.log(arr)
+
+        // 对字符串进行遍历 for of
+        var str = 'asdgabsdf'
+        for (let i of str) {
+            console.log(i)
+        }
+
+        // 把字符串变成数组
+        const string = 'uixdk';
+
+        // 1. 使用String.prototype.split()方法 
+        string.split('');
+
+        // 2. 使用ES6解构运算符
+        [...string];
+
+        // 3. 使用Object.assign() 
+        Object.assign([], string);
     </script>
 </body>
 
