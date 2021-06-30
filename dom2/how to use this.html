@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <script>
+        let arr = document.getElementsByTagName('div')
+        console.log(arr)
+
+        for (var i = 0; i < arr.length; i++) {
+            arr[i].onclick = function() {
+                // alert(arr[i - 1].innerHTML)
+                alert(this.innerHTML)
+            }
+        }
+
+
+        // for (let i = 0; i < arr.length; i++) {
+        //     arr[i].onclick = function() {
+        //         alert(arr[i - 1].innerHTML)
+        //             // alert(this.innerHTML)
+        //     }
+        // }
+        // console.log(i)
+
+        // another demo
+        var name = 'hhh'
+        var obj = {
+                name: 'zhangsan',
+                intr: function() {
+                    console,
+                    log(this.name)
+                }
+            }
+            /*
+                   如果直接写 intr() ，会找不到这个函数
+                   如果写 obj.intr(), 会打印出obj里面的name，这个this调用的是obj对象
+        
+            */
+    </script>
+</body>
+
+</html>
