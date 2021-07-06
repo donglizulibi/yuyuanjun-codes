@@ -32,6 +32,18 @@
 
         // 3. 使用Object.assign() 
         Object.assign([], string);
+
+        //删除数组中的某一项
+        var arr1 = ['a', 1, 2, 3, 4]
+        arr1.splice(0, 1)
+        console.log('del', arr1)
+
+        // 数组的filter方法
+        // 把一个数组中大于0的数取出
+        var arr2 = [1, 20, -2, -3, 4]
+        var arr3 = arr2.filter((value) => {
+                return value > 0 ? true : false
+            }) //把返回true的数组都添加到数组里面
     </script>
 </body>
 
