@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var hurtOfArcher = function(blood, skillDefanse, basicDefanse) {
+            console.log(blood, skillDefanse, basicDefanse)
+            var skillHurt = (120 + 200) * (1 - skillDefanse);
+            console.log(skillHurt)
+
+            var time = (blood - skillHurt) / (80 * (1 - basicDefanse))
+            return Math.ceil(time)
+
+        }
+        console.log(hurtOfArcher(500, 0.3, 0.6))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [7, 3, 7, 7, 4, 7, 7, 'w', 'h', 'hello', 'h']
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = i + 1; j < arr.length; j++) {
+                if (arr[i] == arr[j]) {
+                    arr.splice(j, 1)
+                    j--
+                    // j=2时的那一项被删掉后，原来的j=3变成j=2，而如果不加j--，就继续比较j=3（也即是第四项）跳过了第三个7
+                }
+            }
+        }
+        console.log(arr)
+
+
+        // var arr1 = [1, 3, 'hello', 5, 3, 7, 7, 7, 'w', 'h', 'hello', 'h']
+        // for (var i = 0; i < arr1.length; i++) {
+        //     for (var j = i + 1; j < arr1.length; j++) {
+        //         if (arr1[i] == arr1[j]) {
+        //             arr1.splice(j, 1)
+        //         }
+        //     }
+        // }
+        // console.log(arr1)
+    </script>
+</body>
+
+</html>
