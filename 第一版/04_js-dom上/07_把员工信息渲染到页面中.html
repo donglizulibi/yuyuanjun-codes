@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border: #666666 1px solid;
+            border-collapse: collapse;
+            width: 100px;
+            height: 40px;
+        }
+        td{
+            border: #666666 1px solid;
+            text-align: center;
+        }
+        th{
+            border: #666666 1px solid;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var data=[
+            {"name":"zhangsan","age":20,"salary":3500,"tel":110},
+            {"name":"lisi","age":21,"salary":4500,"tel":120},
+            {"name":"wangwu","age":22,"salary":5500,"tel":119},
+            {"name":"zhaoliu","age":23,"salary":6500,"tel":911},
+            {"name":"sunqi","age":24,"salary":7500,"tel":114}
+        ];
+
+        //1.创建空表格
+        var table= document.createElement("table")
+        document.body.appendChild(table)
+            //创建表头
+
+            // for(j=0;j<data.length;j++){
+            //     var tr = document.createElement("tr")
+            //     table.appendChild(tr)
+            // }
+        var tr = document.createElement("tr")
+        table.appendChild(tr)
+
+            // for(i=0;i<Object.keys(data[0]).length;i++){
+            //     var td = document.createElement("td")
+            //     // td.innerHTML=keys
+            //     tr.appendChild(td)
+            // }  
+            // 这种方法虽然可以获得对象键值对个数，但是无法获得属性名
+
+            //创建单元格，遍历对象要用for in
+        var staff = data[0];
+
+        console.log(staff)
+        // 拿到数组第一个对象
+
+        for(var key in staff){
+            console.log(key)
+            var th = document.createElement("th")
+            th.innerHTML=key;
+            tr.appendChild(th)
+        }
+
+
+        console.log(data[0][key])
+        // 这条语句令人直呼卧槽(其实就是通过去“数组”的第零项的key，拿到这个key对应的value)
+
+        for (var i=0; i<data.length; i++){
+            var tr = document.createElement("tr")
+            table.appendChild(tr);
+            for(var key in data[i]){
+                var td = document.createElement("td")
+                td.innerHTML=data[i][key]
+                tr.appendChild(td)
+            }
+        }
+
+        //tr是需要重复创建的，创建一行追加一行。
+        
+        
+    </script>
+</body>
+</html>

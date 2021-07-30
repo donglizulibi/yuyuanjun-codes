@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+                        原型（prototype）：方法背后，专门保存由方法创建出来的对象的共有属性。
+                        构造函数/对象模板：专门用来反复创建相同结构对象的专门方法
+                        比如 new Array()
+                            new Object()
+                            new Date()
+                            也可以自己创建对象模板
+                                            
+                        构造函数要求函数名要大写
+
+                        new关键字 封装了哪些方法，做了那几件事 一共是4件
+                            1 创建一个空对象 var xm={}
+                            2 改变this指向 通过call/apply主动改变this指向，让this去指向第1步创建的空对象（在es6里面会讲）
+                            3 加属性 加值 使{}变成 {name:"xiaomin",18}
+                            4 return xm
+                        共有属性：由同一构造函数创建出来的对象共同享有的属性
+                            （就如同一个爸的资产由兄弟二人共同享有）
+                            共有属性的添加方法
+                            方法的共有属性都是存在原型里面的（prototype）
+                            所以Student.money是不恰当的
+                            需要用Student.prototype.money=10000;
+                            也可以理解为prototype是一个属性，而这个属性的值是一个对象，比如{money:10000}
+                            比如style是标签的一个属性，而这个属性的值是一系列对象
+                            在这里相当于给函数添加属性名，所以在某个意义上，函数也可以认为是一个特殊对象
+
+
+                        自由属性：属于对象实例自身
+                        （如同兄长的汽车不会给弟弟开）
+                        自由属性的添加，比如小明买了车，想给自己加一个车的属性
+                        （这个属性小红并没有）
+                        xm.car="bmw"
+                        虽然刚出生时是一样，但可以后期改装。
+
+                        任何实例对象无权修改原型中的数据
+                        如果实例对象像直接更改，其实只是增加了一个同名的自由属性而已。
+                        举例：
+                        function Student(name,age){
+                            this.name=name;
+                            this.age=age;
+                            // 这里的this是指window，等号左边的name表示给当前的这个对象添加一个name属性，
+                            // 等号右边的name表示传递进来的值，是一个变量
+                            // 构造函数里面的name是一个形式参数
+                        }
+
+                        var xm=new Student("xiaomin",18);
+                        var xh=new Student("xiaohong",17);
+
+                        Student.prototype.car="bmw";
+                        xm.car="benz";
+                        console.log(xh.car)
+                        console.log(xm.car)
+                        
+                        如果在构造函数里创造一个方法，则这个构造函数里所有的实例都可以调用
+                        举例：
+                        function Student(name,age){
+                            this.name=name;
+                            this.age=age;
+                            // 这里的this是指window，等号左边的name表示给当前的这个对象添加一个name属性
+                            等号右边的name表示传递进来的值，是一个变量
+                            // 构造函数里面的name是一个形式参数
+                        }
+
+                        var xm=new Student("xiaomin",18);
+                        var xh=new Student("xiaohong",17);
+
+                        Student.prototype.car="bmw";
+                        xm.car="benz";
+                        Student.prototype.playBas=function(){alert("我会打篮球")};
+                        xh.playBas()
+                        
+
+
+                        继承：使用现有类型，创建出新的类型
+                        新的类型中可以使用现有类型的属性和方法
+                        并且可以拓展出现有类型没有的属性和方法
+
+
+                        原型链：
+                            Function（大写）是所有函数的父类
+                            Error是所有错误的父类
+                            原型链的一张图
+                            Object的每个对象的父类
+
+                            __proto__ （双下划线）：隐式原型
+                            任何对象一定有一个隐式原型
+                            一个对象的隐式原型永远指向创建该对象的构造函数（父级）的原型
+                            保证了实现正确的继承
+                            举例：
+                            随便创建一个对象
+                            var person={}
+                            console.log(person)
+                            继承了Object的原型
+
+                                                
+
+                            */
+        // var xm={name:"xiaomin",age:18}
+        // var xh={name:"xiaohong",age:17}
+
+        function Student(name, age) {
+            this.name = name;
+            this.age = age;
+            // 这里的this是指window，等号左边的name表示给当前的这个对象添加一个name属性，
+            // 等号右边的name表示传递进来的值，是一个变量
+            // 构造函数里面的name是一个形式参数
+        }
+
+        var xm = new Student("xiaomin", 18);
+        var xh = new Student("xiaohong", 17)
+        console.log(xm)
+        console.log(xh)
+
+        var person = {}
+        console.log(person)
+    </script>
+</body>
+
+</html>

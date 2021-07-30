@@ -1,0 +1,100 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <coma v-on:myevent="myfn"></coma>
+        <h1 style="height:100px;width:100%;background: red;">{{count}}</h1>
+    </div>
+    <script>
+        var coma = {
+            template: "<div><h1 v-on:click='fn'>我是子组件</h1></div>",
+            data() {
+                return {
+                    msg: "我是子组件的数据"
+                }
+            },
+            methods: {
+                fn() {
+                    this.$emit("myevent", this.msg)
+                }
+            }
+        }
+        var app = new Vue({
+            el: "#app",
+            data: {
+                count: "这里是根组件的区域"
+            },
+            components: {
+                coma
+            },
+            methods: {
+                myfn(payload) {
+                    this.count = payload
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <coma v-on:abc="myfn"></coma>
+        <h1>{{count}}</h1>
+    </div>
+    <script>
+        var coma = {
+            template: `<div>
+                            <h1>这是子组件的区域</h1>
+                            <button v-on:click='fn'>按键</button>
+                        </div>`,
+            data() {
+                return {
+                    msg: "这是一条子组件的数据"
+                }
+            },
+            methods: {
+                fn() {
+                    this.$emit("abc", this.msg)
+                }
+            }
+        }
+        var app = new Vue({
+            el: "#app",
+            data: {
+                count: "这里是根组件的区域和数据"
+            },
+            components: {
+                coma
+            },
+            methods: {
+                myfn(m) {
+                    this.count = m
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

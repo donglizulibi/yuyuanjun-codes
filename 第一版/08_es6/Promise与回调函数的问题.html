@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这是一个反面的案例
+        function fn() {
+            var a = new Promise((resolve, reject) => {
+                setTimeout(function() {
+                    console.log(1)
+                    resolve("哈哈")
+                }, 2000);
+
+            });
+            return a
+        }
+
+        function fn2() {
+            var b = new Promise((resolve, reject) => {
+                setTimeout(function() {
+                    console.log(2)
+                    resolve("呵呵")
+                }, 1000);
+
+            });
+            return b
+        }
+
+        fn()
+            .then((res) => {
+                console.log(res);
+                return fn2();
+            })
+            .then((res) => {
+                console.log(res)
+            })
+    </script>
+</body>
+
+</html>

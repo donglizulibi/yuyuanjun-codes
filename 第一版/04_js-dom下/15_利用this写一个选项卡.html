@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .clear{clear: both;}
+        .box{
+            height: 600px;
+            width: 500px;
+            margin: auto;
+        }
+
+        li{
+            list-style: none;
+        }
+        
+        .nav li{
+            float: left;
+            margin-right: 5px;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: blue;
+            color: #fff;
+        }
+
+        .cont li{
+            width: 415px;
+            height: 300px;
+            background-color: blue;
+            margin-top: 5px;
+            color: #fff;
+            display: none;
+
+        }
+
+        .act{display: block !important;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul class="nav">
+            <li><span>军事新闻</span></li>
+            <li><span>体育新闻</span></li>
+            <li><span>八卦新闻</span></li>
+            <li><span>娱乐新闻</span></li>
+            <div class="clear"></div>
+        </ul>
+        <ul class="cont">
+            <li class="act"><span>我是军事新闻的内容</span></li>
+            <li><span>我是体育新闻的内容</span></li>
+            <li><span>我是八卦新闻的内容</span></li>
+            <li><span>我是娱乐新闻的内容</span></li>
+        </ul>
+    </div>
+    <script>
+        var tabs = document.querySelectorAll(".nav li");
+        console.log(tabs)
+        var conts = document.querySelectorAll(".cont li");
+
+        for(var i=0;i<tabs.length;i++){
+            tabs[i].index=i;//相当于给tabs加上一个索引值的属性  
+            // console.log(this.index)
+            // console.log(i)  
+            tabs[i].onclick=function(){
+                // console.log(i)
+                // 假如把以上这一步放开，则打印的永远是4，但是在点击事件发生时，才会运行
+                // this.index=i;
+                // 假如把以上这步放开，把function外部的加index的步骤关闭。
+                // 会出现i是一个全局变量，会在for循环全部走完之后贯穿整个函数里面
+                // for循环会在页面加载时就先执行，等点击事件发生，也就是function运行时
+                // 赋予给this.index的值就永远是4
+                console.log(this.index)
+                for(var j=0;j<conts.length;j++){
+                    // conts[j].className=""
+                    conts[j].removeAttribute("class") //相当于在点击事件发生时移除所有的class
+                }
+                conts[this.index].className="act"
+            }
+        }
+        // console.log(i) //和for循环里面的console.log显示的都是4
+        // 如果for循环里面不是用var，而是let，则不会有问题
+        //for循环不会等点击事件发生时才执行，而是先执行，等点击事件触发时，显示的就是一个全局变量i，也就是4
+
+    </script>
+</body>
+</html>

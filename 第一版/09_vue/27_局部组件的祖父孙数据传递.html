@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <grandfather></grandfather>
+        <!-- <grandchild></grandchild>
+        这个组件应该是不能在根组件的挂载点下显示，而只能在注册的那个组件的template里显示
+        -->
+    </div>
+    <script>
+        var grandchild = {
+            props: ["message"],
+            template: `<div style='height:200px; width:100%; background:red'>
+                            <h1>我是子组件的区域，{{message}}</h1></div>`
+        }
+        var father = {
+            props: ["a"],
+            template: "<div><h1>我是父组件</h1><grandchild v-bind:message='a'></grandchild></div>",
+            components: {
+                grandchild
+            }
+        }
+        var grandfather = {
+            template: "<div><h1>我是祖父组件</h1><father v-bind:a='msg1'></father></div>",
+            data() {
+                return {
+                    msg1: "我是祖父组件的数据"
+                }
+            },
+            components: {
+                father
+            }
+        }
+        var app = new Vue({
+            el: "#app",
+            components: {
+                grandfather
+            }
+        })
+    </script>
+</body>
+
+</html>

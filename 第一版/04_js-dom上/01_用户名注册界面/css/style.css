@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.clear{
+    clear: both;
+}
+
+.sign{
+    width: 600px;
+    height: 500px;
+    /* background-color: royalblue; */
+    margin: auto;
+    border-style: solid;
+    border-color: #666666;
+    /* padding-top: 20px; */
+}
+
+.user{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.password{
+    margin-top: 20px;
+    position: relative;
+    margin-left: 20px;
+}
+
+.password-again{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+input{
+    float: left;
+    width: 210px;
+    height: 25px;
+    margin-left: 20px;
+    outline: none;
+    text-indent: 5px;
+}
+
+.title{
+    float: left;
+    font-size: 20px;
+    width: 100px;
+}
+
+.tips{
+    float: left;
+    
+    color: red;
+    margin-left: 10px;
+    /* word-spacing:1px; */
+}
+
+#usertxt{
+    display: none;
+}
+
+#pwdtxt{
+    display: none;
+}
+
+#repwdtxt{
+    display: none;
+}
+
+.button{
+    width: 80px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 3px;
+    line-height: 35px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+}
+
+#open{
+    background-image: url(../img/open.png);
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    position: absolute;top: 2px;left: 300px;
+    display: none;
+}
+
+#close{
+    background-image: url(../img/close.png);
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    position: absolute;top: 2px;left: 300px;
+    display: block;
+}

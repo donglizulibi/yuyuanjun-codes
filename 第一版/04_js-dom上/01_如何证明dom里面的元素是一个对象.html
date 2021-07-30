@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" class="box"></div>
+    <div class="box"></div>
+
+    <script>
+        var appid = document.getElementById("app")
+        console.log(appid)
+        // appid.className="appclass"
+        // 这样就给div标签添加了一个样式
+        // 所有的class都要变成className，因为es6里面class是一个关键字。
+
+        // console.log(appid)
+
+        var appclass = document.getElementsByClassName("box")
+        console.log(appclass)
+        console.log(appclass[0])
+        // getElementsByClassName获得的是一个数组
+        // 但是这个数组只有一个项目
+
+    </script>
+</body>
+</html>

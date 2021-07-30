@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="name" v-on:keyup.enter="add">
+        <ul>
+            <!-- 绑定一个key，但是不要绑index，而是绑定对象里面本身的id -->
+            <li v-for="item in list" v-bind:key="item.id">
+                <input type="checkbox">{{item.name}}
+            </li>
+        </ul>
+        {{list}}
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                name: "",
+                curId: 3,
+                list: [{
+                    id: 1,
+                    name: "zhangsan"
+                }, {
+                    id: 2,
+                    name: "lisi"
+                }, {
+                    id: 3,
+                    name: "wangwu"
+                }]
+            },
+            methods: {
+                add: function() {
+                    // unshift向数组的开头追加元素
+                    this.list.unshift({
+                        // 输入框里输入内容之后会带上一个不一样的id
+                        id: ++this.curId,
+                        name: this.name
+                    });
+                    // 把输入框清空
+                    this.name = ""
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

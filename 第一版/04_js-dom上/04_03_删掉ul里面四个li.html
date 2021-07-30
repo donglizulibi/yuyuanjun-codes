@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="blist">
+        <li id="box">567</li>
+        <li>123</li>
+        <li>234</li>
+        <li>345</li>
+    </ul>
+    <button id="btn">按钮</button>
+    <script>
+
+        // 第三种方法
+        var blist = document.querySelector("#blist")
+        var list = document.querySelectorAll("#blist li")
+        var btn=document.getElementById("btn")
+
+        btn.onclick=function(){
+            for(var i = 0; i<list.length; i++){
+                blist.removeChild(list[i])
+            }
+        }
+
+    </script>
+</body>
+</html>

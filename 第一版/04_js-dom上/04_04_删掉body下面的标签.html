@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1 id="incoco">now i am in coco, i think i am the most pathetic man in this world.
+        i broken up with my family and all my friends, maybe i can't deal with
+        all of relationships, one of the reasons is i don't hava a job.
+        but for most of them, i just don't know, i am really confused.
+        three month ago, yexiu killed himself, in a very cruel way.
+        i feel some part of me have alse been killed.
+        i am really upset.
+        now i have to use some dom way to delete what i have writed.
+        but i know those enmotion will not go away. 
+    </h1>
+    <button id="btn">let it go</button>
+    <script>
+        var btn=document.getElementById("btn");
+        var h1=document.getElementById("incoco")
+        console.log(h1)
+
+        btn.onclick=function(){
+            
+            alert(1)
+            document.body.removeChild(h1)
+        }
+    </script>
+</body>
+</html>

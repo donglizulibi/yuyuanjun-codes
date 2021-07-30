@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom v-on:abc='fn'></mycom>
+    </div>
+    <script>
+        var mycom = {
+            template: `<div><h2>123123</h2><button v-on:click='change'>触发</button></div>`,
+            data() {
+                return {}
+            },
+            methods: {
+                change() {
+                    this.$emit("abc")
+                }
+            }
+        }
+
+        new Vue({
+            el: "#app",
+            data: {},
+            components: {
+                mycom
+            },
+            methods: {
+                fn() {
+                    console.log("fn执行了")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

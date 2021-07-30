@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="blist">
+        <li id="box">567</li>
+        <li>123</li>
+        <li>234</li>
+        <li>345</li>
+    </ul>
+    <button id="btn">按钮</button>
+    <script>
+        var blist=document.getElementById("blist")
+        console.log(blist)
+        var lists=blist.getElementsByTagName("li")
+        console.log(lists)
+        var btn=document.getElementById("btn")
+
+        //  第二种方法
+
+        // 倒着删除
+        console.log(lists.length-1)
+        // lists.length=4,再减一就是等于3，而第3项在数组里面就是第4项。
+        // 所以blist.removeChild(lists[3])，其实就是删数组的最后一项
+
+        btn.onclick=function(){
+            for(var i=lists.length-1;i>=0;i--){
+                blist.removeChild(lists[i]);
+            }
+        }
+        
+
+    </script>
+</body>
+</html>

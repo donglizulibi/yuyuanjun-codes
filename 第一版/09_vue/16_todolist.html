@@ -1,0 +1,128 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>to do list</h1>
+        <input type="text" v-model="inputValue" v-on:keyup.enter="insert">
+        <h3>待办事项</h3>
+        <ul>
+            <li v-for="(item,index) in todo" v-on:click="cli(item,index)">{{item.text}}</li>
+        </ul>
+        <h3>已办事项</h3>
+        <ul>
+            <li v-for="(item,index) in done" v-on:click="del(index)">{{item.text}}</li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                inputValue: "",
+                todo: [{
+                    text: "打篮球"
+                }, {
+                    text: "听音乐"
+                }],
+                done: []
+            },
+            methods: {
+                insert: function() {
+                    this.todo.push({
+                        text: this.inputValue
+                    });
+                    this.inputValue = ""
+                },
+                cli: function(item, index) {
+                    // alert(index)
+                    // alert(this.item)
+                    this.todo.splice(index, 1);
+                    this.done.push(
+                        // {text: item.text}
+                        item
+                    )
+                },
+                del: function(index) {
+                    this.done.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .hover {
+            cursor: pointer;
+        }
+        
+        .del {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>待办事项列表</h1>
+        <input v-model="todo" v-on:keyup.enter="add">
+        <h2>待办事项</h2>
+        <ul>
+            <li class="hover" v-for="(key,index) in list" v-on:click="del(key,index)">{{key.text}}</li>
+        </ul>
+        <h2>已办事项</h2>
+        <ul>
+            <li class="hover del" v-for="(key,index) in done" v-on:click="donedel(index)">{{key.text}}</li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                todo: "",
+                list: [{
+                    text: "看电视"
+                }, {
+                    text: "吃肯德基"
+                }],
+                done: []
+            },
+            methods: {
+                add() {
+                    this.list.push({
+                            text: this.todo
+                        })
+                        // alert(this.list)
+                        // 这个push里面要要obj的格式添加上，因为li在遍历的时候是按照obj遍历的
+                        // 所以直接push一个字符串，是无法渲染到页面的
+                    this.todo = ""
+                },
+                del(key, index) {
+                    this.list.splice(index, 1)
+                    this.done.push(key)
+                },
+                donedel(index) {
+                    this.done.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>删掉ul</ul></title>
+</head>
+<body>
+    <ul id="blist">
+        <li id="box">567</li>
+        <li>123</li>
+        <li>234</li>
+        <li>345</li>
+    </ul>
+    <button id="btn">按钮</button>
+    <script>
+        var blist=document.getElementById("blist")
+        console.log(blist)
+        var lists=blist.getElementsByTagName("li")
+        console.log(lists)
+        var btn=document.getElementById("btn")
+
+        // 第一种方法
+
+        btn.onclick = function(){
+            for(var i=0;i<lists.length;i++){
+                blist.removeChild(lists[i])
+                i--
+            }
+        }
+        
+
+        // 如果不加i--，数组长度会随着元素删除而变化
+        // 假如有1，2，3，4。执行第一次循环时，删掉第0项，变成2，3，4.
+        // 执行第二次循环时，i变成1，删掉第1项，变成2，4
+        // 当i变成2时候，原数组里面找不到第2项，循环结束
+
+        // ***本质上就是让i永远等于0，这样在删除的时候，就可以永远只删第一个
+
+    </script>
+</body>
+</html>

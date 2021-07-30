@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <h1 id="now"></h1>
+    <h1 id="count"></h1>
+    <button id="start">开始计时</button> -->
+    <h1 id="timer">---</h1>
+    <script>
+        // var now = document.getElementById("now")
+        // var count = document.getElementById("count")
+        // var classover = new Date("2021-02-21 00:45:00")
+        // count.innerHTML = classover
+        // console.log(classover)
+        // function time() {
+
+        // }
+        // setInterval(time, 1000);
+        var counter = 0;
+        var timeleft = 60;
+
+        function convertSecondS(s) {
+            var min = Math.floor(s / 60);
+            var sec = s % 60;
+            return min + ':' + sec;
+        }
+
+
+        function setup() {
+            var timer = document.getElementById("timer")
+            timer.innerHTML = timeleft - counter
+
+            function timeIt() {
+                counter++;
+                timer.innerHTML = timeleft - counter
+            }
+            setInterval(timeIt, 1000);
+        }
+
+        setup()
+    </script>
+</body>
+
+</html>

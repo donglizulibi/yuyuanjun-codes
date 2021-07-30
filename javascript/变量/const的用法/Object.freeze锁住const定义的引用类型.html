@@ -9,7 +9,16 @@
 </head>
 
 <body>
-    <h1>234223</h1>
+    <script>
+        // "use strict" //启用严格模式
+        const HOST = {
+            url: "www.cctv.com",
+            port: 443
+        }
+        Object.freeze(HOST)
+        HOST.port = 80
+        console.log(HOST.port)
+    </script>
 </body>
 
 </html>

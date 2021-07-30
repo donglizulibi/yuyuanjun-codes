@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h3>原图</h3>
+    <div class="images"><img src="test.jpg" width="100%" /></div>
+
+    <h3>固定宽度400px和高度200px后的图片</h3>
+    <div class="bsize1"></div>
+
+    <h3>固定宽度400px和高度200px－使用background－size:400px 200px缩放设置</h3>
+    <div class="bsize1 bsize2"></div>
+
+    <h3>固定宽度400px和高度200px－使用background-size:400px;的缩放设置</h3>
+    <div class="bsize1 bsize3"></div>
+
+    <h3>固定宽度400px和高度200px－使用background-size:100% 100%的缩放设置</h3>
+    <div class="bsize1 bsize4"></div>
+
+    <h3>固定宽度400px和高度200px－使用background-size:100%的缩放设置</h3>
+    <div class="bsize1 bsize5"></div>
+
+    <h3>使用属性cover来设置背景图片</h3>
+    <div class="bsize1 cover"></div>
+
+    <h3>使用属性contain来设置背景图片</h3>
+    <div class="bsize1 contain"></div>
+
+    <!-- 原图中已经通过width 100%设置了图片随页面自适应
+        下面是另一种
+        使用另一种方式来解决图片自适应的问题－－图片自适应问题
+        图片宽度设置100%，页面加载时会存在高度塌陷的问题
+        可以使用padding－top来设置百分比值来实现自适应 
+        padding-top = (图片的高度/图片的宽度)*100；
+    -->
+    <h3>图片自适应问题，图片宽度设置100%，页面加载时会存在高度塌陷的问题</h3>
+    <p>可以使用padding－top来设置百分比值来实现自适应 padding-top = (图片的高度/图片的宽度)*100</p>
+    <div class="cover-paddingTop">
+        <img src="test.jpg" />
+    </div>
+
+    <!-- 
+        使用padding-top:(percentage)实现响应式背景图片
+        我门都知道，处理在响应性布局的时候，背景图片都是等比例缩放，比如上面的使用图片的情况，使用<img /> 引入的图片的话，那么设置她们的width属性为100%；<img src=”” width=”100%”/> 的话，高度就会等比例缩放，这是图片，但是如果是背景图片呢？我门之前的项目中的常见的做法是根据css3媒体查询的方法来做的，根据不同手机的分辨率等不同，来等比例缩放背景图的高度，虽然这种方式是可以解决问题的，但是这种通过人肉的方式来进行设置并不好，也很繁琐，今天我门来学习使用padding－top这么一个属性来设置了；
+        实现的基本原理：将使用到保持元素的宽高比的技巧，为元素添加垂直方向的padding-top的值，使用百分比的形式，这个值是相对于元素的宽而定的，比如我上面的一张图片的宽度是1024px，高度为316px；那么现在的
+        padding-top = （高度 / 宽度 ）＊ 100% ＝ （316 ／ 1024）＊ 100% ＝  30.85%;
+        但是仅仅对图片高度和宽度缩放的放还不够，我门还必须添加 background-size:cover, 使这个属性让背景铺满元素的，但是IE8及以下不支持该属性，因此为了兼容IE下面的浏览器，我门还需要再加一个属性 background-position: center ; 同时我门也要保证 图片的宽度最大等于父容器的宽度
+     -->
+    <h3>使用padding-top实现响应性图片(图片的宽度是1024px，高度是316px)</h3>
+    <div class="column">
+        <div class="figure"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-if="show">
+        <input type="password" v-else>
+        <button v-on:click="change">切换1</button>
+        <h1>————————————————————————————————</h1>
+        <input type="text" v-if="show1" v-bind:key="a">
+        <input type="password" v-else v-bind:key="b">
+        <button v-on:click="change1">切换2</button>
+    </div>
+
+    <script>
+        new Vue({
+                el: "#app",
+                data: {
+                    show: true,
+                    show1: true
+                },
+                methods: {
+                    change() {
+                        this.show = !this.show
+                    },
+                    change1() {
+                        this.show1 = !this.show1
+                    }
+                }
+            })
+            /*
+                这个例子里出现的现象是这样的：
+                在明文输入框里输入一段字符串，点击切换按钮之后，字符串会变成密码形式。
+                也就是在明文输入框输入的内容自动跳到了密码输入框
+                这就是因为在数据发生变化，页面在重新渲染的时候
+                vue的diff算法中的虚拟dom默认认为这两个输入框为同一个
+                解决的办法就是给每个输入框加上一个独一无二是key
+                在工作中一般用后台返回过来的主键列（数据库的语法）来当作key
+            */
+    </script>
+</body>
+
+</html>

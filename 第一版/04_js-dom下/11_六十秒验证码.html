@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="yzbtn">获取验证码</button>
+    <button disabled>123</button>
+    <script>
+        window.onload = function() {
+            var yzbtn = document.getElementById("yzbtn")
+            yzbtn.onclick = function() {
+                var time = 5;
+                var timer = setInterval(function() {
+                    if (time > 0) {
+                        console.log(111, time)
+                        time--;
+                        yzbtn.innerHTML = time + "秒后重新获取"
+                        yzbtn.style.fontSize = "12px";
+                        yzbtn.style.height = "35px";
+                        yzbtn.disabled = "true";
+                    } else {
+                        yzbtn.removeAttribute("disabled");
+                        // yzbtn.disabled = "false";
+                        yzbtn.innerHTML = "重新获取";
+                        yzbtn.style.height = "30px";
+                        console.log(222, time)
+                        clearInterval(timer)
+                            // 如果不清除的话，会出现两个定时器并存的现象，然后会一秒跳一次
+                    }
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+
+</html>

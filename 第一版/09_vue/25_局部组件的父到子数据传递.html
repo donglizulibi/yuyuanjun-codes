@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom2></mycom2>
+    </div>
+    <script>
+        var coma = {
+            props: ["message"],
+            template: `<div style='height:200px; width:100%; background:red'>
+                <h1>我是子组件的区域，{{message}}</h1></div>`
+        }
+
+        var coma2 = {
+            template: "<div><h1>我是父组件</h1><mycom v-bind:message='msg'></mycom></div>",
+            data() {
+                return {
+                    msg: "我是父组件的数据"
+                }
+            },
+            components: {
+                mycom: coma
+                    // 这个组件在template里使用了，所以要在这里注册一下
+            }
+        }
+
+        var app = new Vue({
+                el: "#app",
+                data: {
+                    tab: "myCom"
+                },
+                components: {
+                    // mycom: coma,
+                    mycom2: coma2
+                        // mycom2是全局实例的子组件，但是在本例中是以父组件的形式出现的
+                }
+
+            })
+            // 这个例子只是说明父组件的数据可以传到子组件，而没有说子组件是怎么使用这些数据的
+    </script>
+</body>
+
+</html>

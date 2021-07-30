@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="msg" v-on:blur="check">
+        <h1>{{msg}}</h1>
+        <button v-on:click="fn">按钮</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: "hello"
+            },
+            methods: {
+                fn: function() {
+                    alert(1)
+                },
+                check: function() {
+                    alert(this.msg)
+                        // 要加上this访问当前组件，在这里就是指向app
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

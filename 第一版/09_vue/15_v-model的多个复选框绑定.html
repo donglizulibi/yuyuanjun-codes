@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="name" type="checkbox" value="zhangsan">
+        <input v-model="name" type="checkbox" value="lisi">
+        <input v-model="name" type="checkbox" value="wangwu">
+        <div>{{name}}</div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                name: ["lisi"]
+                    // 如果不加默认项，就放一个空数组
+            }
+        })
+    </script>
+</body>
+
+</html>

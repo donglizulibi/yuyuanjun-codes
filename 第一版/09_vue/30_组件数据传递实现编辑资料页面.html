@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .warp {
+            height: 500px;
+            width: 500px;
+            background: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="warp">
+            <child v-bind:display='display'></child>
+            <button v-on:click="show">编辑资料</button>
+        </div>
+    </div>
+    <script>
+        var child = {
+            props: ['display'],
+            template: `<h1 v-bind:style='{display:display}'>我是编辑资料页面</h1>`,
+            // 样式的动态绑定，后面那个display是一个变量
+            // 父到子的数据流向是props从所注册的那个地方流入，（我是一个组件，我在哪里注册，哪里就是我的父亲）
+            // 然后添加在template里的某个js环境当中作为属性存在，可能是某个双大括号的环境，也可能是绑定的某个环境
+        }
+        new Vue({
+            el: "#app",
+            data: {
+                display: 'none'
+            },
+            components: {
+                child
+                // 这里是es6语法，本来应该是child:child
+            },
+            methods: {
+                show() {
+                    this.display = 'block'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

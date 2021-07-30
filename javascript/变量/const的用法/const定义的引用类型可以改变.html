@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const abc = "test"
+        // abc = "text"
+        // 这样是会报错的
+
+        // 如果是引用类型就不会报错，因为是在同一块内存里修改，不会开辟新的内存空间
+        // 对象
+        const person = {}
+        person.name = "xiaoming"
+        person.age = 18
+        console.log(person)
+
+        // 数组
+        const arr = []
+        arr.push(1)
+        arr.push(2)
+        console.log(arr)
+    </script>
+</body>
+
+</html>

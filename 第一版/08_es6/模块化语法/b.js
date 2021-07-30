@@ -1,0 +1,1 @@
+import { title, fn as myfn } from "./a.js"

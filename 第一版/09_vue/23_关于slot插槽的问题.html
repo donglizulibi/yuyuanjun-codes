@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom>
+            <!-- <template #before></template> -->
+            <template v-slot:before="abc">
+                <h1>{{abc.msg}}</h1>
+                <h1>{{abc}}</h1>
+                <h1>{{msg}}</h1>
+                <!-- 这个abc是随便命名的，所代表的就是在组件的template里给slot绑定的变量
+                返回的是一个对象 
+                从组件中的count:0，变成了"msg":0
+                -->
+            </template>
+            <template #after>
+                <h1>我想写在后面</h1>
+            </template>
+            <h3>hahaha</h3>
+            <!-- 组件中间的没有用template包裹的标签（比如这个h3），就放在没有名字的插槽里面 -->
+        </mycom>
+
+    </div>
+    <script>
+        var coma = {
+            template: `
+            <div>
+            <slot name="before" v-bind:msg="count"></slot>
+            <h1 v-on:click="cli">{{message}}</h1>
+            <slot></slot>
+            <slot name="after"></slot>
+            </div>`,
+            // 当有很多个标签并列的时候，不要忘了用一个div把template里的东西套起来
+            data() {
+                return {
+                    count: 0,
+                    message: "我是子组件的message"
+                }
+            },
+            methods: {
+                cli() {
+                    alert("haha")
+                }
+            }
+
+        }
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: "我是父组件的msg"
+            },
+
+            components: {
+                mycom: coma
+            }
+        })
+    </script>
+</body>
+
+</html>

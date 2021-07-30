@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<select name="" id="province">
+    <option value="">--请选择省份--</option>
+</select>
+    
+<select name="" id="city">
+    <option value="">--请选择城市--</option>
+</select>
+<body>
+    <script>
+        var provincelist="山东省,湖北省,浙江省,江西省"
+        var city1="青岛市,威海市,济南市,烟台市"
+        var city2="杭州市,温州市,绍兴市,金华市"
+        var city3="南昌市,景德镇市,九江市,井冈山市"
+        var city4="武汉市,黄冈市,孝感市,荆州市"
+
+        var province=document.getElementById("province")
+        var city=document.getElementById("city")
+
+        var provinceArr=provincelist.split(",");
+
+        console.log(provincelist)
+        console.log(provinceArr)
+
+        for(var i=0;i<provinceArr.length;i++){
+            var option=document.createElement("option");
+            option.innerHTML=provinceArr[i];
+            province.appendChild(option);
+        }
+
+        province.onchange=function(){
+            alert(1)
+        }
+
+        
+    </script>
+</body>
+</html>

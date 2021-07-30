@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="blist">
+        <li id="box">123</li>
+        <li>456</li>
+        <li>789</li>
+    </ul>
+    <script>
+        var box=document.getElementById("box");
+        var h1=document.createElement("h1");
+        h1.innerHTML="haha";
+        console.log(h1)
+        h1.className="title"
+        box.appendChild(h1)
+
+        //要先找到需要增加的那个地方的父级，然后再增加。
+    </script>
+</body>
+</html>

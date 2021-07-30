@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        table {
+            border: 1px solid black;
+            width: 100%;
+            text-align: center;
+        }
+        
+        th {
+            height: 50px;
+        }
+        
+        th,
+        td {
+            border-bottom: 1px solid #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>购买数量</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(item,index) in goods" v-bind:key="index">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button v-bind:disabled="item.count<=0" v-on:click="item.count-=1">-</button> {{item.count}}
+                    <button v-on:click="item.count+=1">+</button>
+                    <!-- 给button里绑定一个disabled禁用属性 -->
+                    <!-- <button v-on:click="plus(index)">-</button> {{item.count}}
+                    <button v-on:click="add(index)">+</button> -->
+                </td>
+                <td><button v-on:click="item.count=0">删除</button></td>
+                <!-- 如果想把这一行都删掉的话，不要删除tr，因为vue是数据驱动页面的框架
+                    如果要删掉这一行应该直接删掉这一行对应的数组
+                    界面上有想操作的任何地方，应该想到的是操作对应的数据 -->
+            </tr>
+        </table>
+        <h1>
+            总价：{{totalprice}}
+            <!-- 放在computed里的话，就不用加（） -->
+        </h1>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                goods: [{
+                    id: 1,
+                    name: "iphone 12mini",
+                    price: 5499,
+                    count: 1
+                }, {
+                    id: 2,
+                    name: "iphone 12",
+                    price: 6499,
+                    count: 1
+                }, {
+                    id: 3,
+                    name: "iphone 12promax",
+                    price: 12499,
+                    count: 1
+                }, {
+                    id: 4,
+                    name: "huawei Mate40pro",
+                    price: 7799,
+                    count: 1
+                }, ]
+            },
+            methods: {
+                // add(index) {
+                //     // this.item.count += 1
+                //     // 上面是一个循环，在循环中会同时发生变化，所以要传一个参数
+                //     this.goods[index].count += 1
+                // },
+                // plus(index) {
+                //     this.goods[index].count -= 1
+                // }
+
+
+            },
+            computed: {
+                totalprice() {
+                    // 每一项的价格乘以每一项的数量
+                    var total = 0;
+                    for (var i = 0; i < this.goods.length; i++) {
+                        totol += this.goods[i].price * this.goods[i].count
+                    }
+                    return total
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

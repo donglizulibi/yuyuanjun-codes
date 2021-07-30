@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        table {
+            border: 1px solid black;
+            width: 100%;
+            text-align: center;
+        }
+        
+        th {
+            height: 50px;
+        }
+        
+        th,
+        td {
+            border-bottom: 1px solid #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>购买数量</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(item,index) in goods" v-bind:key="index">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button v-bind:disabled="item.count<=0" v-on:click="item.count-=1">-</button> {{item.count}}
+                    <button v-on:click="item.count+=1">+</button>
+                </td>
+                <td><button v-on:click="item.count=0">删除</button></td>
+            </tr>
+        </table>
+        <h1>
+            总价：{{totalprice}}
+        </h1>
+        <button v-on:click="clearall">移除所有</button>
+        <button v-on:click="plusone">所有+1</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                goods: [{
+                    id: 1,
+                    name: "瓦尔登湖",
+                    price: 59,
+                    count: 1
+                }, {
+                    id: 2,
+                    name: "平凡的世界",
+                    price: 74,
+                    count: 1
+                }, {
+                    id: 3,
+                    name: "红岩",
+                    price: 23,
+                    count: 1
+                }, {
+                    id: 4,
+                    name: "围城",
+                    price: 25,
+                    count: 1
+                }, ]
+            },
+            methods: {
+                clearall() {
+                    for (var i = 0; i < this.goods.length; i++) {
+                        this.goods[i].count = 0
+                    }
+                },
+                plusone() {
+                    for (var i = 0; i < this.goods.length; i++) {
+                        this.goods[i].count += 1
+                    }
+                }
+            },
+            computed: {
+                totalprice() {
+                    var total = 0;
+                    for (var i = 0; i < this.goods.length; i++) {
+                        total += this.goods[i].price * this.goods[i].count
+                    }
+                    return total
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

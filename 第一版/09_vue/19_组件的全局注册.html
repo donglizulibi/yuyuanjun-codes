@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,key) in list">{{key}}:{{item}}</li>
+        </ul>
+        <button v-on:click="edit">按钮</button>
+        <mycom></mycom>
+    </div>
+
+    <!-- 本例子还是演示了如何在vue里面给一个对象添加键值对 -->
+    <script>
+        Vue.component("mycom", {
+            data: function() {
+                return {
+                    count: 1
+                }
+            },
+            template: `<div>
+                <ul>
+                    <li>{{count}}</li>
+                    <li style="color:yellow">lisi</li>
+                    <li>wangwu</li>
+                </ul>
+            </div> `
+        })
+
+        // Vue.component("mycom", {
+        //     template: "<h1>我是组件</h1>"
+        // })
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                list: {
+                    name: "zhangsan",
+                    age: 18,
+                    height: 180
+                }
+            },
+            methods: {
+                edit: function() {
+                    app.$set(this.list, "sex", "boy")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

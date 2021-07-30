@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <parent v-for="item in 10" v-bind:item="item"></parent>
+        <!-- 这里item加了冒号，说明没有写死，以动态变量的形式绑定了 -->
+    </div>
+    <script>
+        Vue.component("parent", {
+            props: ["item"],
+            data() {
+                return {
+                    item: 11
+                }
+                // 在这里11并不显示出来，由此可见data要服从props
+            },
+            template: `<div>
+                        <h1>{{item}}</h1>
+                        </div>`
+        })
+        var app = new Vue({
+            el: "#app",
+
+        })
+    </script>
+</body>
+
+</html>

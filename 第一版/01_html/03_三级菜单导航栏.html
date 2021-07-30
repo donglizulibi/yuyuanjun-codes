@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三级菜单导航</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .nav>li{
+            float: left;
+            list-style: none;
+            height: 50px;
+            width: 120px;
+            margin-right: 5px;
+            background: blue;
+            color: #ffffff;
+            text-align: center;
+            line-height: 50px;
+        }
+        .index_second{display: none;}
+        .index_second>li{
+            list-style: none;
+            height: 50px;
+            width: 120px;
+            background: green;
+            color: #ffffff;
+            text-align: center;
+            line-height: 50px;
+            border-bottom:#000000 1px solid;
+            position: relative;           
+        }
+        .nav>li:hover .index_second{display: block;}
+
+        .index_third>li{
+            list-style: none;
+            height: 50px;
+            width: 120px;
+            background: pink;
+            color: #ffffff;
+            text-align: center;
+            line-height: 50px;
+            border-bottom:#000000 1px solid;
+        }
+        .index_third{
+            position: absolute;top: 0px;left: 120px;display: none;
+        }
+        .index_second>li:hover .index_third{display: block;}
+        .index_second li:hover{background: purple;}
+        /* .index_third li:hover{background: red;} */
+        .nav>li:hover{background: yellow;}
+        .clear{clear: both;}
+        
+    </style>
+</head>
+<body>
+    <div>
+        <ul class="nav">
+            <li><span>首页</span>
+                <ul class="index_second">
+                    <li>
+                        <span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><span>首页</span>
+                <ul class="index_second">
+                    <li>
+                        <span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>首页的二级菜单</span>
+                        <ul class="index_third">
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                            <li><span>首页的三级菜单</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><span>首页</span></li>
+            <li><span>首页</span></li>
+            <li><span>首页</span></li>
+            <li><span>首页</span></li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+    
+</body>
+</html>

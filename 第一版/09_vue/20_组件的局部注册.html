@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom></mycom>
+    </div>
+    <script>
+        var coma = {
+            template: `<h1 v-on:click="cli">{{message}}</h1>`,
+            data() {
+                return {
+                    count: 0,
+                    message: "我是组件"
+                }
+            },
+            methods: {
+                cli() {
+                    alert("haha")
+                }
+            }
+
+        }
+        var app = new Vue({
+            el: "#app",
+
+            components: {
+                mycom: coma
+            }
+        })
+    </script>
+</body>
+
+</html>

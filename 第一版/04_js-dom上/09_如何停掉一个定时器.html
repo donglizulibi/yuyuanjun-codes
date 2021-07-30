@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="clock"></h1>
+    <button id="stop">停止</button>
+    <button id="stop2">把第二个也停了</button>
+    <script>
+        window.onload=function(){
+            var stop = document.getElementById("stop")
+            var stop2 = document.getElementById("stop2")
+            function fn1(){
+                console.log("hello")
+            }
+            function fn2(){
+                console.log("world")
+            }
+            var index1 = setInterval(fn1,1000)
+            var index2 = setInterval(fn2,1000)
+            console.log(index1)
+            stop.onclick = function(){
+                clearInterval(index1)
+            }
+            stop2.onclick = function(){
+                clearInterval(index2)
+            }
+        }
+    </script>
+</body>
+</html>

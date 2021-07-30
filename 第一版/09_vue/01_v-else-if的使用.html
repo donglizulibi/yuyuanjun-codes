@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="seen==1">{{message}}</div>
+        <h1 v-else-if="seen==2">this is the second</h1>
+        <h1 v-else-if="seen==3">this is the third</h1>
+        <h1 v-else>this is the fourth</h1>
+    </div>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                message: "this is the first",
+                seen: true
+            }
+        })
+
+        // 或许可以用在写选项卡
+    </script>
+</body>
+
+</html>

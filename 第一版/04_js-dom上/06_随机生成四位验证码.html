@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var codes = [];
+        for(var i = 48;i<58;i++){
+            codes.push(i)
+        }
+        for(var i = 65;i<91;i++){
+            codes.push(i)
+        }
+        for(var i = 97;i<123;i++){
+            codes.push(i)
+        }
+        console.log(codes)
+
+        var arr = []
+        for(var j=0;j<4;j++){
+            var index = Math.floor(Math.random()*62)
+            var co = String.fromCharCode(codes[index])
+            // console.log(co)
+            arr.push(co)
+        }
+        console.log(arr)
+        var str = arr.join("")
+        console.log(str)
+
+
+    </script>
+</body>
+</html>

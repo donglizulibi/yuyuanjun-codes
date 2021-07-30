@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom v-on:myevent="myfn"></mycom>
+
+    </div>
+    <script>
+        var child = {
+            template: "<div><h1 v-on:click='fn'>我是子组件</h1></div>",
+            data() {
+                return {
+                    msg: "我是子组件的数据"
+                }
+            },
+            methods: {
+                fn() {
+                    this.$emit("myevent", this.msg)
+                }
+            }
+        }
+
+        var father = {
+            template: "<h1 style='height:100px;width:100%;background: red;'>{{count}}</h1>",
+            data() {
+                return {
+                    msg: "我是父组件的数据"
+                }
+            },
+            methods: {
+                myfn(payload) {
+                    this.count = payload
+                }
+            },
+            components: {
+                mycom: child
+            },
+        }
+        var app = new Vue({
+            el: "#app",
+            data: {
+                count: "这里是组件的区域"
+            },
+            components: {
+                father
+            }
+        })
+    </script>
+</body>
+
+</html>

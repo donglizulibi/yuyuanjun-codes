@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 
+        通常所定义的变量 如 var a = 1;
+        其实是包括两步的
+        第一 var a (声明变量)
+        第二 a = 1 (给这个变量赋值) 
+     -->
+    <script>
+        // 案例一
+        console.log(a)
+        document.write(a)
+        var a = 1
+            //  输出的结果是undefined
+
+        // 案例二
+        function hd() {
+            if (false) {
+                var web = "hahaha"
+            }
+            console.log(web)
+        }
+        // 等同于
+        // function hd() {
+        //     var web
+        //     if (false) {
+        //         web = "hahaha"
+        //     }
+        //     console.log(web)
+        // }
+        hd()
+    </script>
+</body>
+
+</html>

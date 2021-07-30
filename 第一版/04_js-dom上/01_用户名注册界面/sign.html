@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/index.js"></script>
+</head>
+<body>
+        <!--
+        注册界面
+        用户名 一个表单 四到八位数字和字母组合 
+                如果用户名不合法，右边来一行红字提示，如果用户输入是对的，这一行不显示提示
+        密码 一个表单 六位纯数字
+                如果不合法，右边红字提示
+                密码是暗文显示，有小眼睛（睁眼闭眼）的图标
+                点一下就会显示密码明文，再点一下就会显示暗文。
+        确认密码 一个表单
+                必须和密码一致，如果不一致，右边红字提示
+        注册 一个按钮
+                点注册时候要再次判断哪项有错，有错的话要提示
+                如果都对，就alert注册成功
+    -->
+        <div class="sign">
+                <div class="user">
+                        <p class="title">用&nbsp;&nbsp;户&nbsp;&nbsp;名:</p>
+                        <input id="usertext" type="text" placeholder="请输入4-8位数字或字母">
+                        <p id="usertxt" class="tips">您输入的用户名不合法</p>
+                        <div class="clear"></div>
+                </div>
+                <div class="password">
+                        <p class="title">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</p>
+                        <input id="pwdtext" type="password" placeholder="请输入6位数字密码">
+                        <p id="pwdtxt" class="tips">您输入的密码不合法</p>
+                        <div class="clear"></div>
+                        <div id="open"></div>
+                        <div id="close"></div>
+                </div>
+                <div class="password-again">
+                        <p class="title">确认密码:</p>
+                        <input id="repwdtext" type="password" placeholder="请确认密码">
+                        <p id="repwdtxt" class="tips">您两次输入的密码不一致</p>
+                        <div class="clear"></div>
+                </div>
+                
+                <div id="register" class="button">
+                        <a href=""><p>注册</p></a>
+                </div>
+                  
+        </div>
+</body>
+</html>

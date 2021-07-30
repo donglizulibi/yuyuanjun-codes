@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in list">{{item}}</li>
+        </ul>
+        <button v-on:click="change">按键1</button>
+        <button v-on:click="change1">按键2</button>
+        <h1>{{msg}}</h1>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                list: [1, 2, 3, 4],
+                msg: "hahaha"
+            },
+            methods: {
+                change() {
+                    // alert(this.list[1])
+                    this.list[1] = 9
+                },
+                change1() {
+                    this.msg = "hehehehe"
+                }
+            },
+            computed: {
+
+            }
+
+            // 
+
+            // 直接通过角标修改数组的某一项是不成立的，但是我们会发现通过角标修改也是成立的
+            // 特殊情况下，修改别的数据的时候会发现数组也改了，这是因为视图是更新是全局的
+            // 一个地方的更新会使其他修改的地方也更新。
+        })
+    </script>
+</body>

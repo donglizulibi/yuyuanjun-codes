@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn() {
+            var a = new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    resolve("haha")
+                }, 5000)
+            })
+            return a
+        }
+
+        async function fn2() {
+            let b = await fn();
+            // fn()和console本来会同步执行，但是因为有了anync和await，所以fn()会先执行完，然后再执行console
+            // console里面的b也有数据传递进去
+            console.log("action", b)
+        }
+
+        fn2()
+    </script>
+</body>
+
+</html>

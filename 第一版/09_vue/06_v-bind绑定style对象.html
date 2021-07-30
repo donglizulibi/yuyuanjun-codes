@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:style={color:color,fontSize:font}>123</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                color: "red",
+                font: "100px"
+            }
+        })
+    </script>
+</body>
+
+</html>

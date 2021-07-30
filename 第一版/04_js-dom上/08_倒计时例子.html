@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="now"></h1>
+    <h1 id="dismiss"></h1>
+    <h1 id="countdown"></h1>
+    <script>
+        window.onload = function() {
+                var dismiss = document.getElementById("dismiss")
+                var classover = new Date("2021-02-21 22:00:00")
+                    // dismiss.innerHTML = classover
+                dismiss.innerHTML = classover.toLocaleTimeString()
+                console.log(classover.toLocaleTimeString())
+
+                var now = document.getElementById("now")
+
+                function time() {
+                    var nowtime = new Date()
+                    now.innerHTML = nowtime.toLocaleTimeString()
+                        // 在相减之前要先转为字符串
+                    var countdown = document.getElementById("countdown")
+                    var ms = classover - nowtime;
+                    // console.log(ms)
+                    if (ms > 0) {
+                        var h = Math.floor(ms / 1000 / 60 / 60);
+                        // 用向下取整
+                        var m = Math.floor((ms - h * 1000 * 60 * 60) / 1000 / 60);
+                        var s = Math.floor((ms - h * 1000 * 60 * 60 - m * 1000 * 60) / 1000);
+                        countdown.innerHTML = "距离下课还有" + h + "时" + m + "分" + s + "秒"
+                    } else {
+                        clearInterval(timer);
+                        timer = null;
+                    }
+                }
+                var time = setInterval(time, 1000)
+                    // 这里的time相当于全局变量，就算是作为定时器停掉，还是会占用内存（定时器经过的那些时间都会存下来）
+                    // 最好的方法就是分两步，第一步是clearInterval，第二步是令time=null
+                    // 当然定时器最好还是在全局声明，否则在某个局部停掉后可能其他位置访问不到
+                    // 在全局声明定时器时，可以先令其位null，先占一个位置
+                    // 但是又不占用内存，等要用的时候，在赋值
+                    // 即 在全局声明 timer=null
+            }
+            //不要忘记关定时器
+    </script>
+</body>
+
+</html>

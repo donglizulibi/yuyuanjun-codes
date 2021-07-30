@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 这里的两个parent标签，第一个标签里面没有写东西，
+            所以template里的slot不生效，第二个标签里面有一个h2标签，所以可以显示出来
+         -->
+        <parent content="zhangsan" color="red"></parent>
+        <parent content="lisi" color="blue">
+            <h2>我就随便谢谢</h2>
+        </parent>
+
+    </div>
+    <script>
+        Vue.component("parent", {
+            props: ["content", "color"],
+            template: `<div>
+                        <h1 v-bind:style="{color:color}">{{content}}</h1>
+                        <mycom></mycom>
+                        <slot></slot>
+                        </div>`
+        })
+
+        Vue.component("mycom", {
+            template: `<h3>我是子组件</h3>`
+        })
+        var app = new Vue({
+            el: "#app",
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:style="[fontObj,marginObj]">{{status}}</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: 2,
+                info: 3,
+                fontObj: {
+                    fontSize: "50px",
+                    color: "yellow"
+                },
+                marginObj: {
+                    marginTop: "50px",
+                    marginLeft: "50px"
+                }
+            },
+            computed: {
+                status: {
+                    get: function() {
+                        return this.message + this.info
+                            // 不修改status，会自动执行，02_computed属性里的status就是默认只有一个getter，然后省略不写。
+                            // 页面一进来就会自动执行这两个值相加。
+                    },
+                    set: function() {
+                        this.fontObj.fontSize = "200px"
+                            // 只要在控制台里改status，不管改成什么，set函数里的语句就会执行
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

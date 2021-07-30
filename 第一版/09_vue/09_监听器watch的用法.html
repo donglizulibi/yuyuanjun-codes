@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{status}}</div>
+        <h1>{{abc}}</h1>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                abc: 123,
+                info: 3
+            },
+            computed: {
+                status: function() {
+
+                }
+            },
+            watch: {
+                abc: function() {
+                    alert("执行了")
+                },
+                info: function() {
+                    alert("info数据变为" + this.info)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
