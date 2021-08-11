@@ -13,35 +13,24 @@
     <input type="text" name="confirm_password">
     <br/>
     <span name="msg"></span>
+    <span id="qwe"></span>
+    <span class="zxc"></span>
     <script>
-        // 1 querySelector的用法 如何在querySelector里面添加变量
-        // 2 如何在页面中创建一个dom元素选择器的函数 
-        function query(abc) {
-            return document.querySelector(`[name='${abc}']`)
-        }
-        console.log(11, query("password"))
-        console.log(22, query("confirm_password"))
-        console.log(33, query("msg"))
-
-        // 3 querySelectorAll的用法
         let inputs = document.querySelectorAll("[name='password'],[name='confirm_password']")
-        console.log(inputs);
-        console.log(typeof inputs);
 
-        // 4 map的用法
-        // 5 addEventListener绑定事件的总结
-        [...inputs].map(item => {
-            item.addEventListener("keyup", function() {
-                console.log(22)
-                let msg = ''
-                if (query("password").value != query("confirm_password").value ||
-                    query("password").value.length < 5
-                ) {
-                    msg = "两次输入不一致或密码长度小于五位"
-                }
-                query("msg").innerHTML = msg
-            })
-        })
+        let spans = document.querySelectorAll(".zxc,#qwe,[name='msg']")
+        console.log(spans, 123)
+
+        console.log(inputs, "链表");
+        console.log(typeof inputs);
+        console.log([...inputs], "数组");
+        console.log(...inputs, "序列");
+
+        let spanArr = [...spans]
+        console.log(spanArr, "span")
+        for (let i = 0; i < spanArr.length; i++) {
+            spanArr[i].innerHTML = i
+        }
     </script>
 </body>
 

@@ -9,13 +9,18 @@
 </head>
 
 <body>
+    <span name="msg"></span>
+    <span id="qwe"></span>
+    <span class="zxc"></span>
     <script>
-        var i = 99
-        for (let i = 0; i < 5; i++) {
-            console.log(i)
-        }
-        console.log(i)
-            //这里的let可以重复使用
+        let spans = document.querySelectorAll(".zxc,#qwe,[name='msg']")
+        console.log(spans, 123);
+
+
+
+        [...spans].map(item => {
+            item.innerHTML = 1
+        })
     </script>
 </body>
 

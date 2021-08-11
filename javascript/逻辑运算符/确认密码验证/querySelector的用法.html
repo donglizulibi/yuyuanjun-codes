@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="password">
+    <input type="text" name="confirm_password">
+    <br/>
+    <span name="msg"></span>
+    <br/>
+    <span id="zxc"></span>
+    <br/>
+    <span class="qwe"></span>
+    <script>
+        /*
+                                        querySelector里面需要是双引号加上css选择器，但是本例中因为要把变量放进去
+                                        所以需要用模板字符串换上双引号
+                                        */
+
+
+        // 1 querySelector的用法 如何在querySelector里面添加变量
+        let abc = "msg"
+            // document.querySelector(`[name='${abc}']`).innerHTML = 123
+        document.querySelector("[name = 'msg']").innerHTML = 1212343123
+        document.querySelector(".qwe").innerHTML = 123
+        document.querySelector("#zxc").innerHTML = 1232134
+
+        // console.log(11, query("password"))
+        // console.log(22, query("confirm_password"))
+        // console.log(33, query("msg"))
+    </script>
+</body>
+
+</html>

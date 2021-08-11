@@ -9,13 +9,11 @@
 </head>
 
 <body>
+    <input name="msg"></input>
     <script>
-        var i = 99
-        for (let i = 0; i < 5; i++) {
-            console.log(i)
-        }
-        console.log(i)
-            //这里的let可以重复使用
+        document.querySelector("[name='msg']").addEventListener("keyup", function() {
+            console.log(22)
+        })
     </script>
 </body>
 
