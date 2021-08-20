@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果要区分数组和对象 不区分的话就都是打印object
+        // instanceof其实是判断前者的prototype是否在后者原型链上
+        let hd = [];
+        let hdcms = {}
+        console.log(hd instanceof Array)
+        console.log(hd instanceof Object)
+        console.log(hdcms instanceof Array)
+        console.log(hdcms instanceof Object)
+
+        // 自定义构造函数
+        function User() {
+
+        }
+        let chy = new User()
+        console.log(chy instanceof User)
+        console.log(chy instanceof Object)
+        console.log(chy instanceof Array)
+    </script>
+</body>
+
+</html>

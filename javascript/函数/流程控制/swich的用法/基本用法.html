@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>视频</button>
+    <button>产品</button>
+    <br>
+    <span></span>
+    <script>
+        function query(el) {
+            return document.querySelector(el)
+        }
+
+        let name = ""
+        let button = document.querySelectorAll("button");
+        [...button].map(item => {
+            item.addEventListener('click', function() {
+                // alert(item.innerHTML)
+                name = item.innerHTML
+                console.log(name)
+                query("span").innerHTML = switchTest(name)
+            })
+        })
+
+        function switchTest(name) {
+            let msg = ''
+            switch (name) {
+                case '产品':
+                    console.log("123");
+                    msg = "产品"
+                    break;
+                case '视频':
+                    console.log("456");
+                    msg = "视频"
+                    break;
+                default:
+                    console.log("789")
+            }
+            return msg
+        }
+    </script>
+</body>
+
+</html>

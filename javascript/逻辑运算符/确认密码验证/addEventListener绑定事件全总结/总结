@@ -1,0 +1,7 @@
+html的dom事件放在addEventListener里面前面都不需要加on
+
+键盘事件
+onkeyup keyup 键盘松开触发
+
+表单事件
+onsubmit submit 表单提交时触发

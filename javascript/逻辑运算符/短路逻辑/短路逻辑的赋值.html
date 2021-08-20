@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = 6,
+            b = 0;
+        // let sex = prompt("请输入性别")
+        // if (!sex) {
+        //     sex = "保密";
+        // }
+
+        // 等同于
+        // 说明空字符等于false，其中默认的选项要放在后面
+        let option = prompt("请输入性别")
+        let sex = option || "保密"
+        console.log(typeof option)
+        console.log(option)
+        console.log(sex)
+    </script>
+</body>
+
+</html>

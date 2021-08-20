@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" onclick="disp_prompt()" value="Display a prompt box" />
+    <script>
+        function disp_prompt() {
+            // var name = prompt("Please enter your name", "123")
+            var name = prompt("Please enter your name", "")
+            if (name != null && name != "") {
+                document.write("Hello " + name + "!")
+            }
+        }
+    </script>
+</body>
+
+</html>

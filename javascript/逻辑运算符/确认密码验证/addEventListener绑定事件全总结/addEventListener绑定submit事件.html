@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="https://blog.vuejs.org/posts/vue-3.2.html" id="form">
+        <input type="text" name="user">
+        <hr>
+        <input type="checkbox" name="copyright">接受协议
+        <hr>
+        <button>提交</button>
+    </form>
+    <script>
+        function query(el) {
+            return document.querySelector(el)
+        }
+        query("#form").addEventListener("submit",
+            function(event) {
+                let user = query("[name = 'user']").value.trim()
+                let copyright = query("[name = 'copyright']").checked
+                console.log("user", user)
+                console.log("copyright", copyright)
+                if (!user.length || copyright === false) {
+                    event.preventDefault()
+                    alert("请接受协议并添加用户名")
+                }
+            })
+    </script>
+</body>
+
+</html>

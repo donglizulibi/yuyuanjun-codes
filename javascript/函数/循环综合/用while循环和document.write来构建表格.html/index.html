@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        document.write(123)
+
+        function table(options = {
+            tr: 5,
+            td: 3
+        }) {
+            document.write(`<table border="1" width="100%">`);
+            // let tr = 10;
+            while (options.tr-- != 0) {
+                let td = options.td;
+                document.write(`<tr>`);
+                while (td-- != 0) {
+                    document.write(`<td>${td}</td>`)
+                }
+                document.write(`</tr>`);
+            }
+            document.write(`</table>`);
+
+        }
+        table()
+        table({
+            tr: 20,
+            td: 10
+        })
+
+
+        // document.write(`<table border="1" width="100%">`);
+        // let tr = 10;
+        // while (tr-- != 0) {
+        //     document.write(`<tr>`);
+        //     let td = 3
+        //     while (td-- != 0) {
+        //         document.write(`<td>${td}</td>`)
+        //     }
+        //     document.write(`</tr>`);
+        // }
+        // document.write(`</table>`);
+    </script>
+</body>
+
+</html>

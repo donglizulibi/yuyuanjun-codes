@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="password" name="password">
+    <span id="msg"></span>
+    <script>
+        function query(el) {
+            return document.querySelector(el)
+        }
+        let password = query("[name = 'password']")
+        password.addEventListener("keyup", function() {
+            console.log(password.value.length)
+            console.log('what is this', this)
+                // let length = password.value.length
+            let length = this.value.length
+            let span = query("#msg")
+            if (length > 9) {
+                span.innerHTML = "密码无敌强度"
+            } else if (length > 5) {
+                span.innerHTML = "密码中等强度"
+            } else {
+                span.innerHTML = "密码不安全"
+            }
+        })
+    </script>
+</body>
+
+</html>

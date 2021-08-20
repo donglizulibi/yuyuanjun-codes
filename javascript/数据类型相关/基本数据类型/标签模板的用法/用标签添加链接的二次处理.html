@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        li {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let lessons = [{
+            title: "后盾人媒体查询响应式布局",
+            author: "后盾人向军"
+        }, {
+            title: "flex 弹性盒模型",
+            author: "后盾人"
+        }, {
+            title: "GRID 后盾人栅格系统",
+            author: "古老师"
+        }]
+
+        function tempalte() {
+            return `
+            <ul>
+                ${lessons.map(item => links `<li>作者：${item.author}, 课程：${item.title}</li>`).join("")}
+            </ul>
+            `
+        }
+
+        function links(strings,...vars){
+            console.log(strings)
+            console.log(vars)
+            // return 123
+            return strings.map((str,key)=>{
+                console.log(str)
+                console.log(key)
+                return (str + (vars[key]?
+                vars[key]
+                .replace("后盾人","<a href='https://www.houdunren.com'>后盾人</a>")
+                :""))
+            }).join("");
+        }
+
+        document.body.innerHTML = tempalte()
+    </script>
+</body>
+
+</html>

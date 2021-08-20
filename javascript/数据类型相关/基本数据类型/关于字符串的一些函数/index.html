@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <script>
+        let hd = "      houdunren     "
+        let hdd = hd.trim()
+        console.log(hd.length)
+        console.log(hdd)
+        console.log(hdd.length)
+        console.log(hdd.charAt(2))
+        for (let i = 0; i < hdd.length; i++) {
+            let span = document.createElement("span");
+            span.style.fontSize = (i + 1) * 10 + "px";
+            span.innerHTML = hdd[i];
+            document.body.appendChild(span)
+        }
+    </script>
+</body>
+
+</html>
