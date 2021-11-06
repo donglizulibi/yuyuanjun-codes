@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = {
+            title: 'houdunewn',
+            url: 'houdunewn.com',
+            teacher: {
+                name: "xiangjun"
+            },
+            toJSON: function() {
+                return {
+                    haha: '我好困', //完全自定义
+                    title: this.title,
+                    teacher: this.teacher.name //往下挖一层
+                }
+            }
+        }
+        console.log(JSON.stringify(hd, null, 2))
+    </script>
+</body>
+
+</html>

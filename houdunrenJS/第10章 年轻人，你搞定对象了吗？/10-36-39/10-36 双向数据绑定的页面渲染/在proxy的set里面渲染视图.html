@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" v-model='haha'>
+    <input type="text" v-model='haha'>
+    <div v-bind='haha'></div>
+    <hr>
+    <input type="text" v-model='title'>
+    <input type="text" v-model='title'>
+    <h4 v-bind='title'>ff</h4>
+    <script>
+        function View() {
+            let proxy = new Proxy({}, {
+                get(obj, property) {},
+                set(obj, property, value) {
+                    console.log(value)
+                    console.log(11, property) //e.target.getAttribute('v-model') 
+                    console.log(22, obj)
+                    console.log(document.querySelectorAll(`[v-model=${property}],[v-bind=${property}]`))
+                    document.querySelectorAll(`[v-model=${property}]`).forEach(item => {
+                        item.value = value
+                    })
+                    document.querySelectorAll(`[v-bind=${property}]`).forEach(item => {
+                        item.innerHTML = value
+                    })
+                }
+            })
+
+            this.init = function() {
+                console.log(this)
+                let els = document.querySelectorAll('[v-model]')
+                console.log(els)
+                els.forEach(item => {
+                    item.addEventListener('keyup', (e) => {
+                        console.log(1)
+                        console.log(this)
+                        console.log(e.target)
+                        console.log(e.target.getAttribute('v-model'))
+                        console.log(typeof e.target.getAttribute('v-model'))
+                        console.log(proxy)
+                        proxy[e.target.getAttribute('v-model')] = e.target.value
+                        console.log(proxy)
+
+                    })
+                })
+            }
+        }
+        new View().init()
+    </script>
+</body>
+
+</html>

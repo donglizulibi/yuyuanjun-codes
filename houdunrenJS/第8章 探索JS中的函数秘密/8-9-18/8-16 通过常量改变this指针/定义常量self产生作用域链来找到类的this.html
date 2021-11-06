@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let lesson = {
+            site: 'houdunren',
+            lists: ['js', 'css', 'mysql'],
+            show: function() {
+                console.log('对象类方法下直接打印this', this)
+                console.log(this.site)
+                console.log(this.show)
+                const that = this
+                return this.lists.map(function(value) {
+                    console.log(this) // 在类方法下创建一个普通函数，在这个函数里面打印this，出来的结果是是全局环境
+                    console.log('作用域链', that) // 这个打印的lesson对象
+                    return `${that.site}-${value}`
+                })
+            }
+        }
+        console.log('全局调用并打印结果', lesson.show())
+
+        // 如果说普通函数的this是指向调用函数的环境，而箭头函数的this是指向生成函数的环境
+        // 那么我对徐老师的质疑就是，如何证明this.lists.map这个函数是被全局环境调用的
+    </script>
+</body>
+
+</html>

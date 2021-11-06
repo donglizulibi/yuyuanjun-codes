@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 不加reduce第二个参数的情况
+        let arr = ['我好饿', '我好困', '我好冷']
+        arr.reduce(function(pre, value, index, arr) {
+            console.log(pre) //打印的是上一次循环return出的值，如果上一次循环没有ruturn则打印undefined，如果是第一次循环，则打印数组里的第一项
+            console.log(value) //第一次循环打印的是数组的第二项
+            console.log(index)
+            console.log(arr)
+            console.log('循环计数')
+            console.log(' ')
+            return value
+        })
+        console.log("")
+        console.log("分割线")
+        console.log("")
+            // 加上reduce第二个参数
+        let arr1 = ['我好饿', '我好困', '我好冷']
+        arr1.reduce(function(pre, value, index, arr) {
+            console.log("pre", pre)
+                // 打印的是上一次循环return出的值，如果上一次循环没有ruturn则打印undefined
+                // 如果是第一次循环，则打印reduce的第二个参数
+            console.log(value) //第一次循环打印的是数组的第一项
+            console.log(index)
+            console.log(arr)
+            console.log('循环计数')
+            console.log(' ')
+            return value
+        }, 99)
+    </script>
+</body>
+
+</html>

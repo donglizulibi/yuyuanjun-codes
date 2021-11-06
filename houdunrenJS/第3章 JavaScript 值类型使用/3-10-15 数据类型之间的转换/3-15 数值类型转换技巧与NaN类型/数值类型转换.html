@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 将布尔转化为数值
+        console.log(Number(false))
+        console.log(Number(true))
+            // 将字符串转换为数值
+        let hd = "89"
+        console.log(Number(hd))
+            // 将数组转化为数值
+        let arr1 = []
+        let arr2 = [1]
+        let arr3 = [1, 2]
+            // let arr4 = ['a', 'b']
+        let arr4 = ['a']
+        console.log("空数组", Number(arr1))
+        console.log("数组里只有一个数值", Number(arr2))
+        console.log("数组里有两个及以上数值", Number(arr3))
+        console.log("数组里没有数值", Number(arr4))
+            // 将对象转化为数值
+        let obj = {}
+        console.log("空对象", Number(obj))
+        let obj1 = {
+            valueOf: function() {
+                return 99
+            }
+        }
+        console.log("加入valueOf函数", Number(obj1))
+    </script>
+</body>
+
+</html>

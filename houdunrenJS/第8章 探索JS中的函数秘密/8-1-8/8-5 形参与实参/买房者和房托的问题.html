@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 形参多余实参
+        function sum1(a, b, c) {
+            console.log(c)
+            return a + b + c // 多出的形参是undefined，数字加undefined是NaN
+        }
+        console.log(sum1(1, 2))
+
+        // 实参多余形参
+        function sum2(a, b) {
+            return a + b
+        }
+        console.log(sum1(1, 2, 3, 4, 5)) //只取前面两个，后面的自动舍去
+    </script>
+</body>
+
+</html>

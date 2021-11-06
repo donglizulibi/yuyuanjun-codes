@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对一个对象的冻结使得对象内的属性不能被修改和删除，也不能添加属性
+        let obj = {
+            name: 'haha',
+            age: 19
+        }
+        console.log(Object.isFrozen(obj))
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2))
+        Object.freeze(obj)
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2))
+        console.log(Object.isFrozen(obj))
+
+        // 但是可以进行遍历操作和调用对象中的属性和方法，为了防止前台无意或者恶意修改数据时可以使用
+    </script>
+</body>
+
+</html>

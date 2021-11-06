@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用Map存属性键值对，属性名可以是任意数据类型
+        // 普通对象在这方面的弊端，见6-1
+        let map = new Map()
+        map.set("name", "houdunren")
+        map.set("name", "houdunren") // 只打印出来一个，说明还是会自动去重
+        map.set(1, 1)
+        map.set([], 4)
+        map.set({}, "haha")
+        map.set(() => {}, [])
+        map.set(function() {}, 90)
+        console.log(map)
+    </script>
+</body>
+
+</html>

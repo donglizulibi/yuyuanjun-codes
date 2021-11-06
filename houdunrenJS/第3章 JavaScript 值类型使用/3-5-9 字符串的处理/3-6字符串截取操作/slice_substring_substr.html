@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log(`hd = "houdunren.com"`)
+        let hd = "houdunren.com"
+            // 1 只填一个参数
+        console.log("1 只填一个参数")
+        console.log("hd.slice(3): ", hd.slice(3))
+        console.log("hd.substring(3): ", hd.substring(3))
+        console.log("hd.substr(3): ", hd.substr(3))
+        console.log(`
+        结论：参数为几，就从前到后把这个数量的字符串截走，返回剩下的部分
+        `)
+        console.log("")
+            // 2 填两个参数
+        console.log("2 填两个参数")
+        console.log("hd.slice(1,3): ", hd.slice(1, 3))
+        console.log("hd.substring(1,3): ", hd.substring(1, 3))
+        console.log("hd.substr(1,3): ", hd.substr(1, 3))
+        console.log("只取一位数字的情况")
+        console.log("hd.slice(1,2): ", hd.slice(1, 2))
+        console.log("hd.substring(1,2): ", hd.substring(1, 2))
+        console.log("hd.substr(1,1): ", hd.substr(1, 1))
+        console.log(`
+        结论：
+        1、slice和substring都是表示从第一位参数所在的位置开始截取，一直
+        截到第二位参数的位置，返回截走的那一部分。
+
+        2、substr表示从第一位参数开始截，截走的总位数是第二位的参数表达的，也是返回
+        截走的那一部分。
+        `)
+        console.log("")
+            // 3 只填一个参数 但参数为负数
+        console.log("3 只填一个参数 但参数为负数")
+        console.log("hd.slice(-3): ", hd.slice(-3))
+        console.log("hd.substring(-3): ", hd.substring(-3))
+        console.log("hd.substr(-3): ", hd.substr(-3))
+        console.log(`
+        结论：
+        1、slice表示从后往前截取，但是返回的是截走的部分
+        2、substring里面加负数没有意义，统一变成substring(0)，也就是返回原字符串
+        3、substr也是表示从后往前截取，也是返回截走的部分
+        `)
+        console.log("")
+            // 4 填两个参数 且都为负数
+        console.log("4 填两个参数 且都为负数")
+        console.log("hd.slice(-3,-1): ", hd.slice(-3, -1))
+        console.log("hd.substring(-3,-1): ", hd.substring(-3, -1))
+        console.log("hd.substr(-3,-1): ", hd.substr(-3, -1))
+        console.log(`
+        结论：
+        1、slice的两个参数表示从后往前截取，从第一个参数开始到第二个参数为止，
+        返回的是截走的部分
+        2、substring里面加负数没有意义，加两个负数更没有意义
+        3、substr也是表示从后往前截取，也是返回截走的部分，但是第二个参数必须大于零，
+        如果小于或等于零，则按等于零处理，返回一个空字符串
+        `)
+
+        // substr会改变原来的字符串吗
+        let arr = "媒体查询响应式"
+            // arr = arr.substr(0, 2)
+        arr.substr(0, 2)
+        console.log(arr)
+            // 不会
+    </script>
+</body>
+
+</html>

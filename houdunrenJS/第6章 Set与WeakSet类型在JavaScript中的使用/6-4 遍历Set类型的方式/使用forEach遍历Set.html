@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let set = new Set(["hdcms", "houdunren"])
+            // set.map(function(item, key, arr) {
+            //     console.log(item)
+            //     console.log(key)
+            //     console.log(arr)
+            // })
+            // map无法执行
+        set.forEach(function(item, key, arr) {
+            console.log(item)
+            console.log(key) //key和item是一样的
+            console.log(arr)
+        })
+    </script>
+</body>
+
+</html>

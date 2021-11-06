@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第一种情况是往数组里增加某个元素，不删除原数组的任何东西
+        let arr = [1, 2, 3, 4, 5]
+            // 此时splice的第一个参数的这个待增加元素所在的位置(这个坐标的前面)
+            // 第二个参数是0，第三个参数是待增加的元素，可以有第三第四及以上的个参数
+        arr.splice(1, 0, ...[8, 9, 10])
+        console.log("arr", arr)
+
+        let arr1 = [1, 2, 3, 4, 5]
+        arr1.splice(1, 0, [8, 9, 10])
+        console.log("arr1", arr1)
+
+        // 第二种情况是替换数组里的某个元素，实质就是删除和增加
+        let arr2 = [1, 2, 3, 4, 5]
+            // 把第1个元素（数值2）替换成10
+            // 此时splice的第一个参数是待替换元素的位置，第二个参数是1，第三个是代替换元素
+        arr2.splice(1, 1, 10)
+        console.log("arr2", arr2)
+        console.log("fengexian")
+        let arr3 = [1, 2, 3]
+        let arr4 = [1, 2, 3]
+        arr3.splice(arr3.length, 0, 10) // 往数组最后追加元素
+        console.log(arr3)
+        arr4.splice(0, 0, 10) // 往数组最前面追加元素
+        console.log(arr4)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = {
+            name: 'houdunren',
+            user: {
+                name: 'hdcms'
+            }
+        }
+
+        console.log(typeof '123')
+
+        function copy(object) {
+            let res = {}
+            for (let key in object) {
+                if (typeof object[key] !== 'object') {
+                    res[key] = object[key]
+                } else {
+                    res[key] = copy(object[key])
+                }
+            }
+            return res;
+        }
+        let hd = copy(data)
+        console.log(JSON.stringify(hd, null, 2))
+        console.log(JSON.stringify(data, null, 2))
+
+        hd.user.name = 'haha'
+        console.log(JSON.stringify(hd, null, 2))
+        console.log(JSON.stringify(data, null, 2))
+    </script>
+</body>
+
+</html>

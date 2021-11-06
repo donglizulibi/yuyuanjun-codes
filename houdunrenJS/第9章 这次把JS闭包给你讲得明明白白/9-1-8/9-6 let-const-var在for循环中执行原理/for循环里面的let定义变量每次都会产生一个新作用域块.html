@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let也不是每一个块执行完再执行下一个块，而是很多个块并行
+        for (let i = 1; i <= 4; i++) {
+            setTimeout(() => {
+                console.log('let的情况', i)
+            }, 5000);
+        }
+
+        // var就不区分块，在一个块里面执行全局变量，但是定时器里面的内容会先执行
+        for (var j = 1; j <= 4; j++) {
+            console.log('定时器之外的var', j)
+            setTimeout(() => {
+                console.log('var的情况', j)
+            }, 5000);
+        }
+    </script>
+</body>
+
+</html>

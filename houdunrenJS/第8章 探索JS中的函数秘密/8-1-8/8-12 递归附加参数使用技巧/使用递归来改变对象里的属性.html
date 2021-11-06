@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let lesson = [{
+            title: "javascript",
+            click: 100
+        }, {
+            title: "css",
+            click: 23
+        }, {
+            title: "vue",
+            click: 44
+        }];
+
+        function change(lessons, num = 100, i = 0) {
+            // 第一 定义一个退出条件
+            // 第二 在整个函数的return里调用自己
+            console.log(lessons)
+            if (i == lessons.length) {
+                return lessons
+            }
+            lessons[i].click += num;
+            console.log(lessons)
+
+            // 关键在于调用递归时里面的参数要如何变化 
+            // 这里i要先加，保证遍历到数组的下一项
+            return change(lessons, num, ++i)
+        }
+
+        console.table(change(lesson))
+    </script>
+</body>
+
+</html>

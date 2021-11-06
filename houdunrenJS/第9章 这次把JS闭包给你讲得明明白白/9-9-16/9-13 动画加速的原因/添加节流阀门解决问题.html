@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <button>houdunren</button>
+    <button>hdcms</button>
+    <script>
+        // 防抖是在用户多次执行重复操作的时候取最后一次的结果
+        // 节流是在用户多次执行重复操作的时候只取第一次的结果
+        let btns = document.querySelectorAll('button')
+        btns.forEach(item => {
+            // let left = 1
+            let bind = false
+            item.addEventListener('click', () => {
+                console.log(bind, "bind")
+                if (!bind) {
+                    bind = true
+                    let left = 1 // 这一行代码放上面或者下面都可以
+                    setInterval(() => {
+                        left += 50
+                        item.style.left = left + 'px'
+                        console.log(left)
+                    }, 2000)
+                    console.log(left, "left")
+                }
+
+                console.log(item.style.left)
+                console.log(item)
+            })
+        })
+    </script>
+</body>
+
+</html>

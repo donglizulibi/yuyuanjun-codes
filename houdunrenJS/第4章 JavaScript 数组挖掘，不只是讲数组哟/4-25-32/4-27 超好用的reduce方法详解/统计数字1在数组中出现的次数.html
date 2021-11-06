@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 1, 2, 1, 1]
+
+        function arrayCount(array, item) {
+            let a = array.reduce(function(count, value) {
+                console.log(count)
+                console.log(value)
+                if (value == item) {
+                    console.log("come on in")
+                    count++
+                }
+                console.log("")
+                return count
+            }, 0)
+            return a
+        }
+        console.log("res", arrayCount(arr, 1))
+    </script>
+</body>
+
+</html>

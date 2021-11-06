@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="hd">
+    <button>现在的数据是什么</button>
+    <ul></ul>
+    <script>
+        //  需求是用户搜索十次同样的内容，但在搜索框下面的记录里只出现一次
+        //  所以搜索的内容可以直接放在一个set里面
+        let obj = {
+            data: new Set(), // 先定义一个Set类型的数据
+            keyword: function(word) {
+                this.data.add(word)
+            },
+            showdata() {
+                console.log(this)
+            },
+            showArrow: () => {
+                console.log(this)
+            },
+
+
+            // 也可以 set keyword(word){...}
+            show() { // 普通函数的简写
+                let ul = document.querySelector('ul');
+                ul.innerHTML = '' //先清空，每次都重新渲染
+                this.data.forEach(function(value) {
+                    ul.innerHTML += `<li>${value}</li>`
+                })
+            }
+        }
+
+        // 取到用户输入
+        let input = document.querySelector("[name='hd']")
+        input.addEventListener('blur', function() {
+            console.log(this)
+            obj.keyword(this.value)
+            obj.show()
+        })
+
+
+        let objArr = {
+            a: 1,
+            age: 19,
+            runArrow: function() {
+                obj.showArrow()
+            }
+        }
+
+        // 打印一下数据
+        document.querySelector('button').addEventListener('click', function() {
+            obj.showdata()
+                // console.log(obj.data)
+            obj.showArrow() //箭头函数中的this是指向运行这个
+            objArr.runArrow() //还是指向window
+            console.log(objArr.a)
+        })
+    </script>
+</body>
+
+</html>

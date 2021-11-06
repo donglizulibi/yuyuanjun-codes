@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function user(name, {
+            sex,
+            age
+        }) {
+            console.log(name, sex, age)
+        }
+
+        // 在调用函数传递实参时，需要把属性名也写上
+        user('gaga', {
+            sex: "male",
+            age: 19
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let lessons = [{
+                name: "js"
+            }, {
+                name: "css"
+            }, {
+                name: "mysql"
+            }]
+            // let status = lessons.find(function(item) {
+            //     return item.name == "css"
+            // })
+
+        // 实现find函数，第一个参数是数组，第二个参数的函数
+        function find(array, callback) {
+            for (let i of array) {
+                if (callback(i)) {
+                    return i
+                }
+            }
+            return undefined
+        }
+        let a = find(lessons, function(item) {
+            return item.name == "css"
+        })
+        let b = find(lessons, function(item) {
+            return item.name == "hhh"
+        })
+        let c = find([1, 2, 3, 4], function(item) {
+            return item == 2
+        })
+        console.log(a)
+        console.log(b)
+        console.log(c)
+    </script>
+</body>
+
+</html>

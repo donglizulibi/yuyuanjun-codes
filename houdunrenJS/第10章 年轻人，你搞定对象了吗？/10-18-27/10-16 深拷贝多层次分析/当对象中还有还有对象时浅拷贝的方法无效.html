@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            name: 'haha',
+            user: {
+                username: '我好饿'
+            }
+        }
+
+        let Shallow_cloning = {
+            name: obj.name,
+            user: obj.user
+        }
+
+        console.log(JSON.stringify(obj, null, 2))
+        console.log(JSON.stringify(Shallow_cloning, null, 2))
+
+        obj.user.username = '我好困'
+
+        console.log(JSON.stringify(obj, null, 2))
+        console.log(JSON.stringify(Shallow_cloning, null, 2))
+
+        // 最里层对象的属性值都改成了我好困
+    </script>
+</body>
+
+</html>

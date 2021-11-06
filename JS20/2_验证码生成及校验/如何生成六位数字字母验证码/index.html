@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 生成一个数组甲，包含数字0到9，以及由数字65到90 97到122转化成的字母
+        let jia = []
+        for (let i = 0; i < 10; i++) {
+            jia.push(i)
+        }
+        for (let i = 65; i < 91; i++) {
+            jia.push(String.fromCharCode(i))
+        }
+        for (let i = 97; i < 123; i++) {
+            jia.push(String.fromCharCode(i))
+        }
+        console.log(jia)
+
+        // 3 将随机数作用于取数组甲中的元素，重复六次，并依次推入数组乙
+        for (let i = 0; i < 6; i++) {
+            // 2 生成一个范围从0到数组甲长度的范围内的随机数
+            let index = Math.floor(Math.random() * jia.length)
+            console.log(index)
+            yi.push(jia[index])
+        }
+        // 4 将数组乙转成字符串
+        console.log(yi.toString())
+        console.log(String(yi))
+        console.log(yi.join(""))
+        let str = yi.join("")
+    </script>
+</body>
+
+</html>

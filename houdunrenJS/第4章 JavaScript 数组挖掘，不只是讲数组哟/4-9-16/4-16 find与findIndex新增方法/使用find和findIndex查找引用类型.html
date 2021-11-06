@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果find找到了，返回的是找到的那个元素，如果没找到，返回undefined
+        // findIndex返回的是角标
+        let lessons = [{
+            name: "js",
+            time: 123
+        }, {
+            name: "css",
+            time: 1122
+        }, {
+            name: "css",
+            time: 9090
+        }, {
+            name: "mysql",
+            time: 1212
+        }]
+        let status = lessons.find(function(item) {
+            return item.name == "css"
+        })
+        let index = lessons.findIndex(function(item) {
+            return item.name == "css"
+        })
+        console.log(status)
+        console.log(index)
+            /*
+            在下面这个例子中，使用includes查找引用类型会返回false
+            因为includes会认为被查找项目的另一个内存地址的变量，与原变量不相等
+            */
+        console.log(lessons.includes({
+                name: "css"
+            }))
+            // 比如下面这个例子，也是false
+        let a = []
+        let b = []
+        console.log(a == b)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+
+        // 本例都是只有一个属性的情况
+        const obj = {
+            name: '后盾人'
+                // age: 19
+        };
+
+        // 构造函数的第一个参数放需要代理的对象，第二个参数放对这个对象的相关设置
+        const proxy = new Proxy(obj, {
+            get(obj, property) {
+                console.log(11, obj)
+                console.log(22, property)
+                return obj[property]
+            },
+            set(obj, property, value) {
+                // obj是代理的原来对象，property是代理的属性名，value是通过代理修改属性时的属性值
+                console.log(33, value)
+                obj[property] = value;
+                //  TypeError: 'set' on proxy: trap returned falsish for property 'name' 要加上true
+                return true
+            }
+        });
+
+        console.log(proxy) // 打印出obj的属性
+        proxy.name = 'hhh'
+        console.log(proxy.name)
+        console.log(obj) // 代理的属性名改变了，原来的对象也改了
+
+        proxy["age"] = 19 // 这里一方面给代理对象和原对象增加属性，另一方面也在给这个属性赋值，并执行访问器中set的操作
+        console.log(proxy)
+        console.log(obj) // 代理的属性增加了，原来的对象也改了
+    </script>
+</body>
+
+</html>

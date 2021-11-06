@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义一个包含五个undefined的数组
+        let a = Array(5)
+        console.log(a)
+        console.table(a)
+            // 给这个数组的每个位置填充同一个元素
+        a.fill("houdunren")
+        console.log(a)
+        console.log("分割线")
+        console.log([1, 2, 3, 4].fill("houdunren", 0)) // 表示把第0个元素变成指定元素，由于没有给第二个变量，所以往后所有元素都变成指定元素
+        console.log([1, 2, 3, 4].fill("houdunren", 1)) // 表示把第1个元素变成指定元素，由于没有给第二个变量，所以往后所有元素都变成指定元素
+        console.log([1, 2, 3, 4].fill("houdunren", 1, 2)) //表示把第1个元素、直到第2个元素之前都变成指定元素
+        console.log([1, 2, 3, 4].fill("houdunren", 1, 3)) //表示把第1个元素、直到第3个元素之前都变成指定元素
+        console.log([1, 2, 3, 4].fill("houdunren", 1, 4)) //表示把第1个元素、直到第4个元素之前都变成指定元素
+        console.log([1, 2, 3, 4].fill("houdunren", 1, 5)) //表示把第1个元素、直到第5个元素之前都变成指定元素，如果第二个变量超出了数组长度，就自动减为数组长度的数值
+    </script>
+</body>
+
+</html>

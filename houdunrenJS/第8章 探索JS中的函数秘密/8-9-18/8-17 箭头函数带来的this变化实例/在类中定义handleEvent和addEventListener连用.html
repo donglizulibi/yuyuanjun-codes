@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="hungry">我好饿</button>
+    <button id="sleepy">我好困</button>
+    <script>
+        let obj = {
+            site1: '我要吃黄焖鸡米饭',
+            site2: '我要睡觉',
+
+            // handleEvent是一个关键字，会找到点击事件里面的this
+            // 点击不同的按钮会显示相应的按钮下的内容 handleEvent是可以把公共的事件放在这个属性里面
+            handleEvent: function(e) {
+                console.log(e)
+                console.log(e.target)
+                console.log(this)
+                    // if (e.target.innerText == '我好困') {
+                    //     e.target.innerHTML += this.site2
+                    // } else {
+                    //     e.target.innerHTML += this.site1
+                    // }
+                e.target.innerText == '我好困' ? e.target.innerHTML += this.site2 : e.target.innerHTML += this.site1;
+            },
+            show() {
+                const btn = document.querySelector('#hungry');
+                btn.addEventListener('click', this)
+            },
+            run() {
+                const btn = document.querySelector('#sleepy');
+                btn.addEventListener('click', this)
+            }
+        }
+        obj.show()
+        obj.run()
+    </script>
+</body>
+
+</html>

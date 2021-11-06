@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = new Set([1, 2, 3, 4, 5])
+        let b = new Set([4, 5, 6, 7])
+
+        // 并集
+        console.log(new Set([...a, ...b])) // 1,2,3,4,5,6,7
+
+        // 交集
+        console.log( // 4,5
+            new Set([...a].filter(function(item) {
+                return b.has(item)
+            }))
+        )
+
+        // 差集
+        console.log( // 1,2,3
+            new Set([...a].filter(function(item) {
+                return !b.has(item)
+            }))
+        )
+        console.log( // 6,7
+            new Set([...b].filter(function(item) {
+                return !a.has(item)
+            }))
+        )
+    </script>
+</body>
+
+</html>

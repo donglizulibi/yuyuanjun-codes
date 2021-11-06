@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = {
+            name: 'housunewn'
+        }
+        let b = {
+            age: 19
+        }
+        Object.setPrototypeOf(a, b)
+
+        for (const key in a) {
+            console.log(key) // 会把a，b的属性都遍历出来
+            if (a.hasOwnProperty(key)) {
+                console.log('a:', key)
+                console.log(a[key])
+            }
+        }
+    </script>
+</body>
+
+</html>

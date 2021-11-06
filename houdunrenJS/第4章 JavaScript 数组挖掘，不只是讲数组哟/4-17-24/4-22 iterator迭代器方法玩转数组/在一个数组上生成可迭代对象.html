@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 生成数组的可迭代对象
+        let arr = ["haha", "houdenren"]
+        let keys = arr.keys()
+        console.log(keys)
+            // 取到可迭代对象里面的值
+        console.log(keys.next()) // 打印出一个对象，第一个键值对的value表示取到的这个值的索引，第二个键值对表示是否结束了迭代
+        console.log(keys.next())
+        console.log(keys.next()) // value变成undefined，done变成true，表示这是最后一个
+    </script>
+</body>
+
+</html>

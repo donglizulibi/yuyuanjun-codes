@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function User(name, age) {
+            let data = {
+                name,
+                age
+            }
+
+            // this.name = name;
+            // this.age = age;
+
+            // info是一个构造函数内部的逻辑判断，没有被外部调用的可能 
+            let info = function() {
+                return data.age > 50 ? '是老年' : '是青年'
+            }
+            this.show = function() {
+                console.log(data.name + info())
+            }
+        }
+
+        let xj = new User('haha', 52)
+        this.name = '我好饿'
+        xj.info = function() {
+            return ''
+        }
+        xj.show()
+    </script>
+</body>
+
+</html>

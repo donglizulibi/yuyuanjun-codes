@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 假设有一个求和函数，但是传入的参数不固定，不确定参数的问题
+        function sum(...args) {
+            console.log(args) // 展开语法会把参数都放在一个数组里
+            return args.reduce((s, v) => {
+                return (s += v);
+            }, 0)
+        }
+        console.log(sum(1, 2, 3, 4))
+    </script>
+</body>
+
+</html>

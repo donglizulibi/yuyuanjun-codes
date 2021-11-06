@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const date = new Date("1992-2-12 10:22:12")
+
+        function dateFormat(date, format = "YYYY-MM-DD HH:mm:ss") {
+            console.log(date)
+            console.log(format)
+            const config = {
+                YYYY: date.getFullYear(),
+                MM: date.getMonth(),
+                DD: date.getDate(),
+                HH: date.getHours(),
+                mm: date.getMinutes(),
+                ss: date.getSeconds()
+            };
+            for (let key in config) {
+                console.log(key)
+                format = format.replace(key, config[key])
+            }
+            return format
+        }
+        console.log(dateFormat(date))
+        console.log(dateFormat(date, 'YYYY年MM月DD日'))
+
+        /*
+        其他格式
+        alert(new Date().format("yyyy年MM月dd日"));
+        alert(new Date().format("MM/dd/yyyy"));
+        alert(new Date().format("yyyyMMdd"));
+        alert(new Date().format("yyyy-MM-dd hh:mm:ss"));
+        */
+    </script>
+</body>
+
+</html>

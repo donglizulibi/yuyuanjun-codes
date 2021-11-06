@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 5, 3, 9, 7]
+            // sort
+        function sort(array) {
+            for (const n in array) {
+                for (const m in array) {
+                    if (array[n] > array[m]) {
+                        const temp = array[n]
+                        array[n] = array[m]
+                        array[m] = temp
+                    }
+                }
+            }
+            return array
+        }
+        console.log(sort(arr))
+    </script>
+</body>
+
+</html>

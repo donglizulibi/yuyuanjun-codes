@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = {
+            name: 'houudnewn'
+        };
+        hd.__proto__ = {
+            show() {
+                console.log(this.name);
+            }
+        }
+        hd.__proto__ = 99; // 这条语句并不生效
+
+        console.log(hd) // 结果显示hd的原型里面没有99，前面的方法也没有被覆盖
+        hd.show();
+    </script>
+</body>
+
+</html>

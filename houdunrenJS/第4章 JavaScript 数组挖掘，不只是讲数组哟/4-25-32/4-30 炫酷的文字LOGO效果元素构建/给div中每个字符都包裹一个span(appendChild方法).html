@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>houdunren.com</div>
+    <script>
+        const div = document.querySelector("div")
+        let divArr = [...div.innerText]
+        divArr.reduce(function(pre, cur, index) {
+            console.log(pre, cur, index)
+            if (pre == index) {
+                div.innerHTML = ""
+            }
+            // pre == index && (div.innerHTML = '');
+            let span = document.createElement("span")
+            span.innerHTML = cur;
+            div.appendChild(span);
+            span.addEventListener("mouseover", function() {
+                this.classList.add("color")
+            })
+        }, 0)
+    </script>
+</body>
+
+</html>

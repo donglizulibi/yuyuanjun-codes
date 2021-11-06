@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // let arr = ['1 函数编程与面向对象的实例对比', '2 属性的基本操作方法', '3 对象的引用传址', '4 使用展示语法完成参数合并', '5 解构赋值新增特性', '6 严格模式中解构的差异', '7 解构操作的简写形式与变量解构', '8 多层对象的解构操作', '9 解构默认值实现配置项合并', '10 函数参数的解构特性使用技巧', '11 对象属性的添加删除操作', '12 对象与原型链属性检测实例', '13 计算属性与assign使用', '14  遍历操作与DOM绘制', '15 对象的浅拷贝多种操作方法', '16 深拷贝多层次分析', '17 使用工厂函数创建对象', '18 构造函数创建对象的方式', '19 原来数据也可以使用构造函数构建', '20 面向对象的封装与抽象', '21 什么是对象的属性特征', '22 灵活的控制属性的特征', '23 不允许向对象中添加属性API', '24 封闭对象的API操作', '25 冻结对象API特性', '26 使用访问器保护数据', '27 访问器伪造属性操作', '28 使用访问器批量设置属性', '29 TOKEN的读写处理', '30 访问器的优先级', '31 构造函数与class语法糖中使用访问器', '32 什么是Proxy代理拦截', '33 使用代理Proxy控制函数', '34 数组使用代理拦截操作', '35 VUEJS数据绑定的容器更新', '36 双向数据绑定的页面渲染', '37 表单验证组件的代理工厂', '38 使用代理完成自定义验证组件', '39 JSON数据解决什么问题', '40 JSON序列化与自定义toJSON', '41 JSON转为JS可操作类型']
+        let arr = ['1 课程介绍', '2 声明PROMISE类并绑定THIS', '3 状态保护与执行者异步捕获', '4 THEN的基础构建', '5 实现THEN的异步操作与异常捕获', '6 PROMISE的PENDDING状态处理', '7 PENDING状态异常处理', '8 PENDING的异步任务处理技巧', '9 THEN链式操作原理分析', '10 实现PROMISE链式操作', '11 THEN新增PROMISE异常处理', '12 实现THEN的穿透传递', '13 THEN返回PROMISE的处理', '14 THEN代码冗余优化', '15 PROMISE返回类型约束', '16 实现RESOLVE与REJECT', '17 PROMISE的ALL方法实现', '18 PROMISE的RACE静态方法实现']
+        let div = document.querySelector('div')
+        arr.reduce((pre, cur) => {
+            let text = document.createElement("div")
+            text.innerHTML = cur
+            div.appendChild(text)
+        }, '')
+
+        // console.log(arr1)
+    </script>
+</body>
+
+</html>

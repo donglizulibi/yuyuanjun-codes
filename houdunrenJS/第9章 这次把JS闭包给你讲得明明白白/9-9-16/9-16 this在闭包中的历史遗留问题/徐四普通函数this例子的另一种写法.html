@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            name: 'houdunren',
+            get: function() {
+                return function() { //改成箭头函数的话就可以打印函数所在的这个对象
+                    return this
+                }
+            }
+        }
+        console.log(obj.get()())
+    </script>
+</body>
+
+</html>

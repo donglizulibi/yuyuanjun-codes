@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let cart = [{
+            name: 'iphone',
+            price: 12000
+        }, {
+            name: 'imac',
+            price: 25000
+        }, {
+            name: 'ipad',
+            price: 3600
+        }]
+
+        function maxPrice(goods) {
+            return goods.reduce(function(pre, value) {
+                console.log(pre)
+                console.log(value)
+                console.log('')
+                return pre.price > value.price ? pre : value
+            })
+        }
+        console.log(maxPrice(cart))
+    </script>
+</body>
+
+</html>

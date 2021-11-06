@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>hdcms</button>
+    <button>houdunren</button>
+    <script>
+        let buttons = document.querySelectorAll('button')
+
+        // 本例需要实现点击按钮弹出按钮中的内容，若是在事件监听中使用普通函数
+        // 在这里需要把显示的功能放在全局，再通过call方法改变this指向
+        // 这个例子中最关键的是e.target可以表示事件监听时的对象是什么
+        function show() {
+            alert(this.innerHTML)
+        };
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', (e) => {
+                console.log(this)
+                console.log(e.target)
+
+                // show.call(e.target)
+                show.apply(e.target)
+            })
+        }
+    </script>
+</body>
+
+</html>

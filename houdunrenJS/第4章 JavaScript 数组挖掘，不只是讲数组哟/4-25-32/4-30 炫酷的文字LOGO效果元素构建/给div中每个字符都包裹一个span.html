@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>houdunren.com</div>
+    <script>
+        const div = document.querySelector("div")
+        let divArr = [...div.innerText]
+        let newArr = divArr.reduce(function(arr, cur, index) {
+            console.log(index)
+            cur = `<span>${cur}</span>`
+            arr.push(cur)
+            return arr
+        }, [])
+        newArr.join("")
+        console.log(newArr.join(""))
+        div.innerHTML = newArr.join("")
+    </script>
+</body>
+
+</html>

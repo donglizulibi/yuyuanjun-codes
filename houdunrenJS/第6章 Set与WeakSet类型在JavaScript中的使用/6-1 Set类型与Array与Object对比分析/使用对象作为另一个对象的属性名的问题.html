@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            "hdcms": "hahah"
+        }
+        let hd = {
+            [obj]: "我好困啊"
+        }
+        console.log(hd) // 无法显示obj，显示[object Object]
+        console.log(hd.obj) // 无法取到obj下的属性值，返回undefined
+        console.log(hd[obj]) // 这样可以取到属性值
+        console.log(hd["[object Object]"]) // 这样可以取到属性值
+        console.log(hd[obj.toString()]) // 这样可以取到属性值
+    </script>
+</body>
+
+</html>

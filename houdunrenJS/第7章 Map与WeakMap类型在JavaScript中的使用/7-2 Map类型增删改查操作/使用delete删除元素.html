@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            name: '后盾人'
+        }
+        let map = new Map()
+        map.set(obj, "houdunren.com")
+        console.log(map.delete(obj)) // 返回布尔值
+        console.log(map) //删掉键名后，整个键值对都没有了
+        map.set("name", "houdunren")
+        map.set("name", "haha") // 跟前面的键名一样，会覆盖掉上一个
+        console.log(map)
+
+        // has的用法 
+        console.log(map.has("name"))
+
+        // 全部删除
+        map.clear()
+        console.log(map)
+    </script>
+</body>
+
+</html>

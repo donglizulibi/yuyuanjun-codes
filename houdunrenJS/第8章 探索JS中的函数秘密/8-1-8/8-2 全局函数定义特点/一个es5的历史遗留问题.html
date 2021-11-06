@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在JS中，只要是通过普通方法和var变量的方法定义的函数
+        // 都会压到window对象中，由此带来一个弊端
+        // 如果定义的函数名与window对象原有的属性重名，则会产生覆盖
+        console.log(window.screenX) //表示浏览器左边缘距离显示器左边缘的距离
+
+        function screenX() {
+            console.log(1)
+        }
+
+        console.log(window.screenX) // 覆盖了
+
+        var aaa = function() {
+            console.log("aaa")
+        }
+        console.log(window.aaa) // 可以打印出来，说明也有产生覆盖的可能
+
+        let bbb = function() {
+            console.log("bbb")
+        }
+        console.log(window.bbb) // 显示undefined，说明用let声明不会压进window对象中
+    </script>
+</body>
+
+</html>

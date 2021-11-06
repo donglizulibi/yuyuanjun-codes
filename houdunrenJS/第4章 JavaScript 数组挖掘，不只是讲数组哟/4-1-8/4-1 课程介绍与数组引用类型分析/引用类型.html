@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let array = [1, 2, 3, 4]
+        console.log(typeof array)
+        let arrCopy = array
+        arrCopy[2] = "haha"
+        console.log("array", array)
+        console.log("arrCopy", arrCopy)
+        console.log(`
+        改变arrCopy，array也会跟着改变，说明数组是一个引用类型
+        将array复制给arrCopy，只是让二者共同引用同一个内存空间
+        `)
+
+        let a = 1
+        let b = a
+        b = 99
+        console.log("a", a)
+        console.log("b", b)
+    </script>
+</body>
+
+</html>

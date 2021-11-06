@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 将一个函数放在()里面，后面再加一个()调用，就不需要专门调用就可以立即执行
+        (function hd() {
+            console.log(1)
+        })()
+
+        // 此时再想调用()里面的函数是无法实现的
+        // hd() // 认为没有定义
+    </script>
+</body>
+
+</html>

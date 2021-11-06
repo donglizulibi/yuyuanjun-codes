@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let user = {
+            data: {
+                name: 'haha',
+                age: 19
+            },
+            set name(value) {
+                this.data.name = value
+
+                // console.log(value + '-后盾人')
+            },
+            get name() {
+                // return this.name
+                return this.data.name
+            },
+        }
+
+        user.name = 'hdcmsdfs'
+        console.log(user.name)
+        user.data.name = '你好' // 即使把对象中的属性变成对象的私有属性，还是有可能被外部修改
+        console.log(user.name)
+            // 如果访问器和对象内的属性相冲突，则那个在后面那个优先级高
+    </script>
+</body>
+
+</html>

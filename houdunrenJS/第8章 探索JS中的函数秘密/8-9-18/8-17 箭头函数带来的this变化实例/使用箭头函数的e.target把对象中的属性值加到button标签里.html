@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>我好饿</button>
+    <script>
+        let obj = {
+            site: '我要吃黄焖鸡米饭',
+            show() {
+                const btn = document.querySelector('button');
+                btn.addEventListener('click', (e) => {
+                    console.log('this', this)
+                    console.log('e', e)
+                    console.log('e.target', e.target)
+                    e.target.innerHTML += this.site
+                })
+            }
+        }
+        obj.show()
+    </script>
+</body>
+
+</html>

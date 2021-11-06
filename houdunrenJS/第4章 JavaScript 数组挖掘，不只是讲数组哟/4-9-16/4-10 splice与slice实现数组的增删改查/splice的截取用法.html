@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr1 = [1, 2, 3, 4, 5]
+        let arr2 = [1, 2, 3, 4, 5]
+        let arr3 = [1, 2, 3, 4, 5]
+        let arr4 = [1, 2, 3, 4, 5]
+        let a = arr1.splice() // 不填参数，什么都没截
+        let b = arr2.splice(1) // 只填一个参数，从这个参数开始到后面全部截取
+        let c = arr3.splice(1, 2) // 从第一个参数开始，截取第二个参数的个数的数量
+        let d = arr4.splice(1, 3)
+        console.log(a)
+        console.log(b)
+        console.log(c)
+        console.log(d)
+        console.log("分割线")
+        console.log(arr1)
+        console.log(arr2)
+        console.log(arr3)
+        console.log(arr4)
+            // 这个方法会改变原数组
+    </script>
+</body>
+
+</html>

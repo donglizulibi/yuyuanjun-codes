@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const DATA = Symbol();
+        const OUT = "abc"
+        const user = {
+            show() {
+                console.log("qwe")
+                console.log(typeof DATA)
+                console.log(DATA)
+            },
+            [OUT]: '属性名作为变量的话是用中括号吗',
+            [DATA]: {
+                name
+            },
+            set name(value) {
+                this[DATA].name = value;
+            },
+            get name() {
+                return this[DATA].name;
+            }
+        };
+
+        user.show()
+        console.log(user[DATA].name = 'sdf') // 这样再外部修改是不会影响后面的取值的
+        console.log(user)
+        console.log(user[OUT])
+        user.name = 'hdcms'
+        console.log(user.name)
+    </script>
+</body>
+
+</html>

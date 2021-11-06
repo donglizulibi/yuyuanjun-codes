@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [{
+            title: 'js',
+            click: 33,
+            price: 10
+        }, {
+            title: 'css',
+            click: 123,
+            price: 200
+        }, {
+            title: 'java',
+            click: 22,
+            price: 20
+        }, {
+            title: 'php',
+            click: 13,
+            price: 90
+        }, {
+            title: 'c++',
+            click: 54,
+            price: 100
+        }]
+
+        // let res = arr.sort((a, b) => {
+        //     // console.log(a)
+        //     // console.log(b)
+        //     return a.click - b.click
+        // })
+        // console.log(res)
+        function order(field) {
+            return function(a, b) {
+                // console.log(a[field])
+                return a[field] > b[field] ? 1 : -1
+            };
+        }
+        // let hd = arr.sort(order('click'))
+        let hd = arr.sort(order('price'))
+        console.table(hd)
+    </script>
+</body>
+
+</html>

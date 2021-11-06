@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let lessons = [{
+            title: "媒体查询响应式布局",
+            category: "css"
+        }, {
+            title: "flex 弹性盒模型",
+            category: "css"
+        }, {
+            title: "GRID 栅格系统",
+            category: "mysql"
+        }];
+        let hd = lessons.map(function(item) {
+            return Object.assign({
+                    click: 0
+                }, item)
+                // return {
+                //     title: item.title,
+                //     category: item.category,
+                //     click: 0
+                // }
+        })
+        console.log(hd) // 新赋值的数组增加了click的属性
+        console.log(lessons) //没有变化
+            // Object.assign方法
+
+        // 所以就是，有return就不会改变原数组，而是把结果放到一个新数组里
+        // 没有return的就会改变原数组
+    </script>
+</body>
+
+</html>

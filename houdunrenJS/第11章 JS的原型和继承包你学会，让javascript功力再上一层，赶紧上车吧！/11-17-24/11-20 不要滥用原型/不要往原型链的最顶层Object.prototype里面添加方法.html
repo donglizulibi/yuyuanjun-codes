@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="this.hide()">houdunewn</button>
+    <button onclick="show()">不加this</button>
+    <script>
+        // 所有对象原型链的最顶层 Object.prototype
+        console.log(Object)
+        console.log(Object.prototype)
+        console.log(Object.getPrototypeOf({}) === Object.prototype)
+        console.log({}.__proto__.__proto__) // null
+
+        Object.prototype.hide = function() {
+            this.style.display = "none"
+        }
+
+        function show() {
+            alert(1)
+        }
+    </script>
+    <script src="外部的文件.js"></script>
+</body>
+
+</html>

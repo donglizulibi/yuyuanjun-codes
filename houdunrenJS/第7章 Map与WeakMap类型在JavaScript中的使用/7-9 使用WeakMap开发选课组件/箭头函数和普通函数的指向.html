@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>123</div>
+    <script>
+        var a = 10;
+        let obj = {
+            a: 100,
+            normalRun: function() {
+                return this.a
+            },
+            normalConsole: function() {
+                console.log(this.a)
+            },
+            arrowRun: () => {
+                return this.a
+            },
+            arrowConsole: () => {
+                console.log(this.a)
+            }
+        }
+
+        // 1 这个普通函数在这里是被obj调用的，所以this是指向obj，函数返回100，打印出来的是100
+        console.log(obj.normalRun())
+
+        // 2 也是被普通函数被obj调用，直接打印100
+        obj.normalConsole()
+
+        // 3 这个是把普通函数的方法体拿出来赋值给一个变量，再在全局运行这个普通函数的方法体，取到的是全局的数据，打印为10
+        // 可见普通的函数的this是会发生改变的
+        let b = obj.normalRun
+        console.log(b())
+
+        // 4 这个指向全局 打印10
+        console.log(obj.arrowRun())
+
+        // 5 指向全局
+        let c = obj.arrowRun
+        console.log("全局调用箭头函数", c())
+
+        // 6 指向全局
+        obj.arrowConsole()
+
+        console.log(this.a)
+
+
+
+
+        // function objArrow() {
+        //     var a = 200
+
+        //     let b = obj.arrowRun
+        //     return b()
+
+        //     // return b()
+        //     // return obj.normalRun()
+        // }
+        // console.log(objArrow())
+    </script>
+</body>
+
+</html>

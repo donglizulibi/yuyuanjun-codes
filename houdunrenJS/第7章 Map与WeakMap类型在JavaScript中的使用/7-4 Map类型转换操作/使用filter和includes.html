@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = new Map([
+            ['houdunren', '后盾人'],
+            ['hdcms', 'kaiyuanxitong']
+        ])
+        console.log([...hd])
+        console.log([...hd.entries()]) // 这个跟上面一样
+        console.log([...hd.keys()]) // 只打印键名
+        console.log([...hd.values()]) // 只打印值名
+        let newArr = [...hd].filter(function(item) {
+            return item[1].includes("后盾人");
+        });
+        console.log(newArr)
+        let edu = new Map(newArr);
+        console.log(...edu.values());
+    </script>
+</body>
+
+</html>

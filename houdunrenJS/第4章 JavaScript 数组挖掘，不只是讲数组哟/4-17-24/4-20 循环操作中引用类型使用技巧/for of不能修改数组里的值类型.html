@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用for和for of循环同样的、里面的项目只有数值的数组，并对里面的每个每个项目都采取加10的操作
+        // for循环可以成功，而for of不能成功
+        let arr = [1, 2, 3]
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] += 10
+        }
+        console.log(arr)
+
+        let arr1 = [1, 2, 3]
+        for (let i of arr1) {
+            i += 10
+        }
+        console.log(arr1)
+
+        // for in也可以改变
+        let arr3 = [1, 2, 3]
+        for (let i in arr3) {
+            arr3[i] += 10
+        }
+        console.log(arr3)
+
+        // for of只能改变引用类型中的数据
+        let arr2 = [{
+            a: 1
+        }, {
+            a: 2
+        }, {
+            a: 3
+        }]
+        for (const i of arr2) {
+            i.a += 10
+        }
+        console.log(arr2)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let [a, b] = [1, 2]
+        // console.log(a, b)
+
+        let arr = ["hdcms", "houdunren"];
+        let entries = arr.entries();
+        console.log(entries)
+        console.log(entries.next())
+            /*
+            {value: Array(2), done: false}
+            value: (2) [0, "hdcms"]
+            */
+
+        // 这里的value的命名取自entries.next()里面的value, done也是取自那里面的done
+        // 后面的冒号，表示将entries.next()取出来的数组value,再赋值给[a,b]
+        let aaa = entries.next()
+        let {
+            done,
+            value: [a, b]
+        } = aaa
+        console.log(a, b) // a是索引，b是值
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            name: 'haha',
+            age: 19
+        }
+        console.log(Object.isSealed(obj)) // 判断一个对象是不是处在封闭状态
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2)) // 要获取对象中全部属性的特性，需要用getOwnPropertyDescriptors
+
+        Object.seal(obj)
+        console.log(Object.isSealed(obj))
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2)) // configurable属性变成false
+        delete obj.name // 不可以删除
+        obj.site = 'houdunren.com' // 不可以增加
+        obj.name = 'houdunren.com' // 可以修改
+        console.log(obj)
+    </script>
+</body>
+
+</html>

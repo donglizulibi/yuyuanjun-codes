@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [2, 3, 4, 5, 11, 23, 34, 32, 1, 7, 8, 9]
+
+        function between(a, b) {
+            console.log(a, b)
+            return function(v) {
+                return v >= a && v <= b
+            }
+        }
+        console.log(between)
+
+        // 这样打印是一个函数体，如果给这个函数加上小括号，调用并加上两个参数
+        // 则会返回第一个return后面的内容，也就是另一个 带有形参 的 且里面的ab都已经确定的函数体
+        // 这个函数体就可以作为数组函数里面的回调函数
+
+        console.log(between(6, 9))
+
+        // 这里打印出来a和b并没有显示具体的数据，但是根据闭包的原则，返回函数闭包内部的一个函数
+        // 同一个作用域下的数据会一起返回，所以a和b其实是有数据的
+
+        let gap = arr.filter(between(6, 9))
+        console.log(gap)
+
+
+
+
+        // 如果直接在一个函数里面设置三个形参
+        function filterBe(arr, a, b) {
+            return arr.filter(item => item >= a && item <= b)
+        }
+        console.log(filterBe(arr, 3, 9))
+    </script>
+</body>
+
+</html>

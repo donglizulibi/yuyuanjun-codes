@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 50px;
+            background: #34495e;
+        }
+        
+        input {
+            border: solid 10px #ddd;
+            height: 30px;
+        }
+        
+        .error {
+            border: solid 10px red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" validate rule="max:12,min:3">
+    <input type="text" validate rule="max:3,isNumber">
+    <script>
+        "use strict";
+        // 先定义一个提供功能验证的类
+        class Validate {
+            max(value, len) {
+                return value.length <= len;
+            }
+            min(value, len) {
+                return value.length >= len;
+            }
+            isNumber(value) {
+                // 如果是个数值就表示合法
+                return /^\d+$/.test(value);
+            }
+            haha() {
+                return 'test'
+            }
+        }
+
+        // console.log(new Validate().min("abc", 3))
+        // console.log(new Validate()[haha]())
+
+        // let testhaha = new Validate()
+        // console.log(testhaha)
+        // console.log(testhaha.haha())
+        // console.log(testhaha["haha"]())
+
+        // 代理工厂
+        // 这个案例中不是所有表单都需要验证，只有包含validate这个属性的表单才需要验证
+        function ProxyFactory(target) {
+            return new Proxy(target, {
+                get(obj, property) {
+                    return obj[property]
+                },
+                set(obj, property, el) {
+                    console.log('el', el)
+                    console.log('el value', el.value)
+                    const rule = el.getAttribute('rule'); // 取到有事件触发的那个元素的rule属性值
+                    console.log(rule)
+
+                    // 声明一个验证类
+                    const validate = new Validate();
+                    // console.log("validate", validate)
+                    // console.log("validate func", validate[min])
+
+                    // 进行一些拆分，来得到具体的规则以便用作后面的参数 
+                    console.log(rule.split(','))
+                    let state = rule.split(',').every(ruleItem => {
+                        console.log(ruleItem)
+                        const info = ruleItem.split(':')
+                        console.log(info) // 打印出来的数组的第一项为函数，需要实现在验证构造函数中有定义，第二项为这个函数参数
+
+                        // 第一个参数是元素的值，第二个参数是验证规则的属性值
+                        return validate[info[0]](el.value, info[1])
+                    })
+
+
+                    console.log(state)
+                    el.classList[state ? 'remove' : 'add']('error')
+
+                    return true
+                }
+            });
+        }
+        const proxy = ProxyFactory(document.querySelectorAll('[validate]'))
+
+        // 把代理中的元素对象遍历出来
+        proxy.forEach((item, i) => {
+            // console.log(item, i) // i是角标
+            item.addEventListener('keyup', function() {
+                // console.log(this)
+                proxy[i] = this;
+            })
+        })
+    </script>
+</body>
+
+</html>

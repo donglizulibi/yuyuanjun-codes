@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function show() {
+            console.log(this)
+        }
+        let obj = {
+            name: 'haha'
+        }
+        show.apply(obj)
+        show.call(obj) // apply call都立即执行了
+        let func = show.bind(obj) // bind不会立即执行 而是返回一个新函数
+        console.log(func)
+        func() // 在这里要另外调用这个新函数
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let set = new WeakSet([1])
+        // let set = new WeakSet(["aaa"])
+        // let set = new WeakSet("aaa")
+
+        // let set = new WeakSet([
+        //     [2],
+        //     [1]
+        // ])
+        // let set = new WeakSet([{}])
+        let set = new WeakSet([
+            []
+        ])
+        console.log(set)
+
+        console.log(set.add(["aaa"])) //这种情况是不报错的，因为是添加整个数组
+
+        // 上面三种会报错，下面几种才是合法的写法，中括号里面只能是引用类型
+    </script>
+</body>
+
+</html>

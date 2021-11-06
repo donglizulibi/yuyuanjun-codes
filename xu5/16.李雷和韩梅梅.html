@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Student(name, age) {
+            this.name = name;
+            this.age = age
+        }
+        var ll = new Student('李雷', 18)
+        var hanmeimei = new Student('韩梅梅', 19)
+        console.log(hanmeimei)
+
+        /*
+            1 创建一个空对象 var li = {}
+            2 改变this的指向 用call apply的方法
+            3 给这个对象加各种专有的属性 this.name = "李雷", this.age = 18
+            4 返回一个全新的对象 return obj
+        */
+        Student.prototype.car = 'bmw'
+        console.log(ll.car) // 李雷可以调用父级的属性
+        console.log(ll) //李雷还是只有两个属性
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 要实现console.log([] == true),还是要先把二者转化为数值
+
+        // 首先是空数组 
+        let array = [];
+        console.log(Number(array))
+        console.log(array == false)
+        console.log('空数组在这里是先转化成数值0，同时false也转化为0，二者相等')
+
+        console.log('')
+            // 非空数组的情况
+        let array1 = [1, 2, 3];
+        console.log(Number(array1))
+        console.log(array1 == false)
+        console.log('非空数组在这里是转化为NaN，与false不相等')
+
+        console.log('')
+            // 数组以一种引用类型出现判断条件中时，是真的(非空数组也是一样)
+        let array2 = [];
+        if (array2) {
+            console.log('我真的好饿')
+        }
+        console.log(Boolean(array2)) // console.log('发生了这件事')
+        console.log('')
+
+        //对象是同理
+        let str = {}
+        let str1 = {
+            a: "aa",
+            b: "bb"
+        }
+        console.log(Number(str))
+        console.log(Number(str1))
+        console.log(str == true)
+        console.log(str == false)
+        console.log(str1 == false)
+        if (str) {
+            console.log("再不吃饭我就要饿死了")
+        }
+        console.log(Boolean(str))
+        console.log(`
+        结论：
+        1 空对象和空数组不一样，
+        空对象在与布尔值比较的时候转化的数值是NaN
+        2 在用作判断条件时，数值类型中的数字除了0之外都是真
+        字符串类型除了空字符串都是真
+        引用类型都是真
+        `)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let User = function(name) {
+        //     this.name = name;
+        //     this.show = function() {
+        //         console.log(this.name + '是通过构造函数Function创建的');
+        //     }
+        // }
+        // 构造函数也可以通过构造函数来创建
+
+        let User = new Function(
+            "name",
+            `this.name = name;
+             this.show = function(){
+                 console.log(this.name + '是通过构造函数Function创建的');
+             }
+            `
+        );
+        let xj = new User("向军");
+        xj.show();
+    </script>
+</body>
+
+</html>

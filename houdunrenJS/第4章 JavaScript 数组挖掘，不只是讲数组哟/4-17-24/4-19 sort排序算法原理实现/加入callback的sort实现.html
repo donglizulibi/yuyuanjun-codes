@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 4, 6, 2, 3, 8]
+
+        function sort(array, callback) {
+            for (const n in array) {
+                for (const m in array) {
+                    if (callback(array[n], array[m]) < 0) {
+                        const temp = array[n]
+                        array[n] = array[m]
+                        array[m] = temp
+                    }
+                }
+            }
+            return array
+        }
+
+        // 会改变原数组
+        let aaa = sort(arr, function(a, b) {
+            return a - b
+        })
+        console.log(aaa)
+        console.log(arr)
+
+        let bbb = sort(arr, function(a, b) {
+            return b - a
+        })
+        console.log(arr)
+        console.log(bbb)
+    </script>
+</body>
+
+</html>

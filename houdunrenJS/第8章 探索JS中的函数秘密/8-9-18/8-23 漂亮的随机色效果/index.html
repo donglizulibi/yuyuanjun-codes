@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            width: 50px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div>我好困</div>
+    <script>
+        function Color(elem) {
+            this.elem = elem
+            this.colors = ['red', 'blue', 'pink', 'black']
+            this.run = function() {
+                setInterval(function() {
+                    let i = Math.floor(Math.random() * this.colors.length)
+                    this.elem.style.backgroundColor = this.colors[i]
+                    console.log(i)
+                }.bind(this), 1000)
+            }
+        }
+        let div = new Color(document.querySelector('div'))
+            // console.log(div)
+        div.run()
+    </script>
+</body>
+
+</html>

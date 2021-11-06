@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function hd(a, b) {
+            console.log(a, b)
+            return this.f + a + b;
+        }
+        let func = hd.bind({
+            f: 1
+        }, 1)
+
+        // bind除了在绑定函数的时候可以传参，在调用函数的时候也可以传参
+        // 但是对象的那个参数只能在绑定的时候传进去 
+        console.log(func(2, 3))
+    </script>
+</body>
+
+</html>

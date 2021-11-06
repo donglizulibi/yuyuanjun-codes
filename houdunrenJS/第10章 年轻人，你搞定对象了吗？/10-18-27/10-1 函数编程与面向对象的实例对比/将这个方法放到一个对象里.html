@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let user = {
+            name: '我好饿',
+            grade: [{
+                subject: 'js',
+                score: 60
+            }, {
+                subject: 'css',
+                score: 98
+            }],
+            average: function() {
+                let a = this.grade.reduce((pre, cur) => {
+                    return pre += cur.score
+                }, 0) / this.grade.length
+                return this.name + '的平均成绩是' + a
+            }
+        }
+
+        console.log(user.average())
+    </script>
+</body>
+
+</html>

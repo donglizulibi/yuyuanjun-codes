@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button message='houdunewn' class='red'>houdunewn</button>
+    <button message='hdcms'>hdcms</button>
+    <script>
+        let arr = [1, 2, 32, 43, 5, 65, 7]
+        let res = arr.filter(item => {
+            return item > 5
+        })
+        console.log(res)
+
+        let btns = document.querySelectorAll('button');
+        console.log(Array.prototype === [].__proto__)
+        btns = Array.prototype.filter.call(btns, item => {
+            return item.hasAttribute("class")
+        })
+
+        console.log(btns);
+        // btns.filter(item => {
+        //     console.log(item)
+        // })
+    </script>
+</body>
+
+</html>

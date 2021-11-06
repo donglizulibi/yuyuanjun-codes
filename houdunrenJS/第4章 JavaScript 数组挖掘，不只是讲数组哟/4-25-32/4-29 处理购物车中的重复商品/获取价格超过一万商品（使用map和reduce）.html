@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let cart = [{
+            name: 'iphone',
+            price: 12000
+        }, {
+            name: 'imac',
+            price: 25000
+        }, {
+            name: 'ipad',
+            price: 3600
+        }]
+
+        // function getNameByPrice(goods, price) {
+        //     return goods.reduce(function(arr, cur) {
+        //         if (cur.price > price) arr.push(cur.name)
+        //         return arr
+        //     }, [])
+        // }
+
+        // 以下这种写法只是为了表示数组循环方法是可以连用的
+        function getNameByPrice(goods, price) {
+            return goods.reduce(function(arr, cur) {
+                if (cur.price > price) arr.push(cur)
+                return arr
+            }, []).map(function(item) {
+                return item.name
+            })
+        }
+        console.log(getNameByPrice(cart, 10000))
+    </script>
+</body>
+
+</html>

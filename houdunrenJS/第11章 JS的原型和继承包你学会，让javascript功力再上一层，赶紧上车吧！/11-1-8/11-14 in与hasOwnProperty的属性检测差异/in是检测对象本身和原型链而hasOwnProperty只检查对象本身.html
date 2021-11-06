@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = {
+            name: 'housunewn'
+        }
+        let b = {
+            age: 19
+        }
+        Object.setPrototypeOf(a, b)
+        console.log(b.isPrototypeOf(a))
+        console.log(a.__proto__ === b)
+        console.log(b.__proto__ === Object.prototype)
+        console.log(a.__proto__.__proto__ === Object.prototype)
+        console.log('age' in a) // true
+        console.log(a.hasOwnProperty('name')) // true
+        console.log(a.hasOwnProperty('age')) // false
+        Object.prototype.web = 'url';
+        console.log('web' in a) // true
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr1 = [1, 2, 3, 4]
+        let hd1 = arr1
+        let arr2 = [1, 2, 3, 4]
+        let hd2 = arr2
+            // hd1.length = 0
+            // hd2 = []
+        arr1.length = 0 // 使用这种方法可以把原址的数据全部清空
+        arr2 = []
+            /*
+            这个相当于又开辟了一个新的内存空间，这个内存空间里放了一个空数组
+            然后把这个空数组赋给arr2，这样的操作是不改变另一个拷贝的数组的
+            */
+        console.log(arr1)
+        console.log(hd1)
+        console.log(arr2)
+        console.log(hd2)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Cache {
+            static data = {};
+            static set(name, value) {
+                return (this.data[name] = value);
+            }
+            static get(name) {
+                return this.data[name]
+            }
+        }
+        Cache.set('hdcms', 'houdunren.com'); //存储，第一个是名字，第二个是值
+        console.log(Cache.get('hdcms'))
+    </script>
+</body>
+
+</html>

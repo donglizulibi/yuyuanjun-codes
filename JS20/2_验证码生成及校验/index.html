@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #change {
+            color: blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <span id="testCode">adf34y</span><span id="change"> 看不清换一张</span>
+        </div>
+        <div>
+            <span>验证码：</span><input type="text">
+        </div>
+        <button>确定</button>
+    </div>
+    <script>
+        function query(el) {
+            return document.querySelector(el)
+        }
+        var a = String.fromCharCode(65)
+        var b = String.fromCharCode(90)
+        var c = String.fromCharCode(97)
+        var d = String.fromCharCode(122)
+        console.log(a, b, c, d)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <button>houdunren</button>
+    <button>hdcms</button>
+    <script>
+        let btns = document.querySelectorAll('button')
+        btns.forEach(item => {
+            let left = 1
+            item.addEventListener('click', () => {
+                setInterval(() => {
+                    left += 50
+                    item.style.left = left + 'px'
+                    console.log(left)
+                }, 2000)
+                console.log(item.style.left)
+                console.log(item)
+            })
+        })
+
+        // 假如是点击会100毫秒执行一次
+        // 则第一次点击的时候执行的时间点为 0 -- 100 -- 200 --
+        // 在此基础上再点击一次，且假设第二次点击的时间发生在110
+        // 则执行的时间点变为 0 -- 100 -- 110 -- 200 -- 210 --
+        // 所以会加快
+    </script>
+</body>
+
+</html>

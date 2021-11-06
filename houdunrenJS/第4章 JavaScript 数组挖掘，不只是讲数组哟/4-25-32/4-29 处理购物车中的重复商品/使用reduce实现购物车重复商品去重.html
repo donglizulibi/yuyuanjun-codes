@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let cart = [{
+                name: 'iphone',
+                price: 12000
+            }, {
+                name: 'iphone',
+                price: 12000
+            }, {
+                name: 'imac',
+                price: 25000
+            }, {
+                name: 'imac',
+                price: 25000
+            }, {
+                name: 'imac',
+                price: 25000
+            }, {
+                name: 'ipad',
+                price: 3600
+            }]
+            // includes不能用于查找引用类型 需要使用find
+        function filterGoods(goods) {
+            return goods.reduce(function(arr, cur) {
+                let find = arr.find(function(item) {
+                        if (item.name == cur.name) {
+                            console.log("item", item)
+                            return true
+                        }
+                    }) // find循环里面如果return的结果是ture，则会把item返回出来
+                console.log(find)
+                console.log("jiange")
+                console.log("")
+                if (!find) {
+                    arr.push(cur)
+                }
+                return arr
+
+            }, [])
+        }
+
+
+        console.log(filterGoods(cart))
+
+
+
+        let a
+        console.log("a", a)
+        if (!a) {
+            console.log(111)
+        }
+    </script>
+</body>
+
+</html>

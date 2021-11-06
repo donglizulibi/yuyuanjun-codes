@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = new Object();
+        hd.name = 'houdune'
+        console.dir(hd);
+        console.dir(hd.__proto__);
+        console.dir(Object.__proto__);
+        console.dir(Object);
+        console.dir(Object.prototype); // 所有通过Object构造函数实例化的对象都会继承这些属性
+        console.dir(Object.prototype === hd.__proto__);
+
+        // 如前面所讲，一个构造函数的prototype是跟它实例化有关的
+        Object.prototype.show = function() {
+            console.log('houdunewn')
+        }
+        hd.show();
+
+        function User() {
+            this.haha = function() {
+                console.log(1)
+            }
+        }
+        console.dir(User)
+        console.log('User.prototype')
+        console.dir(User.prototype)
+        let xj = new User()
+        console.dir(User.prototype === xj.__proto__)
+        console.log(xj)
+        xj.haha()
+        xj.show() //这个是从爷爷那里拿来的方法
+        User.show() // 这个是User作为函数对象在父级拿到的方法
+
+        // User的prototype的 __proto__和__proto__的__proto__是同一个
+        // 这里 __proto__ 显示成 [[Prototype]]
+        console.dir(User.prototype.__proto__ === User.__proto__.__proto__) // 返回为true
+        console.dir(Object.prototype === User.__proto__.__proto__) // 返回为true
+
+        console.dir(User.prototype) // 返回为true
+
+        console.dir(Object.prototype.__proto__) //返回为null 到头了
+
+        // console.dir(Object.__proto__)
+    </script>
+</body>
+
+</html>

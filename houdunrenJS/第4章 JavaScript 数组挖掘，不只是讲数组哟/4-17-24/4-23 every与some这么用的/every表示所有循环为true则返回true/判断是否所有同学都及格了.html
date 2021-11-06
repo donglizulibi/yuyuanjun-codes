@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [{
+                name: "zhangsan",
+                js: 99
+            }, {
+                name: "lisi",
+                js: 80
+            }, {
+                name: "maliu",
+                js: 55
+            }]
+            // 要将every()出来的结果赋值给一个变量，这个变量将会是布尔值
+        let res = arr.every(function(item, index, arr) {
+            console.log(item)
+            console.log(index)
+            console.log(arr)
+            console.log(" ")
+            if (item.js >= 60) {
+                return true
+            }
+        })
+        if (res) {
+            console.log("所有同学都及格了")
+        } else {
+            console.log("有同学没有及格")
+        }
+
+        // 简化写法
+        // let res = arr.every(function(item, index, arr) {
+        //     return item.js >= 60
+        // })
+        // console.log(res ? "所有同学都及格了" : "有同学没有及格")
+    </script>
+</body>
+
+</html>

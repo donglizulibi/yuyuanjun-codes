@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>hdcms</div>
+    <div>houdunren</div>
+    <script>
+        let divs = document.querySelectorAll("div")
+        console.log(divs)
+            // 这一步就相当于将对象转化为数组
+        let arrDiv = Array.from(divs, (item) => {
+            console.log(item.innerHTML)
+            item.style.backgroundColor = "red";
+            //这里需要加上return item，否者arrDiv打印出的是undefined
+            return item
+        })
+        console.log(arrDiv)
+    </script>
+</body>
+
+</html>

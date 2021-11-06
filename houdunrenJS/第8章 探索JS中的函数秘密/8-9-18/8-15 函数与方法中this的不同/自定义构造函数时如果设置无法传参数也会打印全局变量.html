@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var name = "全局的李四"
+
+        function User() {
+            // function User(name) {
+            this.name = name;
+            this.show = function() {
+                return this.name
+            }
+        }
+
+        let lisi1 = new User()
+            // let lisi2 = new User("局部的李四")
+        console.log(lisi1.show())
+            // console.log(lisi2.show())
+    </script>
+</body>
+
+</html>
