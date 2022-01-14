@@ -23,6 +23,7 @@
                 return this[DATA].name
             }
             set name(value) {
+                console.log(this)
                 if (value.trim() == '' || value.length > 10) {
                     throw new Error("用户名不合法")
                 }

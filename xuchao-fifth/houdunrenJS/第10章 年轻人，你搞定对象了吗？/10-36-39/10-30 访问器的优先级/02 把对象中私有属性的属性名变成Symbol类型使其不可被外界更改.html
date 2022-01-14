@@ -10,6 +10,7 @@
 
 <body>
     <script>
+        // 这里主要是为了防止通过user.data.name = 'abc'的方式篡改数据
         const DATA = Symbol();
         const OUT = "abc"
         const user = {
@@ -33,6 +34,7 @@
         user.show()
         console.log(user[DATA].name = 'sdf') // 这样再外部修改是不会影响后面的取值的
         console.log(user)
+        console.log(user.abc)
         console.log(user[OUT])
         user.name = 'hdcms'
         console.log(user.name)

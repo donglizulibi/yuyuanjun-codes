@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 双倍函数的复现
+        let double = (n) => {
+            return n * 2
+        }
+        let doubleFun = function(n) {
+            return n * 2
+        }
+        console.log(doubleFun(2), double(2))
+
+        let doubleSimple = n => n * 2
+        let count = 1
+        let obj = {}
+        let getDouble = doubleSimple(count)
+        console.log(getDouble)
+        Object.defineProperty(obj, "count", {
+            set(val) {
+                console.log('what is this', this)
+                console.log('what is count', count)
+                    // this.count = val
+                count = val
+                getDouble = doubleSimple(val)
+            }
+        })
+        console.log(obj)
+
+        console.log(count)
+        console.log(getDouble)
+
+        obj.count = 2
+            // count = 2
+            // 调用的时候还是要加上obj
+
+        console.log(count)
+        console.log(getDouble)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let getDouble = n => n * 2
+        let obj = {}
+        let count = 1
+        let double = getDouble(count)
+
+        Object.defineProperty(obj, 'count', {
+            // 即使不要这个get也是可以的
+            // get() {
+            //     // return 'this is count data'
+            //     return count
+            // },
+            set(val) {
+                count = val
+                double = getDouble(val)
+            }
+        })
+
+        obj.a = 3
+        console.log(obj)
+            // 这里的count属性是隐藏的，打印结果里面只显示a的属性
+
+        console.log(count)
+        console.log(double)
+
+        // 现在改变原来的数据
+        console.log('change')
+        obj.count = 2
+        console.log(count)
+        console.log(double)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let count = 1
+        let getDouble = n => n * 2
+        let double = getDouble(count)
+        let obj = {}
+        console.log(double)
+
+        Object.defineProperty(obj, 'count', {
+            set(val) {
+                count = val
+                double = getDouble(val)
+            }
+        })
+
+        obj.count = 2
+        console.log(count)
+        console.log(double)
+    </script>
+</body>
+
+</html>
