@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function defineProperty() {
+            let _obj = {}
+            Object.defineProperties(_obj, {
+                a: {
+                    value: 1,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                },
+                b: {
+                    value: 2,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                }
+            })
+            return _obj
+        }
+        let obj = defineProperty()
+        console.log(obj)
+
+        // 可修改性
+        obj.a = 5
+        obj.b = 6
+        console.log(obj)
+
+        // 可删除性
+        delete obj.a
+        console.log(obj)
+
+        // 可枚举性
+        for (let i in obj) {
+            console.log(i + ":" + obj[i])
+        }
+
+        // 查看一个对象有哪些属性特征的方法 getOwnPropertyDescriptors
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2))
+
+
+
+        // for of只能遍历数组，不能遍历对象
+        // let object = {
+        //     a: 1,
+        //     b: 2,
+        //     c: 3
+        // }
+
+        // for (let i of object) {
+        //     console.log(i)
+        // }
+    </script>
+</body>
+
+</html>

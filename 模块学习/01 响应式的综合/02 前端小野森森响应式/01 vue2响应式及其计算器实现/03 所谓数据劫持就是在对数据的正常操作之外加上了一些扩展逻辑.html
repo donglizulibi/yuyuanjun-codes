@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function defineProperty() {
+            let _obj = {}
+            let a = 1
+            Object.defineProperties(_obj, {
+                a: {
+                    get() {
+                        return `'a' is the value of ${a}.`
+                    },
+                    set(val) {
+                        a = val
+                        console.log(`the value of 'a' has been designed a new value ${val}.`)
+                    }
+                },
+                b: {}
+            })
+            return _obj
+        }
+
+        let obj = defineProperty()
+        obj.a = 2
+        console.log(obj.a)
+
+        // 原来的函数相当于在函数内部和Object外部就已经将a属性的值设置为1
+        // 然后在函数外部修改a的值的时候，把这个修改的值劫持了下来，做了另外的一些操作和修改
+        // 数据劫持就是当要取一个值的时候，停下来到get里面去看看有没有其他的扩展程序要执行的
+        // 当要设置一个值的时候就停下来到set里面看看有没有要额外设置的
+    </script>
+</body>
+
+</html>

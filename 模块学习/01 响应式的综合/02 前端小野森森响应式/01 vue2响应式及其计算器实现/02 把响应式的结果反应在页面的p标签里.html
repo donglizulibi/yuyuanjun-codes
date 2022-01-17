@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>0</p>
+    <p>0</p>
+    <script>
+        function defineProperty() {
+            let _obj = {}
+            let a = 0
+            Object.defineProperties(_obj, {
+                a: {
+                    get() {},
+                    set(val) {
+                        a = val
+                        let op = document.querySelectorAll('p')[0]
+                        op.innerHTML = val
+                    }
+                },
+                b: {}
+            })
+            return _obj
+        }
+
+        let obj = defineProperty()
+        obj.a = 239
+        console.log(obj)
+
+
+        // 传统的方法
+        let object = {}
+        object.a = 1
+        let opp = document.querySelectorAll('p')[1]
+        object.a = 12
+        opp.innerHTML = object.a
+
+        // 在这里如果要第二个p标签内的数值也跟随赋值变化，则还是要加上一条把数值渲染到页面的语句
+        // 也就是说传统的方法是做不到响应式的，但是defineProperty的方法只需要直接赋值就可以了
+    </script>
+</body>
+
+</html>
