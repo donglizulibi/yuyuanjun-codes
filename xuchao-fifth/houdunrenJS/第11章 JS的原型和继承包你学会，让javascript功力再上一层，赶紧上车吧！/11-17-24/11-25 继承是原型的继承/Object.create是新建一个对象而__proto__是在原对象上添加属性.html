@@ -10,6 +10,8 @@
 
 <body>
     <script>
+        // 把一个构造函数的原型链按到另一个构造函数上有两种方法
+        // 一种是直接__proto__接上，另一种是用Object.create方法
         function User() {}
         User.prototype.name = function() {
             console.log('user.name')
@@ -31,7 +33,8 @@
             console.log('admin.role')
         }
 
-        // 放在后面是不行的
+        // 放在后面是不行的，因为在这里相当于Admin.prototype是新建的
+        // 所以就相当于要先创建一个变量，然后再对这个变量进行操作
         Admin.prototype = Object.create(User); // 一定是自己的父亲变成别人的儿子
 
         let a = new Admin();

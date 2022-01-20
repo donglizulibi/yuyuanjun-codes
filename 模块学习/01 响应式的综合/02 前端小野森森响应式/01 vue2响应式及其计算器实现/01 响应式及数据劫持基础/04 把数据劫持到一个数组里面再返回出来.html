@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function DateArr() {
+            let _arr = [],
+                _val = null
+            Object.defineProperty(this, 'valo', {
+                get() {
+                    return _val
+                },
+                set(value) {
+                    _val = value
+                    _arr.push({
+                        vall: _val
+                    });
+                    console.log('A new value "' + _val + '" has been pushed to _arr');
+                }
+            })
+            this.getArr = function() {
+                return _arr
+            }
+        }
+
+        let dataArr = new DateArr()
+        console.log(dataArr)
+        dataArr.valo = 123
+        dataArr.valo = 234
+        dataArr.valo = 345
+        console.log(dataArr.getArr())
+    </script>
+</body>
+
+</html>

@@ -24,7 +24,11 @@
 
         // 现在有一个构造函数需要用到User里面的方法
         function Admin() {}
-        console.log(Admin.prototype.__proto__ === Object.prototype)
+        // let aaa = new Admin()
+        // console.log(aaa)
+        // console.log(aaa.__proto__ === Admin.prototype)
+        // console.log(aaa.__proto__.__proto__ === Object.prototype)
+        // console.log(Admin.prototype.__proto__ === Object.prototype)
         Admin.prototype.__proto__ = User.prototype
 
         // 又来了一个
@@ -37,11 +41,15 @@
         let a = new User();
         let b = new Admin();
         let c = new Member();
+
+        // 由User创建出的实例使用User自己的方法
         a.name()
         a.role()
 
+        // 由Admin创建出来的实例使用User里面的方法
         b.name()
 
+        // Member创建出来的实例既可以用自己的方法也可以用Admin的方法
         c.name() // 三个构造函数的实例都可以调用第一个构造函数上的方法
         c.role() // 后面的构造函数再添加新方法也不会覆盖前面的
     </script>
