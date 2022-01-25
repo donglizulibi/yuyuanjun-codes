@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class User {
+            site = 'houdunewn'
+            constructor(name) {
+                this.name = name
+            }
+            changeSite(val) {
+                this.site = val
+            }
+            show() {
+                return `${this.site}:${this.name}`
+            }
+        }
+
+        let hd = new User('houdunren')
+        hd.changeSite('houhahahah')
+        console.log(hd.show())
+        console.log(hd)
+        console.log(User)
+
+        // 以上的操作不会修改新的实例化的对象的属性
+        // 也就说，属性值仍然是共享的
+        let hdd = new User('h2h2h2')
+        console.log(hdd.show())
+    </script>
+</body>
+
+</html>

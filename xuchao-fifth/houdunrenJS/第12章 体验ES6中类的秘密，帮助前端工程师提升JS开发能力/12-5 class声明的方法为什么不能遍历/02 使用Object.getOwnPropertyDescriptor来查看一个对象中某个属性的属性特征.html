@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function User() {
+            this.name = name
+        }
+        User.prototype.show = function() {}
+
+        // 下面生成一个实例
+        let u = new User()
+        for (let key in u) {
+            console.log(key)
+        }
+
+        // 先看一下构造函数的属性特征，发现name的enumerable是false
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User.prototype, "show"), null, 2))
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User, "name"), null, 2))
+
+        // 而实例化出的对象在其原型链上的show方法和自身的name属性的enumerable都是false
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u, "name"), null, 2))
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u.__proto__, "show"), null, 2))
+    </script>
+</body>
+
+</html>

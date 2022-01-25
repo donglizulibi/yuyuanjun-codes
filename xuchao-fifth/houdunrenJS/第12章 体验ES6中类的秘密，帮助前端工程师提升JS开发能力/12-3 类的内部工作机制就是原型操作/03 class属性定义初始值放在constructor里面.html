@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 类的情况
+        class User {
+            constructor(name) {
+                this.name = name
+            }
+            show() {
+                return this.name + "-haha"
+            }
+        }
+
+        // 构造函数的情况
+        function Article(name) {
+            this.name = name
+            this.show = function() {
+                return this.name + "-haha"
+            }
+        }
+
+        // 二者实例化的情况对比
+        let u = new User('houdunewn')
+        let a = new Article('houduwang')
+
+        console.dir(u)
+        console.dir(a)
+
+        console.log(u.show())
+        console.log(a.show())
+
+        // 在本例中，a的show方法在实例的对象里面
+        // 而u的show方法在实例的原型__proto__里面
+        // u的__proto__也就是User的prototype
+        console.log(u.__proto__ === User.prototype)
+
+        // Object.getOwnPropertyNames用来获取对象中的属性名称和方法名称
+        // 在下面的例子中,a会打印出name属性和show方法
+        // 而u只会打印出name属性,因为show方法在这个实例的原型上
+        // 而Object.getOwnPropertyNames()不会获取原型上方法
+        console.log(Object.getOwnPropertyNames(a))
+        console.log(Object.getOwnPropertyNames(u))
+
+        // 再打印一下类和构造函数原型prototype上的方法
+        // Article.prototype上只有constructor,没有show方法
+        // User.prototype上有constructor和show方法
+        console.log(Object.getOwnPropertyNames(Article.prototype))
+        console.log(Object.getOwnPropertyNames(User.prototype))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 类的情况
+        class User {
+            show() {
+                console.log('hahah')
+            }
+        }
+        console.dir(User)
+
+        // 构造函数的情况
+        function Article() {}
+        Article.prototype.show = function() {
+            console.log('haha')
+        }
+        console.dir(Article)
+
+        // class是语法糖的体现，两种定义方式的show方法都出现在prototype里面
+    </script>
+</body>
+
+</html>

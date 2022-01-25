@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class User {
+            constructor(name) {
+                this.name = name
+            }
+            show() {}
+        }
+
+        console.dir(User)
+        let u = new User('hahah')
+        console.log(u)
+
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User.prototype, 'show'), null, 2)) // enumerable: false
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User, 'name'), null, 2)) //enumerable: false 
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u, 'name'), null, 2)) // enumerable: true
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u.__proto__, 'show'), null, 2)) // enumerable: false
+    </script>
+</body>
+
+</html>

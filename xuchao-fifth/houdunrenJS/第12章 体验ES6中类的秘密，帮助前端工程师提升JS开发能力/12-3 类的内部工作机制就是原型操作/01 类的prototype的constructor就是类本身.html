@@ -10,11 +10,15 @@
 
 <body>
     <script>
+        // 类的情况
         class User {}
-        console.log(typeof User)
+        console.dir(User)
+        console.log(User === User.prototype.constructor)
 
-        let Hd = class {}
-        console.log(Hd)
+        // 构造函数的情况
+        function Article() {}
+        console.dir(Article)
+        console.log(Article === Article.prototype.constructor)
     </script>
 </body>
 

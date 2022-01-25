@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数里面内部属性和方法是放在一起的
+        function Article(title) {
+            this.title = title
+            this.get = function() {
+                return this.title + "-haha"
+            }
+        }
+
+        let a = new Article('houdunewn')
+        console.log(a.title)
+        console.log(a.get())
+
+        // class类中内部属性和方法分开放置
+        // 且定义方法的前面不用加this
+        console.log("")
+
+        class User {
+            constructor(name) {
+                this.name = name
+            }
+            getName() {
+                return this.name + "-haha"
+            }
+        }
+        let xj = new User('houduinewang')
+        console.log(xj.name)
+        console.log(xj.getName())
+    </script>
+</body>
+
+</html>

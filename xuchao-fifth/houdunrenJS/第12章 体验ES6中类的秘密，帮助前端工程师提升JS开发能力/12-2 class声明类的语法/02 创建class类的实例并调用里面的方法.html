@@ -10,11 +10,16 @@
 
 <body>
     <script>
-        class User {}
-        console.log(typeof User)
+        class User {
+            show() {}
+            get() {
+                console.log('houdunerwn')
+            }
+        }
 
-        let Hd = class {}
-        console.log(Hd)
+        let hd = new User()
+        console.dir(hd)
+        hd.get()
     </script>
 </body>
 
