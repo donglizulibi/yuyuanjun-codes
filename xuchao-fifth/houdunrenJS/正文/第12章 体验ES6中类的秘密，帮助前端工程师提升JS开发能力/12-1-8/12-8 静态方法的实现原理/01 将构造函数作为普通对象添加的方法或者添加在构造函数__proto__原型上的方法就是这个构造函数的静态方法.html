@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先设置一个构造函数
+        // 分别实现四种给构造函数添加方法的方法
+        function User() {
+            // 1 在这个构造函数里面设置一个方法
+            this.show1 = function() {
+                console.log("inner-show")
+            }
+        }
+
+        // 2 给构造函数的原型上添加方法
+        User.prototype.show2 = function() {
+            console.log("prototype-show")
+        }
+
+        // 3 将构造函数视为一个对象添加方法
+        User.show3 = function() {
+            console.log(this)
+            console.log(this === User)
+            console.log("obj-show")
+        }
+
+        // 4 给构造函数作为对象的原型，也就是__proto__上添加方法
+        User.__proto__.show4 = function() {
+            console.log(this)
+            console.log(this === User.prototype.constructor)
+            console.log("__proto-show__")
+        }
+
+        let u = new User()
+        u.show1()
+        u.show2()
+        User.show3()
+        User.show4()
+            // 可见，show3和show4都是可以直接由User调用
+            // show3和show4中都有一个打印this的命令，在这里是User调用show3和show4，所以打印的是User本身
+
+        console.dir(User)
+        console.dir(u)
+
+        console.log(User.prototype.constructor === User)
+
+
+        User.show1()
+        User.show2()
+    </script>
+</body>
+
+</html>
