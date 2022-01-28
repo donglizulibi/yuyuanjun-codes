@@ -14,6 +14,15 @@
         let xj = {};
         console.log(Object.getPrototypeOf(hd) === Object.getPrototypeOf(xj))
         console.log(Object.getPrototypeOf(hd))
+        console.dir(Object.getPrototypeOf(hd))
+
+        function User() {
+            this.name = name
+        }
+
+        function Hd() {}
+        User.__proto__ = Hd
+        console.dir(Object.getPrototypeOf(Hd))
     </script>
 </body>
 
