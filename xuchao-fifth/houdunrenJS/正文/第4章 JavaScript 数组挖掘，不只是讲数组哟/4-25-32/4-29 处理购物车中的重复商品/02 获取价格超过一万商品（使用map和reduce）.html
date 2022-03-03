@@ -21,13 +21,6 @@
             price: 3600
         }]
 
-        // function getNameByPrice(goods, price) {
-        //     return goods.reduce(function(arr, cur) {
-        //         if (cur.price > price) arr.push(cur.name)
-        //         return arr
-        //     }, [])
-        // }
-
         // 以下这种写法只是为了表示数组循环方法是可以连用的
         function getNameByPrice(goods, price) {
             return goods.reduce(function(arr, cur) {
@@ -38,6 +31,28 @@
             })
         }
         console.log(getNameByPrice(cart, 10000))
+
+
+        // 的上面的reduce产生的是包含两个对象的数组
+        let arr = [{
+                name: 'iphone',
+                price: 12000
+            }, {
+                name: 'imac',
+                price: 25000
+            }]
+            // 再使用map把这个数组中的对象的名称放到一个数组里面
+
+        let arrMapPrice = arr.map(function(item) {
+            return item.price
+        })
+
+        let arrMapName = arr.map(function(item) {
+            return item.name
+        })
+
+        console.log(arrMapPrice)
+        console.log(arrMapName)
     </script>
 </body>
 

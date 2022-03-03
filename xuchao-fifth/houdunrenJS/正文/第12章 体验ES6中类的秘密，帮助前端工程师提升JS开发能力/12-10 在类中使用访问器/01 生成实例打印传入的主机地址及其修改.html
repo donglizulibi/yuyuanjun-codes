@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Requset {
+            constructor(url) {
+                this.host = url
+            }
+        }
+
+        let hd = new Requset("https//:www.houdunren.com")
+        console.log(hd)
+
+        // 在这里没有加上正则验证，用户如果需要修改这个主机地址，即使不加上前面的协议，也可以修改成功
+        hd.host = "hdcms.com"
+        console.log(hd)
+
+        // 所造成的结果就是用户所填的这个不加前面协议的参数会造成程序运行的异常
+    </script>
+</body>
+
+</html>

@@ -21,12 +21,14 @@
             price: 3600
         }]
 
-        function sum(goods) {
-            return goods.reduce(function(pre, value) {
-                return pre += value.price
-            }, 0)
+        function getNameByPrice(goods, price) {
+            return goods.reduce(function(arr, cur) {
+                if (cur.price > price) arr.push(cur.name)
+                return arr
+            }, [])
         }
-        console.log(sum(cart))
+
+        console.log(getNameByPrice(cart, 10000))
     </script>
 </body>
 

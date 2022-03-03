@@ -27,9 +27,12 @@
             test()
         }
         admin()
+            // 这种情况同样是指向window
+
         console.log(admin)
-            // console.log(test)
-            // 这种情况同样是指向
+            // 打印函数体
+
+        // console.log(test) // 形成了闭包，无法拿到test
     </script>
 </body>
 

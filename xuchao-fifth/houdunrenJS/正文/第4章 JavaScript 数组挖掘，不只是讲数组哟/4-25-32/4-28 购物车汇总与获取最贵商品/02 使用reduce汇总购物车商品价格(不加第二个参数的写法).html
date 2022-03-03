@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let cart = [{
+            name: 'iphone',
+            price: 12000
+        }, {
+            name: 'imac',
+            price: 25000
+        }, {
+            name: 'ipad',
+            price: 3600
+        }]
+
+        // console.log(typeof {})
+
+        // 第一次遍历中，pre是一个对象，但是从第二次遍历开始pre就应该是一个数字
+        function totalPriceWithoutZero(goods) {
+            return goods.reduce(function(pre, val) {
+                // console.log(pre)
+                // console.log(val)
+                // pre = pre + val.price
+                // return (typeof pre !== "number") ? pre.price : pre
+
+                // let total = 0
+
+
+                if (typeof pre != "number") {
+                    console.log(pre)
+                    pre = pre.price + val.price
+                    return pre
+                } else {
+                    console.log(pre)
+                    console.log(val)
+                    pre = pre + val.price
+                    return pre
+                }
+            })
+        }
+
+        console.log(totalPriceWithoutZero(cart))
+    </script>
+</body>
+
+</html>

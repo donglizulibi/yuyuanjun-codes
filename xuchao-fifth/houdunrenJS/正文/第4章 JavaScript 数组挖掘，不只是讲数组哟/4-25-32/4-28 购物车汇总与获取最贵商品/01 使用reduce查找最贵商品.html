@@ -21,19 +21,13 @@
             price: 3600
         }]
 
-        function getNameByPrice(goods, priceLine) {
-            let arrGoods = []
-            goods.reduce(function(pre, value) {
-                // console.log(value.price)
-                if (value.price > priceLine) {
-                    // console.log(1)
-                    arrGoods.push(value.name)
-                        // console.log(arrGoods)
-                }
-            }, 0)
-            return arrGoods
+        function highValuePrice(goods) {
+            return goods.reduce(function(pre, val) {
+                return pre.price > val.price ? pre : val
+            })
         }
-        console.log(getNameByPrice(cart, 10000))
+
+        console.log(highValuePrice(cart))
     </script>
 </body>
 

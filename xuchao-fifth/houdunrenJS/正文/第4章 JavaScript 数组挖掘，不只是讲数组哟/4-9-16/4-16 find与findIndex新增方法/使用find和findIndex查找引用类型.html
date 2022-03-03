@@ -25,18 +25,24 @@
             name: "mysql",
             time: 1212
         }]
+
+        // find输入的某个单一的条件，返回的是符合这个条件的整个对象 
         let status = lessons.find(function(item) {
             return item.name == "css"
         })
-        let index = lessons.findIndex(function(item) {
-            return item.name == "css"
-        })
         console.log(status)
+
+        //  返回的是这个对象在数组里面的位置
+        let index = lessons.findIndex(function(item) {
+            return item.name == "mysql"
+        })
         console.log(index)
-            /*
-            在下面这个例子中，使用includes查找引用类型会返回false
-            因为includes会认为被查找项目的另一个内存地址的变量，与原变量不相等
-            */
+
+
+        // 在下面这个例子中，使用includes查找引用类型会返回false
+        // 因为includes会认为被查找项目的另一个内存地址的变量，与原变量不相等
+        // 也就是说，放在includes里面的这个对象会开辟一个新的内存地址
+
         console.log(lessons.includes({
                 name: "css"
             }))

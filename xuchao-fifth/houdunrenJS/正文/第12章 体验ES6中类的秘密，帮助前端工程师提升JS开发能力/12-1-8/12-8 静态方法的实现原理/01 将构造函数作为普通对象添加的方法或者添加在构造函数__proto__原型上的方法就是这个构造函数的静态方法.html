@@ -12,8 +12,9 @@
     <script>
         // 首先设置一个构造函数
         // 分别实现四种给构造函数添加方法的方法
+
+        // 1 在这个构造函数里面设置一个方法
         function User() {
-            // 1 在这个构造函数里面设置一个方法
             this.show1 = function() {
                 console.log("inner-show")
             }
@@ -54,6 +55,7 @@
 
         User.show1()
         User.show2()
+            // User中无法打印出这两个方法
     </script>
 </body>
 

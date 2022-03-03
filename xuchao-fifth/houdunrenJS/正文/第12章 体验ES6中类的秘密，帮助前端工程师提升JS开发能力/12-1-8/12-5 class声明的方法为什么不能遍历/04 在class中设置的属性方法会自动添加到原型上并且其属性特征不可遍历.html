@@ -21,10 +21,28 @@
         let u = new User('hahah')
         console.log(u)
 
-        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User.prototype, 'show'), null, 2)) // enumerable: false
-        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User, 'name'), null, 2)) //enumerable: false 
-        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u, 'name'), null, 2)) // enumerable: true
-        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u.__proto__, 'show'), null, 2)) // enumerable: false
+        for (let key in u) {
+            console.log(key)
+        }
+        // 只能遍历出一个name属性，无法遍历出show方法
+        // 因为show方法在User的prototype上
+        // 也就是u的__proto__
+
+        console.log(u.__proto__ === User.prototype)
+            // true
+
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User.prototype, 'show'), null, 2))
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u.__proto__, 'show'), null, 2))
+            // 两个的enumerable都是false
+            // 说明show这个属性方法是不能被遍历出来的
+
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User, 'name'), null, 2))
+            //enumerable: false
+            // name是User作为构造函数的内部变量，也是不能被直接遍历的
+
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u, 'name'), null, 2))
+            // enumerable: true
+            // 生成实例之后就可以遍历出name这个属性
     </script>
 </body>
 

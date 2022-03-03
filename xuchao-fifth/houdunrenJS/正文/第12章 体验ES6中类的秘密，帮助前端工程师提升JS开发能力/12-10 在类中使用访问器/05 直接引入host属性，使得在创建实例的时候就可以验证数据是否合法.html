@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Requset {
+            constructor(host) {
+                this.data = {}
+                this.host = host // 相当于这个host属性会调用set后面的host方法
+            }
+            set host(url) {
+                if (!/^https?:/i.test(url)) {
+                    throw new Error("地址错误")
+                }
+                this.data.host = url
+            }
+        }
+
+        let hd = new Requset("https://www.houdunren.com")
+            // let hd = new Requset("www.houdunren.com") // 这样在创建实例的时候传入不合法的参数也会报错
+
+        hd.host = 'hdcms.com'
+            // 后面修改的数据不合法也会报错
+        console.log(hd)
+    </script>
+</body>
+
+</html>

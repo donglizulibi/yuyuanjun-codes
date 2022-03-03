@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义数据
+        const data = [{
+            name: 'js',
+            price: 100
+        }, {
+            name: 'mysql',
+            price: 212
+        }, {
+            name: 'vue.js',
+            price: 98
+        }]
+
+        // 开始定义一个类
+        class Lesson {
+            constructor(data) {
+                    this.model = data
+                }
+                // 设置获取价格的方法
+            price() {
+                return this.model.price
+            }
+            name() {
+                return this.model.name
+            }
+            static createBatch(data) {
+                return data.map(item => new Lesson(item))
+            }
+
+            static maxPrice(data) {
+                // 这里直接改为由大到小排序
+                return data.sort((a, b) => b.price() - a.price())[0]
+                    // return data.sort((a, b) => b.price - a.price)[0]
+            }
+        }
+
+        let lessons = Lesson.createBatch(data)
+        console.log(lessons)
+        console.log(data)
+
+        // console.log(Lesson.maxPrice(data))
+        // 这里传入的是初始数据
+
+        console.log(Lesson.maxPrice(lessons).name())
+        console.log(Lesson.maxPrice(lessons).price())
+            // 这里传入的是createBatch方法已经运行过并返回出的数据
+            // 也就是已经参与过实例化的对象，和初始数据的对象不同
+            // 已经实例化的对象就可以使用类中的各种方法
+            // 所以price()和name()就可以使用，而在上面直接传入data的静态方法中就不能使用
+    </script>
+</body>
+
+</html>

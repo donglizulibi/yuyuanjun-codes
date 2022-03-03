@@ -10,6 +10,11 @@
 
 <body>
     <script>
+        // 首先使用一下include这个属性 见4-14查找元素基本使用
+        let test = ['a', 'b', 123]
+        console.log(test.includes("a")) // 不能直接变量a
+        console.log(test.includes(123))
+
         let arr = [1, 2, 3, 3, 1, 4, 2];
         let arr1 = arr.reduce(function(arr, cur) {
             if (!arr.includes(cur)) {

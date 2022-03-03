@@ -21,15 +21,21 @@
             price: 3600
         }]
 
-        function maxPrice(goods) {
-            return goods.reduce(function(pre, value) {
-                console.log(pre)
-                console.log(value)
-                console.log('')
-                return pre.price > value.price ? pre : value
+        function totalPriceWithoutZero(goods) {
+            return goods.reduce(function(pre, val) {
+                return (typeof pre == "number") ? pre + val.price : val.price + pre.price
+
+                // if (typeof pre == "number") {
+                //     pre = pre + val.price
+                //     return pre
+                // } else {
+                //     pre = pre.price + val.price
+                //     return pre
+                // }
             })
         }
-        console.log(maxPrice(cart))
+
+        console.log(totalPriceWithoutZero(cart))
     </script>
 </body>
 

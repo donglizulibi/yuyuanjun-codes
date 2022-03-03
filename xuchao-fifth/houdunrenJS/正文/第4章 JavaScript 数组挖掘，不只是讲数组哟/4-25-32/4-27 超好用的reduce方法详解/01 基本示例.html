@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // reduce没有第二个参数的情况下
+        let arr = [1, 2, 3, 4, 5]
+        arr.reduce(function(pre, val, index, arr) {
+            // pre 第一个参数，上一次遍历返回的结果，在起初调用的时候就是数组的第一个值
+            // val 第二个参数，当前的项，在起初的调用的时候，当前项就是数组的第二个值
+            // index 索引
+            // arr 原来数组
+            console.log(pre, val)
+            console.log("index", index)
+                // return 99
+        })
+
+        // 返回结果如下 
+
+        //  1 2
+        //  undefined 3
+        //  undefined 4
+        //  undefined 5
+
+        // 由于 reduce匿名函数的函数体里面没有return,也就没有返回值
+        // 所以从第二次遍历开始都是undefined
+
+        // 而加上return 99之后,从第二次遍历之后,打印的pre都是99
+
+
+        console.log("")
+            // 另外，reduce加上了第二个参数的情况
+        let array = [1, 2, 3, 4, 5]
+        let reduceReturn = array.reduce(function(pre, val, index, arr) {
+            console.log(pre, val)
+            console.log("index", index)
+                // 加上第二个参数，则pre在第一次遍历时显示的就是第二个参数
+                // val在第一次遍历时显示的就是数组的第一个项
+            return 99
+        }, 0)
+
+
+        console.log('')
+        console.log("reduce操作数组最后返回的结果是什么", reduceReturn)
+
+        // 另外，加了第二个参数和不加第二个参数的index似乎不一样
+        // 加了第二个参数的index是从0开始计数，不加第二个参数是从1开始计数
+    </script>
+</body>
+
+</html>

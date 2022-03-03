@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义数据
+        const data = [{
+            name: 'js',
+            price: 100
+        }, {
+            name: 'mysql',
+            price: 212
+        }, {
+            name: 'vue.js',
+            price: 98
+        }]
+
+        // 开始定义一个类
+        class Lesson {
+            constructor(data) {
+                this.model = data
+            }
+            static totalPrice(data) {
+                    console.log(data)
+                    return data.reduce((pre, val) => {
+                        pre = pre + val.price
+                        return pre
+                    }, 0)
+                }
+                // 设置获取价格的方法，使用访问器
+            get price() {
+                return this.model.price
+            }
+            get name() {
+                return this.model.name
+            }
+            static createBatch(data) {
+                return data.map(item => new Lesson(item))
+            }
+
+            static maxPrice(data) {
+                // 这里直接改为由大到小排序
+                return data.sort((a, b) => b.price - a.price)[0]
+            }
+        }
+
+        let lessons = Lesson.createBatch(data)
+        console.log(lessons)
+            // 这一步是把初始数据遍历循环依次做创建实例的处理，放到一个新数组里面
+            // 也就是说新的数组里有三个对象
+
+        console.log(Lesson.maxPrice(lessons))
+            // 这一步是获取到价格最大的那个对象，这个对象里面有访问器设置的name和price的属性可以调用出来
+
+        console.log(Lesson.maxPrice(lessons).name)
+        console.log(Lesson.maxPrice(lessons).price)
+        console.log(Lesson.totalPrice(lessons))
+    </script>
+</body>
+
+</html>

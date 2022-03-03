@@ -21,20 +21,16 @@
             price: 3600
         }]
 
-        function sum(goods) {
-            return goods.reduce(function(pre, value) {
-                // console.log(typeof pre == "number")
+        function totalPriceWithzero(goods) {
+            return goods.reduce(function(pre, val) {
+                // pre = pre + val.price
+                // return pre
 
-                // if (typeof pre != "number") {
-                //     return pre.price + value.price
-                // } else {
-                //     return pre + value.price
-                // }
-
-                return typeof pre == "number" ? pre + value.price : pre.price + value.price
-            })
+                return pre += val.price // 这个是上面的简写
+                    // return pre + val.price // 这里不要 = 也可以
+            }, 0)
         }
-        console.log(sum(cart))
+        console.log(totalPriceWithzero(cart))
     </script>
 </body>
 
