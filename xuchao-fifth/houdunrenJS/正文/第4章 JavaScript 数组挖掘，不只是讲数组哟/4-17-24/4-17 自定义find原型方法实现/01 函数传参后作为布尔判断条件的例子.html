@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这里要解决的是在“找到”符合回调函数条件的项目时，需要把那个项目返回出来的那个判断条件问题
+        // 也就是说，需要把处理了“符合条件”的数组中的那个项目的回调函数的返回值作为判断条件
+
+        // 模拟一个回调函数
+        function haha(item) {
+            return item == 1
+        }
+        console.log(haha(2)) // false
+        console.log(haha(1)) // true
+
+        // 然后就可以直接参与判断
+        if (haha(2)) {
+            console.log("hahah")
+        } else {
+            console.log("我好困啊")
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [];
+        console.dir(arr)
+        console.dir(Array)
+        console.log(arr.__proto__ === Array.prototype) // true
+        console.log(arr.__proto__.__proto__ === Object.prototype) // true
+        console.log(Array.__proto__ === Object.prototype) // 为false
+        console.log(Array.__proto__.__proto__ === Object.prototype) // 为true
+        console.log(Array.__proto__ === Function.prototype) // true
+            // 普通数组往上倒一级是Array，直接往上倒两级是Object，而Array往上倒一级的Function
+
+        console.dir(Function)
+        console.log(Function.__proto__.__proto__ === Object.prototype) // true
+            // Function往上倒两级是Object.prototype
+
+        console.log({}.__proto__ == Object.prototype) // 为true
+    </script>
+</body>
+
+</html>

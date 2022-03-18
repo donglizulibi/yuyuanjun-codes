@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 找到一个数组里面有没有字符串的项目
+        let arr = [1, 2, 3, 4, "st", true]
+        let arr1 = [1, 2, 3, 4, true]
+        Array.prototype.hasString = function() {
+            for (let value of this) {
+                console.log(this)
+                if (typeof value == "string") {
+                    return true
+                }
+            }
+            return false
+        }
+
+        // 总的思路还是在数组里面遍历，然后在循环内部加上判断
+
+
+        let a = arr.hasString()
+        let b = arr1.hasString()
+        console.log(a) // true
+        console.log(b) // false
+
+        // console.log({}.hasString()) 
+        // {}，也就是对象的原型链上没有hasString的方法，所以是找不到这个方法的
+    </script>
+</body>
+
+</html>

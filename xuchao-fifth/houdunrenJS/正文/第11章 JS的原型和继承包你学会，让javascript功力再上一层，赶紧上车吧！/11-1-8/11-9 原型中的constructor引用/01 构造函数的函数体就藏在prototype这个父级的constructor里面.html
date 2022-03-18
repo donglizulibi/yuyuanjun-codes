@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 通过一个对象的原型找到它的构造函数的方法
+
+        // 首先设置一个构造函数
+        function User(name) {
+            this.name = name
+            return name
+        }
+
+        // 创建一个实例，下面就是要通过已经创造出的这个实例，找到它的构造函数，来创造出新的实例
+        let lisi = new User('李四');
+        console.dir(lisi) // 观察lisi的__proto__
+        console.dir(User) // 观察prototype里面的constructor
+
+        // 下面相等，说明构造函数内部有一个递归
+        console.dir(User.prototype.constructor === User)
+        console.dir(User.prototype === lisi.__proto__) // 这个是已知的
+
+        //  可以推出单纯由一个实例也可以找到其构造函数
+        console.dir(lisi.__proto__.constructor === User)
+
+        // 运用这个实例来创造一个新的实例
+        let wangwu = new lisi.__proto__.constructor('王五');
+        // 等于 let wangwu = new User.prototype.constructor('王五');
+        console.dir(wangwu)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 4, 5];
+        // 直接在Array上定义函数会有什么隐患吗
+
+        // 还是数组调用原型上这个方法，如果数组中有的话就直接打印出找到的这一项
+
+        // 如果是在原型链上定义方法的话，方法的参数就不用加上数组，而只需要有回调函数就行了
+        // 因为这个方法在被调用的时候就已经是一个实际的数组在调用的
+        // 而根据普通函数中的this原则，“谁调用我，就指向谁”，方法内部的循环机制就自然会遍历这个实际的数组
+
+        Array.prototype.findNumber = function(callback) {
+            for (let key in this) {
+                console.log(this)
+                if (callback(key)) {
+                    return key
+                }
+            }
+            return undefined
+        }
+
+        // 定义回调函数 注意!!! 要找的那个项目也是写死在回调函数里面的，而不是当作参数传进去的
+        function callbackFun(value) {
+            return value == 2
+        }
+
+        //  使用原数组数据来调用
+        console.log(arr.findNumber(callbackFun))
+
+        // 查看Array和arr在原型链上的关系
+        console.dir(Array)
+        console.dir(arr)
+
+        console.log(Array.prototype === arr.__proto__)
+    </script>
+</body>
+
+</html>

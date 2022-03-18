@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 实现find函数，其方法的第一个参数是数组，第二个参数是一个回调函数
+        // 实现的原理就是在find函数内部遍历这个数组的每一项，并且用传入的回调函数去处理每一项
+        // 直到找到符合回调函数条件的项目，并返回出来
+
+        let lessons = [{
+            name: "js"
+        }, {
+            name: "css"
+        }, {
+            name: "mysql"
+        }]
+
+        // let status = lessons.find(function(item) {
+        //     return item.name == "css"
+        // })
+
+        // 遍历开始，并使用回调函数处理，如果符合回调函数内部的查找条件就把遍历出来的那一项返回出来
+        // 要是遍历了一遍还没有找到就是返回undefined
+        function find(array, callback) {
+            for (let i of array) {
+                if (callback(i)) {
+                    return i
+                }
+            }
+            return undefined
+        }
+
+        // 定义一些用于遍历的回调函数，并在回调函数的函数体里面设置查找条件
+        function callback_one(item) {
+            return item.name == "css"
+        }
+
+        function callback_two(item) {
+            return item.name == "hhh"
+        }
+
+        function callback_three(item) {
+            return item == 3
+        }
+
+        // 把需要查找的数组和回调函数作为函数传入find函数
+        let a = find(lessons, callback_one)
+        let b = find(lessons, callback_two)
+        let c = find([1, 2, 3, 4], callback_three)
+
+        // 打印结果
+        console.log(a)
+        console.log(b)
+        console.log(c)
+    </script>
+</body>
+
+</html>

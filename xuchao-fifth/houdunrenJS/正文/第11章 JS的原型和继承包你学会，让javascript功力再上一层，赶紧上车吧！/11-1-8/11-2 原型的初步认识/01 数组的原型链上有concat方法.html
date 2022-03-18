@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在arr原型Array上有一些列方法，可以供arr这样的普通数组使用
+        let arr = ['后盾人']
+        console.log(arr.concat('houdunren.com'))
+
+        // 再来试一下原型的原型的方法
+        let test = arr.toString()
+        console.log(test)
+        console.log(typeof test)
+
+        // 三者之间的关系
+        console.dir(arr)
+        console.dir(Array)
+        console.dir(Array.prototype === arr.__proto__)
+        console.dir(Object.prototype === arr.__proto__.__proto__)
+    </script>
+</body>
+
+</html>

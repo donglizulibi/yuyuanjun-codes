@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Object.getPrototypeOf 其实就相当于 ##.__proto__
+        // 就是获得某个对象或者方法的原型
+        let hd = {};
+        let xj = {};
+        console.log(Object.getPrototypeOf(hd) === hd.__proto__)
+
+
+        // 下面的结果是true，说明两个不同的对象是同一个原型
+        console.log(Object.getPrototypeOf(hd) === Object.getPrototypeOf(xj))
+        console.log(Object.getPrototypeOf(hd))
+        console.dir(Object.getPrototypeOf(hd))
+
+
+        // 改变一个方法的原型的方法
+        function User() {
+            this.name = name
+        }
+
+        function Hd() {}
+        User.__proto__ = Hd
+        console.dir(Object.getPrototypeOf(Hd))
+    </script>
+</body>
+
+</html>

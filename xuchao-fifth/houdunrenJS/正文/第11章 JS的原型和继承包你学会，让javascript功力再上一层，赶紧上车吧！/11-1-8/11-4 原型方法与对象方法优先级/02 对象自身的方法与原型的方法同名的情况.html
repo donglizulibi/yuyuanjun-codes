@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先设置一个对象，并在这个对象里面设置一个方法
+        let hd = {
+            show() {
+                console.log('houdunewn');
+            }
+        }
+
+        // 给这个对象的原型上面加一个方法
+        hd.__proto__.render = function() {
+            console.log("hd.__proto__.render")
+        }
+
+        // 打印这个对象本身，发现在对象和对象的原型上面都发现了各自对应的方法
+        console.log(hd);
+
+        // 对象可以调用原型上面的方法，即使自身没有这个方法
+        hd.render()
+
+        // 给自己本身添加同名的方法
+        hd.render = function() {
+            console.log('hd . render');
+        }
+
+        // 可以发现对象本身和原型上都有同一个名字的方法
+        console.log(hd);
+
+        // 而当二者冲突的时候，首先调用的自身的方法
+        hd.render()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 4, 5]
+        arr.find(function(item) {
+            console.log(item)
+                // return true
+            return false
+                // 这里如果是return false则会全部遍历，如果return true则只会返回第一项
+                // 这是find的禁止贪婪原则
+        })
+
+        // 如果不加上这个return 则默认每次都返回false
+        // 而find函数只要是不返回true，就会一直遍历下去，所以在这里就把数组里所有项目遍历出来了
+
+        // 由此如果需要使用find查找数组里面某一项特定的元素，就把找到的那个条件放到return里就行了
+    </script>
+</body>
+
+</html>

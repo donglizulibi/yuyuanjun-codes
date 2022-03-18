@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 每个构造函数（或者普通函数）都有两个原型
+        function User() {}
+
+        // 函数对象的父级 
+        User.__proto__.view = function() {
+            console.log('user function view method')
+        };
+        User.view();
+
+        // 作为构造函数实例化的时候，给实例提供原型链父级的部分
+        User.prototype.show = function() {
+            console.log('houdunewn');
+        };
+
+        // User.show() 这一行代码会报错，show方法既不是User本身的方法，也不是User函数对象父级上的方法
+
+        // show方法只有在User作为构造函数时的实例化的对象中可以使用
+        let hd = new User()
+        hd.show();
+
+        // 也就是说构造函数实例化对象的__proto__原型就是构造函数prototype原型
+        console.log(User.prototype == hd.__proto__)
+    </script>
+</body>
+
+</html>

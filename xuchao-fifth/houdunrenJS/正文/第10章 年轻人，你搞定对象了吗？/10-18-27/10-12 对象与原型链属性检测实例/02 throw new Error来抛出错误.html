@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Error其实也是一个构造函数
+        console.dir(Error)
+        let err = new Error('haha')
+        console.dir(err)
+
+        // 数字0的隐式类型转换是false
+        let a = 1
+        let b = -1
+        let c = 0
+
+        function th(abc) {
+            if (!abc) {
+                throw new Error('错误了')
+            }
+            console.log("没有错误")
+        }
+        th(a)
+        th(b)
+        th(c)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 设置一个父级，并且在这个父级里面设置一个方法
+        let a = {
+            name: 'a',
+            show() {
+                return this.name
+            }
+        }
+
+        // 设置两个子级
+        let b = {
+            name: 'b'
+        }
+        let c = {
+            name: 'c'
+        }
+
+        // 将这个两个子级的原型设为父级
+        Object.setPrototypeOf(b, a)
+        Object.setPrototypeOf(c, a)
+
+        // 此时b和c的原型上都有了a的方法
+        console.log(b)
+        console.log(c)
+        console.log(b.show())
+        console.log(c.show())
+
+        // 给公共的父级a添加方法，使得b、c都可以使用
+        a.view = function() {
+            console.log('a.view')
+        }
+
+        b.view()
+        c.view()
+    </script>
+</body>
+
+</html>

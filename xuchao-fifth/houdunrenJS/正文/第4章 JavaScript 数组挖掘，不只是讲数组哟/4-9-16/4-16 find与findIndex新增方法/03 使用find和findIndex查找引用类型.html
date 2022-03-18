@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果要查找引用类型，就使用find
+
+        // 如果find找到了，返回的是找到的那个元素，如果没找到，返回undefined
+        // findIndex返回的是角标
+        let lessons = [{
+            name: "js",
+            time: 123
+        }, {
+            name: "css",
+            time: 1122
+        }, {
+            name: "css",
+            time: 9090
+        }, {
+            name: "mysql",
+            time: 1212
+        }]
+
+        // find输入的某个单一的条件，返回的是符合这个条件的整个对象 
+        let status = lessons.find(function(item) {
+            console.log("item", item) // 目标项目之前的项目也都显示出来，所以还是遍历
+            return item.name == "css"
+        })
+        console.log(status)
+
+        //  返回的是这个对象在数组里面的位置
+        let index = lessons.findIndex(function(item) {
+            return item.name == "mysql"
+        })
+        console.log(index)
+    </script>
+</body>
+
+</html>

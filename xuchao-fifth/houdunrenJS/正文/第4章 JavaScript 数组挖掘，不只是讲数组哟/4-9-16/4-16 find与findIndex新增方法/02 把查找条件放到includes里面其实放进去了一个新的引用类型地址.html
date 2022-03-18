@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let lessons = [{
+            name: "js",
+            time: 123
+        }, {
+            name: "css",
+            time: 1122
+        }, {
+            name: "css",
+            time: 9090
+        }, {
+            name: "mysql",
+            time: 1212
+        }]
+
+        // 在下面这个例子中，使用includes查找引用类型会返回false
+        // 因为includes会认为被查找项目的另一个变量的内存地址，与原变量不相等
+
+        console.log(lessons.includes({
+            name: "css"
+        }))
+
+        // 也就是说，放在includes里面的这个对象会开辟一个新的内存地址
+
+
+        // 比如下面这个例子，虽然两个都是空的数组，但是分别赋予两个内存地址，比较的时候也是false
+        let a = []
+        let b = []
+        console.log(a == b)
+
+        // 两个空对象比较的情况
+        let c = {}
+        let d = {}
+
+        let m = c
+        console.log(c == d) // 两个不同内存地址的空对象比较
+        console.log(c == m) // 两个相同内存地址的空对象比较（相当于同一个仓库但是不同的人都拥有钥匙）
+
+        // 再来看看值类型的情况
+        let e = 1
+        let f = 1
+        console.log(e == f)
+            // 返回为true
+    </script>
+</body>
+
+</html>
