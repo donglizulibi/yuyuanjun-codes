@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先是Object.values的使用
+        let lesssons = {
+            js: 87,
+            css: 98,
+            java: 78,
+            node: 79
+        }
+
+        let arr = Object.values(lesssons)
+        let key = Object.keys(lesssons)
+        console.log(key)
+        console.log(arr)
+
+        // 再设置一个访问器，以保证在xj对象调用其他对象的方法时
+        // 可以和那个方法里面的变量名称对照上
+        let xj = {
+            lesssons: {
+                js: 87,
+                css: 98,
+                java: 78,
+                node: 79
+            },
+            get data() {
+                // console.log(this)
+                return Object.values(this.lesssons)
+            }
+        }
+
+        console.log(xj.data)
+    </script>
+</body>
+
+</html>

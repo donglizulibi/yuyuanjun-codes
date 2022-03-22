@@ -18,14 +18,18 @@
                 return 1
             },
             max(arr) {
-                console.log(this.data)
+                // console.log(this.data)
                 return this.data.sort((a, b) => {
                     return a - b
-                })
+                })[this.data.length - 1]
             }
         }
         Object.setPrototypeOf(hd, maxFun)
         console.log(hd.max) // 可以打印出这个方法的方法体
+
+
+
+        // 
         let xj = {
             lessons: {
                 js: 87,

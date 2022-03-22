@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 设置两个对象，并把a对象设置为b对象的父级
+        let a = {
+            name: 'houdunren'
+        }
+        let b = {
+            age: 19
+        }
+        Object.setPrototypeOf(b, a)
+
+        // 检测一下是否设置成功，并检测一下b原型链上的其他原型
+        console.log(b.__proto__ === a)
+        console.log(a.__proto__ === Object.prototype)
+        console.log(b.__proto__.__proto__ === Object.prototype)
+
+        console.log(a.isPrototypeOf(b))
+        console.log(Object.prototype.isPrototypeOf(b))
+
+        // 在Object.prototype上添加新属性，使用in遍历b及b原型链上的所有属性
+        Object.prototype.web = 'url'
+        for (let key in b) {
+            console.log(key)
+        }
+        // 可见自身以及原型链上的属性都被遍历出来
+
+        // 当然也有不通过遍历直接检测的方法
+        console.log('name' in b)
+        console.log('web' in b)
+        console.log('age' in b)
+
+        // 使用hasOwnProperty检测这三个属性
+        // 1.b
+        console.log(b.hasOwnProperty('age'))
+        console.log(b.hasOwnProperty('name'))
+        console.log(b.hasOwnProperty('web'))
+
+        // 2.a
+        console.log(a.hasOwnProperty('age'))
+        console.log(a.hasOwnProperty('name'))
+        console.log(a.hasOwnProperty('web'))
+
+        // 3. Object.prototype
+        console.log(Object.prototype.hasOwnProperty('age'))
+        console.log(Object.prototype.hasOwnProperty('name'))
+        console.log(Object.prototype.hasOwnProperty('web'))
+    </script>
+</body>
+
+</html>

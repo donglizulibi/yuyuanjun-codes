@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先设置三个对象，并设置子父级关系
+        let a = {
+            name: 'houdunren'
+        }
+        let b = {
+            age: 19
+        }
+        let c = {
+            gender: 'male'
+        }
+        Object.setPrototypeOf(a, b)
+        Object.setPrototypeOf(b, c)
+
+        // c是最高级，a是最低级，检测一下
+        console.log(c.isPrototypeOf(a))
+        console.log(c.isPrototypeOf(b))
+        console.log(b.isPrototypeOf(a))
+
+        // 用in遍历a的属性
+        for (let key in a) {
+            console.log(key)
+        }
+
+        // 加上hasOwnProperty的判断
+        for (let key in a) {
+            if (a.hasOwnProperty(key)) {
+                console.log(key)
+            }
+        }
+    </script>
+</body>
+
+</html>

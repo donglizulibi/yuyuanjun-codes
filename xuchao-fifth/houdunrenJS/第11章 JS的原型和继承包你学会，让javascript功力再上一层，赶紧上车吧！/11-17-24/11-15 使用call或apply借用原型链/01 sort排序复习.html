@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 设计一个排序的函数，可以输入两个参数
+        // 第一个参数是数组，第二个参数只能是1或者2
+        // 1代表升序排序，2代表降序排序
+        function sort(array, type) {
+            let a = array.sort((a, b) => {
+                return type === 1 ? a - b : b - a
+            })
+            return a
+        }
+
+        let arr = [1, 3, 2]
+
+        // let a = arr.sort((a, b) => {
+        //     // return a - b
+        //     return b - a
+        // })
+        // console.log(a)
+
+        console.log(sort(arr, 1))
+        console.log(sort(arr, 2))
+    </script>
+</body>
+
+</html>

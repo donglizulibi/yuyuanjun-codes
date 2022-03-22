@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 所以instanceof不是直接检测某某上的原型链是否有某某某
+        // 而是检测某某上的原型链是否有某某某的prototype
+
+        function A() {}
+        let a = new A()
+
+        console.log(a)
+        console.log(a.__proto__ === A.prototype)
+
+        console.log(a.__proto__.__proto__ === A.prototype.__proto__)
+        console.log(a.__proto__.__proto__ === A.__proto__.__proto__)
+        console.log(a.__proto__.__proto__ === Object.prototype)
+
+        // 对象a往上倒一级是A的prototype，往上倒两级是Object的prototype
+        // 所以可以直接放到instanceof上检测
+        console.log(a instanceof A)
+        console.log(a instanceof Object)
+    </script>
+</body>
+
+</html>
