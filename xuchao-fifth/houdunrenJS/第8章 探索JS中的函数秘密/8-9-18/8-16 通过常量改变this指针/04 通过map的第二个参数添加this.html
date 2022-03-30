@@ -10,6 +10,11 @@
 
 <body>
     <script>
+        // 那么目前已经找到了三种改变this指向的方法
+        // 1 在外部手动创建一个变量，将这个变量代替this进入的function里面
+        // 2 不使用function，改用箭头函数
+        // 3 如果是使用map函数，把this放到map的第二个参数上
+
         let lesson = {
             site: 'houdunren',
             lists: ['js', 'css', 'mysql'],

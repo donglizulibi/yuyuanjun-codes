@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先设置一条数据，存储在浏览器
+        let content = "hahaha"
+        localStorage.setItem("token", content)
+            // 第一个参数要用字符串 
+
+        // 再提取出来
+        console.log(localStorage.getItem("token"))
+    </script>
+</body>
+
+</html>

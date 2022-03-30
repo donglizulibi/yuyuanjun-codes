@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>后盾人</button>
+    <script>
+        // 定义一个对象，对象内部有个方法可以调用，调用后可以拿到页面的元素
+        let Dom = {
+            site: 'houdunren',
+            bind: function() {
+                let btn = document.querySelector("button")
+                console.log(btn)
+            }
+        }
+        Dom.bind()
+    </script>
+</body>
+
+</html>

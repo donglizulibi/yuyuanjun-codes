@@ -10,16 +10,15 @@
 
 <body>
     <script>
-        function user(name, age) {
-            console.log(this)
+        // 先创立一个对象，再看其封闭状态
+        const user = {
+            name: 'houdunren'
         }
-        user()
+        console.log(Object.isSealed(user))
 
-        // function User(name, age) {
-        //     this.name = name;
-        //     this.age = age;
-        //     Object.defineProperties(this, )
-        // }
+        // 使用封闭语句，再看其封闭状态
+        Object.seal(user)
+        console.log(Object.isSealed(user))
     </script>
 </body>
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 还是上一节的那个构造函数，只不过这里加上形参
+
+        // 先在全局定义一个name
+        var name = "全局"
+
+        // 创建构造函数
+        function User(name) {
+            this.name = name;
+            this.show = function() {
+                function render() {
+                    console.log(this)
+                    return this.name
+                }
+                return render() // 要想拿到这个结果，应该把上面函数运行的结果也return出去
+            }
+        }
+
+        let lisi = new User('李四')
+        console.log(lisi.show())
+            // 这里就是全局，this指向window
+    </script>
+</body>
+
+</html>

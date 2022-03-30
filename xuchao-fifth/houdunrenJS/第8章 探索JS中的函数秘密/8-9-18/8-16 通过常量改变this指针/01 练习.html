@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 调用Lesson中的show方法，返回一个列表，列表中每一项前面都有后盾人三个字
+        let Lesson = {
+            site: '后盾人',
+            lists: ['js', 'css', 'mysql'],
+            show: function() {
+
+                // 箭头函数的方法
+                // return this.lists.map((item) => {
+                //     console.log(this)
+                //     return this.site + '-' + item
+                // })
+
+                // 普通函数的方法
+                let self = this
+                return this.lists.map(function(item) {
+                    console.log(self)
+                    console.log(self.site)
+                    return self.site + '-' + item
+                })
+            }
+        }
+
+        // 
+        console.log(Lesson.show())
+    </script>
+</body>
+
+</html>

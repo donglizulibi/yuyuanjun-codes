@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在创建一个对象，在这个对象中设置一个方法，在这个方法里面再设置一个函数并立即执行
+        let edu = {
+            name: 'hdcms',
+            site: "houdunren",
+            show: function() {
+                console.log("在show方法中直接打印this", this) // 这里还是对象自身的环境
+
+                // 在对象的函数中还有函数，可以在外部改一下this指向
+                const self = this;
+
+                function render() {
+                    console.log("正常定义的函数", this) // 打印的是全局环境
+                    console.log("正常定义的函数的name", this.name) // 打印的是全局环境
+                    console.log('作用域链', self)
+                    console.log('作用域链的name', self.name) // 这里打印的自身对象的name
+                }
+                render() //直接在show函数里面调用
+            }
+        }
+        edu.show()
+            // 引出一个普通函数中改变this指向的问题，后续会有很多解决办法
+
+        // 全局的window对象中也自带有name属性，只不过正常情况下为空
+        // var name = "hha" 
+        // 即使把这一句注释掉，在不关闭浏览器的情况下,所有全局的name也是会出现这个
+        // 这涉及到BOM的知识，也就是说window的name其实是窗口的name
+        console.log(this.name)
+        console.log(window.name)
+
+        // 相当于对象中方法中的函数的this指向的是全局环境
+        // 也就是
+        function render() {
+            console.log(this)
+        }
+        render()
+    </script>
+</body>
+
+</html>

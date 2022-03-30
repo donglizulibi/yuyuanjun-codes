@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 设置访问器的好处就是后期要重构代码代码时候，调用属性的方式不用改变
+        // 只需要改变访问器的方法体就行了
+
+        // 现在设置一个对象，要求修改对象中的数据时，会经过一个筛查机制
+        // 如果通不过筛查机制就会报错
+
+        const user = {
+            data: {
+                name: "houdunren",
+                age: 19
+            },
+            set age(value) {
+                // console.log(value)
+                if (value > 100) {
+                    console.log('this is wrong')
+                } else {
+                    this.data.age = value
+                }
+            },
+
+            get age() {
+                return this.data.age
+            }
+        }
+
+        user.age = 200
+        console.log(user.age)
+
+        user.age = 29
+        console.log(user.age)
+    </script>
+</body>
+
+</html>

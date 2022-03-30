@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个小节讲到了在对象中的方法再设置函数的问题
+        // 现在讲在构造函数中直接设置构造函数
+
+        // 首先定义一个全局的name属性
+        var name = "全局的李四"
+
+        // 定义一个构造函数，里面有name属性但是没有name的形参，也就是无法传入name参数
+        function User() {
+
+            this.name = name //这一句其实是相当于把构造函数实例化时候传入的参数赋值给this.name
+
+            // 在构造函数中定义一个方法
+            this.show = function() {
+                console.log(this)
+                return this.name
+            }
+        }
+
+        let lisi = new User('李四')
+        console.log(lisi)
+        console.log(lisi.show())
+            // 所以show方法里面的this还是指向新创建的对象
+            // 但是这里的name使用的是全局的李四
+
+        // 也就是说，show方法本质上还是属于User以及User实例化对象的内部方法
+        // this指向还是内部
+    </script>
+</body>
+
+</html>

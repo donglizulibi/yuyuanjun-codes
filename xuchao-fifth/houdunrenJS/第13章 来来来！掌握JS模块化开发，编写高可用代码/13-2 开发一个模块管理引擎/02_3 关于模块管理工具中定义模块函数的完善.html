@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // define函数是定义模块的，所以在定义一个模块的时候需要考虑到三个方面
+        // 这个模块的名称，这个模块所依赖的模块有哪些（需要放在一个数组里）
+        // 以及这个模块本身的功能接口有哪些
+
+        // 所以define函数有三个参数
+
+        let module = (function() {
+            console.log(123)
+                // action是这个模块本身的功能
+            function define(name, modules, action) {
+                console.log(name)
+                console.log(modules)
+                console.log(action)
+
+            }
+            return {
+                define
+            }
+        }())
+
+        // 现在定义一个模块，并传入三个参数
+        module.define('hd', [1, 2, 3], function() {
+            console.log("hd")
+        })
+    </script>
+</body>
+
+</html>

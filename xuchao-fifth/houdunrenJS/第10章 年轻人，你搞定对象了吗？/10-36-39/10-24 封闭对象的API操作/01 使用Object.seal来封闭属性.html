@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封闭就是不能删除、添加和修改属性的属性特征
+
+        // 先创建一个属性
+        const user = {
+            name: 'houdunren',
+            age: 18
+        }
+
+        // 看一下这个对象在封闭之前可以允许的操作
+        // 查看这个对象的属性特征
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(user), null, 2))
+
+        // 删除其中的一个属性
+        delete user.name
+        console.log(user)
+            // 删除成功
+
+        // 再增加一个属性
+        user.gender = "male"
+        console.log(user)
+            // 添加成功
+
+        // 再修改其中一个属性的属性特征
+        // 先看看修改前的的 
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(user), null, 2))
+        Object.defineProperty(user, "gender", {
+            writable: false
+        })
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(user), null, 2))
+            // 显示修改成功
+
+
+        // 封闭这个对象，再查看其属性特征
+        Object.seal(user)
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(user), null, 2))
+            // 显示 configurable 都为false
+
+        // 先尝试修改一下已有属性的属性值
+        user.age = 21
+        console.log(user)
+            // 显示可以修改成功
+
+        // 再把gender属性的属性特征修改回来
+        // Object.defineProperty(user, "gender", {
+        //     writable: true
+        // })
+        // 会报错，说明无法修改
+
+        // 再尝试添加一个属性
+        user.url = 'haha'
+        console.log(user)
+            // 显示并没有添加进去
+
+        // 再尝试删除一个属性
+        delete user.age
+        console.log(user)
+            // 显示并没有删除成功
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function user() {
+            return 123
+        }
+        console.log(user())
+        console.log(user.apply(null))
+            // 二者结果一样
+
+        // 一个函数中返回多个功能的方法 
+        function show() {
+            function haha() {}
+
+            function sasa() {}
+            return {
+                haha,
+                sasa
+            }
+        }
+
+        console.log(show())
+        console.log(show.apply(null))
+            // 二者结果一样
+
+        // 一个函数中返回多个功能的另一种方式
+        function action() {
+            return {
+                dfdf: function() {
+                    return 'action-dfdf'
+                },
+
+                // 简写
+                fgfg() {
+                    return 'action-fgfg'
+                }
+            }
+        }
+
+        console.log(action().fgfg())
+        console.log(action.apply(null).dfdf())
+    </script>
+</body>
+
+</html>

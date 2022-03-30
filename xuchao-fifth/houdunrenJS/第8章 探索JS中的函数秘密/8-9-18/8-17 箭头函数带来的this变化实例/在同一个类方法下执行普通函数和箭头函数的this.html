@@ -23,7 +23,7 @@
                     console.log('类方法中的普通函数打印a', this.a)
                     console.log("");
 
-                    // 在普通函数下创建一个箭头函数并打印this
+                    // 在普通函数下创建一个箭头函数 并打印this
                     (() => {
                         console.log('普通函数下的箭头函数打印this', this) // 打印全局，这个this跟随创建这个箭头函数的环境的this
                         console.log('普通函数下的箭头函数打印a', this.a)

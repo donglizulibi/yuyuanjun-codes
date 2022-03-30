@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用Object.isExtensible来检测一个对象是否可以添加属性
+        let obj = {
+            name: 'haha',
+            age: 19
+        }
+        obj.url = 'www.cctv.com'
+        console.log(Object.isExtensible(obj))
+        console.log(obj)
+            // 上面显示为true，表示这个对象是可以添加属性的，且显示属性已经添加进去了
+
+        // 开启禁止添加属性的命令 
+        Object.preventExtensions(obj)
+        console.log(Object.isExtensible(obj)) // 显示为false
+
+        obj.site = '我好饿' // 这条并没有显示，如果开启严格模式则会报错
+        console.log(obj) // 没有显示site属性
+
+        obj.url = 'www.bilibi.com' // 修改已有属性
+        console.log(obj) //Object.preventExtensionsz 只能阻止添加没有的属性，而不能组织修改已有属性
+    </script>
+</body>
+
+</html>

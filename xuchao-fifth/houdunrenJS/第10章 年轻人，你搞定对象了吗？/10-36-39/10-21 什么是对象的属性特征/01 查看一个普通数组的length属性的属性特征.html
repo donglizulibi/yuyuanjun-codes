@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 查看一个普通数组的length属性
+
+        let arr = []
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(arr, 'length'), null, 2))
+            // 结果显示
+            // {
+            //   "value": 0,
+            //   "writable": true, // 可以被修改
+            //   "enumerable": false, // 不可以被遍历出来，或者不可以被枚举
+            //   "configurable": false // 不可以被删除
+            // }
+
+        // "enumerable": false其实就是Object.keys是否能提取出属性名
+    </script>
+</body>
+
+</html>

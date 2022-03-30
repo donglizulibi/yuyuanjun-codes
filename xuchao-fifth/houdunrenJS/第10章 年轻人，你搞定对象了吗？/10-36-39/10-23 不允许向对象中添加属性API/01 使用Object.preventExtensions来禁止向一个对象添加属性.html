@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用Object.preventExtensions来禁止向一个对象添加属性
+        const user = {
+            name: 'xiangjun'
+        }
+        user.age = 18
+        console.log(user)
+            // 可以正常添加属性
+
+        // 使用禁止添加属性的语句
+        Object.preventExtensions(user)
+
+        user.gender = "male" //未开启严格模式的话不会报错，开启的话会报错
+        console.log(user) // 添加为成功
+    </script>
+</body>
+
+</html>
