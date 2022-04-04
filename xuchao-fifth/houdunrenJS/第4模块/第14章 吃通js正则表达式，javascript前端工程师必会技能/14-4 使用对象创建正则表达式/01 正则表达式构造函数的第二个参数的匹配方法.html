@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建一个字符串
+        let hd = 'houdunren.com'
+
+        // 第一个参数是需要匹配的字符，第二个参数是匹配方式
+        let reg = new RegExp('u', 'g')
+        console.log(reg.test(hd))
+
+        // 将第一个参数中的字符替换成变量
+        let a = "@"
+        let reg1 = new RegExp(a, 'g')
+        console.log(reg1.test(hd))
+            // 也可以进行匹配
+    </script>
+</body>
+
+</html>

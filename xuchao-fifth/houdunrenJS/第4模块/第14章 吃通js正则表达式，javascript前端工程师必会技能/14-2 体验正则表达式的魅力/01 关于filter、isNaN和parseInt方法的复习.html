@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // filter是把每次遍历返回为true的项目放到一个新数组返回
+
+        // 先设置一个提取数组中的纯数字的方法
+        let arr = [1, 2, 'adsf', true, 34]
+        let arrFilter = arr.filter((item, index, arr) => {
+            console.log(item)
+            console.log(index)
+            console.log(arr)
+
+            if (typeof item === "number") {
+                return true
+            }
+        })
+
+        console.log(arrFilter)
+
+        // isNaN是Number的内置方法，来判断一个变量是不是NaN
+        let a = NaN
+        console.log(typeof a)
+        console.log(Number.isNaN(a))
+        console.log(Number.isNaN(1))
+        console.log(Number.isNaN('a'))
+
+        // 把字符串转成数字，如果可以转化的就转化成数字，如果不能转化的就转化成NaN
+        let numStr = "123"
+        let nanStr = "asd"
+        console.log(parseInt(numStr)) // 返回数字123
+        console.log(parseInt(nanStr)) // 返回NaN
+    </script>
+</body>
+
+</html>

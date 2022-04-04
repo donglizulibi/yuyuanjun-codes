@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 设计一个正则，可以验证http和https的网址
+        let url = "http://www.houdunren.com"
+        let url_s = "https://www.houdunren.com"
+
+        console.log(/https?:\/\/\w+\.\w+\.\w+/.test(url))
+        console.log(/https?:\/\/\w+\.\w+\.\w+/.test(url_s))
+
+        // 注意
+        // 1 “:” 在正则里面没有特殊含义，所以不用添加转义符号
+        // 2 \w 表示数字字母下划线 
+        // 3 “+” 表示一个或者一个以上，如果 \w 不加 +，就表示只能是一位
+        // 4 看到\/就应该反应过来这是斜杠的转义
+    </script>
+</body>
+
+</html>

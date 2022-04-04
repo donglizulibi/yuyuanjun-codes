@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // eval的基本用法
+        console.log(eval('1+1'))
+            // 等于2
+
+        // 里面加上模板字符串和变量的用法
+        let a = 1
+        console.log(eval(`${a} + 2`))
+            // 等于3
+
+        // 其他函数的联用
+        let b = 3
+        let c = 2
+        console.log(eval(`${b}` * `${c}`))
+            // 等于6
+    </script>
+</body>
+
+</html>

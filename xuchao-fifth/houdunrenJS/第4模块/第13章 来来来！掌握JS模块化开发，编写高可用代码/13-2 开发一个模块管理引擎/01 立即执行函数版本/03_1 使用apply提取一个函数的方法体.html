@@ -10,6 +10,9 @@
 
 <body>
     <script>
+        // 这里主要是使用apply执行出同等的函数调用的效果
+
+        // 普通函数的例子
         function user() {
             return 123
         }
@@ -17,9 +20,11 @@
         console.log(user.apply(null))
             // 二者结果一样
 
-        // 一个函数中返回多个功能的方法 
+        // 一个函数中返回多个功能方法的例子
         function show() {
-            function haha() {}
+            function haha() {
+                console.log('show-haha')
+            }
 
             function sasa() {}
             return {
@@ -30,9 +35,12 @@
 
         console.log(show())
         console.log(show.apply(null))
-            // 二者结果一样
+            // 二者结果一样，都是返回一个包含两个函数的对象
+        show.apply(null).haha()
+            // 可以执行haha函数内的语句
 
         // 一个函数中返回多个功能的另一种方式
+        // 就是把功能都放在return的对象里
         function action() {
             return {
                 dfdf: function() {

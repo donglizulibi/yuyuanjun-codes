@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给新定义的模块加上一点功能
+
+        // 首先是一个立即执行函数并赋值给一个变量
+        let module = (function() {
+            console.log(123)
+
+            // 定义一个存储新建好的模块的对象容器
+            const moduleList = {}
+                // 定义一个创建新模块的功能，这个功能有三个参数
+            function define(name, modules, action) {
+
+                // 打印一下前两个参数
+                console.log(name)
+                console.log(modules)
+
+                // 打印一下新建模块的方法体
+                console.log(action)
+
+                // 运行一下新建模块的方法体
+                console.log(action()) // 目前这种方法也行
+                console.log(action.apply(null))
+
+                // 将新模块存到容器里，并查看一下啊容器
+                moduleList[name] = action.apply(null)
+                console.log(moduleList)
+                    // 可见容器里面以及有了hd模块，并且有了first和max两个方法
+
+
+            }
+
+            return {
+                define
+            }
+        }())
+
+        module.define('hd', [1, 2, 3], function() {
+
+            // 给新模块添加功能
+            return {
+                // 返回一个数组的第一个值
+                first: function() {
+                    return arr[0]
+                },
+
+                // 返回一个数组的最大值
+                max() {
+                    return arr.sort((a, b) => b - a)[0]
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 正则里面的匹配，如果不加入起止符号的话，就是依次查找
+        // 也就是说在一个字符串中只要有匹配到所设定正则的字符就会显示真
+
+        // 如下面一串字母数字组合，设置一个只找数字正则
+        let hd = "sadf123zxc"
+        console.log(/\d/.test(hd))
+            // 显示为真，说明只要这个字符串中有一个数字就行了
+
+        // 如果要设定边界就需要^和$
+        console.log(/^\d$/.test(hd))
+            // 设置边界后，验证就不会通过
+
+        let hd1 = '3'
+        console.log(/^\d$/.test(hd1))
+            // 有边界的可以通过
+
+        let hd2 = '33'
+        console.log(/^\d+$/.test(hd2))
+            // 多个数字要用 +
+    </script>
+</body>
+
+</html>

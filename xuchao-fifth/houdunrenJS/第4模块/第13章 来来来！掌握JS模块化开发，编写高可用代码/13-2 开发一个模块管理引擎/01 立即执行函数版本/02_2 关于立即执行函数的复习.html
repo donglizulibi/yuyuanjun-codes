@@ -54,8 +54,11 @@
         console.log(modulePlus)
             // 这是一个包含两个函数的方法体的对象
         console.log(modulePlus.render)
+            // 这是一个构造函数
+        console.log(new modulePlus.render)
+            // 这是一个render对象，当然在这个例子里是没用的
 
-        // 则如果调用其中一个方法的方法体，只需要在后面调用就行
+        // 则如果需要调用其中一个方法的方法体，只需要在后面调用就行
         modulePlus.render()
             // 里面的this指向的是modulePlus对象
     </script>

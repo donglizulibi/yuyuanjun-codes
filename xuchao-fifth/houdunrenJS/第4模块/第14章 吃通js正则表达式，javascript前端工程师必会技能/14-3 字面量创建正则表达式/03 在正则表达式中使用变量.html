@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义一个变量，再在初始字符串中查找这个变量
+        let hd = "houdunrencom"
+        let a = "u"
+
+        // 先打印出 /u/，再进行test
+        console.log(eval(`/${a}/`))
+        console.log(eval(`/${a}/`).test(hd))
+    </script>
+</body>
+
+</html>

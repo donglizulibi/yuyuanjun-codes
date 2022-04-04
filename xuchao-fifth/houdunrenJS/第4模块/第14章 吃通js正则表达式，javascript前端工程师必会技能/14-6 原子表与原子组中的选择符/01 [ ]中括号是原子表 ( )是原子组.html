@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用原子表可以省略 |
+        let reg = /[12345]/
+        console.log(reg)
+
+        console.log('1'.match(reg))
+        console.log('3'.match(reg))
+        console.log('6'.match(reg))
+
+        // 原子组内需要使用 | ，且两边都是整体
+        let reg1 = /(12|34)/
+        let hd = 's1224ewqr'
+        console.log(hd.match(reg1))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 立即执行函数也可以赋值给一个变量
+        // 在立即执行函数里面放一个return
+        // 则这个立即执行函数所赋予的值就是return的内容
+        let module = (function() {
+            console.log(1)
+
+            return 'aaa'
+        }())
+
+
+        console.log(module)
+            // 打印出aaa
+
+        // 如果在立即执行函数里面再放一个函数，使得这里面的函数可以自由调用
+        // 就在return的时候把里面的函数的函数名放进去
+        let moduleInnerFunc = (function() {
+            console.log(1)
+
+            function render() {
+                console.log("module-render")
+            }
+
+            return render
+        }())
+
+        // console.log(new moduleInnerFunc) // 这样return出来的是render函数体
+        console.log(moduleInnerFunc)
+            // 这样return出来的是render函数体，或者是render的构造函数
+    </script>
+</body>
+
+</html>
