@@ -1,0 +1,12 @@
+let h2Parent = [...document.querySelectorAll('h2')][1].parentNode
+let divParent = [...h2Parent.childNodes][1]
+let divs = [...divParent.querySelectorAll('div')]
+let arr = []
+divs.map((item) => {
+
+        console.log(item)
+            // arr.push(item.innerText)
+        arr.push(item.innerText.replace('课', ''))
+    })
+    // arr[29] = arr[29].replace('集','')
+console.log(arr)

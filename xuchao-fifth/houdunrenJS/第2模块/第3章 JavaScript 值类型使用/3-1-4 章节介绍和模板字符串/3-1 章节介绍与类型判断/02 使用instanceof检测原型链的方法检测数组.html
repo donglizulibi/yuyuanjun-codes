@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上一节提到使用typeof检测数组和对象的都是显示object的问题
+        // 则区分数组和对象可以用instanceof 
+
+        // 关于详细的intanceof见11-12
+
+        let arr = []
+        let obj = {}
+
+        // instanceof可以检测一个变量的原型链上是否有某个构造函数的prototype
+        // 且instanceof自动省略了prototype的部分
+        console.log(arr instanceof Array)
+        console.log(obj instanceof Array)
+            // 这样就可以区分
+
+        // 原理就是
+        console.log(arr.__proto__ == Array.prototype)
+        console.log(obj.__proto__ == Array.prototype)
+
+        // 但是如果是这样检测就都是true，因为Object的顶级原型
+        console.log(arr instanceof Object)
+        console.log(obj instanceof Object)
+
+        console.log(arr.__proto__.__proto__ == Object.prototype)
+
+        // 再往上就到头了
+        console.log(obj.__proto__ == Object.prototype)
+        console.log(obj.__proto__.__proto__ == null)
+
+
+        // 再来一个instanceof判断构造函数和实例的例子
+        function User() {}
+        let u = new User()
+        console.log(u instanceof User)
+        console.log(u.__proto__ === User.prototype)
+    </script>
+</body>
+
+</html>

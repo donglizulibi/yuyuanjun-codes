@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>开始点名</button>
+    <span></span>
+    <br>
+    <span>张三：</span><span name="name"></span><span>  百分比：</span><span name="percent"></span>
+    <br>
+    <span>李四：</span><span name="name"></span><span>  百分比：</span><span name="percent"></span>
+    <br>
+    <span>王五：</span><span name="name"></span><span>  百分比：</span><span name="percent"></span>
+    <br>
+    <span>赵六：</span><span name="name"></span><span>  百分比：</span><span name="percent"></span>
+
+    <script>
+        // 现在需要写一个随机点名的程序，在页面中有一个点名按钮
+        // 点击按钮后，出现随机点名的名字
+        // 在名单后面会出现被点到的次数
+        // 名单中有四个人
+
+
+        // 先设置一个选取页面标签的函数
+        function query(el) {
+            return document.querySelectorAll(el)
+        }
+
+        // 设置名单数组 
+        let list = ['张三', '李四', '王五', '赵六']
+
+        // 定义计数器变量，从零开始。拿到页面中显示点名计数的标签，并把初始的计数渲染到页面
+        let [a, b, c, d] = [0, 0, 0, 0]
+
+        let spans = [...query('[name = name]')]
+        spans[0].innerHTML = a
+        spans[1].innerHTML = b
+        spans[2].innerHTML = c
+        spans[3].innerHTML = d
+
+        // 设置一个总的点名次数的变量
+        let count = 0
+
+        // 给百分比显示页面设定初始显示值
+        let percents = [...query('[name = percent]')]
+        percents[0].innerHTML = 0 + '%'
+        percents[1].innerHTML = 0 + '%'
+        percents[2].innerHTML = 0 + '%'
+        percents[3].innerHTML = 0 + '%'
+
+        // 给按钮添加点击事件，在点击事件里添加随机数
+        let btn = query('button');
+        console.log(btn);
+        [...btn][0].addEventListener('click', () => {
+
+            // 每点一次，count加一次
+            count++
+
+            // 设置一个随机数，随机数的取值范围是从0到3
+            const ran = Math.floor(Math.random() * 4)
+            console.log(ran)
+            const name = list[ran];
+
+            // 取到页面中显示被点学生名字的标签，渲染进去
+            [...query('span')][0].innerHTML = name
+
+            // 开始计数
+            if (ran == 0) {
+                a++
+                spans[0].innerHTML = a
+            }
+            if (ran == 1) {
+                b++
+                spans[1].innerHTML = b
+            }
+            if (ran == 2) {
+                c++
+                spans[2].innerHTML = c
+            }
+            if (ran == 3) {
+                d++
+                spans[3].innerHTML = d
+            }
+
+            // 百分比需要放在判断外面，这样可以保证每个名字后面的百分比都可以变化
+            percents[0].innerHTML = (a * 100 / count).toFixed(2) + "%"
+            percents[1].innerHTML = (b * 100 / count).toFixed(2) + "%"
+            percents[2].innerHTML = (c * 100 / count).toFixed(2) + "%"
+            percents[3].innerHTML = (d * 100 / count).toFixed(2) + "%"
+
+
+        })
+    </script>
+</body>
+
+</html>

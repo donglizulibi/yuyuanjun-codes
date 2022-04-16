@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 要实现console.log([] == true),还是要先把二者转化为数值
+
+        // 首先是空数组 
+        let array = [];
+        console.log(Number(array))
+        console.log(array == false)
+            // 空数组在这里是先转化成数值0，同时false也转化为0，二者相等
+
+        // 但是数组以一种引用类型出现判断条件中时，是真的(非空数组就更是真的了)
+        console.log(Boolean(array))
+        if (array) {
+            console.log('我真的好饿')
+        }
+
+        // 非空数组的情况
+        // 数组中只有一个数值，会转化成相应是数值
+        let array_neg_1 = [-1]
+        let array_0 = [0]
+        let array_1 = [1]
+
+        console.log(Number(array_neg_1)) // -1
+        console.log(Number(array_0)) // 0
+        console.log(Number(array_1)) // 1
+            // 则
+        console.log([0] == false) // true
+        console.log([1] == true) // true
+
+        // 数组中只有一个非数值
+        let array_asd = ['asd']
+        console.log(Number(array_asd)) // NaN
+
+        // 数组中有多个数值
+        let array2 = [1, 2, 3];
+        console.log(Number(array2)) // NaN
+        console.log(array2 == false)
+            // 非空数组在这里是转化为NaN，false转化成0，二者不相等
+
+
+        // 对象是同理
+        // 首先是空对象
+        let str = {}
+        console.log(Number(str)) // NaN
+        console.log(Boolean(str)) // true
+        if (str) {
+            console.log("再不吃饭我就要饿死了")
+        }
+        console.log(str == false) // false
+        console.log(str == true) // false
+
+        // 其次是非空对象
+        let str1 = {
+            a: "aa",
+            b: "bb"
+        }
+        console.log(Number(str1)) // NaN
+        console.log(Boolean(str1)) // true
+        console.log(str1 == false) // false
+        console.log(str1 == true) // false
+
+
+
+        // 结论：
+        // 1 空对象和空数组不一样，
+        // 空数组在与布尔值比较的时候转化的数值是0
+        // 空对象在与布尔值比较的时候转化的数值是NaN
+        // 数组还有单个数字项目和多个项目的区别
+
+        // 2 在用作判断条件时，数值类型中的数字除了0之外都是真
+        // 字符串类型除了空字符串都是真
+        // 引用类型，包括数组、空数组、对象、空对象，都是真
+    </script>
+</body>
+
+</html>

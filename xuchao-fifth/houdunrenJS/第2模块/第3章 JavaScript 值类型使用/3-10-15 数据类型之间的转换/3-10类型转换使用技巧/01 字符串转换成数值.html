@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 把数字包到双引号里面就变成了字符串
+        const string = "99"
+        console.log(typeof string)
+            // 如果在这里使用加法，则会变成字符串拼接
+        console.log(string + 1)
+
+        // 把字符串变成数字的几种方法
+        // 1 隐式方法，相当于把字符串乘以1这个数值
+        console.log(string * 1 + 1)
+
+        // 2 Number对象方法
+        console.log(Number(string) + 3)
+
+        // 3 使用数值方法
+
+        // 关于parseInt
+        const string1 = "123qwe"
+        const string2 = "123.456qwe"
+        console.log(parseInt(string1))
+        console.log(parseInt(string2))
+
+        // parseInt的特点就是会取一个字符串开头的数字，且只会取到整数
+        // 如果这个字符串包含数字，但不是以数字开头会返回NaN
+        const a = "asd123"
+        console.log(parseInt(a))
+
+        // 如果是有小数的，只取整数部分
+        const b = "123.123"
+        console.log(parseInt(b))
+
+        // parseFloat和parseInt差不多，区别是可以取到小数
+        console.log(parseFloat(string1))
+        console.log(parseFloat(string2))
+        console.log(parseFloat(a)) // 也是NaN
+        console.log(parseFloat(b))
+    </script>
+</body>
+
+</html>

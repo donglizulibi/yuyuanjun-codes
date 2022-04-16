@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = "houdunren.com"
+
+        // 1 只填一个参数
+        console.log("hd.slice(3): ", hd.slice(3))
+        console.log("hd.substring(3): ", hd.substring(3))
+        console.log("hd.substr(3): ", hd.substr(3))
+            // 结论：参数为几，就从前到后把这个数量的字符串截走，返回剩下的部分
+
+
+        // substr会改变原来的字符串吗
+        let arr = "媒体查询响应式"
+        arr.substr(0, 2)
+        console.log(arr)
+            // 不会
+    </script>
+</body>
+
+</html>

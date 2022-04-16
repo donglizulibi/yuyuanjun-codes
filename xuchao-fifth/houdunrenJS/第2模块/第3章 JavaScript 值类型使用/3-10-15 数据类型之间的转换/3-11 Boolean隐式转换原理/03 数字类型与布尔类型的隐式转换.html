@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先是关于数字放到判断条件里的隐式类型转化
+        // 这里的数字可以分为三类，正数，负数和零
+
+        // 正数的情况
+        let number = 89;
+        if (number) { // true
+            console.log("number")
+        }
+
+        // 零的情况
+        if (0) {
+            console.log('zero')
+                // 没有打印
+        }
+
+
+        // 负数的情况
+        if (-1) {
+            console.log('neg')
+                // 可以打印
+        }
+
+        // 结论：数字除了0，都是转换为true
+
+        // 再讨论一下数值隐式类型转化中的编译器操作
+        // 里面number相当于true，实际是经历了如下的操作
+
+        // 正数
+        let transNumber1 = new Boolean(number)
+        let transNumber2 = Boolean(number)
+        console.log(transNumber1)
+        console.log(transNumber2)
+            // 在这里加new和不加是有区别的，加new是通过布尔构造函数实例化一个新的对象
+            // 不加new是直接使用布尔的方法，所以transNumber2是直接的布尔值
+        console.log(transNumber1.valueOf()) // 把布尔对象里的值提取出来
+
+        // 零
+        let zero = new Boolean(0)
+        console.log(zero)
+        console.log(zero.valueOf()) // false
+
+        // 负数
+        let neg = new Boolean(-1)
+        console.log(neg)
+        console.log(neg.valueOf()) // true
+
+
+        // 关于布尔值和数值比较的问题
+        // 如果非要比较的话，需要先把布尔值转化成数值，才能跟数值比较
+        // true只会转化为1，false只会转化为0
+        // 这也是编译器的工作
+
+        // true的归类
+        console.log('-1', true == -1) // false
+        console.log("0", true == 0) // false
+        console.log('1', true == 1) // true
+        console.log('2', true == 2) // false
+            // 所以在这里就出现一个问题，所有的非0和非1的数值
+            // 如果放到判断条件里，都是隐式转化成true（当然 1本身也是转化成true）
+            // 但如果直接把非0和非1的数值和true相比较，是不相等的
+
+        // false的归类
+        console.log("-1", false == -1) // false
+        console.log('0', false == 0) // true
+        console.log('1', false == 1) // false
+        console.log('2', false == 2) // false
+
+
+        // 当然要是三个等于号的全等于，那就不会发生编译器的隐式转化了
+        console.log('0 ===', false === 0) // false
+        console.log('1 ===', true === 1) // false
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 写一个函数，这个函数可以输入一个数组、起始数和终止数，来根据起始和终止的范围在数组中随机取值
+        // 起始数和终止数可以不写，如果不写，起始数默认为1，终止数默认为数组长度
+
+        const students = ["张三", "李四", "王五", "赵六", "马七"]
+
+        function randomSelect(array, start = 1, end) {
+            console.log(start)
+
+            start = start - 1; // 因为数组输入的时候是从1开始，所以在选择数组时为了保证从0开始需要减1
+            end = end ? end : array.length // 终止数如果没有就默认为数组长度
+            console.log(end)
+            let index = start + Math.floor(Math.random() * (end - start)) // 随机数的取值
+
+            return array[index]
+        }
+
+        console.log(randomSelect(students, 2, 3))
+        console.log(randomSelect(students, 1, 2))
+        console.log(randomSelect(students))
+        console.log(randomSelect(students, 4))
+    </script>
+</body>
+
+</html>

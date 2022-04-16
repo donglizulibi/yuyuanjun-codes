@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 多维数组的取值
+        let arr = [
+            ['hdcms'],
+            ['houdunren', 'cms']
+        ]
+        console.log(arr[1][1])
+
+
+        // 改变const定义的数组里的值
+        const array = [1, 2, 3]
+        array[0] = 99
+        console.log(array)
+            // const只要不改变地址就可以，改变同一个地址里的值的允许的
+
+        // const arr1 = [1, 2, 3] // const定义的引用类型变量发生像这种情况的改变，就是会报错的
+        let arr1 = [1, 2, 3] // 不会报错
+        arr1 = {
+            a: 1,
+            b: 2
+        }
+        console.log(arr1)
+
+        // 再试三个
+        // const a = 1
+        // a = 2
+        // console.log(a)
+        // 报错
+        // 在js里其实是开辟一个新的内存空间来保存这个2
+
+        // const arr2 = [1, 2, 3, 4]
+        // arr2 = [1, 2, 3, 4, 5]
+        // console.log(arr2)
+        // 报错
+
+        const arr3 = [1, 2, 3]
+        arr3[4] = 4
+        console.log(arr3)
+            // 用这种方式添加值，改变数组的长度，还是在原来的内存空间上修改，不报错
+    </script>
+</body>
+
+</html>

@@ -20,13 +20,34 @@
         console.log(a.__proto__ === A.prototype)
 
         console.log(a.__proto__.__proto__ === A.prototype.__proto__)
-        console.log(a.__proto__.__proto__ === A.__proto__.__proto__)
         console.log(a.__proto__.__proto__ === Object.prototype)
 
         // 对象a往上倒一级是A的prototype，往上倒两级是Object的prototype
         // 所以可以直接放到instanceof上检测
         console.log(a instanceof A)
         console.log(a instanceof Object)
+
+
+        // 下面再来探究一下A作为普通函数的情况
+        console.dir(A)
+        console.dir(A.__proto__ === Function.prototype)
+        console.log(A instanceof Function)
+            // 作为普通函数的A的父级就是Function的prototype
+
+        // Function构造函数的一些特性
+        console.dir(Function)
+        console.dir(Function.prototype)
+        console.dir(Function.prototype === Function.__proto__)
+            // Function的父级和prototype是相等的
+        console.dir(Function.prototype.__proto__ == Object.prototype)
+            // Function的prototype的父级就是Object的prototype
+
+        // 由此推出下面的特性，也就是一个实例化的父级的父级，就是这个实例化的构造函数的父级的父级
+        // 只不过此时这个构造函数是作为普通函数存在的 
+        console.dir(Object.prototype)
+        console.dir(Object)
+        console.dir(A.__proto__.__proto__ == Object.prototype)
+        console.log(a.__proto__.__proto__ === A.__proto__.__proto__)
     </script>
 </body>
 

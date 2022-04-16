@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 还是使用模板字符串里面套模板字符串的做法 
+
+        let lessons = [{
+            title: "后盾人媒体查询响应式布局",
+            author: "后盾人向军"
+        }, {
+            title: "flex 弹性盒模型",
+            author: "后盾人"
+        }, {
+            title: "GRID 后盾人栅格系统",
+            author: "古老师"
+        }]
+
+        function tempalte() {
+            return `<ul>
+                ${lessons.map(item=>`<li>作者：${item.author}，课程：${item.title}</li>`).join("")}
+                </ul>`
+        }
+
+        document.body.innerHTML = tempalte()
+    </script>
+</body>
+
+</html>

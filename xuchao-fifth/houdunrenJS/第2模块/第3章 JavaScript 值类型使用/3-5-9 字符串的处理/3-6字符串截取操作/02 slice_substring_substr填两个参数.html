@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = "houdunren.com"
+
+        // 2 填两个参数
+
+        console.log("hd.slice(1,3): ", hd.slice(1, 3))
+        console.log("hd.substring(1,3): ", hd.substring(1, 3))
+        console.log("hd.substr(1,3): ", hd.substr(1, 3))
+
+        //只取一位数字的情况
+        console.log("hd.slice(1,2): ", hd.slice(1, 2))
+        console.log("hd.substring(1,2): ", hd.substring(1, 2))
+        console.log("hd.substr(1,1): ", hd.substr(1, 1))
+
+        // 结论：
+        // 1、slice和substring都是表示从第一位参数所在的位置开始截取，一直
+        // 截到第二位参数的位置，返回截走的那一部分。
+
+        // 2、substr表示从第一位参数开始截，截走的总位数是第二位的参数表达的，也是返回
+        // 截走的那一部分。
+    </script>
+</body>
+
+</html>

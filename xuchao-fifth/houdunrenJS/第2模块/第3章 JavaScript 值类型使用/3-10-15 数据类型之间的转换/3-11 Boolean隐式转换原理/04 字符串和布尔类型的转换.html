@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 有了上一节的基础，再来讨论一下包装在引号里面的数值的字符串是如何转化成布尔的
+        // 也就是字符串直接作为判断条件的隐式类型转化
+        // 非空字符，将非空字符串分为四种，正数、负数、零和非数字非空字符
+        let [a, b, c, d] = ["0", '1', '-1', 'sdf']
+        console.log(a, b, c, d)
+
+        if (a && b && c && d) {
+            console.log("非空字符")
+        }
+
+        // 换成空字符
+        let e = ''
+        if (e) {
+            console.log('空字符')
+        }
+
+        // 结论就是非空字符，即使这个非空字符里包的是另，隐式类型转化的时候也是true
+        // 而空字符则是false
+
+
+
+        // 其次就是把字符串直接和布尔值进行等价比较的问题
+        // 上面讨论的是字符串直接作为判断条件 通过隐式类型转化变成布尔值的问题
+        // 而当字符串要跟布尔值进行等价比较判断的时候
+        // 则js编译器会先把字符串和布尔值都转化成数值
+        // 再根据这个数值进行比较
+
+        // 所以对于布尔值还是 true会转化成1，而false会转化成0的原则
+        console.log('0' == true) // false
+        console.log('-1' == true) // false
+        console.log('1' == true) // true
+
+        console.log('0' == false) // true
+        console.log('-1' == false) //false
+        console.log('1' == false) //false
+
+
+
+
+        // 关于非空非零字符串与NaN的一些讨论
+        // 一个字符串里有数字但不是纯数字，转化的时候会变成NaN
+        let asddf = "123asd"
+        console.log(Number(asddf))
+
+        // 以下两个等价判断都是false，因为非空非纯数字字符串会转化成NaN
+        // 而布尔值中 true变成1 false变成0
+        // 都是不相等的
+        console.log('asd' == true) // false
+        console.log('asd' == false) // false
+        console.log(Number('asd'))
+        console.log(Number.isNaN(Number('asd'))) // true
+
+        // 但是NaN本身作为判断条件，是会被判定为false
+        let nan = 1 / "sdf"
+        if (nan) {
+            console.log('nan')
+        }
+
+        // 同理，NaN和布尔值比较也都是false
+        console.log(nan == false) // false
+        console.log(nan == true) // false
+
+
+
+
+        // 关于空字符串的一些讨论
+        // 空字符串在隐式转化成数值的时候是转化成0的
+        // 这个和0的数值字符串的转化是一样的
+        console.log(Number('')) // 0 
+        console.log(Number('') === Number('0')) // true
+        console.log('' == 0) // true
+
+        // 但是要注意的是，把0字符串直接作为判断条件是会变成true的
+        // 而空字符串会变成false
+
+        // 但是直接把空字符串和0字符串进行比较，则不存在隐式类型转化
+        console.log('' == '0') // false
+
+        // 在这里，空字符串隐式变成0，false隐式变成0，true隐式变成1
+        console.log('' == false) // true
+        console.log('' == true) // false
+    </script>
+</body>
+
+</html>

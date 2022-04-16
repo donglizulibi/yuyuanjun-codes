@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+    <script>
+        // 在引入这个库之后，开始使用
+
+        // 按照需要时间格式打印当下的时间
+        console.log(moment().format("YYYY-MM-DD HH:mm:ss"))
+
+        // 添加指定日期，并按照指定格式打印日期
+        const date = moment("1993-02-22 10:12:12")
+        console.log(date)
+        console.log(date.format("YYYY-MM-DD HH:mm:ss"))
+        console.log(typeof date.format("YYYY-MM-DD HH:mm:ss"))
+
+        // 显示多少天之后的日期，第一个参数写多少，第二个参数写天  // 10天之后的日期
+        console.log(date.add(10, "days").format("YYYY-MM-DD HH:mm:ss"))
+            // console.log(moment("1993-2-22 10:12:12").format("YYYY-MM-DD HH:mm:ss"))
+            // console.log(moment("1993-02-22 10:12:12").format("YYYY-MM-DD HH:mm:ss"))
+    </script>
+</body>
+
+</html>

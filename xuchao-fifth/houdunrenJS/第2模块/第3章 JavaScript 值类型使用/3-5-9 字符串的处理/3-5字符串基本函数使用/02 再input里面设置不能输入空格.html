@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="password">
+    <span></span>
+    <script>
+        let input = document.querySelector("[name = 'password']")
+        console.log(input)
+        input.addEventListener('keyup', (e) => {
+            let error = ''
+            let span = document.querySelector('span')
+            e.target.value = e.target.value.trim()
+
+            if (e.target.value.length < 5) {
+
+                error = "密码必须大于五位"
+            }
+            span.innerHTML = error
+        })
+    </script>
+</body>
+
+</html>

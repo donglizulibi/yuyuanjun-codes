@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 字符串的标准创建法，把字符串变成一个对象
+        let hd = new String("houdunren")
+        console.log(typeof hd)
+
+        // 可以看到里面的__proto__里有很多内置方法
+        console.log(hd)
+
+        // 调用这个就可以拿到字符串
+        console.log(hd.toString)
+        console.log(hd.toString()) //正确写法
+        console.log(typeof hd.toString()) // 此时的类型就变成了string
+
+        // 简写形式
+        let hd123 = "houdunren"
+        console.log(hd123)
+    </script>
+</body>
+
+</html>

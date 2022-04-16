@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 普通定义数值变量的方法
+        let num = 123
+        console.log(typeof num) // 值类型
+
+
+        // 数值对象可以直接参与数值计算
+        let number = new Number(99);
+        console.log(number) // 引用类型
+        console.log(typeof number) // 引用类型
+        console.log(number + 1)
+        console.log(number.valueOf() + 1)
+        console.log(typeof number.valueOf()) //值类型
+
+
+        // 来自上面几节的问题，如果把对象直接放到判断条件里，都会被当作true
+        // 那么如果定义一个数值为0的数值对象，会出现以下结果
+        let zero1 = new Number(0)
+        if (zero1) {
+            console.log(123)
+        } else {
+            console.log(234)
+        }
+        // 打印123
+
+        if (zero1.valueOf()) {
+            console.log(123)
+        } else {
+            console.log(234)
+        }
+        // 打印233
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <Script>
+        // indexOf里面输入要查找的字符，如果字符串中有这个字符，则返回这个字符所在的位置
+        // 如果没有这个字符，则返回-1
+        // indexOf中第二个参数表示从第几位开始查找
+        const hd = "houdunren.com"
+
+        console.log(hd.indexOf("o", 10))
+        console.log(hd.indexOf("o", 12)) // 从第12位开始查找是找不到的，所以返回-1
+        console.log(hd.indexOf("/"))
+
+        let a = "hello world"
+        console.log(a.indexOf("d"))
+
+        // 判断条件用法
+        if (a.indexOf("e") != "-1") {
+            console.log("找到了")
+        } else {
+            console.log("没找到")
+        }
+    </Script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // split括号里的变量表示在原来的字符串中以括号里的内容为分界线分割成数组
+        // 则如果是一个空字符(注意不是空格字符)，则表示字符串中每个字符都会变成数组中的一项
+        const cms = "hd1cms";
+        let arr = cms.split("")
+        console.log(typeof arr)
+        console.log(arr instanceof Array)
+        console.log(arr)
+
+        // 而在split里面指定了字符之后，字符串按照这个字符分开
+        // 这个字符本身也会消失
+        let arr1 = cms.split("1")
+        console.log(arr1)
+
+        // 还是要注意一下split slice substr substring的区别
+    </script>
+</body>
+
+</html>

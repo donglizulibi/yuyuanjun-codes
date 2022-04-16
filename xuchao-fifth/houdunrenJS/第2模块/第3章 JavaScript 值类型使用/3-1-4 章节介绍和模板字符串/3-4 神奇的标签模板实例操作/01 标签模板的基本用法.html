@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 标签模板是js新增的特性
+
+        let name = "后盾人";
+        let web = "houdunren.com";
+
+        // 定义一个tag函数
+        function tag(strings) {
+            console.log('这里是tag函数')
+
+            console.log(strings)
+
+        }
+
+        // 把带有普通字符串字符串和变量的模板字符串一起放在tag函数后面
+        tag `在线教程${name}，网址是${web}。`
+            // 打印的是tag后面的非变量，也就是字符串，以变量为界组成的数组
+    </script>
+</body>
+
+</html>

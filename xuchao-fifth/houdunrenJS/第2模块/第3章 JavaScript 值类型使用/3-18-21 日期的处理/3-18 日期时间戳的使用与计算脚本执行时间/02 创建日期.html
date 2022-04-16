@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 直接传入日期和时间
+        const date = new Date('1990-9-22 3:22:18')
+        console.log(date)
+        console.log(typeof date)
+        console.log(date.getMonth())
+
+        // 使用多参数的数值类型 参数依次是 年 月 日 时 分 秒
+        const date1 = new Date(1990, 2, 22, 13, 22, 19)
+        console.log(date1)
+
+        // 传入一个数组，但是需要解构成数字序列
+        const arr = [1990, 2, 22, 13, 22, 19]
+        const date2 = new Date(...arr)
+        console.log(date2)
+    </script>
+</body>
+
+</html>

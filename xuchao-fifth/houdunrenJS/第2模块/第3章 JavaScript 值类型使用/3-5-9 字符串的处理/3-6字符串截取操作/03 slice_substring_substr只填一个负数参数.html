@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = "houdunren.com"
+
+        // 3 只填一个参数 但参数为负数
+
+        console.log("hd.slice(-3): ", hd.slice(-3))
+        console.log("hd.substring(-3): ", hd.substring(-3))
+        console.log("hd.substr(-3): ", hd.substr(-3))
+
+        // 结论：
+        // 1、slice表示从后往前截取，但是返回的是截走的部分
+        // 2、substring里面加负数没有意义，统一变成substring(0)，也就是返回原字符串
+        // 3、substr也是表示从后往前截取，也是返回截走的部分
+    </script>
+</body>
+
+</html>

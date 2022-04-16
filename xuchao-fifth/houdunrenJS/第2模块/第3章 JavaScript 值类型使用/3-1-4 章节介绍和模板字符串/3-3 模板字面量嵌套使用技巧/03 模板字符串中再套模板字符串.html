@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        li {
+            padding: 10px;
+        }
+        
+        li:nth-child(odd) {
+            background-color: aqua;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        let lessons = [{
+            title: "媒体查询响应式布局"
+        }, {
+            title: "flex 弹性盒模型"
+        }, {
+            title: "GRID 栅格系统"
+        }]
+
+        // 注意，在这个例子中，ul标签也是写在template函数的返回值里面的
+
+        function template() {
+            return `<ul>${lessons.map((item) => {
+                return `<li>${item.title}</li>`
+                // 在这里也可以省略return和{}
+            }).join('')}</ul>` 
+            // 这里涉及到map遍历数组的一套函数是放在模板字符串中的
+            // 还是说明了模板字符串中$里面是可以方法js表达式
+        }
+        console.log(template())
+        // 已经形成了字符串，下一步就是直接渲染到页面里
+
+        document.body.innerHTML = template()
+    </script>
+</body>
+
+</html>

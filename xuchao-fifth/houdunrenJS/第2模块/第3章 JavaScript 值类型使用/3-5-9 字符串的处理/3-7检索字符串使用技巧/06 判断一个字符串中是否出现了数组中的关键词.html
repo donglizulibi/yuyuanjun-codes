@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 判断一个字符串中是否出现了数组中的关键词
+        const arr = ['aa', 'css']
+        const string = "我喜欢在后盾人学习php和css知识"
+
+
+        // 此时使用includes是比较方便的
+        let hd = arr.some((item) => {
+            console.log(item)
+            return string.includes(item)
+        })
+        console.log(hd)
+            // 返回true，表示出现了，这个hd后续也可以用于条件判断
+    </script>
+</body>
+
+</html>

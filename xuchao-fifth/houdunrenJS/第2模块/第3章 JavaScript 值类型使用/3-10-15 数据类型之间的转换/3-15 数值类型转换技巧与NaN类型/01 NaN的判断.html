@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // NaN的生成形式
+        let a = Number("abc") //转化函数里面放非数值非空字符串
+        let b = 2 / "abc" //数值和字符串运算
+        console.log(a)
+        console.log(b)
+        console.log(Number('')) // 0
+
+        // NaN的判定方法 
+        // Number.isNaN生成一个布尔
+        let aaa = 123
+        let c = Number.isNaN(a)
+        let ccc = Number.isNaN(aaa)
+        console.log(c)
+        console.log(ccc)
+
+        // Object.is方法
+        let d = Object.is(a, NaN)
+        let e = Object.is(aaa, NaN)
+        console.log(d)
+        console.log(e)
+
+        // NaN不能相互比较
+        console.log(NaN == NaN)
+            // false
+    </script>
+</body>
+
+</html>

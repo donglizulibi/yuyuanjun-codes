@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 标准的创建类型的方法，此时是以一个对象的形式出现的
+        const boolean = new Boolean(true)
+        console.log(boolean)
+        console.log(typeof boolean) // Object
+
+        // 取到这个布尔对象的布尔值的方法，valueOf
+        console.log(boolean.valueOf())
+        if (boolean.valueOf()) {
+            console.log("asdf")
+        }
+
+        // 创建一个布尔值为false的布尔变量，但是直接把这个变量放到判断条件里
+        const boolean_aa = new Boolean(false)
+        if (boolean_aa) {
+            console.log("asdf")
+                // 可以打印出来，说明是真
+                // 这就是对象的隐式类型转化
+        }
+
+
+        // 如果不加valueOf()取出Boolean对象的值，直接放到if判断条件里
+        // 则直接使用对象Object本身参与判断，Object不管真假都会隐式转化为true
+
+        // 关于这个结论可以再验证一下，先
+        let obj = {}
+        console.log(typeof obj)
+        if (obj) {
+            console.log(123)
+        }
+        // 可以打印出来，说明空对象放到判断条件里面是真
+    </script>
+</body>
+
+</html>

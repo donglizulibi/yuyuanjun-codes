@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 以substr为例，本来是object原型链上的内置方法
+        // 但是可以供给普通的字符串值类型使用
+        // 是因为字符串值类型在调用这个方法的时候，js的编译器会自动将其识别为对象
+        // 所以下面两个例子是等同的
+        let str = "houdunren";
+        console.log(typeof str);
+        console.log(str.substr(3));
+
+        let cms = new String("hdcms");
+        console.log(typeof cms);
+        console.log(cms.substr(3));
+
+
+        // 数组与数值同理 
+        const array = ["hdcms", "houdunren"]
+        console.log(array)
+        console.log(array.toString()) // 会变成 “hdcms,houdunren”
+        console.log(typeof array.toString())
+
+        const number = 99
+        console.log(number.toString())
+        console.log(typeof number.toString())
+        console.log(number.toString() + 1)
+
+        // 对象原型链上的类方法或者构造函数方法可以被字符串、数组、数值等隐式的调用
+        // 这就是所谓的万物皆对象，也就是说编译器会将万物都转为对象，使得万物都可以使用对象原型链上的内置方法
+    </script>
+</body>
+
+</html>

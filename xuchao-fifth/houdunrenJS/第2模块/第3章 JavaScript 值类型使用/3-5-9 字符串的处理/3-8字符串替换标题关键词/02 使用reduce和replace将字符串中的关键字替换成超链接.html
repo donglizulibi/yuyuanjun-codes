@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用reduce和replace将字符串中的关键字替换成超链接
+        const word = ['php', 'css']
+        const string = "我喜欢在后盾人学习php和css知识"
+
+        // 设置一个函数，这个函数的第一个参数是字符串，第二个参数是一个数组
+        // 要求函数返回的结果是将字符串中出现的数组的项目变成超链接形式
+        function stringReplace(str, arr) {
+            return arr.reduce((pre, val) => {
+                console.log('pre: ', pre)
+                console.log('val: ', val)
+
+                return pre.replace(val, `<a href='http://www.cctv.com'>${val}</a>`)
+            }, str)
+        }
+
+        console.log(stringReplace(string, word))
+
+        document.body.innerHTML = stringReplace(string, word)
+    </script>
+</body>
+
+</html>

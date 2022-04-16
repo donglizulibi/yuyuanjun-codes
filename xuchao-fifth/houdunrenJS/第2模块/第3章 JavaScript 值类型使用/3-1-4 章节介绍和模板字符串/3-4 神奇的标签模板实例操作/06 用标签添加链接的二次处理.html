@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        li {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // 现在需要使用标签模板和replace把上一节页面中所有的“后盾人”字样都加上超链接
+        // 现在面临的问题是，不管是课程名称还是作者名称都有“后盾人”字样
+
+        let lessons = [{
+            title: "后盾人媒体查询响应式布局",
+            author: "后盾人向军"
+        }, {
+            title: "flex 弹性盒模型",
+            author: "后盾人"
+        }, {
+            title: "GRID 后盾人栅格系统",
+            author: "古老师"
+        }]
+
+        function tempalte() {
+            return `
+            <ul>
+                ${lessons.map(item => link`<li>作者：${item.author}, 课程：${item.title}</li>`).join("")}
+            </ul>
+            `
+            // 这里的join是把所有li拼接起来，变成三个li结合的字符串，统一放到ul里面
+        }
+
+        function link(str,...vars){
+            console.log(str)
+            console.log(vars)
+
+            
+
+            let res = str.map((strItem,key)=>{
+
+                // 鉴于所有的后盾人都在vars里，所以只需要操作vars的部分就行了
+                if(vars[key]){
+                    vars[key] = vars[key].replace("后盾人","<a href='https://www.houdunren.com'>后盾人</a>")
+                }else{
+                    vars[key] = ""
+
+                }
+
+                return strItem + vars[key]
+                // 也可以用三目然后直接放在return后面
+            })
+
+            // 变量与非变量都已经基本拼接好放在一个数组里，最后连接成字符串返回出去
+            console.log('res',res)
+            return res.join('')
+            // 这里拼接成单个li标签里的内容
+            
+        }
+
+        document.body.innerHTML = tempalte()
+    </script>
+</body>
+
+</html>

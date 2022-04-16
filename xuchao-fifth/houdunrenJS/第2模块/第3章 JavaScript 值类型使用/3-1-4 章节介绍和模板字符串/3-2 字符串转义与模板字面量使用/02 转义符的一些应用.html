@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在字符串里面加入引号的问题
+        // let str = "h"hh"  // 会报错
+
+        // 此时需要给这个引号加入转义符
+        let str = "h\"hh"
+        console.log(str)
+
+        // \t 作为制表符
+        let hd1 = "houd\tunren.com"
+        let hd2 = "houd\t\t\tunren.com"
+        console.log(hd1)
+        console.log(hd2)
+            // 在控制台打印是四个空格
+
+        // 但是在html中不管是多少个制表符，都是显示一个空格
+        document.write("houdu\tnren")
+        document.write("<br>")
+        document.write("houdu\t\t\tnren")
+
+        // 如果在html中要显示多个空白，需要使用&nbsp( Non-Breaking Space )
+        document.write("<br>")
+        document.write("hou&nbsp;dunren")
+        document.write("<br>")
+        document.write("hou&nbsp;&nbsp;dunren")
+
+        // 如果需要换行，可以用 \n
+        document.write("<br>")
+        let hd3 = "houd\nunren"
+        console.log(hd3)
+        document.write('houdu<br>nren') // html里面的换行还是用<br>
+            // document.write(hd3)
+    </script>
+</body>
+
+</html>

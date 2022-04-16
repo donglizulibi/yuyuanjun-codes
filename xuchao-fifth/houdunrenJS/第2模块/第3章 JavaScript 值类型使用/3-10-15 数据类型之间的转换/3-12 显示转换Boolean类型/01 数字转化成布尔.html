@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上一节讲到隐式的类型转化，是发生在编译器的自动执行行为
+        // 而显示类型转化是人为的主动操作
+
+        // 将数值0转化成布尔的false
+        // 取反的方法
+        let number = 0;
+        console.log(typeof number)
+        let number1 = !number
+        console.log(number1) // 编译器遇到！之后会将number转化成false，再取反成true
+
+        let number2 = !number1
+        console.log(number2) // 再取反一次就成了false
+            // 或者直接 number = !!number
+
+        // 构造函数的方法
+        console.log(Boolean(number))
+    </script>
+</body>
+
+</html>

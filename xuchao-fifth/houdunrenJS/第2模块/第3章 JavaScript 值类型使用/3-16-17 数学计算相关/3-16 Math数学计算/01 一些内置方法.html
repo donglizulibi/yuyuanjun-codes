@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 取一个序列里最大的数
+        console.log(Math.max(1, 2, 3, 4)) //只支持多参数
+
+        // 在一个数组里取最大的数
+        let grade = [12, 3, 22, 43]
+        console.log(Math.max(...grade)) //max里面只能放一个序列 所以需要解构
+        console.log(Math.max.apply(null, grade))
+
+        // apply函数的特点就有两个可以放参数的地方
+        // 第一个参数是放一个对象，如果apply前面调用的那个方法里面有this指向的问题
+        // 那么在选择了这个对象之后，前面所调用的方法的this就会指向这个对象
+        // 在这个例子中，因为没有需要指向的对象，所有可以放一个null
+
+        // apply的第二个参数需要放一个数组，如果apply前面调用的方法有一个或者多个形参的话
+        // 则传入的实参需要统一放到这个数组中，在放到apply的第二个参数位置上
+        // 而apply函数会自动将这个数组解构成一个参数序列
+
+        // 向上取整
+        console.log(Math.ceil(5.01))
+
+        // 向下取整
+        console.log(Math.floor(5.01))
+
+        // 四舍五入
+        console.log(Math.round(5.01))
+        console.log(Math.round(5.51))
+
+        //保留几位小数，括号内写几就保留几位小数
+        console.log(number1.toFixed(2))
+        console.log(number2.toFixed(2))
+    </script>
+</body>
+
+</html>

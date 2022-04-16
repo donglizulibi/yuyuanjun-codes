@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 本例中需要渲染到页面的ul标签内的内容应该是一个字符串
+        // 多以遍历出一个数组之后，需要用join连接
+
+        let lessons = [{
+            title: "媒体查询响应式布局"
+        }, {
+            title: "flex 弹性盒模型"
+        }, {
+            title: "GRID 栅格系统"
+        }]
+
+        // 未使用join连接
+        let aa = lessons.map(item =>
+            "<li>" + item.title + "</li>"
+        )
+        console.log(aa)
+        console.log(typeof aa)
+
+        // 使用join连接
+        let bb = lessons.map(item =>
+            "<li>" + item.title + "</li>"
+        ).join("")
+        console.log(bb)
+        console.log(typeof bb)
+    </script>
+</body>
+
+</html>

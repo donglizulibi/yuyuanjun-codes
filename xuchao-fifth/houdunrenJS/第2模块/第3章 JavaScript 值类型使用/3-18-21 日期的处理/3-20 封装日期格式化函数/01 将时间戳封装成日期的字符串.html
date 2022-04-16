@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 假设后台来了一个时间戳
+        let timeStamp = 810692532000
+
+        // 先转化成日期对象
+        let date = new Date(timeStamp)
+        console.log(date)
+
+        // 现在进行字符串的拼接
+        console.log(`${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日 ${date.getHours()}时${date.getMinutes()}分 星期${date.getDay()==0?7:date.getDay()}`)
+    </script>
+</body>
+
+</html>

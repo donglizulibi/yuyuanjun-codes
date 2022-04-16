@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let name = 'houdunren'
+        let web = 'hdcms.com'
+
+        // 使用标签模板单独修改变量，或者单独修改非变量
+        function label(strings, ...vars) {
+            console.log(strings)
+            console.log(vars)
+
+            // 单独返回变量
+            // return vars.map((item) => {
+            //     return item + '_111'
+            // }).join("")
+
+            // 单独返回非变量
+            // return strings.map(item => {
+            //     return item
+            // }).join('')
+
+            // 同时返回变量和非变量
+            // return strings.map((item, key) => {
+            //     return item + vars[key]
+            // })
+            // 写到这一步会出现一个数组，还是利用非变量数组的长度始终比变量的长度大1的特性
+            // ['这个网址是hdcms.com', '.undefined']
+
+            // 最后进行优化，对var[key]是否存在进行判断
+            return strings.map((item, key) => {
+                console.log(vars[key])
+                if (typeof vars[key] == 'undefined') {
+                    vars[key] = ''
+                }
+                return item + vars[key]
+            }).join('')
+
+            // 下一步就可以用join将二者拼接起来，或者单独对变量以及非变量进行修改
+        }
+        console.log(label `这个网址是${web}.`)
+    </script>
+</body>
+
+</html>

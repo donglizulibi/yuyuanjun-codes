@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在标签函数中的形参中第一个是被变量间隔后的非变量组成的数组
+        // 第二个参数开始就是变量，可以把这个形参加上并进行操作
+
+        let name = 'houdunren'
+        let web = 'hdcms.com'
+
+        function func(str, web, name) {
+            console.log(str)
+
+            // 打印变量
+            console.log(web)
+            console.log(name)
+        }
+
+        func `这个网址的名称是${name}，网站是${web}`
+
+
+        // 如果参数很多也可以用...语法来统一接收
+        function link(strings, ...vars) {
+            console.log(strings)
+            console.log(vars)
+                // 这样就把变量也放到一个数组里
+        }
+        link `这个网址的名称是${name}，网站是${web}`
+            // 注意，这个web变量后面的空字符串也算一个字符串
+            // 从打印结果上来看，变量是两个，非变量是三个
+
+
+        // 再举一个更明显的例子
+        function oneVar(str, ...vars) {
+            console.log(str)
+            console.log(vars)
+        }
+
+        oneVar `${name}`
+            // 变量一个，非变量两个，这两个都是空字符
+            // 可见非变量一定多余变量
+    </script>
+</body>
+
+</html>

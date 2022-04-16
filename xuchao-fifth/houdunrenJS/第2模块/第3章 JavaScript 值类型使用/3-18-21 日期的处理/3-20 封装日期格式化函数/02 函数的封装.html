@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在封装一个可以规定日期格式的函数
+        // 先在普通对象范围内试一下
+        const date = new Date("1992-2-13 10:22:12")
+        console.log(date)
+
+        const obj = {
+            YYYY: date.getFullYear(),
+            MM: date.getMonth(),
+            DD: date.getDate(),
+            HH: date.getHours(),
+            mm: date.getMinutes(),
+            ss: date.getSeconds()
+        }
+        console.log(obj)
+        for (let key in obj) {
+            console.log(obj[key])
+        }
+
+        // 构建这个函数，需要传入两个参数，第一个是日期对象，第二个是日期的格式，第二个参数应该有一个默认值
+        // 
+        function dateFormat(dateObj, format = "YYYY-MM-DD HH:mm:ss") {
+
+            // 在函数里面定义一个对象，用来获取传入时间对象的各个时间单位参数
+            const obj = {
+                YYYY: dateObj.getFullYear(),
+                MM: dateObj.getMonth() + 1,
+                DD: dateObj.getDate(),
+                HH: dateObj.getHours(),
+                mm: dateObj.getMinutes(),
+                ss: dateObj.getSeconds()
+            }
+            console.log(obj)
+
+            // 现在遍历这个对象，则可以获得YYYY MM DD等之类的单位
+            // 和各个时间单位参数
+            // 将传入的时间格式参数进行字符串替换，变成具体的时间单位数值
+            // 最后把这个字符串返回一下就行了
+            for (let key in obj) {
+                format = format.replace(key, obj[key])
+                console.log(format) // 可见字符串需要放在循环里替换的必要性
+            }
+            return format
+        }
+        let now = new Date()
+        console.log(dateFormat(now))
+
+
+
+
+        // 其他格式
+        // new Date().format("yyyy年MM月dd日");
+        // new Date().format("MM/dd/yyyy");
+        // new Date().format("yyyyMMdd");
+        // new Date().format("yyyy-MM-dd hh:mm:ss");
+    </script>
+</body>
+
+</html>

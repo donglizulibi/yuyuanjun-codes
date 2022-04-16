@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = "houdunren.com"
+
+        // 4 填两个参数 且都为负数
+
+        console.log("hd.slice(-3,-1): ", hd.slice(-3, -1))
+        console.log("hd.substring(-3,-1): ", hd.substring(-3, -1))
+        console.log("hd.substr(-3,-1): ", hd.substr(-3, -1))
+
+        // 结论：
+        // 1、slice的两个参数表示从后往前截取，从第一个参数开始到第二个参数为止，
+        // 返回的是截走的部分
+        // 2、substring里面加负数没有意义，统一按零处理，加两个负数更没有意义，也就是从第零位到第零位
+        // 3、substr也是表示从后往前截取，也是返回截走的部分，但是第二个参数必须大于零，
+        // 如果小于或等于零，则按等于零处理，返回一个空字符串
+    </script>
+</body>
+
+</html>

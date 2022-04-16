@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="tele">
+    <button>模糊处理</button>
+    <span></span>
+    <script>
+        //  在输入框中输入一串数字，点击模糊处理按钮之后，这串数字最后三位会变成*
+
+        // 先设置一个抓取页面标签的函数
+        function query(el) {
+            return document.querySelector(el)
+        }
+
+        let btn = query("button")
+        let input = query('input')
+        let span = query('span')
+
+        btn.addEventListener('click', () => {
+            console.log(1)
+
+            // 这里的思路是
+            // 1 拿到输入框的数字内容
+            // 2 将这个数字字符串分成两部分，第一部分是这个数字除去后面三位的剩余部分，第二部分是三个星号
+            // 3 第三步就是把拼接好的结果渲染到页面的span标签里
+            let inputValue = input.value
+
+
+            // let string = inputValue.slice(0, inputValue.length - 3) + "*".repeat(3)
+            let string = stringReplace(inputValue, 4)
+
+            span.innerHTML = string
+        })
+
+        // 把上面的string的部分变成一个可以控制重复几个星号的函数
+        // 这个函数的第一个参数传入的字符串，第二个参数后面几位数变成星好
+        // 第二个参数设置可以不传递，如果不传递的话，默认就是三位
+        // 注意，要设置默认参数，里面只需要有一个等号
+        function stringReplace(originString, len = 3) {
+            return originString.slice(0, originString.length - len) + "*".repeat(len)
+        }
+    </script>
+</body>
+
+</html>

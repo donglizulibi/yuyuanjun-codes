@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+
+<body>
+
+    <p>点击按钮检测数组中是否有元素大于 18。</p>
+    <button onclick="myFunction()">点我</button>
+    <p id="demo"></p>
+    <script>
+        var ages = [3, 10, 18, 20];
+
+        function checkAdult(age) {
+            return age >= 18;
+        }
+
+        function myFunction() {
+            document.getElementById("demo").innerHTML = ages.some(item => checkAdult(item));
+        }
+
+        // 所以some函数就是遍历出的数组的任意项符合内置函数的条件，就返回真
+    </script>
+
+</body>
+
+</html>

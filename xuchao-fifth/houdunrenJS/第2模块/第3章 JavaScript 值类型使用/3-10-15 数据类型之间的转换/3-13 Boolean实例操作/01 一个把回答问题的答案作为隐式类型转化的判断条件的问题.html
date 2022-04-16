@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子主要是一个退出while循环判断的时机问题
+        // 在js的隐式类型转化中，空字符串会转化成false，非空则是true
+        // 所以在用户输入的内容中加上trim以防止空字符的输入
+        // 以保证只要用户输入了内容，就会进入判断程序，然后就是break结束循环
+        // 如果不输入内容，prompt提示框就不会消失
+
+        while (true) {
+            const year = prompt('后盾人是哪年成立的').trim()
+            console.log(year)
+            console.log(typeof year)
+
+            if (!year) {
+                continue
+            } else {
+                document.write(year == "2010" ? "回答正确" : "回答错误")
+                break
+            }
+
+            // 可以进一步优化成这样，但是不推荐
+            // if (!year) continue
+            // document.write(year == "2010" ? "回答正确" : "回答错误")
+            // break
+        }
+    </script>
+</body>
+
+</html>

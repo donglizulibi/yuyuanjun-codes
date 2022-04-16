@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 由于数组的typeof是一个对象，说明数组也引用类型
+        let array = [1, 2, 3, 4]
+        console.log(typeof array)
+
+        // 所谓引用类型，就是说js只是把数组的数据放到内存里，而数组变量的名称只是一个钥匙
+        // 如果要复制这个数据，也仅仅是复制了一把钥匙，而存数据的内存地址是共享的
+
+        // 举个例子来说，现在建立一个新的数组遍历，复制之前的数组
+        let arrCopy = array
+
+        // 改变新建数组的第三项，再看一下新数组和旧数组的变化
+        arrCopy[2] = "haha"
+        console.log("array", array)
+        console.log("arrCopy", arrCopy)
+
+        // 改变arrCopy，array也会跟着改变，说明数组是一个引用类型
+        // 将array复制给arrCopy，只是让二者共同引用同一个内存空间
+
+
+        // 而同样的事情发生在值类型上就会不一样
+        let a = 1
+        let b = a
+        b = 99 // 改变新建的变量的值
+        console.log("a", a)
+        console.log("b", b)
+            // 原来的变量不受影响，说明这两个变量是占用不用的内存空间
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 新建时间对象和时间方法函数创建时间 都是返回当前的时间
+        // 其实是有区别的
+        // 新建一个时间对象的实例，返回的是一个对象，可以有各种方法操作
+        // 而使用时间方法函数无法操作，使用隐式转化的话返回的是NaN
+
+        const date = new Date()
+        console.log(date)
+        console.log(typeof date) // object
+        console.log(date * 1) //返回时间戳 
+
+        const hd = Date()
+        console.log(hd)
+        console.log(typeof hd) // string
+        console.log(hd * 1) //返回NaN
+
+        // 普通字符串使用一下隐式类型转化
+        const a = "123abc"
+        console.log(a * 1) // 返回NaN
+
+        // 可见字符串转数字的隐式类型转化只能是包含纯数字的字符串
+        // 否则就是NaN
+    </script>
+</body>
+
+</html>

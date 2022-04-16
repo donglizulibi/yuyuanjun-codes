@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // startsWith判断一个字符是不是在这个字符串的开始出现
+        // endsWith判断一个字符是不是在这个字符串的结尾出现
+        // 两个方法都区分大小写
+        const hd = "houdunren.com";
+        console.log(hd.startsWith("o")) // false
+        console.log(hd.startsWith("h")) // true
+        console.log(hd.startsWith("H")) // false
+
+        console.log(hd.endsWith("h")) // false
+        console.log(hd.endsWith("m")) // true
+        console.log(hd.endsWith("H")) // false
+    </script>
+</body>
+
+</html>

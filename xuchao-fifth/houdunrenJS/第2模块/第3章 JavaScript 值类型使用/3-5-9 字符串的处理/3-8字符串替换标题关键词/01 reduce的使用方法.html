@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <span>numbers = [65, 44, 12, 4]</span>
+    <p>点击按钮计算数组元素相加后的总和。</p>
+    <button onclick="myFunction()">点我</button>
+    <p>数组元素总和: <span id="demo"></span></p>
+    <script>
+        // reduce里面必须要有一个return
+
+        var numbers = [65, 44, 12, 4];
+
+        // 菜鸟教程的写法
+        // function getsum(abc) {
+        //     let numb = 0
+        //     abc.reduce((total, num) => {
+        //         numb = total + num
+        //         console.log(numb)
+        //         return total + num;
+        //     })
+
+        //     return numb
+        // }
+
+        function getsum(arr) {
+            return arr.reduce((pre, val) => pre += val, 0)
+        }
+
+        console.log(555, getsum(numbers))
+
+
+        function myFunction() {
+            document.getElementById("demo").innerHTML = getsum(numbers);
+        }
+    </script>
+</body>
+
+</html>

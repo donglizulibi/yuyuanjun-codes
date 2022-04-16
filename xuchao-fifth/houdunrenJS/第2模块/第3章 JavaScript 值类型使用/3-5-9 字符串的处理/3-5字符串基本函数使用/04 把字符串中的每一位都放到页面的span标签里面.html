@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = 'houdunren'
+
+        // charAt方法
+        console.log(hd.charAt(3))
+
+        // 中括号（迭代器方法）
+        console.log(hd[4])
+
+        for (let i = 0; i < hd.length; i++) {
+
+            // 每次循环都做四件事
+            // 1 创建一个新的span标签
+            // 2 把遍历到的字符串中的这个字符放到标签里
+            // 3 根据字符的位置改变字符字体大小
+            // 4 把这个标签放到页面里
+            let span = document.createElement('span')
+            span.innerHTML = hd.charAt(i)
+            span.style.fontSize = (i + 5) * 10 + 'px'
+            document.body.append(span)
+        }
+    </script>
+</body>
+
+</html>

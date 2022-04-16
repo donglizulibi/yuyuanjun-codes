@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 获取当下时间的年月日星期时分秒的方法
+        // 其中月是 0-11  
+        // 星期是0-6 其中星期日是一个星期的第一天，所以星期一到星期六的对应的1-6，星期日对应的是0
+
+        var now = new Date('2022-04-17 12:12:34')
+        var a = now.getFullYear() // 年
+        var b = now.getMonth() // 月
+        var f = now.getDate() // 日
+
+        var c = now.getDay() // 星期
+        var d = now.getHours() // 时
+        var e = now.getMinutes() // 分
+        var m = now.getSeconds() // 秒
+
+
+        console.log(a)
+        console.log(b + 1)
+        console.log(f)
+
+        console.log(c)
+        console.log(d)
+        console.log(e)
+        console.log(m)
+    </script>
+</body>
+
+</html>
