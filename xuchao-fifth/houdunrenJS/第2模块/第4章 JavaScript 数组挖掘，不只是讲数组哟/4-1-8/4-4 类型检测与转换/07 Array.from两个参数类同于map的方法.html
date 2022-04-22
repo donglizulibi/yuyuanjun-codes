@@ -14,13 +14,21 @@
     <script>
         let divs = document.querySelectorAll("div")
         console.log(divs)
-            // 这一步就相当于将对象转化为数组
+        console.log(typeof divs)
+        console.log(divs.length)
+        console.log(Array.from(divs))
+            // 这里取到的divs是NodeList对象，有length属性，可以直接用Array.from
+
+        // 这一步就相当于将对象转化为数组并进行数组的操作
+        // 说明Array.from还有第二个参数，且这个参数可以是一个函数，可以对第每个数组元素进行二次处理
         let arrDiv = Array.from(divs, (item) => {
+            console.log(item)
             console.log(item.innerHTML)
             item.style.backgroundColor = "red";
             //这里需要加上return item，否者arrDiv打印出的是undefined
             return item
         })
+
         console.log(arrDiv)
     </script>
 </body>

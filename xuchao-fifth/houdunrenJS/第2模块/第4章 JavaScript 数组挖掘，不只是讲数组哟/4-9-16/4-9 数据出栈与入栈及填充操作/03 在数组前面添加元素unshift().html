@@ -10,10 +10,17 @@
 
 <body>
     <script>
+        // unshift是在数组最前面增加项目，和push对应
         let array = ['hdcms', 'douubla', 'houdunren', 'haha']
-        let a = array.pop()
+        let a = array.unshift("后盾人")
         console.log(array)
         console.log(a)
+            // 这里和push方法一样，返回的值是数组在操作发生之后的长度
+
+        // unshift添加多个元素(push同理)
+        let arr = [1, 2, 3, 4]
+        arr.unshift('houdunren', 'hdcms')
+        console.log(arr)
     </script>
 </body>
 

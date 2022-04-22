@@ -11,12 +11,16 @@
 <body>
     <script>
         // 假设有一个求和函数，但是传入的参数不固定，不确定参数的问题
+
         function sum(...args) {
             console.log(args) // 展开语法会把参数都放在一个数组里
-            return args.reduce((s, v) => {
-                return (s += v);
+            return args.reduce((t, v) => {
+                return t = t + v
             }, 0)
+
+            // 加0或者不加0都行
         }
+
         console.log(sum(1, 2, 3, 4))
     </script>
 </body>

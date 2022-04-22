@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先来一个没有任何问题的、使用标准的构造函数方式创建数组的例子
+        let hd = new Array(1, 2, 3, 4)
+        console.log(hd.length)
+        console.log(hd)
+            // 结果符合预期，创建一个[1,2,3,4]
+
+        // 如果现在想创建一个只包含一个数据的数组，如[6]
+        // 用标准构造函数方法创建
+        let cms = new Array(6);
+        console.log(cms.length) // 6
+        console.log(cms[2]) // undefined
+        console.table(cms) // 空的
+            // 原意是希望创建一个[6]，但是创建了六个undefined
+
+        // 那么如果想用标准方法创建一个数据的数组
+        // 新版的js改进的办法是使用Array.of
+        let arr = Array.of(6);
+        console.log(arr.length)
+        console.table(arr)
+
+        // 多个数据也建议使用Array.of
+        let arr1 = Array.of(1, 2, 3, 4, 5)
+        console.log(arr1.length)
+        console.log(arr1)
+    </script>
+</body>
+
+</html>

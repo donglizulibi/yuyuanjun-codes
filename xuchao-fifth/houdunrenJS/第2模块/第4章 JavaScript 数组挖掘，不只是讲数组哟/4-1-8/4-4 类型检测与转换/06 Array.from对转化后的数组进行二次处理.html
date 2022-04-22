@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义一个字符串
+        let str = 'asdfgh'
+
+        // 普通字符串也有length属性
+        console.log(str.length)
+
+        // 使用Array.from进行数组转化，并进行二次处理，并生成一个新数组
+        let newArr = Array.from(str, function(item) {
+            console.log(item)
+            item = item.repeat(3)
+            return item
+        })
+
+        // 每个元素都复制三倍
+        console.log(newArr)
+    </script>
+</body>
+
+</html>

@@ -34,12 +34,17 @@
         // find和findIndex的使用方法见4-16
         function filterGoods(goods) {
             return goods.reduce(function(pre, val) {
+
+                // 这里表示在pre这个数组里面找正在遍历的val的名字
+                // 如果找到了mid就返回true，表示正在遍历的val是一个重复的项
+                // 如果没找到mid就返回undefined
                 let mid = pre.find(function(item) {
                     return item.name == val.name
                 })
 
                 // 如果mid是undefined，则隐式类型转化是false，再加上！就是true
-                // 这里的逻辑表示，如果mid是undefined，也就是新遍历进来的对象在数组中没有找到
+                // 这里的逻辑表示，如果mid是undefined
+                // 也就是新遍历进来的对象在数组中没有找到，也就不是重复项
                 // 然后转化成true，就可以执行添加进数组的逻辑
 
                 if (!mid) {

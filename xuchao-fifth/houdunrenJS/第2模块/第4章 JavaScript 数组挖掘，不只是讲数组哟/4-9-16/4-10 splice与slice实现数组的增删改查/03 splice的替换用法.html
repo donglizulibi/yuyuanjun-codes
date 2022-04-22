@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面讨论了splice的两个参数情况，现在给splice添加第三个参数
+        // 来实现数组操作的两种情况
+
+        // 第一种情况是往数组里增加某个元素，不删除原数组的任何东西
+        let arr = [1, 2, 3, 4, 5]
+
+        // 此时splice的第一个参数的这个待增加元素所在的位置(这个坐标的前面)
+        // 第二个参数是0，第三个参数是待增加的元素，可以有第三第四及以上的个参数
+        // 由于这里要添加第三个及以上的参数，所以可以用展开语法变成一个参数序列放进去
+        arr.splice(1, 0, ...[8, 9, 10])
+        console.log("arr", arr)
+            // 这里表示在第1个参数后面放上这个数值序列
+
+        // 如果不放参数序列，直接放一个数组，则表示在第一个参数后面添加一个数组
+        let arr1 = [1, 2, 3, 4, 5]
+        arr1.splice(1, 0, [8, 9, 10])
+        console.log("arr1", arr1)
+
+
+
+        // 第二种情况是替换数组里的某个元素，实质就是删除和增加
+        let arr2 = [1, 2, 3, 4, 5]
+
+        // 把第1个元素（数值2）替换成10
+        // 此时splice的第一个参数是待替换元素的位置，第二个参数是1，第三个是代替换元素
+        // 表示从第1位开始，截取长度为1的数据，替换成第三个参数的数值，也就是把数值2替换成10
+        arr2.splice(1, 1, 10)
+        console.log("arr2", arr2)
+
+
+        // 另外的一些操作
+        // 往数组最后追加元素
+        let arr3 = [1, 2, 3]
+        console.log(arr3.length)
+            // arr3.splice(arr3.length - 1, 0, 10)
+        arr3.splice(arr3.length, 0, 10)
+        console.log(arr3)
+            // 关于如果用splice给数组最后添加一位数值的操作中要不要length-1的问题
+            // splice的第一个参数表示的位置其实是所在角标的前面
+            // 所以如果length-1，则表示是原数组最后一位的前面，再加上第二位参数是0
+            // 所以变成了截取0位长度的数据，插入第三位的参数数据
+            // 则新数据变成了倒数第二位，达不到期望目标
+            // 所以第一个参数就应该超出数组本有的角标才行
+
+        // 往数组最前面追加元素
+        let arr4 = [1, 2, 3]
+        arr4.splice(0, 0, 10)
+        console.log(arr4)
+    </script>
+</body>
+
+</html>

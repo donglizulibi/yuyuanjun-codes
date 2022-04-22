@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Array.from也可以把字符串变成数组
+        // Array.from只作用于可以使用length的对象
+        let str = "hdcms"
+        console.log(str.length)
+        console.log(Array.from(str))
+
+        // 一般情况下，字符串的字符个数等于length属性的属性值
+        // 但如果一个对象的属性值个数与length属性数量不相等的话，显示会有所不同
+        // 下面定义五个对象
+        let obj1 = {
+            "aa": "aaa",
+            "bb": "bbb"
+        }
+        console.log(Array.from(obj1))
+            // 没有length属性，返回一个空数组
+
+        let obj2 = {
+            "aa": "aaa",
+            "bb": "bbb",
+            length: 2
+        }
+        console.log(Array.from(obj2))
+            // 有length属性，但是属性名不是数值，所以返回一个包含两个undefined的数组
+
+        let obj3 = {
+            0: "aaa",
+            1: "bbb",
+            length: 2
+        }
+        console.log(Array.from(obj3))
+            // 有length属性，对象内的数据都返回出来
+
+        let obj4 = {
+            0: "aaa",
+            1: "bbb",
+            length: 3
+        }
+        console.log(Array.from(obj4))
+            // 有length属性，length的属性值比对象内个数多一个，所以多一个undefined
+
+        let obj5 = {
+            0: 'aaa',
+            1: 'bbb',
+            2: 'ccc',
+            length: 2
+        }
+        console.log(Array.from(obj5))
+            // 有length属性，但是对象内的属性值比length值多，所以只会返回length属性值数量的对象属性
+            // 也就是只返回两个
+
+        // 结论就是Array.from要想把对象转成数组，有两个前提
+        // 第一是 内部属性的属性名需要是数字
+        // 第二是 要有length属性，且属性值最好与内部属性的数量相等
+    </script>
+</body>
+
+</html>

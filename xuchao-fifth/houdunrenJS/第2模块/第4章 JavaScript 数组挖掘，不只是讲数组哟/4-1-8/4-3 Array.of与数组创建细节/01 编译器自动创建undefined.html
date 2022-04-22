@@ -10,11 +10,22 @@
 
 <body>
     <script>
+        // 现定义一个只在0号位置上有值的数组
         let hd = ["hdcms"];
+
+        // 直接在这个数组的3号位置上添加一个值
         hd[3] = "houdunren";
+
+        // 则编译器会自动把这个数组的1和2号位补齐，变成undefined
         console.log(hd)
         console.log(hd.length)
         console.log(hd[2])
+
+        // 另一个例子
+        let arr = []
+        arr[99] = 1
+        console.log(arr)
+        console.log(arr[98])
     </script>
 </body>
 

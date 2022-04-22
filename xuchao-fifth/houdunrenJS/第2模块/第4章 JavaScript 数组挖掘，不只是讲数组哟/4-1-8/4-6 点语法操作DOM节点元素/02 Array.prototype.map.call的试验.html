@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上一节中的dom对象是一个属性名为从0开始的数字序列，属性值是div
+        // 且有length属性的对象
+
+        // 现在模拟出这个对象
+        let obj = {
+            0: 'aaa',
+            1: 'bbb',
+            2: 'ccc',
+            length: 3
+        }
+
+        // 定义属性特征的步骤是，先定义普通的对象，再用defineProperty逐个定义对象里的属性特征
+        Object.defineProperties(obj, {
+            0: {
+                value: 'aaa',
+                writable: true,
+                enumerable: true,
+                configurable: true
+            },
+            1: {
+                value: 'bbb',
+                writable: true,
+                enumerable: true,
+                configurable: true
+            },
+            2: {
+                value: 'ccc',
+                writable: true,
+                enumerable: true,
+                configurable: true
+            },
+            length: {
+                value: 3,
+                writable: true,
+                enumerable: false,
+                configurable: false
+            }
+        })
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2))
+        console.log(obj)
+
+        // let arr = [1, 2, 3, 4]
+        // console.log(JSON.stringify(Object.getOwnPropertyDescriptors(arr), null, 2))
+        // 普通数组中的length属性不可迭代不可删除，但是可以修改 
+
+        // 这样直接用map是会报错的
+        // obj.map((item) => {
+        //     console.log(item)
+        // })
+
+        // 可以遍历出来
+        Array.prototype.map.call(obj, (item) => {
+            console.log(item)
+        })
+
+        // 重点是两个
+        // 一个是要有length属性
+        // 另一个是属性名必须是从0开始的数字序列
+
+        // 这样的对象可以使用解构语法的
+        // console.log([...obj]) 
+        //报错 obj is not iterable
+        // 定义了length的属性特征之后仍然报错
+    </script>
+</body>
+
+</html>

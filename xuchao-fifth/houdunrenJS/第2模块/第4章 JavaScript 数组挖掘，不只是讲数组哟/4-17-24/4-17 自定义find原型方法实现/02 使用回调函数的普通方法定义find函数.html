@@ -41,23 +41,23 @@
         function callback_one(item) {
             return item.name == "css"
         }
+        // 把需要查找的数组和回调函数作为函数传入find函数
+        let a = find(lessons, callback_one)
+        console.log(a) // 返回找到的那一项
 
+
+        // 没有找到就返回undefined
         function callback_two(item) {
             return item.name == "hhh"
         }
+        let b = find(lessons, callback_two)
+        console.log(b)
 
+        // 查找数值
         function callback_three(item) {
             return item == 3
         }
-
-        // 把需要查找的数组和回调函数作为函数传入find函数
-        let a = find(lessons, callback_one)
-        let b = find(lessons, callback_two)
         let c = find([1, 2, 3, 4], callback_three)
-
-        // 打印结果
-        console.log(a)
-        console.log(b)
         console.log(c)
     </script>
 </body>

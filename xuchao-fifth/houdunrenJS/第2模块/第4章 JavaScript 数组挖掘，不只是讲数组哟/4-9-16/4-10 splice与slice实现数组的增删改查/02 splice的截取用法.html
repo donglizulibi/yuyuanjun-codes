@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // splice与slice不同的是，splice除了会把截取出来的数据形成一个新数组之外
+        // splice的第二个参数是表示截取多少个数的数据
+        // 且splice会改变原数组
+
+        let arr1 = [1, 2, 3, 4, 5]
+        let a = arr1.splice() // 不填参数，什么都没截，所以a是一个空数组
+        console.log(a)
+        console.log(arr1)
+
+        let arr2 = [1, 2, 3, 4, 5]
+        let b = arr2.splice(1) // 只填一个参数，从这个参数开始到后面全部截取
+        console.log(b)
+        console.log(arr2)
+
+        let arr3 = [1, 2, 3, 4, 5]
+        let c = arr3.splice(1, 2) // 从第一个参数开始，截取第二个参数的个数的数量
+        console.log(c)
+        console.log(arr3)
+
+        let arr4 = [1, 2, 3, 4, 5]
+        let d = arr4.splice(1, 3) // 从第一个参数开始，总共截取三个数据
+        console.log(d)
+        console.log(arr4)
+
+        // 这个方法会改变原数组
+    </script>
+</body>
+
+</html>

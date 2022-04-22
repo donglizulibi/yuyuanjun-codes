@@ -16,7 +16,7 @@
             // pre 第一个参数，上一次遍历返回的结果，在起初调用的时候就是数组的第一个值
             // val 第二个参数，当前的项，在起初的调用的时候，当前项就是数组的第二个值
             // index 索引
-            // arr 原来数组
+            // arr 原来的数组
             console.log(pre, val)
             console.log("index", index)
                 // return 99
@@ -40,7 +40,7 @@
 
 
 
-        // 另外，reduce加上了第二个参数的情况
+        // reduce加上了第二个参数的情况
         let array = [1, 2, 3, 4, 5]
         let reduceReturn = array.reduce(function(pre, val, index, arr) {
             console.log(pre, val)

@@ -23,6 +23,10 @@
 
         function highValuePrice(goods) {
             return goods.reduce(function(pre, val) {
+
+                // 有点像冒泡
+                // 上一个遍历的商品的价格和现在遍历的商品的价格进行比较
+                // 谁高就把谁返回出去成为下一次的遍历的pre
                 return pre.price > val.price ? pre : val
             })
         }

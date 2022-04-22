@@ -10,19 +10,26 @@
 
 <body>
     <script>
+        // 因为js的数组和其他语言的数组不是一回事，所以要想传递数组数据只能转成字符串或者json格式
+
         // toString()方法
         let hd = [1, 2, 3].toString()
         console.log(typeof hd)
-        console.log(hd)
-            // 构造函数String()
+        console.log(hd) // 直接变成带有逗号的字符串
+
+        // 构造函数String()
         let hdd = String([1, 2, 3]);
         console.log(typeof hdd)
-        console.log(hdd)
-            // join方法
+        console.log(hdd) // 也是变成带有逗号的字符串
+
+        // join方法
         let hhd = [1, 2, 3].join("|")
         console.log(location.href + '?id=' + hhd)
         console.log(hhd)
         console.log(typeof hhd)
+
+        let hddd = [1, 2, 3].join(',')
+        console.log(hddd) // 变成带有逗号的字符串
     </script>
 </body>
 

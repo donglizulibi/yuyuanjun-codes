@@ -18,12 +18,28 @@
     </style>
     <script>
         let divs = document.querySelectorAll("div");
+        console.log(typeof divs)
+        console.dir(divs) // 这是一个对象类型，原型链上没有map方法，所以不能直接用map
+        console.dir([...divs]) // 原型链中有map方法
+        console.dir(Array.from(divs)) // 原型链中有map方法
+
+        // 竟然没有length属性
+        // console.log(JSON.stringify(Object.getOwnPropertyDescriptor(divs, 'length'), null, 2))
+
+        // 除了上面的那种使用展开式再形成数组和Array.from外
+        // 还有下面这种直接在Array原型链上找到map方法的方法
+
+        console.dir(Array)
+        console.dir(Array.prototype)
+        console.dir(Array.prototype.map)
+
         Array.prototype.map.call(divs, (item) => {
             console.log(item.innerHTML)
                 // item.addEventListener("click", () => {
                 //     this.classList.toggle("hide")
                 // })
             item.addEventListener("click", function() {
+                // 相当于在this指向的item里面加上名为hide的class样式
                 this.classList.toggle("hide")
             })
         })
