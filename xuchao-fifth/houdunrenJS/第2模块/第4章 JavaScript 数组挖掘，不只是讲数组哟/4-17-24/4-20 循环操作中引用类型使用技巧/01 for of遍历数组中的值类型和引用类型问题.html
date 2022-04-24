@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用for of遍历数组的时候，如for(let key of arr){}
+        // 在这里每发生一次循环，都会创建一个新的key变量，并将arr中的项目赋值给这个变量
+
+        // 由此引发的一个问题就是，如果在循环的操作中改变key变量，会不会影响原来的数组
+        // 先做一个试验
+
+        let arr1 = [1, 2, 3]
+        console.log(arr1)
+        let hd1 = arr1[0]
+        hd1 += 10
+        console.log(arr1)
+
+
+        let arr2 = [{
+            a: 1
+        }, {
+            b: 2
+        }]
+        console.log(arr2)
+        let hd = arr2[0]
+        hd.a += 10
+        console.log(arr2)
+    </script>
+</body>
+
+</html>

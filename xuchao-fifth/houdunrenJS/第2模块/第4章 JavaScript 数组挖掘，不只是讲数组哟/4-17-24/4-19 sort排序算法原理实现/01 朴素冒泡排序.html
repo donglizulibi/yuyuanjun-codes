@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个sort的优化程度是不够的
+        // function sort(array) {
+        //     for (const n in array) {
+        //         for (const m in array) {
+        //             if (array[n] > array[m]) {
+        //                 const temp = array[n]
+        //                 array[n] = array[m]
+        //                 array[m] = temp
+        //             }
+        //         }
+        //     }
+        //     return array
+        // }
+
+        let arr = [1, 5, 3, 9, 7]
+
+        // 冒泡排序的原理就是弄两个循环，外部的循环控制被比较的项目的移动
+        // 内部的循环控制被比较的项目和数组后面的项目的大小比较以及置换
+
+        // 这个方法是从小到大的
+        function sort(array) {
+
+            // 外层循环
+            for (let i = 0; i < array.length; i++) {
+
+                // 内层循环的第一位是当下i值的下一位，最后一位是数组的最后一位
+                // 多以j从i+1开始，在array.length - 1前结束
+                for (let j = i + 1; j < array.length - 1; j++) {
+                    if (array[i] > array[j]) {
+
+                        // 置换赋值给哪个都无所谓
+                        let mid = array[i]
+                        array[i] = array[j]
+                        array[j] = mid
+                    }
+                }
+            }
+            return array
+        }
+
+        console.log(sort(arr))
+    </script>
+</body>
+
+</html>

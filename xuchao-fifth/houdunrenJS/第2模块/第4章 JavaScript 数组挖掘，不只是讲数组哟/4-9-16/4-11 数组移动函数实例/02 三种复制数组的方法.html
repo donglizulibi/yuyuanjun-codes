@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 目前有三种复制数组的方法
+
+        // 展开式形成新数组
+        let arr1_a = [1, 2, 3, 4]
+        let arr1_b = [...arr1_a]
+        console.log(arr1_a)
+        console.log(arr1_b)
+
+        // 直接赋值
+        let arr2_a = [1, 2, 3, 4]
+        let arr2_b = arr2_a
+        console.log(arr2_a)
+        console.log(arr2_b)
+
+        // 遍历并逐个添加
+        let arr3_a = [1, 2, 3, 4]
+        let arr3_b = []
+        for (let i = 0; i < arr3_a.length; i++) {
+            arr3_b.push(arr3_a[i])
+        }
+        console.log(arr3_a)
+        console.log(arr3_b)
+
+        // 现在将三种数组的复制品修改，看看原数组的变化
+        arr1_b[0] = 10
+        arr2_b[0] = 10
+        arr3_b[0] = 10
+
+        // 第一种，不影响原数组
+        console.log(arr1_a)
+        console.log(arr1_b)
+
+        // 第二种，原数组一起影响，说明二者是共用一个地址
+        console.log(arr2_a)
+        console.log(arr2_b)
+
+        // 第三种，不影响原数组
+        console.log(arr3_a)
+        console.log(arr3_b)
+    </script>
+</body>
+
+</html>

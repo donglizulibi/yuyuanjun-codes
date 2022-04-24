@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function sort(array, callback) {
+        //     for (const n in array) {
+        //         for (const m in array) {
+        //             if (callback(array[n], array[m]) < 0) {
+        //                 const temp = array[n]
+        //                 array[n] = array[m]
+        //                 array[m] = temp
+        //             }
+        //         }
+        //     }
+        //     return array
+        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        let arr = [4, 1, 6, 2, 3, 8]
+
+        // 加入callback主要是为了将callback作为判断条件
+        // 其中callback应该是可以传入两个参数，判断的条件就是返回值是不是大于零
+        // 其中升序或者降序需要在callback里面定义
+
+        function sort(array, callback) {
+            // 还是两层循环，注意这里的key应该都是角标 所以是for in
+            for (let k in array) {
+                for (let i in array) {
+
+                    // console.log(k, i)
+                    // console.log(array[k], array[i])
+                    // console.log(callback(array[k], array[i]))
+
+                    if (callback(array[k], array[i]) > 0) {
+
+                        // console.log(k, i)
+                        // console.log(array[k], array[i])
+                        // console.log(callback(array[k], array[i]))
+
+                        const temp = array[k]
+                        array[k] = array[i]
+                        array[i] = temp
+                    }
+                }
+            }
+            return array
+        }
+
+
+        // 定义升序的callback，返回值是callback的第二个参数减去第一个参数
+        // 在sort函数里，也就是这个返回值如果大于零，就发生置换
+        // 由于使用的是for in方法，也就是说，两层循环都是从第0位开始
+        // 则外层循环的第0位一定无法通过if判断，所以最开始有可能的比较
+        // 是内层循环的第0位和外层循环的第1位
+        // 如果这个数组的第0位数值大于第1位
+        // 而升序的callback的发挥函数又正是内层减外层，array[i] - array[k]
+        // 那么return出一个正数，可以进入判断，发生置换操作
+        // 把更小的换到更前面
+        // 实现升序操作
+
+        function upCallback(a, b) {
+            return b - a
+        }
+
+        // 定义降序
+        function downCallback(a, b) {
+            return a - b
+        }
+
+        // 加入例子
+        console.log(sort(arr, upCallback))
+
+        console.log(sort(arr, downCallback))
+    </script>
+</body>
+
+</html>
