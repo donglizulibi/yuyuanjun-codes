@@ -10,17 +10,21 @@
 
 <body>
     <script>
+        // 解构语法实现批量赋值变量
         let arr = ["后盾人", 2010];
         // let name = arr[0]
         // let year = arr[1]
         // 等同于
         let [name, year] = arr
+        console.log(name, year)
 
-        console.log(...
-            "hdcms")
-        const [...array] = "hdcms"
-        // const [...array] = ["h", "d", "c", "m", "s"]
-        console.log(array)
+        // 一个小函数
+        function get() {
+            return ['houdunren', 2010]
+        }
+        let [a, b] = get()
+        console.log(a)
+        console.log(b)
     </script>
 </body>
 

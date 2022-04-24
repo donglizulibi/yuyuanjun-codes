@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先定义一个数组，采用赋值的方法复制
+        let arr1_a = [1, 2, 3, 4]
+        let arr1_b = arr1_a
+        console.log(arr1_a)
+        console.log(arr1_b)
+
+        // 对被复制的数组进行push操作
+        arr1_b.push(5)
+        console.log(arr1_a)
+        console.log(arr1_b)
+            // 结果就是二者都改变了
+
+        // 再来一次，使用不同的方法改变
+        let arr2_a = [1, 2, 3, 4]
+        let arr2_b = arr2_a
+        console.log(arr2_a)
+        console.log(arr2_b)
+
+        // 直接把一个新数组赋值给被复制数组
+        arr2_b = [1, 2, 3, 4, 5]
+        console.log(arr2_a)
+        console.log(arr2_b)
+            // 发现原来的数组没有变，说明arr2_b的改变其实是换了一个新的内存地址
+            // 而arr1_b是在原来的内存地址上改变
+            // 所以与之共内存地址的arr1_a也要跟着修改
+    </script>
+</body>
+
+</html>

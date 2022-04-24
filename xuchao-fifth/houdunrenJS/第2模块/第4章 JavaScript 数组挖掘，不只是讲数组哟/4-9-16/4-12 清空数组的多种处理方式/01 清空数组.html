@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 令原数组为空数组
+        let arr1 = [1, 2, 3, 4, 5]
+        arr1 = []
+        console.log(arr1)
+
+        // 令数组长度为0
+        let arr2 = [1, 2, 3, 4, 5]
+        arr2.length = 0
+        console.log(arr2)
+
+        // splice只填一个参数表示从这一位开始全部截取
+        // 填0就表示全部都截取，则剩下的就是一个空数组
+        let arr3 = [1, 2, 3, 4, 5]
+        let a = arr3.splice(0)
+        console.log(arr3)
+        console.log(a) // 等于原数组
+
+
+
+        // 这个是利用布尔的隐式转化
+        // 数组(包括空数组)隐式类型转化都是true
+
+        let arr4 = [1, 2, 3, 4, 5]
+        console.log(Boolean(arr4))
+        console.log(Boolean([].pop()))
+
+        // 而undefined隐式转化是false
+        // 但是arr.pop()种，当arr是空数组时，再执行就会成为undefined
+        console.log([].pop())
+
+
+        while (arr4.pop()) {
+            console.log(1)
+            console.log(arr4)
+        }
+        console.log(arr4)
+    </script>
+</body>
+
+</html>
