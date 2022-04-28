@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 迭代器中的values和keys类似，后者是取到角标和是否完成了迭代的状态
+        // 前者是取到数组中的具体的值和这个值是否完成迭代的状态
+
+        let arr = ['houdunren', 'hdcms']
+
+        let value = arr.values()
+        console.log(value)
+
+        console.log(value.next())
+        console.log(value.next())
+        console.log(value.next())
+    </script>
+</body>
+
+</html>

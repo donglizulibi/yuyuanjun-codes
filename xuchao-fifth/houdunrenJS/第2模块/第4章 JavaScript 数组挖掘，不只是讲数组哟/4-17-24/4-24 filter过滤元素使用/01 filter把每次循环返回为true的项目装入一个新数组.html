@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let lessons = [{
+            title: "媒体查询响应式布局",
+            category: "css"
+        }, {
+            title: "flex 弹性盒模型",
+            category: "css"
+        }, {
+            title: "GRID 栅格系统",
+            category: "mysql"
+        }];
+
+        let arrCol = lessons.filter(function(item, index, arr) {
+            console.log(item)
+            console.log(index)
+            console.log(arr)
+            console.log(" ")
+            if (item.category == "css") {
+                return true
+            }
+            // 简化
+            // return item.category == "css"
+        })
+        console.log(arrCol)
+
+        // 与find函数的区别是，find是找到了第一个就返回，返回的是符合条件的单个项目
+        // 而filter是会把数组中所有符合条件的都找到，放到一个数组里，返回的也就是一个数组
+    </script>
+</body>
+
+</html>

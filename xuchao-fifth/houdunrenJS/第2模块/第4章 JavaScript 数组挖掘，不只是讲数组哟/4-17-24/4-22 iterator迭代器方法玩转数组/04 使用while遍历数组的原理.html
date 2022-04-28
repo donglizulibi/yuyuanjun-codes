@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 以角标为例子
+
+        let arr = ['houdunren', 'hdcms']
+        let keys = arr.keys()
+        console.log(keys)
+
+        // 现在创建一个生成数组角标的函数
+        function index(key) {
+            let {
+                value,
+                done
+            } = key.next()
+
+            return {
+                value,
+                done
+            }
+        }
+
+        // 当函数执行第一遍的时候，value = 1, done = false
+        console.log(index(keys))
+
+        console.log(index(keys))
+
+        // 当函数第三遍，也就是数组遍历完成的时候，
+        // value = undefined, done = true
+        console.log(index(keys))
+        console.log(index(keys).value == undefined)
+
+        // 这个函数的存在，就是使 let { value, done } = key.next() 不断执行
+        // 另外，由于这条语句在while循环条件内部，且每执行一次
+        // 对象内部的属性值就会改变，那么while终止的条件就可以设置为某一个变化阶段
+        // 比如 value = undefined, done = true
+        // 可以终止循环，此时数组也遍历完成
+
+        let i = 10
+        while (i-- > 0) {
+            console.log(i)
+        }
+    </script>
+</body>
+
+</html>

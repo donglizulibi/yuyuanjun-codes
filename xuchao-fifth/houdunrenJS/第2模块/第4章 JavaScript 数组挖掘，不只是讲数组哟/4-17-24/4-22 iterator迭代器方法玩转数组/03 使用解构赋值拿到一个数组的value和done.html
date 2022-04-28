@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // keys
+        let arr1 = ["hdcms", "houduneren"]
+        let keys = arr1.keys()
+        let {
+            value,
+            done
+        } = keys.next()
+        console.log(keys.next())
+        console.log(value, done)
+
+
+        // values 同理
+        // 这个方法的关键是建立变量的时候
+        // 对象里面的变量名称要跟key.next()的属性名相同
+
+        // 如
+        let {
+            a,
+            b
+        } = {
+            a: 123,
+            b: 345
+        }
+        console.log(a, b)
+    </script>
+</body>
+
+</html>

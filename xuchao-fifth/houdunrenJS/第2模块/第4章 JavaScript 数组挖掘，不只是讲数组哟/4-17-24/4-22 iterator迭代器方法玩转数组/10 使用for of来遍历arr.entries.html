@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 只能遍历出value的那个数组，不能遍历出迭代完成状态done
+        let arr = ["hdcms", "houdunren"];
+        let entries = arr.entries();
+        console.log(entries)
+
+        for (const value of arr.entries()) {
+            console.log(value)
+                //这里的value就是打印出两个数组
+        }
+
+        for (const [a, b] of arr.entries()) {
+            console.log(a, b)
+                // 在for循环中同时赋值a，b
+        }
+    </script>
+</body>
+
+</html>

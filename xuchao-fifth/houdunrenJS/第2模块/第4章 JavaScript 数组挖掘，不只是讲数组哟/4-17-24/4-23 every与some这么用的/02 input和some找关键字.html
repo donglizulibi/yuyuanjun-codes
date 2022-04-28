@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="title">
+    <span></span>
+    <script>
+        let keywords = ['php', 'js']
+        let title = document.querySelector("[name='title']")
+        console.log(title) // 拿到input标签
+
+        title.addEventListener("keyup", function() {
+
+            // 这里首先是遍历数据库的数组
+            // 遍历出的每一项都会被拿来跟input的输入项目进行indexOf操作
+            // 如果找到了，也就是说 != -1 这个操作是成立的
+            // res就会返回true，在后面的if判断中就会是一个空字符
+            // 而且这是一个键盘抬起事件，所以信息是即时返回的
+
+            const res = keywords.some(keyword => {
+                // return title.value.indexOf(keyword) != -1;
+                return this.value.indexOf(keyword) != -1;
+            });
+
+
+            if (res === false) {
+                document.querySelector("span").innerHTML = `必须包含${keywords.join(",")}关键词`
+            } else {
+                document.querySelector("span").innerHTML = ""
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 在元素中切换类名
+        也就是说，toggle必须跟class和classList一起使用
+
+        说白了就是，点一下就添加这个样式名称，再点一下就删除
+    -->
+    <style>
+        .haha {
+            color: red;
+        }
+        
+        span:hover {
+            /* color: blue; */
+            cursor: pointer;
+        }
+    </style>
+    <span>hahaha</span>
+    <script>
+        let span = document.querySelector("span")
+        span.addEventListener('click', function() {
+            span.classList.toggle("haha")
+        })
+    </script>
+</body>
+
+</html>

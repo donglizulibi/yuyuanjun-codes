@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>houdunren.com</div>
+    <script>
+        // 给dom标签内容中的每个字符串都加一个span
+        // 首先需要把dom中的内容取出来，再遍历
+        // 在遍历的过程中给每个字符都加上span，放到一个新数组中
+        // 再把这个数组连接，变成一个长字符串
+        // 最后放回到div标签里面
+
+        const div = document.querySelector('div')
+        let strArr = []
+        for (let i of div.innerHTML) {
+            strArr.splice(strArr.length, 0, `<span>${i}</span>`)
+        }
+        div.innerHTML = strArr.join('')
+
+        // reduce方法
+        // const div = document.querySelector("div")
+        // let divArr = [...div.innerText]
+        // let newArr = divArr.reduce(function(arr, cur, index) {
+        //     console.log(index)
+        //     cur = `<span>${cur}</span>`
+        //     arr.push(cur)
+        //     return arr
+        // }, [])
+        // newArr.join("")
+        // console.log(newArr.join(""))
+        // div.innerHTML = newArr.join("")
+    </script>
+</body>
+
+</html>

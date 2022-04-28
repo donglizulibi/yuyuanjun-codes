@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = ["hdcms", "houdunren"];
+        let values = arr.values();
+        let keys = arr.keys();
+
+        // === 的优先级要高于 &&，所以前面一部分要用（）包起来
+
+        while (({ // 取数组中的项目的值
+                value,
+                done
+            } = values.next()) && done === false) {
+            console.log(value)
+        }
+
+        // 数组遍历完成的时候，value = undefined，所以value !== undefined不成立
+        // 所以while的&&条件不成立，循环终止
+
+        while (({ // 取数组中的项目的角标
+                value,
+                done
+            } = keys.next()) && value !== undefined) {
+
+            console.log(value)
+        }
+        // console.log(keys.next())
+    </script>
+</body>
+
+</html>

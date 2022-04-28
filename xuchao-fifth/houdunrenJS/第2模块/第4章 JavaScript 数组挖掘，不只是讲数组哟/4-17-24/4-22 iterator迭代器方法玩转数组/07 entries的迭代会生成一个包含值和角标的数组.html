@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 另一个生成可迭代对象的方法entries()
+        // 只要是生成了可迭代对象，就可以使用next
+        let arr = ["hdcms", "houdunren"];
+        let entries = arr.entries();
+
+        // entries使用next里面也是生成一个包含value和done的对象
+        // 不过其中的value是一个数组，里面包含角标的数组的值
+        console.log(entries.next())
+        console.log(entries.next())
+        console.log(entries.next()) // 迭代完成的情况是一样的
+    </script>
+</body>
+
+</html>

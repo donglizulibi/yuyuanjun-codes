@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在函数的形参上用展开语法
+        function show1(...args) {
+            console.log(args)
+        }
+
+        // 实参可以是多个数据的数据序列，函数内部的args会是一个数组
+        show1("houdunren", 2010)
+
+
+
+        // 在函数的形参上使用解构语法
+        function show2([name, year]) {
+            console.log(name)
+            console.log(year)
+        }
+
+        // 此时实参也要放在一个数组里
+        show2(["houdunren", 2010])
+    </script>
+</body>
+
+</html>

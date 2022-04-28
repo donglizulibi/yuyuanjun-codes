@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 另一个例子，来观察map会不会改变全是值类型项目的原数组
+
+        // 使用map操作字符串，给数组中每个字符串都加个后缀
+        let arr1 = ["hdcms", "houdunren"]
+        let arr2 = arr1.map(function(item) {
+            item = item + "haha"
+            return item
+
+        })
+        console.log("原数组", arr1) // 原数组的项是值类型，不会改变原数组
+        console.log("返回的数据", arr2)
+            // 如果map里面不加return，也会返回一个数组，放两个undefined进去
+
+        // 与forEach的对比
+        // 这种方法无法实现期望效果
+        let arr3 = ["hdcms", "houdunren"]
+        let arr4 = arr3.forEach(function(item) {
+            // return item + "haha"
+            item = item + "haha"
+        })
+        console.log("原数组", arr3) // 原数组也不改变
+        console.log("返回的数据", arr4)
+            // 不管加不加return 都不会返回任何东西
+
+
+        // 综上，要想实现给数组中每一项加后缀的话
+        // map可以直接使用返回，但是需要加return
+
+
+        // 但是forEach需要在外面新建一个空数组再依次往里添加
+        let arr5 = ["hdcms", "houdunren"]
+        let arr6 = []
+        arr5.forEach(function(item) {
+            arr6.splice(arr6.length, 0, item + 'haha')
+        })
+        console.log("原数组", arr5)
+        console.log("返回的数据", arr6)
+    </script>
+</body>
+
+</html>

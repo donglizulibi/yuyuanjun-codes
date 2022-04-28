@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 所以Object.assign是把后面的对象的合并到第一个对象里面
+        // 如果把Object.assign赋值给其他变量
+        // 这个变量应该与Object.assign内部的第一个对象相等
+
+        // 原对象不会变化
+        let a = {
+            n: 1,
+            m: 2
+        }
+        let b = Object.assign({
+            k: 3
+        }, a)
+        console.log(a)
+        console.log(b)
+
+        // 位置一换，原对象会发生变化
+        let c = {
+            n: 1,
+            m: 2
+        }
+        let d = Object.assign(c, {
+            k: 3
+        })
+        console.log(c)
+        console.log(d)
+    </script>
+</body>
+
+</html>

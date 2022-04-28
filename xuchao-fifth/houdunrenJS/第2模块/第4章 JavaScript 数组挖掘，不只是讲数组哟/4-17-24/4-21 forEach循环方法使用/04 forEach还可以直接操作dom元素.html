@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .disable {
+            color: #ddd
+        }
+    </style>
+    <ul>
+        <li>hahaha</li>
+        <li>二楼没水啦</li>
+    </ul>
+    <script>
+        let lis = document.querySelectorAll("ul li");
+        console.log(lis)
+        console.log(typeof lis) // dom节点对象
+
+        // 拿到dom节点对象之后，使用forEach是可以直接进行遍历的
+        // 所以这个是forEach除了遍历数组之外的另一个功能
+        // 其他遍历数组的方法中，如map之类
+        // 还需要先把dom节点对象转成数组，再进行操作
+        lis.forEach(function(item) {
+            console.log(item)
+            item.addEventListener('click', function() {
+                this.classList.toggle("disable")
+            })
+        })
+    </script>
+</body>
+
+</html>

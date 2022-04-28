@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 继push+展开式、创建新数组+展开式、for循环+push之后
+        // 也可以用concat合并数组
+
+        let arr = ["hdcms", "houdunren"]
+
+        // 把hd和cms合并到arr中
+        let hd = [1, 2, 3, 4, 5]
+        let cms = ["shop", "hahah"]
+
+        // concat里面可以放多个数组，也可以直接放字符串或者数字或者对象
+        // 但是一旦放数组，就会自动解构成数字序列
+        let arr1 = arr.concat(hd, cms, 'haha', 1, [22, 11], {
+            a: 1,
+            b: 2
+        })
+        console.log(arr1)
+
+        // 不会改变原数组
+        console.log(arr)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .color {
+            color: red;
+        }
+    </style>
+    <div>houdunren.com</div>
+    <script>
+        // 给span加上鼠标滑过事件
+        // 当鼠标滑过的时候，可以给span加上color样式
+
+        const div = document.querySelector("div")
+        let divArr = [...div.innerText]
+
+        // reduce没有return，pre没有意义，就是纯粹的遍历操作
+        divArr.reduce(function(pre, cur, index) {
+            console.log(pre, cur, index)
+
+            // 下面的短路逻辑就相当于这个
+            // 因为这里是用appendChild的方法，所以在刚开始进入循环之后
+            // 需要先把div里面的字符串清空，然后再进行生成span标签的操作
+            // 而判断是否是循环开始，也即是第一次遍历的时候
+            // 就是index = 0 的时候，所以把pre的初始值设置为0
+
+            // if (pre == index) {
+            //     div.innerHTML = ""
+            // }
+
+            pre == index && (div.innerHTML = '');
+
+            let span = document.createElement("span")
+            span.innerHTML = cur;
+            div.appendChild(span);
+
+            // 给每个span都加上鼠标滑过事件
+            span.addEventListener("mouseover", function() {
+                this.classList.add("color")
+            })
+        }, 0)
+    </script>
+</body>
+
+</html>

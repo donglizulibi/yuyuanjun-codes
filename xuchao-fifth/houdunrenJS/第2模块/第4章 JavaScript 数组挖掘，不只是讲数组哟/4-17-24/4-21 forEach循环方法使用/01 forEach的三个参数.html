@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let lessons = [{
+            title: "媒体查询响应式布局"
+        }, {
+            title: "flex 弹性盒模型"
+        }, {
+            title: "GRID 栅格系统"
+        }];
+
+        // 这里forEach里面的操作就是遍历数组，在原数组上进行修改
+        // 使得数组里面的属性值都只保留前面两位
+
+        // 将forEach的返回值放到一个变量里，看看有什么结果
+        let aaa = lessons.forEach(function(item, index, lessons) {
+            console.log(item); //第一个参数循环的每一项
+            console.log(index); //第二个参数循环的每一个角标
+            console.log(lessons); //第三个参数是数组本身
+
+            item.title = item.title.substr(0, 2)
+                // return 1
+        })
+
+        console.log(lessons)
+        console.log("aaa", aaa)
+            //这里打印的是undefined，说明forEach方法不会返回一个值
+    </script>
+</body>
+
+</html>

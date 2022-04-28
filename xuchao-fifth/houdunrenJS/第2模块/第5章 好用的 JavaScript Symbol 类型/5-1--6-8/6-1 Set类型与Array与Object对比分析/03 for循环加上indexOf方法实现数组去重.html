@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // for循环加indexOf
+        let arr1 = [1, 2, 3, 4, 4, 4, 5, 5, 5, 6, 7, 7]
+
+        // 这个主要思路就是创建一个空数组，再遍历原数组的每一项
+        // 将每一项跟建立的数组比较，如果建立的数组没有这一项，就添加进去
+        let newArr1 = []
+        for (let i = 0; i < arr1.length; i++) {
+            if (newArr1.indexOf(arr1[i]) == -1) {
+                newArr1.push(arr1[i])
+            }
+        }
+        console.log(newArr1)
+
+
+        // reduce方法复习
+        let newArr2 = arr1.reduce((pre, val) => {
+            if (!pre.includes(val)) {
+                pre.push(val)
+            }
+            return pre
+        }, [])
+        console.log(newArr2)
+    </script>
+</body>
+
+</html>

@@ -10,10 +10,13 @@
 
 <body>
     <script>
+        // 首先是字符串也有length属性，也可以使用展开式语法
         console.log(...
-            "hdcms")
+                "hdcms") // "h", "d", "c", "m", "s"
 
         const [...array] = "hdcms"
+
+        // 相当于
         // const [...array] = ["h", "d", "c", "m", "s"]
         console.log(array)
     </script>

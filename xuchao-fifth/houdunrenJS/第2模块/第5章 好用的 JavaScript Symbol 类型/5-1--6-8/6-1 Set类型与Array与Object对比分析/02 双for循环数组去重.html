@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 3, 4, 4, 5]
+
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = i + 1; j < arr.length - 1; j++) {
+                console.log(i, j)
+
+                if (arr[i] == arr[j]) {
+
+                    console.log(i, j)
+
+                    // 这里的j--或许可以这样理解
+                    // 假如一个数组中出现连续三个相同的值
+                    // 当外层for循环的i遍历到三个中的第一个时
+                    // j遍历到第二个，splice语句删去了第二个
+                    // 此时数组的长度减少一位，如果没有这条j--语句
+                    // 第二层for循环的j++会使得j加一位
+                    // 这样就会直接跳过刚刚三个相同值的第三个，使之无法遍历到
+                    // 所以解决办法就是在找到了相同值之后
+                    // 就让j--，使之接到之前的位置继续遍历
+                    arr.splice(j, 1)
+                    j--
+                }
+
+                console.log(arr)
+            }
+        }
+
+        console.log(arr)
+    </script>
+</body>
+
+</html>

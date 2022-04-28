@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义个一个对象，里面包含可以调用map方法的函数
+        // 观察map的this参数
+
+        let obj = {
+            name: 'haha',
+            arr: [1, 2, 3, 4, 5],
+            run: function() {
+                console.log(this) // 这个this指向的环境和map的this参数指向的环境是一样的
+
+                // map会把内部循环中的return放到一个数组里
+                // 所以最外层的return其实就是在收集数组
+                // 调用函数的时候也是返回这个数组
+                return this.arr.map(function(item) {
+                    // 这个环境里的this就是map的this参数指向的环境
+                    console.log(item)
+                    console.log('inner', this)
+                    return this
+                }, this)
+            }
+        }
+        console.log('直接传this的情况', obj.run())
+            // 最后返回包含五个对象环境的数组
+
+        // 第二个参数也可以是任何一个值，对象数组数值字符串函数都可以
+        // 传递的这个值到map数组里面就会赋值给this
+
+        // 可以先定义两个环境看看
+        // let objthis = function() {}
+        let objthis = {
+            a: '我好饿'
+        }
+
+        let obj1 = {
+            name: 'haha',
+            arr: [1, 2, 3, 4, 5],
+            run: function() {
+                console.log(this)
+                return this.arr.map(function(item) {
+                    console.log('inner', this)
+                    return this
+                }, objthis)
+            }
+        }
+
+        console.log(obj1.run())
+    </script>
+</body>
+
+</html>

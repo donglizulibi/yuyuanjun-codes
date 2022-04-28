@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // map的学名是叫数组的映射操作，意思相当于取复印文件
+        // 复印件可以根据自己的需要进行修改
+        // 至于原文件会不会被改变，要看是不是引用类型
+
+        let arr1 = [1, 2, 3, 4]
+
+        // map中return的规则是，如果把数组的map存到一个新变量里面
+        // 则这个变量会是一个数组，每次map遍历return的值都会变成数组里面的项目
+        // return什么就会把什么放到这个数组里
+        let arr2 = arr1.map(function(item) {
+            item = item + 10
+            return item
+                // return 1
+                // return true
+        })
+        console.log(arr1) // 原来的数组不会改变
+        console.log(arr2)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果查找到了，就返回这个元素在数组中的角标
+        // 如果没有查到到，则返回-1
+        // indexOf遵循就近原则
+        let arr1 = [1, 2, 3, 4, 2, '9']
+        console.log(arr1.indexOf(2))
+        console.log(arr1.indexOf(9))
+            // 严格类型匹配，查找一个不存在的元素
+
+        // 从右侧开始查找，也是符合就近原则
+        console.log(arr1.lastIndexOf(2))
+
+        // indexOf 和 lastIndexOf 还有第二个参数，表示查找的起始点
+        // 假如从左到右，从2位开始查找数值2，第一个2被跳过，返回第二个2的位置
+        console.log(arr1.indexOf(2, 2))
+
+        // 从右到左也是一样
+        console.log(arr1.lastIndexOf(2, 3))
+    </script>
+</body>
+
+</html>

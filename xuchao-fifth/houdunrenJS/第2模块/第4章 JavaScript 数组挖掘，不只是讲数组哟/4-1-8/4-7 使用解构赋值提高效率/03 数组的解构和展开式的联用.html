@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 当只想取数组中的某一个值的时候，可以用逗号占位
+        let [, b] = ['houdunren', 'hdcms']
+        console.log(b)
+
+        // 展开式和解构联用，后面的这个args会成为一个数组
+        let [name, ...args] = ['houdunren', 'cms', 2010]
+        console.log(args) // 数组
+
+        // 把数组解构到另一个数组里形成新数据
+        let a = ['haha', ...args]
+        console.log(a)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //forEach也是只能改变数组里面引用类型里面的数据，而不能改变值类型
+        let arr = [11, 22, 33, 44]
+
+        arr.forEach(function(item) {
+            console.log(item)
+            item = item + 10
+        })
+
+        // for (let i in arr) {
+        //     arr[i] = arr[i] + 10
+        // }
+        console.log(arr)
+    </script>
+</body>
+
+</html>
