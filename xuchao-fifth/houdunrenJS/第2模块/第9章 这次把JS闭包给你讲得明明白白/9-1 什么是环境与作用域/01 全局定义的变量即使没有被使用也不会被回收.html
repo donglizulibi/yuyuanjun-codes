@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>全局定义的变量即使没有被使用也不会被回收</button>
+    <script>
+        let title = 'houdunren'
+
+        function hd() {
+            alert(title)
+        }
+        document.querySelector('button').addEventListener('click', hd)
+
+        // 在这个例子中，title变量是不确定什么时候会被调用的
+        // 所以会一直保留
+
+        // 除非把浏览器关闭，就可以人为回收
+
+        // php中没有全局变量
+    </script>
+</body>
+
+</html>

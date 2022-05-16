@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <button>houdunren</button>
+    <button>hdcms</button>
+    <script>
+        let btns = document.querySelectorAll('button')
+        btns.forEach(item => {
+            let left = 1
+            item.addEventListener('click', () => {
+                setInterval(() => {
+                    left += 1
+                    item.style.left = left + 'px'
+                    console.log(left)
+                }, 100)
+                console.log(item.style.left)
+                console.log(item)
+            })
+        })
+
+        // 产生抖动的原因是因为变量定义在点击事件的函数里
+        // 则每点击一次都会产生新的定时器，并将自身变量复位到定义时的数值
+        // 多个定时器共同作用，交替执行，则会产生抖动
+
+        // 这个例子虽然解决了抖动，但是如果在按钮标签往右边走的途中再点击一下
+        // 会出现按钮标签越来越快的现象
+        // 其原因是多个定时器共同给点击事件外部的left变量增加值
+        // 比如点击一次的时候是每0.1秒加1，假如卡点再点击一次，就变成0.1变之内加2
+        // 所以会越来越快
+    </script>
+</body>
+
+</html>

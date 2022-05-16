@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 数组部分
+        let arr = ['a', 'b', 'c', 'd']
+
+        // 使用for in遍历数组，key是数组的角标
+        for (let key in arr) {
+            console.log(key)
+        }
+
+        // 使用for of遍历数组，key是数组的项目
+        for (let key of arr) {
+            console.log(key)
+        }
+
+        // 对象部分
+        let obj = {
+            m: 123,
+            n: 234,
+            s: 345
+        }
+
+        // 使用for in遍历对象，遍历出来属性名，如果需要属性值则还需要把原对象加上
+        for (let key in obj) {
+            console.log(key)
+        }
+
+        // obj无法直接使用for of遍历 
+        // for (let key of obj) {
+        //     console.log(key)
+        // }
+        // 只能换一种方法
+        // for (let key of Object.keys(obj)) {  // 遍历出属性名的方法
+        // for (let key of Object.values(obj)) { // 遍历出属性值的方法
+        for (let [key, value] of Object.entries(obj)) { // 两个都遍历出来的方法
+            console.log(key, value)
+        }
+
+        // 字符串的部分
+        // 遍历出字符的角标
+        let str = 'asdfdsgsd'
+        for (let key in str) {
+            console.log(key)
+        }
+        // 遍历出各个字符
+        for (let key of str) {
+            console.log(key)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 建立一个Map对象
+        let map = new Map()
+
+        // 设立一个对象，将这个对象设为Map对象的键值对的键名
+        let obj = {
+            name: '后盾人'
+        }
+        map.set(obj, "houdunren.com")
+
+        // 使用delete删掉这个键值对
+        console.log(map.delete('abc')) // 删一个不存在的属性，返回false
+        console.log(map.delete(obj)) // 返回布尔值true
+        console.log(map) //删掉键名后，整个键值对都没有了
+
+        // Map对象中键值对的键名重复的情况
+        map.set("name", "houdunren")
+        map.set("name", "haha") // 跟前面的键名一样，会覆盖掉上一个
+        console.log(map)
+
+        // has的用法，判断是否有这个键名 
+        console.log(map.has("name"))
+            // 返回布尔值
+
+        // 全部删除
+        console.log(map.size)
+        map.clear()
+        console.log(map)
+            // 清除之后里面只变成size:0
+    </script>
+</body>
+
+</html>

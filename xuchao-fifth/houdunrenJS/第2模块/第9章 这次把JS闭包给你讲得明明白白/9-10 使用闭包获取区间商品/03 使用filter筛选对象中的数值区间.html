@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用filter筛选对象中的数值区间
+        // 筛选出价格在某个区间的商品
+
+        let arr = [{
+            title: 'js',
+            click: 100,
+            price: 10
+        }, {
+            title: 'css',
+            click: 100,
+            price: 200
+        }, {
+            title: 'java',
+            click: 100,
+            price: 20
+        }, {
+            title: 'php',
+            click: 100,
+            price: 90
+        }, {
+            title: 'c',
+            click: 100,
+            price: 100
+        }]
+
+        // 这个例子也是把范围的区间的实参形成闭包的数据
+
+        function between(a, b) {
+            return function(v) {
+                return v.price >= a && v.price <= b
+            }
+        }
+        console.log(arr.filter(between(20, 100)))
+    </script>
+</body>
+
+</html>

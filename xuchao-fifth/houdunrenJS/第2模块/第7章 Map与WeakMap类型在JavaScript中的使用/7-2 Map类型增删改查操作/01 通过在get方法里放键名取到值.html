@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义一个Map类型
+        let map = new Map();
+
+        // 定义一个对象，使用set添加键值对，将对象设置成键名
+        let obj = {
+            name: '后盾人'
+        };
+        map.set(obj, "houdunren");
+
+        // 使用get取到键值对中的键值
+        console.log(map.get(obj)) //把键名放在括号里，取到键值
+
+        // 如果属性名是一个对象，则取这个属性名的属性值的时候，要用这个对象的名称
+        // 其原因是因为在get里面放的这个对象和一开始定义的那个对象
+        // 不是一个内存地址，这种做法相当于放了一个新的对象进去
+        // 所以这样取是取不到的，返回undefined
+        console.log(map.get({
+            name: '后盾人'
+        }))
+    </script>
+</body>
+
+</html>

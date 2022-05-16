@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function show() {
+            let url = 'hdcms'
+
+            function hd() {
+                let site = 'houdunren'
+            }
+            console.log(site)
+        }
+
+        // 这里在执行函数函数之后，打印内部函数的变量的语句还是会报错
+        // 所以每个函数都有每个函数内部的作用域 
+        show()
+    </script>
+</body>
+
+</html>

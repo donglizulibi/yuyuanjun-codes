@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先还是创建一个引用类型数据，此时这个数据被调用了一次
+        let hd = {
+            name: '后盾人',
+            age: 19
+        }
+
+        // 再创建另一个变量来复制这个引用类型
+        let edu = hd; // 此时这个引用类型被调用两次
+
+        // 然后创建一个空的WeakSet数据
+        let set = new WeakSet()
+
+        // 将引用类型数据放进去，此时如果这个引用类型数据是放在数组里
+        // 则该数据会被调用三次
+        // 但因为WeakSet是一个弱引用类型，所以即使放了一个引用类型数据进去
+        // 也不算被调用，到此，还是算被调用两次
+
+        set.add(hd)
+        set.add(edu) // WeakSet会把重复的项目去掉，所以下面打印出来的结果还是只有一项
+        console.log(set)
+
+        // 因为全局只有两个地方调用这个数据，现在把两个变量设为空，让数据消失
+        edu = null
+        hd = null
+
+        // 由于没有变量引用数据，系统会启动垃圾回收机制
+        // 但系统清空数据的时候不会通知WeakSet
+        // 所以此时WeakSet还有一个引用类型的格式在里面，虽然没有具体的值
+        // 打印一下
+        console.log(set)
+
+
+        setTimeout(function() {
+            console.log(set)
+        }, 2000)
+
+        // 由于弱引用类型里面的数据个数可能不符合实际 
+        // 所以WeakSet没有循环values keys 或者 for of
+        //  和size之类的操作
+    </script>
+</body>
+
+</html>

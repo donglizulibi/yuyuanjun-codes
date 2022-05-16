@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var就不区分块，在一个块里面执行全局变量
+        for (var j = 1; j <= 4; j++) {
+            console.log('定时器之外的var', j)
+            setTimeout(() => {
+                console.log('var的情况', j)
+            }, 5000);
+        }
+
+        // for循环中的j统一定义到全局window中，所以在循环结束后可以打印出来
+        console.log(window.j)
+        console.log(j)
+
+        // 打印结果是先出现1234，在五秒之后打印四个5
+        // 可以从第一遍遍历开始，首先var创建了j = 1，执行一次j的打印
+        // 第一次遍历中的定时器中的打印j也开始启动，此时定时器的j应该是1
+
+        // 然后进入到第二次遍历，var创建了j = 2，由于var没有块级作用域
+        // 所以这个j = 2会覆盖第一次遍历的中的那个已经开始启动
+        // 但是没有实现的定时器中的j遍历，此时全局的j都等于2
+
+        // 到第四次遍历，照例执行了定时器上面的打印j，变成j = 4
+        // 这四次遍历的j的打印几乎都是在瞬间且同时发生的，且都在第一次定时器之前
+
+        // 然后准备开始第五次遍历的时候，j = 5，不符合遍历启动条件，所以遍历终止
+        // 此时全局的j就是等于5，前面四次遍历开启的定时器中的j也变成了5
+        // 所以在五秒后会打印四个5
+    </script>
+</body>
+
+</html>

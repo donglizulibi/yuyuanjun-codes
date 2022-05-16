@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 由于Symbol在对象中作为属性名时不可被遍历的特性
+        // 可以用其来保护构造函数中的私有属性
+
+        let symbol = Symbol('这是一个Symbol')
+        class User {
+            constructor(name) {
+                this.name = name
+                this[symbol] = 'houdunren.com'
+            }
+            getName() {
+                return `${this.name}-${this[symbol]}`
+            }
+        }
+        let lisi = new User('lisi')
+        console.log(lisi.getName())
+        console.dir(lisi) // 创建实例之后，Symbol的属性也会在实例当中
+
+        // 使用for of不能被遍历到
+        for (let [key, value] of Object.entries(lisi)) {
+            console.log(key, value)
+        }
+
+        // 使用Reflect.ownKeys可以遍历所有属性
+        for (let key of Reflect.ownKeys(lisi)) {
+            console.log(key, lisi[key])
+        }
+    </script>
+</body>
+
+</html>

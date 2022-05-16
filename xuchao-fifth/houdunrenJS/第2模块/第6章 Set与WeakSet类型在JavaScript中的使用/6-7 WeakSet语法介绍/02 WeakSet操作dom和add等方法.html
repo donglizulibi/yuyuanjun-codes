@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <script>
+        // 把标签对象添加到WeakSet里面
+        let nodes = new WeakSet()
+        let divs = document.querySelectorAll("div")
+
+        // 遍历并添加
+        divs.forEach(function(item) {
+            nodes.add(item)
+        })
+
+        // 删除
+        nodes.delete(divs[0])
+
+        // 验证是否有这个值
+        console.log(nodes.has(divs[0]))
+        console.log(nodes)
+    </script>
+</body>
+
+</html>

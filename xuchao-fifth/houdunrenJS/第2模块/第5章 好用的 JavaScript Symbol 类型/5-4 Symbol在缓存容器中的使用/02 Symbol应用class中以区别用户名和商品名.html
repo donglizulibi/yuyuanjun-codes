@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在将来可能的应用比如，在vue中多个不同的功能的模块需要在一个容器中共享数据
+        // 并且可以往容器池中添加和删除数据
+        // 为避免重名，就会使用到Symbol
+
+
+        // 有一个用户名和一个购物车，两个对象中的名字都是apple 
+        let cart = {
+            name: "apple",
+            desc: "购物车",
+            key: Symbol()
+        }
+
+        let user = {
+            name: 'apple',
+            desc: '用户名',
+            key: Symbol()
+        }
+
+        class Cache {
+            static data = {}
+
+            // 定义两个参数，第一个参数的外部传过来的数据对象里的Symbol
+            // 第二个参数是这个数据对象本身
+            // 这个函数负责以第一个参数为属性名，第二个参数属性值
+            // 将数据存到类方法的内部参数里
+            // 且这样存储的数据是独一无二存在的
+            static set(key, value) {
+                this.data[key] = value
+
+            }
+            static get(key) {
+                return this.data[key]
+            }
+        }
+
+        // 假如这样存，这样取，就会出问题，实在不行就还是只能疯狂加前缀后缀
+        // Cache.set('apple',user)
+        // Cache.set('apple',cart)
+        // Cache.get('apple')
+
+        // 所以要用Symbol存一个独一无二的属性名
+        Cache.set(user.key, user)
+        Cache.set(cart.key, cart)
+
+        console.log(Cache.data)
+
+        console.log(Cache.get(user.key))
+        console.log(Cache.get(cart.key))
+
+        // 综上，Symbol的使用是
+        // 1 某个属性值的形式存在一个对象中，保证整个对象的独一无二
+        // 2 存储的这个属性值成为了后续调用整个对象的名称
+    </script>
+</body>
+
+</html>

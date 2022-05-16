@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function show() {
+            let timer = null
+
+            return function() {
+                console.log(timer)
+
+                // 如果timer存在的话，就把它给清除
+                // 如果不存在的话，就给它赋值一个定时器
+                if (timer) {
+                    console.log(timer)
+                    clearTimeout(timer)
+                }
+                timer = setTimeout(() => {
+                    console.log(134)
+                }, 1000)
+            }
+        }
+
+        // 流程是这样的，show函数执行把内部函数赋值给a变量，使得成为一个带有闭包的函数体
+        // 第一次执行a函数，此时a函数内部的timer是null，不走if
+        // timer被赋值为一个定时器，一秒钟以后会执行
+
+        // 如果一秒钟之内不再次执行a函数，就直接执行定时器内部的操作就行了
+        // 但是如果在一秒钟之内又执行了一次a函数，此时的timer是第一次执行时创建的定时器
+        // 符合if的条件，（此时内部函数的打印定时器和if里面的打印定时器打印的都是1）
+        // 在if条件下把1号定时器清除，再走下面的操作，也就是再创建一个定时器
+
+        // 继续等待一秒，如果没有其他的操作，就执行定时器内部的函数体
+        // 如果还有重复操作，就再把之前的定时器清除掉
+
+        // 这样得以实现只执行最后一次操作
+
+        let a = show()
+        console.log(a)
+        a()
+        console.log('=====分割线=====')
+        a()
+        console.log('=====分割线=====')
+        a()
+        console.log('=====分割线=====')
+        a()
+        console.log('=====分割线=====')
+        a()
+            // 调用多次，只执行最后一次
+    </script>
+</body>
+
+</html>

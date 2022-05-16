@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 两个按钮都加了浮动，所以会重叠在一起 -->
+    <button>houdunren</button>
+    <button>hdcms</button>
+    <script>
+        let btns = document.querySelectorAll('button')
+        btns.forEach(item => {
+            item.addEventListener('click', () => {
+                let left = 1
+                    // console.log(left)
+                setInterval(() => {
+                    left += 1
+                    item.style.left = left + 'px'
+                    console.log(left)
+                }, 100)
+                console.log(item.style.left)
+                console.log(item)
+                    // item.style.left
+            })
+        })
+
+        // 一个按钮点击两次的话会产生抖动
+        // 这个抖动的形式是left重新变成了1，而上个定时器的left又没有消失
+        // 所以按钮元素向右移动的距离出现了偏差
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在js中，一个对象是不允许作为另一个对象的属性名的
+        // 比如在如下的例子中，编译器会自动把obj_0转化成字符串
+        let obj_0 = {
+            'hdcms': "haha"
+        }
+        let hd_0 = {
+            obj_0: 'houdunren'
+        }
+        console.log(hd_0)
+
+
+        // 如果还是需要将对象作为属性名可以加上中括号
+        // 其实还是把这个对象转成了字符串
+        let obj = {
+            "hdcms": "hahah"
+        }
+        let hd = {
+            [obj]: "我好困啊"
+        }
+        console.log(hd) // 无法显示obj，显示[object Object]
+        console.log(hd.obj) // 无法取到obj下的属性值，返回undefined
+
+        // 取到属性值的方法
+        console.log(hd[obj])
+        console.log(hd["[object Object]"])
+        console.log(hd[obj.toString()])
+    </script>
+</body>
+
+</html>

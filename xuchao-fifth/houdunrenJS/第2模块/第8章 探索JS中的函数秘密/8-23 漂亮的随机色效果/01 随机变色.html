@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            width: 50px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div>我好困</div>
+    <script>
+        // 要求设置一个构造函数，可以生成实例，传进去元素，使这个元素随机变色
+        function Color(elem) {
+            // 先设置elem属性接收外面传进来的elem
+            this.elem = elem
+
+            // 这里和下面的随机角标都没用使用this，但是课程里面都是用了this的
+            let colorArr = ['red', 'black', 'blue', 'pink']
+
+            // 然后就是定时器
+            this.get = function() {
+                // 这个this是指向实例化对象的，所以用一个bind来绑定这个this
+                console.log(this)
+                setInterval(function() {
+
+                    // 再设置一个在颜色列表中跳动的随机角标
+                    let colorIndex = Math.floor(Math.random() * colorArr.length)
+                    console.log(this)
+                    this.elem.style.backgroundColor = colorArr[colorIndex]
+                }.bind(this), 1000)
+            }
+
+        }
+        let div = new Color(document.querySelector('div'))
+        console.log(div)
+        div.get()
+    </script>
+</body>
+
+</html>

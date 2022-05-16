@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>我好饿</button>
+    <button>我好困</button>
+    <script>
+        let DomObj = {
+            site: '后盾人',
+
+            bindRun: function() {
+                let btns = document.querySelectorAll('button');
+                console.log(btns);
+                console.log('类方法下普通函数的this', this)
+
+                // 外箭里普
+                btns.forEach((item) => {
+                    console.log('类方法下箭头函数的普通函数的this', this) // DomObj对象
+                    item.addEventListener('click', function() {
+                        console.log('类方法下普通函数的箭头函数的普通函数的this', this)
+                            // button元素对象
+                    })
+                })
+            }
+        }
+        DomObj.bindRun()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px black solid;
+            width: 100px;
+        }
+        
+        .remove {
+            background-color: pink;
+            color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button>找div</button>
+    </div>
+    <script>
+        // 要求点击按钮在按钮旁边出现haha字样
+        // 思路就是点击button，找到button的父级
+        // 在这个父级之下创建一个span子级，里面加上文字
+
+        let button = document.querySelector('button')
+        button.addEventListener('click', (e) => {
+
+            // 找到父级元素
+            let div = e.target.parentElement
+            console.log(div)
+
+            // 创建span元素
+            let span = document.createElement('span')
+            span.innerHTML = 'haha'
+
+            // 添加进去，并改变父级的样式
+            div.appendChild(span)
+            div.classList.add('remove')
+        })
+    </script>
+</body>
+
+</html>

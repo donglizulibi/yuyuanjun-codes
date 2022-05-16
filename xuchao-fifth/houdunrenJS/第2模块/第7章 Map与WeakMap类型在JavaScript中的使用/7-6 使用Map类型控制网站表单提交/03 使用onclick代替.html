@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <span>接受协议：</span>
+        <input type="checkbox" name="agreement" error="请接受协议">
+        <span>我是学生：</span>
+        <input type="checkbox" name="student" error="网站只对学生开放">
+        <button onclick="post()">提交</button>
+    </div>
+
+
+    <script>
+        // checkbox的试验
+        // let checkbox = document.querySelector('[name=agreement]')
+        // console.log(checkbox.checked)
+        // checkbox.addEventListener('click', () => {
+        //     console.log(checkbox.checked)
+        // // 实现点击复选框之后，checked变成true
+        // })
+
+        // 
+        function post() {
+            let inputs = document.querySelectorAll('[error]')
+            let map = new Map()
+            console.log(inputs)
+
+            // 建立Map对象之后，把每个input当作键名存到Map对象中
+            // 此时的键值应该是一个对象
+            // 包含每个input标签的checked状态 和 错误提示消息
+            inputs.forEach((item) => {
+                map.set(item, {
+                    error: item.getAttribute('error'),
+                    status: item.checked
+                })
+            });
+
+            // 判断map的各个键值中的status状态，如果有任意一个是false，就返回这个键值中的error
+            // 如果都是true，就是执行跳转页面的操作
+
+            // 可以用every
+            console.log([...map]);
+            // let pass = [...map].every((item) => {
+            //     return item[1].status
+            // })
+
+            // console.log(pass)
+
+            // if (pass) {
+            //     location.href = 'https://www.baidu.com'
+            // } else {
+            //     return false
+            // }
+
+            // 以上代码可以简化为
+            if ([...map].every((item) => item[1].status)) {
+                location.href = 'https://www.baidu.com'
+            } else {
+                return false
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

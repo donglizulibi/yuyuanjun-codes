@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个跟上面的区别就是把内部的函数return出去
+
+        function hd() {
+            let n = 1;
+            return function sum() {
+                console.log(++n);
+                console.log("新的n是什么", n)
+            }
+            sum() // 上面return之后这个调用其实没有意义
+        }
+
+
+        console.log(hd())
+            // 这里打印的是函数体
+            // 加了return之后，函数体结束，hd里面的sum()就不执行了
+
+        // 如果需要再调用return出来的这个函数
+        // 需要再后面再加上一个括号
+        console.log('=====================================')
+        hd()()
+        hd()()
+        hd()()
+            // 连续调用三次，发现每次都是重开，和上面一节没有区别
+            // 还是一个函数每次调用都会重新开辟一个内存地址的原因
+
+        // 如果想保存hd里面的数据，需要新建一个变量，把这个函数体存起来
+        let a = hd();
+        console.dir(a)
+        console.log(typeof a)
+            // a是一个Function格式的变量，是一个引用类型
+
+
+        // 当函数的返回值是其内部的一个函数，里面所有的数据都会被保留
+        // 所以再跟把这个函数体加上括号调用这个函数的时候
+        // 这个函数还是会找初始父级函数内部的数据
+        // 所以a()会找到n = 1，并对其进行++n的操作，并可以打印出来
+
+        // let n = 123 // a()不会找全局的数据n
+        console.log('=====================================')
+        a();
+        console.log('=====================================')
+        a()
+        console.log('=====================================')
+        a()
+            // 这个结果是依次递增的，说明n这个数据被保存了
+            // 由于a是一个引用类型，所以a都是调用同一个内存地址
+            // 里面的数据也不会被销毁，反而会随着a函数内部的操作增加
+
+        // 当把函数赋值给第二个变量的时候，则开辟出了一个新的内存地址
+        console.log('=====================================')
+        let b = hd();
+        b() // 数据重新从2开始计数
+        b()
+
+        // 两个内存地址不同，但是内容相同的引用类型变量是不相等的
+        console.log('a和b是什么关系', a === b)
+    </script>
+</body>
+
+</html>

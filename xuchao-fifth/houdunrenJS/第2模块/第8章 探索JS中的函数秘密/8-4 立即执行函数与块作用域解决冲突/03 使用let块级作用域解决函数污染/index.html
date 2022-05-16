@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="4.1.js"></script>
+    <script src="4.2.js"></script>
+    <script>
+        // 和立即执行函数一样，也是把外部方法压入一个属性，或者称为方法库名称中
+        // 然后把这个属性或者方法库名称压到window中
+        // 但是要注意的一点，使用let的话，方法库里的函数声明方法
+        // 要采用匿名函数赋值给变量的方式
+
+        console.log(window.hasOwnProperty('js1'))
+        console.log(window.hasOwnProperty('js2'))
+        js1.hd();
+        js2.hd();
+    </script>
+</body>
+
+</html>

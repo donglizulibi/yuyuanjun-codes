@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 要求使用递归算法写一个计算阶层的函数
+        function fibonacci(num) {
+            if (num == 1) {
+                return 1
+            }
+            return num * fibonacci(num - 1)
+        }
+
+        console.log(fibonacci(4))
+
+        // 这个函数可以进行如下分解
+
+        // 1 当调用函数，并将实参数值4传入时
+        //   由于不满足if判断条件，所以转到下面的return
+        //   变成 4 * fibonacci(4 - 1)
+
+        // 2 在这里的返回值中由于又有调用的函数存在，所以需要继续计算
+        //   第二次调用的函数的实参是数值3，仍然不满足if判断条件
+        //   转到下面的return，fibonacci(4 - 1) 变成 3 * fibonacci(3 - 1)
+        //   则此时第一次调用的返回值变成4 * 3 * fibonacci(3 - 1)
+
+        // 3 由于返回值中又有调用的函数存在，参数是数值2，不满足if条件
+        //   fibonacci(3 - 1) 变成 2 * fibonacci(2 - 1)
+        //   第一次调用的返回值为4 * 3 * 2 * fibonacci(2 - 1)
+
+        // 4 仍然有调用的函数存在，参数是数值1，满足if条件，直接返回1
+        //   fibonacci(2 - 1) 变成 1
+        //   第一次调用的返回值为4 * 3 * 2 * 1
+        //   完成了阶层计算
+    </script>
+</body>
+
+</html>

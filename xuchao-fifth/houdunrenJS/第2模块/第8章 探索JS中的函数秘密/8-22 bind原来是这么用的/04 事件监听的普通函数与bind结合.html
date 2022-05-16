@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>后盾人</button>
+    <script>
+        // 这里用bind相当于新建一个函数，并且让这个函数处在包含url这个属性的对象环境里
+        // 且只有在事件监听触发的时候才执行
+        // 在这里事件监听里面只能用普通函数
+        // 所以取到元素标签也不能用this，只能用e.target，因为this的方向会改变
+        document.querySelector('button').addEventListener('click', function(e) {
+            console.log(this)
+                // 由于这里被bind改变了作用域，所以打印出来的this变成了绑定的内容
+            document.write(this.url + e.target.innerHTML)
+        }.bind({
+            // }.apply({
+            url: 'houdunren.com'
+        }))
+
+        // 如果把bind换成apply，则事件监听事件会立即执行，内部的this会找到url那个环境
+        // 而那个环境里又不存在e.target，所以会报错
+
+        // 箭头函数不能和bind apply 或 call 联合使用
+        // 因为箭头函数中this无法改变
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义两个对象环境
+        let lisi = {
+            name: 'lisi'
+        }
+        let wangwu = {
+            name: 'wangwu'
+        }
+
+        // call和apply的相同点
+        // 都是立即执行的函数
+
+        // 定义一个没有形参的构造函数
+        function User() {
+            console.log(this.name)
+        }
+
+        // 分别调用call和apply
+        User.call(lisi)
+        User.apply(wangwu)
+            // 二者都是只要调用，就能马上执行构造函数里的内容
+
+        // call和apply的不同点
+        // 关于构造函数实例化的时候实参传入方式的不同
+        // 定义一个有两个形参的构造函数
+        function Hd(url, web) {
+            this.url = url
+            this.web = web
+            console.log(this.url + '-' + this.name + '-' + this.web)
+        }
+
+        // call的传参方式是序列传入
+        Hd.call(lisi, 'hdcms', 'houdunren')
+
+        // apply的传入方式是把所有的实参放到一个数组里，然后再放到第二个位置上
+        Hd.apply(wangwu, ['hdcms', 'houdunren'])
+    </script>
+</body>
+
+</html>

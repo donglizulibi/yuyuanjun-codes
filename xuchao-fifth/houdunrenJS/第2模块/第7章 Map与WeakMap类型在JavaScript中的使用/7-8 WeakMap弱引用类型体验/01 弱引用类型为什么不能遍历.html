@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义一个引用类型数据，赋值给hd之后这个数据被用了一次
+        let hd = {
+            name: 'whaoe'
+        }
+
+        // 再把内存地址从hd传递给cms，所以这个数据被引用第二次
+        let cms = hd;
+
+        // 新建一个空的WeakMap对象
+        let map = new WeakMap();
+
+        // 将hd作为键名传给WeakMap，此时原始的引用类型数据还是被引用两次
+        map.set(hd, "houdenren")
+
+        // 把引用类型数据所有被调用的变量都清空
+        hd = null
+        cms = null
+
+        // map中还有是这个数据
+        console.log(map)
+
+        // 需要等待一段时间后，map才会清空
+        setTimeout(() => {
+            console.log(map) // 还是跟WeakSet一样的问题
+        }, 1000);
+    </script>
+</body>
+
+</html>

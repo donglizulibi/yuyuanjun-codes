@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = 100
+        let obj = {
+            a: 10,
+            show: function() {
+                console.log('类方法中打印this', this) // 打印对象本身
+                console.log('类方法中打印a', this.a) // 10
+
+
+                function render() {
+                    console.log('类方法中的普通函数打印this', this) // 打印全局
+                    console.log('类方法中的普通函数打印a', this.a) // 100
+
+                }
+                (() => {
+                    console.log('类方法中的箭头函数打印this', this) // 打印对象本身
+                    console.log('类方法中的箭头函数打印a', this.a) // 10
+
+                })()
+                render()
+            }
+        }
+        obj.show()
+
+        // 打印的结果是箭头函数的this和类方法直接打印this的结果一致，都是打印对象本身
+        // 而普通函数打印的this是全局的window
+    </script>
+</body>
+
+</html>

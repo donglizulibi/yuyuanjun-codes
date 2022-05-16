@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <button>houdunren</button>
+    <button>hdcms</button>
+    <script>
+        // 节流是在用户多次执行重复操作的时候只取第一次的结果
+
+        // 如果是点击事件的话，需要在执行第一次点击事件之后就阻止后面的点击事件发生
+        let btns = document.querySelectorAll('button')
+        btns.forEach(item => {
+            // 定义一个布尔值变量
+            let bind = true
+            item.addEventListener('click', () => {
+                // 在执行第一次点击事件后，就把布尔值变量反转
+                // 然后把把这个布尔值作为点击事件内部函数体执行与否的判断标准
+                // 判断条件修改后，可以保证没有后面的点击事件会发生
+
+
+                if (bind) {
+                    bind = !bind
+
+                    let left = 1
+
+                    setInterval(() => {
+                        item.style.left = left++ + 'px'
+                    }, 100)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

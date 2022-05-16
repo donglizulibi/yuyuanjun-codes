@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 每个Symbol都是第一无二的
+        let a = Symbol()
+        let b = Symbol()
+        console.log(a)
+        console.log(b)
+        console.log(a == b)
+            // 但是Symbol并不是引用类型，而是基本数据类型（或者可以称为值类型？）
+            // 或者可以看作一个特殊的字符串
+
+
+        // 括号里面可以加上描述
+        let hd = Symbol('haha')
+        let edu = Symbol('houdunren')
+        console.log(edu == hd)
+        console.log(hd)
+        console.log(edu)
+
+        // 提取Symbol括号内的描述
+
+        console.log(hd.description)
+        console.log(edu.description)
+            // description方法
+
+        //或者直接转成字符串
+        console.log(hd.toString())
+
+        // Symbol里面不能往里面压属性
+        hd.name = 'hdcms'
+        console.log(hd.name) //返回undefined
+    </script>
+</body>
+
+</html>

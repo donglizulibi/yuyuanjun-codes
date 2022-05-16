@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 要求写一个构造函数，这个构造函数实例化的对象传入一个对象作为参数
+        // 对象里包含id和car两个属性
+        // 然后会返回包含路由的网址
+        // 并把网址打印在页面上
+
+        // 所以返回的网站的公共部分会存在构造函数里
+
+        function Article(param) {
+            this.url = 'https://www.houdunren.com/'
+            this.site = 'article/list?'
+            this.get = function() {
+                let value = Object.keys(param).map(item => {
+                    return item + '=' + param[item]
+                }).join('&')
+                let web = this.url + this.site + value
+                document.write(web)
+                return web
+            }
+        }
+
+        let a = new Article({
+            id: 123,
+            car: 'hdcms'
+        })
+        console.log(a.get())
+    </script>
+</body>
+
+</html>

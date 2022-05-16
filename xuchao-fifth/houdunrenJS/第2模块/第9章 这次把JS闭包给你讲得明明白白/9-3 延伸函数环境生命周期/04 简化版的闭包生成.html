@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function hd() {
+            // 这里用var或者let是一样的
+            var n = 1
+
+            return function sum() {
+                // 这里不加sum，携程匿名函数也可以
+                console.log(++n)
+            }
+
+        }
+        let a = hd()
+        console.log(a)
+        a()
+        a()
+
+        // 一个不成熟的理解，所谓的闭包，就是在函数内部的所有数据
+        // 包括值类型变量，以及函数内部的函数，会形成一个封闭的包裹
+
+        // 如果需要保护某个变量不被外部污染，可以把这个变量放到闭包里
+        // 也就是放大一个外部函数里，然后在外部函数内部定义可以操作这个数据的函数
+        // 这样也避免的这个变量在没有被调用的时候被自动销毁
+    </script>
+</body>
+
+</html>

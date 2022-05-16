@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 假设现在有一个需求，有两个用户在学一些课程
+        // 使用Set找出两个用户所学的所有课程
+        let arr1 = ['js', 'c++', 'php', 'nodejs']
+        let arr2 = ['js', 'css', 'html', 'nodejs']
+
+        // 说白了还是数组去重
+        console.log([...new Set([...arr1, ...arr2])])
+    </script>
+</body>
+
+</html>

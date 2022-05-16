@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在上一节中说到了普通方法和var方法定义一个函数
+        // 在JS中，只要是通过普通方法和var变量的方法定义的函数
+        // 都会压到window对象中，由此带来一个弊端
+        // 如果定义的函数名与window对象原有的属性重名，则会产生覆盖
+
+        // 一个window对象中默认存在的属性，表示浏览器左边缘距离显示器左边缘的距离
+        console.log(window.screenX)
+
+        // 普通方法定义一个函数，函数名与window初始属性一致
+        function screenX() {
+            console.log(1)
+        }
+
+        console.log(window.screenX) // 覆盖了，而且发生了函数提升
+
+        // var定义一个函数
+        var aaa = function() {
+            console.log("aaa")
+        }
+        console.log(window.aaa)
+            // 可以打印出来，说明这个函数也压进了window对象，也就是有产生覆盖的可能
+
+        // es6的解决办法，使用let定义一个函数
+        let bbb = function() {
+            console.log("bbb")
+        }
+        console.log(window.bbb)
+            // 显示undefined
+            // 说明当使用let将一个匿名函数赋值给变量的时候
+            // 这个变量不会压进window对象中
+
+        // let与var的区别
+        // 1 有块级作用域
+        // 2 不会变量提升
+        // 3 创建函数变量时不会压入window对象
+
+        // 报错
+        // console.log(a)
+        // let a = 1
+
+        // 返回undefined
+        // console.log(b)
+        // var b = 1
+    </script>
+</body>
+
+</html>

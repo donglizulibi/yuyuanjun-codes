@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text"><button>搜索</button>
+    <script>
+        // 防抖是在用户多次执行重复操作的时候取最后一次的结果
+        let input = document.querySelector('input')
+        let btn = document.querySelector('button')
+
+        // 先写一个业务代码
+        function sendInput() {
+            console.log(`发送关键字"${input.value}"`)
+        }
+
+        // 再写一个防抖代码，有两个参数，一个是延迟时间，一个是业务代码的回调函数
+
+        function debounce(callback, delay) {
+            console.log(callback, delay)
+            let timer = null
+
+
+            return function() {
+
+                // console.log(timer)
+                if (timer) {
+                    clearInterval(timer)
+                }
+
+
+                timer = setTimeout(() => {
+                    // 短路逻辑先判断一下有没有这个函数体
+                    callback && callback()
+                }, delay);
+
+            }
+        }
+
+        btn.addEventListener('click',
+            debounce(sendInput, 2000)
+        )
+    </script>
+</body>
+
+</html>

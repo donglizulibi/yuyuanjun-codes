@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义一个函数，并将其赋值给另一个变量
+        let a = function() {}
+        let b = a;
+
+        // 由于两个变量共用一个内存地址，所以二者是相等的
+        console.log(a === b) //true
+
+        // 再定义一个变量来接受a函数bind之后的函数
+        let c = a.bind()
+        console.log(a === c)
+            // 返回false，说明bind会开辟新的内存空间，创建一个新的引用类型
+
+        // let aa = 1
+        // let bb = aa
+        // console.log(aa === bb)
+    </script>
+</body>
+
+</html>

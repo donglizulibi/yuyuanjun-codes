@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        for (var i = 1; i < 4; i++) {
+
+            // 这条语句无法打印
+            // console.log('定时器外的i：', i)
+            // 任何打印的语句都无法打印出来
+
+            (function(a) {
+                setTimeout(() => {
+                    console.log(a)
+                }, 2000)
+            })(i)
+
+        }
+
+        console.log(i) // 虽然这个还是可以打印出4
+
+        // 这样的做法可以把a变成函数内部的变量
+    </script>
+</body>
+
+</html>

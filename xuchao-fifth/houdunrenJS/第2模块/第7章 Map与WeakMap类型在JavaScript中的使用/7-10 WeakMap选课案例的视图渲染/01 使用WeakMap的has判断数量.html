@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义一个数组，里面包含很多引用类型的项目
+        // 其中一部分（不是全部）在被添加到WeakMap里
+        // 使用reduce和filter把统计在WeakMap里的引用类型项目的个数
+        // 并将其都放到一个新数组里
+
+        // 先定义四个引用类型变量
+        let a = {
+            aaa: 123
+        }
+        let b = {
+            bbb: 234
+        }
+        let c = {
+            ccc: 345
+        }
+        let d = {
+            ddd: 456
+        }
+
+        // 将这四个变量放到一个数组里
+        let arr = [a, b, c, d]
+
+        // 创建一个WeakMap，将四个引用类型变量中的三个放进去
+        let weakmap = new WeakMap([
+            [a, a.aaa],
+            [c, c.ccc],
+            [d, d.ddd]
+        ])
+
+        // 统计数量
+        let count = arr.reduce((pre, val) => {
+            // if (weakmap.has(val)) {
+            //     pre = pre + 1
+            // } else {
+            //     pre = pre
+            // }
+            // return pre
+
+            return weakmap.has(val) ? pre += 1 : pre
+        }, 0)
+        console.log(count)
+
+        // 统计项目
+        let filter = arr.filter(item => {
+            return weakmap.has(item)
+        })
+        console.log(filter)
+    </script>
+</body>
+
+</html>

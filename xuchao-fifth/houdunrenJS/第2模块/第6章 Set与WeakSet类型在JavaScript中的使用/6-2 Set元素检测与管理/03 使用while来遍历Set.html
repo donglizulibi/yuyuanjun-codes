@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let set = new Set('hdcms')
+        console.log(set)
+
+        // 使用values方法
+        let setValue = set.values()
+        while (({
+                value,
+                done
+            } = setValue.next()) && done == false) {
+
+            console.log(value)
+        }
+
+        // 使用keys方法
+
+        let key = set.keys()
+
+        while (({
+                value,
+                done
+            } = key.next()) && (value != undefined)) {
+            console.log(value)
+        }
+
+        // // 二者打印出一样的东西，说明在Set里面没有角标的概念
+    </script>
+</body>
+
+</html>

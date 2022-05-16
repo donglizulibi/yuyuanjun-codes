@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 由于bind不是一个立即执行的函数，所以传参数的途径有两个
+        // 在bind的时候可以在环境后面传参，在后面调用函数的时候也可以传参
+
+        function hd(a, b) {
+            console.log(a)
+            console.log(b)
+            return this.f + a + b;
+        }
+        let func = hd.bind({
+            f: 1
+        }, 1)
+
+        console.log(func(2, 3))
+            // 在这个例子中，func的对象环境后面的那个1，是hd中形参a的实参
+            // func调用时候传的2，是hd中形参b的实参
+            // func调用时候传的3由于没有形参接收，所以是作废的
+    </script>
+</body>
+
+</html>

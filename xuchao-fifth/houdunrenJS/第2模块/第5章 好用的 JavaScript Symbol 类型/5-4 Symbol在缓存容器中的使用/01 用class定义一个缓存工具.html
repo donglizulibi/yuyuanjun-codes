@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义一个class缓存工具
+        // 要求这个class有一个静态属性可以存数据
+        // 有一个静态方法可以往静态属性里添加数据
+        // 还有一个静态方法可以调用静态属性的数据
+
+        class Cache {
+
+            // 首先定义一个空的静态属性
+            static data = {}
+
+            // 调用data最好还是用[]，
+            static set(name, url) {
+                console.log(name, url)
+
+                // console.log(this.data)
+                console.log(this.data)
+
+                this.data.name = name
+                this.data.url = url
+            }
+
+            // 在这里get不用写形参
+            static getName() {
+                console.log(this.data.name)
+            }
+        }
+
+        Cache.set('houdunren', 'www.cctv.com')
+        Cache.getName()
+    </script>
+</body>
+
+</html>

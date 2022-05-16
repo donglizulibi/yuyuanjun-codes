@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先创建一个Set
+        let set = new Set(["hdcms", "houdunren"]);
+
+        // add方法添加元素
+        console.log(set.add("我好饿"))
+
+        // 查看元素个数 size 注意不要加括号
+        console.log(set.size)
+
+        // 查看是否有这个元素，返回布尔
+        console.log(set.has("hdcms"))
+        console.log(set.has("hahah"))
+
+        // 删除某个元素 删除成功返回true
+        // 如果没找到这个元素，则删除失败，返回false
+        console.log(set.delete("hdcms"))
+        console.log("没有这个元素", set.delete("hd"))
+
+
+        // 对Set使用迭代器
+        console.log(set)
+        let [value, key] = [set.values(), set.keys()]
+        console.log(value, key)
+
+        console.log(value.next())
+        console.log(value.next())
+        console.log(value.next())
+            // {value: undefined, done: true}
+
+        console.log(key.next())
+        console.log(key.next())
+        console.log(key.next())
+            // {value: undefined, done: true}
+
+
+        // 彻底清空
+        console.log(set.clear()) //不需要返回值，返回值是undefined
+        console.log(set.size)
+    </script>
+</body>
+
+</html>

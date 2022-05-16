@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="normal">普通函数</button>
+    <button id="arrow">箭头函数</button>
+    <script>
+        // 普通函数的例子
+        let DomNormal = {
+            site: 'houdunren',
+            bindrun: function() {
+                const btnNormal = document.querySelector('#normal');
+                console.log(btnNormal)
+                console.log(typeof btnNormal)
+                console.log('类方法下的this', this)
+
+                // btnNormal.onclick=function(){} 
+                // 本质上按钮的dom节点是一个对象，给这个对象加上onclick属性
+                // 并将一个函数作为属性值
+                // 则在箭头函数和普通函数里打印this的讨论就还是在一个对象的作用域里面
+                // 用addEventListener也是相同的道理
+                btnNormal.addEventListener('click', function() {
+                    console.log('点击事件的普通函数的this', this)
+                        // 打印的是dom节点 因为是dom节点的对象调用的这个函数
+
+                    // 这里还是相当于把这个函数放到全局去调用 
+                    function render() {
+                        console.log(this) // 打印的是window
+                    }
+                    render()
+                })
+            }
+        }
+        DomNormal.bindrun()
+
+        // 箭头函数的例子
+        let DomArrow = {
+            site: 'houdunren',
+            bindrun: function() {
+                const btnArrow = document.querySelector('#arrow');
+                console.log(btnArrow)
+                console.log(typeof btnArrow)
+                console.log('类方法下的this', this)
+
+                btnArrow.addEventListener('click', (e) => {
+                    console.log('点击事件的箭头函数的this', this)
+                        // 打印的是整个DomArrow对象
+                    console.log('e.target', e.target)
+                        // 如果箭头函数想获取到dom节点对象，可以使用e.target
+
+                    function render() {
+                        console.log(this) // 打印的是window
+                    }
+                    render()
+                })
+            }
+        }
+        DomArrow.bindrun()
+    </script>
+</body>
+
+</html>

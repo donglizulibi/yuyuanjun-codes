@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div name="我好饿">houdunren</div>
+    <div name="我不饿">hdcms</div>
+    <script>
+        // 这是第一个将Map类型投入实用的例子
+        // 开始给定两个div标签，标签内部有name属性
+        // 要求使用Map类型和forEach，使得点击页面的标签的文字
+        // 就会把name属性的内容弹出来
+
+        // 思路就是设立一个空的Map对象，使用forEach遍历标签
+        // 把标签对象作为键值对的键名，把标签的name属性放到一个对象里
+        // 作为键值对的键值，然后再遍历一次这个Map对象
+        // 给键值对的键名加上点击事件
+
+        // 为求遍历方便，可以一次性拿到所有标签
+        let divs = document.querySelectorAll('div')
+
+        // 新建一个Mao实例
+        let map = new Map()
+
+        // 对这个节点对象进行forEach遍历，将每个遍历出来的项目变成键值对的键名
+        divs.forEach((item) => {
+            // 
+            // console.log(item)
+            // console.log(item.getAttribute('name'))
+
+            // 放在set里面的键值对不用加中括号
+            map.set(item, {
+                "content": item.getAttribute('name')
+            })
+        })
+
+        // Map对象里已经有了这两对键值对
+        console.log(map)
+
+        // 用forEach遍历map，添加点击事件
+        // forEach遍历马匹，第一个参数是键值，第二个参数是键名
+        map.forEach((value, key) => {
+            key.addEventListener('click', () => {
+                alert(value.content)
+            })
+        })
+
+        // 这种方式的使用场景就是，如果需要往div对象里压属性的时候
+        // 为了避免压进去的属性和div内部的属性重名，就尽量不用往div里压属性的方法
+        // 而是用Map产生键值对
+    </script>
+</body>
+
+</html>

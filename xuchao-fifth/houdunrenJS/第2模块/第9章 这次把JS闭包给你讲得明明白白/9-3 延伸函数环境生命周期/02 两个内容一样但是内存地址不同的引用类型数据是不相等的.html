@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如题
+        let a = {
+            n: 123,
+            m: 345,
+            q: 567
+        }
+        let aa = a
+        let aaa = a
+        console.log(aa == aaa)
+            // 这样拷贝方式，三个对象共用一个内存地址，是相等的
+
+        // 封装一个浅拷贝对象的函数
+        function copyObj(obj) {
+            let newObj = {}
+            for (let key in obj) {
+                newObj[key] = obj[key]
+
+            }
+            return newObj
+        }
+
+        // 拷贝两个对象
+        let b = copyObj(a)
+        let c = copyObj(a)
+        console.log(b)
+        console.log(c)
+
+        // 验证拷贝出来的两个对象是否相等
+        console.log(b == c)
+            // 不相等，说明不是共用一个内存地址
+    </script>
+</body>
+
+</html>

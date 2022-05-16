@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这里其实和前面一样，数组里看似是三个一样的函数的函数体
+        // 但是因为这个压到数组中的函数会被外部调用
+        // 所以这三个函数会保留了各自作用域的数据
+        // 所以在调用不同函数体的时候，打印出来的数据是不一样的
+        let arr = [];
+        for (let i = 1; i <= 3; i++) {
+            console.log(i)
+            arr.push(function() {
+                return i
+            })
+        }
+
+        console.log(arr[0])
+        console.log(arr[1])
+        console.log(arr[2])
+            // 虽然看起来也是普通的函数体，但是这个是带了自己那个作用域数据的函数体
+
+        console.log(arr[0]())
+        console.log(arr[1]())
+        console.log(arr[2]())
+
+        // 换一个解释就是，for循环内部的函数体和这个花括号内部的i的数据
+        // 共同组成了一个闭包
+
+
+
+        // 因为var不产生各自的作用域块，所以每个函数的中的数据不会被保留下来
+        // 推到数组里的就是单纯的不附带各自数据的函数体
+        // 虽然函数内部的作用域块保留下来了，但是里面没有数据
+        // 到最后打印出来的也就是最后的全局数据，而且是打印三次
+        let arrVar = []
+        for (var j = 1; j <= 3; j++) {
+            console.log(j)
+            arrVar.push(function() {
+                return j
+            })
+        }
+
+        console.log(arrVar[0])
+        console.log(arrVar[1])
+        console.log(arrVar[2])
+
+        console.log(arrVar[0]())
+        console.log(arrVar[1]())
+        console.log(arrVar[2]())
+    </script>
+</body>
+
+</html>

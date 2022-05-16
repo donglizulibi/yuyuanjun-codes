@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 立即执行函数的定义规则是，首先定义一个带形参的普通匿名函数
+        // function(a){
+        //     console.log(a)
+        // }
+
+        // 然后用括号把这个函数包起来，再在后面放一个括号
+        // 第二个括号里可以直接放实参执行函数，也可以放第二个形参
+
+        let b = 123;
+        (function(a) {
+            console.log(++a)
+        })(b)
+
+        // console.log(a)
+        // a是函数内部的变量，外部不可以调用，这条语句报错
+
+        // 且不会影响全局变量，b的大小不变
+        console.log(b)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于数组的迭代详见4-22
+        let arr = [1, 2, 3, 4]
+        console.log(arr.keys())
+        console.log(arr.keys())
+        console.log(arr.values())
+        console.log(arr.entries())
+
+        // 对象无法使用迭代器
+        let obj = {
+            "a": "aa",
+            "b": "bb"
+        }
+
+        // console.log(obj.keys())
+        // console.log(obj.values())
+        // console.log(obj.entries())
+        // obj 无法打印
+        // 对象只能用Object.entries之类的方法来遍历
+
+        // entries中键值就等于键名
+        let set = new Set(['我好饿', '我好困'])
+        console.log(set.keys())
+        console.log(set.values())
+        console.log(set.entries())
+    </script>
+</body>
+
+</html>

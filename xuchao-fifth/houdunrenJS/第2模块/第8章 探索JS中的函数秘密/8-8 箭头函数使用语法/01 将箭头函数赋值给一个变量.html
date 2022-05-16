@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = (a, b) => a + b
+
+        console.dir(hd) // 它的__proto__也是Function
+        console.log(hd) // 也是打印方法体
+        console.log(hd(1, 2))
+
+        let hd1 = (a, b) => a + b
+        console.log(hd == hd1) // 不相等，说明也是引用类型
+    </script>
+</body>
+
+</html>

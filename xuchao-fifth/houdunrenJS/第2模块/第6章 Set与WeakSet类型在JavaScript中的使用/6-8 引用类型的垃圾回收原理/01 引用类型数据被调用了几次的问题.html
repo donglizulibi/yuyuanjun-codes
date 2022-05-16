@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 假设现在有一个引用类型数据，赋值给一个变量
+        let hd = {
+                name: 'houdunren'
+            } // 在这一行中，引用类型数据被使用了一次
+        let edu = hd // 在这里，数据被使用了两次
+
+        // 将hd清空
+        hd = null
+
+        console.log(hd) // 此时hd变量变为null，但是原来的引用类型数据还在被调用
+        console.log(edu) // 所以edu不会为空
+
+        // 总结一下就是，两个变量同时调用一个引用类型数据
+        // 修改其中一个，另一个也会被修改
+        // 但是清楚其中一个，另一个不会被清除
+    </script>
+</body>
+
+</html>

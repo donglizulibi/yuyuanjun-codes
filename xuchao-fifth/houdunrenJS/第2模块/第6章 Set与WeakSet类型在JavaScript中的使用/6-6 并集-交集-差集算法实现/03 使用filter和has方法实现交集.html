@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用filter和has
+        // 就是有没有感叹号的区别
+        let arr1 = ['js', 'c++', 'php', 'nodejs']
+        let arr2 = ['js', 'css', 'html', 'nodejs']
+
+        let set1 = new Set(arr1)
+        let set2 = new Set(arr2)
+
+        let set3 = new Set([...set1].filter((item) => {
+            return set2.has(item)
+        }))
+
+        console.log(set3)
+    </script>
+</body>
+
+</html>

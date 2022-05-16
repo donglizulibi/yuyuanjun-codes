@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            a: 1,
+            show() {
+                console.log(this)
+
+                let _this = this
+                return function() {
+                        console.log(_this)
+                        console.log(_this.a)
+                    }
+                    // return a
+            }
+        }
+
+        let fun = obj.show
+        console.log(fun)
+        console.log(fun()())
+            // 这个数据并没有保留，没有形成闭包
+
+        // 主要是show这个函数没有return，所以show打印的this也是window
+    </script>
+</body>
+
+</html>

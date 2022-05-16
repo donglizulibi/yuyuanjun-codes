@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [2, 3, 4, 5, 11, 23, 34, 32, 1, 7, 8, 9]
+
+        // 找到大于六小于九的数放在一个数组里
+        let gap = arr.filter(function(item) {
+            return item >= 6 && item <= 9
+        })
+
+        // 简写形式
+        // let gap = arr.filter(item => item >= 6 && item <= 9)
+        console.log(gap)
+            // filter会把数组内所有符合条件的元素都放到一个数组里
+    </script>
+</body>
+
+</html>

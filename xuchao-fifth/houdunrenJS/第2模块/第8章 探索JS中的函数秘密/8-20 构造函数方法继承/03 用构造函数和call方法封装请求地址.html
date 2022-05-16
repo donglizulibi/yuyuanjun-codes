@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上一个案例将网站的公共部分，也就是请求地址的部分，如https://www.houdunren.com/
+        // 和路由部分 article/list/ 放在了同一个构造函数里面
+
+        // 现在打算将路由部分剥离出来成为另一个构造函数
+        // 使用call来实现
+
+        // 这样可以实现多个路由的构造函数可以使用同一个网站的请求地址
+
+        // 首先创建一个请求地址的公共模块
+        function Request(param) {
+            this.url = 'https://www.houdunren.com/'
+            this.get = function() {
+                // console.log(this)
+
+                let value = Object.keys(param).map(item => {
+                    return item + '=' + param[item]
+                }).join('&')
+                let web = this.url + this.site + value
+                document.write(web + '<br/>')
+                return web
+            }
+        }
+
+        // 然后是各个路由的模块，先创建一个用户的路由
+        function User(param) {
+            this.site = 'user/admin?'
+            console.log(Request)
+
+            // 在这里记得把从User传过来的参数也传到Request里去，让那里的方法也能执行这个参数
+            Request.call(this, param)
+        }
+        let user = new User({
+            id: 123,
+            role: 'zhangsan'
+        })
+
+        console.log(user)
+        console.log(user.get())
+
+        // 再创建一个文章的路由
+        function Article(param) {
+            this.site = 'article/list?'
+            Request.call(this, param)
+        }
+        let article = new Article({
+            id: 324,
+            car: 'hdcms'
+        })
+        console.log(article)
+        console.log(article.get())
+
+        // 一个可以优化的地方就是，传参的部分放到get里面
+    </script>
+</body>
+
+</html>

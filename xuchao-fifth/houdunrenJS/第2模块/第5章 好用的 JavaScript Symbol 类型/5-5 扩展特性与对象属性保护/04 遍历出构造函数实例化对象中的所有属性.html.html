@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这里用常规方法定义一个类的构造函数，在创建实例之后，遍历出里面的属性
+        class User {
+            constructor(name) {
+                this.name = name;
+                this.site = 'houdunren.com'
+            }
+            getName() {
+                return `${this.name}-${this.site}`
+            }
+        }
+        let lisi = new User('lisi')
+        console.log(lisi.getName())
+
+        // 创建出一个新的实例化对象并验证可以使用之后，现在来遍历这个实例化对象的属性
+        for (let [key, value] of Object.entries(lisi)) {
+            console.log(key, value)
+        }
+        // 二者都可以遍历出来
+    </script>
+</body>
+
+</html>

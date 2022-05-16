@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // WeakSet里面的项目只能是引用类型 
+
+        // let set = new WeakSet([1])
+        // let set = new WeakSet(["aaa"])
+        // let set = new WeakSet("aaa")
+        // 上面三种会报错，下面几种才是合法的写法，中括号里面只能是引用类型
+
+
+        // 添加两个数组
+        let set1 = new WeakSet([
+            [2],
+            [1]
+        ])
+        console.log(set1)
+
+        // 添加一个对象
+        let set2 = new WeakSet([{}])
+        console.log(set2)
+
+        // 添加一个数组
+        let set3 = new WeakSet([
+            []
+        ])
+        console.log(set3)
+
+        // 添加一个项目为一个字符串的数组
+        console.log(set1.add(["aaa"])) //这种情况是不报错的，因为是添加整个数组
+        console.log(set1)
+
+        // 去重性验证
+        set2.add({})
+        console.log(set2)
+            // 不会去重
+    </script>
+</body>
+
+</html>

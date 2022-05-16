@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>0</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script>
+        // dom元素对象可以使用for of还有角标可能是因为这里面有length属性
+
+        let divs = document.querySelectorAll('div')
+        console.log(divs)
+
+        console.log(divs[0])
+        console.log(divs[1])
+        console.log(divs[2])
+        console.log(divs[3])
+
+        // 居然还有length属性
+        console.log(divs.length)
+
+        // 使用for in方法，先打印了角标，再把原型链__proto__的方法打印出来了
+        for (let k in divs) {
+            console.log(k)
+        }
+
+        // for in 只打印角标的方法
+        for (let i in divs) {
+            if (divs.hasOwnProperty(i)) {
+                console.log(i)
+            }
+        }
+
+
+        // 打印每个项目，这个只要forEach能用就能用
+        for (let i of divs) {
+            console.log(i)
+        }
+
+        // 普通for方法也可以打印角标和项目
+        for (let k = 0; k < divs.length; k++) {
+            console.log(k)
+            console.log(divs[k])
+        }
+
+        // 数组方法无法使用
+        // divs.map(item => {
+        //     console.log(item)
+        // })
+    </script>
+</body>
+
+</html>

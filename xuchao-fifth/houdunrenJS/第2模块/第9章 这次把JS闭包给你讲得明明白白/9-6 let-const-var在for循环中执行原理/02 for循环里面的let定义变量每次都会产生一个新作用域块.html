@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let也不是每一个块执行完再执行下一个块，而是很多个块并行
+        for (let i = 1; i <= 4; i++) {
+            console.log(i)
+            setTimeout(() => {
+                console.log('let的情况', i)
+            }, 5000);
+        }
+
+        // console.log(i) // 无法打印
+
+        // 这个打印结果是先打印1234，在五秒之后再由定时器打印1234
+        // let的情况就非常简单，就是在遍历内部创建的i遍历不会泄露到全局
+        // 所以每个定时器的i就是本身的那次遍历状态下的i
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果需要把一个字符串放到Set里面
+        // 需要把字符串放到一个数组里，再放到创建的Set里
+        let set1 = new Set(['hdcms'])
+        console.log(set1)
+
+        // 如果只是把单个字符串直接放进去
+        // Set会把这个字符串拆开
+        let set2 = new Set("hdcms");
+        console.log(set2)
+
+        // 相当于
+        let setCopy = new Set([...
+            "hdcms"
+        ])
+        console.log(setCopy)
+
+        // 所以一般来说new Set里面放东西，都要先放在一个数组里
+    </script>
+</body>
+
+</html>

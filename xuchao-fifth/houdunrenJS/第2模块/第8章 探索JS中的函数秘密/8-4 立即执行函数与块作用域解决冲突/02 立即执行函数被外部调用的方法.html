@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个立即执行函数解决作用域问题的方式有这么几步
+        // 或许可以看作是封装库的方法
+
+        // 1 把需要用到的方法都放到一个带形参的匿名函数里
+        // function(aaa){
+        //     function one(){}
+        //     function two(){}
+        // }
+
+        // 2 给这个匿名函数包上两个小括号，使之成为立即执行函数
+        // 并把window对象作为这个立即执行函数的实参
+        // (function(aaa){
+        //     function one(){}
+        //     function two(){}
+        // })(window)
+
+        // 3 回到函数体内部，把这个方法库的库名压进函数的实参（此时已经是window对象）
+        // 在这里方法库的库名定义为js2，js2由此成为window对象的一个属性
+        // 并把方法库中需要用的方法都变成这个属性的属性值
+        // (function(aaa) {
+        //     function one() {}
+
+        //     function two() {}
+        //     aaa.js2 = {
+        //         one: one,
+        //         two: two
+        //     }
+        // })(window)
+
+
+        // 4 将方法库进一步简写，则需要调用这个方法库里面的方法的时候
+        // 只需要直接从方法库名这个对象里找就可以
+        // (function(aaa) {
+        //     function one() {}
+
+        //     function two() {}
+        //     aaa.js2 = {
+        //         one,
+        //         two
+        //     }
+        // })(window)
+
+
+        (function(aaa) {
+            // console.log(window)
+            console.log(aaa)
+
+            function hd() {
+                console.log('我好饿')
+                console.log(this)
+            }
+
+            function show() {
+                console.log("我好困")
+            }
+            aaa.js2 = {
+                hd,
+                show
+            }
+        })(window)
+
+        console.log(window)
+        console.log(window.hasOwnProperty("js2"))
+
+        window.js2.hd()
+            // js2 .hd()
+    </script>
+</body>
+
+</html>

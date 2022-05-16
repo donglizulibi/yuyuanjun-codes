@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div abc="houdunren">在线学习</div>
+    <div abc="hdcms">开源产品</div>
+    <!-- 标签内的属性是自定义的 -->
+    <script>
+        // 这个例子是希望取到div标签里的属性abc的属性值
+        // 为了取到abc属性，需要保留整个div对象到内存里
+        // 而这个对象又在闭包内部，无法自动清除，比较浪费
+
+        // 所以可以在点击事件的函数外层就把属性值取到
+        // 然后在点击事件之后把div对象设成null
+
+        let divs = document.querySelectorAll('div');
+        divs.forEach(item => {
+            let abc = item.getAttribute('abc');
+            item.addEventListener('click', () => {
+                console.log(abc);
+                console.log(item)
+                    // 在下面设置item = null之后，打印为null，但是abc仍然可以取到
+            })
+            item = null
+        })
+    </script>
+</body>
+
+</html>

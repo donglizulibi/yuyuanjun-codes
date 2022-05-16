@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 返回Set类型中小于五的数
+        // 可以先把Set变成数组，操作完成之后再把数组变成Set
+        let hd = new Set("123456789")
+        console.log(hd);
+
+        // let hdarr = [...hd].filter(function(item) {
+        //     return item < 5
+        // })
+        // hd = new Set(hdarr)
+        // hd = new Set([...hd].filter(item => item < 5))
+        // console.log(hd)
+
+        console.log(new Set(Array.from(hd).filter((item) => item < 5)))
+    </script>
+</body>
+
+</html>

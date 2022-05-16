@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对象里面是属性名如果不加中括号会自动变成字符串
+        let user1 = "李四"
+        let grade = {
+            user1: {
+                js: 19,
+                css: 12
+            }
+        }
+        console.log(grade) // 这样打印出来的属性名仍然是字符串user1
+
+        // 除非
+        // 用中括号包起来，以表示这是一个变量
+        let user2 = "李四"
+        let grade1 = {
+            [user2]: {
+                js: 19,
+                css: 12
+            }
+        }
+        console.log(grade1)
+    </script>
+</body>
+
+</html>

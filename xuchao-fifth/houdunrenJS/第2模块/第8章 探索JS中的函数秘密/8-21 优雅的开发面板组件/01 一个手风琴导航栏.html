@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        dl {
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        dt {
+            background: #e67e22;
+            border-bottom: solid 2px #333;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        dd {
+            height: 200px;
+            background: #bdc3c7;
+            font-size: 5em;
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <dl>
+        <dt>后盾人</dt>
+        <dd>1</dd>
+        <dt>hdcms</dt>
+        <dd hidden="hidden">2</dd>
+    </dl>
+    <script>
+        // call的不需要传第一个参数的用法
+
+        // 这个手风琴的案例就是给dt元素添加点击事件
+        // 点击之后给两个dd元素添加或者删除hidden属性
+
+
+        function run(param) {
+            console.log(param)
+            let dds = document.querySelectorAll('dd')
+            dds.forEach((item) => {
+                // 先把两个标签都设置为隐藏
+                item.setAttribute('hidden', 'hidden')
+            });
+
+            console.log(dds);
+            console.log(typeof dds);
+            console.log(dds[1]);
+
+            // 再把传入的序号的那个标签设置为显示
+            [...dds][param].removeAttribute('hidden')
+        }
+
+        let dts = document.querySelectorAll('dt')
+
+        dts.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                run.call(null, index)
+            })
+        })
+    </script>
+</body>
+
+</html>

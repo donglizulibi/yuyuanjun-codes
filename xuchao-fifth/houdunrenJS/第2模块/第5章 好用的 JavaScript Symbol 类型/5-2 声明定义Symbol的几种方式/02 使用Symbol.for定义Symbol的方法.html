@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 和普通定义方法的区别是，这个定义的方法是在全局生成
+        // 也就是说，当使用Symbol.for定义一个Symbol变量，并给其加上描述的话
+        // 系统就会把这个描述存到全局内存里，如果下次再定义一个Symbol
+        // 给的描述跟之前的描述相同，那么这两个Symbol就会相同
+        // 或者说，其实没有生成两个Symbol，而是第二个变量也使用了第一个声明
+        // 更适用于需要很多次调用同一个描述的情况
+
+        let a = Symbol.for('hdcms')
+        let b = Symbol.for('hdcms')
+        console.log(a)
+        console.log(b)
+        console.log(a == b)
+
+        // 获取Symbol.for描述的方法keyFor
+        console.log(Symbol.keyFor(a))
+        console.log(Symbol.keyFor(b))
+
+        // Symbol.keyFor无法作用于普通定义Symbol的方法
+        let houdunren = Symbol('houdunren')
+        console.log(Symbol.keyFor(houdunren))
+            // 返回undefined
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = function() {
+            console.log(1)
+        }
+        console.log(hd instanceof Object)
+
+        // 可以把函数体看成一个指针
+        let cms = hd
+
+        cms() // 可以执行
+
+
+        // 定义一个跟hd函数体相同的函数
+        let hd1 = function() {
+            console.log(1)
+        }
+
+        console.log(hd == hd1)
+            // 二者不相等，说明函数是一个引用类型
+    </script>
+</body>
+
+</html>

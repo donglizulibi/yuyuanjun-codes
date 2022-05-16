@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let lesson = [{
+            title: "javascript",
+            click: 100
+        }, {
+            title: "css",
+            click: 23
+        }, {
+            title: "vue",
+            click: 44
+        }];
+
+        // 现在需要构建一个递归函数，实现给数组中每个课程的点击量都增加100
+        // 且增加的数目可以由一个参数确定 
+
+        // 这个函数有三个参数，第一个参数传入数组，第二个参数传入需要增加的点击数量
+        // 第三个参数为一个可以增加的角标，表示数组中这个角标的项目正在发生改变
+
+        // 则递归函数的退出条件就是，当角标等于数组长度的时候
+        // 由于原数组的一个引用类型，所以递归函数会在原数组上修改
+        // 此时返回原数组即可
+
+        function change(lessons, num = 100, i = 0) {
+            if (i == lessons.length) {
+                return lessons
+            }
+
+            lessons[i].click = lessons[i].click + num
+            i = i + 1
+
+            // 要加上return，因为调用的时候是打印，所以需要返回出值
+            // 另外递归中函数的参数要写全
+            return change(lessons, num, i)
+        }
+
+        console.table(change(lesson))
+
+        // 使用map不加return的话就会修改原来的值，但也是仅限于数组中每一项都是引用类型
+        // 如果数组中每一项都是值类型，那也不会修改原数组
+
+        // 如果加上return那就是有返回值
+
+        let arr = [1, 2, 3, 4]
+            // lesson.map((item) => {
+        arr.map((item) => {
+            item += 1
+                // item.click += 200
+        })
+        console.log(arr)
+            // console.log(lesson)
+    </script>
+</body>
+
+</html>

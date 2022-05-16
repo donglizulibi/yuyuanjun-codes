@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先来回顾一下上个例子中构造函数新建对象的时候包含的四个步骤
+        // 1 创建一个空{}  
+        // 2 改变this的指向到这个新的{}中 
+        // 3 将创建新对象时候的数据填入{}中  
+        // 4 将这个对象return出来
+        function User(name) {
+            console.log(this) // 指向一个空对象，下一步就是把创建新对象的数据填入空对象中
+            this.name = name
+                // console.log(this.url)
+        }
+
+        let lisi = new User('LISI')
+        console.log(lisi) // 这里构造函数内部的this打印是一个空对象
+
+        // 那么call的使用方法就是
+        // 用call来创建构造函数对象时，首先创造一个新的对象环境
+        let hdcms = {
+            url: 'hdcms.com'
+        };
+
+        // 然后call里面可以传两个参数，第一个参数放这个新的对象环境
+        // 第二个参数是实例化的参数，也就是构造函数本身的形参传入的实参
+        User.call(hdcms, 'hahah')
+
+        // 使用call来指定对象环境之后，构造函数实例化的步骤中的第一步就发生了改变
+        // 不再是创建一个空{}，而是创建一个传入的对象环境
+        // 也就是创建一个hdcms = {url: 'hdcms.com'};
+
+        // 到第二步的时候就把this指向到这个环境中，到第三步再把call的第二个参数的实参传入
+        // 也就是说 name:'hahah' 是附加在{url: 'hdcms.com'}后面的
+        console.log(hdcms)
+
+        // 另外需要注意的是，正常的使用构造函数实例化新对象是用new关键字
+        // 但是使用call方法本质上是在一个旧的对象上加新的属性，所以不加new关键字
+
+        // 使用call不传第二个参数的情况
+        // User.call(hdcms)
+        // console.log(hdcms)
+        // 由于这里没有传递构造函数本身的参数，所以name打印出来值的undefined
+    </script>
+</body>
+
+</html>

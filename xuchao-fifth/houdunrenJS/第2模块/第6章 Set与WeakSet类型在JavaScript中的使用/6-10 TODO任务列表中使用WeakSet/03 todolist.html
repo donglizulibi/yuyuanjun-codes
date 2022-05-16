@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            padding: 200px;
+        }
+        
+        ul {
+            list-style: none;
+            display: flex;
+            width: 200px;
+            flex-direction: column;
+        }
+        
+        li {
+            height: 30px;
+            border: solid 2px #e67e22;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 10px;
+            color: #333;
+            transition: 1s;
+        }
+        
+        a {
+            border-radius: 3px;
+            width: 20px;
+            height: 20px;
+            text-decoration: none;
+            text-align: center;
+            background: #16a085;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 5px;
+        }
+        
+        .remove {
+            border: solid 2px #eee;
+            opacity: 0.8;
+            color: #eee;
+        }
+        
+        .remove a {
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>houdunren.com <a href="javascript:;">x</a></li>
+        <li>hdcms.com <a href="javascript:;">x</a></li>
+        <li>houdunwang.com <a href="javascript:;">x</a></li>
+    </ul>
+    <script>
+        // 这个例子需要创建一个class类，首先是一个运行程序的函数
+        // 需要在这个函数里面定义空的WeakSet对象，以及找到所有的li标签
+        // 其次是一个给每个li里面的a标签添加点击事件的函数
+        // 当移除的点击事件发生，WeakSet对象也应该删去相应的li
+        // 同时给这条li加上移除后的样式
+        // 最后定义一个把把li压到WeakSet的函数
+
+        // 在类中，constructor里面的内容是默认执行的
+        // 其他的方法都是调用才能执行
+
+        // 这个例子使用若引用类型的好处是，点击删除之后，在对象中移除数据
+        // 但是弱引用类型还以为这个数据是存在的，所以会在里面保存
+        // 所以可以做到使用透明度的变化来体现数据的删除和存在
+        class Todo {
+            constructor() {}
+            run() {
+                this.lists = document.querySelectorAll('ul>li')
+                this.weakset = new WeakSet()
+                this.record()
+                this.addEvent()
+
+
+            }
+
+            addEvent() {
+                this.lists.forEach(item => {
+
+                    // 这里的一个细节是，点击a标签的内容
+                    // a标签的父级li标签发生样式的变化
+                    item.querySelector('a').addEventListener('click', e => {
+
+                        // 判断条件是在weakset中判断是否有某个值
+                        // 如果有就说明这个值未被删除，就可以执行删除的操作
+                        // 如果没有就说明这个值已经删过了，应该提示已经删过了
+
+                        // 换一种论述方式就是，li标签没有增加或者减少
+                        // 所有样式或者删除减少的改变都在li下的WeakSet里面进行
+                        if (this.weakset.has(item)) {
+                            e.target.parentElement.classList.add('remove')
+                            this.weakset.delete(item)
+                            console.log(this.weakset)
+                        } else {
+                            alert('已经删除')
+                        }
+
+                    })
+
+                })
+            }
+
+            record() {
+                this.lists.forEach(item => {
+                    this.weakset.add(item)
+                })
+            }
+        }
+
+        new Todo().run()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先创建一个Map类型，并往里面添加新的键值对
+        let hd = new Map([
+            ["houdunren", "haha"],
+            ["whaoe", "whaokun"]
+        ])
+        hd.set('seven', 'must')
+
+        // 遍历键、值和键值对的方法
+        // 返回MapIterator类型
+        console.log(hd.keys()) // 键
+        console.log(hd.values()) // 值
+        console.log(hd.entries()) // 键值对
+        console.log(hd) // 和hd.entries()还是不一样的
+
+        // 也可以把MapIterator类型变成数组
+        console.log([...hd.keys()]) // 键
+        console.log([...hd.values()]) // 值
+        console.log([...hd.entries()]) // 键值对
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Set类型是严格类型约束
+        let set = new Set()
+        set.add(1) // 添加数值
+        set.add("1") // 添加字符串
+        console.log(set)
+
+        // 与对象做对比
+        let obj = {
+            1: "hdcms",
+            "1": "hdcms"
+        }
+        console.log(obj)
+            // 打印出的结果只有一个键值对
+            // 因为前面一个属性名被转成字符串和第二个相同
+            // 所以被第二个覆盖掉
+    </script>
+</body>
+
+</html>

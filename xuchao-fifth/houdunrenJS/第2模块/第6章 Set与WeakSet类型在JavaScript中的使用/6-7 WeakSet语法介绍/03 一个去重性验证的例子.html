@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 验证数组、Set、WeakSet中引用类型的去重性的问题
+
+        // 为保证往上面三个变量中添加的引用类型是同一个内存地址
+        // 需要在外部定义变量
+        let arrDemo = [1, 2, 3]
+        let objDemo = {
+            a: 123,
+            b: 234
+        }
+
+        // 首先是普通数组
+        let arr = []
+        arr.push(arrDemo)
+        arr.push(arrDemo)
+        arr.push(objDemo)
+        arr.push(objDemo)
+        console.log(arr)
+            // 都出现，可见普通数组没有去重性
+
+        // 其次是Set
+        let set = new Set()
+        set.add(arrDemo)
+        set.add(arrDemo)
+        set.add(objDemo)
+        set.add(objDemo)
+        console.log(set)
+            // 去重成功
+
+        // 如果把这个引用类型再赋值给其他变量
+        let objDemo1 = objDemo
+        set.add(objDemo1)
+        set.add(objDemo1)
+        console.log(set)
+            // 还是去重成功
+
+
+        // 这样其实就是添加另一个内存地址的引用类型数据了
+        set.add([1, 2, 3])
+        console.log(set)
+            // 可以看到有两个一模一样的数组在set里面
+
+        // 然后是WeakSet
+        let weakset = new WeakSet()
+        weakset.add(arrDemo)
+        weakset.add(arrDemo)
+        weakset.add(objDemo)
+        weakset.add(objDemo)
+        console.log(weakset)
+            // 去重成功
+
+        // 在weakset中试验
+        weakset.add(objDemo1)
+        weakset.add(objDemo1)
+        console.log(weakset)
+            // 还是去重成功
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先创建一个map对象，放两个键值对进去
+        let hd = new Map([
+            ['houdunren', '后盾人'],
+            ['hdcms', 'kaiyuanxitong']
+        ])
+
+        // for of可以使用
+        for (let [key, value] of hd) {
+            console.log(key, value)
+        }
+
+        // Map类型可以使用forEach遍历
+        // 第一个参数是键值对的键值
+        // 第二个参数是键值对的键名
+        hd.forEach((value, key) => {
+            console.log(value, key)
+        })
+
+        console.log([...hd])
+            // 返回一个数组，里面有两个内层数组，每个内层数组有两项
+            // 这两项就是两个键值对的键和值
+
+        console.log([...hd.entries()]) // 这个跟上面一样
+
+        console.log([...hd.keys()]) // 只打印键名，放到一个数组里
+        console.log([...hd.values()]) // 只打印值名，放到一个数组里
+
+        // 找到键值对中键名是“后盾人”字样的项目，放到一个数组里
+        let newArr = [...hd].filter(function(item) {
+            return item[1].includes("后盾人");
+        });
+        console.log(newArr)
+            // 由于找到的项目本身也是一个数组，又放进一个数组里
+            // 所以是数组套数组，里面有两个字符串
+
+        console.log(newArr[0])
+            // 取出来
+
+        // 实例化新对象的时候，放那个数组套数组的格式，刚好符合Map的格式
+        let edu = new Map(newArr);
+        console.log(edu);
+        console.log(...edu.values()); // 取到值后再解构一下变成一个字符串
+
+        // 综上所述
+        // Map类型可以用forEach \ for of  \ keys() \ values() \ entries()这些方法
+        // 但是像for循环、for in以及map、reduce、filter这些还是要先转化为数组
+        console.dir(Object)
+    </script>
+</body>
+
+</html>

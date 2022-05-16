@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在es5中，如果要定义一个参数不确定的函数，则这个函数可以不写形参
+        // 直接在函数体中拿到arguments参数就行
+
+        // 现在需要定义一个求和函数，参数不确定
+        function sum() {
+            console.log(arguments) // 可以看作一个参数序列的对象
+            console.log(arguments[2]) // 可以像数组一样使用[]语法取值
+            console.log(typeof arguments) // object对象
+            console.log(arguments instanceof Array) // 不是数组
+            console.log(Array.isArray(arguments)) // 不是数组
+            console.log(arguments.length) // 有length属性
+
+            let total = 0
+            for (let i = 0; i < arguments.length; i++) {
+                total += arguments[i]
+            }
+            return total
+
+            // 如果需要让所有参数都在一个数组里，则变成数组的方法 
+            // console.log(Array.from(arguments))
+            // 或者用[...arguments]
+
+        }
+        console.log(sum(1, 2, 3, 4, 5, 23, 56))
+
+
+        // 简易版
+        function show() {
+            arr = Array.from(arguments)
+            console.log(arr)
+        }
+        show(1, 2, 3, 4, 5, 6, 7)
+    </script>
+</body>
+
+</html>

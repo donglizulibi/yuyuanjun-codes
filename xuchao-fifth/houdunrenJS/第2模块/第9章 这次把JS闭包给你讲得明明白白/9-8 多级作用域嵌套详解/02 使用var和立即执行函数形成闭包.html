@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在这里需要讨论的就是为什么var本身不产生独立的作用域块
+        // 但是每次循环的数据却被保留了下来
+        // 数据会被保留，原因是构成了闭包，一个函数里面套了一层函数
+        // 中间夹的那个数据就会被保留
+        // 这个例子中，push里面的那个函数在被调用的时候会往上找数据
+        // 上个例子里直接找到for循环的数据，而这个数据是会随着循环的推进不断被覆盖的
+        // 但是这个例子里的数据其实是那个立即执行函数的内部数据，不会被销毁
+        // 所以是可以一直调用的
+
+        let arrVarFun = []
+        for (var k = 1; k <= 3; k++) {
+            (function(m) {
+                console.log('m保留了吗', m)
+                arrVarFun.push(function() {
+                    return m
+                })
+            })(k)
+        }
+
+        console.log(arrVarFun[0]())
+        console.log(arrVarFun[1]())
+        console.log(arrVarFun[2]())
+
+        console.log(arrVarFun[0])
+        console.log(arrVarFun[1])
+        console.log(arrVarFun[2])
+            // 看起来也是普通的函数体
+
+
+        // 以上八节小课说明，如果要形成闭包都满足三点
+
+        // 1.
+        // 是外层函数形成的作用域块套内层函数
+        // 在这个例子中，就是外层函数包裹内层函数
+        // 或者是let作用域块里面的函数，当然这种一般都是在for循环中才可以实现
+
+        // 2.
+        // 会变化的数据都放在外层与内层之间
+        // 而且会随着同一个作用域块的内层函数一起操作
+        // 也就是说，全局环境在外部调用内层函数
+        // 会把内外层函数之间的闭包环境内的数据一起调用
+
+        // 3.
+        // 关于全局中调用内层函数的方式，内层函数都需要被一个全局变量保存下来
+        // 而且是保存其函数体，再用函数体重新调用同一个闭包中的数据
+        // 虽然这个例子中是将内层函数保存在全局的数组变量中
+    </script>
+</body>
+
+</html>

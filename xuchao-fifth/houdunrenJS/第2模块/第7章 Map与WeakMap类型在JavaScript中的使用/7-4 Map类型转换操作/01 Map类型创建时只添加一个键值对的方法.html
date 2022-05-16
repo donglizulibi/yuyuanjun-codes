@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 当给Map添加一个键值对，如果是用构造函数实例化的方法
+        // 则是数组里面套数组
+
+        let func = function() {}
+        let map = new Map([
+            [func, {
+                obj: 324
+            }]
+        ])
+        console.log(map.size)
+        console.log(map.has(func))
+        console.log(map)
+
+        // 另一个问题就是，如果需要把引用类型作为键值对的键名
+        // 最好在外部先用一个变量保存一下，否则使用has之类的无法找到
+        // 反而会重新创建一个新的引用类型的地址
+    </script>
+</body>
+
+</html>

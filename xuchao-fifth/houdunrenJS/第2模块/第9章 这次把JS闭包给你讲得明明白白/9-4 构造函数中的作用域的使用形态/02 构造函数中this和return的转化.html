@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子主要是用普通函数里面的return {sum: sum}
+        // 来类比构造函数
+
+        // this构造函数的类比，相当于在构造函数内部定义一个函数
+        // 此时的构造函数可以当作普通函数使用，然后把定义的函数
+        // 放在一个对象里面返回出去
+        // 则把父级函数的返回值赋值给一个变量的时候
+        // 这个变量就可以使用内部的sum方法
+        // 父级函数的内部函数方法被外部使用，使得这个整个作用域内的所有数据
+        // 形成了一个闭包，都得以保存，所以多次调用可以实现累加效果
+        function hd() {
+            let n = 1;
+
+            function sum() {
+                console.log(++n)
+            }
+            return {
+                sum: sum
+            }
+        }
+
+        // let a = new hd()
+        let a = hd()
+        console.log(a) // 此时返回值就是一个对象
+        a.sum()
+        a.sum()
+        a.sum()
+
+        // 数据的保存只在一次创建的一个完整作用域里面生效，再创建一次就不生效
+        let b = hd()
+        console.log(b)
+        b.sum()
+        b.sum()
+        b.sum()
+
+
+        // 则使用this构造函数几乎可以认为是同理
+        // 也是实例化对象中有构造函数内部的所有数据
+        function houdun() {
+            let n = 1;
+            this.sum = function() {
+                console.log(++n)
+            }
+        }
+        let c = new houdun()
+        console.log(c)
+        c.sum()
+        c.sum()
+        c.sum()
+    </script>
+</body>
+
+</html>

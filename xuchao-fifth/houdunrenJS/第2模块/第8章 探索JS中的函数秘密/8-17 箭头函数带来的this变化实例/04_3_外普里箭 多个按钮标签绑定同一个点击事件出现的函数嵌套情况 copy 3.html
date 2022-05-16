@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>我好饿</button>
+    <button>我好困</button>
+    <script>
+        let DomObj = {
+            site: '后盾人',
+            hanleEvent: function() {},
+            bindRun: function() {
+                let btns = document.querySelectorAll('button');
+                console.log(btns);
+                console.log('类方法下普通函数的this', this)
+
+                // 外普里箭
+                btns.forEach(function(item) {
+                    console.log('类方法下普通函数的普通函数的this', this)
+                        // window 这里不能理解为是btns调用了普通函数
+                        // 而是在对象内部的方法中调用了一个普通函数，然后遍历btns
+                        // 把btns里面的项目作为参数传倒内部的普通函数里
+
+                    item.addEventListener('click', () => {
+                        console.log('类方法下普通函数的普通函数的箭头函数的this', this)
+                            //window
+                    })
+                })
+
+
+
+            }
+        }
+        DomObj.bindRun()
+    </script>
+</body>
+
+</html>

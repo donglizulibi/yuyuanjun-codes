@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第三层函数只在内部调用，而不加return
+        function hd() {
+            let n = 1
+
+            return function show() {
+                console.log(++n)
+                let m = 10
+
+                return function sum() {
+                    console.log(++m)
+                }
+
+                // sum()
+            }
+
+            // show()
+        }
+
+
+        let a = hd()
+        console.log(a)
+        a()
+        a()
+        a()
+            // n还是会递增
+
+        console.log('===============')
+
+        // 但是在这里a()也有返回值
+        // 则可以通过把a函数执行的返回值赋给全局的另一个变量
+        // 来拿到第二层函数内部的闭包
+        // 这个闭包包括第二层的数据m，和第三层函数
+        let b = a()
+        console.log(b)
+        b()
+        b()
+        b()
+            // m也会递增，说明闭包拿到，m这个数据也保留了
+    </script>
+</body>
+
+</html>

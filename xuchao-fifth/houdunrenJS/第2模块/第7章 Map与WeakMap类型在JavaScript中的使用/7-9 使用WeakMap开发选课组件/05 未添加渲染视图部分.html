@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            padding: 20px;
+            width: 100vw;
+            display: flex;
+            box-sizing: border-box;
+        }
+        
+        div {
+            border: solid 2px #ddd;
+            padding: 10px;
+            flex: 1;
+        }
+        
+        div:last-of-type {
+            margin-left: -2px;
+        }
+        
+        ul {
+            list-style: none;
+            display: flex;
+            width: 200px;
+            flex-direction: column;
+        }
+        
+        li {
+            height: 30px;
+            border: solid 2px #e67e22;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 10px;
+            color: #333;
+            transition: 1s;
+        }
+        
+        a {
+            border-radius: 3px;
+            width: 20px;
+            height: 20px;
+            text-decoration: none;
+            text-align: center;
+            background: #16a085;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 5px;
+        }
+        
+        .remove {
+            border: solid 2px #eee;
+            opacity: 0.8;
+            color: #eee;
+        }
+        
+        .remove a {
+            background: #eee;
+        }
+        
+        p {
+            margin-top: 20px;
+        }
+        
+        p span {
+            display: inline-block;
+            background: #16a085;
+            padding: 5px;
+            color: white;
+            margin-right: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li><span>php</span> <a href="javascript:;">+</a></li>
+            <li><span>js</span> <a href="javascript:;">+</a></li>
+            <li><span>向军讲编程</span><a href="javascript:;">+</a></li>
+        </ul>
+    </div>
+    <div>
+        <strong id="count">共选了0门课</strong>
+        <p id="lists"></p>
+    </div>
+    <script>
+        // 所以这个项目的需求是，在左边框里的课程条目如果点击后面的蓝色加号
+        // 会在右边框里出现选中的课程的标签，同时右边框会实时地显示已经选了几门课
+        // 同时左边框被选中的课程条目后面的加号会变成红色减号
+        // 再点一下这个减号，左边会还原，右边的标签消失，计数器减一
+
+
+        // 这个例子可以分为以下几个步骤
+        // 1 在class的constructor里面定义四个个参数，分别表示页面中所有li元素
+        //   页面中负责计数的count标签，页面中负责存放已选课程标签的p元素
+        //   和新建一个空的WeakMao负责后续的存放数据
+
+        // 2 通过遍历所有li元素，给里面的a标签添加点击事件，实现点击这个标签
+        //   就给map集合中添加内容，再点击一次就移除内容
+        //   判断是应该添加还是移除的方式就是检测a标签中是否有某个属性
+        //   则在给map添加内容的同时，就要给a标签添加一个属性
+
+        // 3 判断的操作是，点击li里面的a标签
+        //   如果li里面有这个判断属性，说明这个课已经被选了
+        //   这次点击a标签就变成了一次删除操作，这次的图标应该是减号，红色
+        //   将变成 加号 绿色，这次的课程li已经在map里面，应该将其删去，li里的属性也应该删去
+        //   再点击一次就取反
+
+        class Lesson {
+            constructor() {
+                this.lis = document.querySelectorAll('ul>li')
+                this.countElem = document.querySelector('#count')
+                this.listsElem = document.getElementById('lists')
+                this.map = new WeakMap()
+            }
+            run() {
+                // console.log(this.lis)
+                // console.log(this.countElem)
+                // console.log(this.listsElem)
+                // console.log(this.map)
+                this.lis.forEach(li => {
+                    li.querySelector('a').addEventListener('click', e => {
+                        let state = li.getAttribute('select')
+                        let a = e.target
+                        let spanText = li.querySelector('span').innerHTML
+                        if (state) {
+                            a.innerHTML = '+'
+                            a.style.backgroundColor = 'green'
+                            this.map.delete(li)
+                            li.removeAttribute('select')
+                        } else {
+                            a.innerHTML = '-'
+                            a.style.backgroundColor = 'red'
+                            this.map.set(li, spanText)
+                            li.setAttribute('select', true)
+                        }
+                        console.log(this.map)
+                    })
+                })
+            }
+
+        }
+
+        new Lesson().run()
+    </script>
+</body>
+
+</html>

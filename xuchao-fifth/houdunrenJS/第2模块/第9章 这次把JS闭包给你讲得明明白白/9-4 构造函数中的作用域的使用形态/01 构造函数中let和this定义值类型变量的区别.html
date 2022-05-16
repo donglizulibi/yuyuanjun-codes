@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在这个例子中，如果使用this来定义n的值，则在后期实例化之后
+        // 调用实例中的sum函数，会找不到原来构造函数里面的this.n，也就是会报错
+        // 如果不想报错，可以用let在“全局”定义一个n的变量
+        // 则a.sum就可以生效，并且多次执行也会使n实现累加
+
+        // 如果还是需要使用this.n定义n变量，在this.sum里面也需要用this.n
+
+        // 如果希望n这个数据变成构造函数私有，可以使用let在构造函数内部定义的方法
+        // 这样，当实例对象在调用sum函数的时候，会连同sum同作用域闭包下的n变量
+        // 一同调用，多次执行a.sum之后就可以实现n的累加
+
+        function Hd() {
+            // this.n = 1
+            let n = 1
+            this.sum = function() {
+                console.log(++n)
+                    // console.log(++this.n)
+            }
+        }
+
+        let a = new Hd()
+        console.log(a)
+
+        // let n = 1
+        a.sum()
+        a.sum()
+        a.sum()
+    </script>
+</body>
+
+</html>

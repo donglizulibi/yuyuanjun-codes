@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>houdunren</button>
+    <button>hdcms</button>
+    <script>
+        let btns = document.querySelectorAll('button')
+        btns.forEach(item => {
+
+            item.addEventListener('click', () => {
+                let left = {
+                    a: 123,
+                    b: 234
+                }
+
+                left.b += 1
+                console.log(left)
+
+            })
+        })
+
+        // 当left是引用类型的时候，就不会出现覆盖
+
+        // 但是与下个例子无关，下个例子虽然是值类型，但是定时器会新建变量
+    </script>
+</body>
+
+</html>

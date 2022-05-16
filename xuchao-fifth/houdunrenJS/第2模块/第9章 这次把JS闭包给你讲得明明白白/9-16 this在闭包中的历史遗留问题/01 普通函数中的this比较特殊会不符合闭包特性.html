@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = {
+            user: 'houdunren',
+            show: function() {
+                return function() {
+                    console.log(this)
+                    return this.user
+                }
+            }
+        }
+
+        console.log(hd.show()())
+
+        // 在这个例子中，show函数内部的函数下面的this
+        // 虽然也会跟show函数所处的环境中的this在形式上构成闭包
+        // 但是由于this这个关键字比较特殊，所以这个this其实是指向window的
+
+        // 相当于
+        // let a = hd.show()
+        // console.log(a())
+
+        // 至于再形成闭包，可以参考第八章关于this的讨论
+        // 比如内层函数使用箭头函数，或者使用bind，或者在外部把 this赋值给_this
+    </script>
+</body>
+
+</html>

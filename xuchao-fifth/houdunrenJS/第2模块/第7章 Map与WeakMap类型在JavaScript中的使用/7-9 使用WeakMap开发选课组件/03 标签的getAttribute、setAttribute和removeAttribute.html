@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+    </ul>
+    <script>
+        let li = document.querySelector("li")
+        console.log(li)
+
+        // setAttribute中可以填两个值，第一个是属性的名称，第二个是属性值
+        // 在这里是为了验证这个标签是不是存在，所以属性值设为布尔值
+        // 也可以设为其他的字符串
+        li.setAttribute('select', false)
+        let state = li.getAttribute('select')
+        console.log(li) // 标签中添加进这个属性
+        console.log(state) // 取到的标签属性的属性值是布尔值
+
+        // 以这种方式修改属性值之后，state不会发生改变
+        // 可能是因为state是值类型的原因
+        li.setAttribute('select', 'haha')
+        console.log(li)
+        console.log(state)
+
+        // 属性值也可以是字符串
+        li.setAttribute('content', 'para')
+        let content = li.getAttribute('content')
+        console.log(li)
+        console.log(content)
+
+        // setAttribute中只能填两个参数，下面这样会报错
+        // li.setAttribute('content')
+        // let content = li.getAttribute('content')
+        // console.log(li)
+        // console.log(content)
+
+        // removeAttribute移除某个属性
+        li.removeAttribute('select')
+        console.log(li)
+
+        console.log(state) // 这个还有值，state是一个值类型
+    </script>
+</body>
+
+</html>

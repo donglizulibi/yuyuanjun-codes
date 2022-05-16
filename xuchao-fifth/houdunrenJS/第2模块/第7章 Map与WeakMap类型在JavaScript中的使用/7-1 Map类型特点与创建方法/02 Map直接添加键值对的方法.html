@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给Map直接添加键值对的方法是在小括号里放一个数组
+        // 再把需要添加的每一个键值对放在一个数组里
+        let map = new Map([
+            [1, 32],
+            [function() {}, "haha"]
+        ])
+
+        console.log(map)
+
+        // set 链式调用，连续添加键值对
+        map.set("name", "我还饿").set(111, 444)
+        console.log(map)
+    </script>
+</body>
+
+</html>

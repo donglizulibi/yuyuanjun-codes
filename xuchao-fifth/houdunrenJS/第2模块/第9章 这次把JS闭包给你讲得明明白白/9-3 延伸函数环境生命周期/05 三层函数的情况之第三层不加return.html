@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第三层函数只在内部调用，而不加return
+        function hd() {
+            let n = 1
+
+            return function show() {
+                console.log(++n)
+                let m = 10
+
+                function sum() {
+                    console.log(++m)
+                }
+                sum()
+            }
+
+            // show()
+        }
+
+
+        let a = hd()
+        console.log(a)
+        a()
+        a()
+        a()
+            // 只有n会递增，m不会递增
+            // 说明每次调用a函数，n数据会保留，m会重开
+    </script>
+</body>
+
+</html>

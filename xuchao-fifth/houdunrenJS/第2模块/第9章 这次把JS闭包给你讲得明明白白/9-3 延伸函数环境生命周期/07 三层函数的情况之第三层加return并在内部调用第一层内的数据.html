@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在第三层内调用第一层内的数据
+        function hd() {
+            let n = 1
+
+            return function show() {
+                let m = 10
+                console.log(n)
+                return function sum() {
+                    console.log(++n)
+                    console.log(++m)
+                }
+
+                // sum()
+            }
+
+            // show()
+        }
+
+
+        let a = hd()
+        console.log(a)
+        a()
+        a()
+        a()
+            // 第二层内部没有对n的操作，且第三层没有被外部调用
+            // 所以n不递增
+
+        console.log('===============')
+
+
+        // 把a函数执行的返回值赋给全局的另一个变量
+        // 拿到第二层函数内部的闭包
+        // 这个闭包包括第二层的数据m，和第三层函数
+        let b = a()
+        console.log(b)
+        b()
+        b()
+        b()
+            // m和n都会递增
+            // 所以只要函数最里层的闭包被保留
+            // 函数内的所有闭包都会被保留
+    </script>
+</body>
+
+</html>
