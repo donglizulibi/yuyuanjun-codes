@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 由于JSON.parse自带递归特性，所以可以使用JSON来实现引用类型的深拷贝
+
+        // 先定义一个引用类型
+        let obj = {
+            name: 'asdf',
+            age: 18,
+            address: {
+                city: 'beijing',
+                country: 'cn'
+            }
+        }
+
+        // 函数就是先转过去，再转回来
+        function jsonDeepCopy(param) {
+            return JSON.parse(JSON.stringify(param))
+        }
+
+        let objCopy = jsonDeepCopy(obj)
+        console.log(obj)
+        console.log(objCopy)
+
+        // 修改原对象
+        obj.name = 'houdunren'
+        obj.address.city = 'shanghai'
+
+        // 拷贝对象没有改变，说明拷贝成功
+        console.log(obj)
+        console.log(objCopy)
+    </script>
+</body>
+
+</html>

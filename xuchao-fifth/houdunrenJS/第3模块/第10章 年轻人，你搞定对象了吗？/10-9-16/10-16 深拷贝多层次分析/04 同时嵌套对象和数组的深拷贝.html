@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = {
+            name: 'houdunren',
+            user: {
+                name: 'hdcms'
+            },
+            arr: ['aaa', 'bbb']
+        }
+
+        // 判断条件的选用
+        console.log(typeof [])
+        console.log(typeof {})
+        console.log([] instanceof Array)
+        console.log({}
+                instanceof Array)
+            // 不能使用typeof
+
+        function deepCopy(params) {
+            // 第一步先判断传进来的参数是一个对象还是数组
+            // 如果是对象就建立空对象，如果是数组就建立空数组
+            let copy = params instanceof Array ? [] : {}
+
+            // 第二步是遍历，里面的判断条件可以使用typeof
+            // 因为不管是数组还是对象都是返回object
+            for (let [key, val] of Object.entries(params)) {
+                if (typeof val == 'object') {
+                    copy[key] = deepCopy(val)
+                } else {
+                    copy[key] = val
+                }
+            }
+            return copy
+        }
+
+
+        let hd = deepCopy(data)
+        console.log(data)
+        console.log(hd)
+
+        // 修改内层的引用类型
+        data.user.name = 'asdfgh'
+        data.arr[0] = 'ddd'
+        console.log(data)
+        console.log(hd)
+            // 拷贝数据不改变，深拷贝成功
+    </script>
+</body>
+
+</html>

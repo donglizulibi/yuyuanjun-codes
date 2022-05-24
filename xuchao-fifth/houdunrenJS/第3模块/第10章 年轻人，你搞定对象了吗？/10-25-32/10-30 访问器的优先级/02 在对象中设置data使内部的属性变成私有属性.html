@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这里说的修改数据是说修改初始数据
+
+        let user = {
+            data: {
+                name: '初始数据',
+                age: 19
+            },
+            set name(value) {
+                // this.data.name = value
+
+                console.log(value + '-后盾人')
+            },
+            get name() {
+                // return this.name
+                return this.data.name
+            },
+        }
+
+        user.name = 'hdcmsdfs'
+        console.log(user.name)
+            // 由于set name中没有赋值语句，所以这里get name还是返回对象原来的私有数据
+            // 也就是haha
+
+
+        user.data.name = '你好'
+            // 即使把对象中的属性变成对象的私有属性，里面的数据还是有可能被外部修改
+
+        console.log(user.name)
+            // 修改初始数据成功
+    </script>
+</body>
+
+</html>

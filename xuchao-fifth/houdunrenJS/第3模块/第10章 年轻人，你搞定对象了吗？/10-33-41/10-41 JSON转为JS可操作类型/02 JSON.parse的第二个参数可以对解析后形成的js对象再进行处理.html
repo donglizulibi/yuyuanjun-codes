@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 假如从其他环境拿到了一个JSON数据，需要使用JSON.parse转成JS对象的格式
+        // 同时又需要对这个JS对象进行一些修改
+        // 那么修改的操作可以放在JSON.parse的第二个参数里进行
+
+        // 这个方法自带递归的效果，会一层一层往下遍历直到遍历完数据中所有的键值对
+
+        // 先生成一个JSON格式的数据
+        let hd = {
+            title: 'houdunewn',
+            url: 'houdunewn.com',
+            teacher: {
+                name: "xiangjun",
+                title: 'hdcms'
+            }
+        }
+        let json = JSON.stringify(hd, null, 2);
+        console.log(json);
+
+        // 现在需要对这个JS对象进行修改，把title的属性值前面都加一个前缀
+        let obj = JSON.parse(json, (key, value) => {
+            console.log(key)
+            console.log(value)
+            console.log('')
+                // 打印键值
+
+            if (key == "title") {
+                value = "后盾-" + value
+            }
+            return value
+        });
+        console.log(obj)
+    </script>
+</body>
+
+</html>

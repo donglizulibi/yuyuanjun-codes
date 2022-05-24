@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数实现了一个什么样的功能
+
+        // 先定义一个对象，给这个对象添加属性和方法
+        let xj = {}
+        xj.name = 'houdunren'
+        xj.show = function() {
+            console.log(this.name)
+        }
+        console.log(xj)
+
+        // 把这些方法和属性放到构造函数里，然后就可以批量创建对象
+        function User(name) {
+            this.name = name
+            this.show = function() {
+                console.log(this.name)
+            }
+        }
+        let xj1 = new User('houdunren')
+        console.log(xj1)
+    </script>
+</body>
+
+</html>

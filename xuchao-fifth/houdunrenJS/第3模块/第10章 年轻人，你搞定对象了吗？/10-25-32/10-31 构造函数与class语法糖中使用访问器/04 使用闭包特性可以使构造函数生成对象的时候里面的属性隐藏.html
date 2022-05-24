@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子的应用见10-20，关于构造函数的抽象问题
+        function User(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        let xj = new User('hhh', 19)
+        console.log(xj)
+
+        // 现在让name和age变成私有属性
+        function UserDate(name, age) {
+            let data = {
+                name,
+                age
+            }
+            this.show = function() {
+                console.log(data.name)
+                console.log(data.age)
+            }
+        }
+        let xiangjun = new UserDate('hhh', 19)
+        console.log(xiangjun)
+            // 打印出一个空对象，也就是说在构造函数内部使用let定义参数
+            // 可以让实例化的对象没有这个属性
+            // 但是实例化中如果要使用构造函数中的方法，可以因为闭包特性
+            // 去使用let定义的参数接受的数据
+        xiangjun.show()
+
+        // 实例化对象中都没有这个属性就可以防止篡改
+    </script>
+</body>
+
+</html>

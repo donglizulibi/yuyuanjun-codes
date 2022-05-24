@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" v-model='haha'>
+    <input type="text" v-model='haha'>
+    <div v-bind='haha'></div>
+    <hr>
+    <input type="text" v-model='title'>
+    <input type="text" v-model='title'>
+    <input type="text" v-model='title'>
+    <h4 v-bind='title'>ff</h4>
+    <script>
+        function View() {
+            let proxy = new Proxy({}, {
+                set(obj, property, value) {
+                    console.log(obj, property, value)
+
+                    // 拿到页面元素
+                    let bord = document.querySelectorAll(`[v-model='${property}']`)
+                    let bind = document.querySelectorAll(`[v-bind='${property}']`)
+
+                    // 开始渲染
+                    bord.forEach(item => {
+                        item.value = value
+                    })
+
+                    bind.forEach(item => {
+                        item.innerHTML = value
+                    })
+                }
+            })
+
+            this.init = function() {
+                let els = document.querySelectorAll('[v-model]')
+                els.forEach(item => {
+                    item.addEventListener('keyup', function() {
+                        proxy[this.getAttribute('v-model')] = this.value
+                    })
+                })
+            }
+        }
+        new View().init()
+    </script>
+</body>
+
+</html>

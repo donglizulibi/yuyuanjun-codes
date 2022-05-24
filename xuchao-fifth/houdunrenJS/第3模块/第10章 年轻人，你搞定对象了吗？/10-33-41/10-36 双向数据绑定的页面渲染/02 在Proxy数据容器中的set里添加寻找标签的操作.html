@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input v-model="content">
+    <input v-model="title">
+    <input v-model="title">
+    <h4 v-bind="title">这里也会发生更新</h4>
+    <script>
+        // 这个例子是想说明
+        function View() {
+            let proxy = new Proxy({}, {
+                set(obj, property, value) {
+                    console.log(obj, property, value)
+
+                    // 这里先写死,专门找title
+                    let tits = document.querySelectorAll("[v-model='title']")
+                    console.log(tits)
+
+                    // 下一步可以设置把property作为参数放进去
+                    let bord = document.querySelectorAll(`[v-model='${property}']`)
+                    console.log(bord)
+                        // 然后就可以实现在哪个输入框输入,在数据容器中找到这些同类的输入框
+
+                    // 拿到v-bind绑定的元素,可以实现文本的同步更新
+                    let bind = document.querySelectorAll(`[v-bind='${property}']`)
+                    console.log(bind)
+                },
+                get() {}
+            })
+
+            this.init = function() {
+                let els = document.querySelectorAll('[v-model]')
+                els.forEach(item => {
+                    item.addEventListener('keyup', function() {
+                        proxy[this.getAttribute('v-model')] = this.value
+                    })
+                })
+            }
+
+        }
+        new View().init()
+    </script>
+</body>
+
+</html>

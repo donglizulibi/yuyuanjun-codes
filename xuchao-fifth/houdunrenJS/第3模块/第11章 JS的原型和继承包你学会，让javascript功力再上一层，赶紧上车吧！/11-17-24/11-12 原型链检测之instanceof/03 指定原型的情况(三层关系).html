@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 三个构造函数
+        function A() {}
+
+        function B() {}
+
+        function C() {}
+
+        // 先创建实例化对象再赋值
+        // 而且创建实例和赋值的过程要从最高级到最低级
+
+        // 创建最高级的实例，再修改下一级的构造函数，才能创建下一级的实例
+        let c = new C()
+        B.prototype = c
+
+        // 创建第二级的实例
+        let b = new B()
+        A.prototype = b
+
+
+        // 创建最后一级的实例并开始推理
+        let a = new A()
+
+        // 1.先是a b c的往上一级
+        console.log(a.__proto__ === A.prototype)
+        console.log(a.__proto__ === b)
+
+        // 2.
+        console.log(b.__proto__ === B.prototype)
+        console.log(b.__proto__ === c)
+
+        // 3.
+        console.log(c.__proto__ === C.prototype)
+        console.log(c.__proto__.__proto__ === Object.prototype)
+
+        // 4.将a b串联起来
+        console.log(b.__proto__.__proto__.__proto__ === Object.prototype)
+        console.log(a.__proto__.__proto__.__proto__.__proto__ === Object.prototype)
+
+        // 5.
+        console.log(b.__proto__.__proto__ === C.prototype)
+        console.log(a.__proto__.__proto__.__proto__ === C.prototype)
+
+        // 6.整理一下
+        console.log(a.__proto__ === A.prototype)
+        console.log(a.__proto__.__proto__ === B.prototype)
+        console.log(a.__proto__.__proto__.__proto__ === C.prototype)
+        console.log(a.__proto__.__proto__.__proto__.__proto__ === Object.prototype)
+
+        // 7.结论
+        console.log(a instanceof A)
+        console.log(a instanceof B)
+        console.log(a instanceof C)
+        console.log(a instanceof Object)
+    </script>
+</body>
+
+</html>

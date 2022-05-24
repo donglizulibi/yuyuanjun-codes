@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义一个对象，对象中的一个属性的属性值也是对象
+        let obj = {
+            name: 'haha',
+            user: {
+                username: '我好饿'
+            }
+        }
+
+        // 拷贝这个对象，原来的对象和拷贝的对象中的obj.user是指向同一个内存地址的
+        let Shallow_cloning = {
+            name: obj.name,
+            user: obj.user
+        }
+
+        console.log(JSON.stringify(obj, null, 2))
+        console.log(JSON.stringify(Shallow_cloning, null, 2))
+
+        // 修改这个指向同一个内存地址的对象中的属性值
+        obj.user.username = '我好困'
+
+        console.log(JSON.stringify(obj, null, 2))
+        console.log(JSON.stringify(Shallow_cloning, null, 2))
+            // 最里层对象的属性值都改成了我好困
+
+
+        obj.name = 'gaga'
+
+        console.log(JSON.stringify(obj, null, 2))
+        console.log(JSON.stringify(Shallow_cloning, null, 2))
+            // 修改name属性并不会同步修改
+    </script>
+</body>
+
+</html>

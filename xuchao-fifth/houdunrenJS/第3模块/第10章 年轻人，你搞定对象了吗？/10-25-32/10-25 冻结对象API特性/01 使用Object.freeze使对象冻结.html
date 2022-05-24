@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对一个对象的冻结使得对象内的属性不能被修改和删除，也不能添加属性
+
+        // 先创建一个对象，查看其属性特征
+        let obj = {
+            name: 'haha',
+            age: 19
+        }
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2))
+
+        // 使用冻结语句，查看其属性特征
+        Object.freeze(obj)
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2))
+            // 结果显示writeable和configurable都为false 
+            // 也就是不能修改和删除已有属性
+
+        // 尝试遍历
+        for (let key in obj) {
+            console.log(key)
+        }
+        // 可以遍历
+
+        // 尝试修改属性的属性值
+        obj.age = 20
+        console.log(obj)
+            // 未能修改成功
+
+        // 尝试删除一个属性
+        delete obj.name
+        console.log(obj)
+            // 未能删除成功
+
+        // 尝试添加新属性
+        obj.gender = 'male'
+        console.log(obj)
+            // 结果显示未添加成功
+
+        // 尝试修改属性特征
+        // Object.defineProperty(obj, 'name', {
+        //     enumerable: false
+        // })
+        // 会报错，说明不能修改属性特征
+
+
+
+        // 但是可以进行遍历操作和调用对象中的属性和方法，为了防止前台无意或者恶意修改数据时可以使用
+    </script>
+</body>
+
+</html>

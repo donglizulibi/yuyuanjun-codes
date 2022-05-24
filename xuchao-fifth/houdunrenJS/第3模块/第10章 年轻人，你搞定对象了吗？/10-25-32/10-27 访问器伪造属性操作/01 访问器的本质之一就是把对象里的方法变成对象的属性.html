@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在对象里设置一个访问器的方法，调用这个访问器属性就可以获得课程的总价
+
+        // "use strict"
+        let lesson = {
+            lists: [{
+                js: 'js',
+                price: 90
+            }, {
+                js: 'html',
+                price: 23
+            }, {
+                js: 'css',
+                price: 12
+            }],
+            get total() {
+                return this.lists.reduce((pre, val) => {
+                    return pre = pre + val.price
+                }, 0)
+            }
+        }
+
+        console.log(lesson.total)
+        lesson.total = 100
+        console.log(lesson.total)
+            // 这里的结果和上面的打印的结果是一样的
+            // 表示在没有设置set的情况下，total这个属性不可以在外部修改
+            // 从而保护了这个属性
+
+        // 访问器的本质之一就是把对象里的方法变成对象的属性
+        // 那么往这个方法里传参数的方式就是给对象的这个属性赋新的值
+        // 在赋新的值的过程中会有一些判断条件来判断这个数据是否符合条件
+        // 如果符合的话，一般来说就会把这个数据赋值对象的私有参数
+        // 然后进入下一个步骤，也就是调用这个方法的部分
+        // 调用这个方法的方式就是打印对象的属性，所以一般会有返回值
+    </script>
+</body>
+
+</html>

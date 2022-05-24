@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input type="text" validate>
+    <input type="text" validate>
+    <script>
+        // 定义一个代理工厂函数,传入的参数是一个对象,返回一个proxy实例
+        function ProxyFactory(target) {
+            return new Proxy(target, {
+                get(obj, property) {
+                    console.log(obj, property)
+                    return obj[property]
+                },
+                set(obj, property, value) {
+                    console.log(obj, property, value)
+                    return true
+                }
+            });
+        }
+
+        // 实验一下这个函数
+        let proxy = ProxyFactory({
+            name: '我好困',
+            age: 19
+        })
+        console.log(proxy)
+
+        // 这样操作触发代理里面的get
+        console.log(proxy.name)
+
+        // 添加给代理添加一个属性
+        proxy.gender = 'male'
+
+        // 遍历这个代理,只能用for in遍历
+        for (let k in proxy) {
+            console.log(k)
+        }
+
+
+
+        // 拿到页面中的标签对象,放到代理函数中
+        let inputs = document.querySelectorAll('[validate]')
+        console.log(inputs)
+
+        // 拿到代理的对象
+        let inputProxy = ProxyFactory(inputs)
+        console.log(inputProxy)
+
+        console.log("===================================")
+
+        // 遍历这个代理对象
+        inputProxy.forEach((item, index) => {
+            console.log(index, item)
+            console.log('')
+        })
+    </script>
+</body>
+
+</html>

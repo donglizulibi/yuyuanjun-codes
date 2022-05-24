@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这样的多层对象的解构主要是为了应对多层的JSON数据
+        let hd = {
+            name: 'houudnren',
+            lesson: {
+                title: 'javascript'
+            }
+        }
+
+        let {
+            name,
+            lesson: {
+                title
+            }
+        } = hd
+
+        // 这里的lesson打印出来的是 { title: 'javascript'}
+
+        // 则 lesson: { title } 就等于 
+        // let {title} = {title: 'javascript'}
+
+        console.log(title)
+    </script>
+</body>
+
+</html>

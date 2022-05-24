@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input type="text" validate>
+    <input type="text" validate>
+    <script>
+        "use strict";
+
+        // 代理工厂
+        // 这个案例中不是所有表单都需要验证，只有包含validate这个属性的表单才需要验证
+        function ProxyFactory(target) {
+            return new Proxy(target, {
+                get(obj, property) {
+
+                    return obj[property]
+                },
+                set(obj, property, value) {
+
+                    console.log(obj, property, value)
+                    return true
+                }
+            });
+        }
+
+        const proxy = ProxyFactory(document.querySelectorAll('[validate]'))
+
+        // 把代理中的元素对象遍历出来
+        proxy.forEach((item, i) => {
+            item.addEventListener('keyup', function() {
+                // console.log(this)
+                // 由于是在普通函数里,这里的this就是当前元素标签对象
+
+                // 下面这一步就是把键盘抬起事件和代理器中的set联系起来
+                // 但凡要联系set，都有一个“类似于赋值的过程”
+                // 这里就把正在进行操作的validate的表单的角标作为属性赋值给proxy
+                // 把正在进行操作的validate的表单标签对象作为这个属性的属性值
+                proxy[i] = this;
+            })
+        })
+    </script>
+</body>
+
+</html>

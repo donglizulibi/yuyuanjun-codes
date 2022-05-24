@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 和上个例子一样，先定义一个引用类型的对象，再将其赋值给另一个变量
+        let a = {
+            name: 'yyj',
+            age: 19
+        }
+        let b = a
+        console.log(a)
+        console.log(b)
+
+        // 修改其中一个变量内部的值，发现二者都修改
+        b.age = 20
+        console.log(a)
+        console.log(b)
+            // 两个变量指向同一个内存地址
+
+        // 同理定义一个引用类型的数组，再将其赋值给另一个变量
+        let arrA = [1, 2, 3, 4, 5]
+        let arrB = arrA
+        console.log(arrA)
+        console.log(arrB)
+
+        // 修改其中一个，二者都会修改
+        arrB[0] = "haha"
+        console.log(arrA)
+        console.log(arrB)
+    </script>
+</body>
+
+</html>

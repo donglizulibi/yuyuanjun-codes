@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义一个基本的构造函数
+
+        function User(name, age) {
+            this.name = name
+            this.age = age
+        }
+
+        // 创建实例，传入参数
+        let u = new User('houdunren', 19)
+        console.log(u)
+            // 实例中有传入的参数
+
+        // 修改实例中数据
+        u.name = 'hahah'
+        console.log(u)
+            // 可以修改成功
+
+        // 那么如果不希望构造函数创建出来的实例中的数据被修改
+        // 就可以在构造函数中使用访问器
+    </script>
+</body>
+
+</html>

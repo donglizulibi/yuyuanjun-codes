@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 50px;
+            background: #34495e;
+        }
+        
+        input {
+            border: solid 10px #ddd;
+            height: 30px;
+        }
+        
+        .error {
+            border: solid 10px red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" validate rule="max:12,min:3">
+    <input type="text" validate rule="max:3,isNumber">
+    <script>
+        "use strict";
+        // 先定义一个验证功能类
+        class Validate {
+            max(value, len) {
+                return value.length <= len
+            }
+
+            min(value, len) {
+                return value.length >= len
+            }
+            isNumber(value) {
+                return /^\d+$/.test(value)
+            }
+        }
+
+        console.log(new Validate().max('asdf', 3))
+
+        // 代理工厂
+        function ProxyFactory(target) {
+            return new Proxy(target, {
+                set(obj, property, val) {
+                    let ruleArr = val.getAttribute('rule').split(',')
+                    let state = ruleArr.every(item => {
+
+                        // 这一步拿到每次遍历具体的验证规则，放在一个数组里
+                        // 这个数组的第一项是验证的方法名，第二项是验证方法的参数(如果有的话)
+                        let rule = item.split(':')
+                        console.log(rule)
+
+                        // 再看一下表单输入的文本
+                        console.log(val.value)
+
+                        // 创建一个验证的类
+                        let validate = new Validate()
+
+                        // 先validate[rule[0]]调用验证方法
+                        // 然后在后面加上()调用这个方法
+                        // 并传入表单输入文本和验证方法参数作为两个参数
+                        return validate[rule[0]](val.value, rule[1])
+
+                    })
+
+                    // 把验证结果作为一个布尔值返回出来，作为后续的验证
+                    console.log(state)
+                    return true
+                },
+                get(obj, property) {
+                    return obj[property]
+                }
+            })
+        }
+
+        // 把dom元素对象放进代理工厂函数
+        let proxy = ProxyFactory(document.querySelectorAll('[validate]'))
+        proxy.forEach((item, i) => {
+            item.addEventListener('keyup', function() {
+                proxy[i] = this
+            })
+        })
+    </script>
+</body>
+
+</html>

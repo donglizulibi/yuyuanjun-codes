@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在上上个例子中已经证明了preventExtensions可以禁止让一个对象添加属性
+        // 现在测试一下使用preventExtensions后能否修改和删除属性和修改属性特征
+
+        // 先定义一个对象，包含两个属性
+        const user = {
+            name: 'houdunren',
+            age: 19
+        }
+
+        // 开启preventExtensions
+        Object.preventExtensions(user)
+
+        // 测试是否可以添加属性
+        user.gender = "male"
+        console.log(user)
+            // 不可以
+
+        // 测试是否可以修改属性
+        user.age = 20
+        console.log(user)
+            // 可以修改
+
+        // 测试是否可以删除属性
+        delete user.age
+        console.log(user)
+            // 可以删除
+
+        // 测试是否可以遍历
+        for (let key in user) {
+            console.log(key)
+        }
+
+        // 测试是否可以修改已有属性的属性特征
+        // 先查看一下
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(user, "name"), null, 2))
+
+
+        // 修改属性特征
+        Object.defineProperty(user, 'name', {
+            enumerable: false,
+            configurable: false,
+            writable: false
+        })
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(user, "name"), null, 2))
+            // 可以修改
+    </script>
+</body>
+
+</html>

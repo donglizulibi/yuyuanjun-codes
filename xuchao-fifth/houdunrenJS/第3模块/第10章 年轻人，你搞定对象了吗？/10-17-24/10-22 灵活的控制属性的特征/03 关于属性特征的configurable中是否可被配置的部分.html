@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // configurable除了不可以被删除之外，还有不可以被重新配置属性特征的设定
+
+        // 先设置一个对象
+        let obj = {
+            name: 'houdunren',
+            age: 19
+        }
+
+        // 查看这个对象中两个属性的属性特征
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2))
+
+        // 修改其中age属性的configurable属性特征
+        Object.defineProperty(obj, 'age', {
+            // writable: false,
+            // enumerable: false,
+            configurable: false
+        })
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(obj, "age"), null, 2))
+
+
+        // 再次修改这个属性其他属性特征
+        Object.defineProperty(obj, 'age', {
+            // writable: true,
+            // enumerable: true,
+            // writable: false,
+            // enumerable: false,
+            configurable: true
+                // configurable: false
+        })
+
+        // 查看属性特征
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(obj, "age"), null, 2))
+            // 可以修改其他属性特征
+
+        // 结论就是，如果如果同时把writable和configurable改为false，则writable无法改回true
+        // 如果只把configurable改为false，则writable可以改为false
+        // 但是configurable本身无法再改回true
+        // enumerable不论是true改false 还是false改true都不行
+
+        // 鉴于这种单行道的模式，那如果把某个属性的configurable改成了false，再想改回来
+        // 就只能找到原来的配置的代码删去
+    </script>
+</body>
+
+</html>

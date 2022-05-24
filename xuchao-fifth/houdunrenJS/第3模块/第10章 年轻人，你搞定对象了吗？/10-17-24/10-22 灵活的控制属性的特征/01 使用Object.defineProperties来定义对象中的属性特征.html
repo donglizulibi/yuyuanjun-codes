@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 批量定制一个对象中的多个属性
+        // 顺序是先定义一个对象，再定义对象中各个属性的特征
+        let obj = {
+            name: 'haha',
+            age: 19
+        }
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2))
+
+
+        Object.defineProperties(obj, {
+            name: {
+                value: '我好饿',
+                writable: true,
+                enumerable: false,
+                configurable: true
+                    // configurable这个配置选项如果设置为false
+                    // 后面就无法再另起一个配置将其设置为true，而只能在这同一个配置里修改
+            },
+            age: {
+                value: 32,
+                writable: true,
+                enumerable: true,
+                configurable: false
+            }
+        })
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 2))
+
+        // Object.defineProperties(obj, {
+        //     name: {
+        //         value: '我好饿',
+        //         writable: true,
+        //         enumerable: true,
+        //         configurable: true
+        //     },
+        //     age: {
+        //         value: 32,
+        //         writable: true,
+        //         enumerable: true,
+        //         configurable: false
+        //     }
+        // })
+
+
+        console.log(obj)
+        obj.name = 'jjjj'
+            // writable改成false之后，这条语句不会生效，
+            // 如果启用“use strict”模式，则这条语句会报错
+
+        console.log(obj)
+        console.log(Object.keys(obj))
+            // 把哪个属性的enumerable改成false，这个属性就不会参与迭代，
+            // 在这条语句中就不会被打印出来
+        delete obj.age
+            // age的configurable改成了false，则这条语句不起作用，启用严格模式会报错
+        console.log(obj)
+    </script>
+</body>
+
+</html>

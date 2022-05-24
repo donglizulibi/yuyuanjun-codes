@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用class不需要用Object.defineProperties
+
+        // 首先还是定义一个Symbol
+        const data = Symbol()
+        class User {
+            constructor(name, age) {
+                this[data] = {
+                    name,
+                    age
+                }
+            }
+
+            // 首先是name的部分
+            set name(val) {
+                if (val.length > 2) {
+                    this[data].name = val
+                } else {
+                    console.log('参数错误')
+                }
+            }
+            get name() {
+                return this[data].name
+            }
+
+            // 然后是age的部分
+            set age(val) {
+                if (val > 18) {
+                    this[data].age = val
+                } else {
+                    console.log('参数错误')
+                }
+            }
+            get age() {
+                return this[data].age
+            }
+        }
+
+        // 创建新实例对象，传入参数，打印属性
+        let hd = new User('houdunren', 20)
+        console.log(hd)
+        console.log(hd.name)
+        console.log(hd.age)
+
+        // 修改属性，但是不合乎类中访问器定义的条件
+        hd.name = '后盾'
+        hd.age = 17
+        console.log(hd.name)
+        console.log(hd.age)
+            // 两个值都没有改变
+
+        // 修改属性
+        hd.name = '后盾人'
+        hd.age = 22
+        console.log(hd.name)
+        console.log(hd.age)
+            // 都改变了
+    </script>
+</body>
+
+</html>

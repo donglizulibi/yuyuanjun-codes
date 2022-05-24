@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            a: 1,
+            b: 2,
+            c: 3
+        }
+
+        // 无法使用for of遍历对象
+        // for (let key of obj) {
+        //     console.log(key)
+        // }
+        // 会报错
+        // 一个办法就是用对象中的一些方法把对象里面的属性名或者属性值变成数组
+
+        for (let key of Object.keys(obj)) {
+            console.log(key)
+            console.log(obj[key])
+        }
+
+        // 这里可以使用解构特性
+        console.log(Object.entries(obj))
+        for (let [key, value] of Object.entries(obj)) {
+            console.log(key, value)
+        }
+
+        // 或者使用for in
+        for (let key in obj) {
+            console.log(key)
+        }
+    </script>
+</body>
+
+</html>

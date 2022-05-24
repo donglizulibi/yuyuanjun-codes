@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先设置一个设置请求代理的函数
+        function reactive(object) {
+            return new Proxy(object, {
+                set(obj, prop, val) {
+                    obj[prop] = val
+                    return obj[prop]
+                },
+                get(obj, prop) {
+                    return obj[prop]
+                }
+            })
+        }
+
+        // 定义原来的对象
+        let object = {
+            a: 123,
+            b: 234
+        }
+
+        // 取到请求代理函数
+        let po = reactive(object)
+        console.log(object)
+        console.log(po)
+
+        // 给代理对象添加属性
+        po.x = 456
+        console.log(object)
+        console.log(po)
+
+        // 给代理对象修改属性
+        po.a = 99
+        console.log(object)
+        console.log(po)
+
+        // 给原来的对象修改属性
+        object.b = 88
+        console.log(object)
+        console.log(po)
+
+        // 可以看到，二者是完全同步的
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面讨论的请求代理来代理对象和函数
+        // 代理对象时，传入到内部的参数是对象本身、对象的属性、给对象属性赋值时的值
+        // 代理函数时，传入到内部的参数是函数本身、函数运行的环境、传入函数的参数
+        // 有了这些传入的参数，就可以在代理内部进行拦截和进一步的设置
+
+        // 那么到了数组这里，传入代理内部的参数在set中就变成了数组本身、数组的角标、赋值的值
+        // 传到get里的值是数组本身和角标
+
+        const array = [{
+            a: 1,
+            b: 2
+        }, {
+            a: 3,
+            b: 4
+        }, {
+            a: 5,
+            b: 6
+        }]
+
+        // 定义一个代理来代理数组
+        let proxy = new Proxy(array, {
+            get(array, key) {
+                console.log(array, key)
+                return array
+            },
+            set(array, key, val) {
+                console.log(array, key, val)
+                return true
+            }
+
+        })
+
+        // 给这个代理新加一个项目，此时set会启动
+        proxy[3] = {
+            c: 1,
+            d: 2
+        }
+
+        console.log('========================')
+
+        // 数组的请求代理的调用需要用中括号
+        proxy[1]
+        console.log(proxy[1])
+            // 打印的话会打印出get的返回值
+
+
+        console.log('========================')
+        console.log(array)
+            // 在这里由于没有在set中设置改变原数组的语句，所以原数组不改变
+
+        console.log('========================')
+        console.log(JSON.stringify(proxy[1], null, 2))
+
+        console.log('========================')
+        console.log(proxy)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面的例子都是用解构赋值把对象中的属性或者方法全部接收
+        // 在这里实现不全部接收，而是按需接收
+
+        let {
+            random
+        } = Math
+
+        console.log(Math) // 这个对象中有一个属性名为random的属性值，就是random的函数体
+        console.log(Math.random) // 调用这个函数体
+        console.log(random) // 打印解构的函数体函数体
+        console.log(random()) // 执行这个函数
+
+
+        // 类比于
+        let obj = {
+            name: 'asd',
+            age: 123,
+            show: function() {
+                return 'show-func'
+            }
+        }
+
+        let {
+            show
+        } = obj
+        console.log(show)
+        console.log(show())
+    </script>
+</body>
+
+</html>

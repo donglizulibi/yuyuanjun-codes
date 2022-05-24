@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这里主要是为了防止通过user.data.name = 'abc'的方式篡改数据
+
+        // 首先定义一个Symbol
+        const data = Symbol()
+
+        const user = {
+            [data]: {
+                name: '初始数据'
+            },
+            set name(val) {
+                // console.log(val)
+                this[data].name = val
+            },
+            get name() {
+                return this[data].name
+            }
+        }
+
+        // 先访问一下初始数据
+        console.log(user.name)
+
+        // 定义这个属性
+        user.name = 'houdunren'
+
+        // 或者新定义的属性
+        console.log(user.name)
+
+        // 在外部修改对象内的初始数据
+        // user[Symbol].name = 'haha'
+        // console.log(user.name)
+        // 无法修改会直接报错
+
+        // 也就是说，只要不拿到原来定义的那个Symbol
+        // 就不能修改初始值
+
+        // user[data].name = 'hahah'
+        // console.log(user.name)
+
+        // 但是这个初始的Symbol是存在后台的，一般用户是拿不到的
+    </script>
+</body>
+
+</html>

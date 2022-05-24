@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" v-model='title'>
+    <input type="text" v-model='title'>
+    <h4 v-bind='title'>这里也会发生更新</h4>
+    <script>
+        // 因为事件的触发都由文本框input完成，所以先给input加上键盘抬起事件
+
+        function View() {
+            // 先建立一个空的数据容器
+            // 注意这个数据容器是构造函数的私有属性
+            let proxy = new Proxy({}, {
+                get(obj, property) {},
+                set(obj, property, value) {}
+            })
+
+            // 添加事件
+            this.init = function() {
+                let els = document.querySelectorAll('[v-model]')
+                els.forEach(item => {
+                    item.addEventListener('keyup', (e) => {
+                        console.log(e.target.value)
+                    })
+                })
+            }
+        }
+
+        new View().init()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对象中访问器和自身的属性冲突的时候会丢失自身属性
+
+        const user = {
+            // name: 'houdunren',
+            age: 19,
+            set name(value) {
+                console.log(value)
+            },
+            get name() {
+                return "123"
+            },
+            name: 'houdunren',
+
+        }
+
+        console.log(user)
+        console.log(user.name = 'hahaha')
+        console.log(user)
+
+        // 实际验证过的情况是，如果没有给访问器赋值，也就是没有user.name = '***'时
+        // 是访问器和对象自身属性谁在后面谁的优先级高
+        // 如果有这个赋值的语句，则是访问器高
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用Function方法创建函数或者构造函数可以不加new关键字
+        let Hd = Function('name', `
+        this.name = name;
+        this.show = function(){
+            console.log(this.name)
+        }
+        `)
+        let houdunren = new Hd('houdunren')
+        houdunren.show()
+
+        // 现在定义一个普通函数，找到这个函数的constructor
+        function hd() {
+            return 1
+        }
+
+        console.dir(hd)
+        console.log(hd.constructor)
+
+        // 这个函数本身并没有constructor
+        // 它调用的constructor的位置在这个函数的__proto__上，其实就是Function，
+        console.log(hd.constructor == Function)
+        console.log(hd.constructor == hd.__proto__.constructor)
+
+        // 这个函数prototype上也有一个constructor
+        // 这个constructor是hd本身作为构造函数的constructor
+        console.log(hd.prototype.constructor)
+
+
+        // 现在利用hd的__proto__的constructor来构造新的构造函数
+        let a = hd.constructor // 生成了一个Function
+        let User = a(
+            "name",
+            `this.name = name;
+             this.show = function(){
+                 console.log(this.name + '是通过构造函数Function创建的');
+             }
+            `
+        );
+        let xj = new User("向军");
+        xj.show();
+    </script>
+</body>
+
+</html>

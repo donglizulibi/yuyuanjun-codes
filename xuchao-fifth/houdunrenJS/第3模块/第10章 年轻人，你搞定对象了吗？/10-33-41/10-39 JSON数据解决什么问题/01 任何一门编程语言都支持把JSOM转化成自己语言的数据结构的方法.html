@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在JSON出现之前，是用XML来负责各个语言之间数据传递的通用格式
+        // XML是各种标签
+
+        // 比如前台在HTML中输入的文本会变成JSON格式传入后台php
+        // 这就是在js和php中传输
+
+        // 由于JSON格式非常清晰，所以也经常被用于写配置文件，比如npm的包管理
+        // 会在package.json里面看到json
+
+        // 标准的JSON格式键值对的键名都要用双引号包裹
+
+        // 虽然JSON和JS中的对象比较像，但是不是一回事
+        // 以下是转化的方法
+        let data = {
+            name: 'houdunewn',
+            data: {
+                title: 'php'
+            }
+        }
+
+
+        let json = JSON.stringify(data, null, 2);
+        console.log(typeof json) // JSON在JavaScript中是字符串格式的
+        console.log(json)
+    </script>
+</body>
+
+</html>

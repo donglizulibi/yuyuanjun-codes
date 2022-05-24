@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = {
+            name: 'houdunren',
+            user: {
+                name: 'hdcms'
+            }
+        }
+
+        // console.log(typeof data.user)
+
+        // 所以深拷贝的原理就是使用递归函数
+        // function copy(params) {
+        //     let obj = {}
+        //     let arr = Object.keys(params)
+
+        //     for (let key of arr) {
+        //         if (typeof params[key] == 'object') {
+        //             obj[key] = copy(params[key])
+        //         } else {
+        //             obj[key] = params[key]
+        //         }
+        //     }
+        //     return obj
+        // }
+
+        // 简写形式
+        function copy(params) {
+            return Object.keys(params).reduce((pre, val) => {
+                typeof params[val] == 'object' ?
+                    pre[val] = copy(params[val]) :
+                    pre[val] = params[val]
+                return pre
+            }, {})
+        }
+
+
+        let hd = copy(data)
+        console.log(JSON.stringify(hd, null, 2))
+        console.log(JSON.stringify(data, null, 2))
+
+        hd.user.name = 'haha'
+        console.log(JSON.stringify(hd, null, 2))
+        console.log(JSON.stringify(data, null, 2))
+    </script>
+</body>
+
+</html>

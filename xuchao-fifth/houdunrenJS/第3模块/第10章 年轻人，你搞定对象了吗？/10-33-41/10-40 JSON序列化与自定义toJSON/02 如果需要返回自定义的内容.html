@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 所以toJSON是一个关键字，放在对象里的时候，只要对这个对象执行JSON.stringify
+        // 就会自动执行
+        let hd = {
+            title: 'houdunewn',
+            url: 'houdunewn.com',
+            teacher: {
+                name: "xiangjun"
+            },
+            toJSON: function() {
+                return {
+                    // 比如有的数据需要用自己这个对象的，有的需要自定义，在后面添加
+                    haha: '我好困', //完全自定义
+                    title: this.title,
+                    teacher: this.teacher.name, //往下挖一层
+                    // show: function() {} // 添加函数没有用
+                }
+            }
+        }
+        console.log(hd)
+        console.log(JSON.stringify(hd, null, 2))
+            // url被删除了，haha添加进去
+    </script>
+</body>
+
+</html>

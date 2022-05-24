@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 所谓抽象就是运用闭包的原理
+        // 使得封装到构造函数里的属性和方法避免被外部访问或修改
+
+        // 比如在下面这个构造函数中，属性name和age只希望在实例化对象的时候传递
+        // 实例化之后并不希望用户修改，所以可以考虑抽象
+        // 还有构造函数内部的info函数，是在被构造函数内部的方法调用的
+        // 没有必要让用户感知到，或者访问或者修改，所以也要实现抽象
+
+        function User(name, age) {
+            // this.name = name;
+            // this.age = age;
+            // 改为
+            let data = {
+                name, // name:name
+                age // age:age
+            }
+
+            // this.info = function() {
+            // 改为
+            let info = function() {
+                return data.age > 50 ? '是老年' : '是青年'
+            }
+            this.show = function() {
+                console.log(data.name + info())
+            }
+        }
+
+        let xj = new User('haha', 52)
+        console.log(xj)
+        xj.show()
+            // 打印这个实例化对象，里面没有data这个数据
+            // 构造函数创建实例传入实参之后会让data的数据存在
+            // 根据闭包特性，data数据会作用在内部的info和show函数中
+            // 所以虽然xj对象中只有info和show函数，这些函数中也已经有data数据
+
+        // 另外，见8-18
+        // 构造函数新建对象的时候包含的四个步骤
+        // 1 创建一个空{}  
+        // 2 改变this的指向到这个新的{}中 
+        // 3 将创建新对象时候的数据填入{}中  
+        // 4 将这个对象return出来
+
+        // 构造函数实例化新对象的时候
+        // 会把构造函数中有this的属性或者方法变成新实例的属性或者方法
+        // 所以info方法和name属性由于是使用let定义的
+        // 所以仅仅是构造函数的内部变量，只不过传入的参数与其有关
+        // 所以也会被this后面的属性或者方法调用
+        // 而不会是新建的实例对象的属性或者方法
+
+        // 比如，对实例对象进行属性遍历
+        console.log(Object.entries(xj))
+            // 发现只有一个键值对，就是show
+
+        // 在这种情况下再修改属性或者方法
+        xj.name = '我好饿'
+        xj.info = function() {
+            return ''
+        }
+
+        // 并不会修改结果
+        xj.show()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义一个提供功能验证的类
+        class Validate {
+            max(value, len) {
+                return value.length > len;
+            }
+            min(value, len) {
+                return value.length < len;
+            }
+            isNumber(value) {
+                // 如果是个数值就表示合法
+                return /^\d+$/.test(value);
+            }
+            haha() {
+                return 123
+            }
+        }
+
+        // 测试验证模块
+        let validate = new Validate();
+
+        // 返回自定义函数
+        console.log(validate.haha)
+        console.log(validate.haha())
+
+        // 表示填入一个数据，然后判断这个数据是不是大于这个长度
+        console.log(validate.max('abc', 5))
+
+        // 表示填入一个数据，然后判断这个数据是不是小于这个长度
+        console.log(validate.min('abc', 2))
+
+        // 填入数据,判断这个数据是不是数值
+        console.log(validate.isNumber('abc'))
+        console.log(validate.isNumber('123'))
+        console.log(validate.isNumber(123))
+    </script>
+</body>
+
+</html>

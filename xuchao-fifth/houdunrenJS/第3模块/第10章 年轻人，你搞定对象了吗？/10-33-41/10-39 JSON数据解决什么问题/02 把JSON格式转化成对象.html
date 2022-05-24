@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义一个对象，把这个对象转成JSON格式
+        let obj = {
+            name: {
+                last: "asdf",
+                first: "dgg"
+            },
+            age: 19
+        }
+
+        // 这个过程叫做序列化
+        let json = JSON.stringify(obj, null, 2)
+        console.log(json)
+
+        // 再转回来
+        let objJSON = JSON.parse(json)
+        console.log(objJSON)
+    </script>
+</body>
+
+</html>

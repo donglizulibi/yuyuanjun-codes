@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Object.defineProperty可以在添加新属性的同时设置属性特征吗
+        let obj = {}
+
+        Object.defineProperty(obj, 'name', {
+            value: 'houdunren',
+            writable: false,
+            enumerable: true,
+            configurable: false
+        })
+
+        console.log(obj)
+
+        Object.defineProperties(obj, {
+            age: {
+                value: 19,
+                writable: false,
+                enumerable: true,
+                configurable: false
+            },
+            gender: {
+                value: 'male',
+                writable: false,
+                enumerable: true,
+                configurable: false
+            }
+        })
+        console.log(obj)
+
+        // 所有的属性都添加进去了
+        // 测试结果是可以的，但是要先建立一个空对象
+    </script>
+</body>
+
+</html>

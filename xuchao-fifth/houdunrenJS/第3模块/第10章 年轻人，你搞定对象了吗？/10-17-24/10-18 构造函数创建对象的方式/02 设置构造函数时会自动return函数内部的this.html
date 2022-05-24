@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+        function User(name) {
+            this.name = name
+            this.show = function() {
+                console.log(this.name)
+            }
+
+            // 把构造函数内部的方法赋值给全局并打印
+            this.render = function() {
+                console.log(this)
+            }
+
+            // return this // 这一行不用写，会自动返回
+
+            // 如果返回一个自定义的对象，则会把这个对象赋值给实例
+            // return {
+            //     a: 123
+            // }
+            // return {}
+
+
+        }
+        let xj = new User('向军')
+        console.dir(xj)
+
+        // 不开启严格模式的话会打印全局环境
+        // 开启以后打印undefined
+        let func = xj.render
+        func()
+    </script>
+</body>
+
+</html>

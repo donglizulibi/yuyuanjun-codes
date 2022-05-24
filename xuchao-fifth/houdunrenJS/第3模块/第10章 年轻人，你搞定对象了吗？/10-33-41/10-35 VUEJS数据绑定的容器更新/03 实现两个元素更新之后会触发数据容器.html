@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" v-model='title'>
+    <input type="text" v-model='title'>
+    <h4 v-bind='title'>这里也会发生更新</h4>
+    <script>
+        // 这个例子的需求是两个input和h4一个三个标签要求同步内容
+        // 也就是任何一个input里的内容发生改变，另一个input和h4的内容都会同步变化
+
+        // 做这个例子的思路就是要设置一个数据容器，三个标签的显示都依靠这个容器里的数据
+        // 且有一个标签里的内容发生改变，就会改变容器里的数据，然后改变三个标签的内容
+
+        // 那么这个容器就可以用请求代理来实现
+        function View() {
+
+            let proxy = new Proxy({}, {
+                get(obj, property) {},
+                set(obj, property, value) {
+                    console.log('proxy-set', obj, property, value)
+                }
+            });
+
+            this.init = function() {
+                const els = document.querySelectorAll('[v-model]');
+                els.forEach(item => {
+                    item.addEventListener('keyup', function() {
+
+                        // 这里用了箭头函数
+                        console.log(this.value) // 这个value就是文本输入框的内容
+                        console.log(this.getAttribute('v-model'))
+                        proxy[this.getAttribute('v-model')] = this.value;
+
+                    })
+                })
+            }
+        }
+        new View().init()
+    </script>
+</body>
+
+</html>

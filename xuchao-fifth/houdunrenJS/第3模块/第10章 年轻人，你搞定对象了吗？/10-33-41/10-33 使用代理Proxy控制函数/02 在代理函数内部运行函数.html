@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义一个求和函数
+        function sum(...param) {
+            return Array.from(param).reduce((pre, val) => pre += val, 0)
+        }
+
+        // 定义一个请求代理来这个函数，并让这个求和函数在代理内部运行
+        let proxy = new Proxy(sum, {
+            apply(func, obj, args) {
+                // 把求和函数在内部运行起来，
+                // 可以直接在这里打印，也可以在这里返回，在调用proxy的时候再打印
+                // console.log(func(...args))
+                console.log(func)
+                console.log(obj)
+                console.log(args)
+                return func(...args)
+            }
+        })
+
+        // proxy(1, 2, 3, 4)
+        console.log(proxy.call(null, 1, 2, 3, 4))
+    </script>
+</body>
+
+</html>

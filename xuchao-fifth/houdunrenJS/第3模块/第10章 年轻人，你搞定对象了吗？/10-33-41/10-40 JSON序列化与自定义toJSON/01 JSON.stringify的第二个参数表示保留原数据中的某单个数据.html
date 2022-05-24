@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // JSON.stringify的第二个参数表示保留原数据中的某单个数据
+        // 第三个参数是table制表位
+
+        let hd = {
+            title: 'houdunewn',
+            url: 'houdunewn.com',
+            teacher: {
+                name: "xiangjun",
+                age: {
+                    number: 18
+                }
+            }
+        }
+        console.log(JSON.stringify(hd, ['title', 'url'], 2))
+            // 填了这个两个放在一个数组里，保存了这两个数据
+
+        console.log(JSON.stringify(hd, ['teacher'], 2))
+            // 填了这一个数据，放在数组里，保存了这个属性，但是后面的属性值是一个空对象
+
+        console.log(JSON.stringify(hd, 'teacher', 2))
+            // 填了这个一个数据，但是没有放在数组里，结果所有数据都保持下来了 
+
+        console.log(JSON.stringify(hd, ['teacher', 'name'], 2))
+            // 填了这个数据和下面的属性名，都保存下来
+
+        console.log(JSON.stringify(hd, ['teacher', 'name', 'age', 'number'], 2))
+            // 也是一串数据被保存下来
+    </script>
+</body>
+
+</html>

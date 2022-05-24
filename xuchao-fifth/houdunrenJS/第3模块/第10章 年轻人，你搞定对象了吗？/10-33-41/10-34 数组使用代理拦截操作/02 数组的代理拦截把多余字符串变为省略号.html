@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子要求设置一个请求代理来处理数组，来监听数组每一项的对象
+        // 使得调用数组的某一项时，就会启动检测这一项内部title后面属性值字符串长度的操作
+        // 如果长度超过五位，就把超出五位的部分变成省略号
+
+        const lessons = [{
+            title: '媒体查询响应式布局',
+            category: 'css'
+        }, {
+            title: 'Flex弹性盒模型',
+            category: 'css'
+        }, {
+            title: 'Mysql多表查询随意操作',
+            category: 'mysql'
+        }]
+
+        // 
+        let proxy = new Proxy(lessons, {
+            get(array, key) {
+                const title = array[key].title;
+                const len = 5;
+                array[key].title = title.length > len ?
+                    title.substr(0, len) + '.'.repeat(3) :
+                    title
+                return array
+            }
+        })
+
+        // 数组的请求代理的调用需要用中括号
+        proxy[1]
+
+        console.log(lessons) // 原数组的数据也改了
+        console.log(JSON.stringify(proxy[1], null, 2))
+        console.log(proxy)
+
+        // 检测代理对象可否被遍历
+        for (let k in proxy) {
+            console.log(proxy[k])
+        }
+
+        // 作为一个对象还是不能用for of 只能用for in
+    </script>
+</body>
+
+</html>

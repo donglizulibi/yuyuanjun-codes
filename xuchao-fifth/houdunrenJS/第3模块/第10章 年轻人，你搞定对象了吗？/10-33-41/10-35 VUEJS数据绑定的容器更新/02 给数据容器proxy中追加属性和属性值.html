@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" v-model='title'>
+    <input type="text" v-model='title'>
+    <h4 v-bind='title'>这里也会发生更新</h4>
+    <script>
+        function View() {
+
+            // 数据容器
+            let proxy = new Proxy({}, {
+                get(obj, property) {},
+                set(obj, property, value) {
+                    console.log('proxy-set', obj, property, value)
+                        // 由于这里并没有把property和value添加进obj的操作
+                        // 所以obj一直是空对象
+                }
+            });
+
+            // 这里先举一个input的例子
+            this.init = function() {
+                let el = document.querySelectorAll('[v-model]')[0]
+                el.addEventListener('keyup', e => {
+
+                    // 拿到这个标签属性的属性值
+                    let tit = e.target.getAttribute('v-model')
+                    console.log(tit)
+
+                    // 拿到input输入的值
+                    let val = e.target.value
+                    console.log(val)
+
+                    // 把标签属性的属性值tit作为属性名添加进数据容器
+                    // 把input输入的值作为上面这个属性名的属性值
+                    proxy[tit] = val
+                        // 这里tit变量所代表的值会成为proxy的set里面的property
+                        // 这里val变量所代表的值会成为proxy的set里面的value
+                        // 在10-32中添加属性的操作是用.语法,因为那是添加常量
+                        // 这里是添加变量所以用中括号
+                })
+            }
+        }
+        new View().init()
+    </script>
+</body>
+
+</html>

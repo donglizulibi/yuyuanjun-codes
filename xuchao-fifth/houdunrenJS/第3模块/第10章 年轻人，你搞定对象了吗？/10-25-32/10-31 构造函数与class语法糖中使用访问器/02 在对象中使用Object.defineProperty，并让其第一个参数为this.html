@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 那Object.defineProperty放到一个函数里
+        // 这个例子主要是说明Object.defineProperty的第一个参数可以是this
+
+        let user = {
+            name: 'houdunren',
+            func: function() {
+                Object.defineProperty(this, 'name', {
+                    writable: false
+                })
+            }
+        }
+
+        // 要先调用一下这个函数
+        user.func()
+
+        // 修改这个属性
+        user.name = 'ddd'
+
+        // 无法修改
+        console.log(user)
+    </script>
+</body>
+
+</html>

@@ -37,6 +37,7 @@
             // 将数据存到类方法的内部参数里
             // 且这样存储的数据是独一无二存在的
             static set(key, value) {
+                console.log(this.data)
                 this.data[key] = value
 
             }
@@ -52,6 +53,8 @@
 
         // 所以要用Symbol存一个独一无二的属性名
         Cache.set(user.key, user)
+            // 这里答应的this.data在外面看对象里只有一个数据，但是展开发现有两个
+
         Cache.set(cart.key, cart)
 
         console.log(Cache.data)

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // hasOwnProperty只能检测自己这个对象是否有某个属性
+        // 而要检测某个对象本身以及原型链上的属性要用“in”
+
+        // 定义一个普通的数组
+        let arr = [1, 2, 3]
+        console.log(arr) // 普通的数组都有length这个属性，但find属性在其原型链上
+        console.log(arr.hasOwnProperty('length')) // 返回true
+        console.log(arr.hasOwnProperty('find')) // 返回false，hasOwnProperty只能找到数组本身的属性
+
+        // 使用“in”检测本身及其原型链上的属性
+        console.log('length' in arr) // 本身的属性是可以找到的
+        console.log('find' in arr) // 这样是可以找到的
+    </script>
+</body>
+
+</html>

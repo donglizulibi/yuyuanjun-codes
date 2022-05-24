@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // proxy基本上只适合底层库的使用
+        let object = {
+            a: 123,
+            b: 234
+        }
+
+        // 第一个参数传入对象，第二个参数传入一个config对象，里面可以有各种拦截操作
+        let po = new Proxy(object, {
+            set(obj, prop, val) {
+                console.log(obj, prop, val)
+            }
+        })
+
+        // 虽然仅仅是这样一个简单的操作，但是后面可能有非常多的拦截的操作
+        po.a = 3
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这里讨论一个把方法放到对象中赋给构造函数原型时会产生的覆盖问题
+        // 首先创建一个构造函数
+        function User(name) {
+            this.name = name;
+        }
+
+        // 通常要给这个构造函数的prototype里添加一个在后面的实例中都可以使用的方法时
+        // 会采用User.prototype.show = function(){}的方法
+        // 但是如果添加的方法较多时，也可以统一放在一个对象
+        User.prototype = {
+            show() {
+                console.log(this.name);
+            }
+            // ...
+        }
+        console.dir(User)
+            // 查看一下，发现User的prototype里面确实有show方法
+            // 但是没有constructor，因为被覆盖了
+
+        // 现在用常规方法生成一个实例
+        let lisi = new User("lisi")
+        console.log(lisi)
+        lisi.show() // 这个实例对象是可以使用原型上的方法的
+        console.log(lisi.__proto__.constructor)
+            // 要是找constructor的话也可以找得到 ƒ Object() { [native code] }
+
+        // 再用上一小节的方法生成新实例对象的时候，就无法使用show方法
+        let wangwu = new lisi.__proto__.constructor("wangwu");
+        console.log(wangwu) // ??? 变成了一个字符串对象
+        wangwu.show() // 这里面没有show方法
+    </script>
+</body>
+
+</html>

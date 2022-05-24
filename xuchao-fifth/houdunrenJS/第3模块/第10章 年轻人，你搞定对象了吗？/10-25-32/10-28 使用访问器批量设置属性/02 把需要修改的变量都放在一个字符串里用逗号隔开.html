@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 所谓批量设置属性就是在访问器的set内部操作，将一次性传递进来的参数进行字符串分割
+        // 然后再依次赋值给对象内部的属性
+
+        const user = {
+            data: {
+                name: "houdunren",
+                url: "www.cctv.com"
+            },
+            set site(value) {
+                console.log(value);
+                // 这里要加; 否则会连成一行
+
+                // 解构语法 批量赋值
+                [this.data.name, this.data.url] = value.split(",")
+            },
+
+            get site() {
+                return `${this.data.name}的网址是${this.data.url}`
+            }
+        }
+
+
+        console.log(user.site)
+
+        user.site = "开源产品,www.houdunren.com"
+        console.log(user.site)
+
+        // 目前位置都是对象内部的方法来操作对象内部的数据
+        // 操作完之后得到的结果再返回到外部环境
+    </script>
+</body>
+
+</html>

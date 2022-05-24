@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子需求是把下面的数组变成一个对象
+        // 数组中每一项变成对象中的每个键值对的属性值
+        // 新建对象中每个键值对的属性名就是数组中每一项中的category的属性属性值
+
+        let lesson = [{
+            title: 'flex',
+            category: 'css'
+        }, {
+            title: 'dom',
+            category: 'js'
+        }, {
+            title: 'h1',
+            category: 'mysql'
+        }]
+
+        // 这里的做法就是新建一个对象
+        // 然后逐个往里添加键值对
+        let res = lesson.reduce((pre, val, index) => {
+            console.log(pre, val, index)
+            pre[`${val.category}-${++index}`] = val
+            return pre
+        }, {})
+
+
+        // 把对象转化成字符串
+        console.log(JSON.stringify(res, null, 3))
+    </script>
+</body>
+
+</html>

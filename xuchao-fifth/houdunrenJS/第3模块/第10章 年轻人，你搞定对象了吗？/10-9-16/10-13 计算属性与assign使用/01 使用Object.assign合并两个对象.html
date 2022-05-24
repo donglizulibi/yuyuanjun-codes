@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 见4-26 05
+        let a = {
+            a: 1
+        }
+        let b = {
+            b: 2
+        }
+        let c = Object.assign(a, b)
+        console.log(c)
+
+        function oss(params) {
+            let options = {
+                size: 99
+            };
+            options = Object.assign(options, params);
+            console.log(JSON.stringify(options, null, 3))
+        }
+
+        oss()
+        oss({
+            name: 'hah',
+            size: 89
+        })
+
+        // 所以目前出现了两种合并对象的方式
+        // 一种是Object.assign 一种是展开语法
+    </script>
+</body>
+
+</html>

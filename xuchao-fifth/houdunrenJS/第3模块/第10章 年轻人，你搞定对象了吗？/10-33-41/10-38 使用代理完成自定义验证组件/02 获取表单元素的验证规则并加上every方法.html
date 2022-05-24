@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" validate rule="max:12,min:3">
+    <input type="text" validate rule="max:3,isNumber">
+    <script>
+        function ProxyFactory(param) {
+            return new Proxy(param, {
+                set(obj, property, val) {
+                    // console.log(obj, property, val)
+
+                    let rule = val.getAttribute('rule')
+                    let ruleArr = rule.split(',')
+
+                    // 由于涉及到验证规则，验证时需要所有的规则都满足才行
+                    // 由此想到使用every数组方法
+                    ruleArr.every(item => {
+                        // 在验证规则内部有验证方式(如max)以及验证参数(如12)
+                        // 也需要拆分
+                        let vali = item.split(':')
+                        console.log(vali)
+
+                        // 这里先无条件返回真
+                        return true
+                    })
+                    return true
+                },
+                get(obj, property) {
+                    return obj[property]
+                }
+
+            })
+        }
+
+        let els = document.querySelectorAll('[validate]')
+        let proxy = ProxyFactory(els)
+        console.log(proxy)
+
+        // 这里出现一个问题，如果不在代理工厂函数中添加get的话，就无法遍历
+        // 可能是要遍历的话就必须取到proxy中的每一项，取项就要用到get
+        proxy.forEach((item, i) => {
+            item.addEventListener('keyup', function() {
+                proxy[i] = this
+            })
+        })
+    </script>
+</body>
+
+</html>

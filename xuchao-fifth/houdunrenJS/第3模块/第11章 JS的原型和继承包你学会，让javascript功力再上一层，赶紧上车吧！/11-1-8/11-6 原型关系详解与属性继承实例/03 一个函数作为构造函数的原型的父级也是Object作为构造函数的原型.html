@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 跟上面一节一样先设置一个show方法 
+
+        // 在Object作为构造函数的原型prototype里面设置一个方法
+        // 则任意一个普通构造函数的实例化对象也是可以调用的
+        Object.prototype.show = function() {
+            return 'Object.prototype.show'
+        }
+
+        // 随便定义一个构造函数
+        function User() {}
+
+        console.dir(Object) // 显示在Object的prototype里面有show方法
+        console.dir(User) // 显示在User的prototype的__proto__里面有show方法
+        console.log(User.prototype.__proto__ === Object.prototype)
+            // 由此可得出这二者相等
+
+        // 再生成一个User的实例
+        let u = new User()
+        console.log(u) // 结果显示在这个实例对象的父级的父级上也有show方法
+        console.log(u.__proto__.__proto__ === Object.prototype) // 二者相等
+        console.log(u.show()) // 同样可以调用
+    </script>
+</body>
+
+</html>

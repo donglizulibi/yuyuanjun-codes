@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // "use strict" ;
+        // const {
+
+        //     name,
+        //     age
+        // } = {
+        //     name: 'haha',
+        //     age: 22
+        // }; 
+
+        // 不写声明变量符号，var let const之类，也不开严格模式
+        // 把解构的语句放在一个括号里，也是可以执行并且不报错的
+        ({
+            name,
+            age
+        } = {
+            name: 'haha',
+            age: 22
+        })
+
+        console.log(name, age)
+    </script>
+</body>
+
+</html>

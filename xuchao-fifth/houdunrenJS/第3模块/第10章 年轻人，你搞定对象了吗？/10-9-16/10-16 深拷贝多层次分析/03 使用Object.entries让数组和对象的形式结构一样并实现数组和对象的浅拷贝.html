@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 也就是把数组的键值对变成角标和数组的项
+        let a = ['houdunren', 'haha']
+        console.log(Object.entries(a))
+        let b = {
+            name: 'houdunren',
+            title: 'haha'
+        }
+        console.log(JSON.stringify(Object.entries(a), null, 2))
+        console.log(JSON.stringify(Object.entries(b), null, 2))
+
+
+        // 使用entries来拷贝一个数组
+        let arr = ['aaa', 'bbb', 'ccc']
+
+        function copyArrFunc(array) {
+            return Object.entries(array).reduce((pre, val) => {
+                pre[val[0]] = val[1]
+                return pre
+            }, [])
+
+        }
+        let arrCopy = copyArrFunc(arr)
+        console.log(arr)
+        console.log(arrCopy)
+
+        arr[0] = 'ddd'
+        console.log(arr)
+        console.log(arrCopy)
+
+        // 使用entries来拷贝一个对象
+        let obj = {
+            a: 'aaa',
+            b: 'bbb',
+            c: 'ccc'
+        }
+
+        function copyObjFunc(object) {
+            return Object.entries(object).reduce((pre, val) => {
+                pre[val[0]] = val[1]
+                return pre
+            }, {})
+        }
+
+        let objCopy = copyObjFunc(obj)
+        console.log(obj)
+        console.log(objCopy)
+
+        obj.a = 'ddd'
+        console.log(obj)
+        console.log(objCopy)
+    </script>
+</body>
+
+</html>

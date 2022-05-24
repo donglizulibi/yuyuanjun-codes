@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 那么可以在这个例子中总结一下
+        // 既然是讨论对象的一个章节，那么最重要的就是控制对象中的各种属性
+        // 前面介绍了Object.defineProperty可以控制对象的中的属性的属性特性
+        // 按照这个属性的重要程度和特性，来区分是可以被用户修改的吗，可以被遍历的吗
+        // 可以被删除的吗，还有一些快捷的API，比如冻结 禁止扩展 封闭等来控制对象中的属性
+
+        // 对象中可以存放一些方法，可以用于自身的数据的操作，也可以调用出来给外部使用
+        // 这些方法可以通过访问器的方式伪装成对象自身的属性，那么给方法传参数的步骤
+        // 就变成了给自身的属性赋值，此时就调用了访问器中的set，再打印一下这个伪属性
+        // 就能调用访问器的get，在set和get中都能放一些操作，进一步地控制对象中的属性
+
+        // 关于批量复制对象，那就是构造函数，首先要提到构造函数创建实例的四个步骤
+        // 第一是创建一个空对象，第二是把构造函数中的this都指向这个对象，
+        // 第三步就是给对象传入创建实例时候的实参，第四步是返回这个对象
+        // 我想在第三步还包含了把构造函数内部的非this的语句都执行一遍的过程
+        // 这也会导致闭包的产生，比如把一些不想在实例中显示，又必须在实例中应用的数据
+        // 设成私有属性，也就是用let定义，那么实例中的方法在调用这些数据的时候就是闭包了
+
+        // 然后就是把这些东西就结合起来，构造函数和Object.defineProperty和访问器联用
+        // 让构造函数实例化的每一个对象中的属性都能有包含方法的伪属性，也都能定制属性特征
+
+        // 这就是这个例子要呈现的
+        function User(name, age) {
+            let data = {
+                name,
+                age
+            }
+            Object.defineProperties(this, {
+                name: {
+                    set(val) {
+                        if (val.length > 2) {
+                            // console.log(val)
+                            data.name = val
+                        } else {
+                            console.log('修改参数不对')
+                        }
+                    },
+                    get() {
+                        return data.name
+                    }
+                },
+                age: {
+                    set(val) {
+                        if (val > 18) {
+                            data.age = val
+                        } else {
+                            console.log('修改参数不对')
+                        }
+                    },
+                    get() {
+                        return data.age
+                    }
+                }
+            })
+        }
+
+        // 实例化一个对象，传入参数，打印属性
+        let hd = new User('houdouren', 19)
+        console.log(hd)
+        console.log(hd.age)
+        console.log(hd.name)
+
+        // 尝试修改属性
+        hd.name = '后盾'
+        console.log(hd.name)
+        hd.age = 16
+        console.log(hd.age)
+            // 两个修改的值都不符合set里面的条件，所以报错
+
+        // 再次修改属性
+        hd.name = '后盾人'
+        hd.age = 20
+        console.log(hd.name)
+        console.log(hd.age)
+            // 修改成功
+    </script>
+</body>
+
+</html>

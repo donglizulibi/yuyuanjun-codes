@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用变量取值的例子可见于对象的遍历
+        let obj = {
+            a: 123,
+            b: 234
+        }
+
+        // 在这个例子中，key并非obj中的属性，而是一个变量
+        // 所以要用key取值的话，需要放在中括号里面
+        for (let key in obj) {
+            console.log(obj.key)
+            console.log(obj[key])
+        }
+
+        // 也就是说，如果要用点来取对象中的属性值，点后面必须是字符串
+    </script>
+</body>
+
+</html>

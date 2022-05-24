@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先设置两个构造函数
+        function A() {
+
+        }
+
+        function B() {
+
+        }
+
+        // 创建B构造函数的实例化对象，并将这个对象设置成A构造函数的prototype
+        let b = new B()
+            // 则b的__proto__是B的prototype
+        A.prototype = b
+            // 则A的所以实例化对象的__proto__都是b
+
+        // 创建一个A构造函数的实例化对象
+        let a = new A()
+
+        // 实例化的a的上一级是A的prototype，且由于等同，所以也是b
+        console.log(a)
+        console.log(a.__proto__ === A.prototype)
+        console.log(a.__proto__ === b)
+
+        // 实例化的b的上一级是B的prototype，所以a的上两级是也是B的prototype
+        console.log(b.__proto__ === B.prototype)
+        console.log(a.__proto__.__proto__ === B.prototype)
+
+        // 当然还有顶级原型
+        console.log(a.__proto__.__proto__.__proto__ === Object.prototype)
+
+        // console.log(a instanceof b) 
+        // 这条语句会报错
+        // 说明在instanceof右边的只能是某个有prototype，可以生成实例的对象
+
+        // 结论
+        console.log(a instanceof A)
+        console.log(a instanceof B)
+        console.log(a instanceof Object)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Objdect.preventExtensions、Objdect.seal、Objdect.freeze
+        // 这三个API只是为了设置属性特征的便利性
+
+        // 方法名称/使用后效果   | Objdect.preventExtensions |   Objdect.seal  | Objdect.freeze
+
+        // 中译名称             |       禁止扩展             |     封闭        |   冻结 
+
+        // 是否可以添加属性      |       不行                |     不行        |   不行
+
+        // 是否可以删除属性      |       可以                |     不行        |   不行
+
+        // 可否修改属性的属性值  |       可以                |     可以        |   不行
+
+        // 是否可以遍历          |       可以                |      可以       |   可以
+
+        // 可否修改属性的属性特征 |       可以                |      不行       |   不行
+
+        // 判断是否出于这种状态   |  Object.isExtensible     | Object.isSealed | Object.isFrozen
+    </script>
+</body>
+
+</html>

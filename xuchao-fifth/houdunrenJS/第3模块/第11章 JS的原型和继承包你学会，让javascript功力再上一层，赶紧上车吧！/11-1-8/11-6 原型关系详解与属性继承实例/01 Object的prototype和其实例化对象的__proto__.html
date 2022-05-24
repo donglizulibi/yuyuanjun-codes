@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 和其他构造函数一样，Object作为构造函数的原型与其实例化出的对象的原型相等
+        let hd = new Object()
+        console.log(hd)
+            // 这里似乎有一个函数提升，也即是在下面添加show方法，在这里也显示出来
+
+        // 给Object.prototype上添加方法
+        Object.prototype.show = function() {
+            console.log("Object.prototype.show")
+        }
+
+        // hd调用show，相当于hd调用其父级上的方法
+        console.dir(Object)
+        console.log(Object.prototype === hd.__proto__)
+
+        // 可以调用
+        hd.show()
+
+        // 虽然打印的结果是null
+        // 但是在上面console.dir(Object)中查看的结果是可以一直循环查看__proto__下去的
+        console.log(Object.__proto__.__proto__.__proto__)
+        console.log(Object.prototype.__proto__) // 也是返回null
+
+        // Object.prototype是顶级原型，再往上就是null
+
+
+
+        // 存疑
+        // 下面的为true，也就是说一个对象构造函数作为对象的原型的原型
+        // 等于这个对象构造函数作为构造函数的原型
+        console.log(Object.__proto__.__proto__ === Object.prototype)
+        console.log(Object.prototype)
+            // 或许因为他们都是顶级原型
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个存储数据的特征就是对象内部不需要有属性，也就是说
+        // 数据是存储在浏览器里的，而不是对象内部
+
+        let Request = {
+            set Token(content) {
+                // 所以在赋值的同时，就已经把Token存到浏览器了
+                localStorage.setItem("token", content)
+            },
+            get Token() {
+                // 如果没有token，则是一个空字符串
+                // 隐式类型转换为false，取反后，提示报错
+                let token = localStorage.getItem("token")
+                if (!token) {
+                    console.log("请登录")
+                }
+
+                // 能走到这一步说明有token，直接返回出来
+                return token
+            }
+        }
+
+        Request.Token = "fwqrg4iu32brtu1b3134bt"
+        console.log(Request.Token)
+
+        Request.Token = ""
+        console.log(Request.Token)
+    </script>
+</body>
+
+</html>

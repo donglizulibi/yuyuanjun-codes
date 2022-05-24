@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input v-model="content">
+    <input v-model="title">
+    <input v-model="title">
+    <h4 v-bind="title">这里也会发生更新</h4>
+    <script>
+        // 这个例子是想说明
+        function View() {
+            let proxy = new Proxy({}, {
+                set(obj, property, value) {
+                    console.log(obj, property, value)
+                        // 在这里可以看到property是不同的
+                },
+                get() {}
+            })
+
+            this.init = function() {
+                // 这里取到了所有的包含了v-model属性的input标签,各种属性值都有的
+                let els = document.querySelectorAll('[v-model]')
+
+                els.forEach(item => {
+                    item.addEventListener('keyup', function() {
+                        // 还是把input的v-model属性值作为属性添加进数据容器
+                        // 那么这里由两种v-model,就由两种数据
+                        proxy[this.getAttribute('v-model')] = this.value
+                    })
+                })
+            }
+
+            // 那么后期要在哪个h4标签中同步显示输入的文本,就选取同样标签属性值的v-bind就行了
+        }
+        new View().init()
+    </script>
+</body>
+
+</html>

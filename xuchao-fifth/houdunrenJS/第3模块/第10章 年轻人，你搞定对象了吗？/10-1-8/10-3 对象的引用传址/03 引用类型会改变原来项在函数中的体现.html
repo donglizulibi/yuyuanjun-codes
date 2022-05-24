@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在值类型中类比一下
+        let a = 123
+
+        function change(a) {
+            return a + 1
+        }
+        console.log(change(a))
+        console.log(a)
+            // 值类型不会同时修改
+
+
+        // 这个例子是定义一个引用类型变量
+        // 然后定义一个会修改引用类型内部属性值的函数
+        let obj = {
+            name: 'yyj',
+            age: 19
+        }
+        console.log(obj)
+
+        function user(a) {
+            a.name = 'haha'
+            a.age = 34
+            return a
+        }
+
+        // 使用这个函数修改引用类型变量，也会发生二者都修改的现象
+        console.log(user(obj))
+        console.log(obj) // 也改了
+    </script>
+</body>
+
+</html>

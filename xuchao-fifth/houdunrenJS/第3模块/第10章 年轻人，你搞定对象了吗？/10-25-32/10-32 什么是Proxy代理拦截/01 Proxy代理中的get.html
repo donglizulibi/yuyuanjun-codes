@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 访问器是对对象内的属性进行控制，而对象代理是对整个对象进行控制
+
+        'use strict';
+
+        // 先定义一个初始的对象
+        // 这个例子就是设置一个代理的实例来代理这个obj对象
+
+        const obj = {
+            name: '后盾人',
+            age: 19
+        };
+
+        // 构造函数的第一个参数放需要代理的对象，这里就是obj
+        // 第二个参数放对这个对象的相关设置，比如set和get
+
+        // 先看get的情况
+        const proxy = new Proxy(obj, {
+            get(obj, property) {
+                // 第一个参数是原对象，第二个参数属性名
+                // 在调用属性的时候传入
+                console.log(obj)
+                console.log(property)
+                return obj[property]
+            }
+        });
+
+        console.log(proxy)
+
+        // 代理对象在调用属性的时候，会执行get内部的操作
+        proxy.name
+        proxy.age
+        console.log('================')
+
+        // 打印的话会返回return后面的属性值
+        console.log(proxy.name)
+        console.log(proxy.age)
+    </script>
+</body>
+
+</html>

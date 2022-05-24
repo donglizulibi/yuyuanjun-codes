@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 50px;
+            background: #34495e;
+        }
+        
+        input {
+            border: solid 10px #ddd;
+            height: 30px;
+        }
+        
+        .error {
+            border: solid 10px red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" validate rule="max:12,min:3">
+    <input type="text" validate rule="max:3,isNumber">
+    <script>
+        class Validate {
+            max(value, len) {
+                return value.length <= len
+            }
+            min(value, len) {
+                return value.length >= len
+            }
+            isNumber(value) {
+                return /^\d+$/.test(value)
+            }
+        }
+
+        function ProxyFactory(target) {
+            return new Proxy(target, {
+                set(obj, property, val) {
+                    let ruleArr = val.getAttribute('rule').split(',')
+                    let state = ruleArr.every(item => {
+                        let rule = item.split(':')
+                        let validate = new Validate()
+                        return validate[rule[0]](val.value, rule[1])
+
+                    })
+                    console.log(state)
+
+                    // 点语法和中括号语法
+                    val.classList[state ? "remove" : "add"]('error')
+                    return true
+                },
+                get(obj, property) {
+                    return obj[property]
+                }
+            })
+        }
+
+        let proxy = ProxyFactory(document.querySelectorAll('[validate]'))
+        proxy.forEach((item, i) => {
+            item.addEventListener('keyup', function() {
+                proxy[i] = this
+            })
+        })
+    </script>
+</body>
+
+</html>

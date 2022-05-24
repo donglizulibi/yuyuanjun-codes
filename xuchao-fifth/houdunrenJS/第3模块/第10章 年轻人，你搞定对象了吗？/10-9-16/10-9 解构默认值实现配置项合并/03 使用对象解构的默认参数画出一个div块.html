@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子主要是定义一个可以画div块的函数
+        // 函数的形参可以传入一个对象，里面放div的长宽和颜色
+        // 执行函数并传参之后就可以在页面中显示这个div块
+
+        // 形参中设置一个默认值，如果不穿数据可以默认画一个块
+        function createEle(options = {
+            height: 10,
+            width: 10,
+            backgroundColor: 'red'
+        }) {
+
+            console.log(options)
+
+            // 解构赋值，取到参数中的三个属性
+            let {
+                height,
+                width,
+                backgroundColor
+            } = options
+
+
+
+            // 创建div，添加格式
+            let div = document.createElement('div')
+            div.style.height = height + 'px'
+            div.style.width = width + 'px'
+            div.style.backgroundColor = backgroundColor
+
+            // 放到页面中
+            document.body.appendChild(div)
+        }
+
+
+        // 默认情况
+        createEle()
+
+        // 自定义情况
+        createEle({
+            height: 100,
+            width: 300,
+            backgroundColor: 'black'
+        })
+
+
+
+
+
+        // 另一种传默认值的方法，在函数的形参中直接写options={}
+        // function createEle(options = {}) {
+        //     console.log(options)
+
+        //     // 在下面写上默认数据
+        //     let {
+        //         height = 10,
+        //             width = 10,
+        //             backgroundColor = 'red'
+        //     } = options
+
+        //     // 创建div，添加格式
+        //     let div = document.createElement('div')
+        //     div.style.height = height + 'px'
+        //     div.style.width = width + 'px'
+        //     div.style.backgroundColor = backgroundColor
+
+        //     // 放到页面中
+        //     document.body.appendChild(div)
+        // }
+    </script>
+</body>
+
+</html>

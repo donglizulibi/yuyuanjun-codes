@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 访问器是对对象内的属性进行控制，而对象代理是对整个对象进行控制
+
+        'use strict';
+
+        // 先定义一个初始的对象
+        // 这个例子就是设置一个代理的实例来代理这个obj对象
+
+        const obj = {
+            name: '后盾人',
+            age: 19
+        };
+
+        // 然后是set
+        const proxy = new Proxy(obj, {
+            get(obj, property) {
+                console.log(obj)
+                console.log(property)
+                return obj[property]
+            },
+            set(obj, property, val) {
+                obj[property] = val
+                console.log(val)
+                return true
+            }
+        });
+
+        console.log(proxy)
+
+        // 在给代理对象的属性设置值的时候，就会调用set内部的语句
+        proxy.name = 'houdunren'
+            // 在这里如果开启严格模式的话，set最后需要return一个true，否则会报错
+
+        // 由于还没有在set中添加复制操作的语句，所以这里的代理对象中的数据不变
+        console.log(proxy)
+            // 把赋值语句打开，就能看到name属性的变化
+
+        console.log(obj)
+            // 由于set中有这样一条语句obj[property] = val
+            // 所以原来的对象也会改变
+    </script>
+</body>
+
+</html>

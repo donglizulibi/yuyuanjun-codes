@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Object.create的用法
+        // 第一个参数是指定一个方法或者对象的原型
+        // 第二个参数是指定其内部函数体或者内部属性
+        // Object.create和__proto__指定原型有一些相似
+
+        let xj = {
+            name: 'hahaha'
+        };
+        console.log(xj);
+        console.log(xj.hasOwnProperty("name"));
+        // xj这个对象可以使用hasOwnProperty这个属性
+        // 是因为在xj的原型上（也就是xj.__proto__上）有hasOwnProperty这个方法
+        // 所以这个对象可以使用自己原型链上的方法
+
+        // 完全数据字典对象
+        // 第一个参数是null，也就是说hd这个对象的原型设置为不存在
+        let hd = Object.create(null, {
+            name: {
+                value: "houdunewn"
+            }
+        });
+        console.log(hd)
+            // console.log(hd.hasOwnProperty("name")) 
+            // 自己和自己的父级上都没有这个方法 会报错
+    </script>
+</body>
+
+</html>

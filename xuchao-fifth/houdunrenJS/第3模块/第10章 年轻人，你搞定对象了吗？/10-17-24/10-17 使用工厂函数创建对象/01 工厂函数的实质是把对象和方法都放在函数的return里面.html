@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 工厂函数其实就是把普通函数当作构造函数来使用
+        // 这个函数运行后的返回值就是一个对象，当中也会有this指向的问题
+        // 使用工厂函数的时候，可以把公共的功能放到这个返回的对象里面
+        // 然后通过工厂函数的参数传入来实现特例
+
+        function user(name, age) {
+            return {
+                name, // name:name的简写
+                age,
+                show() { // show:function(){}的简写
+                    console.log(this.name + 'cctv.com')
+                },
+                info() {
+                    console.log(`${this.name}的年龄是${this.age}`)
+                }
+            }
+        }
+
+        let haha = user("我好饿", 19)
+        console.log(haha)
+        haha.show()
+        haha.info()
+
+        let lisi = user('李四', 18)
+        lisi.show()
+        lisi.info()
+
+        // 达到由一个公共的函数生成多个可以自定义特性的例子
+
+        // 和构造函数比起来，工厂函数其实没有那么灵活，没有原型链这种可以调来调去的东西
+    </script>
+</body>
+
+</html>

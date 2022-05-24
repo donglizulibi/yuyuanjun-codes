@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 解构语法可以视作是对数据的结构的处理
+
+        let obj = {
+            name: 'haha',
+            age: 19
+        }
+
+        // 标准的解构赋值，左右解构一样
+        let {
+            name: a,
+            age: n
+        } = obj
+        console.log(a, n)
+
+        // 如果左边的解构体中属性名和属性值一样的话，可以简写
+        // let {
+        //     name: name,
+        //     age: age
+        // } = obj
+
+        let {
+            name,
+            age
+        } = obj
+
+        console.log(name)
+        console.log(age)
+    </script>
+</body>
+
+</html>

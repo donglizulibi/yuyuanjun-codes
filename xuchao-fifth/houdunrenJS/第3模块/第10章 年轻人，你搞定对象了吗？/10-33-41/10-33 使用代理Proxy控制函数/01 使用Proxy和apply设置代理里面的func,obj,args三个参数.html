@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个小节讲到使用请求代理来代理对象的例子
+        // 现在来讨论一下使用请求代理带代理函数的问题
+
+        // 首先定义一个普通的函数
+        function numFunc(num) {
+
+            return num + 1
+        }
+
+        // 新建一个请求代理的实例，其中第一个参数放入函数
+        // 第二个参数放入对函数的一些控制
+        let proxy = new Proxy(numFunc, {
+            // 控制函数的部分用apply完成，后面跟上三个参数
+            // 第一个参数是显示原来的函数体
+            // 第二个参数是这个代理函数运行时所在的环境
+            // 第三个参数是代理函数传入的参数，放在一个数组里
+            apply(func, obj, args) {
+                console.log(func)
+                console.log(obj)
+                console.log(args)
+                    // 下面可以根据这三个参数完成对代理函数的一些设置
+                    // 这里暂且为空
+            }
+        })
+
+        // 首先打印一下这个代理函数
+        console.log(proxy)
+
+        // 首先传入一个参数5，不指定运行环境
+        // 代理函数内部的apply里面的操作就会在这个时候执行
+        console.log('====================================')
+        proxy(5);
+        // 显示结果是 打印了函数体，因为没有指定运行环境，所以obj打印了undefined
+        // 最后打印了参数5，在一个数组里
+
+        // 下面指定环境运行一下代理函数
+        // 关于指定函数运行环境的方法，还是call apply 和 bind 见8-19 -- 8-22
+
+        // 首先是call，call的传参不需要放在数组里
+        console.log('====================================')
+        proxy.call({}, 5)
+
+        // 然后是bind，也是传参不需要放在数组里
+        console.log('====================================')
+        let bind = proxy.bind({
+            name: 'houdunren'
+        }, 4)
+        bind()
+
+        // 使用apply调用的方法，apply的第二个参数必须是一个数组
+        console.log('====================================')
+        proxy.apply(Math, [5])
+
+        console.log('====================================')
+        proxy.apply(this, [5]) // 打印window
+
+        // let a = [3] + 1
+        // console.log(a)
+        // console.log(typeof a)
+    </script>
+</body>
+
+</html>

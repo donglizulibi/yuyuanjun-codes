@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在一个普通的构造函数内部对不希望被外部更改属性使用Object.defineProperties
+        function User(name, age) {
+            this.name = name
+            this.age = age
+            this.show = function() {
+                return this.name
+            }
+
+            // Object.defineProperties这条语句会在新建对象实例的时候就执行
+            // 让后新建的实例里面的属性就天然具备这下面的属性特征
+            Object.defineProperties(this, {
+                name: {
+                    writable: false // 禁止更改
+                }
+            })
+
+            // 比如这条语句也是在新建实例的时候就会执行
+            console.log(this)
+
+        }
+
+        let xj = new User('houdunren', 19)
+        console.log(xj)
+
+        xj.name = "dfaf" // 更改的操作
+        console.log(xj.show()) // 更改无效
+    </script>
+</body>
+
+</html>
