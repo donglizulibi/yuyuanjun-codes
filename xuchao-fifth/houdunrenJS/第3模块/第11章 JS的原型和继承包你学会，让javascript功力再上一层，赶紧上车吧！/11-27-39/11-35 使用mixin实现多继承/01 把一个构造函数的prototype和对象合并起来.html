@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Object.assign的用法见 10-13 01
+
+        // 先定义一个构造函数
+        function User() {}
+        User.prototype.role = function() {
+            console.log('User.role')
+        }
+        console.dir(User)
+
+        // 再定义两个对象，里面包括一个方法
+        let obj1 = {
+            show: function() {
+                console.log('obj1.show')
+            }
+        }
+
+        let obj2 = {
+            render() {
+                console.log('obj2.render')
+
+            }
+        }
+
+        // 使用Object.assign把obj合并到User.prototype
+        User.prototype = Object.assign(User.prototype, obj1, obj2)
+
+        // 查看三个对象
+        console.log(User.prototype)
+        console.log(obj1)
+        console.log(obj2)
+            // 第一个改变了，后面两个没有改变
+
+        // 最后测试一下实例
+        let u = new User()
+        u.role()
+        u.show()
+        u.render()
+            // 都可以使用
+    </script>
+</body>
+
+</html>

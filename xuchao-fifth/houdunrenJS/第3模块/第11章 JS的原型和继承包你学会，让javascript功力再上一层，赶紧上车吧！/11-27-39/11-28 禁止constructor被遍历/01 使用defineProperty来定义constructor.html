@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个例子讨论了在使用Object.create移接原型的时候需要手动加上constrcutor的问题
+        // 但是上个例子中的移接的方法没有考虑到constructor遍历的问题
+
+        // 通常情况下，constructor是不需要被遍历出来的
+        function User(name) {
+            this.name = name
+        }
+        User.prototype.show = function() {
+            console.log('User.show')
+        }
+
+        function Admin(age) {
+            this.age = age
+        }
+
+        // 移接原型操作
+        Admin.prototype = Object.create(User.prototype)
+        Admin.prototype.constructor = Admin
+        Admin.prototype.role = function() {
+            console.log('Admin.role')
+        }
+
+        // 创建新的实例化对象，使用for in来遍历
+        // 可以遍历出自身和原型链上所有的属性
+        console.dir(Admin)
+        let a = new Admin(19)
+
+        // 由于有以下关系存在，原型链上的constructor和show都会被遍历出来
+        console.log(a.__proto__.constructor == Admin)
+        console.log(a.__proto__.__proto__.show == User.prototype.show)
+        for (let k in a) {
+            console.log(k)
+        }
+        // 遍历出四个属性，还有自身的age和role属性
+
+        // 那么换一种定义属性的方法，把constructor的属性特征的遍历属性特征改成不可遍历
+        function Member(gender) {
+            this.gender = gender
+        }
+
+        // 移接原型操作
+        Member.prototype = Object.create(User.prototype)
+        Object.defineProperty(Member.prototype, 'constructor', {
+            value: Member,
+            enumerable: false
+        })
+        Member.prototype.role = function() {
+            console.log('Member.role')
+        }
+
+        // 创建新的实例化对象并遍历
+        console.dir(Member)
+        let m = new Member('male')
+        for (let k in m) {
+            console.log(k)
+        }
+        // 只遍历出三个属性，没有遍历出constructor
+    </script>
+</body>
+
+</html>

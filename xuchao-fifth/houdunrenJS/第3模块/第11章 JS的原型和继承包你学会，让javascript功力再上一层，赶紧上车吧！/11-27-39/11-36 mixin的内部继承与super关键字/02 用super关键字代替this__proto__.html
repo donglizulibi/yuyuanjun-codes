@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 只是把被继承的功能类中的this.__proto__换成super
+        // super无法单独打印出来
+
+        const Request = {
+            ajax() {
+                return 'Request.ajax'
+            }
+        }
+
+        const Address = {
+            __proto__: Request,
+            local() {
+                console.log(this)
+
+                // console.log(super)
+                console.log(super.ajax() + '-' + 'Address.local')
+            },
+            show() {
+                console.log(this)
+                console.log(this.name)
+            }
+
+        }
+
+        // 验证一下，此时Address的__proto__就是Request
+        Address.local()
+        console.log(Address)
+
+        // 那么再定义一个构造函数
+        // 这个构造函数需要用到第二个方法类
+        function User(name, age) {
+            this.name = name
+            this.age = age
+        }
+        User.prototype = Object.assign(User.prototype, Address, Request)
+
+        // 构造函数自己添加的对象
+        User.prototype.role = function() {}
+        console.dir(User)
+
+        // 那么实例化出来的对象就可以用这些功能
+        let u = new User('houdunren', 20)
+        u.local()
+        u.show()
+            // 这两个方法的this都是指向u本身
+    </script>
+</body>
+
+</html>

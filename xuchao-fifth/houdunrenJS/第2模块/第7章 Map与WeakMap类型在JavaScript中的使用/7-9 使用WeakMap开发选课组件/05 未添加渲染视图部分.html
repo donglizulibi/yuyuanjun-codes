@@ -109,7 +109,7 @@
 
 
         // 这个例子可以分为以下几个步骤
-        // 1 在class的constructor里面定义四个个参数，分别表示页面中所有li元素
+        // 1 在class的constructor里面定义四个参数，分别表示页面中所有li元素
         //   页面中负责计数的count标签，页面中负责存放已选课程标签的p元素
         //   和新建一个空的WeakMao负责后续的存放数据
 
@@ -150,6 +150,8 @@
                             a.innerHTML = '-'
                             a.style.backgroundColor = 'red'
                             this.map.set(li, spanText)
+                                // 存进这个弱引用类型的键名是选中的li标签，键值是选中课程的名称
+
                             li.setAttribute('select', true)
                         }
                         console.log(this.map)

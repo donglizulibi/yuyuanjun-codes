@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面讲到了__proto__来设置原型，是一种非标准的做法
+        // 下面来讨论标准的设置原型的做法
+
+        // 所谓标准就是W3C认证的用法，而非标准是各个浏览器厂商自己开发的用法
+
+        let user = {
+            show() {
+                console.log(this.name)
+            }
+        }
+
+        let hd = {
+            name: 'hdcms'
+        }
+        Object.setPrototypeOf(hd, user);
+        console.log(hd)
+        hd.show()
+        console.log(Object.getPrototypeOf(hd))
+
+        // 当然还有另一种标准设置原型的做法就是Object.create
+    </script>
+</body>
+
+</html>

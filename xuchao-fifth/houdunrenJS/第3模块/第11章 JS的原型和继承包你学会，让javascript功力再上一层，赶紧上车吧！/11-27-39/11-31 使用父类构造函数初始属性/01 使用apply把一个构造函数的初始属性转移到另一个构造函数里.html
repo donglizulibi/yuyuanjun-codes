@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数创建新对象的步骤见8-18，用法见10-20
+
+
+        // 这个例子是说两个构造函数的初始属性一样
+        // 通过某种方法使得第二个构造函数创建实例的时候，可以沿用第一个构造函数的初始属性
+
+        // 第一个构造函数内部的操作在第二个构造函数实例化的时候就会全部走一遍
+        function User(name, age, gender) {
+            console.log(123)
+            console.log(this)
+            this.name = name
+            this.age = age
+            this.gender = gender
+        }
+
+        function Admin(...args) {
+            // 相当于把第一个构造函数当成一个带有this的普通函数
+            // 而让这个普通函数在当下这个环境里执行一遍
+            // 就相当于把里面属性赋值的过程在这里走了一遍
+            User.apply(this, args)
+        }
+
+        // 转移成功
+        let a = new Admin('xj', 19, 'male')
+        console.log(a)
+    </script>
+</body>
+
+</html>

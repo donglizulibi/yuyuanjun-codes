@@ -28,8 +28,8 @@
             console.log(obj[key])
         }
 
-        // 构建这个函数，需要传入两个参数，第一个是日期对象，第二个是日期的格式，第二个参数应该有一个默认值
-        // 
+        // 构建这个函数，需要传入两个参数
+        // 第一个是日期对象，第二个是日期的格式，第二个参数应该有一个默认值
         function dateFormat(dateObj, format = "YYYY-MM-DD HH:mm:ss") {
 
             // 在函数里面定义一个对象，用来获取传入时间对象的各个时间单位参数
@@ -56,14 +56,17 @@
         let now = new Date()
         console.log(dateFormat(now))
 
-
-
+        // 因为在封装的函数中的obj初始属性中的年月日时分秒有大小写的区别
+        // 所以传入第二个参数的时候，这些格式也应该有大小写的区别
+        // 最后返回出来的格式不同，也只是年月日时分秒中间是斜杠还是短横这样的符号区别
+        console.log(dateFormat(now, "YYYY年MM月DD日"))
+        console.log(dateFormat(now, "YYYY/MM/DD HH:mm:ss"))
 
         // 其他格式
-        // new Date().format("yyyy年MM月dd日");
-        // new Date().format("MM/dd/yyyy");
-        // new Date().format("yyyyMMdd");
-        // new Date().format("yyyy-MM-dd hh:mm:ss");
+        // new Date().format("YYYY年MM月DD日");
+        // new Date().format("MM/DD/YYYY");
+        // new Date().format("YYYYMMDD");
+        // new Date().format("YYYY-MM-DD HH:mm:ss");
     </script>
 </body>
 

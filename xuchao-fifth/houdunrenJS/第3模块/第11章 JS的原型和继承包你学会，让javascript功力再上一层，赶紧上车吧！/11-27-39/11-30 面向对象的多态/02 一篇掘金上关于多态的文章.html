@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 来源：https://juejin.cn/post/6871552242462228493
+        // 原作者：EarlEcho
+
+        function getVoice(animals) {
+            if (animals instanceof Cat) {
+                console.log('喵～');
+
+            }
+            if (animals instanceof Dog) {
+                console.log('汪～');
+            }
+        }
+        class Cat {}
+        class Dog {}
+        getVoice(new Cat()); // '喵～'
+        getVoice(new Dog()); // '汪～'
+
+
+        // 使用多态之后
+        // function getVoice(animals) {
+        //     if (animals.sound instanceof Function) {
+        //         // 判断是否有animal.sound且该属性为函数
+        //         animals.sound();
+        //     }
+        // }
+        // class Cat {
+        //     sound() {
+        //         console.log('喵～');
+        //     }
+        // }
+        // class Dog {
+        //     sound() {
+        //         console.log('汪～');
+        //     }
+        // }
+        // getVoice(new Cat()); // '喵～'
+        // getVoice(new Dog()); // '汪～'
+
+        // 后面的案例可以实现不修改getVoice函数，只需要修改新定义的类
+    </script>
+</body>
+
+</html>

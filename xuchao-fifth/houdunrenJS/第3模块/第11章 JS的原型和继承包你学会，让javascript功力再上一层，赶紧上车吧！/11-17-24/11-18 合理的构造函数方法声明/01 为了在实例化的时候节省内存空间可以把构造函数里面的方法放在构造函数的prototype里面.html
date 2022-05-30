@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 为了在实例化的时候节省内存空间
+        // 可以把构造函数里面的方法放在构造函数的prototype里面
+
+        // 首先看一个把方法定义在构造函数里面的例子
+        function User(name) {
+            this.name = name;
+            this.show = function() {
+                console.log(this.name)
+            }
+        }
+
+        // 传入不同的参数，生成两个实例对象
+        let lisi = new User('李四');
+        let zhangsan = new User('张三');
+
+        console.log(lisi)
+        console.log(zhangsan)
+            // 这样打印出来每个实例化的例子里都有show函数
+            // 也就是说同样的函数复制了两次，占用了多余的内存空间
+            // 这是性能上的浪费
+
+        // 改进方法，把方法定义在构造函数的prototype原型上
+        function UserPrototype(name) {
+            this.name = name;
+        }
+        UserPrototype.prototype.show = function() {
+            console.log(this.name)
+        }
+
+        // 再次创建两个实例对象
+        let lisiPro = new UserPrototype("李二四")
+        let zhangsnaPro = new UserPrototype("张二三")
+
+        // 在UserPrototype的prototype
+        // 两个实例对象的__proto__上都有show方法
+        console.log(UserPrototype)
+        console.log(lisiPro)
+        console.log(zhangsnaPro)
+
+
+        // 复习一下通过原型UserPrototype.prototype找到构造函数的方法
+        console.log(UserPrototype.prototype.constructor === UserPrototype)
+        console.log(UserPrototype.prototype === lisiPro.__proto__)
+
+        // 复习一下通过实例lisiPro.__proto__找到构造函数的方法
+        console.log(lisiPro.__proto__.constructor === UserPrototype)
+    </script>
+</body>
+
+</html>

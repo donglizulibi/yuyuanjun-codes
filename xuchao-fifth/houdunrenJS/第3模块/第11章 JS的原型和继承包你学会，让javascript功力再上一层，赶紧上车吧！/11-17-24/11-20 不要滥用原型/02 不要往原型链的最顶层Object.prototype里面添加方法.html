@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="this.hide()">houdunewn</button>
+    <script>
+        // 这里模拟一下所有人都在顶层原型上加方法的弊端
+
+        // 假如一个开发者在这个页面中给顶层加了一个方法
+        // 使点击houdunren按钮的时候会让按钮消失
+        Object.prototype.hide = function() {
+            this.style.display = "none"
+        }
+
+        // 引用了下一个开发者的文件，那个开发者也在顶层原型上加了同名的方法
+        // 这样会产生覆盖，点击按钮的时候只会执行后面一个文件中的方法
+    </script>
+    <script src="外部的文件.js"></script>
+</body>
+
+</html>

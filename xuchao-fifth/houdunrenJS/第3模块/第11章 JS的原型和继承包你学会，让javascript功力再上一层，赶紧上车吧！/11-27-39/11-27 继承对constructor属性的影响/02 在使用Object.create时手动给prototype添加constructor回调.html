@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 有了上面的例子，为了让Admin的实例化对象可以再创造出自己这个构造函数的实例
+        // 需要在使用Object.create的时候在加上constructor属性
+        function User(name) {
+            this.name = name
+        }
+        User.prototype.show = function() {
+            console.log('User.show')
+        }
+        console.dir(User)
+
+        // 使用Object.create
+        function Admin(age) {
+            this.age = age
+        }
+        Admin.prototype = Object.create(User.prototype)
+        Admin.prototype.constructor = Admin
+        Admin.prototype.role = function() {
+            console.log('Admin.role')
+        }
+
+        // 此时在查看Admin
+        console.dir(Admin)
+        console.log(Admin.prototype.constructor == Admin)
+
+        // 以下关系还是没有变化
+        console.log(Admin.prototype.__proto__ == User.prototype)
+        console.log(Admin.prototype.__proto__.constructor == User)
+
+        // 先实例化User构造函数的对象
+        let u = new User('u')
+        console.log(u)
+        let uu = new u.__proto__.constructor('uu')
+        console.log(uu)
+            // 没有什么变化
+
+        // 再实例化Admin构造函数的对象
+        let a = new Admin(18)
+        console.log(a)
+
+        // 可以成功实例化
+        let aa = new a.__proto__.constructor(19)
+        console.log(aa)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        main {
+            width: 400px;
+            flex-direction: column;
+            position: relative;
+            margin-right: 20px;
+        }
+        
+        main nav {
+            display: flex;
+            height: 50px;
+            align-items: center;
+        }
+        
+        main nav a {
+            background: #95a5a6;
+            margin-right: px;
+            padding: 10px 20px;
+            border: solid 1px #333;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        main nav a:first-of-type {
+            background: #e67e22;
+        }
+        
+        section {
+            height: 200px;
+            width: 100%;
+            background: #f1c40f;
+            position: absolute;
+            font-size: 5em;
+            /* display: none; */
+        }
+        
+        .hd-tab section:first-of-type {
+            display: block;
+        }
+        
+        section:nth-child(even) {
+            background: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="tab1">
+        <nav>
+            <a href="javascript:;">后盾人</a>
+            <a href="javascript:;">hdcms</a>
+        </nav>
+        <section>1</section>
+        <section>2</section>
+    </main>
+    <main class="tab2">
+        <nav>
+            <a href="javascript:;">后盾人</a>
+            <a href="javascript:;">hdcms</a>
+        </nav>
+        <section>1</section>
+        <section>2</section>
+    </main>
+    <script>
+        // 
+        function Animation() {}
+        Object.defineProperty(Animation.prototype, 'constructo', {
+            value: Animation,
+            enumerable: false
+        })
+
+        // 在构造函数原型上定义三个方法
+        Animation.prototype = {
+            hide() {
+                console.log(this)
+                this.style.display = 'none'
+            },
+            show() {
+                this.style.display = 'block'
+            },
+            color(color) {
+                this.style.backgroundColor = color
+            }
+        }
+
+
+        // 控制页面面板的构造函数
+        function Tab(el) {
+            this.el = document.querySelector(el)
+            this.section = this.el.querySelectorAll('section')
+            this.links = this.el.querySelectorAll('a')
+        }
+
+        Object.defineProperty(Tab.prototype, 'constructo', {
+            value: Tab,
+            enumerable: false
+        })
+
+        // 继承改变动画的构造函数
+        extend(Animation, Tab)
+
+        Tab.prototype = Object.assign(Tab.prototype, {
+
+            // 运行函数
+            run() {
+                console.log(this.links)
+                console.log(this.section)
+                this.bindEvent()
+
+                // 运行以后先重置，再执行面板中第一个tab的样式效果
+                this.reset()
+                this.action(0)
+            },
+
+            // 给面板中两个tab加上点击事件
+            bindEvent() {
+                this.links.forEach((item, i) => {
+                    item.addEventListener('click', () => {
+
+                        // 点击到哪个面板，先执行重置，把所有tab的样式清空
+                        // 再给被点击的tab加上样式
+                        this.reset()
+                        console.log(i)
+                        this.action(i)
+                    })
+                });
+            },
+
+            // 给tab加上样式的函数，对应序号的导航栏变色，tab下的内容框显示出来
+            action(i) {
+                this.color.call(this.links[i], '#e67e22')
+                this.show.call(this.section[i])
+            },
+
+            // 定义一个初始化函数，让所有导航栏变成初始色，所有tab下的内容狂隐藏
+            reset() {
+                this.links.forEach(item => {
+                    this.color.call(item, '#95a5a6')
+                })
+
+                this.section.forEach(item => {
+                    this.hide.call(item)
+                })
+
+            }
+
+        })
+
+
+        // 那么需要哪个页面变成选项卡，就传入这个页面的参数创建实例化对象
+        new Tab('.tab1').run()
+        new Tab('.tab2').run()
+        console.dir(Tab)
+
+        // 最后再写一个继承的函数，父级在前，自己在后
+        function extend(sub, sup) {
+            sup.prototype.__proto__ = sub.prototype
+            Object.defineProperty(sup.prototype, 'constructor', {
+                value: sup,
+                enumerable: false
+            })
+        }
+    </script>
+</body>
+
+</html>

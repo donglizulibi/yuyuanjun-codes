@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        main {
+            width: 400px;
+            flex-direction: column;
+            position: relative;
+            margin-right: 20px;
+        }
+        
+        main nav {
+            display: flex;
+            height: 50px;
+            align-items: center;
+        }
+        
+        main nav a,
+        main nav span {
+            background: #95a5a6;
+            margin-right: px;
+            padding: 10px 20px;
+            border: solid 1px #333;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        main nav a:first-of-type,
+        main nav span:first-of-type {
+            background: #e67e22;
+        }
+        
+        section {
+            height: 200px;
+            width: 100%;
+            background: #f1c40f;
+            position: absolute;
+            font-size: 5em;
+            /* display: none; */
+        }
+        
+        .hd-tab section:first-of-type {
+            display: block;
+        }
+        
+        section:nth-child(even) {
+            background: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="tab1">
+        <nav>
+            <span href="javascript:;">后盾人</span>
+            <span href="javascript:;">hdcms</span>
+        </nav>
+        <section>1</section>
+        <section>2</section>
+    </main>
+    <main class="tab2">
+        <nav>
+            <a href="javascript:;">后盾人</a>
+            <a href="javascript:;">hdcms</a>
+        </nav>
+        <section>1</section>
+        <section>2</section>
+    </main>
+    <script>
+        // 
+        function Animation() {}
+        Object.defineProperty(Animation.prototype, 'constructo', {
+            value: Animation,
+            enumerable: false
+        })
+
+        // 在构造函数原型上定义三个方法
+        Animation.prototype = {
+            hide() {
+                console.log(this)
+                this.style.display = 'none'
+            },
+            show() {
+                this.style.display = 'block'
+            },
+            color(color) {
+                this.style.backgroundColor = color
+            }
+        }
+
+
+        function Tab(args) {
+
+            // 设置默认参数的方法，这样，即使外面不传，里面也有默认的数据给后面执行
+            args = Object.assign({
+                el: null,
+                link: null,
+                section: 'section'
+            }, args)
+
+            // console.log(123)
+            // console.log(args)
+            this.el = document.querySelector(args['el'])
+            this.section = this.el.querySelectorAll(args['section'])
+
+            // 可以选择是用a标签还是span标签，当然需要在html中布好局
+            this.links = this.el.querySelectorAll(args['link'])
+            this.callback = args['callback']
+        }
+
+        Object.defineProperty(Tab.prototype, 'constructo', {
+            value: Tab,
+            enumerable: false
+        })
+        extend(Animation, Tab)
+
+        Tab.prototype = Object.assign(Tab.prototype, {
+            run() {
+                console.log(this.links)
+                console.log(this.section)
+                this.bindEvent()
+                this.reset()
+                this.action(0)
+            },
+
+            bindEvent() {
+                this.links.forEach((item, i) => {
+                    item.addEventListener('click', () => {
+                        this.reset()
+                        console.log(i)
+                        this.action(i)
+
+                        // 回调函数在点击事件执行的时候就执行
+                        this.callback()
+                    })
+                });
+            },
+
+            action(i) {
+                this.color.call(this.links[i], '#e67e22')
+                this.show.call(this.section[i])
+            },
+
+            // 定义一个初始化函数
+            reset() {
+                this.links.forEach(item => {
+                    this.color.call(item, '#95a5a6')
+                })
+
+                this.section.forEach(item => {
+                    this.hide.call(item)
+                })
+
+            }
+
+        })
+
+
+        // 那么需要哪个页面变成选项卡，就传入这个页面的参数创建实例化对象
+        new Tab({
+            el: '.tab1',
+            link: 'span',
+            callback: function() {
+                console.log('tab1的回调函数')
+            }
+        }).run()
+
+        new Tab({
+            el: '.tab2',
+            link: 'a',
+            callback() {
+                alert('tab2的回调函数')
+                console.log('tab2的回调函数')
+            }
+        }).run()
+        console.dir(Tab)
+
+        // 最后再写一个继承的函数，父级在前，自己在后
+        function extend(sub, sup) {
+            sup.prototype.__proto__ = sub.prototype
+            Object.defineProperty(sup.prototype, 'constructor', {
+                value: sup,
+                enumerable: false
+            })
+        }
+    </script>
+</body>
+
+</html>

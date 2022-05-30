@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 本节的例子是需要用xj这个例子去借用自己原型上的一个方法
+        // 而那个方法里的操作都是this.data.##，所以对于xj内部的数据需要再次处理
+        // 处理的方式就是使用访问器制造一个伪属性data，当调用这个伪属性的时候
+        // 就可以调用xj自身的数据
+
+        let xj = {
+            lesssons: {
+                js: 87,
+                css: 98,
+                java: 78,
+                node: 79
+            },
+            get data() {
+                return Object.values(this.lesssons)
+            }
+        }
+
+        console.log(xj.data)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上一节的例子讲到了一种改变构造函数的方法
+        // 是直接把##.prototype = **.prototype
+        // 这样虽然可以实现借用其他对象原型链功能的效果
+        // 但是同样也会失去自己的原型链
+
+        // 那么本例就改变这个继承方法
+        // 首先看一个对象原本的继承状态
+
+        // 先定义一个构造函数
+        function User(name) {
+            this.name = name
+        }
+
+        // 再看这个构造函数的构造函数原型和在此之上的上一级原型
+        console.log(User.prototype)
+        console.log(User.prototype.__proto__)
+
+        // 可见，这二者相等
+        console.log(User.prototype.__proto__ == Object.prototype)
+
+        // 证明一下，先打印一下Object，找到里面的prototype里的hasOwnProperty方法
+        console.dir(Object)
+
+        // 创建一个User实例
+        let u = new User('houdunren')
+        console.log(u)
+
+        // 由于有以下的关系
+        console.log(u.__proto__.__proto__ == Object.prototype)
+        console.log(u instanceof User)
+        console.log(u instanceof Object)
+        console.log(Object.prototype.isPrototypeOf(u))
+
+        // 那么u就自然而然可以使用Object.prototype上面的方法，事实也是如此
+        console.log(u.hasOwnProperty('name'))
+    </script>
+</body>
+
+</html>

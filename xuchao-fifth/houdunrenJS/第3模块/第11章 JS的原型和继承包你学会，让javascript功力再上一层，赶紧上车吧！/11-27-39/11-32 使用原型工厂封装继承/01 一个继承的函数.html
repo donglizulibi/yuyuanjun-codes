@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在要求写一个可以实现两个构造函数继承的函数
+        // 这个函数有两个参数分别传入两个构造函数
+        // 函数内部应该包括原型的移接，constructor的添加和禁止遍历设置
+
+        // 第一个参数是父级，第二个参数是子级
+        function extend(sub, sup) {
+            sup.prototype = Object.create(sub.prototype)
+            Object.defineProperty(sup.prototype, 'constructor', {
+                value: sup,
+                enumerable: false
+            })
+        }
+
+        // 定义准备成为父级的构造函数
+        function User(name) {
+            this.name = name
+        }
+        User.prototype.show = function() {
+            console.log(this.name)
+            console.log('user.show')
+        }
+
+        // 定义成为子级的构造函数
+        function Admin(...args) {
+            // 这里借用一下父级的初始属性
+            User.apply(this, args)
+        }
+
+        // 使用继承函数
+        extend(User, Admin)
+
+        // 测试，实例化子级的对象，看看是否可以用父级的方法
+        let a = new Admin('houdunren')
+        console.log(a)
+        a.show()
+            // 可以使用
+    </script>
+</body>
+
+</html>

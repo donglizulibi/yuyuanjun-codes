@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 众所周知，一个数据要想成为某个对象的原型，自身也必须要是对象
+
+        // 这里先定义一个对象，再使用__proto__的方法给这个对象设置一个原型
+        let hd = {
+            name: 'houudnewn'
+        };
+        hd.__proto__ = {
+            show() {
+                console.log(this.name);
+            }
+        }
+
+        // hd对象是可以用自己原型上的方法的
+        hd.show()
+        console.log(hd.__proto__)
+
+        // 现在用__proto__来改变hd的原型，把一个数值赋值过去
+        hd.__proto__ = 99;
+
+        // 结果显示hd的原型里面没有99，前面的方法也没有被覆盖
+        console.log(hd)
+        console.log(hd.__proto__)
+        hd.show();
+
+        // 但是如果将另一个对象赋值给hd的原型
+        hd.__proto__ = {
+            render() {
+                console.log(this.name + '-asdf')
+            }
+        }
+
+        // 可以发现hd的原型是修改成功了的
+        console.log(hd)
+        console.log(hd.__proto__)
+
+        // 由此说明##.__proto__并不是简单的属性赋值
+        // 而是有一个属性访问器封装在里面，在这个访问器内部会判断赋值的数据是不是一个值类型
+    </script>
+</body>
+
+</html>

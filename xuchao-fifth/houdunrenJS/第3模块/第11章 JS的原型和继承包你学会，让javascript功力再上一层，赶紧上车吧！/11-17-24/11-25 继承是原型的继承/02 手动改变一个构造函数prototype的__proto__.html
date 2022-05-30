@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个例子说到了因为一个构造函数的实例化对象可以使用Object的prototype里面的方法
+        // 是因为一般的构造函数的prototype的__proto__是Object的prototype
+
+        // 那么回到上一节的例子中的问题，如果有两个构造函数
+        // 其中一个想要使用另一个构造函数的方法，同时又不想失去自己的方法
+        // 就可以把自身的prototype的__proto__和另一个构造函数的prototype对接起来
+
+        // 首先定义一个构造函数，并给这个构造函数的prototype上添加一些方法
+        // 注意要添加constructor的回调
+
+        function User() {}
+        User.prototype = {
+            constructor: User,
+            name: function() {
+                console.log('user.name')
+            },
+            show() {
+                console.log('user.show')
+            }
+        }
+
+        // 现在有一个构造函数Admin，需要用到User里面的方法，自己又不想重写
+        function Admin() {}
+
+        // 此时这个构造函数的prototype的__proto__还是Object.prototype
+        // 就跟其他构造函数一样
+        console.log(Admin.prototype.__proto__ == Object.prototype)
+
+        // 连接一下
+        Admin.prototype.__proto__ = User.prototype
+
+        // 再模拟上一节的例子，又来了一个构造函数，也要用User的方法，继续连接
+        function Member() {}
+        Member.prototype.__proto__ = User.prototype;
+
+        // 现在再给后面两个构造函数的原型链上添加自己的方法，且两个方法名同名
+        Admin.prototype.role = function() {
+            console.log('admin role')
+        }
+        Member.prototype.role = function() {
+            console.log('member role')
+        }
+
+        // 现在分别创建三个实例化对象
+        let u = new User();
+        let a = new Admin();
+        let m = new Member();
+
+        // 由User创建出的实例使用User自己的方法
+        u.name()
+        u.show()
+
+        // 由Admin创建出来的实例使用User里面的方法
+        // 也可以使用自己的方法
+        a.name()
+        a.show()
+        a.role()
+
+
+        m.name() // 三个构造函数的实例都可以调用第一个构造函数上的方法
+        m.role() // 后面的构造函数再添加新方法也不会覆盖前面的
+    </script>
+</body>
+
+</html>

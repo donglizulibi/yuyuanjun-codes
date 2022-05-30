@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这里模拟一下原型中的访问器
+        // 当然这个模拟只能把添加进来的对象变成原对象的内部属性
+        // 而没有办法真正变成原型
+
+        let user = {
+            action: {},
+            get proto() {
+                return this.action
+            },
+            set proto(val) {
+                if (val instanceof Object) {
+                    this.action = val
+                }
+                return true
+            }
+        }
+
+        // 设置这个属性
+        user.proto = {
+            view: function() {}
+        }
+        user.proto = 123
+        user.proto = "asdf"
+
+        // 后面两个值类型的修改属性操作无法生效
+        console.log(user)
+    </script>
+</body>
+
+</html>

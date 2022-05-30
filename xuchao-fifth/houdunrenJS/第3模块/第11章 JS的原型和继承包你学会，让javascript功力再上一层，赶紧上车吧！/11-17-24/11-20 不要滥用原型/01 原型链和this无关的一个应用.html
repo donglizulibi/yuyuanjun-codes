@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="this.hide()">按键</button>
+    <script>
+        // 先取到页面的按钮标签
+        let btn = document.querySelector('button')
+
+        // 打印这个元素对象，发现有onclick属性
+        console.dir(btn)
+            // 可以看到往上找__proto__，依次是
+            // HTMLButtonElement --> HTMLElement --> Element
+            // --> Node --> EventTarget --> Object
+
+        // 所以给顶层原型Object.prototype添加方法
+        Object.prototype.hide = function() {
+            console.log(this)
+            this.style.display = 'none'
+        }
+
+        // 这样虽然实现了button的标签消失的操作，在技术上是可以的
+        // 但是如果大家都这样做会带来巨大的麻烦
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义一个父级构造函数，在里面定义初级属性
+        function User(name, age, gender) {
+            this.name = name
+            this.age = age
+            this.gender = gender
+        }
+
+        // 给这个父级构造函数创建方法，并生成实例化对象
+        User.prototype.show = function() {
+            console.log(`姓名：${this.name} 年龄：${this.age} 性别：${this.gender}`)
+        }
+        let u = new User('xj', 19, 'male')
+
+        // 实例化对象的方法执行
+        console.log(u)
+        u.show()
+
+        // 定义两个构造函数，继承上面的父级构造函数
+        // （注意在这个例子中省略了constructor的回调和constructor的禁止遍历的操作）
+        function Admin(...args) {
+            User.apply(this, args)
+        }
+        Admin.prototype = Object.create(User.prototype)
+        let a = new Admin('admin', 20, 'female')
+        console.log(a)
+        a.show()
+
+        function Member(...args) {
+            User.apply(this, args)
+        }
+        Member.prototype = Object.create(User.prototype)
+        let m = new Member('member', 18, 'male')
+        console.log(m)
+        m.show()
+    </script>
+</body>
+
+</html>

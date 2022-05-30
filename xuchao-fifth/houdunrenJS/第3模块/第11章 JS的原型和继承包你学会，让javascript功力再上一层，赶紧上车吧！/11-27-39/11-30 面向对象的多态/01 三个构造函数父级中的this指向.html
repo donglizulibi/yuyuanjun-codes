@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义三个构造函数，并要求在一个for of循环里遍历这个三个构造函数的实例
+        // 并打印出实例中的方法
+
+        function User() {}
+        User.prototype.show = function() {
+            console.log(this.description())
+        }
+
+        function Admin() {}
+        Admin.prototype = Object.create(User.prototype)
+        Admin.prototype.description = function() {
+            // Admin.prototype.showAdmin = function() {
+            return '管理员'
+        }
+
+        function Member() {}
+        Member.prototype = Object.create(User.prototype)
+        Member.prototype.description = function() {
+            // Member.prototype.showMember = function() {
+            return '普通会员'
+        }
+
+        function Enterprise() {}
+        Enterprise.prototype = Object.create(User.prototype)
+            // Enterprise.prototype.showEnterprise = function() {
+        Enterprise.prototype.description = function() {
+            return '企业会员'
+        }
+
+        for (let obj of[new Admin(), new Member(), new Enterprise()]) {
+
+            console.log(obj)
+            obj.show()
+
+            // 不使用多态的话
+            // if (obj instanceof Admin) {
+            //     console.log(obj.showAdmin())
+            // } else if (obj instanceof Member) {
+            //     console.log(obj.showMember())
+            // } else if (obj instanceof Enterprise) {
+            //     console.log(obj.showEnterprise())
+            // }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 也就是说，一个对象在使用Object.create时，可以设置其原型
+        // 也可以设置其属性的值，和属性特征
+
+        // 先把原型设置出来
+        let user = {
+            show() {
+                console.log(this.name)
+            }
+        }
+
+        // 设置对象
+        let hd = Object.create(user, {
+            name: {
+                value: 'houdunren',
+                writable: false,
+                enumerable: false,
+                configurable: false
+            },
+            age: {
+                value: 19,
+                writable: false,
+                enumerable: true,
+                configurable: false
+            }
+        })
+
+        console.log(hd)
+
+        // 只遍历出了age
+        for (let k of Object.keys(hd)) {
+            console.log(k)
+        }
+        console.log(Object.entries(hd))
+
+        // 存疑 使用for in都可以遍历出来
+        for (let k in hd) {
+            console.log(k)
+        }
+
+        // 修改无效
+        hd.name = 'haha'
+        console.log(hd)
+
+        // 删除无效
+        delete hd.age
+        console.log(hd)
+    </script>
+</body>
+
+</html>

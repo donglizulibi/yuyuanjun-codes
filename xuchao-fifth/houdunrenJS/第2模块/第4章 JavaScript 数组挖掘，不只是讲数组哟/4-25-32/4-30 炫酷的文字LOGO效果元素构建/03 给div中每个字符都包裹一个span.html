@@ -12,6 +12,7 @@
     <div>houdunren.com</div>
     <script>
         // 给dom标签内容中的每个字符串都加一个span
+
         // 首先需要把dom中的内容取出来，再遍历
         // 在遍历的过程中给每个字符都加上span，放到一个新数组中
         // 再把这个数组连接，变成一个长字符串
@@ -21,6 +22,7 @@
         let strArr = []
         for (let i of div.innerHTML) {
             strArr.splice(strArr.length, 0, `<span>${i}</span>`)
+                // 这里其实就是push，在数组最后一位的下一位(就相当于扩充了数组的长度)添加内容
         }
         div.innerHTML = strArr.join('')
 

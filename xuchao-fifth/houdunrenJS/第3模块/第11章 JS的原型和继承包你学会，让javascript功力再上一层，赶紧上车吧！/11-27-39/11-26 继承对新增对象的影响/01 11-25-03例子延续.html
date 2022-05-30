@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个例子说到了给构造函数的prototype的上一级
+        // 换成另一个构造函数的prototype的两个方式
+        // 并分析了这两种方式 在“给构造函数的prototype上添加方法的先后顺序”的一些区别
+
+        // 那么这个例子就分析一下这两种方式在构造函数立即实例化对象时的区别
+
+        // 首先定义一个构造函数
+        function User() {}
+        User.prototype.show = function() {
+            console.log('user.show')
+        }
+
+        // 再定义一个构造函数，然后立即实例化一个对象
+        // 再使用Object.create来换原型，最后给这个构造函数本身的prototype加方法
+        function Admin() {}
+        let a = new Admin()
+        Admin.prototype = Object.create(User.prototype)
+        Admin.prototype.role = function() {
+            console.log('admin.role')
+        }
+        console.dir(Admin)
+            // 显示这个Admin的prototype里是有role方法的
+
+        // a.role() // 但是a实例无法调用role方法
+        // Object.create把Admin的prototype重新覆盖了，后面添加的role方法无法被前面实例使用
+
+        // 再看__proto__方法，也是先定义构造函数再立即实例化对象
+        // 再换原型，最后加方法
+        function Member() {}
+        let m = new Member()
+        Member.prototype.__proto__ = User.prototype
+        Member.prototype.role = function() {
+            console.log('member.role')
+        }
+        console.log(Member)
+            // 在prototype上也有role方法
+
+        m.role()
+            // 可以调用，因为__proto__是在原来的构造函数的prototype对象上进行修改
+    </script>
+</body>
+
+</html>

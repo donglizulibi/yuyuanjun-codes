@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // mixin就是让一个类为另一个类服务，但不是通过继承的方式来实现
+
+        // 上面的例子中都是把方法放到构造函数的prototype上，再实现继承
+        // mixin的思想就是把一些方法放到一个对象里，如果有哪个构造函数的实例需要用到这些方法
+        // 就把这个对象和这个构造函数的prototype合并
+
+
+        // 首先定义一些功能类
+        const Request = {
+            ajax() {
+                console.log('Request.ajax')
+            }
+        }
+
+        const Address = {
+            local() {
+                console.log('Address.local')
+            }
+        }
+        const Admin = {
+            permisson() {
+                console.log('Admin.permisson')
+            }
+        }
+
+        // 那么再定义两个构造函数
+        // 其中第一个构造函数需要用到前两个方法类，第二个构造函数需要用到后两个方法类
+        function User() {}
+        User.prototype = Object.assign(User.prototype, Request, Address)
+
+        function Member() {}
+        Member.prototype = Object.assign(Member.prototype, Address, Admin)
+
+        // 那么其实例化出来的对象就可以用这些功能，且不会附带出其他无关的功能
+        let u = new User()
+        u.ajax()
+        u.local()
+
+        let m = new Member()
+        m.local()
+        m.permisson()
+    </script>
+</body>
+
+</html>

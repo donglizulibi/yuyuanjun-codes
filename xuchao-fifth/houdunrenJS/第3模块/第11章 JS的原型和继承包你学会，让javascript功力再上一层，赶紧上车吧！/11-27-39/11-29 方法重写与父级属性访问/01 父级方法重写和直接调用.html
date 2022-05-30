@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子是想说明如果一个构造函数继承了另一个构造函数
+        // 对于父级的方法不满意，可以自定义同名的方法
+        // 这样不会覆盖父级的方法，自己的也会优先使用
+
+        // 另外，在自身这个构造函数里面如果想要调用父级的方法，也可以直接调用
+
+        // 先定义一个父级构造函数
+        function User() {}
+        User.prototype.show = function() {
+            console.log('User.show')
+        }
+        User.prototype.site = function() {
+            return 'houdunren-'
+        }
+
+        // 定义一个构造函数，继承之前的构造函数
+        function Admin() {}
+        Admin.prototype = Object.create(User.prototype)
+        Object.defineProperty(Admin.prototype, 'constructor', {
+            value: Admin,
+            enumerable: false
+        })
+
+        // 自定义方法
+        Admin.prototype.show = function() {
+            console.log('Admin.show')
+        }
+
+        // 直接调用父级方法
+        Admin.prototype.role = function() {
+            console.log(User.prototype.site() + 'hdcms')
+        }
+
+        // 创建实例
+        let a = new Admin()
+        a.show()
+        a.role()
+    </script>
+</body>
+
+</html>

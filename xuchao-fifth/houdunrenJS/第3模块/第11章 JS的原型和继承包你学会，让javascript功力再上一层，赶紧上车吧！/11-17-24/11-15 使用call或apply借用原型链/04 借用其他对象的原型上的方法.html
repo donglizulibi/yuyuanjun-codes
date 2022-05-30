@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 所以这个例子并不是一个对象借用自己原型上的方法
+        // 而是一个对象借用另一个对象原型上的方法
+
+        // 先定义一个对象，再给这个对象添加一个包含各种方法的原型
+        let hd = {
+            data: [2, 123, 5, 1, 65]
+        }
+        let maxFun = {
+            show() {
+                return 1
+            },
+            max(arr) {
+                // console.log(this.data)
+                return this.data.sort((a, b) => {
+                    return a - b
+                })[this.data.length - 1]
+            }
+        }
+        Object.setPrototypeOf(hd, maxFun)
+        console.log(hd.max) // 可以打印出这个方法的方法体
+
+
+        // 然后再定义一个对象，在对象内部添加访问器来跟被借用对象原型上的方法同名
+        let xj = {
+            lessons: {
+                js: 87,
+                php: 63,
+                node: 99,
+                linux: 98
+            },
+            get data() {
+                return Object.values(this.lessons)
+            }
+        }
+
+        console.log(xj.data)
+        console.log(hd.max.apply(xj))
+    </script>
+</body>
+
+</html>

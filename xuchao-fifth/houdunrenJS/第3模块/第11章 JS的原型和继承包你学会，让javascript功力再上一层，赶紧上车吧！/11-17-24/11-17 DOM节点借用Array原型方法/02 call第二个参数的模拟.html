@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先设置一个数组，让这个数组的原型为一个对象，直接跳过Array.prototype
+        // 使其失去数组的方法
+        let arr = [{
+            a: 34
+        }, {
+            a: 24
+        }, {
+            a: 46
+        }]
+        let obj = {}
+        Object.setPrototypeOf(arr, obj)
+
+        // 检验结果显示arr无法使用任何数组方法
+        console.log(arr)
+            // arr.map(item => {
+            //     console.log(item)
+            // })
+
+        // 那么如果arr自身和其原型链上都没有数组方法
+        // 而它非要用数组方法的话，就可以借用其他原型链上的方法
+
+
+
+
+        // 随便定义一个数组
+        let array = [1, 2, 3, 4]
+        console.log(array) // 可以看到其__proto__上有filter方法
+
+        // 先看一下filter
+        let setFilter = array.__proto__.filter.call(arr, item => {
+            return item.a > 30
+        })
+        console.log(setFilter)
+
+        // 再试一个
+        let setEvery = array.__proto__.every.call(arr, item => {
+            return typeof item.a == 'number'
+        })
+        console.log(setEvery)
+
+        // array.filter(callback) 在相当于callback是filter的参数
+        // 所以call的第二个参数的位置可以放这些数组方法的callback
+    </script>
+</body>
+
+</html>

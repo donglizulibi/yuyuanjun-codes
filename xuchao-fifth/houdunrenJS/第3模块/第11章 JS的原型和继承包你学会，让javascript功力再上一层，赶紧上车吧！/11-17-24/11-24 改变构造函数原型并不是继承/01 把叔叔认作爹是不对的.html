@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在有一种场景，就是一个对象要使用某一种方法，但是自己和自己的原型链上都没有
+        // 然后就想着去继承其他对象和这个对象原型链上的方法
+
+        // 首先定义一个构造函数，出于内存节省的考虑，把方法定义在这个构造函数的原型链上
+        function User() {}
+        User.prototype.name = function() {
+            // 假设下面这个是获取用户名的操作
+            console.log('user.name')
+        }
+
+        // 则由User构造函数创建出来的实例都可以使用User.prototype上面的方法
+        let u = new User()
+        console.log(u)
+        u.name()
+
+        // 现在定义另一个构造函数
+        // 并希望由这个构造函数创建出来的方法都可以使用User的prototype上的方法
+        function Admin() {}
+        Admin.prototype = User.prototype
+            // 这一步执行下去，就表示Admin抛弃了原来的prototype
+
+
+        // 由Admin创建一个实例
+        let a = new Admin()
+        console.log(a)
+        a.name()
+            // 在这个功能是实现了的
+
+
+        // 然后现在有第三个构造函数，同样也希望自己的实例对象可以使用那个获取用户名的功能
+        function Member() {}
+        Member.prototype = User.prototype
+
+        let m = new Member()
+        m.name()
+            // 在这里这个功能也实现了
+
+
+        // 这样导致的结果就是三个构造函数共用一个prototype
+        // 那么现在的问题就是，假如负责开发Admin的员工需要往自己原型上加自己特有的方法
+        // 负责开发Member的员工也需要加方法，两个方法恰好同名了
+
+        Admin.prototype.role = function() {
+            console.log('admin.role');
+        }
+
+        Member.prototype.role = function() {
+            console.log('member.role')
+        }
+
+        // 再各自创建实例化对象并执行这个方法
+        let aa = new Admin()
+        let mm = new Member()
+
+        aa.role()
+        mm.role()
+            // 二者执行的都是Member的方法，也就是说后者覆盖了前者
+
+        // 那么结论就是
+        // 原型的继承，不是改变构造函数的原型
+        // 张三继承了李四的遗产，自己的遗产也应该保留
+    </script>
+</body>
+
+</html>

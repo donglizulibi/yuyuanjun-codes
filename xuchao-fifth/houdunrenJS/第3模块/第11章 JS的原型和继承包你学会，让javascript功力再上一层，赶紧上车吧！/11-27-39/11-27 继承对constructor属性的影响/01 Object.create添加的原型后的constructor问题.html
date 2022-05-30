@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 见11-9中通过一个实例化对象找到其__proto__中的constructor中的构造函数
+        // 进而可以新建实例的做法，引申出Object.create的新问题
+
+        // 还是先定义一个构造函数
+        function User(name) {
+            this.name = name
+        }
+        User.prototype.show = function() {
+            console.log('user.show')
+        }
+
+        // 针对11-9中的例子做一个简单的复习
+        // 先定义一个实例化对象
+        let u = new User('u')
+        console.log(u)
+
+        // 再根据这个实例化对象再实例化出新的对象
+        let uu = new u.__proto__.constructor('uu')
+        console.log(uu)
+        uu.show() //可以使用
+
+        // 下面开始本例的示范
+
+        // 定义一个构造函数，将这个构造函数的prototype的原型接到User的prototype上
+        function Admin() {}
+        Admin.prototype = Object.create(User.prototype)
+
+        // 此时出现一个问题，由于Object.create移接原型是完全创造一个新的原型
+        // 所以在新的构造函数的prototype中是没有constructor的
+        console.dir(Admin)
+
+        // 但是打印的话，Admin.prototype.constructor是存在的
+        console.log(Admin.prototype.constructor)
+
+        // 因为Admin.prototype这个对象中本身没有constructor，就往上一级找
+        // 其实这个constructor是在Admin.prototype.__proto__上的
+        // 也就是说，其实这个是User的prototype的constructor，也就是User本身
+        console.log(Admin.prototype.constructor == Admin.prototype.__proto__.constructor)
+        console.log(Admin.prototype.constructor == User)
+
+        // 那么在这种情况下用Admin的实例再构建新实例
+        // 其实是User的实例
+        let a = new Admin()
+        let aa = new a.__proto__.constructor('aa')
+        console.log(aa) // 拥有了User的属性
+    </script>
+</body>
+
+</html>

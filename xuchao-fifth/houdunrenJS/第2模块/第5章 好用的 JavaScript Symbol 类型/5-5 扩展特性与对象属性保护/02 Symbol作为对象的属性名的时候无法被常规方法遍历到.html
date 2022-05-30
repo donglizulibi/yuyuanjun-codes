@@ -15,14 +15,6 @@
         // 创建一个Symbol
         let symbol = Symbol("这是一个Symbol类型")
 
-        // Symbol放在数组成为一个项目的时候，是可以遍历到的
-        let arr = [symbol, "hdha"]
-        console.log(arr)
-        for (let key of arr) {
-            console.log(key)
-        } // 遍历数组是没有问题的
-
-
         // 默认情况下Symbol放在对象里充当属性名的时候，是无法遍历到的
         // 定义一个对象，里面的一个键值对的键名设成Symbol
         let hd = {
@@ -30,13 +22,20 @@
             [symbol]: 'houdunren.com'
         }
 
-        // 以下可知，不管是for in 还是for of都只能遍历到name属性，无法找到Symbol
+        // 不管是for in 还是for of都只能遍历到name属性，无法找到Symbol
         for (let key in hd) {
             console.log(key)
         }
         for (let key of Object.keys(hd)) {
             console.log(key)
         }
+
+        // Symbol放在数组成为一个项目的时候，是可以遍历到的
+        let arr = [symbol, "hdha"]
+        console.log(arr)
+        for (let key of arr) {
+            console.log(key)
+        } // 遍历数组是没有问题的
     </script>
 </body>
 

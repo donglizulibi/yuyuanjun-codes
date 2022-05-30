@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 所谓多继承就是一个构造函数同时是两个及以上的构造函数的子级
+        // 也就是说，需要把一个构造函数的prototype的__proto__
+        // 指向到两个及以上构造函数的prototype上
+        // 但是这在JS当中本身是没有多继承特性
+
+        // 首先定义一下实现继承的函数
+        // 第一个参数是父级，第二个参数是子级
+        function extend(sub, sup) {
+            sup.prototype.__proto__ = sub.prototype
+            Object.defineProperty(sup.prototype, 'constructor', {
+                value: sup,
+                enumerable: false
+            })
+        }
+
+        // 关于这个继承函数，之前写的继承函数是用Object.create的方式移接原型
+        // 但是这样会重新创建一个原型，那么如果移接的动作在往构造函数上添加方法之后的话
+        // 就可能造成添加的方法被覆盖掉，所以这里采用__proto__的方法
+
+
+        // 举例子来说，先定义三个构造函数
+        function User() {}
+        User.prototype.show = function() {
+            console.log('User.show')
+        }
+
+        function Admin() {}
+        Admin.prototype.role = function() {
+            console.log('Admin.role')
+        }
+
+        function Request() {}
+        Request.prototype.ajax = function() {
+            console.log('Request.ajax')
+        }
+
+        // 假如现在希望中间的那个Admin构造函数创建出来的实例可以使用User和Request的方法
+        // 就可能希望Admin可以同时继承User和Request，但是这在JS中是不允许的
+
+        // 一个在结果上的解决办法就是让Admin继承User，再让User继承Request
+        extend(User, Admin)
+        extend(Request, User)
+
+        // 再看Admin的实例
+        let a = new Admin()
+        a.role()
+        a.ajax()
+        a.show()
+            // 三个方法都可以使用
+
+        // 但是这个问题就是，让User继承了很多Request的特性，其实这是不需要的
+        // 举例子来说，假如User是后台管理，Admin是用户方法，Request是收货管理
+        // Admin继承了User的后台管理方法，也继承了Request的地址管理的方法
+        // 但是Use作为后台管理并不需要Request的地址管理，这样也是有问题的
+    </script>
+</body>
+
+</html>

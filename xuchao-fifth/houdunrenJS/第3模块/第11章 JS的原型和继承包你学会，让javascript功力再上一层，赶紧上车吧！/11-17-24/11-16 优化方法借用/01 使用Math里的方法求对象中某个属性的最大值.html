@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子虽然在前面已经用过了，但是从原型链的角度再分析一下就是
+        // 如果一个对象要使用某一个方法，而这个对象本身没有，原型链上也没有
+        // 就可以借用其他对象原型链的方法来使用
+        // 自己家里没有就要求助别人家
+
+        let xj = {
+            lessons: {
+                js: 87,
+                php: 63,
+                node: 99,
+                linux: 98
+            }
+        }
+
+        console.log(Math.max.apply(Math, Object.values(xj.lessons)))
+        console.log(Math.max.apply(null, Object.values(xj.lessons)))
+        console.log(Math.max.call(null, ...Object.values(xj.lessons)))
+    </script>
+</body>
+
+</html>

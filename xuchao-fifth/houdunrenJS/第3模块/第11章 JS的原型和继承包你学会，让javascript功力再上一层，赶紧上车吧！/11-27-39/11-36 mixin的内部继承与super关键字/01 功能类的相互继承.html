@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 接着上面的例子，假如一个功能类中的方法需要使用某个功能
+        // 而这个方法恰好在其他的功能类中已经定义了
+        // 那么可以通过改变这个功能类的__proto__指向的方式来实现功能类之间的继承
+        // 这样在自己这个功能类中就不必重复写这个功能了
+
+        // 首先定义一个功能类
+        const Request = {
+            ajax() {
+                return 'Request.ajax'
+            }
+        }
+
+        // 再定义一个功能类，里面的方法需要用到Request里的方法
+        // 可以手动改变这个功能类的__proto__，从Object.prototype改成Request
+        const Address = {
+            __proto__: Request,
+            local() {
+                console.log(this)
+                console.log(this.__proto__)
+                console.log(this.__proto__.ajax() + '-' + 'Address.local')
+            },
+            show() {
+                console.log(this)
+                console.log(this.name)
+            }
+
+        }
+
+        // 验证一下，此时Address的__proto__就是Request
+        Address.local()
+        console.log(Address)
+
+        // 可以梳理一下，Address和Request都会成为User.prototype里面的方法
+        // 也就会成为User实例化对象，也就是后面的u的__proto__上面的方法
+
+        // 那么在u调用local的时候，顺着this.__proto__，也就是u本身的__proto__找
+        // 是可以找到ajax()的，那么local就可以完全展现
+
+        // 那么再定义一个构造函数
+        // 这个构造函数需要用到第二个方法类
+        function User(name, age) {
+            this.name = name
+            this.age = age
+        }
+        User.prototype = Object.assign(User.prototype, Address, Request)
+            // 在这里要把Request也添加进去，因为需要把Request里面的ajax()也添加减去
+            // 以便让Address的local找到
+
+
+        // 构造函数自己添加的对象
+        User.prototype.role = function() {}
+        console.dir(User)
+
+        // 那么实例化出来的对象就可以用这些功能
+        let u = new User('houdunren', 20)
+        u.local()
+        u.show()
+            // 这两个方法的this都是指向实例化u本身
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 还是先定义准备成为父级的构造函数
+        function User(name) {
+            this.name = name
+        }
+        User.prototype.show = function() {
+            console.log(this.name)
+            console.log('user.show')
+        }
+
+        let obj = {}
+        User.call(obj, 'houdunren')
+        console.log(obj)
+
+        // 再定义一个函数，是函数，不是构造函数
+        function admin(...args) {
+            // 第一步是创建一个空对象，但是把这个空对象的父级移接一下
+            let instance = Object.create(User.prototype)
+
+            // 然后借用User的初始属性，传到这个空对象里
+            User.apply(instance, args)
+
+            // 在添加一些方法
+            instance.role = function() {
+                console.log('instance.role')
+            }
+
+            // 返回这个对象
+            return instance
+        }
+
+        // 现在通过调用函数来生成实例，并测试是否继承成功
+        let xj = admin('houdunren')
+        console.log(xj)
+        xj.show()
+        xj.role()
+    </script>
+</body>
+
+</html>

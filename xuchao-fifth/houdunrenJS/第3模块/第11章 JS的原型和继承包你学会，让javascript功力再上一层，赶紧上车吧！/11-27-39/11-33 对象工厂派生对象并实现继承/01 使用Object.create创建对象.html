@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在使用Object.create试验一下
+
+        // 首先是在Object.create里的第一个参数位置填入一个空对象
+        // 第二个参数不填
+        let a = Object.create({})
+        console.log(a)
+            // 结果是一个__proto__是空的对象，由于第二个参数没有填，子级默认也是空对象
+
+        // 注意这样的结果是false，这样会新建一个空对象
+        console.log(a.__proto__ == {})
+
+        // 然后在第一个参数位置填入属性和属性值，第二个参数不填
+        let b = Object.create({
+            name: 'asdf'
+        })
+        console.log(b)
+            // 本身还是一个空对象，__proto__是{name: 'asdf'}
+
+        // 第一个参数放一个构造函数的prototype，第二个不填
+        function User() {}
+        User.prototype.show = function() {
+            console.log('User.show')
+        }
+
+        let c = Object.create(User.prototype)
+        console.log(c)
+            // 本身也是一个空对象
+    </script>
+</body>
+
+</html>

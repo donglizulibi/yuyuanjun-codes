@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果看一个对象的正常原型，可以看到原型里面是有set和get方法的
+        console.log(Object.getPrototypeOf({}))
+
+        // 那么就导致了只要调用__proto__就一定会调用get和set来判断属性
+        // 如果非要添加值类型为对象的原型，可以先让对象的原型为null
+        let hd = {}
+        Object.setPrototypeOf(hd, null)
+            // 或者 let hd = Object.create(null)
+
+        // 可以看到这个对象没有了原来的原型，也就不存在那些方法
+        console.log(hd)
+
+        // 由于会发生变量提升，再新建一个对象
+        let hdd = {}
+        Object.setPrototypeOf(hdd, null)
+
+        // 那么下面的操作就相当于给一个完全的空对象添加属性
+        hdd.__proto__ = 123
+        console.log(hdd)
+        console.log(hdd.__proto__)
+            // 其实此时的__proto__不是原型
+    </script>
+</body>
+
+</html>
