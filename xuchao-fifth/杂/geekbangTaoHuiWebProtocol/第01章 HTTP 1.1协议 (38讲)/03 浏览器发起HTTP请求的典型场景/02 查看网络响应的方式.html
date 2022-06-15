@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 就是网络面板，控制台console右边两个的Network
+
+        // 当在地址栏输入地址，还没输入完的时候，浏览器引擎已经开始调用数据存储中的历史记录
+
+        // 地址输入完了按下回车键，可以看到第一个请求返回回来的文件
+
+        // 这个请求是由渲染器引擎发送的，点击这个文件看它的Response
+
+        // 可以看到一个HTML文件，这个HTML中有很多超链接
+
+        // 有JS的，也有CSS的，也有图片或者其他媒体文件
+
+        // 渲染器引擎就会根据这些超链接发起新的JS、CSS等请求
+
+        // 这些请求返回回来以后，可以看到name栏下面有很多新的返回回来的文件
+
+        // 渲染引擎控制JS解释器解析以后如果观察到DOM树里有变化的话
+
+        // 还会发送新的请求，最终才会把整个页面通过UI绘制到用户界面
+    </script>
+</body>
+
+</html>

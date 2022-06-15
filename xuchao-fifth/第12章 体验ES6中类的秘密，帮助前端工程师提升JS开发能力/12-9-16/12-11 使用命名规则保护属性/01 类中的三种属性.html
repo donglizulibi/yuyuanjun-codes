@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 一个类中可以有三种属性
+        // 分别是
+        // 静态属性，使用static关键字来定义，是类本身作为对象的属性
+        // 内置属性，也就是实例化对象所有的属性，可以在新建实例的时候传参进去
+        // 共享属性，见12-7-02和12-4，所有实例化对象都会有的属性
+
+        // 共享属性和内置属性都是会在实例化对象中显示出来的
+        // 而且只看实例化对象是没有区别的
+        // 就好像一个高中的培优班中交了赞助费入学的学生和考上去的学生的感觉
+
+        // 共享方法的设置
+        class user {
+            // 静态属性
+            static name = 'houdunren'
+
+            // 共享属性
+            _url = 'https//:www.cctv.com'
+
+            // 共享方法直接用等号连接
+            func = function() {
+                console.log('共享方法')
+            }
+
+            // 内置方法show:function(){}的所以，内置属性就是放在constructor里
+            show() {
+                console.log('内置方法')
+            }
+
+            // 共享属性可以使用访问器设置和访问
+            // 也就是说
+            set url(val) {
+                this._url = val
+                return true
+            }
+            get url() {
+                return this._url
+            }
+        }
+
+        let u = new user()
+        console.log(u)
+            // 可见func在对象内部，而show在对象的__proto__上
+
+        u.func()
+        u.show()
+
+        // 在这个例子中，创建了实例化对象u之后，是可以在外部修改里面的共享属性的
+        // 一般来说是不希望用户或者开发者这么做，所以有了属性保护的必要性
+
+        // 静态属性不能在类的内部使用this调用
+        console.log(user.name)
+
+        // 访问器的使用
+        u.url = 'www.bilibili.com'
+        console.log(u.url)
+    </script>
+</body>
+
+</html>

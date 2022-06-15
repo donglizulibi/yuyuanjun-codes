@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先这个例子和12-10-04是一样的，只是解释的角度不一样
+
+        class Uesr {
+            _url = 'https//:houdunren.com'
+            constructor(name) {
+                this.name = name
+            }
+            set url(val) {
+                if (!/^https?:/i.test(val)) {
+                    throw new Error("地址错误")
+                }
+                this._url = val
+            }
+        }
+
+        let u = new Uesr('lisi')
+        console.log(u)
+
+        // _url是类User的共享属性，打印出u中有_url属性
+        // 理论上来说，是可以直接u._url = ##的方式改变这个对象中的_url属性
+        // 这样的修改是不加限制的，也就是没有起到保护这个属性的作用
+
+        // 那么如果还是需要提供在有条件的情况下修改这个属性的功能
+        // 就可以再定义一个访问器，访问器的名字去掉前面的下划线
+        // 使用u.url = ##的方式修改
+
+        // 作为一种约定俗成，开发者在看到某个属性的属性名是下划线开头的
+        // 就应该意识到这个属性是不可以直接修改的
+    </script>
+</body>
+
+</html>

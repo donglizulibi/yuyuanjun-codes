@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 将上个例子使用普通函数重构
+        // 其关键在于在普通函数使用使用访问器需要放在Object.defineProperty里
+
+        // 其次如果需要子类来继承父类的这些属性，需要用call
+
+        let HOST = Symbol()
+
+        function Common() {
+            this[HOST] = 'https://www.houdunren.com'
+            Object.defineProperty(this, 'host', {
+                set(val) {
+                    if (!/^https?:/i.test(val)) {
+                        // throw new Error("地址错误")
+                        console.log('地址错误')
+                        return false
+                    }
+                    this[HOST] = val
+                    return true
+                },
+                get() {
+                    return this[HOST]
+                }
+            })
+        }
+        let c = new Common()
+        console.log(c)
+        c.host = 'https://hdcms.com'
+        console.log(c.host)
+
+        // 子级构造函数
+        function User(name) {
+            this.name = name
+            Common.call(this)
+        }
+        // User.prototype = Object.create(Common.prototype)
+        User.prototype.__proto__ = Common.prototype
+        console.dir(User)
+
+        // 子级构造函数的实例化对象继承了父级的共享属性
+        let u = new User('houdunwen')
+        console.log(u)
+
+        // 所以除了改变prototype的指向方向
+        // 还有在子级构造函数里面用call调用父级的函数
+    </script>
+</body>
+
+</html>

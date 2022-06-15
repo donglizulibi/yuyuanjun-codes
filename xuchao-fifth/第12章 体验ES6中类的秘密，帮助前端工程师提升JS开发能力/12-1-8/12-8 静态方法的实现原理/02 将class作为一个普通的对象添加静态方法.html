@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class User {}
+        console.log(typeof User)
+            // 结果显示User的类型是函数
+
+        // 把方法添加到User对象的原型上
+        User.__proto__.show = function() {
+            console.log("static.show")
+        }
+
+        // 把方法添加到User作为构造函数的原型上
+        User.prototype.show = function() {
+            console.log('prototype.show')
+        }
+
+        // 直接给class User添加方法
+        User.render = function() {
+            console.log('static.render')
+        }
+
+        console.dir(User)
+            // 在其内部可以看到render函数
+
+        User.show() // static.show
+
+        User.render() // static.render
+
+        let u = new User()
+        u.show() //prototype.show
+
+        // 所以给class添加静态方法的方式和构造函数是一样的
+    </script>
+</body>
+
+</html>

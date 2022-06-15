@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于类的继承有几点，首先是extends关键字
+        // 在下面的例子中，User是子级，Common是父级
+
+        // 其次就是需要在子级的内置属性的constructor里面加上super()
+        // 表示继承了父级的内置属性，否则就会报错，即使父级没有内置属性
+
+        class Common {
+            // 给父级添加一个内置方法，这个方法会出现在Common的prototype上
+            show() {}
+        }
+        class User extends Common {
+            constructor(name) {
+                super()
+                this.name = name
+            }
+        }
+
+        // 创建Common实例和User实例
+        let c = new Common()
+        console.dir(Common)
+        console.log(c)
+
+        let u = new User('asdf')
+        console.log(u)
+        console.dir(User)
+
+        // 类之间的继承和构造函数之间的继承的一个原理
+        // 都是把子级构造函数或类的prototype的__proto__
+        // 设为父级构造函数或类的prototype
+
+        // 那么就有如下的相等关系
+        console.log(User.prototype.__proto__ == Common.prototype)
+        console.log(c.__proto__ == Common.prototype)
+        console.log(User.prototype.__proto__ == c.__proto__)
+            // 注意，User.prototype.__proto__ == c.__proto__
+            // 并不等于User.prototype == c
+
+        console.log(u.__proto__ == User.prototype)
+        console.log(u.__proto__.__proto__ == c.__proto__)
+            // 所以，c对象可以用的方法，u都是可以用的
+    </script>
+</body>
+
+</html>

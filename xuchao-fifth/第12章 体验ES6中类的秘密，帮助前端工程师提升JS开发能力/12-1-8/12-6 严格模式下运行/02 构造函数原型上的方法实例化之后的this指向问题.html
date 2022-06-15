@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict"
+        // 这个例子主要探究一下 在普通构造函数中定义一个打印this的函数
+        // 然后生成一个实例化对象，在全局调用这个函数会发生什么
+        // 以及开启严格模式与否的区别
+
+        function User() {}
+        User.prototype.show = function() {
+            function test() {
+                console.log(this)
+            }
+            test()
+        }
+
+        let u = new User()
+
+        // 先把u中的show方法专门拿出来看一下
+        console.log(u.__proto__.show)
+        let a = u.__proto__.show
+        console.log(a)
+        a()
+
+        // 使用实例化对象调用这个show方法
+        u.show()
+
+        // 结果显示普通构造函数生成的实例不开启严格模式的话
+        // 里面的this还是会指向window
+
+        // 当然开启严格模式之后会指向undefined
+    </script>
+</body>
+
+</html>

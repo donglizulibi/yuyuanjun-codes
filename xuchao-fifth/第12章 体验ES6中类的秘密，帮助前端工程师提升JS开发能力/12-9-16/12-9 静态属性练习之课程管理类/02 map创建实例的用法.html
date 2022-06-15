@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 那么因为每次都是执行重复的操作，这个操作就是创建新实例化对象
+        // 然后又要把操作后的结果放在一个数组里，那么自然而然地就想到用map
+
+        // 先定义数据
+        const data = [{
+            name: 'js',
+            price: 100
+        }, {
+            name: 'mysql',
+            price: 212
+        }, {
+            name: 'vue.js',
+            price: 98
+        }]
+
+        // map方法的试用
+        // 仿一个类似于本例的构造函数
+        function Test(val) {
+            this.val = val
+        }
+
+        // 箭头函数简写省略return
+        let test2 = data.map(item => new Test(item))
+        console.log(test2)
+    </script>
+</body>
+
+</html>

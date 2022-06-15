@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 设置一个类，给这个类中的共享属性的属性名前面加上#
+        // class User {#
+        //     host = 'https://www.houdunren.com';
+        //     constructor(name) {
+        //         this.name = name
+        //     }
+        // }
+
+        // 实例化对象，并尝试修改这个共享属性
+        let u = new User('houdunre')
+        console.log(u)
+            // console.log(u.#host)
+
+        // u.#host = 'https://www.baidu.com'
+        // console.log(u)
+
+        // #号会上移
+    </script>
+</body>
+
+</html>

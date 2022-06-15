@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 那么就可以把上面的map的方法封装到静态方法里了
+
+        // 先定义数据
+        const data = [{
+            name: 'js',
+            price: 100
+        }, {
+            name: 'mysql',
+            price: 212
+        }, {
+            name: 'vue.js',
+            price: 98
+        }]
+
+        // 开始定义一个类
+        class Lesson {
+            constructor(data) {
+                this.model = data
+            }
+            static createBatch(data) {
+                // new后面用this或者用Lesson都行
+                return data.map(item => new this(item))
+            }
+        }
+
+        let lessons = Lesson.createBatch(data)
+        console.log(lessons)
+    </script>
+</body>
+
+</html>

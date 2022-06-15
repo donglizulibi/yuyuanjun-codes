@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const HOST = new WeakMap()
+        class Common {
+            constructor() {
+                HOST.set(this, 'https://www.houdunren.com')
+            }
+            set host(val) {
+                if (!/^https?:/i.test(val)) {
+                    // throw new Error("地址错误")
+                    console.log('地址错误')
+                    return false
+                }
+                HOST.set(this, val)
+                return true
+            }
+            get host() {
+                return HOST.get(this)
+            }
+        }
+
+        class User extends Common {
+            constructor(name) {
+                super()
+                this.name = name
+            }
+        }
+
+        let u = new User('hd')
+        console.log(u)
+
+        console.log(u.host)
+
+        u.host = 'asdf'
+        console.log(u.host)
+
+        u.host = 'https://www.baidu.com'
+        console.log(u.host)
+    </script>
+</body>
+
+</html>

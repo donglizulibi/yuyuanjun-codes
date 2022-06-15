@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用静态方法创建实例化对象
+        // 就是在静态方法中return出关键字，并且加入参数
+
+        class User {
+            constructor(...args) {
+                [this.name, this.age, this.gender] = args
+            }
+
+            static create(...args) {
+                console.log(this)
+                console.log(args)
+                return new this(...args)
+            }
+        }
+
+        let u = User.create('houdren', 19, 'male')
+        console.log(u)
+
+        let user = new User('hdcms', 20, 'female')
+        console.log(user)
+    </script>
+</body>
+
+</html>

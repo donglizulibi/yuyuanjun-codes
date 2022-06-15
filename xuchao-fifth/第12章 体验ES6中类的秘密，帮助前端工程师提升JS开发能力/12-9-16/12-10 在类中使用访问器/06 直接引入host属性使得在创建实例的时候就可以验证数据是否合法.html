@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 直接引入host属性使得在创建实例第一次传参的时候就可以验证数据是否合法
+
+        // 上面介绍了两种避免死循环的方法，一种是直接改名字
+        // 另一种是把数据数据放到data属性里面
+
+        // 这里再介绍第三种方法，设置两个内置属性，一个是data的空对象
+        // 另一个是跟访问器同名
+
+        // 那么在类实例化对象传入参数的时候，就触发了constructor里面this.host = host语句
+        // 这条语句直接会调用访问器，那么就会由访问器里的正则来验证这个参数
+
+        // 验证通过之后，可以看到访问器中正则下面的打印this.data是打印一个空对象
+        // 结果赋值语句之后，就相当于给这个空对象添加了host属性
+
+        // 后面如果再修改这个属性值，那也是直接调用访问器，然后修改this.data里面的值
+        class Requset {
+            constructor(host) {
+                this.data = {}
+                this.host = host // 相当于这个host属性会调用set后面的host方法
+            }
+            set host(url) {
+                if (!/^https?:/i.test(url)) {
+                    throw new Error("地址错误")
+                }
+                console.log(this.data)
+                this.data.host = url
+                console.log(this.data)
+            }
+        }
+
+        // let hd = new Requset("https://www.houdunren.com")
+        let hd = new Requset("www.houdunren.com")
+        console.log(hd)
+
+        hd.host = 'hdcms.com'
+            // 后面修改的数据不合法也会报错
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对于一些常用的公共的属性可以变成静态属性
+        // 在类的内部调用静态属性不能用this
+        class Request {
+            static http = 'https//:www.houdunren.com'
+            api(url) {
+                console.log(this) // 返回Request对象，这个打印结果种没有静态属性
+                console.log(this.http) // 返回undefined
+                return Request.http + `/${url}`
+                    // return this.http + `/${url}` 
+                    //这里只能用Request调用http，不能直接用this
+            }
+        }
+
+        let h = new Request()
+        console.log(h.api('article'))
+        console.log('')
+
+        // 静态属性可以在外部修改吗
+        console.dir(Request)
+
+        // 修改
+        Request.http = 'https//:www.cctv.com'
+        console.dir(Request)
+            // 修改成功而且还有变量提升
+
+        console.log('')
+
+        // 新建实例实例
+        let u = new Request()
+        console.log(u.api('haha'))
+
+        // 结论就是可以在外部修改
+
+        // 如果不加static这个关键字会怎么样
+        class Hd {
+            http = 'hgahahaha'
+            api(url) {
+                return Hd.http + `/${url}`
+            }
+        }
+        let a = new Hd()
+        console.dir(Hd) // 没有http
+        console.log(Hd.http) // undefined
+        console.log(a.api('hhh')) // undefined/hhh
+
+        console.log(a)
+        let b = new Hd()
+        console.log(b)
+            // a和b中都出现了http属性
+            // 结论就是不加关键字，http在类中显示不出来，所以不是静态属性
+            // 但是在每个类的实例化对象中都有显示，所以就变成了一个共享属性
+    </script>
+</body>
+
+</html>

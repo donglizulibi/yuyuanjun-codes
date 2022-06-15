@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class User {
+            site = 'houdunewn'
+            constructor(name) {
+                this.name = name
+            }
+            changeSite(val) {
+                this.site = val
+            }
+            show() {
+                return `${this.site}:${this.name}`
+            }
+        }
+
+        // 创建一个新的实例化对象，传入name的实参
+        let hd = new User('houdunren')
+
+        // 修改共享属性
+        hd.changeSite('houhahahah')
+        console.log(hd.show())
+        console.log(hd)
+            // 可以看到这个实例化对象中的site属性值已经被修改了
+
+        // 以上的操作不会修改新的实例化的对象的属性
+        // 也就说，属性值仍然是共享的
+        console.dir(User)
+
+        // 再次新建一个实例化对象
+        let hdd = new User('h2h2h2')
+        console.log(hdd)
+        console.log(hdd.show())
+            // 里面的site还是最开始定义的样子
+
+        // 也就是说，如果新建的实例化对象不想要构造函数中定义的共享属性
+        // 想要修改的话，就需要实现在构造函数内部定义修改这个属性的属性值的方法
+        // 这种修改是不会影响其他实例化对象的
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str =
+            `课程介绍
+内容综述
+浏览器发起HTTP请求的典型场景
+基于ABNF语义定义的HTTP消息格式
+网络为什么要分层：OSI模型与TCP/IP模型
+HTTP解决了什么问题？
+评估Web架构的七大关键属性
+从五种架构风格推导出HTTP的REST架构
+如何用Chrome的Network面板分析HTTP报文
+URI的基本格式以及与URL的区别
+为什么要对URI进行编码？
+详解HTTP的请求行
+HTTP的正确响应码
+HTTP的错误响应码
+如何管理跨代理服务器的长短连接？
+HTTP消息在服务器端的路由
+代理服务器转发消息时的相关头部
+请求与响应的上下文
+内容协商与资源表述
+HTTP包体的传输方式（1）：定长包体
+HTTP包体的传输方式（2）：不定长包体
+HTML form表单提交时的协议格式
+断点续传与多线程下载是如何做到的？
+Cookie的格式与约束
+Session及第三方Cookie的工作原理
+浏览器为什么要有同源策略？
+如何“合法”地跨域访问？
+条件请求的作用
+缓存的工作原理
+缓存新鲜度的四种计算方式
+复杂的Cache-Control头部
+什么样的响应才会被缓存
+多种重定向跳转方式的差异
+如何通过HTTP隧道访问被限制的网络
+网络爬虫的工作原理与应对方式
+HTTP协议的基本认证
+Wireshark的基本用法
+如何通过DNS协议解析域名？`
+
+
+        //         let string = `asd
+        // dfg`
+
+
+        //         console.log(string == `asd
+        // dfg`)
+        //         console.log(string.split('\n'))
+
+        // console.log(str.split('\n'))
+
+        let arr = str.split('\n')
+        let array = arr.map((val, key) => {
+            console.log(val, key)
+            key += 1
+            if (key < 10) {
+                key = '0' + key
+            }
+            val = key + ' ' + val
+            return val
+        })
+
+        // for (let [key, val] of Object.entries(arr)) {
+        //     // let k =
+        //     console.log(val)
+        //     console.log(key)
+        //     val = (key + 1) + val
+        // }
+        console.log(array)
+    </script>
+</body>
+
+</html>

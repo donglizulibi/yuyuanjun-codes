@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 避免死循环的第一种方法就是修改两个名称中的一个
+        class Requset {
+            constructor(url) {
+                // if (!/^https?:/i.test(url)) {
+                //     throw new Error("地址错误")
+                // }
+                this.check(url)
+                this._host = url
+            }
+            check(val) {
+                if (!/^https?:/i.test(val)) {
+                    throw new Error("地址错误")
+                }
+            }
+            set host(url) {
+                // if (!/^https?:/i.test(url)) {
+                //     throw new Error("地址错误")
+                // }
+                this.check(url)
+
+                // 加上赋值语句
+                this._host = url
+            }
+            get host() {
+                return this._host
+            }
+        }
+
+        let hd = new Requset("https://www.houdunren.com")
+
+        // 在constructor里面也可以加上一个正则校验
+        // 达到实例化对象，第一次传入参数的时候，就可以发生校验的效果
+        // 如果不在constructor里面加正则的话，就会直接运行this._host = url
+
+        // 由于这个内置属性的属性名和访问器的名称不一样
+        // 所以这里不会触发访问器，也就不会触发访问器里面正则
+        // 如果想在创建实例时候就触发访问器里的正则，就看本节的最后一个例子
+        console.log(hd)
+
+        hd.host = 'https://www.baidu.com'
+        console.log(hd.host)
+
+
+        hd.host = 'hdcms.com'
+            // 这个参数是错误的，也会报错
+    </script>
+</body>
+
+</html>

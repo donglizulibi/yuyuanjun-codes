@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 用户输入url地址到看到网页，涉及到七个部件
+        // 分别是 用户界面、浏览器引擎、数据存储、渲染引擎、网络、JS解释器和UI后端
+
+        // 其中用户界面表示用户能能看到的浏览器界面
+        // 浏览器引擎表示查询和操作渲染的引擎
+        // 数据存储是浏览器中的一个轻量级数据库
+        // 渲染引擎负责解析、渲染请求的内容，这个引擎就是Chrome中所使用的Webkit引擎
+        // 网络是网络相关
+        // JS解释器负责解析JS
+        // UI后端负责绘制
+
+        // 第一步 在用户界面输入URL地址，在这个地址还没有输入完成的时候
+        //      浏览器引擎就会根据已经输入的那个部分查询浏览器的数据存储
+        //      数据存储会把历史记录中已经输入过的URL地址保存下来
+        //      如果当下输入的地址在数据存储中匹配就会联想出来
+
+        // 第二步 当地址输入完成，用户敲下回车键之后，浏览器引擎会调用渲染引擎
+        //      渲染引擎就会发出第一个请求给网络模块，网络模块返回之后
+        //      渲染引擎可能会发现一些超链接，例如一个Javascript请求
+
+        // 第三步 渲染引擎会发起JavaScript的网络请求，等网络模块返回JavaScript文件
+        //      渲染引擎就会调用JS解释器，解释出html css js 以及图片或其他媒体文件之后
+        //      就会调用UI后端，绘制完整的界面，返回到用户界面中
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个例子谈到了共享属性的保护问题
+        // 并且给出了一种约定俗成的下划线命名方法来保护属性
+        // 但是这种方法产生的实例化对象，在理论上仍然可以被外部没有限制的修改
+
+        // 下面就介绍Symbol的方法来保护属性
+        let HOST = Symbol()
+        class User {
+            [HOST] = 'https://www.houdunren.com'
+            set host(val) {
+                if (!/^https?:/i.test(val)) {
+                    // throw new Error("地址错误")
+                    console.log('地址错误')
+                    return false
+                }
+                this[HOST] = val
+                return true
+            }
+            get host() {
+                return this[HOST]
+            }
+        }
+
+        // 新建实例可以发现，实例中有一个属性，属性名是Symbol（而非HOST）
+        // 也就是说，只要开发者或者用户不知道这个Symbol的变量名称是HOST
+        // 就无法随意修改这个属性
+        let u = new User()
+        console.log(u)
+
+        // 要想修改的只能通过访问器，那就必须服从修改条件
+        // 比如来一个不符合条件的，会显示修改不成功
+        u.host = 'aasdfg'
+        console.log(u)
+
+        // 再来个可以成功的
+        u.host = 'https://www.cctv.com'
+        console.log(u)
+
+        // 访问器get可以查看这个属性
+        console.log(u.host)
+    </script>
+</body>
+
+</html>

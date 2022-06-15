@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class User {
+            constructor(name) {
+                this.name = name
+            }
+            show() {}
+        }
+
+        console.dir(User)
+            // 在prototype上有show 
+
+        let u = new User('hahah')
+        console.log(u)
+
+        for (let key in u) {
+            console.log(key)
+        }
+        // 只能遍历出一个name属性，无法遍历出show方法
+
+        // 以下是原因
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u.__proto__, 'show'), null, 2))
+            // enumerable是false
+            // 说明show这个属性方法是不能被遍历出来的
+            // 说明使用class定义方法，会自动添加到prototype上
+            // 且自动设置这个方法的属性特征为不可遍历
+
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User, 'name'), null, 2))
+            //enumerable: false
+            // name是User作为构造函数的内部变量，也是不能被直接遍历的
+            // 或者User作为对象，里面就没有name
+
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(u, 'name'), null, 2))
+            // enumerable: true
+            // 生成实例之后就可以遍历出name这个属性
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子的思路就是在外部定义一个WeakMap对象
+        // 在类的constructor里面把共享属性的属性值作为键值对的值
+        // 存在WeakMap里，而其中键值对的键名就用对象本身
+
+        // 共享属性也可以在外部修改，但是需要符合某些验证条件
+        // 这些条件就放在访问器set中实现
+        const HSOT = new WeakMap()
+        class User {
+            constructor(name) {
+                this.name = name
+                HSOT.set(this, 'https://www.houdunren.com')
+            }
+            set host(val) {
+                if (!/^https?:/i.test(val)) {
+                    // throw new Error("地址错误")
+                    console.log('地址错误')
+                    return false
+                }
+                HSOT.set(this, val)
+                return true
+            }
+            get host() {
+                return HSOT.get(this)
+            }
+        }
+
+        // 新建实例化对象，可以看到对象当中并没有共享属性
+        let u = new User('hd')
+        console.log(u)
+
+        // 通过访问器可以拿到这个共享属性
+        console.log(u.host)
+
+        // 如果要修改共享属性，也只能通过访问器
+        // 因为普通开发者只能看到这个类被导出，是不知道HOST这个名字
+
+
+        u.host = 'asdf'
+        console.log(u.host)
+
+        u.host = 'https://www.baidu.com'
+        console.log(u.host)
+    </script>
+</body>
+
+</html>

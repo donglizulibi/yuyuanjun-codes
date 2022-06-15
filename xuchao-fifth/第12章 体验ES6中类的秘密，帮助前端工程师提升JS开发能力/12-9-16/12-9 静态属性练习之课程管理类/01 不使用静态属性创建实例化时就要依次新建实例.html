@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子首先是给出一个数组，要求把数组中的每一项都作为参数传入构造函数中
+        // 每一项都新建出实例化对象，然后把这些实例化对象再放到一个数组里
+
+
+        // 如果不用静态属性的话传参数时就要新建多个实例
+
+        const data = [{
+            name: 'js',
+            price: 100
+        }, {
+            name: 'mysql',
+            price: 212
+        }, {
+            name: 'vue.js',
+            price: 98
+        }]
+
+        class Lesson {
+            constructor(data) {
+                this.model = data
+            }
+        }
+
+        let obj1 = new Lesson(data[0])
+        let obj2 = new Lesson(data[1])
+        let obj3 = new Lesson(data[2])
+
+        let arr = [obj1, obj2, obj3]
+        console.log(arr)
+    </script>
+</body>
+
+</html>

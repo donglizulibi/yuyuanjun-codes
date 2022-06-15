@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果把访问器的set的方法名和类的constructor中的属性名设置相同则会出现死循环
+        class Requset {
+            constructor(url) {
+                this.host = url
+            }
+            set host(url) {
+                if (!/^https?:/i.test(url)) {
+                    throw new Error("地址错误")
+                }
+                console.log(this)
+                console.log(this.host)
+                    // 这里的this和this.host都能打印出来，虽然this.host是undefined
+                    // 所以只要创建了实例，即使没有出现hd.host = 某某某 的语句
+                    // 访问器set里面语句仍然会执行
+
+                // 通常来说访问器会有条件判断的语句，通过判断之后会有这样一个赋值语句
+                // this.host = url 
+                // 这一步赋值语句的意思是调用this，也就是这个实例中的host属性
+                // 但是由于私有属性和访问器的名称都是host
+                // 所以系统不知道是调用host属性还是host的访问器
+                // 所以会产生冲突，出现死循环
+            }
+        }
+        let hd = new Requset("https://www.houdunren.com")
+            // 如果把上面的赋值语句打开，那么只要创建新实例，就会产生死循环
+
+        hd.host = "hdcms.com"
+        console.log(hd)
+    </script>
+</body>
+
+</html>

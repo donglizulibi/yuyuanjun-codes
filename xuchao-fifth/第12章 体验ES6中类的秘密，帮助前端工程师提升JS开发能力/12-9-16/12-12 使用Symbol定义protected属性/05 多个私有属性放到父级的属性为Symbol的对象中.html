@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 相似思路见12-10-06
+        // 这个例子主要是考虑到父类和子类中都需要有被保护的内置属性
+        // 那么就可以先创建一个属性名为symbol的空对象
+        // 然后把各自的内置属性放在对象里
+
+        let protecteds = Symbol()
+        class Common {
+            constructor() {
+                // this[protecteds]需要先声明成一个对象，才能往里面添加键值对
+                this[protecteds] = {}
+                this[protecteds].host = 'http://www.houdunren.com'
+            }
+            set host(val) {
+                if (!/^https?:/i.test(val)) {
+                    // throw new Error("地址错误")
+                    console.log('地址错误')
+                    return false
+                }
+                this[protecteds].host = val
+                return true
+            }
+            get host() {
+                return this[protecteds].host
+            }
+        }
+
+        class User extends Common {
+            constructor(name) {
+                super()
+                this[protecteds].name = name
+                    // this._name = name
+            }
+            set name(val) {
+
+                // 在这里写关于name的正则条件
+                // if(){}...
+
+                this[protecteds].name = val
+            }
+            get name() {
+                return this[protecteds].name
+            }
+        }
+
+        let u = new User('hdcms')
+        console.log(u)
+    </script>
+</body>
+
+</html>

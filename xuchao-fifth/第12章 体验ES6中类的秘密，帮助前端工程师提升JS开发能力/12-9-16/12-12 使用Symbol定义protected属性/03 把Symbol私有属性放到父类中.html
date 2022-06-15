@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 把一个类的共享属性和关于这个属性的访问器都放到父类中
+        // 实现继承后，子类的关于这个属性的功能都可以照常使用
+
+        let HOST = Symbol()
+
+        // 父类
+        class Common {
+            [HOST] = 'https://www.houdunren.com'
+            set host(val) {
+                if (!/^https?:/i.test(val)) {
+                    // throw new Error("地址错误")
+                    console.log('地址错误')
+                    return false
+                }
+                this[HOST] = val
+                return true
+            }
+            get host() {
+                return this[HOST]
+            }
+        }
+
+        // 子类中只有一个自身的内置属性
+        class User extends Common {
+            constructor(name) {
+                super()
+                this.name = name
+            }
+        }
+
+        let u = new User('houdunren')
+        console.log(u)
+            // 可见实例化对象中有这个共享属性
+
+
+        u.host = 'aasdfg'
+        console.log(u)
+        console.log(u.host)
+            // 给一个错误的参数修改，无法修改成功，说明访问器是有用的
+
+        u.host = 'https://www.cctv.com'
+        console.log(u)
+            // 修改成功
+
+
+        console.log(u.host)
+            // 可以正常取值
+    </script>
+</body>
+
+</html>

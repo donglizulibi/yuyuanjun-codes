@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于给对象使用展开语法 见10-04-01
+        // 也就是给一个对象添加一对键值对
+
+        // const protected = new WeakMap()
+        // class Common {
+        //     constructor() {
+        //         protected.set(this, 'https://www.houdunren.com')
+        //     }
+        //     set host(val) {
+        //         if (!/^https?:/i.test(val)) {
+        //             // throw new Error("地址错误")
+        //             console.log('地址错误')
+
+        //             return false
+        //         }
+
+        //         protected.set(this, val)
+        //         return true
+        //     }
+        //     get host() {
+        //         return protected.get(this)
+        //     }
+        // }
+
+        // class User extends Common {
+        //     constructor(name) {
+        //             super()
+        //                 // this.name = name
+        //                 // protected.set(this, {...protected.get(this),
+        //                 //     name
+        //                 // })
+        //             this.name = name
+        //         }
+        //         // set name(name) {
+        //         //     if (name.length > 3) {
+        //         //         protected.set(this, {...protected.get(this),
+        //         //             name
+        //         //         })
+        //         //     }
+        //         //     return true
+        //         // }
+        //         // get name() {
+        //         //     return protected.get(this)['name']
+        //         // }
+        // }
+
+        // let u = new User('hd')
+        // console.log(u)
+        // console.log(u.name)
+        // console.log(u.host)
+
+
+        const protecteds = new WeakMap()
+        class Common {
+            constructor() {
+                protecteds.set(this, {
+                    host: 'https://www.houdunren.com'
+                })
+            }
+            set host(val) {
+                if (!/^https?:/i.test(val)) {
+                    // throw new Error("地址错误")
+                    console.log('地址错误')
+                    return false
+                }
+                protecteds.set(this, {...protecteds.get(this),
+                    host: val
+                })
+                return true
+            }
+            get host() {
+                return protecteds.get(this)['host']
+            }
+        }
+
+        class User extends Common {
+            constructor(name) {
+                super()
+                protecteds.set(this, {...protecteds.get(this),
+                    name
+                })
+                console.log(protecteds)
+            }
+            set name(val) {
+                if (val.length < 3) {
+                    console.log('用户名不合法')
+                    return false
+                }
+                protecteds.set(this, {...protecteds.get(this),
+                    name: val
+                })
+                return true
+            }
+            get name() {
+                return protecteds.get(this)['name']
+            }
+        }
+
+        let u = new User('hdd')
+        console.log(u)
+            // 新建对象里没有name和host
+
+        // 测试host属性
+        console.log(u.host)
+
+        u.host = 'asdf'
+        console.log(u.host)
+
+        u.host = 'https://www.baidu.com'
+        console.log(u.host)
+
+
+        // 测试name属性
+        console.log(u.name)
+
+        u.name = 'sd'
+        console.log(u.name)
+
+        u.name = 'hodunren'
+        console.log(u.name)
+
+        // 注意除了第一个WeakMap的set之外
+        // 后面只要有set，都要用展开语法来添加新键值对
+        console.log(u.host)
+    </script>
+</body>
+
+</html>
