@@ -11,6 +11,7 @@
 <body>
     <script>
         // 给新定义的模块加上一点功能
+        // 新定义的模块的具体功能也要放在一个对象里返回出来
 
         // 首先是一个立即执行函数并赋值给一个变量
         let module = (function() {
@@ -29,8 +30,8 @@
                 console.log(action)
 
                 // 运行一下新建模块的方法体
-                console.log(action()) // 目前这种方法也行
-                console.log(action.apply(null))
+                console.log(action(modules)) // 目前这种方法也行
+                console.log(action.apply(null, modules))
 
                 // 将新模块存到容器里，并查看一下啊容器
                 moduleList[name] = action.apply(null)
@@ -45,7 +46,7 @@
             }
         }())
 
-        module.define('hd', [1, 2, 3], function() {
+        module.define('hd', [1, 2, 3], function(...params) {
 
             // 给新模块添加功能
             return {

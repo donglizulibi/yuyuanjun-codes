@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const obj1 = {
+            name: 'houdunrne',
+            show: function() {
+                return this.name + '-asdf'
+            }
+        }
+
+        const obj2 = {
+            __proto__: obj1,
+            name: 'hdcms',
+            render() {
+                console.log('zxcv-' + this.__proto__.show.call(this))
+
+            }
+        }
+
+        const obj3 = {
+            __proto__: obj1,
+            name: 'hd',
+            render() {
+                console.log('zxcv-' + super.show())
+
+            }
+        }
+
+        // 下面两个例子都是使用了自己那个对象里的数据
+        obj2.render()
+        obj3.render()
+
+        // 可见super不仅调用父级的方法，还负责转化自己的作用域
+    </script>
+</body>
+
+</html>

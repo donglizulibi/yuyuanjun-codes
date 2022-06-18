@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <h2 v-for="lensson in lenssons">{{lensson.title}}</h2>
+    </div>
+
+    <!-- 如果有后台返回过来的数据，可以单开一个script标签获得到这个数据 -->
+    <!-- 这个script标签应该再vue的标签前面，数据可以压到window里 -->
+    <script>
+        window.lenssons = [{
+            title: 'js'
+        }, {
+            title: 'css'
+        }, {
+            title: 'html'
+        }]
+    </script>
+    <script src="hd.js"></script>
+
+</body>
+
+</html>

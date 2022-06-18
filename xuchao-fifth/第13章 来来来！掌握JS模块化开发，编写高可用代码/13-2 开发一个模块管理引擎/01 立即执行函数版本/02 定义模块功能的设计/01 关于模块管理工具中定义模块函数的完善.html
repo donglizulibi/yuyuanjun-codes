@@ -10,25 +10,30 @@
 
 <body>
     <script>
-        // define函数是定义模块的，所以在定义一个模块的时候需要考虑到三个方面
-        // 这个模块的名称，这个模块所依赖的模块有哪些（需要放在一个数组里）
-        // 以及这个模块本身的功能接口有哪些
+        // 首先来给这个模块管理工具设计一个定义模块的功能，称为define
 
-        // 所以define函数有三个参数
+        // define函数是定义模块的，所以在定义一个模块的时候需要考虑到三个方面
+        // 1 这个模块的名称
+        // 2 这个模块所依赖的模块有哪些（需要放在一个数组里）
+        // 3 以及这个模块本身的功能接口有哪些
+
+        // 这也构成了define函数的三个参数name modules action
 
         let module = (function() {
             console.log(123)
-                // action是这个模块本身的功能
+
             function define(name, modules, action) {
 
-                // 这两个都是原样打印
+                // 在这个测试部分，这两个都是原样打印
                 console.log(name)
                 console.log(modules)
 
-                // 关于新定义模块的部分
-                console.log(action) // 这里打印的是方法体 
-                action.apply(null) // 使用apply之后执行了方法体中的console语句
-                console.log(action.apply(null)) // 执行了console语句，打印出返回值
+                // 关于新定义模块的具体功能的部分
+                console.log(action) // 这里打印的是方法体
+
+                // 如果要在内部执行新定义模块的函数，最好可以使用apply方法
+                // action()
+                action.apply(null)
             }
             return {
                 define
@@ -38,7 +43,6 @@
         // 现在定义一个模块，并传入三个参数
         module.define('hd', [1, 2, 3], function() {
             console.log("console--hd")
-            return "return--hd"
         })
     </script>
 </body>

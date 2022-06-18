@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于类的继承中的内置属性在构造函数中的原理 见11-31
+
+        // super的在前面的用法是把父级constructor里面的方法
+        // 遗传给子级的constructor，这种情况下子级的constructor
+        // 的形参和内部的super的形参都不用写
+
+        // 但是如果要是把父级内置参数也遗传给子级
+        // 则两个形参都要写
+        class User {
+            constructor(name) {
+                this.name = name
+            }
+        }
+
+        class Common extends User {
+            // constructor(name){
+            constructor(name) {
+                super(name)
+            }
+        }
+
+        let c = new Common('houduinren')
+        console.log(c)
+    </script>
+</body>
+
+</html>

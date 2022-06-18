@@ -10,26 +10,27 @@
 
 <body>
     <script>
-        // 如果立即执行函数内部的return是内部函数的函数名
-        // 则所赋值的变量就是这个函数体
+        // 上一个例子是立即执行函数返回了内部函数的函数名
+        // 也就是直接把函数名放在return后面
+
+        // 如果把内部函数的函数名放在一个对象里，再返回出去
 
         let module = (function() {
             console.log(1)
 
             function define(name) {
-                this.name = name
-                console.log("module-define")
+                console.log(name + "-module-define")
             }
             return {
-                define
+                define // define:define
             }
         }())
 
         console.log(module)
-        console.dir(module)
-            // console.log(new module('houdunren'))
             // 如果是return {define}，则打印是包含define函数的对象
-            // 如果是return define，则打印的是一个构造函数
+
+        // 则通过这个对象就可以调用这个函数
+        module.define('hdcms')
 
 
         // 如果内部有多个函数，则返回函数体的时候需要放在要给对象里
@@ -53,12 +54,9 @@
 
         console.log(modulePlus)
             // 这是一个包含两个函数的方法体的对象
-        console.log(modulePlus.render)
-            // 这是一个构造函数
-        console.log(new modulePlus.render)
-            // 这是一个render对象，当然在这个例子里是没用的
 
         // 则如果需要调用其中一个方法的方法体，只需要在后面调用就行
+        modulePlus.show()
         modulePlus.render()
             // 里面的this指向的是modulePlus对象
     </script>
