@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 回到12-17-03
+
+        // 在这个例子中，super的存在就代表了从当前功能类开始
+        // 向上攀升一个__proto__类的效果
+
+        // 并且会自动把上个功能类的this指向到自身这个类中
+
+        // 另外一个问题，super只能在show(){}中调用
+        // 不能放在show:function(){}中
+
+        let common = {
+            name: 'common-name',
+            show() {
+                console.log(this)
+                return this.name + '-common-show'
+            }
+        }
+
+
+        let hd = {
+            __proto__: common,
+            name: 'hd-name',
+            show() {
+                console.log(this)
+                return super.show() + '-hd-show'
+                    // return this.__proto__.__proto__.show.call(this) + '-hd-show'
+
+            }
+        }
+
+        let xj = {
+            __proto__: hd,
+            name: 'xj-name',
+            show() {
+                console.log(super.show() + '-xj-show')
+                    // console.log(this.__proto__.show.call(this) + '-xj-show')
+            }
+        }
+
+        xj.show()
+    </script>
+</body>
+
+</html>

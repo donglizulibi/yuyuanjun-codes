@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main article>h2 {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 但是如果到了article这一层加上>,再选择，那就表示只选择子级，其他的后代不选择 -->
+
+    <!-- 这种加了右尖括号的结构选择器称之为子元素选择器  -->
+    <main>
+        <article>
+            <h1>houdunren</h1>
+            <aside>
+                <h2>hdcms</h2>
+            </aside>
+            <h2>hd</h2>
+        </article>
+    </main>
+</body>
+
+</html>

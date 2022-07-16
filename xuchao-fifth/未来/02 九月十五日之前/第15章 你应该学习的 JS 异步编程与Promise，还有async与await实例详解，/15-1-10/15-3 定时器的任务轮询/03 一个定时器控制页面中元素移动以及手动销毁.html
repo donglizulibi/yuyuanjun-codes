@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            background-color: aquamarine;
+            left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <button>按钮</button>
+    <script>
+        // 要求设置一个定时器来控制页面中元素块的移动
+        // 当点击销毁按钮后，就销毁这个定时器
+
+        let div = document.querySelector('div')
+
+
+        let id = setInterval(() => {
+            let left = parseInt(window.getComputedStyle(div).left)
+            div.style.left = left + 10 + 'px'
+            console.log(left)
+
+        }, 100)
+
+        document.querySelector('button').addEventListener('click', () => {
+            clearInterval(id)
+        })
+    </script>
+</body>
+
+</html>

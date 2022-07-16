@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: solid 1px gray;
+            width: 200px;
+        }
+        
+        div>input[type="content"] {
+            outline: none;
+            border: none;
+        }
+        /* 让表单原始的边框和边界都消失 */
+        
+        div>input[type="content"]+span::after {
+            content: "\21ba";
+            cursor: pointer;
+        }
+        /* input标签旁边的span标签的after */
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="content">
+        <span></span>
+    </div>
+    <script>
+        document.querySelector('span').addEventListener('click', () => {
+            alert(1)
+        })
+    </script>
+</body>
+
+</html>

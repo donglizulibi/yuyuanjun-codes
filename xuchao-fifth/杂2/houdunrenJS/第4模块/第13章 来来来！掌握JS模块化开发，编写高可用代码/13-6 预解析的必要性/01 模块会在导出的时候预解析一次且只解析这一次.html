@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 这里导入的时候会执行js文件中的语句，且只执行一次 -->
+    <script type="module">
+        import {} from './index.js'
+    </script>
+    <script type="module">
+        import {} from './index.js'
+    </script>
+    <script type="module">
+        import {} from './index.js'
+    </script>
+    <script type="module">
+        import {} from './index.js'
+    </script>
+    <!-- 即使后面有多次调用，也只执行一次 -->
+</body>
+
+</html>

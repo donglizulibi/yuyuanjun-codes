@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 要求设计一个构造函数，实例化对象的时候可以传入一组数值
+        // 构造函数内部有取最大值和第一个值的函数
+
+        function Arr(...args) {
+            this.args = args
+            this.first = function() {
+                return this.args[0]
+            }
+            this.max = function() {
+                return this.args.sort((a, b) => b - a)[0]
+            }
+        }
+
+        let hd = new Arr(34, 5, 23, 74, 115, 3, 7)
+
+        console.log(hd)
+        console.log(hd.first())
+        console.log(hd.max())
+    </script>
+</body>
+
+</html>

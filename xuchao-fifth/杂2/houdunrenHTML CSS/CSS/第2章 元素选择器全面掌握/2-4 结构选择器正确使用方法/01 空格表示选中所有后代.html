@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main article h2 {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 在这个例子中，main -> article 下面有一个 子级h2 和一个 孙级的 h2 -->
+    <!-- 如果结构选择器到了article这一层直接加上空格选中h2 -->
+    <!-- 那就是选中article后代里面所有的h2 -->
+
+    <!-- 这种不加空格的结构选择器称之为后代选择器 -->
+    <main>
+        <article>
+            <h1>houdunren</h1>
+            <aside>
+                <h2>hdcms</h2>
+            </aside>
+            <h2>hd</h2>
+        </article>
+    </main>
+</body>
+
+</html>

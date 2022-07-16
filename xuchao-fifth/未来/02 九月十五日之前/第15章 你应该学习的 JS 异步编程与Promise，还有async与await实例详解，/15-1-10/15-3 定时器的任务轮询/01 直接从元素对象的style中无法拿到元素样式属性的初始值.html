@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background-color: aqua;
+            position: absolute;
+            left: 30px;
+            top: 50px;
+        }
+    </style>
+    <div></div>
+    <script>
+        // 直接从元素对象的style中无法拿到元素样式属性的初始值
+
+        // 现在这里有一个div块，想拿到这个div块样式的参数
+        let div = document.querySelector('div')
+        console.log(div.style.height)
+        console.log(div.style.width)
+        console.log(div.style.left)
+
+        let mod = 200
+        div.addEventListener('click', () => {
+            mod += 100
+            div.style.height = mod + 'px'
+        })
+
+
+        // 在上面的例子中，虽然可以通过改变元素对象的style里的属性
+        // 来改变元素对象的样式，但是这个元素对象关于样式的初始属性值
+        // 是无法通过这种方式拿到的，上面三个console.log打印的都是空
+    </script>
+</body>
+
+</html>

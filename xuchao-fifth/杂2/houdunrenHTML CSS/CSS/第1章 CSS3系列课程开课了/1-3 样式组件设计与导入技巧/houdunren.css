@@ -1,0 +1,6 @@
+@import url('./common/menus.css');
+div {
+    background-color: aquamarine;
+    color: blanchedalmond;
+    font-size: 40px;
+}

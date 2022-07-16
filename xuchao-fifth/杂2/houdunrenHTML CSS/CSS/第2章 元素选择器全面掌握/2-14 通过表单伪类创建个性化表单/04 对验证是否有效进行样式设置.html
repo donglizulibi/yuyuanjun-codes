@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            outline: none;
+        }
+        
+        input:required {
+            border: solid 1px red;
+        }
+        
+        input:optional {
+            border: solid 1px green;
+        }
+        /*  */
+        
+        input:valid {
+            background-color: aqua;
+        }
+        
+        input:invalid {
+            background-color: slateblue;
+        }
+        /* 验证表单输入是否合法 */
+    </style>
+</head>
+
+<body>
+    <main>
+        <form action="">
+            <input type="text">
+            <label for="">非必填</label>
+            <hr>
+            <input type="text" required>
+            <label for="">必填</label>
+            <hr>
+            <!-- 在这里再加上一个text位email的表单 -->
+            <!-- 这个表单会自动验证输入的内容是不是邮件格式 -->
+            <!-- 这里由于没有给莪邮箱的input设置必填 -->
+            <!-- 所以一开始是通过验证的样式，但是一旦输入内容 -->
+            <!-- 且内容不是邮箱的格式，就会回到invalid的样式 -->
+            <!-- 直到输入一个正确的邮箱 -->
+            <input type="email">
+            <label for="">输入邮箱</label>
+        </form>
+    </main>
+</body>
+
+</html>

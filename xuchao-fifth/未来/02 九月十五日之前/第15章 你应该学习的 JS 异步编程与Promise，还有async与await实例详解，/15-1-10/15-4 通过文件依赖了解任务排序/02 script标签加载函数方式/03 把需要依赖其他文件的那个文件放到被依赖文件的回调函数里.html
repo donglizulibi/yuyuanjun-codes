@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function load(src, resovle) {
+            let script = document.createElement('script')
+            script.src = src
+
+            script.onload = resovle
+            document.querySelector('body').appendChild(script)
+        }
+
+        // 这样就规定了先后执行顺序，不会报错
+        load('hd.js', () => {
+            hd()
+            load('houdunren.js', () => {
+                houdunren()
+            })
+        })
+
+        // 但是如果有很多层嵌套关系，就会把回调函数写很多层
+        // 也就是回调地狱
+
+
+
+        console.log('index.html')
+    </script>
+</body>
+
+</html>

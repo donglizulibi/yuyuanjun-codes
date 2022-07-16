@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上面讲到在/***/这样的正则表达式里，里面的内容是一个整体
+        // 表示待匹配的字符串会在自身中匹配到这个表达式整体
+
+        // 在/***/如果要表示一个或的关系，可以用选择符 |
+        // 那么这个例子就表示一种可以省略 | 的符号
+        // 并且可以同时呈现多个可供选择的匹配项
+
+        // 比如下面把12345五个数值放到一个空括号里
+        // 就表示1到5这五个数字都是可供选择的匹配项
+        // 匹配的字符串只要是这五个里面的一个就能通过
+        let reg = /[12345]/
+        console.log(reg)
+
+        console.log(reg.test('1')) // true
+        console.log(reg.test('2')) // true
+        console.log(reg.test('3')) // true
+        console.log(reg.test('4')) // true
+        console.log(reg.test('5')) // true
+        console.log(reg.test('6')) // false
+
+        console.log('1'.match(reg))
+        console.log('3'.match(reg))
+        console.log('6'.match(reg))
+    </script>
+</body>
+
+</html>

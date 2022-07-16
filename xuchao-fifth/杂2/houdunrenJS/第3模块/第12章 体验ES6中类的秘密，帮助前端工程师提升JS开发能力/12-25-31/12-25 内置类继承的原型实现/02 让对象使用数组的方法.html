@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先定义一个对象，把这个对象的原型接到数组的构造函数上
+        // 就可以使用数组的方法，或者说，这对象就变成了数组
+        let obj = {}
+        obj = Object.create(Array.prototype)
+
+        // 可以使用数组的方法
+        obj.push(1, 2, 3)
+        console.log(obj)
+        console.log(typeof obj)
+        console.log(obj instanceof Array)
+
+        // 但还是保留了对象可以添加键值对的特性
+        obj['abc'] = 'zxcv'
+        console.log(obj)
+
+        // 但是数组本身也可以添加键值对
+        let arr = []
+        arr['asdf'] = 'dfggasdf'
+        console.log(arr)
+    </script>
+</body>
+
+</html>

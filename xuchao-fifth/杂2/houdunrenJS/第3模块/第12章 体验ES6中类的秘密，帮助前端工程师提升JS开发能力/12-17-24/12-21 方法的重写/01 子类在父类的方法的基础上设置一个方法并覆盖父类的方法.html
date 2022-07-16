@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = [{
+            name: 'vue,js',
+            price: 98
+        }, {
+            name: 'js',
+            price: 123
+        }, {
+            name: 'php',
+            price: 43
+        }]
+
+        // 子类在父类的方法的基础上设置一个方法并覆盖父类的方法
+        class User {
+            getByKey(key) {
+                return this.data.filter(item => item.name.includes(key))
+            }
+
+            // 这个方法是把符合条件的课程的所有信息都返回出去了
+        }
+
+        class Admin extends User {
+            constructor(data) {
+                super()
+                this.data = data
+            }
+            getByKey(key) {
+                // return super.getByKey(key) // 这样就是什么都没有改变
+                return super.getByKey(key).map(item => item.name)
+            }
+
+        }
+
+        // console.log(Admin.__proto__ == User)
+
+        let a = new Admin(data)
+        console.log(a.getByKey('js'))
+    </script>
+</body>
+
+</html>

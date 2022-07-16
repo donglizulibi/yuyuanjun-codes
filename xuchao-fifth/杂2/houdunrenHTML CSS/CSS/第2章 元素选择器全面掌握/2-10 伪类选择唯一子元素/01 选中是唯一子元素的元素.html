@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        article :only-child {
+            color: red;
+        }
+    </style>
+    <!-- 在这里表示在article的后代元素中，选中是唯一子元素的元素 -->
+    <!-- article本身有三个子元素，article孙辈元素中aside里面的h2是唯一子元素 -->
+    <!-- 所以被选中 -->
+</head>
+
+<body>
+    <main>
+        <article>
+            <h1>houdunren</h1>
+            <aside>
+                <h2>hdcms</h2>
+            </aside>
+            <h2>hdcms.com</h2>
+        </article>
+    </main>
+</body>
+
+</html>

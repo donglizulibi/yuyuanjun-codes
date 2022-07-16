@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 这里就是把13_1 13_2合并到了13_mix，再导入到index里面 -->
+    <!-- 但是这里美哟解决如果13_1 13_2中有重名变量的问题 -->
+    <script type="module">
+        import {User,show,url,site} from './13_mix.js'; console.log(User.render()); console.log(show());console.log(site);console.log(url)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 要求找到一串字符串中的数字，这里不使用正则表达式
+        // 下个例子使用正则表达式 
+
+        // 总体的思路是，先把字符串打散放到一个数组里
+        // 再遍历这个数组的每一项，并通过判断留下符合条件的
+        // 再把符合条件的新数组拼接成一个新的字符串
+
+        let hd = "houdunren123hahah8989"
+
+        // 把一个字符串打散成一个数组有两个方法
+        let hd1 = hd.split('')
+        console.log(hd1)
+
+        let hd2 = [...hd]
+        console.log(hd2)
+
+        // filter和isNaN的联用，生成新数组
+        // if里面的判断条件就是说，把isNaN为false的筛选出来
+        // 也就是把数字筛选出来
+        let arr = hd1.filter(item => {
+            if (!Number.isNaN(parseInt(item))) {
+                return true
+            }
+        })
+
+        console.log(arr) // 一个只有数字的数组
+
+        // 再把这个数组用join拼接
+        let str = arr.join('')
+        console.log(str)
+    </script>
+</body>
+
+</html>

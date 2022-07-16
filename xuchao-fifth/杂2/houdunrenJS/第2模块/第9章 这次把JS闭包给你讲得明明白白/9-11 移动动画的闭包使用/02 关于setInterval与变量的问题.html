@@ -13,15 +13,12 @@
     <script>
         let btn = document.querySelector('button')
         let count = 0
+
         btn.addEventListener('click', () => {
             count++
-
-            // const innerCount = count
             let innerCount = count
-                //这里用let或者const都行 
 
-            let left = 1
-            console.log(left)
+            let left = 0
             console.log('=============间隔线=============')
             setInterval(() => {
                 left += 1

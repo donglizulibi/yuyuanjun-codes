@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 打印api发现js模块里所有文件都在里面 -->
+    <!-- 这样会造成使用打包工具上传的时候把没有在使用的文件也打包进去了 -->
+    <!-- 后面调用变量要用api调用，所以也比较麻烦 -->
+    <script type="module">
+        import * as api from './module/01.js'; console.log(api); api.show();console.log(new api.User());console.log(api.title)
+
+    </script>
+</body>
+
+</html>

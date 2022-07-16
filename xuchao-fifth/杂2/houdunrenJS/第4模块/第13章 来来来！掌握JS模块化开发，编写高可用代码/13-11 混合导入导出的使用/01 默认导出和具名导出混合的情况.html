@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 导入的时候，在{}里面就是具名导出，没有{}就是默认导出 -->
+    <script type="module">
+        import user,{site} from './module/01.js'; import {default as hd, url as address} from './module/02.js'; console.log(new user()); console.log(site) ; console.log(new hd()); console.log(address)
+
+
+
+
+
+    </script>
+</body>
+
+</html>

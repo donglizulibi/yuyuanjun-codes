@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个函数有两个参数，第一个参数放实例化对象，第二个参数放构造函数或者类
+        // 如果这个对象的原型链上有这个构造函数或者类的prototype，就返回true
+        // 反正就返回false
+
+
+
+        function checkPrototype(obj, constructor) {
+            if (obj.__proto__ == null) {
+                return false
+            }
+            if (obj.__proto__ == constructor.prototype) {
+                return true
+            }
+            return checkPrototype(obj.__proto__, constructor) // 一个向上攀升的过程
+        }
+
+        // 这个函数的递归停止条件有两个，一个是在攀升的过程中找到了，就返回true
+        // 另一个是在上个例子中，实例化对象一直找到最高级，也就是null
+        // 都还没有找到，这整个原型链已经遍历完毕还没找到，那就返回false
+
+        class Address {}
+        class User {}
+        class Admin extends User {}
+        let a = new Admin()
+
+        console.log(checkPrototype(a, Admin)) // true
+        console.log(checkPrototype(a, User)) // true
+        console.log(checkPrototype(a, Object)) // true
+        console.log(checkPrototype(a, Address)) // false
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 伪类元素就是先写标签名称，再在后用冒号连接这标签可能出现的状态 */
+        /*  */
+        /*  */
+        /*  */
+        /* 超链接的这四种状态就是 */
+        /* link：超链的默认状态    hover：鼠标滑过超链接时的状态 */
+        /* active：点击动作发送一瞬间的状态    visited：点击之后返回时的状态 */
+        
+        a {
+            font-size: 30px;
+            font-weight: bolder;
+        }
+        
+        a:link {
+            color: red;
+        }
+        /* 关于a标签的link伪类选择器可能不生效的问题 */
+        /* 如果浏览器的历史记录中有超链接的访问记录，则会始终显示visited的效果 */
+        /* 这个例子一开始使用了houdunren.com，而这个网址多次访问，所以link不生效 */
+        /* 需要先访问一个全新的网址，然后再把这唯一历史记录清除，就可以显示link伪类的效果更 */
+        
+        a:visited {
+            color: green;
+        }
+        
+        a:hover {
+            color: brown;
+        }
+        
+        a:active {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 伪类选择器是对元素的不同状态或者不确定的元素进行设置 -->
+    <main>
+        <article>
+            <a href="https://www.bilibili.com/video/BV1bB4y1W72X?spm_id_from=333.851.b_7265636f6d6d656e64.1">houdunren.com</a>
+            <h1>houdunren</h1>
+        </article>
+    </main>
+</body>
+
+</html>

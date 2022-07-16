@@ -1,0 +1,11 @@
+进入到对应的文件，先检测有没有安装node，然后在命令行输入
+npm init -y
+
+然后出现了package.json
+
+注意文件名不能有中文
+
+安装webpack的命令为
+npm i webpack webpack-cli --save-dev
+
+然后就出现了node_modules 和 package-lock.json

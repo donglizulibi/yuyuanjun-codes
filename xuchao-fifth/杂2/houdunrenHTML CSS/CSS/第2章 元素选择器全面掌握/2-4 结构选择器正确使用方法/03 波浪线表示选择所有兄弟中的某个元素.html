@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        article h1~h2 {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 在结构选择器中，波浪线~后面加上一个标签 -->
+    <!-- 表示一个元素往后的兄弟元素中所有这个标签 -->
+    <!-- 比如在本例中h1~h2表示h1标签后面兄弟元素里，所有的h2元素 -->
+    <!-- 在这里就包括hdcms.com 和 hdcms ,会变成绿色-->
+    <!-- 不包括hd(在前面),和houdunren.com(不是兄弟元素) -->
+    <main>
+        <article>
+            <h2>hd</h2>
+            <h1>后盾人</h1>
+            <h2>hdcms.com</h2>
+            <aside>
+                <h2>houdunren.com</h2>
+            </aside>
+            <h2>hdcms</h2>
+        </article>
+    </main>
+</body>
+
+</html>

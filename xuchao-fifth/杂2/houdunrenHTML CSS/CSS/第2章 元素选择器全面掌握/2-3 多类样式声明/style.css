@@ -1,0 +1,21 @@
+.bg_red {
+    background-color: red;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.success {
+    border: solid 1px green;
+    color: green;
+}
+
+.error {
+    border: solid 1px red;
+    color: black;
+}

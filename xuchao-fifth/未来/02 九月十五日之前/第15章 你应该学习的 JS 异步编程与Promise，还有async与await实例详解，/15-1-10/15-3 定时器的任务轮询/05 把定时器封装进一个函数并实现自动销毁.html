@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            background-color: aquamarine;
+            left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 要求设置一个定时器来控制页面中元素块的移动
+        // 当移动到一定距离之后，就销毁这个定时器
+
+        // 先设置一个创建定时器的函数，函数第一个参数是回调函数
+        // 第二个参数是定时器的间隔时长
+
+        function interval(callback, delay) {
+            let id = setInterval(() => callback(id), delay)
+
+            // 这里id创建了之后就会作为实参传进callback
+            // 这里的callback是一个已经在执行的状态，所以要传入实参
+            return id
+        }
+
+
+        console.log(interval((timeId) => {
+
+            // 这里的timeId只是一个形参，用来接受interval函数里创建的id
+            console.log('asdf', timeId)
+            console.log('定时器回调函数')
+
+            // 图形操作
+            let div = document.querySelector('div')
+            let left = parseInt(window.getComputedStyle(div).left)
+            div.style.left = left + 10 + 'px'
+            console.log(left)
+
+            if (left >= 300) {
+                // 这里把timeId这个数字传进来，clearInterval方法只要找到一个数字
+                // 就可以找到页面中的定时器并销毁
+                clearInterval(timeId)
+            }
+
+        }, 100))
+
+        // 三个js主线程也是唯一线程的操作，这三个操作完成了
+        // 才会去轮询定时器模块的结果
+        console.time('for')
+        for (let i = 0; i < 1000000000; i++) {}
+        console.timeEnd('for')
+
+        function total(...arg) {
+            return arg.reduce((pre, val) => pre += val, 0)
+        }
+        console.log(total(1, 2, 3, 4, 5, 6))
+    </script>
+</body>
+
+</html>

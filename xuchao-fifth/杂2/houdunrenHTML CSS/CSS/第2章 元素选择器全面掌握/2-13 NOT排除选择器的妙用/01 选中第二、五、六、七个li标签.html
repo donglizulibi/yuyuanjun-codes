@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 思路就是先选中前面七个，再去掉不要的 */
+        /* not的语法就是在nth-child后面直接加上:not() */
+        /* 然后在not的括号里写入希望排除的项目 */
+        /* 写入的方式还是用伪类选择器 */
+        
+        div ul>li:nth-child(-n+7):not(:nth-child(1)):not(:nth-child(3)):not(:nth-child(4)) {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>houdunren</li>
+            <li>houdunren</li>
+            <li>houdunren</li>
+            <li>houdunren</li>
+            <li>houdunren</li>
+            <li>houdunren</li>
+            <li>houdunren</li>
+            <li>houdunren</li>
+        </ul>
+    </div>
+</body>
+
+</html>

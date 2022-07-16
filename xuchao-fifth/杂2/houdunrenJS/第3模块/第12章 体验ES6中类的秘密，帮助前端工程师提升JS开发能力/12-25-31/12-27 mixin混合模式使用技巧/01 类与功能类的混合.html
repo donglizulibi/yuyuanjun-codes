@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于使用mixin的意义见11-34 多继承的困扰
+        // 关于mixin在构造函数中的用法见11-35
+
+        // 先定义一个数据
+        let data = [{
+            name: 'vue,js',
+            price: 98,
+            click: 457
+        }, {
+            name: 'js',
+            price: 123,
+            click: 293
+        }, {
+            name: 'php',
+            price: 43,
+            click: 157
+        }]
+
+        // 定义一个类
+        class User {
+            constructor(lessons) {
+                this.lessons = lessons
+            }
+            get data() {
+                return this.lessons
+            }
+        }
+
+        // 两个功能类
+        const Arr = {
+            total(key) {
+                return this.data.reduce((pre, val) => pre + val[key], 0)
+            }
+        }
+
+        const Tool = {
+            first(key) {
+                return this.data.sort((a, b) => b[key] - a[key])[0]
+            }
+        }
+
+        // User.prototype = Object.assign(User.prototype, Tool, Arr)
+        Object.assign(User.prototype, Tool, Arr)
+            // 前面的User.prototype可以不加，Object.assign就是把后面的对象合并到第一个里面
+
+        let u = new User(data)
+
+        console.log(u.first('price'))
+        console.log(u.first('click'))
+
+        console.log(u.total('price'))
+        console.log(u.total('click'))
+    </script>
+</body>
+
+</html>

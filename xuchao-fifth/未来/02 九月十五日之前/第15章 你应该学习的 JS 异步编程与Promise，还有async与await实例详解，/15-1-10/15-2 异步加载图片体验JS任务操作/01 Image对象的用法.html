@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 在Image对象中，又onload和onerror两个内置方法
+        // Image实例化对象如果给这个两个附上函数
+        // 则图片加载成功就会调动onload的函数，加载失败就会调用onerror的函数
+
+        // 写一个函数，在函数内部创建图片对象，传入图片，图片对象接受到图片文件后
+        // 调用onload函数
+
+        // 如果未能加载图片，就调用onerror函数
+
+        function load(src) {
+            let div = document.querySelector('div')
+
+            let image = new Image()
+            image.src = src
+            console.dir(image)
+            div.appendChild(image)
+
+            image.onload = function() {
+                console.log('加载图片成功')
+
+            }
+
+            image.onerror = function() {
+                console.log('加载图片不成功')
+            }
+        }
+
+        load('猪大肠.jpg')
+        console.log(234)
+            // load('猪大肠asd.jpg')
+
+        // console.log(typeof '猪大肠.jpg')
+    </script>
+</body>
+
+</html>

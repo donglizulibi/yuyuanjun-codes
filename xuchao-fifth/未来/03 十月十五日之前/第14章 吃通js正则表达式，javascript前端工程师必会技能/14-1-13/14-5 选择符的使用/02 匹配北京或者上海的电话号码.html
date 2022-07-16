@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 只要电话号码是北京的或者上海的就可以匹配成功
+
+        // 先设置一个包含电话号码的字符串
+        let tel = '010-9999999'
+
+
+        // - 在正则中有特殊含义，所以需要转译\-
+        // \d表示所有数字
+        // {7,8}表示至少是七位数，由于没有前后限制，所以超过七位也会匹配成功
+        console.log(/010\-\d{7,8}|020\-\d{7,8}/.test(tel))
+
+        // 在上面的正则中
+        // \-\d{7,8} 是共有的
+        // 可加上()变为
+        console.log(/(010|020)\-\d{7,8}/.test(tel))
+            // ( ) 在正则中称为原子组
+
+
+
+        let telephone = '010-9999999'
+        console.log(/010\-\d{7,8}|020\-\d{7,8}/.test(telephone))
+        console.log(/(010|020)\-\d{7,8}/.test(telephone))
+
+        // 另一种不加原子组的情况也为真
+        console.log(/010|020\-\d{7,8}/.test(telephone))
+            // 这里不加原子组，表示只要一个字符串内有020-*******，或者
+            // 有010，就可以匹配成功
+
+        console.log(/(010|020)\-\d{7,8}/.test('020-1111111111111111111111111111111'))
+            // 当然这里还没有考虑到前后位数的限制
+    </script>
+</body>
+
+</html>

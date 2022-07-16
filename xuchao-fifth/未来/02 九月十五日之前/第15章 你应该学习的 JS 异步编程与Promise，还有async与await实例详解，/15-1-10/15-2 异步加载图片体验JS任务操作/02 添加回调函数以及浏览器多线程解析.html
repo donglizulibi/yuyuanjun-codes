@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        function load(src, resolve, reject) {
+            let div = document.querySelector('div')
+
+            let image = new Image()
+            image.src = src
+            console.dir(image)
+            div.appendChild(image)
+
+            image.onload = resolve
+            image.onerror = reject
+        }
+
+        load('猪大肠.jpg',
+            function() {
+                console.log('加载图片成功')
+
+            },
+            function() {
+                console.log('加载图片不成功')
+            })
+
+        console.log(123)
+
+        // 再来一个计算函数，这个函数的运行过程也是在浏览器是js线程发生的
+        function total(...arg) {
+            return arg.reduce((pre, val) => pre += val, 0)
+        }
+        console.log(total(1, 2, 3, 4, 5, 6))
+
+
+        console.time('for')
+        for (let i = 0; i < 1000000000; i++) {
+
+        }
+        console.timeEnd('for')
+
+        // 页面打印结果是先出现123，然后再出现计算函数的结果
+        // 然后提示加载图片成功或者不成功的打印结果
+
+        // 这是因为当系统检测到这个加载图片的函数的执行命令
+        // 会把这个操作交给浏览器内核的另一个线程，可能是GUI线程
+        // 然后这个线程把会把图片加载函数的操作完成，把结果放在任务队列等待
+        // 与此同时，js引擎的主线程会继续执行页面中其他的js语句
+        // 在这里就是打印123 和 计算函数
+
+        // 等这两个操作结束之后，js线程再去任务队列中找加载图片函数的结果
+        // 再显示出来
+
+        // 在后面加一个for循环，执行时间大约为一秒
+        // js线程也会执行完这一秒之后，再去任务队列中找加载图片函数结果
+    </script>
+</body>
+
+</html>

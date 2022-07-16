@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background-color: aqua;
+            position: absolute;
+            left: 30px;
+            top: 50px;
+        }
+    </style>
+    <div></div>
+    <script>
+        let div = document.querySelector('div')
+        let [height, width, left] = [
+            window.getComputedStyle(div).height,
+            window.getComputedStyle(div).width,
+            window.getComputedStyle(div).left
+        ]
+
+        console.log(height, width, left)
+
+        // 不过这个属性只能拿到元素关于样式的属性值，而不能改变
+        // 要是需要改变，还是用上个例子中的方法
+
+        // 另外需要注意的时候，使用window.getComputedStyle
+        // 转化的数值结果是字符串，要想真正作为数值使用还用转成数值
+        console.log(typeof left)
+        console.log(parseInt(left))
+        console.log(typeof parseInt(left))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先是整个html的文档对象
+        // 是节点的顶层
+        console.log(document)
+        console.log(typeof document)
+
+        // 然后看一下整个文档对象的子节点
+        console.log(document.childNodes)
+            // 结果显示有两个
+
+        // 然后选取第二个子节点，看一下这个节点的子节点
+        console.log(document.childNodes[1].childNodes)
+            // 结果出现head text body
+            // 其中text是文本节点，如果把head和body连接起来，则text文件节点会消失
+    </script>
+</body>
+
+</html>

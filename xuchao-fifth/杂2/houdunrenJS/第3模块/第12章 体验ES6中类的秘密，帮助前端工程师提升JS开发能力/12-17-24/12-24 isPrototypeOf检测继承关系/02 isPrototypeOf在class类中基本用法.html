@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 由于类的继承可以分为类的构造函数prototype之间的继承
+        // 和类之间本身的继承
+        // 所以isPrototypeOf可以验证这两个方面
+
+        // 首先定义一个三层的类继承关系
+        class Common {}
+        class User extends Common {}
+        class Admin extends User {}
+
+        // 先讨论类的构造函数prototype之间的继承
+
+        // 给第三层的类创建一个实例化对象，则下面的关系是显而易见的
+        let a = new Admin()
+        console.log(a.__proto__ == Admin.prototype)
+        console.log(Admin.prototype.isPrototypeOf(a))
+
+        // 因为第三层类的prototype继承了第二层的prototype，所以
+        console.log(Admin.prototype.__proto__ == User.prototype)
+        console.log(a.__proto__.__proto__ == User.prototype)
+        console.log(Admin.prototype.isPrototypeOf(a))
+
+        // 第二层的prototype继承了第一层的prototype，所以
+        console.log(User.prototype.__proto__ == Common.prototype)
+        console.log(a.__proto__.__proto__.__proto__ == Common.prototype)
+        console.log(Common.prototype.isPrototypeOf(a))
+
+
+        // 然后来讨论三个类本身的继承
+
+        // 首先是显而易见的关系
+        console.log(Admin.__proto__ == User)
+        console.log(User.__proto__ == Common)
+
+        // 往后推一步关系
+        console.log(Admin.__proto__.__proto__ == Common)
+
+        // 然后就有
+        console.log(Common.isPrototypeOf(Admin))
+        console.log(Common.isPrototypeOf(User))
+        console.log(User.isPrototypeOf(Admin))
+    </script>
+</body>
+
+</html>

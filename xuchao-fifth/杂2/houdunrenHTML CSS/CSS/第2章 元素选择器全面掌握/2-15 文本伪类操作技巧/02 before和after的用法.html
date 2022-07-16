@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span::before {
+            content: "\21bb";
+            color: red;
+            font-size: 50px;
+        }
+        
+        span::after {
+            content: ".com";
+            color: blue;
+        }
+        /* 双冒号加上before或者after表示在前后添加新的内容 */
+        /* 还可以控制定位、位置、内容、字体大小颜色等 */
+        /* content里面的内容可以是字体图标的Unicode编码，但是要加上\转义符号 */
+    </style>
+</head>
+
+<body>
+    <span>houdunren</span>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main article :first-child {
+            color: red;
+        }
+    </style>
+    <!-- 关于普通伪类选择器和结构伪类选择器的一个区别就是 -->
+    <!-- 本例中的结构选择器是选择article的后代，而非article本身 -->
+    <!-- 所以和article配套的伪类选择器需要先加一个空格 -->
+
+    <!-- 而前面的例子中的伪类选择器是作用在某个元素本身可能会出现的形态 -->
+    <!-- 所以不用加上空格直接跟在元素后面 -->
+
+    <!-- 另外，在本例中，first-child表示在article所有后代中位置为第一的元素 -->
+    <!-- 所以子代的'houdunren h1 1st' 和 div中的'houdunren div h1 1st'都被选中 -->
+</head>
+
+<body>
+    <main>
+        <article>
+            <h1>houdunren h1 1st</h1>
+            <div>
+                <h1>houdunren div h1 1st</h1>
+                <h1>houdunren div h1 2nd</h1>
+            </div>
+            <h1>houdunren h1 last</h1>
+        </article>
+    </main>
+</body>
+
+</html>

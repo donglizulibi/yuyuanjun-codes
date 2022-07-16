@@ -1,0 +1,13 @@
+body {
+  background-color: aqua;
+}
+body div {
+  background-color: bisque;
+}
+body div h1 {
+  color: green;
+}
+body div p {
+  font-weight: bolder;
+  font-size: 50px;
+}

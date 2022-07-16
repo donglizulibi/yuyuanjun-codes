@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = 'houdunren'
+            // 每个加上module的模块都会变成全局作用域下的一个局部作用域 
+            // hd在所有的模块中都能打印出来，但是第一个模块中的site 
+            // 无法在第二个模块中打印出来
+    </script>
+    <script type="module">
+        console.log(hd); let site = 'hdcms';console.log(site)
+    </script>
+    <script type="module">
+        // console.log(site)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="04.js"></script> -->
+    <!-- script标签放在body前面，不加defer属性也是无法显示结果 -->
+
+    <!-- 在script标签里加入defer属性，这个属性表示等页面渲染完成之后再执行标签内容
+        defer的值和属性名是一样的，所以不写属性值也行，也会打印出h2标签 -->
+    <script src="04.js" defer></script>
+</head>
+
+<body>
+    <h2 id="h2">houdunren</h2>
+</body>
+
+</html>

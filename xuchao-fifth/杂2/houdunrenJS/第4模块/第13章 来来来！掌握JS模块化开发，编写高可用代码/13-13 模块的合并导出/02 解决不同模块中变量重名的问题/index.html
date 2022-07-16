@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 这里就是把13_1 13_2都批量导入到13_mix，再导入到index里面 -->
+    <!-- 在批量导入的时候就按照各自模块的名称编号，调用的时候也采用链式调用以避免重复 -->
+    <script type="module">
+        import * as api from './13_mix.js'; console.log(api); console.log(api.m131.site); console.log(api.m131.User.render()); console.log(api.m132.site); console.log(api.m132.default());
+    </script>
+</body>
+
+</html>

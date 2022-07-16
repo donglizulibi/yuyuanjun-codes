@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 900px;
+            border: solid 1px gray;
+        }
+        
+        div:target {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 在这里点击一次后id为hdcms的div字体会变成红色 -->
+    <!-- 即使刷新页面颜色也不会变回来，那么此时把地址栏后面的#hdcms去掉 -->
+    <!-- 这个div的颜色就会变回来 -->
+    <a href="#hdcms">点击锚点定位并改变颜色</a>
+    <div></div>
+    <div id="hdcms">跳转到锚点位置</div>
+</body>
+
+</html>

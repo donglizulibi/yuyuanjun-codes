@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 本例的总结就是，class Admin extends User比传统的构造函数继承要多一步
+        // 就是两个构造函数作为对象本身也实现了继承
+        // 在上个例子中可以验证，如果普通的构造函数在使用Object.create实现继承后
+        // 不加上A.__proto__ = B，是不会有作为对象本身的继承的
+
+        class User {
+            static site = 'houdunren'
+            static show() {
+                console.log('user.show')
+            }
+        }
+
+        console.dir(User)
+            // 可以看到show和site就出现在User这个对象里
+
+        // 先实现继承 
+        class Admin extends User {}
+
+        // 可以看到如下关系
+        console.dir(Admin)
+        console.log(Admin.prototype.__proto__ == User.prototype)
+        console.log(Admin.__proto__ == User)
+
+        // User的方法和属性Admin都可以使用
+        Admin.show()
+        console.log(Admin.site)
+    </script>
+</body>
+
+</html>

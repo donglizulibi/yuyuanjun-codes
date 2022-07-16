@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // replace的基本用法
+        // 先定义一个字符串
+        let a = 'abc'
+        console.log(a.replace("b", "bb"))
+            // 即把abc换成abbc
+
+        //  replace与正则表达式联用
+        //  将字符串中每个 数字字母下划线 都替换成后盾人，需要引入函数
+        console.log("abc".replace(/\w/g, item => {
+            console.log(item) // item就是每次匹配到的项
+            return '后盾人'
+        }))
+    </script>
+</body>
+
+</html>

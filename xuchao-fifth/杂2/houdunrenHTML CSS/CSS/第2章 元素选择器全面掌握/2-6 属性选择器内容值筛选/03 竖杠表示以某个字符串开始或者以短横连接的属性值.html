@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1[title|="houdunren"] {
+            color: aqua;
+        }
+        /* 那么这个|选择符和上面例子的正则符^的区别就是 */
+        /* 如果要选择某个字符串开始属性值，^会全部选中 */
+        /* 但是|只会选中后面接了-的字符串 */
+        /* 所以|的选择范围是更小的  */
+    </style>
+</head>
+
+<body>
+    <main>
+        <article>
+            <h1 title="houdunren">houdunren</h1>
+            <h1 title="houdunren.com">houdunren</h1>
+            <h1 title="houdunren-haaa">houdunren</h1>
+            <h1 title="hd">houdunren</h1>
+        </article>
+    </main>
+</body>
+
+</html>

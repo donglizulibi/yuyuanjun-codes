@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 通过input来改变input紧挨着的label的样式 */
+        /* 见2-4-04 */
+        
+        input:checked+label {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 只要两个单选框的name一样，就构成了同一类型的单选框 -->
+    <!-- 也就会构成非此即彼的逻辑 -->
+    <!-- 单选框哪个被选中，哪个就会添加上checked属性 -->
+    <input type="radio" name="sex" id="boy">
+    <label for="男">男</label>
+    <input type="radio" name="sex" checked id="girl">
+    <label for="女">女</label>
+</body>
+
+</html>

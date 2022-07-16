@@ -17,6 +17,9 @@
     <button>houdunren</button>
     <button>hdcms</button>
     <script>
+        // 这个例子解决抖动的办法就是把left变量的创建放在点击事件外面
+        // 以保证不会每次点击都产生一个新的变量
+
         let btns = document.querySelectorAll('button')
         btns.forEach(item => {
             let left = 1

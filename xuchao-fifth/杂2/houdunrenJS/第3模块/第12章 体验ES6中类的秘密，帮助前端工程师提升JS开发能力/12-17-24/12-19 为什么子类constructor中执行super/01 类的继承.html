@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 见12-15里关于super里面的形参的讨论
+        // 如果子类只是继承父类的方法，则子类的constructor和super里都不用写形参
+        // 如果子类除此之外还要继承父类constructor里面的内置参数，则两个都要写形参
+        // 如果要把父类所有的内置参数都继承过来，则可以用展开式语法
+
+        class User {
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+            }
+        }
+
+        class Admin extends User {
+            constructor(...arg) {
+                super(...arg)
+            }
+        }
+
+        let a = new Admin('houdunren', 19)
+        console.log(a)
+    </script>
+</body>
+
+</html>

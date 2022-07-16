@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        setTimeout(() => {
+            let el = document.getElementById('h2')
+            console.log(el)
+        })
+        console.log(123)
+
+        // 这个可能是定时器是一个异步操作，浏览器把定时器的语句放在了定时器模块里
+        // 然后先加载h2标签，再执行打印123，再执行定时器的结果
+    </script>
+    <h2 id="h2">houdunren</h2>
+    <!-- 加上定时器之后，即使顺序调换，也会先加载页面 -->
+</body>
+
+</html>

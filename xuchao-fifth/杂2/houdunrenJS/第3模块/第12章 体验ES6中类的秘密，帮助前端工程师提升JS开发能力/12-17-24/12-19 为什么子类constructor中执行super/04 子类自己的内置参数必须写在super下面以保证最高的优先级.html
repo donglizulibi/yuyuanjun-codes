@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class User {
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+            }
+        }
+
+        class Admin extends User {
+            constructor(...arg) {
+                super(...arg)
+                this.name = 'hdcms'
+                    // 如果把这两个换一下位置，是运行不起来的
+                    // 需要保证子级的属性是高于父级的
+                    // 所以super先运行完，后面又重复的话，可以覆盖
+            }
+        }
+
+        let a = new Admin('houdunren', 19, 'male')
+        console.log(a)
+    </script>
+</body>
+
+</html>

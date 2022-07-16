@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* nth-child里面放的必须是一个大于0的数字，等于零或者小于零都不行 */
+        /* main>ul li:nth-child(-1) {
+            color: red;
+        }
+        main>ul li:nth-child(0) {
+            color: red;
+        } */
+        /*  */
+        
+        main>ul li:nth-child(-n+2) {
+            /* 可以理解成n是从0开始的 */
+            /* 选中前两个必须是-n+2, 2-n都不行 */
+            color: red;
+        }
+        
+        main>ul li:nth-child(n+4) {
+            /* 假如是从第四个开始 */
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <ul>
+            <li>houdurne</li>
+            <li>hhouduren</li>
+            <li>hhouduren</li>
+            <li>hhouduren</li>
+            <li>hhouduren</li>
+            <li>hhouduren</li>
+            <li>hhouduren</li>
+            <li>hhouduren</li>
+            <li>hhouduren</li>
+        </ul>
+    </main>
+</body>
+
+</html>

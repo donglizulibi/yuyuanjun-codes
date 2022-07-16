@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于原子组，上面的例子有所设计
+        // 原子组内需要使用 | ，且两边都是整体
+
+        let reg1 = /(12|34)/
+        let hd = 's1224ewqr'
+        console.log(reg1.test(hd))
+        console.log(hd.match(reg1))
+    </script>
+</body>
+
+</html>

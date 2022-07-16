@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 把上一节的例子修改一下，变成类继承数组的类
+        // 此时constructor中需要加super
+
+        // 标准的数组构造函数创建数组的方法见4-1-01
+        // 就是在实例化对象（这里就是数组）时，把数组的每一项
+        // 作为参数序列传入new后面的构造函数中
+
+        // 那么当User继承Array之后，User实例化对象，要传入一串数值序列
+        // 希望生成数组时，也要借用数组构造函数创建新数组的方法
+
+        // 那么为了使得User和Array传参方式一致，就需要在User的constructor
+        // 和其内部的super中，都加入...args
+
+        class User extends Array {
+            constructor(...args) {
+                super(...args)
+
+                // 把上一个例子整体移过来的传参方式
+                // args.forEach(item => {
+                //     this.push(item)
+                // })
+            }
+
+            first() {
+                return this[0]
+            }
+            max() {
+                return this.sort((a, b) => b - a)[0]
+            }
+            add(item) {
+                this.push(item)
+            }
+            remove(value) {
+                let mod = this.findIndex((item) => item == value)
+                console.log(mod)
+
+                this.splice(mod, 1)
+            }
+        }
+
+        let u = new User(12, 33, 567, 22, 8)
+        console.log(u)
+        u.add('sdf')
+        console.log(u)
+
+        u.remove(12)
+        console.log(u)
+
+        u.remove('sdf')
+        console.log(u)
+
+        console.log(u.first())
+        console.log(u.max())
+    </script>
+</body>
+
+</html>

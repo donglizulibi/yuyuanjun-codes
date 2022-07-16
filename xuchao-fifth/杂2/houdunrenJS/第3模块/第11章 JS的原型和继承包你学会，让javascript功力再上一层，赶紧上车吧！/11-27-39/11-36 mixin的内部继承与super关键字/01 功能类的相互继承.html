@@ -23,7 +23,7 @@
         }
 
         // 再定义一个功能类，里面的方法需要用到Request里的方法
-        // 可以手动改变这个功能类的__proto__，从Object.prototype改成Request
+        // 可以手动改变这个功能类的__proto__，把这个类的父级改成Request
         const Address = {
             __proto__: Request,
             local() {

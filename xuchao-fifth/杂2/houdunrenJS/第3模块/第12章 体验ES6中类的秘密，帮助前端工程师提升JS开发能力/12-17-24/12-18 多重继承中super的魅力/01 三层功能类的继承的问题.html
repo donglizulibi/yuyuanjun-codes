@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上一小节的第三个例子表示了、
+        // 在两层功能类中，使用this.__proto__.show.call(this)的方法
+        // 可以代替super
+
+        // 下面来看一下三层的情况
+        let common = {
+            name: 'common-name',
+            show() {
+                console.log(this)
+                return this.name + '-common-show'
+            }
+        }
+
+
+        let hd = {
+            __proto__: common,
+            name: 'hd-name',
+            show() {
+                console.log(this)
+                return this.__proto__.__proto__.show.call(this) + '-hd-show'
+                    // return this.__proto__.show.call(this) + '-hd-show'
+            }
+        }
+
+        let xj = {
+            __proto__: hd,
+            name: 'xj-name',
+            show() {
+                console.log(this.__proto__.show.call(this) + '-xj-show')
+            }
+        }
+
+        xj.show()
+
+        // 如果把hd类中show方法的return后面的this.__proto__.__proto__
+        // 改为this.__proto__，则会出现死循环
+
+        // 因为xj在调用show时，调用hd中的show方法，又把环境指向自身这个对象
+        // 而hd的show里面如果是this.__proto__，则就是指向自己这个hd对象
+        // 则这个对象中的方法的返回值又是在调用这个对象本身，如此重复就成了死循环
+
+        // 所以如果hd需要调用更高级的common类中的方法，就需要再加一层__proto__
+
+        // 那么就造成了每往下加一层，就要给全部的类都加一个__proto__
+        // 每往上加一层，就要给当前第二层层加所有层数减一的个数的__proto__
+
+        // 换一种说法就是，this关键字在整个过程中，又要扮演向上攀升找父级的作用
+        // 又要指代自己这个对象环境的作用
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 所谓具名导出就是 js文件中的所有导出的变量都是有名字的 -->
+    <script type="module">
+        import {title, show, User} from './module/01.js'; console.log(title); show(); console.log(new User())
+    </script>
+</body>
+
+</html>

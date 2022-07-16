@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: content-box;
+        }
+        
+        body {
+            padding: 30px;
+        }
+        
+        .slide {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
+        }
+        
+        .slide dt {
+            height: 30px;
+            background: #34495e;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            cursor: pointer;
+        }
+        
+        .slide dt:first-of-type {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .slide dd {
+            height: 100px;
+            background: #f1c40f;
+            overflow: hidden;
+        }
+        /* 在执行类的消失之后，标签没有消失，而板消失了 */
+        /* 原因是面板有这句溢出隐藏，而标题没有 */
+        
+        .slide dd div {
+            padding: 10px;
+        }
+        
+        .slide dd:last-of-type {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide s1">
+        <dt>后盾人</dt>
+        <dd>
+            <div>houdunren.com</div>
+        </dd>
+
+
+        <dt>后盾人</dt>
+        <dd>
+            <div>hdcms.com</div>
+        </dd>
+
+
+        <dt>后盾人</dt>
+        <dd>
+            <div>hdcms.com</div>
+        </dd>
+    </div>
+    <script>
+        // 关于getComputedStyle的用法 见15-3-02
+
+        class Animation {
+            constructor(el) {
+                this.el = el
+
+                // 设置这个面板的默认高度
+                this.defaultHeight = this.height
+                console.log(this.defaultHeight)
+
+                // 设置是否隐藏的判断，默认为true，与之配套的就是一个隐藏的内置方法
+                // 当调用这个方法的时候，这个判断状态变成false，然后有一个定时器操作
+                // 来将面板收起来
+                this.isShow = true
+            }
+            get height() {
+                return window.getComputedStyle(this.el).height.slice(0, -2) * 1
+            }
+            set height(height) {
+                this.el.style.height = height + 'px'
+            }
+            hide(callback) {
+                this.isShow = false
+                let id = setInterval(() => {
+                    this.height = this.height - 1
+                    if (this.height == 0) {
+                        clearInterval(id)
+                        callback && callback()
+                            // this.show()
+                    }
+                    // console.log(this.height)
+                }, 10)
+            }
+            show(callback) {
+                this.isShow = true
+                let id = setInterval(() => {
+                    this.height = this.height + 1
+                    if (this.height == this.defaultHeight) {
+                        clearInterval(id)
+                        callback && callback()
+                        this.hide()
+                    }
+                    // console.log(this.height)
+                }, 10)
+            }
+
+        }
+
+        let el = document.querySelector('.s1')
+
+        let hd = new Animation(el)
+        hd.hide(() => {
+            console.log('隐藏完了')
+            hd.show(() => {
+                console.log('显示完了')
+            })
+        })
+    </script>
+</body>
+
+</html>

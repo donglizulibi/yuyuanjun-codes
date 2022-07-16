@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: content-box;
+        }
+        
+        body {
+            padding: 30px;
+        }
+        
+        .slide {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
+        }
+        
+        .slide dt {
+            height: 30px;
+            background: #34495e;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            cursor: pointer;
+        }
+        
+        .slide dt:first-of-type {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .slide dd {
+            height: 100px;
+            background: #f1c40f;
+            overflow: hidden;
+        }
+        /* 在执行类的消失之后，标签没有消失，而板消失了 */
+        /* 原因是面板有这句溢出隐藏，而标题没有 */
+        
+        .slide dd div {
+            padding: 10px;
+        }
+        
+        .slide dd:last-of-type {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide s1">
+        <dt>后盾人</dt>
+        <dd>
+            <div>houdunren.com</div>
+        </dd>
+
+
+        <dt>后盾人</dt>
+        <dd>
+            <div>hdcms.com</div>
+        </dd>
+
+
+        <dt>后盾人</dt>
+        <dd>
+            <div>hdcms.com</div>
+        </dd>
+    </div>
+    <script>
+        class Animation {
+            constructor(el) {
+
+                this.el = el
+                this.defaultHeight = this.height
+                this.isShow = true
+                    // console.log(this.el.style.height)
+                console.log(this.defaultHeight)
+            }
+            set height(height) {
+                console.log(height)
+                this.el.style.height = height + 'px'
+                return true
+            }
+            get height() {
+                return window.getComputedStyle(this.el).height.slice(0, -2) * 1
+            }
+            hide(callback) {
+                console.log(123)
+                this.isShow = false
+                let id = setInterval(() => {
+                    this.height = this.height - 1
+                        // console.log(this.height)
+
+                    if (this.height == 0) {
+                        clearInterval(id)
+                        callback && callback()
+                    }
+                }, 10)
+            }
+            show(callback) {
+                this.isShow = true
+                let id = setInterval(() => {
+                    this.height = this.height + 1
+                    if (this.height == this.defaultHeight) {
+                        clearInterval(id)
+                        callback && callback()
+                    }
+                }, 10)
+            }
+
+        }
+
+        // let el = document.querySelector('.s1')
+        // let hd = new Animation(el)
+
+        // hd.hide(() => {
+        //     console.log('隐藏结束')
+        //     hd.show(() => {
+        //         console.log('显示结束')
+        //     })
+        // })
+
+        // 注意这个类的传参数方式不一样，这个类的获取元素的操作是在类内部进行的
+        // 外部传参只是传一个class样式的名字
+
+        // 而且这个例子中主要是给面板加上绑定事件，绑定事件应该是创建对象时就实现的
+        // 所以绑定的内置在constructor中就应该先运行
+
+        class Slide {
+            constructor(el) {
+                this.el = document.querySelector(el)
+
+                // 标题
+                this.links = this.el.querySelectorAll('dt')
+
+                // 面板
+                this.panels = this.el.querySelectorAll('dd')
+
+                this.bind()
+
+            }
+
+            bind() {
+                this.links.forEach(item => {
+                    item.addEventListener('click', () => {
+                        this.action()
+                    })
+                })
+            }
+            action() {
+                console.log(123)
+            }
+        }
+
+        let hd = new Slide('.s1')
+
+        // 这个面板例子效果是点击某一个面板标题的时候，这个面板显示出来
+        // 另外两个面板消失，所以还要写一个批量执行动画的类
+    </script>
+</body>
+
+</html>

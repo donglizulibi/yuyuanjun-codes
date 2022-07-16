@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先定义一个数据
+        let data = [{
+            name: 'vue',
+            price: 98
+        }, {
+            name: 'js',
+            price: 123
+        }, {
+            name: 'php',
+            price: 43
+        }]
+
+        class User {
+            max() {
+                return this.data.sort((a, b) => b.price - a.price)[0]
+            }
+        }
+
+        class Admin extends User {
+            total() {
+                return this.data.reduce((pre, val) => pre + val.price, 0)
+            }
+        }
+
+        class Product extends Admin {
+            constructor(data) {
+                super()
+                this.data = data
+            }
+            info() {
+                return {
+                    totalPrice: super.total(), // super会一直往上找，找到父级有就用父级的方法
+                    maxPrice: super.max() // 父级找不到，再往上找，父级的父级有，也能调用
+                }
+            }
+        }
+
+        let p = new Product(data)
+        console.log(p)
+        console.log(p.info())
+    </script>
+</body>
+
+</html>

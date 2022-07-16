@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div>h1:only-of-type {
+            color: red;
+        }
+    </style>
+    <!-- only-of-type可以指定被选中标签的类型，指定以后再添加这个属性 -->
+    <!-- 就可以选中这个类型的所有标签中没有其他兄弟元素的标签 -->
+</head>
+
+<body>
+    <main>
+        <div>
+            <h1>houdurnen</h1>
+            <h1>houdurnen</h1>
+        </div>
+        <div>
+            <h1>houdurnen</h1>
+            <!-- 被选中 -->
+        </div>
+    </main>
+</body>
+
+</html>

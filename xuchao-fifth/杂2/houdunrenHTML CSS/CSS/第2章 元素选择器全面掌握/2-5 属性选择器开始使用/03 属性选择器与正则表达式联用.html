@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ^表示以某个字符串开始的属性值 */
+        /* $表示以某个字符串结束的属性值 */
+        
+        h1[title^="houdunren"] {
+            color: aqua;
+        }
+        
+        h1[title$="com"] {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <article>
+            <h1 title="houdunrenhaha">houdunren</h1>
+            <h1 title="houdunwang.com">hd</h1>
+            <h1 title="houdunrenjajaja">hd</h1>
+            <h1 title="baidu.com">hd</h1>
+            <h2>houdunwang</h2>
+        </article>
+    </main>
+</body>
+
+</html>

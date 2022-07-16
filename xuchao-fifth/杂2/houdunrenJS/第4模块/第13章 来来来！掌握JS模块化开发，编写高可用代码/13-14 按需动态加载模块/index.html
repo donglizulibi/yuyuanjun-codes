@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>动态加载</button>
+    <div></div>
+    <!-- 前面都是介绍了静态加载模块，也就是在用户没有任何操作的情况下就加载模块 -->
+    <!-- 现在介绍一个动态加载的功能，在用户操作之后，才发生加载的动作 -->
+    <!-- 比如一个模块中有发送请求渲染数据到页面的操作，而这个操作需要用户下划页面 -->
+    <!-- 开启继续加载页面的动作之后，才会启动 -->
+
+    <!-- 动态加载的import方法会返回一个promise，当模块成功加载之后就会执行then里面的方法 -->
+    <!-- then里面方法的参数可以放加载返回过来的变量 -->
+    <!-- 也可以使用解构语法 -->
+    <script type="module">
+        document.querySelector('button').addEventListener('click',()=>{ import('./1314.js').then(({site,hd})=>{ document.querySelector('div').innerHTML = site + '-'+hd }) })
+    </script>
+</body>
+
+</html>

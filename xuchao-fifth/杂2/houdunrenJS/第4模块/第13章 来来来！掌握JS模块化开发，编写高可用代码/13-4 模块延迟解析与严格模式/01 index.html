@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        import {title,show} from "./hd.js"; console.log(this); console.log(document.querySelector('div'))
+
+    </script>
+    <script>
+        console.log(this)
+
+        // 在这个例子出现了两个需要注意的点
+        // 1 给script加上module属性之后，这个script标签就会在页面中最后执行
+        // 因为模块化就是要调用其他模块，也就是说要等其他模块都加载完了才会执行
+        // 所以这里的div标签虽然在后面，也可以找得到，而且下面这个script
+        // 的打印this也是先执行
+
+        // 2 加上module属性之后，就默认开启了严格模式，比如module里的打印this
+        // 就是打印undefined，说明严格模式已经开启
+    </script>
+    <div></div>
+</body>
+
+</html>

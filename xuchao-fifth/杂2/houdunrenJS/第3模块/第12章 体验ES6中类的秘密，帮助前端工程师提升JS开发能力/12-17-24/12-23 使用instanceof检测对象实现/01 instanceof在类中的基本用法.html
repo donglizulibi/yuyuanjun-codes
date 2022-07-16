@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于instanceof在构造函数中的基本用法见11-12
+
+        class User {}
+        class Admin extends User {}
+
+        let a = new Admin()
+        console.log(a instanceof Admin)
+        console.log(a instanceof User)
+        console.log(a instanceof Object)
+
+        console.log(a.__proto__.__proto__.__proto__ == Object.prototype)
+        console.log(a.__proto__.__proto__.__proto__.__proto__) // 返回null
+    </script>
+</body>
+
+</html>

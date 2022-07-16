@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义父级的构造函数，添加静态方法和静态属性
+        function User() {}
+        User.show = function() {
+            console.log('User.show')
+        }
+        User.site = 'houdunren'
+
+        // 设置Admin的父级为User
+        function Admin() {}
+        Admin.__proto__ = User
+        console.dir(Admin)
+
+        // Admin.prototype = Object.create(User.prototype)
+        // console.log(Admin.prototype.__proto__ == User.prototype)
+        // console.log(Admin.__proto__ == User)
+
+        // 可以调用
+        Admin.show()
+        console.log(Admin.site)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            height: 30px;
+            width: 100px;
+            margin-bottom: 10px;
+            border: solid 2px gray;
+        }
+        
+        li:empty {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 在开发中可能会出现后端传过来的数据出现缺失 -->
+    <!-- 然后出现页面中标签是空字符的内容的情况 -->
+    <!-- 可以把可能出现空内容的标签设置empty的伪类元素，样式设置不显示 -->
+    <main>
+        <ul>
+            <li>houdunren</li>
+            <li></li>
+            <li>hd</li>
+            <li></li>
+            <li>hdcms</li>
+        </ul>
+    </main>
+</body>
+
+</html>

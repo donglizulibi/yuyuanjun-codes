@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let status = 2
+
+        // then的第一个参数写的回调函数表示操作成功后执行的动作
+        // 第二个回调函数表示操作失败后执行的动作
+
+        console.log(new Promise((resovle, reject) => {
+                // 
+                if (status == 1) {
+                    resovle('操作成功')
+                } else {
+                    reject('拒绝状态')
+                }
+            })
+
+            .then((value) => {
+                console.log('操作成功后执行的动作 1')
+            }, (reason) => {
+                console.log('操作失败后执行的动作 1')
+            })
+
+            .then(value => {
+                console.log('操作成功后执行的动作 2')
+            }, reson => {
+                console.log('操作失败后执行的动作 2')
+            }))
+
+        // Promise还有一个任务队列，成为微任务队列
+        // 或者说每个宏任务下面都有一个微任务队列
+
+        // 每个宏任务在执行的时候也会把一些任务放到其他模块执行
+        // 其他模块执行完之后会放到微任务队列中等待主线程轮询
+
+        // 等这个宏任务的主要任务都执行完了之后，主线程不会去执行下一个宏任务
+        // 而是去轮询当前宏任务的微任务队列
+
+        // 微任务的优先级一般是高于宏任务的
+    </script>
+</body>
+
+</html>

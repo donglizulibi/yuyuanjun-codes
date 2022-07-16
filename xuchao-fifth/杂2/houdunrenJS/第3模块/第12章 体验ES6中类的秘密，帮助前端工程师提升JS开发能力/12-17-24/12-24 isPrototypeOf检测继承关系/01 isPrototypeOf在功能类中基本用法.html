@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // isPrototypOf的基本用法见11-13
+
+        // 一个需要注意的点就是，instanceof是子级在前，父级在后
+        // isPrototypeOf是父级在前，子级在后
+
+        // 定义三个功能类，并设定继承关系
+        let a = {}
+        let b = {
+            __proto__: a
+        }
+        let c = {
+            __proto__: b
+        }
+
+        console.log(a.isPrototypeOf(b))
+        console.log(b.isPrototypeOf(c))
+    </script>
+</body>
+
+</html>

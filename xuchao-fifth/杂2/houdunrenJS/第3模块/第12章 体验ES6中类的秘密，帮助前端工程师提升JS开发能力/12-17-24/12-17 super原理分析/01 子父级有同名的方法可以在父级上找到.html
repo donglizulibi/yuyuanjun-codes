@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于super代替this.__proto__ 见11-36
+
+        // 设置两个类，定义同名的方法
+        class User {
+            show() {
+                console.log('user.show')
+            }
+        }
+
+        class Admin extends User {
+            constructor(name) {
+                super()
+                this.name = name
+            }
+            show() {
+                // console.log(this)
+                console.log(this.__proto__)
+                    // return this.__proto__
+
+                // console.log('admin.show')
+            }
+        }
+
+        let a = new Admin('aaa')
+            // console.log(a.show1() == Admin.prototype)
+
+        a.show()
+            // 打印Admin的show方法
+            // 另外在这里需要解释一下的就是，Admin中的show方法打印的this.__proto__
+            // 是被实例化对象a调用的，所以打印结果是a的__proto__
+            // 或者说是Admin的prototype，但是从打印结果来看，显示的是User开头的一个对象
+            // 但是实际上还是Admin的prototype这个对象
+
+
+        // 这里因为两个show方法同名，所以直接在a上调用show方法
+        // 会采取就近原则，调用Admin的prototype上的show方法
+        // 如果还是想调用User的prototype上的方法
+        // 可以在往上找
+
+        // a的__proto__ 就是 Admin的prototype
+        // Admin的prototype的__proto__就是User的prototype
+
+        // 所以a的__proto__的__proto__就是User的prototype
+        // 也就可以使用User的prototype上的show方法
+        a.__proto__.__proto__.show() // 打印User的show方法
+    </script>
+</body>
+
+</html>

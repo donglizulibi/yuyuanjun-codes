@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先是定义一个立即执行函数，先返回一个定义模块的功能
+
+        // 再来看一下define模块语法
+        // 如果有依赖的话，那么在map循环之上的modules
+        // 就是一个包含了这个新定义模块所依赖的模块的名称的集合
+        // 也就是一个包含了一个或者多个字符串项目的数组
+
+        // 那么在上面的例子需要把modules作为参数放到action里
+        // 则放进去的就不能只是字符串，而是具体的模块的功能
+
+        // 这就是map在这里的作用，把modules里面的字符串换成具体的功能
+        // 而这些具体的功能都是存在moduleList里面的
+
+        // 于是就有了modules[i] = moduleList[m]这一句
+        // 后者通过名字取到功能，替换掉前者对应位置上的那个字符串
+
+        let module = (function() {
+            let moduleList = {}
+
+            function define(name, modules, action) {
+                console.log(modules)
+                modules.map((m, i) => {
+
+                    console.log(m, i)
+                    console.log(modules[i])
+                    console.log(moduleList[m])
+                    modules[i] = moduleList[m]
+                })
+
+                console.log(modules)
+
+                // 这里apply的第二个参数传入了modules，后面就可以接到
+                moduleList[name] = action.apply(null, modules)
+            }
+
+            console.log(moduleList)
+
+            return {
+                define
+            }
+        })()
+
+        // 先定义一个模块里面包含两个功能，且这个模块不依赖其他模块
+        module.define('hd', [], function() {
+            return {
+                max(arr) {
+                    return arr.sort((a, b) => b - a)[0]
+                },
+                first(arr) {
+                    return arr[0]
+                }
+            }
+        })
+
+        // 再定义一个模块，要求这个模块依赖上一个模块
+        module.define('lesson', ['hd'], function(hd) {
+            console.log(hd)
+                // return {
+                //     hd
+                // }
+        })
+    </script>
+</body>
+
+</html>

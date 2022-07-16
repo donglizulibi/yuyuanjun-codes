@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: content-box;
+        }
+        
+        body {
+            padding: 30px;
+        }
+        
+        .slide {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
+        }
+        
+        .slide dt {
+            height: 30px;
+            background: #34495e;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            cursor: pointer;
+        }
+        
+        .slide dt:first-of-type {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .slide dd {
+            height: 100px;
+            background: #f1c40f;
+            overflow: hidden;
+        }
+        /* 在执行类的消失之后，标签没有消失，而板消失了 */
+        /* 原因是面板有这句溢出隐藏，而标题没有 */
+        
+        .slide dd div {
+            padding: 10px;
+        }
+        
+        .slide dd:last-of-type {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide s1">
+        <dt>后盾人1</dt>
+        <dd>
+            <div>houdunren.com1</div>
+        </dd>
+
+
+        <dt>后盾人2</dt>
+        <dd>
+            <div>hdcms.com2</div>
+        </dd>
+
+
+        <dt>后盾人3</dt>
+        <dd>
+            <div>hdcms.com3</div>
+        </dd>
+    </div>
+    <script>
+        // 关于定时器的防抖见9-11 --> 9-13
+
+        // 首先，第一个问题是，点击一个标题两次，这个标题下的面板会无限展开
+        // 解决办法是把hide和show中的判断放在高度改变语句的前面
+        // 并且在判断里面加上return，表示函数结束，不必往下执行
+
+        // 第二个问题是当点击一个面板的标题，另外两个面板隐藏
+        // 此时如果点击一个正在隐藏的面板的标题，就会触发这个面板显示的功能
+        // 则这个面板就会卡在中间
+        // 解决办法是把显示函数作为隐藏函数的回调，需要隐藏效果完成之后
+        // 才能执行显示函数，并设置一个静态属性num，动画运行和结束都会改变num的值
+
+        // 然后根据num的大小来确定隐藏函数是否需要暂时失效
+
+        // 动画类
+        class Animation {
+            constructor(el) {
+                this.el = el
+                this.defaultHeight = this.height
+                this.isShow = true
+            }
+            set height(height) {
+                this.el.style.height = height + 'px'
+                return true
+            }
+            get height() {
+                return window.getComputedStyle(this.el).height.slice(0, -2) * 1
+            }
+            hide(callback) {
+                this.isShow = false
+                let id = setInterval(() => {
+                    if (this.height == 0) {
+                        console.log('隐藏完成')
+                        clearInterval(id)
+                        callback && callback()
+                        return
+                    }
+                    this.height = this.height - 1
+                }, 10)
+            }
+            show() {
+                this.isShow = true
+                let id = setInterval(() => {
+                    if (this.height == this.defaultHeight) {
+                        console.log('显示完成')
+                        clearInterval(id)
+                            // callback && callback() 
+                        return
+                    }
+                    this.height = this.height + 1
+                }, 10)
+            }
+        }
+
+        // 面板创建类
+        class Panel extends Animation {
+            constructor(el) {
+                super(el)
+            }
+
+            // 设置一个参数，来判断动画是否正在执行
+            static num = 0
+
+            // 调用面板类的这个静态方法，传入正在点击的标题
+            // 使得除了这个标题之外的两个面板隐藏
+            static hideLeftOnes(items, callback) {
+
+                if (Panel.num > 0) {
+                    return
+                }
+                // console.log('隐藏函数')
+                items.forEach(item => {
+                    Panel.num++;
+                    item.hide(() => {
+                        Panel.num--
+                    })
+                })
+
+                callback && callback()
+            }
+
+            // 
+            static filterLeftOnes(items, index) {
+                // console.log(this.panels)
+
+                return items.filter(item => {
+                    return items[index] != item
+                })
+            }
+
+        }
+
+        // 标题点击事件类
+        class Slide {
+            constructor(el) {
+                this.el = document.querySelector(el)
+                this.links = this.el.querySelectorAll('dt')
+
+                // 这里的this.panels是一个数组，数组里的每一项都是Panel类实例化出的对象
+                this.panels = [...this.el.querySelectorAll('dd')].map(item => new Panel(item))
+                this.bind()
+            }
+
+            // 点击事件的绑定还是放在bind里比较好
+            bind() {
+                this.links.forEach((item, i) => {
+                    item.addEventListener('click', () => {
+                        this.action(i)
+                    })
+                })
+                this.reset()
+            }
+            action(i) {
+
+
+                console.log(i)
+
+                // 点到谁，谁就调用显示函数
+
+
+                Panel.hideLeftOnes(Panel.filterLeftOnes(this.panels, i), () => {
+                    this.panels[i].show()
+                })
+
+
+
+
+
+            }
+            reset() {
+                Panel.hideLeftOnes(Panel.filterLeftOnes(this.panels, 0))
+
+            }
+        }
+
+        new Slide('.s1')
+            // hd
+    </script>
+</body>
+
+</html>

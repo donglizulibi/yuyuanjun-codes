@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // slice不改变原字符串，返回的是截走的部分
+        // 如果是一个字符串想要把后面几位截走，留下前面几位
+
+        // 可以换个思路，变成把除了后面几位之外，全部截走
+
+        // 假如这个字符串，想把后面两位截走，要用几位，而且不知道前面有几位
+        // 就可以从第0位开始截，截到倒数第二位为止
+        let str = 'abcdefg'
+        let str1 = str.slice(0, str.length - 2)
+        console.log(str1)
+            // 这样可以得到结果，把最后两位删除
+
+        // 也可以在第二个参数上直接写-2，表示截到倒数第二位
+        let str2 = str.slice(0, -2)
+        console.log(str2)
+
+        // 再给一个基础用法
+        let str3 = str.slice(0, 2)
+        console.log(str3)
+
+        // 一个实际应用就是截取像素单位,，变成纯数字
+        let data = '240px'
+        console.log(data.slice(0, -2) * 1)
+    </script>
+</body>
+
+</html>

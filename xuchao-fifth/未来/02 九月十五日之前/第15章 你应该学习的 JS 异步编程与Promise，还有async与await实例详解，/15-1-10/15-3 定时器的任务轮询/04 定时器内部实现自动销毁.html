@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            background-color: aquamarine;
+            left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 把一个判断条件放在定时器里
+        // 实现定时器的自动销毁
+
+        let div = document.querySelector('div')
+        let left = window.getComputedStyle(div).left.slice(0, -2) * 1
+        console.log(left)
+
+        let id = setInterval(() => {
+            console.log(id)
+            left += 10
+            div.style.left = left + 'px'
+            if (left >= 200) {
+                console.log(id)
+                clearInterval(id)
+            }
+        }, 100);
+
+        console.log('页面', id)
+        console.log(typeof id)
+
+        // 这个例子中打印了三次id，第一次打印的是页面的id
+        // 因为js顺序往下执行，碰到了定时器之后就把定时器放到了浏览器的定时器模块
+        // 这里也可以说明，id这个变量在js去轮询事件队列之前就已经有了
+
+        // 然后是定时器内部的打印id，而在清除定时器的if语句里面的id
+        // 要等符合if条件才会打印
+    </script>
+</body>
+
+</html>

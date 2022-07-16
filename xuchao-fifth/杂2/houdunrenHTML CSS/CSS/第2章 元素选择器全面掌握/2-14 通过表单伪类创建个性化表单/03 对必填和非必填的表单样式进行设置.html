@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            outline: none;
+        }
+        
+        input:required {
+            border: solid 1px red;
+        }
+        
+        input:optional {
+            border: solid 1px green;
+        }
+        /* 必填用required，非必填用optional */
+    </style>
+</head>
+
+<body>
+    <main>
+        <form action="">
+            <input type="text">
+            <label for="">非必填</label>
+            <hr>
+            <input type="text" required>
+            <label for="">必填</label>
+        </form>
+    </main>
+</body>
+
+</html>
