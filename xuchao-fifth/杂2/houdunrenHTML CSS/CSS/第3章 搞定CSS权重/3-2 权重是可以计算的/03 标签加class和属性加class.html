@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body .hdcms {
+            color: aqua;
+        }
+        
+        .houdunren[content] {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 关于属性选择器见2-5，这个例子的区别就是属性选择器是加载class后面而不是标签后面 -->
+    <!--  -->
+    <!-- 如下表，class的权重是10，加上标签的1就是11 -->
+    <!-- c属性的权重也是10，加上class就是20，所以权重更高 -->
+    <div class="houdunren hdcms" content>houdunren</div>
+    <script>
+        // id                0100
+        // class，类属性值    0010 
+        // 标签，伪元素       0001
+        // *                 0000
+        // 行内样式           1000
+
+        // 以此类推，id的权重是100量级，而行内的权重是1000量级
+        // 所以前面低量级的权重即使叠加也不太可能可以超过高量级的权重
+    </script>
+</body>
+
+</html>

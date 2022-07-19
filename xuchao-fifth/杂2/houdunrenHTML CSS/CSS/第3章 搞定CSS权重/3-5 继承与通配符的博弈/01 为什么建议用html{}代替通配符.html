@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* * {
+            color: red;
+        } */
+        /* 权重为0 */
+        
+        html {
+            color: red;
+        }
+        
+        h2 {
+            color: green;
+        }
+        /* 权重为1 */
+    </style>
+</head>
+
+<body>
+    <!-- 在这个例子中， 一共只设置了两个样式，h2的样式和通配符样式-->
+    <!-- 其中h2样式的权重是1，而通配符样式是0，所以h2本身的内容样式服从h2样式 -->
+    <!-- 变成了绿色，而在h2内部有一个span标签，和h2构成了继承关系 -->
+    <!-- 由于继承样式的权重是null，而通配符样式是0，所以span还是会服从通配符样式 -->
+    <!-- 这样的情况是我们不希望看到的，我们还是希望span的样式如果没有设置就直接继承 -->
+    <!-- 就可以使用html标签，把页面中所有标签都和html变成一个继承关系 -->
+    <!-- 则span标签就会选中就近继承h2的样式 -->
+    <article>
+        <h2>houdunren
+            <span>hdcms</span>
+        </h2>
+        <h1>houdunwang</h1>
+    </article>
+</body>
+
+</html>

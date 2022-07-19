@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        article {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 给article设置字体颜色的样式，div也会继承这个样式 -->
+    <!-- 但是继承样式的权重的没有的，也就是null -->
+    <!-- 所以作用在div上任何选择器的权重都可以代替继承权重 -->
+    <!-- 另外，并非所有样式都会继承，比如给article加上边框，就不会继承到div上 -->
+    <article>
+        <div>
+            houdunren
+        </div>
+    </article>
+</body>
+
+</html>

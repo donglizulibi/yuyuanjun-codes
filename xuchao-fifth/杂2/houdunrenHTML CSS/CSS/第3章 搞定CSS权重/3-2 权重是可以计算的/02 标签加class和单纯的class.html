@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body .hdcms {
+            color: aqua;
+        }
+        
+        .houdunren {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 如下表，class的权重是10，加上标签的1就是11 大于单纯class的10-->
+    <!-- 所以hdcms的class即使是在后面，权重也更高级 -->
+    <div class="houdunren hdcms">houdunren</div>
+    <script>
+        // id                0100
+        // class，类属性值    0010 
+        // 标签，伪元素       0001
+        // *                 0000
+        // 行内样式           1000
+    </script>
+</body>
+
+</html>
