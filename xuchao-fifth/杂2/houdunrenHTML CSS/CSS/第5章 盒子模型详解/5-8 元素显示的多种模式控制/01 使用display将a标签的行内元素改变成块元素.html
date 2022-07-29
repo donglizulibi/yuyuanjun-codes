@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        article h2 {
+            /* 使用display控制元素的消失和隐藏 */
+            display: none;
+        }
+        
+        article div a {
+            /* 将display改成block，就可以将行内元素改成块元素 */
+            /* 这样的a标签独占一行，且可以设置宽高 */
+            display: block;
+            text-decoration: none;
+            color: black;
+            width: 300px;
+            height: 40px;
+        }
+        
+        article div a:hover {
+            background-color: blue;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>
+            <a href="">houdurnen</a><a href="">hdcms</a><a href="">css</a>
+        </div>
+        <h2>houdunwang</h2>
+    </article>
+</body>
+
+</html>

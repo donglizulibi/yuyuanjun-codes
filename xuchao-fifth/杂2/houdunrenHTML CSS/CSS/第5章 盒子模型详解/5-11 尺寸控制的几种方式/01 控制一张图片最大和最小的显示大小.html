@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* main>div>div {
+            
+        } */
+        
+        main>div:nth-of-type(2)>div {
+            height: 200px;
+            width: 200px;
+            border: 3px solid #ddd;
+        }
+        
+        main>div:nth-of-type(2)>div>img {
+            min-width: 80%;
+            max-width: 90%;
+            /* 设置最大最小宽度后两张原图都发生了改变 */
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div>
+            <h2>原图</h2>
+            <div><img src="./max.png" alt=""></div>
+            <div><img src="./mini.png" alt=""></div>
+        </div>
+        <hr>
+        <div>
+            <h2>设置最大最小宽度</h2>
+            <div><img src="./max.png" alt=""></div>
+            <div><img src="./mini.png" alt=""></div>
+        </div>
+    </main>
+</body>
+
+</html>

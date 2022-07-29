@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        article div {
+            height: 300px;
+            width: 300px;
+            border: 2px solid red;
+            outline-style: solid;
+            outline-color: #ddd;
+            outline-width: 20px;
+        }
+        
+        h2 {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 轮廓线和边框的区别在于轮廓线不占页面布局的位置 -->
+    <!-- 在这里会发现因为article的左边和上边的margin都是0 -->
+    <!-- 所以轮廓线没有位置显示出来 -->
+    <article>
+        <div>houdunren</div>
+        <h2>hdcms</h2>
+    </article>
+</body>
+
+</html>

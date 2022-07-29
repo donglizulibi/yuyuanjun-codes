@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        article {
+            border: 3px solid grey;
+            height: 400px;
+            padding: 50px;
+            width: 200px;
+            box-sizing: border-box;
+        }
+        
+        div {
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+            height: 80px;
+            width: 80px;
+            background-color: red;
+            margin-bottom: 10px;
+        }
+        
+        div:nth-of-type(1) {
+            visibility: hidden;
+        }
+        
+        div:nth-of-type(2) {
+            display: none;
+            /* 设置之后，三号块顶在了二号块的位置上 */
+        }
+        
+        div:nth-of-type(3) {
+            opacity: 0.2;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- visibility: hidden;相当于将透明度设置为0，但是元素开始所在的位置的空间还在 -->
+    <!-- 而display：none会把这个空间压缩，让附件的元素补上来 -->
+    <article>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </article>
+</body>
+
+</html>

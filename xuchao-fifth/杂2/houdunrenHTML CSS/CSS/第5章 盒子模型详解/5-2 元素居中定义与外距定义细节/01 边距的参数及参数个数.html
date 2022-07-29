@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            font-size: 30px;
+        }
+        /* padding同理 */
+        
+        article>div:nth-child(1) {
+            margin: 30px;
+        }
+        /* 只在margin里面填一个参数情况，表示上下左右都是这个距离 */
+        
+        article>div:nth-child(2) {
+            margin: 20px 30px;
+        }
+        /* 在margin里面填两个参数情况，第一个参数表示上下边距，第二个参数表示左右边距 */
+        
+        article>div:nth-child(3) {
+            margin: 10px 20px 50px 30px;
+        }
+        /* 填四个参数情况，依次是上右下左（从上开始顺时针一圈） */
+        
+        article>div:nth-child(4) {
+            margin-left: 30px;
+            margin-right: 20px;
+            margin-bottom: 50px;
+            margin-top: 40px;
+        }
+        /* 分别控制的情况 */
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>houdunren</div>
+        <div>houdunren</div>
+        <div>houdunren</div>
+        <div>houdunren</div>
+        <div>枸</div>
+    </article>
+</body>
+
+</html>

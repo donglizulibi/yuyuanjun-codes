@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{name}}</div>
+        <div>{{html}}</div>
+        <hr>
+        <!-- v-text指令和{{}}的意思是一样的 -->
+        <!-- 如果把一段HTML内容放到{{}}，vue是不会自动解析的，显示的还是字符串 -->
+        <!-- 如果需要解析，则要用到v-html指令 -->
+        <!-- 但是使用v-html执行的时候应该过滤掉里面onclick之类的熟悉 -->
+        <!-- 否则可能会让用户遭受到xss网络攻击，所以要避免使用v-html -->
+        <div v-text="name"></div>
+        <div v-html="html"></div>
+        <div v-html="html_click"></div>
+    </div>
+    <script src="hd.js"></script>
+</body>
+
+</html>

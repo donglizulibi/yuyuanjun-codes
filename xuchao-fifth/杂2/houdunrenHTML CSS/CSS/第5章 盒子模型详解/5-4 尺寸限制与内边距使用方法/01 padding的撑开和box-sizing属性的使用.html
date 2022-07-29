@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* article {
+            height: 300px;
+            width: 300px;
+            border: 2px solid grey;
+            text-align: center;
+        } */
+        /* article {
+            height: 300px;
+            width: 300px;
+            border: 2px solid grey;
+            text-align: center;
+            padding: 50px;
+        } */
+        
+        article {
+            height: 300px;
+            width: 300px;
+            border: 2px solid grey;
+            text-align: center;
+            padding: 50px;
+            box-sizing: border-box;
+        }
+        
+        div {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <!-- article的块的content是300*300，总的大小的304*304 -->
+        <!-- 加上padding 50之后，总大小变成了404*404，也就是盒子被撑开-->
+        <!-- 但是加上box-sizing这个属性之后，总大小还是保持在300*30不变 -->
+        <!-- 只是content的大小变成了196*196，也就是连边框也在压缩content的大小 -->
+        <article>
+            <div>houdunren</div>
+        </article>
+    </main>
+</body>
+
+</html>

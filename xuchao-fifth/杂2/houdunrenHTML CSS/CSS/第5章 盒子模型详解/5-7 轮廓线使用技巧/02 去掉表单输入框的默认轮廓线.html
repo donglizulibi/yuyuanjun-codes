@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input:first-of-type {
+            outline: none;
+        }
+        /* 第一种做法，直接去除 */
+        
+        input:nth-of-type(2):focus {
+            outline: none;
+        }
+        /* 由于表单输入框的轮廓线只会在获得焦点的时候显示 */
+        /* 所以也可以加上获得焦点的伪类选择器 */
+    </style>
+</head>
+
+<body>
+    <input type="text">
+    <input type="text">
+    <input type="text">
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            position: relative;
+        }
+        
+        div:first-of-type {
+            border: 2px solid red;
+            margin: 20px 0;
+            height: 80px;
+        }
+        
+        div:last-of-type {
+            border: 2px solid red;
+            margin: 20px 0;
+            height: 80px;
+        }
+        
+        #rule {
+            height: 20px;
+            width: 20px;
+            background-color: aqua;
+            position: absolute;
+            top: 84px
+        }
+    </style>
+    <!-- 在这里第一个div标签和最后一个div标签都有上下外边距 -->
+    <!-- 但是这两个外边距不会叠加，只会显示出其中最大的一个 -->
+</head>
+
+<body>
+    <div>houdunren</div>
+    <div id="rule"></div>
+    <div>hdcms</div>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #inline div {
+            display: inline;
+            border: 1px red solid;
+            height: 50px;
+            width: 50px;
+            /* 宽高样式是无效的 */
+        }
+        
+        #inline-block div {
+            display: inline-block;
+            border: 1px red solid;
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 行内元素只是一个文本元素，无法定义元素的宽高 -->
+    <!-- 行内块元素可以定义元素的宽高，只不过每个元素不会独占一行 -->
+    <div id="inline">
+        <div>hd</div>
+        <div>hd</div>
+        <div>hd</div>
+    </div>
+    <hr>
+    <div id="inline-block">
+        <div>hd</div>
+        <div>hd</div>
+        <div>hd</div>
+    </div>
+</body>
+
+</html>

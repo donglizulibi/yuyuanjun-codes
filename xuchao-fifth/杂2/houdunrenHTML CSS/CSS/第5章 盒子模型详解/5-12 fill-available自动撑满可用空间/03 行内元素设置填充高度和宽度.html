@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            width: 100vw;
+            height: 200px;
+            background-color: aqua;
+        }
+        
+        main span {
+            width: -webkit-fill-available;
+            /* height: -webkit-fill-available; */
+            background-color: yellow;
+            /* 需要先变成行内块元素 */
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <!-- 行内元素的初始大小是根据文本内容的宽度决定的 -->
+        <span>123</span>
+    </main>
+</body>
+
+</html>

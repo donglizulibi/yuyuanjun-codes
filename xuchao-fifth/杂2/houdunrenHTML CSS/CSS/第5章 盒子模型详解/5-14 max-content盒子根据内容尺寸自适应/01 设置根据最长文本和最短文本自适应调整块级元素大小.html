@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            /* 这里父级的宽度不设置，只设置最大或最小适应规则，具体宽度和长度依随子级文本长度 */
+            /* width: max-content; */
+            width: min-content;
+            background-color: aquamarine;
+        }
+        
+        div {
+            background-color: blue;
+            padding: 10px;
+            margin: 10px 0;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 设置根据最长文本和最短文本自适应调整块级元素大小 -->
+    <!-- 如果最长文本是一个网址，则网址是不会被压缩的 -->
+    <!-- 但中文文字每个都是一个单独的块，会自动换行 -->
+    <!-- 英文中单个单词也不会拆分 -->
+    <main>
+        <div>设置根据最长文本和最短文本自适应调整块级元素大小</div>
+        <div>hdcms</div>
+    </main>
+</body>
+
+</html>

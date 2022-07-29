@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 以后可能出现的一个需求就是，需要给一个网站下的每条评论都动态绑定一个id -->
+    <div id="app">
+        <div v-bind:id="id">{{name}}</div>
+        <!-- 可以把v-bind省略，注意标签中加冒号和不加冒号的区别 -->
+
+        <!-- 绑定的时候也可以加上中括号把属性本身变成一个变量 -->
+        <!-- 两秒后变成一个超链接 -->
+        <a :[arg]="value">houdunren</a>
+    </div>
+    <script src="hd.js"></script>
+</body>
+
+</html>
