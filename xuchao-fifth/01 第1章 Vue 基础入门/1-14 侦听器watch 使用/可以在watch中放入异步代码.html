@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 在一个视频播放网站中，切换到其他视频的时候，可以不刷新页面 -->
+    <!-- 而是采用一个watch监听点击事件的变化，在当前的视频id发生变化的时候 -->
+    <!-- watch里面可以有一个异步操作，把关于当前视频的信息都加载出来 -->
+
+    <!-- watch还可以侦听路由的变化 -->
+    <div id="app">
+        <button @click="add">增加</button>
+        <button @click="desc">减少</button>
+        <h2>{{num}}</h2>
+        <div style="background-color: red;color:#fff" v-if="error">提示：{{error}}</div>
+    </div>
+    <script src="hd.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>computed计算属性只有里面有响应式数据的时候才会更新</h2>
+        <div>{{date}}</div>
+        <div>{{dateNum}}</div>
+        <!-- 比如上面渲染一个时间的数据，这个数据本身是会变化的 -->
+        <!-- 但是computed只会响应在组件里的数据，所以这个时间数据只是记录一个字符串 -->
+        <!-- 也就是说，在computed里面有一个缓存的机制，如果computed所依赖的响应式数据没有变化 -->
+        <!-- computed里面的方法就不会重新调用，而是使用缓存里的数据 -->
+
+        <hr>
+        <h2>计数例子</h2>
+        <button @click="add">增加</button>
+        <button @click="desc">减少</button>
+        <div>{{num}}</div>
+
+        <!-- 在页面中，计算属性的使用和data里面的数据的使用是一样的 -->
+        <!-- 包括使用v-text指令也是可以的 -->
+        <div style="background-color: red;color:#fff;" v-if="error">{{error}}</div>
+    </div>
+    <script src="hd.js"></script>
+</body>
+
+</html>

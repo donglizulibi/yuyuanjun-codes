@@ -1,0 +1,7 @@
+b1 为vue-cli创建的项目，所用命令为
+vue create b1
+然后是选配置项
+
+
+b2 为vite创建的项目，所用命令为
+-yarn create vite b2 --template vue   

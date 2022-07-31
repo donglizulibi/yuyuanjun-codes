@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-on:click="go($event,'hd')">{{name}}</div>
+        <div @[move]="change">{{name}}</div>
+
+        <!-- 使用preventDefault阻止a标签的跳转 -->
+        <!-- 关于preventDefault()的用法见js 2-6 -->
+        <a href="https://www.houdunren.com" @click="prevent1($event)">{{name}}</a>
+        <hr>
+
+        <!-- 或者用vue自带的修饰符 -->
+        <!-- 修饰符是放在事件后面，用.连接 -->
+        <!-- 这里先展示阻止默认行为的修饰符 -->
+        <a href="https://www.houdunren.com" @click.prevent="prevent2">{{name}}</a>
+    </div>
+    <script src="hd.js"></script>
+</body>
+
+</html>

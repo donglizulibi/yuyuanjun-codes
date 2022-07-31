@@ -28,6 +28,7 @@
 
 
         let id = setInterval(() => {
+            // 在这里就需要先拿到元素块的初始左边距
             let left = parseInt(window.getComputedStyle(div).left)
             div.style.left = left + 10 + 'px'
             console.log(left)

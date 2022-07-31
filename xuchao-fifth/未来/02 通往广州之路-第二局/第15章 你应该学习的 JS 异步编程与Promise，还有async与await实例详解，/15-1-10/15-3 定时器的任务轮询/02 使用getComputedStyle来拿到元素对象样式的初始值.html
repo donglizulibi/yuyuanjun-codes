@@ -21,6 +21,7 @@
     </style>
     <div></div>
     <script>
+        // 要想拿到一个元素块的样式信息，可以用getComputedStyle
         let div = document.querySelector('div')
         let [height, width, left] = [
             window.getComputedStyle(div).height,

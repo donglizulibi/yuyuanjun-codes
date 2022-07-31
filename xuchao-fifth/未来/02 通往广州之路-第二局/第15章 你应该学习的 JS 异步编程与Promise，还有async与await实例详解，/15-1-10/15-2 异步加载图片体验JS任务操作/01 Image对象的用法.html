@@ -11,7 +11,7 @@
 <body>
     <div></div>
     <script>
-        // 在Image对象中，又onload和onerror两个内置方法
+        // 在Image对象中，有onload和onerror两个内置方法
         // Image实例化对象如果给这个两个附上函数
         // 则图片加载成功就会调动onload的函数，加载失败就会调用onerror的函数
 
@@ -21,11 +21,20 @@
         // 如果未能加载图片，就调用onerror函数
 
         function load(src) {
+            // 先找到图片标签需要挂载的标签
             let div = document.querySelector('div')
 
+            // 
             let image = new Image()
             image.src = src
+            console.log(image)
             console.dir(image)
+                // 打印结果显示，这个image实例化对象就是标签本身
+
+            // 在这里创建一个img标签，跟上面的结构是一样的 
+            let a = document.createElement('img')
+            console.dir(a)
+
             div.appendChild(image)
 
             image.onload = function() {
@@ -40,9 +49,8 @@
 
         load('猪大肠.jpg')
         console.log(234)
-            // load('猪大肠asd.jpg')
 
-        // console.log(typeof '猪大肠.jpg')
+        // 这里也是先显示234，再显示加载图片成功或者不成功
     </script>
 </body>
 

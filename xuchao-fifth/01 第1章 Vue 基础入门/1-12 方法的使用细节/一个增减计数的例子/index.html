@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="add">增加</button>
+        <button @click="desc">减少</button>
+        <h2>{{num}}</h2>
+        <div style="background-color: red;color:#fff" v-if="error">提示：{{error}}</div>
+    </div>
+    <script src="hd.js"></script>
+    <!-- 本例子留下一个问题就是，增加和减少两个动作
+        既要控制事件逻辑，又要控制报错的提示 
+        而更加高效的做法就是把这两者分开
+    -->
+</body>
+
+</html>
