@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <b-com></b-com>
+        <b-com></b-com>
+        <b-com></b-com>
+        <b-com></b-com>
+        <a-com></a-com>
+        <a-com></a-com>
+        <a-com></a-com>
+        <a-com></a-com>
+    </div>
+    <script>
+        // 在全局定义的组件与组件之间都可以相互调用
+        // 在这里把a子组件放在b子组件的template里面，反过来也是可以使用
+        // 全局组件见间的引用关系没有前后顺序
+
+        // 在template调用其他组件的标签可以保留驼峰式命名
+        // 但是在body里面调用只能用小写短横方式写标签
+        // 在使用构建工具构建Vue的时候也可以使用驼峰式命名
+
+        // 构建工具会把正在使用的组件中的js文件全部压缩到一个js文件中
+        // 而全局组件因为是全局使用，所以一定会被打包进去
+        // 所以如果不是在全局都要使用的组件，尽量不要使用全局组件
+
+        // 全局注册的组件可以放在html中使用，但html和app的template只能保留一个
+
+        const app = Vue.createApp({
+            // template: `<div>root_area-<bCom/></div>`
+        })
+
+        // 在全局注册的a子组件
+        app.component('aCom', {
+            template: `<div>a_com_area</div>`
+        })
+
+        // 在全局注册的b子组件
+        app.component('bCom', {
+            template: `<div>b_com_area-<aCom/></div>`
+        })
+
+        const vm = app.mount('#app')
+    </script>
+</body>
+
+</html>

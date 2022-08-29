@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #span {
+            display: inline-block;
+            /* border-bottom: dotted 2px black; */
+            position: relative;
+        }
+        
+        #span div {
+            position: absolute;
+            top: 4px;
+            left: -6px;
+            transform: scale(0.81);
+            /* transform: scaleY(0.9); */
+        }
+        
+        #span div:nth-of-type(2) {
+            display: block;
+            position: absolute;
+            /* top: 0;
+            left: 0; */
+            border-top: solid #444 1px;
+            border-left: 1px solid #444;
+            width: 140px;
+            font-size: 5px;
+            padding: 6px 0 6px 6px;
+            /* transform: scale(0.49); */
+            color: #444;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 从语义的角度，small标签用于小字体的声明，比如‘每人限购两次之类’ -->
+    <span>houdunren</span>
+    <small>houdunren</small>
+
+    <!-- 放置时间的语义标签 -->
+    <time>2022-03-03</time>
+
+    <hr>
+
+    <!-- 鼠标滑过的时候会显示标签中title的内容 -->
+    <abbr title="php是世界上最好的语言">PHP</abbr>
+
+    <!-- 用span仿制abbr -->
+    <div id="span">PHP
+        <div>............</div>
+        <div>php是世界上最好的语言</div>
+    </div>
+    <script>
+        let span = document.getElementById('span')
+        let div = document.querySelector('#span div:nth-of-type(2)')
+        console.log(div)
+        console.log(span)
+
+        span.addEventListener('mouseenter', (e) => {
+            console.log(e)
+            setTimeout(() => {
+                div.style.display = 'block'
+            }, 800)
+        })
+        span.addEventListener('mouseout', (e) => {
+            console.log(e)
+            div.style.display = 'none'
+        })
+    </script>
+</body>
+
+</html>

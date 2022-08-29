@@ -1,0 +1,6 @@
+本例的示例本例的示例见VmodelVueThree和VmodelVueThreeChild两个组件
+
+当时子组件emits的update的绑定和父组件的v-model的绑定的名称是modelValue的时候
+父组件的v-model:modelValue等于title的写法可以简写为v-model等于title
+
+这样就只需要写好表单的子组件，就可以在父组件中直接使用v-model语法

@@ -1,0 +1,8 @@
+本例子的示例见1-18的InputComponent组件
+
+使用v-model的时候不要在input里面写value属性
+
+在input里面可以自定义复选框选中与否的返回值
+
+input复选框需要加上value属性
+

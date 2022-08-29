@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = [{
+            id: 1,
+            title: 'javascript',
+            preview: '/images/js.png'
+        }, {
+            id: 2,
+            title: 'typescript',
+            preview: '/images/ts.jpg'
+        }, {
+            id: 3,
+            title: 'vue3',
+            preview: '/images/vue3.jpg'
+        }, ]
+
+        function deepCopy(params) {
+            let copy = params instanceof Array ? [] : {}
+            for (let [key, val] of Object.entries(params)) {
+                console.log(key, val)
+                if (typeof(val) == 'object') {
+                    copy[key] = deepCopy(val)
+                } else {
+                    copy[key] = val
+                }
+            }
+            return copy
+        }
+
+        console.log(deepCopy(data))
+    </script>
+</body>
+
+</html>

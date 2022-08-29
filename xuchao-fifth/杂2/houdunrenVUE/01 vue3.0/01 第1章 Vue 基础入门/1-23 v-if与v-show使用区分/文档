@@ -1,0 +1,15 @@
+本例的示例在1-18的IfComponent组件里
+
+
+在同一个节点中，v-if优先级高于v-for
+
+如果是那种不需要频繁显示隐藏切换的元素，则使用v-if
+
+如果是那种类似于弹窗的元素，则使用v-show
+
+v-if可以使用v-else和v-else-if，而v-show不能
+
+v-if可以作用于template标签，而v-show不能
+
+如果出现了div标签套div标签，而没有任何样式的情况下
+可以把外层的div改成template

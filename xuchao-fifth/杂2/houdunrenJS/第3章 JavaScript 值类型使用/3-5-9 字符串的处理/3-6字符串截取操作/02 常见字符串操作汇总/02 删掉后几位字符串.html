@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用slice，填两个参数还是一个参数的问题
+        let str = 'houduren.com'
+
+        // 只填一个参数，表示删去多少位数，返回剩下的部分
+        let a = str.slice(5)
+        console.log(a)
+
+        // 两个参数，但是第一个参数填零
+        // 也是表示删去多少位数，但是返回的是删去的部分
+        let b = str.slice(0, 5)
+        console.log(b)
+    </script>
+</body>
+
+</html>

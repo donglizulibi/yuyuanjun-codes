@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>销毁第一个定时器</button>
+    <button>销毁后再显示两个定时器的编号</button>
+    <button>销毁第二个定时器</button>
+    <script>
+        // 创建两个定时器
+        let id_1 = setInterval(() => {
+            console.log('id_1')
+        }, 1200)
+        console.log(id_1)
+
+        let id_2 = setInterval(() => {
+            console.log('id_2')
+        }, 1200)
+        console.log(id_2);
+
+
+
+        [...document.querySelectorAll('button')][0].addEventListener('click', () => {
+            clearInterval(id_1)
+        });
+
+        [...document.querySelectorAll('button')][1].addEventListener('click', () => {
+            console.log(id_1)
+            console.log(id_2)
+        });
+
+        [...document.querySelectorAll('button')][2].addEventListener('click', () => {
+            clearInterval(id_2)
+        });
+
+        // 点击第一个按钮后，第一个定时器停止，说明第一个定时器已经被销毁
+        // 但再点击第二个定时器，发现第一个定时器的编号还是可以显示出来
+        // 第二个定时器的编号也没有发生改变
+    </script>
+</body>
+
+</html>

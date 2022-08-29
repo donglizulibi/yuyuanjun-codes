@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom></mycom>
+    </div>
+
+    <script>
+        // 在这个例子中可以看到Vue2和vue3在CDN模式下三个差别
+        // 1 创建实例的方式不同，所以挂载的方式也不同
+        // 2 全局组件注册的方式不同，vue2的全局注册可以直接使用Vue的component语法
+        //   但是vue3的全局组件也要挂载在vue创建出来的vue对象上  
+        // 3 data保存数据的方式不同
+        Vue.component("mycom", {
+            data: function() {
+                return {
+                    count: 1
+                }
+            },
+            template: `<div>
+                <ul>
+                    <li>{{count}}</li>
+                    <li style="color:yellow">lisi</li>
+                    <li>wangwu</li>
+                </ul>
+            </div> `
+        })
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+
+        })
+    </script>
+</body>
+
+</html>

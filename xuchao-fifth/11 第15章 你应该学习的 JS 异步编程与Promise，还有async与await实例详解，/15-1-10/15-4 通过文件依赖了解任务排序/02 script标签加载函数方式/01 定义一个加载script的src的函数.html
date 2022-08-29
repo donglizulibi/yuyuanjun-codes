@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function load(src, resovle) {
+            let script = document.createElement('script')
+            console.dir(script)
+            script.src = src
+
+            // 和image标签对象一样，script标签也有onload和onerror两个回调函数
+            // 下面是直接的用法，也可以在外部定义
+            // script.onload = () => {
+            //     console.log('加载成功')
+            // }
+            // script.onerror = () => {
+            //     console.log('加载失败')
+            // }
+
+            script.onload = resovle
+
+            document.querySelector('body').appendChild(script)
+        }
+
+        // 调用这个函数，第一个参数是外部的js文件
+        // 调用这个函数就意味着创建一个script标签，把hd.js引入
+        load('hd.js', () => {
+            console.log('链接加载成功')
+        })
+
+
+        console.log('index.html')
+
+        // 在这个例子中，js主线程遇到加载文件的操作，就会把相关部分放到加载文件模块里
+        // 然后等主线程的任务都执行完了，在这里就是打印index.html执行完了
+        // 才会去任务队列里找加载文件模块执行的结果，也就是打印链接加载成功
+    </script>
+</body>
+
+</html>

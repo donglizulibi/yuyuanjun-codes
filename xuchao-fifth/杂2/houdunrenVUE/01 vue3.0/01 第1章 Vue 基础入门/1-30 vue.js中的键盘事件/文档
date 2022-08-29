@@ -1,0 +1,8 @@
+本例子的示例见1-18的EventKey组件
+
+表单输入框的事件对象event的key表示当前输入的字符
+
+常用按键的修饰符，省略前面的.
+
+ctrl alt shift meta(在windows系统里面就是Windows键)
+enter esc tab space delete up....

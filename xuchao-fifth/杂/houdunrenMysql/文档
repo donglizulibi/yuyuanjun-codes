@@ -1,0 +1,13 @@
+let a = document.querySelectorAll(".list-box li a");
+let arr = [];
+[...a].map((item, index) => {
+    console.log(item.title);
+    if (index < 9) {
+        arr.push(0 + item.title)
+    } else {
+        arr.push(item.title)
+    }
+
+})
+
+console.log(arr)

@@ -1,0 +1,8 @@
+本例子的示例见ButtonSingleNorm组件
+
+在ButtonSingleObj和ButtonSingleStr两个组件中演示了
+将props数据在子组件中用作响应式数据的方式
+这种方式是不规范的
+如果在子组件中有多个地方都要用到这个父组件传过来的数据
+就把这个props数据在data里面用一个新的变量存一下
+然后把新的变量用作响应式数据

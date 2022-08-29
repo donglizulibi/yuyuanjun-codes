@@ -1,0 +1,18 @@
+关于一些基础的vite项目文件结构解释见1-16，这里另外进行一些补充
+
+public中的内容不会被打包工具处理，而是会被打包工具直接复制
+
+src中的assets用来放静态数据
+
+package.json项目配置的依赖包
+package.json内部有一些命令 在scripts里面
+
+yarn dev是开发阶段使用的命令
+yarn build是在项目写完之后，将项目压缩的命令，运行这个命令之后
+会生成dist文件夹，项目中public里的内容就会自动复制到dist文件夹中
+yarn serve是预览最终编译结果的命令
+运行后可以预览最终在本地生产环境的项目
+这个命令是依赖dist文件的
+
+
+README.md关于项目的描述文件

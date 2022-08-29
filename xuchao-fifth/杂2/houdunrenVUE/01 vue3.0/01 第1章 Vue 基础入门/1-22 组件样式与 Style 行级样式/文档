@@ -1,0 +1,22 @@
+本例的示例在1-18的ClassStyle组件上 
+
+一、 父组件的样式如何影响子组件
+
+    在Class的父组件App组件的 class-style标签上面加上一个class样式
+    这就涉及vue2和vue3两个版本的问题，在vue2中，单文件组件里的template内只能有一个子元素
+    也就是说template里面的内容需要统一包裹在一个div里，那么在父组件App的class-style标签
+    里面定义的class样式就可以直接叠加作用在子组件template这个div上
+
+    但是在vue3中，子组件的template里可以有多个子元素，此时在父组件定义的样式
+    无法作用于单个标签上，则可以在想要被影响的标签上绑定 class样式
+    把$attrs.class绑定就可以，这里的class可以理解为是$attrs中的一个属性
+
+    在这里还有一个父组件App的问题，如果子组件的template里面只有一个子元素
+    父组件的style中加不加scoped，组件中的样式都会影响到子组件
+    但是如果是template里有多个子元素，则父组件App只有把scoped去掉
+    样式才能影响到子组件
+
+二、 关于单文件组件的行内样式style绑定
+
+    也是用v-bind绑定style关键字，后面也是可以跟数组或者对象，也可以绑定计算属性
+    只是样式的属性名称要用驼峰式命名

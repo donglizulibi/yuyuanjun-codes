@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <todo/>
+        <todo/>
+        <todo/>
+    </div>
+    <script>
+        // 创建局部组件的方法是把这个组件的信息都放在一个对象里
+        // 然后有哪个组件要使用这个局部组件，在这个父组件中的components的对象里注册
+        // 注册的方式是在components后面的对象里创建一个键值对，把局部组件的变量名
+        // 变成一个属性值
+
+        const todo = {
+            template: `<div @click='hd'>{{hdcms}}</div>`,
+            data() {
+                return {
+                    hdcms: 'houdunren'
+                }
+            },
+            methods: {
+                hd() {
+                    console.log('这是局部组件')
+                }
+            },
+        }
+
+        const app = Vue.createApp({
+            components: {
+                todo
+            }
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

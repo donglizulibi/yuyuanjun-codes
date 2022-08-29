@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- {{hd}} -->
+    </div>
+    <script>
+        // 关于在根组件的对象上使用component创建子组件的方法见vue 1-9
+
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    hd: '123'
+                }
+            },
+            template: `<div>asdf-<xj/>{{hd}}</div>`
+        })
+
+        app.component('Xj', {
+            template: `<div>houdunren-{{num}}</div>`,
+            data() {
+                return {
+                    num: 1111
+                }
+            }
+
+        })
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

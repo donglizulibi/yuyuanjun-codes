@@ -1,0 +1,3 @@
+本小节主要是说Vue源码中对数组的一些原生方法
+如pop、push、shift unshift splice sort等做出了修改
+让Vue中数组变成响应式的数据

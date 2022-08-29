@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <span>请输入删除的id：</span><input type="text"><button>删除</button>
+    <hr>
+    <pre></pre>
+    <script>
+        // 数据
+        let data = [{
+            id: 1,
+            title: 'javascript',
+            preview: '/images/js.png'
+        }, {
+            id: 2,
+            title: 'typescript',
+            preview: '/images/ts.jpg'
+        }, {
+            id: 3,
+            title: 'vue3',
+            preview: '/images/vue3.jpg'
+        }, ]
+
+        // 把初始数据渲染到模板中
+        let dataStr = JSON.stringify(data, null, 2)
+        console.log(dataStr)
+        let pre = document.querySelector('pre')
+        console.log(pre)
+        pre.innerHTML = dataStr
+
+        // 获得输入框和按键标签
+        let input = document.querySelector('input')
+        let btn = document.querySelector('button')
+
+        // 点击事件
+        btn.addEventListener('click', () => {
+            console.log(input.value)
+
+            // 把把所有不符合条件的跳出来放到一个数组里
+            // 就等于是删去了符合条件的
+            let a = data.filter((val, index) => {
+                console.log(val)
+                console.log(index)
+                return val.id != input.value * 1
+            })
+            console.log(a)
+
+            // 重置初始数据
+            data = a
+            a = JSON.stringify(a, null, 2)
+
+            // 重新渲染模板
+            pre.innerHTML = a
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+本例子的示例见ButtonDisabled组件
+
+disabled要单独在props占用一个变量，buttonType选项选择布尔类型
+
+disabled的样式绑定到子组件上的时候，因为disabled同时也是props名字
+所以可以放在一个对象里，把属性名和属性值合并，再和buttonType绑定在一起
+
+disabled的样式应该具有最高优先级
+
+关于buttonType中的按钮种类，如果用户在外部填了一个属性值
+而这个属性值在子组件没有定义响应的样式，应该有报错处理
+这就需要在用户填入属性值后使用validator验证
+
+validator中有一个参数，返回父组件传递过来的数据
+validator只有返回值为真的时候，才不会报错

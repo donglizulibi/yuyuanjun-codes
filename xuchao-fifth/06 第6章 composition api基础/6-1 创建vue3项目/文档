@@ -1,0 +1,6 @@
+组合(composition)api和选项(option)api
+
+vue2的选项api是在组件的script里面把数据放在data里
+把方法放在methods里，等等。也就是造成了一个响应式数据和这个数据对应的方法
+分散在各个api中，但是setup语法，也就是组合api把同一个数据方法
+都放在一次，避免上下横跳

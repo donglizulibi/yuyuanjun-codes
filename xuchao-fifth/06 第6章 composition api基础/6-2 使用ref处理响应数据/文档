@@ -1,0 +1,17 @@
+本例的示例见CountComposition和CountOption两个组件
+
+关于选项api用法的几个注意事项
+
+1 选项api的setup中的this没有意义
+
+2 setup中定义数据的话，要把数据放在ref中，如果不放在ref里的话
+  这个数据就不能成为响应式数据 ref需要从vue中引入
+
+3 如果需要在setup中的方法里改变值类型的数据
+  可以从ref创建的对象中的value中找到这个值类型
+
+4 setup中定义的数据和方法，最后需要放在一个对象里return出来
+
+5 setup里面定义方法的时候最好用箭头函数，不过用普通函数也可以
+
+6 setup里定义的数据也可以供外面的methods里的方法使用

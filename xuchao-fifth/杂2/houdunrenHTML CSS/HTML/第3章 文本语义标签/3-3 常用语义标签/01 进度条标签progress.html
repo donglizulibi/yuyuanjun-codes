@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div {
+            border: 1px #B2B2B2 solid;
+            height: 6px;
+            width: 158px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background-color: #EFEFEF;
+            position: relative;
+        }
+        
+        #div>div {
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            background-color: #0075FF;
+            height: 8px;
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
+            /* width: var(--wid); */
+            opacity: .9;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 古代浏览器可能会不支持进度条的展示，这是就会展示progress里面的文本 -->
+    <!-- 可以显示进度条的时候就不会显示文本 -->
+
+    <progress value="60" max="100">60%</progress>
+    <br>
+    <button id="button1">按键1</button>
+    <hr>
+
+    <!-- 进度条标签仿制 -->
+    <div id="div">
+        <div></div>
+    </div>
+    <button id="button2">按键2</button>
+    <script>
+        // 原版
+        let progress = document.querySelector('progress')
+        let btn1 = document.querySelector('#button1')
+        btn1.addEventListener('click', () => {
+            console.log(progress.value)
+            progress.value += 10
+        })
+        let progressWidth = window.getComputedStyle(progress).width.slice(0, -2)
+        let progressWidthEle = progressWidth * 0.1
+
+
+        // 仿制
+        let widthData = progressWidthEle * 6
+        console.log(widthData)
+        let div = document.querySelector('#div>div')
+        div.style.width = widthData + 'px'
+        console.log(div.style)
+
+        let btn2 = document.querySelector('#button2')
+        btn2.addEventListener('click', () => {
+            let width = window.getComputedStyle(div).width.slice(0, -2) * 1
+            if (width < progressWidth) {
+                div.style.width = width + progressWidthEle + 'px'
+
+                // 倒数第二次点击的时候把进度条右边变成圆角
+                if (width == progressWidth * 0.9) {
+                    div.style.borderBottomRightRadius = 8 + 'px'
+                    div.style.borderTopRightRadius = 8 + 'px'
+
+                }
+            }
+            console.log(width)
+
+        })
+    </script>
+</body>
+
+</html>

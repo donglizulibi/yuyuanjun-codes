@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+    <script type="text/x-template" id="hdTemplate">
+        <div>houdunren-{{num}}</div>
+    </script>
+    <script>
+        // 使用x-template有几个注意的点
+        // 1 要在创建Vue的script前面放一个script标签，在里面的type声明x-template
+        // 2 这个script标签要赋予一个id，用于和后面的组件里的template定位
+        // 3 在script标签里面写组件的template模板
+
+        // 那么，使用CDN的方式写Vue项目的时候就可以使用这种方法
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    hd: '123'
+                }
+            },
+            template: `<div>asdf-<xj/>{{hd}}</div>`
+        })
+
+        app.component('Xj', {
+            template: `#hdTemplate`,
+            data() {
+                return {
+                    num: 1111
+                }
+            }
+
+        })
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

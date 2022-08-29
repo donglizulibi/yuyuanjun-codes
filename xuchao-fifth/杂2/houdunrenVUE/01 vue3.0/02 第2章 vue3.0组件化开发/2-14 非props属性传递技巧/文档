@@ -1,0 +1,23 @@
+本例子的示例见ButtonSingleNonProps组件
+
+$attrs绑定见1-22的class绑定
+
+这个例子对于$attrs进行更深入的介绍
+父组件中挂载子组件的标签，如果在父组件挂载子组件标签里
+再加上id或者class属性，这些属性是不会通过props传递到子组件的
+但是也会传递到子组件
+
+打开控制台观察页面元素，那么就出现了几种情况
+
+如果子组件的template里有一个根元素，那么这些id或者class会自动加载到这个根元素上
+
+如果子组件的template里有多个元素并列，那么vue将无法判断
+id或者class需要加在哪个元素上，那么vue将出现一个警告
+
+如果本来不需要加载，也不想出现警告，可以在script里
+加上inheritAttrs: false,这个属性来禁用非props属性的向下传递
+
+如果子组件有多个元素，需要加上指定的元素上，可以用v-bind绑定$attrs
+来标识出需要继承属性的元素
+也可以用:class单独绑定$attrs.class
+或者用:id单独绑定$attrs.id

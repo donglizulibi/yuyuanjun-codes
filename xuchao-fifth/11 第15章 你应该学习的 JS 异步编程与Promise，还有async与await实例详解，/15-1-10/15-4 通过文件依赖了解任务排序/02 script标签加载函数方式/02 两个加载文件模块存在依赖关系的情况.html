@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function load(src, resovle) {
+            let script = document.createElement('script')
+            script.src = src
+
+            script.onload = resovle
+            document.querySelector('body').appendChild(script)
+        }
+
+        // 依次引入两个文件，且两个文件有相互依赖关系
+        // 两个文件进入文件加载模块内部的时候
+        // 是不会遵循先进入模块者，先出执行结果的
+        // 而是谁快就谁先出结果，而由于houdunren文件是依赖hd文件的
+
+        // （只需要疯狂刷新页面，就会出现交替加载的情况）
+        // 所以，有时候会出现先加载houdunren.js，但与此同时hd.js又没有被引入
+        // 所以houdunren.js无法加载的情况，此时页面会报错
+
+
+
+        load('hd.js', () => {
+            hd()
+        })
+
+        load('houdunren.js', () => {
+            houdunren()
+        })
+
+
+        console.log('index.html')
+    </script>
+</body>
+
+</html>

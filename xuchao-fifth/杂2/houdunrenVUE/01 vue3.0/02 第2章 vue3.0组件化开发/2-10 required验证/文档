@@ -1,0 +1,4 @@
+本例子的示例见
+
+在props中的某个属性里去掉default键值对，加上required:true
+可以使得这个属性变成必填属性

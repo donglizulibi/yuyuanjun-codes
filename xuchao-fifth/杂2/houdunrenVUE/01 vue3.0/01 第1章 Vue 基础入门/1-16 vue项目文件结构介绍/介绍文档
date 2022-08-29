@@ -1,0 +1,7 @@
+.gitignore: 用来放在上传git的时候不用上传的文件包
+
+vite.config.js: 用来做一些代理方面的配置，或者修改一些端口
+
+yarn.lock：当前安装包版本锁定，当这个项目被别人使用时候，安装依赖包可以根据这个版本下载安装
+
+SFC：单文件组件 single file component

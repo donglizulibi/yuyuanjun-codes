@@ -1,0 +1,15 @@
+本例的示例见VmodelVueThree和VmodelVueThreeChild两个组件
+这个例子实现了子父组件的数据同步
+
+在VmodelVueThreeChild组件中，触发emit事件的操作可以直接放在input方法里
+
+本例先由父组件将一个初始数据传到子组件，然后在子组件的表单中实现数据的修改
+在通过自定义事件将修改后的数据传到父组件
+
+
+如果把要用v-model来实现父子组件的同步
+则要满足下面几个要素
+1 需要在子组件中的props 和 emits中update后面的绑定 
+  以及父组件的v-model后面的绑定要使用同一个名称
+2 props还是不要用响应式数据，最好还是在data中存一下，然后在methods中更新
+3 在同一个methods方法中可以放进传最新数据到父组件的操作
