@@ -1,0 +1,17 @@
+本例子的示例见ProvideInject、ProvideInjectChild、ProvideInjectGrandchild三个组件
+
+本例演示在把ProvideInject的数据不通过props的方法，传到ProvideInjectGrandchild组件中
+
+provide和inject只能单向传递，也就是从父组件往子组件往孙组件传递
+
+当父组件只需要传递一个固定的字符串数据到孙组件的时候
+父组件内的provide可以用对象的形式，将数据作为对象中的属性值
+如果父组件需要传递本组件中的某个数据，需要用到this指向
+则provide需要用函数的及返回值的方式来传递数据
+
+将provide的数据变成响应式数据的两种方法
+
+第一 在data里把数据放在对象里，利用js的引用类型数据共享地址的特性
+
+第二 在父组件引入一个computed函数，computed计算属性需要传入一个回调函数
+使用此方法需要在入口文件mian.js中创建app之后加入一个app的config的配置项

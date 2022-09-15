@@ -1,0 +1,24 @@
+安装node
+
+如果安装工具包比较慢，可以使用淘宝镜像
+
+windows系统使用
+npm install typescript -g 或者 yarn add typescript -D
+tsc -v 命令查看是否安装ts成功
+
+关于独立安装和全局安装的区别
+给项目独立安装ts有一个好处就是可以限定版本库
+如果是全局安装，那么过很长时间之后全局的ts可能会升级
+那么可能会导致一些以往的特性被废除，导致项目跑不起来
+
+独立安装的示例见本文件夹的ts文件架
+独立的安装的方法就是，在项目的文件里，先运行yarn init -y
+创建package.json文件，这个文件用来记录安装的第三方的包
+
+然后在这文件架下面使用yarn add typescript -D
+此时可以看到文件架下出现node_modules依赖包
+且package.json里出现typescript的版本号
+这样就限定了版本号，以后别人使用这个项目，再安装依赖包的时候
+就会下载这个版本的ts版本
+
+这里先把node_modules卸载

@@ -1,0 +1,5 @@
+在DynamicComponentIsGlobal中，给动态组件的标签component外面套上一个keep-alive标签
+
+因为在切换选项卡的过程中，组件会不断地重新渲染
+所以在其中一个面板输入的内容会被初始化
+加上keep-alive标签后就不会被初始化

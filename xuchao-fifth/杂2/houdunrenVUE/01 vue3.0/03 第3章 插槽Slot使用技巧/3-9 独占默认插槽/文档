@@ -1,0 +1,4 @@
+本例子的示例见LessonSlotProps和LessonSlotPropsChild两个组件
+
+如果子组件只有一个默认插槽，父组件中可以把插槽的绑定放到子组件标签上
+如果子组件中有多个插槽，则在父组件挂载子组件标签块内也要有多个template

@@ -1,0 +1,39 @@
+本例子的实例见MountCom和mountChild两个组件
+
+在这两个组件中，mountChild是MountCom的子组件，在MountCom组件加载过程中
+发生了以下的变化
+
+
+父组件MountCom的生命周期
+
+beforeCreate
+无数据 无页面
+
+created
+有数据 无页面
+
+beforeMount
+有数据 无页面
+
+从父组件beforeMount到mounted，开始渲染页面
+然后遇到了需要渲染子组件标签的问题
+进而开始子组件mountChild的生命周期
+
+            beforeCreate
+            无数据 无页面
+
+            created
+            有数据 无页面
+
+            beforeMount
+            有数据 无页面
+
+            mounted
+            有数据 有页面
+
+子组件的mounted生命周期之后，就有了页面
+但是这个页面还没显示出来，因为父组件此时要进入mounted的生命周期
+
+父组件MountCom
+mounted
+有数据 有页面

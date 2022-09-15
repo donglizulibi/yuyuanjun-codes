@@ -1,0 +1,13 @@
+本例子的示例见NamedSlot和NamedSlotChild两个组件
+
+当有多个插槽的时候可以使用具名插槽加以区分
+
+具名插槽的使用方法是在子组件中的slot标签里使用name属性，给插槽命名，相当于一个唯一的id
+
+然后在父组件中用v-slot:插槽名称 来绑定
+
+父组件中的v-slot绑定插槽名称的部分必须写在template标签里
+
+默认标签也有name，就是default
+
+v-slot:可以简写为#

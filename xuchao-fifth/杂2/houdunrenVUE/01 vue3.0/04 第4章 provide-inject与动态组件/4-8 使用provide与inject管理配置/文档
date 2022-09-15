@@ -1,0 +1,4 @@
+在DynamicComponentIsGlobal组件中引入config配置
+通过provide inject加到wexin和site组件中
+
+另外修改turnWhite函数，使其适用于三个及以上的选项卡

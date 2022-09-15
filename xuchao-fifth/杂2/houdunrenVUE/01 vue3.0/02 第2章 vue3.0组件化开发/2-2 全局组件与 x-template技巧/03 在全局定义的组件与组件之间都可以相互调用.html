@@ -15,6 +15,7 @@
         <b-com></b-com>
         <b-com></b-com>
         <b-com></b-com>
+
         <a-com></a-com>
         <a-com></a-com>
         <a-com></a-com>
@@ -35,21 +36,21 @@
 
         // 全局注册的组件可以放在html中使用，但html和app的template只能保留一个
 
-        const app = Vue.createApp({
-            // template: `<div>root_area-<bCom/></div>`
-        })
+        // const app = Vue.createApp({
+        //     // template: `<div>root_area-<bCom/></div>`
+        // })
 
-        // 在全局注册的a子组件
-        app.component('aCom', {
-            template: `<div>a_com_area</div>`
-        })
+        // // 在全局注册的a子组件
+        // app.component('aCom', {
+        //     template: `<div>a_com_area</div>`
+        // })
 
-        // 在全局注册的b子组件
-        app.component('bCom', {
-            template: `<div>b_com_area-<aCom/></div>`
-        })
+        // // 在全局注册的b子组件
+        // app.component('bCom', {
+        //     template: `<div>b_com_area-<aCom/></div>`
+        // })
 
-        const vm = app.mount('#app')
+        // const vm = app.mount('#app')
     </script>
 </body>
 
