@@ -11,31 +11,35 @@
 <body>
     <div></div>
     <script>
-        // 在Image对象中，有onload和onerror两个内置方法
-        // Image实例化对象如果给这个两个附上函数
+        // 在Image构造函数中，有onload和onerror两个方法
+        console.dir(Image)
+        console.log(Image.prototype)
+
+        // Image实例化对象如果给这个两个方法添加函数
         // 则图片加载成功就会调动onload的函数，加载失败就会调用onerror的函数
 
-        // 写一个函数，在函数内部创建图片对象，传入图片，图片对象接受到图片文件后
-        // 调用onload函数
-
+        // 现在来写一个函数，在函数内部创建图片对象，传入图片
+        // 图片对象接受到图片文件后，调用onload函数
         // 如果未能加载图片，就调用onerror函数
 
         function load(src) {
             // 先找到图片标签需要挂载的标签
             let div = document.querySelector('div')
 
-            // 
+            // 创建新对象，并把传进来的图片赋值给image的src属性
             let image = new Image()
             image.src = src
             console.log(image)
             console.dir(image)
                 // 打印结果显示，这个image实例化对象就是标签本身
 
-            // 在这里创建一个img标签，跟上面的结构是一样的 
-            let a = document.createElement('img')
-            console.dir(a)
+            // 在这里创建一个img标签
+            // 打印结果显示跟上面的image实例化对象的结构是一样的 
+            // let a = document.createElement('img')
+            // console.dir(a)
 
             div.appendChild(image)
+            console.log('aaa')
 
             image.onload = function() {
                 console.log('加载图片成功')
@@ -45,12 +49,23 @@
             image.onerror = function() {
                 console.log('加载图片不成功')
             }
+            console.log('bbb')
         }
 
         load('猪大肠.jpg')
         console.log(234)
 
-        // 这里也是先显示234，再显示加载图片成功或者不成功
+        // 这里console.log(234)这条语句是在load函数执行后面
+        // 但是结果是先显示234，再显示加载图片成功或者不成功
+
+        // 说明主线程在执行load语句，遇到load内部异步操作部分的时候
+        // 就把这部分放进异步模块里面，结合本小节04例子
+        // 这个load函数中的异步语句就是onload和onerror
+
+        // 而且在load函数中的异步操作后面console.log('bbb')
+        // 也在console.log(234)之前执行
+
+        // 所以只有onload和onerror放进了异步模块里
     </script>
 </body>
 
