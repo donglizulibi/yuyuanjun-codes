@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第一个问题,splice会不会改变原数组
+        let arr1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+        let res1 = arr1.splice(5)
+        console.log(arr1)
+        console.log(res1)
+            // 结果显示,splice有返回值,会改变原来的数组
+            // 当填一个数值参数的时候，就表示这个数量的项目保留在原数组
+            // 后面的都截掉，截取出来的部分放进一个数组返回出来
+
+        // 填两个参数会发生什么
+        let arr2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+        let res2 = arr2.splice(0, 5)
+        console.log(arr2)
+        console.log(res2)
+            // 结果显示，填两个参数的时候，表示从第一个参数的位置来时截取
+            // 截取第二个参数数量的项目，截走的部分放在一个数组里返回出来
+            // 剩下的部分在原数组里
+    </script>
+</body>
+
+</html>

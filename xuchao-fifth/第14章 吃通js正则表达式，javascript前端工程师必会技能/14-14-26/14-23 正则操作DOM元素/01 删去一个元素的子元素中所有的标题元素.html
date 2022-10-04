@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <p>asdf</p>
+    <h2>
+        houdunren
+    </h2>
+    <h3>hdcms</h3>
+    <script>
+        let body = document.querySelector('body')
+        console.log(body)
+            // 在body的三个标题子元素中，有一个是没有内容的
+            // 有一个是有换行符号的
+
+        // 1 标签的左边包裹内使用原子组，在右边包裹中使用\1沿用原子组的结果
+        // 2 标签中间的内容需要是所有字符，且可有可无，所以用*
+        let reg = /<(h[1-6])>[\s\S]*<\/\1>/gi
+        body.innerHTML = body.innerHTML.replace(reg, '')
+    </script>
+</body>
+
+</html>

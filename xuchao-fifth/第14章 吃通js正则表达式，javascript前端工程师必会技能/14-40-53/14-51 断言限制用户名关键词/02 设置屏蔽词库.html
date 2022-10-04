@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <input type="text" name="username"><button>注册</button>
+        <br>
+        <span></span>
+    </main>
+    <script>
+        const input = document.querySelector(`[name='username']`)
+        const button = document.querySelector('button')
+        const span = document.querySelector('span')
+
+        // 初始屏蔽词库
+        const banWords = [{
+            type: 'personName',
+            words: ['向军', '圣诞老人', 'Peter Pan']
+        }, {
+            type: 'event',
+            words: ['顿涅茨克', '切尔诺贝利']
+        }]
+
+        // 将屏蔽词放在一个数组中
+        const allWords = banWords.reduce((pre, val) => {
+            pre.push(...val.words)
+            return pre
+        }, [])
+        console.log(allWords)
+
+        // 给将屏蔽词连接成一个大字符串
+        const allWordStrs = allWords.join('|')
+        console.log(allWordStrs)
+
+        // 使用eval将字符串作为变量传进正则表达式中
+        // 在这里需要注意一个问题，见14-7-02
+        // 上个例子中的正则的字面量里的\w和\p在这里，因为放进了一个字符串里
+        // 所以需要再次转义
+        let reg = eval(`/^(?!.*(${allWordStrs}).*)[a-z\\p{sc=Han}][\\w\\p{sc=Han}]{4,10}$/iu`)
+        console.log(reg)
+
+        input.addEventListener('keyup', (e) => {
+
+            console.log(e.target.value)
+            console.log(e.target.value.match(reg))
+            let length = e.target.value.length
+            let state = e.target.value.match(reg)
+
+            if (length > 10 || length < 4) {
+                span.innerHTML = '您的用户名字数不符合规定'
+                span.style.color = 'red'
+            } else {
+                span.innerHTML = ''
+                span.style.color = 'black'
+            }
+
+            button.addEventListener('click', () => {
+                if (state) {
+                    span.innerHTML = '注册成功'
+                    span.style.color = 'black'
+                } else {
+                    span.innerHTML = '您的用户名中包含违规字符'
+                    span.style.color = 'red'
+                }
+            })
+        })
+
+        // 注意如果要匹配汉字，需要开启u模式
+    </script>
+</body>
+
+</html>

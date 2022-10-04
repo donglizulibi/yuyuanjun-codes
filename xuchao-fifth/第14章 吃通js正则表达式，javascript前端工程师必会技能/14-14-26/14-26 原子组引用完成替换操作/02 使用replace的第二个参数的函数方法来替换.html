@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于在replace的第一个参数使用正则，第二个参数使用函数的用法
+        // 见14-4的02-04
+        // 这几个例子的正则中没有原子组，函数只有一个参数 
+
+        let hd = `
+        <h1>houduren</h1>
+    <span>hdcms</span>
+    <h3></h3>
+    <h4>
+        sina.com
+    </h4>`
+
+        // 这里修改一下正则中对于h标签中间内容的匹配
+        // 将([\s\S]*)修改成([\w\s]*([\s\S]*))，实现原子组嵌套原子组
+        // 也就是说，在原子组外面加上一个[\w\s]*，然后再套上一个原子组
+        // 则整个正则中有三个原子组，其编号排序为从左到右的左括号的依次出现顺序
+        // (h[1-6])是第一个，([\w\s]*([\s\S]*))是第二个，([\s\S]*)是第三个
+        let reg = /<(h[1-6])>([\w\s]*([\s\S]*))<\/\1>/gi
+
+        // replace的函数的第一个参数是匹配出来的字符串
+        // 第二个往后的参数表示字符串中对于编号的原子组
+        let res = hd.replace(reg, (p0, p1, p2, p3) => {
+            console.log(p0)
+            console.log(p1)
+            console.log(p2)
+            console.log(p3)
+
+            return `<p>${p2}</p>`
+        })
+
+        console.log(res)
+    </script>
+</body>
+
+</html>

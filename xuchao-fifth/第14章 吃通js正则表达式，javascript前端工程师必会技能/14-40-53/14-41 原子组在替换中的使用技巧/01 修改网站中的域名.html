@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <a id="" class="" href="http://www.hdcms.com">开源系统</a>
+        <a style href='http://houdunren.com'>后盾人</a>
+        <a href="http://yahoo.com">雅虎</a>
+        <h4>http://www.hdcms.com</h4>
+    </main>
+    <script>
+        // 本例有三个a标签一个h4标签一共四个标签
+        // 要求修改和houdunren相关的a标签中的链接
+        // 修改的方式是把http改成https,把没有www的网址加上www
+
+        // 在写这个例子的正则的时候需要注意两点思路
+        // 1 正则不必要匹配整个a标签,因为com及其后面的内容里面没有需要替换的部分 
+        // 2 为了在后面替换的时候方便拼接,正则的每一个部分都需要用原子组包裹起来
+
+        // 另外是几个细节
+        // 1 a标签内部可能会有其他的标签属性,比如id或者class
+        //   所以在a后面到href前面可以用.*来匹配这中间可能有也可能没有的所有字符
+        // 2 href= 后面的引号可能是单引号,也可能是双引号
+        // 3 由于原子组较多,replace第二个参数的函数中的参数可以用展开语法接收
+
+        let main = document.querySelector('main')
+        let reg = /(<a.* href=["'])(https?)(:\/\/)(\w+\.)?(hdcms|houdunren)/ig
+        let hd = main.innerHTML.matchAll(reg)
+
+        for (const iterator of hd) {
+            console.log(iterator)
+        }
+
+        let res = main.innerHTML.replace(reg, (item, ...args) => {
+            console.log(args)
+            args[1] += 's'
+            args[3] = args[3] ? args[3] : 'www.'
+
+            return args.splice(0, 5).join('')
+        })
+
+        console.log(res)
+        main.innerHTML = res
+
+        // 最后有一点需要讨论的是,正则中<a后面为了考虑到其他的标签属性
+        // 使用 .* 来匹配这些可能出现的其他属性,在本例的结果中似乎也没有问题
+        console.log(main.innerHTML.match(reg))
+
+        // 那是因为本例的a标签之间都是换行排布的,而[点]字符就是包括
+        // 除了换行符之外的所有字符,如果有几个a标签写在一列
+        // 可能会出现匹配第一个a标签的左边和最后一个a标签的右边的情况
+        // 所以把.*写成.*?来禁止贪婪会比较好
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // exec是一个正则表达式的方法，因为是正则表达式在前面调用
+        // 首先还是定义一个字符串
+        let hd = "houdunren"
+
+        // 正则表示式子要单独拿一个变量存起来
+        // 如果直接放在console里面，会视为不断创建新的正则
+        // let reg = /\w/
+        let reg = /\w/g
+
+        // 使用exec，开启全局模式和不开启全局模式的区别是
+        // 开启全局模式，多次调用这个这个方法，会迭代下去
+        // 不开启全局模式，只会迭代第一个字符
+
+        // 再来看一下正则表达式的属性lastIndex
+        console.dir(reg) // 这里出现的变量提升
+
+        // 在没有开始迭代之前，lastIndex是0
+        console.log(reg.lastIndex)
+
+        console.log(reg.exec(hd))
+        console.log(reg.exec(hd))
+        console.log(reg.exec(hd))
+
+        console.log(reg.lastIndex) //3
+    </script>
+</body>
+
+</html>

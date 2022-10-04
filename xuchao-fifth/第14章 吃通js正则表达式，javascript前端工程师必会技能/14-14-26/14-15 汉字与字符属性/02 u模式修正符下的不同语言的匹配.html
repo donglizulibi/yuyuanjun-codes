@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 格式是\p{sc=***}，具体的需要查表
+
+        let hd = "Русский язык大家过年好helloworldありがとう한국어"
+
+        // 匹配出英文
+        console.log(hd.match(/\p{sc=Latin}+/ug))
+
+        // 匹配出中文
+        console.log(hd.match(/\p{sc=Han}+/gu))
+
+        // 匹配出俄文
+        console.log(hd.match(/\p{sc=Cyrillic}+/gu))
+
+        // 匹配出日文(平假名)
+        console.log(hd.match(/\p{sc=Hiragana}+/gu))
+
+        // 匹配出韩文
+        console.log(hd.match(/\p{sc=Hangul}+/gu))
+    </script>
+</body>
+
+</html>

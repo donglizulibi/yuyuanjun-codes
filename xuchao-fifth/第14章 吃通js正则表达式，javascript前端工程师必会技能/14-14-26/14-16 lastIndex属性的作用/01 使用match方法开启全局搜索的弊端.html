@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // match方法本质上是一种字符串的方法，因为是字符串在前面调用
+        // 在方法里面把正则表达式放进去作为参数
+
+        // 首先来定义一个字符串
+        let hd = 'houdunren'
+
+        // 设置检索数字字母下划线，先不开启全局模式
+        console.log(hd.match(/\w/))
+
+        // 再开启全局模式
+        console.log(hd.match(/\w/g))
+
+        // 可以发现不开启全局模式检索出的单个字符有比较综合的关于这个字符的信息
+        // 比如这个字符在字符串中的位置和group信息
+
+        // 但是在使用全局搜索之后，只能检索出字符，而没有其他的信息
+        // 如果想改变这一点，可以使用正则表示式的方法
+    </script>
+</body>
+
+</html>

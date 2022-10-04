@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <h1>houdunren</h1>
+        <h3>houdunwang</h3>
+        <h2>hdcms</h2>
+    </main>
+
+    <script>
+        // 在这个例子中，使用exec迭代的方法取到所有标签中的内容
+        let reg = /<(h[1-6])>([\s\S]*?)<\/\1>/ig
+        let str = document.querySelector('main').innerHTML
+        console.log(str)
+
+        let arr = []
+        while (res = reg.exec(str)) {
+            arr.push(res[2])
+        }
+        console.log(arr)
+
+        // 在这里需要注意的是，在写正则方法的时候一定要开启全局匹配
+        // 否则while遍历会始终停留在第一个匹配项，无法结束循环
+    </script>
+</body>
+
+</html>

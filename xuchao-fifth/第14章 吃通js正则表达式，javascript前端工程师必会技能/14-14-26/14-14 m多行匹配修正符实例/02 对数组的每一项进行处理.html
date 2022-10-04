@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个例子的数组结果
+        let hdFilter = ["\n        #1 js,200元 #",
+            "        #2 php,300元 #",
+            "        #12 node.js,180元 #"
+        ]
+
+        // 使用原子表的方法
+        let arr1 = hdFilter.map(item => {
+            return {
+                name: item.split(',')[0].match(/[^\s#\d]+/)[0],
+                price: item.split(',')[1].match(/[^\s#]+/)[0]
+            }
+        })
+        console.log(arr1)
+
+
+        // 使用替换的方法
+        // 注意在这里不要使用^$设定边界
+        let arr2 = hdFilter.map(item => {
+            item = item.replace(/\s+#\d+\s+/, '').replace(/\s+#/, '')
+
+            let [name, price] = item.split(',')
+
+            return {
+                name,
+                price
+            }
+        })
+        console.log(arr2)
+    </script>
+</body>
+
+</html>

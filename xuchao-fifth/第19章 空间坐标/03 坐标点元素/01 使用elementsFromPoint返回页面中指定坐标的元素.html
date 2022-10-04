@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 使用elementsFromPoint返回页面中指定坐标的元素
+        // 输入的坐标在元素块内部，可以找到这个元素块
+        const info = document.elementsFromPoint(100, 100)
+        const info1 = document.elementsFromPoint(199, 199)
+        console.log(info)
+        console.log(info1)
+
+        // 这样就找不到
+        const info2 = document.elementsFromPoint(200, 199)
+        console.log(info2)
+
+        const info3 = document.elementsFromPoint(200, 200)
+        console.log(info3)
+
+
+        // 使用elementFromPoint返回页面中指定坐标上底层的元素
+        const info4 = document.elementFromPoint(200, 200)
+        console.log(info4)
+
+        const info5 = document.elementFromPoint(199, 199)
+        console.log(info5)
+
+        // elementFromPoint返回的是元素对象
+        // elementsFromPoint返回的包含所有符合条件的元素对象的数组
+    </script>
+</body>
+
+</html>

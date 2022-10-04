@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background: #E34334
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="app">houdunren.com</div>
+    </main>
+    <script>
+        class Ad {
+            constructor(options) {
+                this.$el = document.querySelector(options.el)
+                this.$options = Object.assign({
+                    timeout: 2,
+                    step: 1
+                }, options)
+
+                //初始移动方向，1向下/向右 -1 向上/向左
+                this.x = 1
+
+                // 设置定位模式
+                this.$el.style.position = 'fixed'
+                setInterval(this.run.bind(this), this.$options.timeout)
+            }
+
+            //定时回调函数
+            run() {
+                this.$el.style.left = this.left() + 'px'
+            }
+            left() {
+                let {
+                    x,
+                    width
+                } = this.$el.getBoundingClientRect()
+
+                let {
+                    clientWidth
+                } = document.documentElement
+                if (x > clientWidth - width) this.x = -1
+                if (x < 0) this.x = 1
+
+                return x + this.x * this.$options.step
+            }
+
+        }
+
+        new Ad({
+            el: '#app',
+            timeout: 10,
+            step: 1
+        })
+    </script>
+</body>
+
+</html>

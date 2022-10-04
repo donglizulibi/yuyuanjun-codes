@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let test = 'hou'
+        let reg1 = /\w/g
+        console.log(reg1.exec(test))
+        console.log(reg1.exec(test))
+        console.log(reg1.exec(test))
+        console.log(reg1.exec(test)) // null
+
+        let hd = 'houduinre'
+        let reg = /\w/g
+        while (res = reg.exec(hd)) {
+            console.log(res)
+        }
+
+        // 迭代完最后一位之后，res会变成null，结束循环
+
+        // 再试验一种
+        console.log('')
+        let str = 'houdunren'
+        let reg2 = /\w/g
+        for (let i = 0; i < str.length; i++) {
+            console.log(reg2.exec(str))
+        }
+    </script>
+</body>
+
+</html>

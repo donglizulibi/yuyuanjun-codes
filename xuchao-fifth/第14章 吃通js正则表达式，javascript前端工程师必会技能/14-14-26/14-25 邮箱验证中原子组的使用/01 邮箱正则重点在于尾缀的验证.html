@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先来看几种邮箱
+        // 【数字字母下划线短横（一个或多个的）】
+        // 【@符号】
+        // 【数字字母下划线短横（一个或多个的）】【点符号】
+        //  上一条出现一次或多次，所以上面的整体需要用原子组包裹
+        // 【com 或 org 或 cc 或 net 或 cn】 多选项目也要放进原子组
+
+        let reg = /^[\w-]+@([\w-]+\.)+(com|org|cc|cn|net)$/i
+
+        // 以这个邮箱为例，倒数第二个点符号后面的com就放在原子组中进行验证
+        let mail = 'adsf@sina.com.cn'
+
+        console.log(reg.test(mail))
+    </script>
+</body>
+
+</html>

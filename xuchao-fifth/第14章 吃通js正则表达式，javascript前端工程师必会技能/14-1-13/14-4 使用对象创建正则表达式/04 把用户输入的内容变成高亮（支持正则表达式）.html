@@ -18,7 +18,11 @@
             // 那就表示把数字字母下划线都替换掉 
 
         // 2 把用户输入的内容换成正则表达式
-        let reg = new RegExp(con, 'g')
+
+        // let reg = new RegExp(con, 'g')
+        let reg = eval(`/${con}/g`)
+            // 上面两种都可以
+
         console.log(reg) // 如输入123，打印显示 /123/g
 
         // 3 拿到标签的内容

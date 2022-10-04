@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 本例来介绍一下自定义matchAll方法的意义
+
+        // 对于找到所有标签里的内容这个需求
+
+        // 在正则中标签内容使用原子组包裹的情况下
+        // 如果使用match方法，而且不开g全局搜索模式的话
+        // 虽然可以在匹配结果的数组中找到标签的内容
+        // 但是只能匹配出一个标签
+
+        // 如果使用match方法，而且开启g全局搜索模式的话
+        // 可以找到所有标签，但只是所有标签放在一个数组里
+        // 而没有更详细的信息
+
+        // 使用exec迭代的方法可以找到，但是这两节暂时没有提到
+
+        // 上一节是使用matchAll的方法让匹配结果先变成一个迭代对象
+        // 然后可以用for of或者next()遍历循环的方法找到需要的字符
+
+        // 这一节主要是论述在低版本浏览器中没有matchAll方法，又不使用exec的话
+        // 如果使用已有的match方法来自定义一个matchAll方法
+
+        // 首先使用标准的构造函数的方法创建一个字符串
+        let str = new String('asdf')
+        console.log(str)
+        console.log(str.__proto__)
+        console.dir(String.prototype == str.__proto__)
+            // 可以看到str的原型上面右match和matchAll方法
+
+        // 现在在String构造函数原型上添加一个方法
+        String.prototype.matchAllHd = function(reg) {
+
+            // 在方法内部可以用this来指代调用这个方法的对象
+            return this + '-sdfg' + reg
+        }
+
+        console.log(str.matchAllHd('-ccc'))
+    </script>
+</body>
+
+</html>

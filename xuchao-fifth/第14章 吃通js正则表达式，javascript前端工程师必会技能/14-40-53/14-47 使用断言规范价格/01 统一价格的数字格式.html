@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给出下面一个字符串,要求把价格数字中后面没有角分单位的补齐".00"
+        // 注意次数的数字后面不能补 ".00"
+        let lesson = `
+        js,200.00元,300次
+        c,340元,110次,
+        php,300.00元,100次
+        node.js,180元,260次,
+        `
+
+        // 具体的思路就是就是把正则的每一部分都用原子组包裹
+        // 然后在replace的返回值里面进行字符串拼接
+        let reg = /(\d+)(\.00)?(?=元)/ig
+            // console.log(lesson.match(reg))
+
+        for (const key of lesson.matchAll(reg)) {
+            console.log(key)
+        }
+
+        lesson = lesson.replace(reg, (item, ...args) => {
+            console.log(args)
+            args[1] = args[1] ? args[1] : '.00'
+            args.splice(2)
+            return args.join('')
+        })
+
+        console.log(lesson)
+
+        // 这个例子开始的一个错误就是，把正则写成了/.+(\.00)?(?=元)/ig
+        // 这就造成了前面的点符号会匹配到汉字“元”前面的所有字符
+        // 然后就造成了包裹了.00的原子组无法匹配到任何信息
+    </script>
+</body>
+
+</html>

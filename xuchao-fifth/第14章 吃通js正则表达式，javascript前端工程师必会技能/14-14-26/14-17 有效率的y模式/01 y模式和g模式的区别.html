@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = 'udunren'
+
+        // y模式的第一个特点就是，第一个的检索到的字符，就必须符合正则，否则就报null
+
+        let reg1 = /u/g
+        let reg2 = /u/y
+
+        console.log(reg1.exec(hd))
+        console.log(reg1.exec(hd))
+        console.log(reg1.exec(hd))
+
+        console.log(reg2.exec(hd))
+        console.log(reg2.exec(hd))
+            // g模式会把字符串全部遍历一遍，然后匹配出所有的字符
+            // y模式只要找到了就会停止
+    </script>
+</body>
+
+</html>

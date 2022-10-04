@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 横杠两边有空格
+        let hd = '010 - 12321231'
+
+        // 下面两种用\s代替空格或者直接用空格，都是可以的
+        console.log(hd.match(/^\d+ - \d+$/))
+        console.log(hd.match(/^\d+\s-\s\d+$/))
+    </script>
+</body>
+
+</html>

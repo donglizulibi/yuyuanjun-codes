@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 字母开始的用户名的匹配见14-10-03
+        // 数字或者字母使用区别不能降序
+        // 短横在原子表中因为是表示区间符号的关系
+        // 如果需要作为符号出现，要加上转义符号
+
+        let num = '123454'
+        console.log(num.match(/[0-9]+/))
+        console.log(num.match(/\d+/))
+
+        let str = 'asdsafsSDFSADFdf123___4'
+        console.log(str.match(/\w+/i))
+        console.log(str.match(/[a-z_0-9]+/i))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <button>停止</button>
+    <script>
+        class User {
+            constructor(options) {
+                console.log(options)
+                this.$option = Object.assign({
+                    timeout: 10
+                }, options)
+
+                console.log(this.$option.timeout)
+
+                this.id = setInterval(this.run.bind(this), this.$option.timeout)
+
+                this.$btn = document.querySelector(options.el)
+                this.$show = document.querySelector(options.show)
+                this.res = this.add()
+            }
+            run() {
+                this.res++;
+                console.log(this.res)
+                this.$show.innerHTML = this.res
+            }
+            add() {
+                return 1 + 1
+            }
+            stop() {
+                this.$btn.addEventListener('click', () => {
+                    clearInterval(this.id)
+                })
+            }
+        }
+
+        new User({
+            el: 'button',
+            show: '#app',
+            timeout: 200
+        }).stop()
+    </script>
+</body>
+
+</html>

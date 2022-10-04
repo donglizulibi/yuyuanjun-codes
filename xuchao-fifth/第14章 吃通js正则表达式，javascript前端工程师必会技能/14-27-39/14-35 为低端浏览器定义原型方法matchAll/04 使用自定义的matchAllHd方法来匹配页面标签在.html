@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <h1>houdunren</h1>
+        <h3>houdunwang</h3>
+        <h2>hdcms</h2>
+    </main>
+
+    <script>
+        // 注意使用自定义方法的时候，正则要取消全局匹配
+        let reg = /<(h[1-6])>([\s\S]*?)<\/\1>/i
+        let str = document.querySelector('main').innerHTML
+        console.log(str)
+
+        String.prototype.matchAllHd = function(reg) {
+            let res = this.match(reg)
+            console.log(res)
+            if (res) {
+                let str = this.replace(res[0], '^'.repeat(res[0].length))
+                let resArr = str.matchAllHd(reg)
+                return [res, ...resArr]
+            } else {
+                return []
+            }
+        }
+
+        let arr = str.matchAllHd(reg).reduce((pre, val) => {
+            pre.push(val[2])
+            return pre
+        }, [])
+
+        console.log(arr)
+    </script>
+</body>
+
+</html>

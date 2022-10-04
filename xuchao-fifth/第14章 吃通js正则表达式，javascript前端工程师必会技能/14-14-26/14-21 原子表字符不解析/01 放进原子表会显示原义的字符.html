@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先定义一个字符串
+        let hd = "(houdunren).+cc"
+
+        // 定义两组正则，每组内分为放进原子表和不放进原子表两种
+        let reg1 = /()/g
+        let reg2 = /[()]/g
+
+        let reg3 = /.+/g
+        let reg4 = /[.+]/g
+
+        // ()不放进原子组表示原子表，单独出现无法匹配
+        // 放进原子组之后就表示左右括号的符号
+        console.log(hd.match(reg1))
+        console.log(hd.match(reg2))
+
+        // .+不放进原子组表示除换行符外所有字符的贪婪模式
+        // 放进原子组表示. 和 +
+        console.log(hd.match(reg3))
+        console.log(hd.match(reg4))
+
+        // 所以目前来说在原子表内只有-是需要转义的
+    </script>
+</body>
+
+</html>

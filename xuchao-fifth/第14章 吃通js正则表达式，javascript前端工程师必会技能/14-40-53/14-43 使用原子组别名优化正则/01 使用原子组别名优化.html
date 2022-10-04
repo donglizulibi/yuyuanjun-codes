@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <a id="" class="" href="http://www.hdcms.com">开源系统</a>
+        <a style href='http://houdunren.com'>后盾人</a>
+        <a href="http://yahoo.com">雅虎</a>
+        <h4>http://www.hdcms.com</h4>
+    </main>
+    <script>
+        // 本例使用原子组的别名实现网址中的href和内容放在一个数组里面
+
+        let main = document.querySelector('main')
+
+        // 再次重申,使用matchAll需要开启全局g模式
+        let reg = /<a.*?href=(["'])(?<link>.*?)\1>(?<title>[\s\S]*?)<\/a>/ig
+        console.log(main.innerHTML.match(reg))
+
+        const arr = []
+        for (const key of main.innerHTML.matchAll(reg)) {
+            arr.push(key.groups)
+        }
+        console.log(arr)
+
+        // 本例在开始的时候犯了一个错误就是,只写了匹配a标签左边和内容的正则,如下
+        // /<a.*?href=(["'])(?<link>.*?)\1>(?<title>[\s\S]*?)/i
+        // 结果就是无法匹配到a标签里的内容
+
+        // 这是因为当匹配走到a标签左边>字符的之后,后面接着的原子组开启了禁止贪婪
+        // 再后面就结束了正则,那么这个原子组就会按照*的一个或多个的规则,只匹配空字符
+    </script>
+</body>
+
+</html>

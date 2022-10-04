@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = `
+        张三:010-88888888,李四:020-99999999
+        `
+
+        // 原子表的中括号里面放置的内容就表示需要被匹配上的内容
+
+        // 比如这里需要匹配出 “冒号:” “横杠-” “逗号,” 和 “数值”
+        // 就把这四种并列写在原子表中
+        console.log(hd.match(/[\d-,:]/g))
+    </script>
+</body>
+
+</html>

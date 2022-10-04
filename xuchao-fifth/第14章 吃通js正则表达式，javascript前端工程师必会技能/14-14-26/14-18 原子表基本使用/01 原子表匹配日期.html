@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先设置三个日期字符串
+        // 前两个合法，第三个不合法
+        let data1 = '2022-01-01'
+        let data2 = '2022/01/01'
+        let data3 = '2022/01-01'
+
+        // 第一个正则中，匹配斜杠或短横的部分[\/-] 出现两次
+        // 结果第三个不合法的字符串也可以匹配成功
+        let reg1 = /^\d{4}[\/-]\d{2}[\/-]\d{2}$/
+        console.log(data1.match(reg1))
+        console.log(data2.match(reg1))
+        console.log(data3.match(reg1))
+
+        // 第二个正则，先将[\/-]用原子表包裹
+        // 然后用\1代表原子表中的结果，来实现两个位置的匹配结果要一致
+        // 第三个字符串未能通过匹配
+        let reg2 = /^\d{4}([\/-])\d{2}\1\d{2}$/
+        console.log(data1.match(reg2))
+        console.log(data2.match(reg2))
+        console.log(data3.match(reg2))
+    </script>
+</body>
+
+</html>

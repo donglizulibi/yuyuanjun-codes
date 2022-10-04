@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先见14-28中总结了一些重复匹配的符号
+        // 总结来说就是重复匹配默认是会往贪婪的方向
+        // 也就是更多的数量匹配 
+
+        // 现在在这些符号后面加上问号来禁止贪婪
+        let hd = 'hddddd'
+
+        // *
+        let reg1 = /hd*/
+        let reg11 = /hd*?/
+        console.log(hd.match(reg1))
+        console.log(hd.match(reg11))
+
+        // {2,} 至少两个，到无穷多个
+        let reg2 = /hd{2,}/
+        let reg22 = /hd{2,}?/
+        console.log(hd.match(reg2))
+        console.log(hd.match(reg22))
+
+        // +
+        let reg3 = /hd+/
+        let reg33 = /hd+?/
+        console.log(hd.match(reg3))
+        console.log(hd.match(reg33))
+
+        // ? 问号表示零个或一个，默认贪婪往一个匹配
+        // 再加一个问号之后就匹配零个
+        let reg4 = /hd?/
+        let reg44 = /hd??/
+        console.log(hd.match(reg4))
+        console.log(hd.match(reg44))
+    </script>
+</body>
+
+</html>

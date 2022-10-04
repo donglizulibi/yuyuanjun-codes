@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原子组的$取值见14-26
+
+        // 现在有两个电话号码，要求去掉区号两边的括号，并把区号和电话号码之间用短横连接
+        let tel = '(010)3333333 (0231)43243223'
+
+        // 括号需要转义
+        let reg = /\((\d{3,4})\)(\d{7,8})/g
+
+        // 先看一些原子组是否已经匹配好了
+        for (const iterator of tel.matchAll(reg)) {
+            console.log(iterator)
+        }
+
+        // 当把replace和正则联用的时候，replace的第二个参数如果不是函数
+        // 则这个参数里面的（$+数字）就可以表示对应的原子组
+        // 第二个参数$也是要放在一个字符串里
+        console.log(tel.replace(reg, '$1-$2'))
+
+        // 如果需要replace的第二个参数是函数的话
+        console.log(tel.replace(reg, (p0, p1, p2) => {
+            return p1 + '-' + p2
+        }))
+    </script>
+</body>
+
+</html>

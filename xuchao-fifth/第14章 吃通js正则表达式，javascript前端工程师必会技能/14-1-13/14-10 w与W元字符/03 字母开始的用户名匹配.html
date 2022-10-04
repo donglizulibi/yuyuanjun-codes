@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <span></span>
+    <div></div>
+    <script>
+        // 要求以字母开始，后面跟数字字母下划线的总数为5到10位的字符串
+
+        let reg = /^[a-z]\w{4,9}$/
+
+        let input = document.querySelector('input')
+        let span = document.querySelector('span')
+        let div = document.querySelector('div')
+
+        input.addEventListener('keyup', (e) => {
+            let mid = e.target.value.match(reg)
+            span.innerHTML = mid ? '匹配' : '不匹配'
+            span.style.color = mid ? 'blue' : 'red'
+            div.innerHTML = e.target.value.length
+        })
+    </script>
+</body>
+
+</html>

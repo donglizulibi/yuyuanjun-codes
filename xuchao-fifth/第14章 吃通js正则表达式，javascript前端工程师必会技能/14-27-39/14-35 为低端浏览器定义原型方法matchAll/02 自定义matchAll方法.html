@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 由上个例子可知，在不开启g全局匹配的情况下
+        // 使用match进行正则匹配可以显示匹配项的具体信息
+
+        // 则这个自定义的方法实现思路就是不断调用matchAllHd来匹配
+        // 把每一次匹配的项目在自定义方法里，收集到一个数组里面返回出来
+        // 这样就得到了所有的符合条件的字符串及其具体信息
+
+        // 然后就是一些细节问题，比如在第一次使用matchAllHd之后
+        // 在下一次使用matchAllHd之前，需要把此次匹配到的字符串替换成其他字符
+        // 这样就可以避免第一次匹配到的字符串再次参与匹配
+
+        // 关于替换操作，就是把匹配到字符替换成其他字符，在这里选用^字符
+        // 配到的字符可以在匹配结果的数组中找到，然后就需要考虑替换字符的长度问题
+
+        // 为了保证再次使用matchAllHd的时候的index顺序不至于打乱
+        // 替换字符的长度最好和匹配到的字符的长度相同
+
+        String.prototype.matchAllHd = function(reg) {
+            // 先进行匹配，有结果的话就是一个数组，没有的话就是null
+            let res = this.match(reg)
+            console.log(res)
+
+            // 如果是数组的话，进行下面的操作
+            if (res) {
+                // 把初始的字符串进行替换
+                let str = this.replace(res[0], '^'.repeat(res[0].length))
+                console.log(str)
+
+                // 再次使用matchAllHd函数，由于这是一个递归操作
+                // 在符合条件之前会不断返回数组，直到没有符合条件的字符，返回null
+                let resArr = str.matchAllHd(reg)
+                console.log(resArr)
+
+                // 现在需要把返回的数组展开放进最终结果里面，为了保证展开的是有效数组
+                // 需要进行一个判断
+
+                // 如果外部没有else判断，则let resArr = str.matchAllHd(reg)
+                // 在找不到匹配字符的时候，会返回undefined
+                // if (resArr == undefined) {
+                //     resArr = []
+                // }
+
+                return [res, ...resArr]
+            } else {
+                return []
+            }
+
+        }
+        let reg = /u/i
+        let hd = 'houdunren'
+        console.log(hd.matchAllHd(reg))
+    </script>
+
+</body>
+
+</html>

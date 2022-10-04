@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面讲到一种s模式修正符就是把多行换成一行匹配
+        // 现在有i和g模式修正符，是不区分大小写和全局坦贪婪匹配
+
+        // 模式修正符可以多个叠加
+
+        let hd = 'houdunren'
+
+        let hd1 = hd.replace(/u/g, 'U')
+        console.log(hd1)
+
+        let hd2 = hd1.replace(/u/ig, '@')
+        console.log(hd2)
+    </script>
+</body>
+
+</html>

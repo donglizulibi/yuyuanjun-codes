@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先把14-26-01的例子拿过来略作修改
+        // 在原来h3标签下面再加一个h3标签
+        // 在正则中两个h与\h之间匹配的是任意内容
+        // 又因为这个重复匹配的符号*是默认贪婪匹配的
+        // 所以就会出现匹配出第一个h标签的左标签
+        // 和连续相同的h标签中的最后一个的右标签
+
+
+        let hd = `
+        <h1>houduren</h1>
+    <span>hdcms</span>
+    <h3></h3>
+    <h3></h3>
+    <h4>
+        sina.com
+        </h4>`
+
+        let reg = /<(h[1-6])>([\s\S]*)<\/\1>/gi
+
+        while (res = reg.exec(hd)) {
+            console.log(res[2])
+        }
+
+        // 从结果中可以看到，无法达到每个h标签都替换的效果
+        console.log(hd.replace(reg, `<p>$2</p>`))
+    </script>
+</body>
+
+</html>

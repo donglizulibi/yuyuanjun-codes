@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <h1>houdunren</h1>
+        <h3>houdunwang</h3>
+        <h2>hdcms</h2>
+    </main>
+
+    <script>
+        // 在这个例子中，使用matchAll将正则字符串变成一个可以迭代的对象
+
+
+        let reg = /<(h[1-6])>([\s\S]*?)<\/\1>/ig
+        let str = document.querySelector('main').innerHTML
+        console.log(str)
+
+        // 可以观察这个迭代器对象，发现里面只有一个next方法可以运行
+        const hd = str.matchAll(reg)
+        console.log(hd)
+            // console.log(hd.next())
+
+        // 迭代器的使用和遍历的原理见4-22
+
+        // 这里介绍两种迭代的方法，首先是while
+        let arr = []
+        while (({
+                done,
+                value
+            } = hd.next()) && (done === false)) {
+
+            console.log(value)
+            arr.push(value[2])
+        }
+        console.log(arr)
+
+        console.log(hd.next())
+            // 到这里已经不能再迭代，也就不能接着使用for of方法
+    </script>
+</body>
+
+</html>

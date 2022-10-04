@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* main p:nth-of-type(1) {
+            color: aqua;
+        }
+        
+        main p:nth-of-type(2) {
+            color: seagreen;
+        } */
+    </style>
+</head>
+
+<body>
+    <main>
+        <p>
+            后盾人不断分享视频教程,学习后盾人教程提升变成能力,后盾人教程详细全面
+        </p>
+        <p>
+            后盾人不断分享视频教程,学习后盾人教程提升变成能力,后盾人教程详细全面
+        </p>
+    </main>
+    <script>
+        // 首先来一段字符串
+        let p1 = document.querySelector('main p:nth-of-type(1)')
+        let str1 = p1.innerHTML
+
+        // 要求是找到这段字符串中后面接着"教程"两字的后盾人字符
+        // 并加上链接
+
+        // 首先不用断言匹配尝试下
+        let reg1 = /(?<title>后盾人)(?<back>教程)/ig
+        for (const key of str1.matchAll(reg1)) {
+            console.log(key, key.groups, key.index)
+        }
+        p1.innerHTML = str1.replace(reg1,
+            "<a href='https://www.houdunren.com'>$<title></a>$<back>")
+
+        // 再使用断言匹配
+        let p2 = document.querySelector('main p:nth-of-type(2)')
+        let str2 = p2.innerHTML
+
+        let reg2 = /后盾人(?=教程)/ig
+        for (const key of str2.matchAll(reg2)) {
+            console.log(key, key.groups, key.index)
+        }
+
+        p2.innerHTML = str2.replace(reg2,
+            "<a href='https://www.houdunren.com'>$&</a>")
+
+        // 可以看到断言匹配是更简洁的
+        // 断言匹配相当于给出一个放置筛选条件的机制
+        // 表示需要的匹配的字符串的附加,还必须满足这个筛选条件
+        // 才可以匹配成功
+
+        // 本例介绍的就是断言匹配中,在匹配字符串后面放筛选条件的方法
+        // 就是使用(?=***)
+    </script>
+</body>
+
+</html>

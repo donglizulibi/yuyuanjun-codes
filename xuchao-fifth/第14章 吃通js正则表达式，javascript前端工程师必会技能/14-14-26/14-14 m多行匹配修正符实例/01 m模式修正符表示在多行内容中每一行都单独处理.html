@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在有这样一个数据
+        let hd = `
+        #1 js,200元 #
+        #2 php,300元 #
+        #6 houdunren.com # hdcms
+        #12 node.js,180元 #
+        `
+
+        // 有两个要求就是，设置一个正则表达式
+        // 把课程和价格变成[{name:'js',price:'200元'}]的格式
+        // 把第三行不规范的数据过滤掉
+
+        // m模式修正符表示对于多行内容进行单行处理
+        // 如果要达到逐行处理的效果，还是要加上g模式修正符
+        // *元字符表示0个或者多个
+
+        // 设置一个正则表达式
+        // 1 添加^$边界符号，并开启m模式修正符 /^$/m
+        // 2 每一行开头有0个或者多个空白字符  /^\s*$/m
+        // 3 接着是一个#号，加上一个或多个数字  /^\s*#\d+$/m
+        // 4 数字后面接正文，一个或多个空白，接任意字符 /^\s*#\d+\s+.+$/m
+        // 5 后面结尾接一个或多个空白，最后以#结尾 /^\s*#\d+\s+.+\s+#$/m
+        let reg = /^\s*#\d+\s+.+\s+#$/mg
+
+        let hdFilter = hd.match(reg)
+        console.log(hdFilter)
+    </script>
+</body>
+
+</html>

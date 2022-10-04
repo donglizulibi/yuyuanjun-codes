@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面说到过，在正则中放置了多个原子组
+        // 然后在使用replace的时候需要找到原子组的话
+        // 可以依照原子组在正则中出现的顺序，找到对应的编号
+        // 就可以找到对应的原子组
+
+        // 那么当一个正则中原子组非常多，使用编号找非常麻烦的情况下
+        // 也可以给每个原子组命名,命名的方法就是在原子组左边开始的地方
+        // 写上?<***>,在<***>里面就可以放置原子组的名称
+
+        // 在replace里使用$<***>就可以调用这个原子组
+        let hd = `
+        <h1>houdunren</h1>
+        <span>hdcms</span>
+        <h2>houdunwang</h2>
+        <h1>houdunren</h1>
+        `
+
+        // 注意在原子组右边结束的地方加上?来禁止贪婪
+        const reg = /<(h[1-6])>(?<con>[\s\S]*?)<\/\1>/ig
+        console.log(hd.match(reg))
+
+        let str = hd.replace(reg, "<h4>$<con></h4>")
+
+        // 这里出现另一个需要注意的点就是,replace并不会改变原来的字符串
+        // 而是生成一个新的字符串
+        console.log(hd)
+        console.log(str)
+    </script>
+</body>
+
+</html>

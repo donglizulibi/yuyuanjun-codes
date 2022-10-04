@@ -21,7 +21,8 @@
         console.log(/\d+\.\d+/.test(price))
 
         // 上一小节的正则表达式，放到对象里
-        let reg = new RegExp('\d+\.\d+') // 注意，对象里面放正则表达式不需要用双斜杠
+        let reg = new RegExp('\d+\.\d+')
+            // 注意，对象里面放正则表达式不需要在两边包裹斜杠
         console.log(reg.test(price))
 
         //上面的结果显示不通过

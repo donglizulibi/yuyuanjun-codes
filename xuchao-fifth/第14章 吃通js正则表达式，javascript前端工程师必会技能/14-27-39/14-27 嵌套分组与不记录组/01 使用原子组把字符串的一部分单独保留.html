@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = `
+        https://www.houdunren.com
+        `
+
+        let src = 'https://www.baidu.com'
+
+        // 要求匹配之后把域名保留出来
+        // 那么在设置正则表达式的时候可以把域名放进一个原子组里
+
+        let reg = /https:\/\/(w{3}\.\w+\.(com|org|cn))/i
+
+        console.log(hd.match(reg))
+        console.log(src.match(reg))
+            // 则数组的第二个项就是域名
+    </script>
+</body>
+
+</html>

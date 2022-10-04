@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = 'houdurnen 2010'
+
+        // 找到第一个符合条件的字符
+        console.log(hd.match(/\d/))
+
+        // 这个条件是连续四个数字的字符
+        console.log(hd.match(/\d\d\d\d/))
+
+        // 找到所有单个的数字字符
+        console.log(hd.match(/\d/g))
+    </script>
+</body>
+
+</html>

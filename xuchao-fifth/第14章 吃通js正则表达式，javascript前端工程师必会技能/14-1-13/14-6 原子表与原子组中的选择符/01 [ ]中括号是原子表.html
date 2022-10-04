@@ -20,6 +20,10 @@
         // 比如下面把12345五个数值放到一个空括号里
         // 就表示1到5这五个数字都是可供选择的匹配项
         // 匹配的字符串只要是这五个里面的一个就能通过
+        // 这个中括号在正则里面就称为原子表
+
+        // 而如果按照/***/的方式，/12345/则表示被匹配的字符中必须有
+        // 12345整体，才会匹配成功
         let reg = /[12345]/
         console.log(reg)
 
@@ -30,9 +34,11 @@
         console.log(reg.test('5')) // true
         console.log(reg.test('6')) // false
 
+        // 另外介绍一点match的用法
         console.log('1'.match(reg))
         console.log('3'.match(reg))
         console.log('6'.match(reg))
+            // 如果匹配成功就会返回一个数组，如果匹配不成功就返回null
     </script>
 </body>
 

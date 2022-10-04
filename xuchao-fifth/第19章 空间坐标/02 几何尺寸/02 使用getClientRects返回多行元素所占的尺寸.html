@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            width: 200 px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <span>
+        网页很多都是多屏，所以文档尺寸一般大于视口尺寸,当打开控制台后，视口尺寸相应变小。网页很多都是多屏，所以文档尺寸一般大于视口尺寸,当打开控制台后，视口尺寸相应变小。网页很多都是多屏，所以文档尺寸一般大于视口尺寸,当打开控制台后，视口尺寸相应变小。
+    </span>
+    <script>
+        let span = document.querySelector('span')
+        let info = span.getClientRects()
+        console.log(info)
+    </script>
+</body>
+
+</html>

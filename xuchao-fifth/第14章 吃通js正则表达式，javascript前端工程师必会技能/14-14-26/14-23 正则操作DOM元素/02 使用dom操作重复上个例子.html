@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <p>asdf</p>
+    <header>header标题</header>
+    <h2>
+        houdunren
+    </h2>
+    <h3>hdcms</h3>
+    <script>
+        let body = document.querySelector('body')
+        console.log(body.childNodes)
+        console.log(Object.entries(body.childNodes))
+
+
+
+        for (let value of Object.values(body.childNodes)) {
+            console.log(value.nodeName[1])
+
+            // 判断条件，第一位是H，第二位是数字
+            if (value.nodeName[0] == 'H' && (value.nodeName[1].charCodeAt() > 47 && value.nodeName[1].charCodeAt() < 58)) {
+                // if (value.nodeName[0] == 'H' && value.nodeName[1]) {
+                body.removeChild(value)
+            }
+        }
+    </script>
+</body>
+
+</html>

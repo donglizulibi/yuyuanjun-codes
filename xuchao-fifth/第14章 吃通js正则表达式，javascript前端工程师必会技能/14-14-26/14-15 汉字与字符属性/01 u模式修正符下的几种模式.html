@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面以及讲到了
+        // m(对于多行内容进行单行匹配，加上g后可以逐行匹配) 
+        // i(不区分字母大小写) 
+        // g(全局贪婪匹配) 
+        // s(将多行内容整合到一行进行匹配)
+        // 这几种模式修正符
+
+        // 现在来介绍u模式修饰符
+        // 表示可以将一个字符串按照字符的属性进行分类匹配
+        // 格式是\p{***}
+        // 匹配结果放在一个数组中
+
+        // 首先来一个字符串
+        let hd = 'houdunren2010.不断发布教程,加油!88111%%%^^^***ありがとう'
+
+        // L表示匹配所有文字字符，包括中文、英文和日文
+        console.log(hd.match(/\p{L}+/gu))
+
+        // P表示标点符号，这里没有匹配出^^^
+        console.log(hd.match(/\p{P}+/gu))
+
+        // N表示匹配数字
+        console.log(hd.match(/\p{N}+/gu))
+
+        // S表示匹配符号，这里匹配出了^^^
+        console.log(hd.match(/\p{S}+/gu))
+    </script>
+</body>
+
+</html>

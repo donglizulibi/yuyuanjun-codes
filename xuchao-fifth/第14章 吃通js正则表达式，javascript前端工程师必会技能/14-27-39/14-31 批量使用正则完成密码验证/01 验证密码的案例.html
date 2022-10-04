@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="password">
+    <span></span>
+    <script>
+        // 设置一个验证密码的正则，这个验证由多个正则叠加完成
+        // 这个验证要求密码主要由数字字母构成，且必须至少有一个大写字母
+
+        const input = document.querySelector(`[name='password']`)
+        input.addEventListener('keyup', (e) => {
+            console.log(e.target.value)
+            const value = e.target.value
+
+            // 把多个正则表达式放在一个数组里
+            const regArr = [
+                /^[0-9a-z]{5,10}$/i, /[A-Z]/
+            ]
+
+            // 在这里需要注意一个问题就是，多个正则叠加验证字符串
+            // 需要有一个正则的主要的，其他的正则是附加到这个主要正则上面的
+            // 那么前后限定符号就只能加在一个正则上面
+
+            // 另外，对于所有正则来说，单独来验证字符串都应该是可以通过的
+            // 所以在本例中需要有至少一个大写字母，在第一个正则中也应该可以通过
+            // 所以第一个正则需要开启不区分大小写的i模式
+
+            let state = regArr.every(item => {
+
+                return item.test(value)
+            })
+
+            let span = document.querySelector('span')
+            span.innerHTML = state ? '正确' : '错误'
+
+        })
+    </script>
+</body>
+
+</html>

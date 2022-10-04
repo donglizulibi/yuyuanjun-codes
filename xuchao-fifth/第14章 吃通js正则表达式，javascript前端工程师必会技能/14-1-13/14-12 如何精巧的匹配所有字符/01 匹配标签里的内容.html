@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = `
+      <span>
+        houdunren
+        @@@**  
+      </span>
+      `
+
+        // 一种匹配所有字符的方式是用[点]元字符，然后在字面量后面开启s单行显示模式
+        console.log(hd.match(/<span>.+<\/span>/s))
+
+        // 另一种方法就是用一对相斥正则表达式，放在一个原子表里
+        console.log(hd.match(/<span>[\d\D]+<\/span>/))
+        console.log(hd.match(/<span>[\S\s]+<\/span>/))
+    </script>
+</body>
+
+</html>

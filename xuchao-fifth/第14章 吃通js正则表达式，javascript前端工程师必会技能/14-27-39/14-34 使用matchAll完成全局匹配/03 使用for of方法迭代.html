@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <h1>houdunren</h1>
+        <h3>houdunwang</h3>
+        <h2>hdcms</h2>
+    </main>
+
+    <script>
+        let reg = /<(h[1-6])>([\s\S]*?)<\/\1>/ig
+        let str = document.querySelector('main').innerHTML
+        console.log(str)
+
+        const hd = str.matchAll(reg)
+        console.log(hd)
+
+        // 其次是for of方法
+        let arr = []
+        for (const iterator of hd) {
+            console.log(iterator)
+            arr.push(iterator[2])
+        }
+        console.log(arr)
+    </script>
+</body>
+
+</html>

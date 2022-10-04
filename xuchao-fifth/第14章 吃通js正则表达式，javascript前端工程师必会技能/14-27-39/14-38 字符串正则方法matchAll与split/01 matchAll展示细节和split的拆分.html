@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = `
+        https://www.houdurnen.com
+        https://houdunren.com
+        http://www.sina.com.cn
+        `
+
+        // 如果正则中有原子表不需要记录可以设置不记录
+        let reg = /https?:\/\/(?:\w+\.)?(?:\w+\.)+(?:com|cn|org|cc)/ig
+
+        for (const iterator of hd.matchAll(reg)) {
+            console.log(iterator)
+        }
+
+
+        // 在字符串方法split中可以使用正则
+        let data1 = '2022/01/01'
+        let data2 = '2022-01-01'
+
+        // 在原子表里面 斜杠/不需要转义
+        let regdata = /[/-]/
+        console.log(data1.split(regdata))
+        console.log(data2.split(regdata))
+    </script>
+</body>
+
+</html>

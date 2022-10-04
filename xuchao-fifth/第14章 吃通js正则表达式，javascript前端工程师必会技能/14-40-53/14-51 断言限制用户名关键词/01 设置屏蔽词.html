@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <input type="text" name="username">
+    </main>
+    <script>
+        // 需求是用户名中不能出现向军两个字，用户名需要是四到六位数字字母下划线
+        // 另外的要求，必须以字母或汉字开始
+
+        // 设置正则的思路是，在开始之后设置断言匹配
+
+        // 这里涉及到一个断言匹配的技巧，假如需要在一个字符串中的任何位置都不出现某个字符
+        // 可以把断言匹配中的条件里的字符前后都加上零个或多个任意字符
+
+        const input = document.querySelector(`[name='username']`)
+        let reg = /^(?!.*向军.*)[a-z\p{sc=Han}][\w\p{sc=Han}]{3,5}$/iu
+        console.log(reg)
+        input.addEventListener('keyup', (e) => {
+
+            console.log(e.target.value)
+            console.log(e.target.value.match(reg))
+        })
+
+        // 注意如果要匹配汉字，需要开启u模式
+    </script>
+</body>
+
+</html>

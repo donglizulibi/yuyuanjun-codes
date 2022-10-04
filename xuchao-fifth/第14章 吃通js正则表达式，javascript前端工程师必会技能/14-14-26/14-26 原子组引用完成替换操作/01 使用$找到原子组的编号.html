@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 设置一个字符串，要求把里面的h标签都换成p标签
+        let hd = `
+        <h1>houduren</h1>
+    <span>hdcms</span>
+    <h3></h3>
+    <h4>
+        sina.com
+    </h4>`
+
+        // 操作的思路是匹配h标签，对h标签的内容用一个原子组包裹
+        // 然后把匹配出来的h标签换成p标签加上包裹原子组内容
+        // 在这里h标签中间的内容就是[\s\S]*
+
+        let reg = /<(h[1-6])>([\s\S]*)<\/\1>/gi
+
+        // 使用迭代的方法先看一下编号为2的原子组，也就是h标签的内容 
+        while (res = reg.exec(hd)) {
+            console.log(res[2])
+        }
+
+        // 然后就是replace和$选取原子组的联用
+        console.log(hd.replace(reg, `<p>$2</p>`))
+    </script>
+</body>
+
+</html>

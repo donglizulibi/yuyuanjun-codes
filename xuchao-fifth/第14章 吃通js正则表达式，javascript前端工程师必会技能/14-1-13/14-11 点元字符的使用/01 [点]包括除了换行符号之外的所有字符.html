@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先定义一个包含换行符和空格的字符串
+        let hd = `
+        houdunren
+        hdcms
+        `
+
+        console.log(hd.match(/.+/))
+            // 只能找到第一个houdunren字符
+
+        console.log(hd.match(/.+/s))
+            // s放在字面量后面表示单行显示的模式
+            // 换行符会变成\n，在单行模式下是可以被匹配出来的
+
+        console.log('\n'.match(/./s))
+
+        console.log(hd.match(/.+/g))
+            // g表示全局匹配模式，匹配出三个结果
+    </script>
+</body>
+
+</html>

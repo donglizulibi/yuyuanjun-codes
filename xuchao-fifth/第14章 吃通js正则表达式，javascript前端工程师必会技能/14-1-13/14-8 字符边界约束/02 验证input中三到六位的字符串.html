@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="user">
+    <span></span>
+    <script>
+        // 另一种^$的描述方式就是要求被匹配的字符串的整体是符合正则规则的
+        // 而不是字符串中的一部分符合
+
+        document.querySelector("[name='user']")
+            .addEventListener('keyup', (e) => {
+                console.log(e.target.value)
+                let mid = e.target.value.match(/^[a-z]{3,6}$/)
+                console.log(mid)
+                document.querySelector('span').innerHTML =
+                    mid ? "输入正确" : "输入错误"
+            })
+    </script>
+</body>
+
+</html>

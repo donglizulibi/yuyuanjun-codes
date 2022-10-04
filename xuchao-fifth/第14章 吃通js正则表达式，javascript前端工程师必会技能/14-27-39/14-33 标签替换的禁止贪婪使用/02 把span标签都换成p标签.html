@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <span>hoduurnen</span>
+        <span></span>
+        <span>
+            hdcms
+        </span>
+    </main>
+    <script>
+        // 要求
+        // 把页面中的span标签都换成p标签，并使字体变红，在标签内文本前面都加上后盾人
+
+        // 接着上一个例子，如果遇到连续相同的标签，需要把每个标签都匹配出来
+        // 就需要禁止贪婪，只要正则找到了最近的一个符合条件的字符串就记录下来
+
+        let main = document.querySelector('main')
+        console.log(main.innerHTML)
+
+        let reg = /<span>([\s\S]*?)<\/span>/ig
+
+        main.innerHTML = main.innerHTML.replace(reg, (item, p1) => {
+            console.log(item)
+            console.log(p1)
+            return `<p style='color:red'>后盾人-${p1}</p>`
+        })
+
+        // 这里再论述一下是否禁止贪婪和是否开启g模式全局匹配的区别
+        // 开启g模式全局匹配是关于“找到了一个以后要不要继续找的问题”
+        // 而是否禁止贪婪是关于“如果定义已经这就算一个的问题”
+    </script>
+</body>
+
+</html>

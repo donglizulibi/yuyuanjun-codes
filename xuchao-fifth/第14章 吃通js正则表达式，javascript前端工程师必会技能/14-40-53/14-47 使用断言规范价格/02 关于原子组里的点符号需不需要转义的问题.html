@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先设置一个字符串，这个字符串的点符号在字符串的中间
+        let hd = 'houd.dund.com'
+        let reg1 = /(\w{4}.+)\w*/i
+        let reg2 = /(\w{4}\.+)\w*/i
+
+        console.log(hd.match(reg1))
+        console.log(hd.match(reg2))
+            // 从这个结果可以看到，第一个正则原子组中的点符号没有转义
+            // 所以把整个字符串都匹配出来了
+            // 而第二个正则原子组里的点符号转义了，就只是匹配点符号
+
+        // 再来一个字符串，点符号在字符串的前面
+        let str = '.houd.dunc.com'
+        let reg3 = /(.+\w{4})\w?/i
+        let reg4 = /(\.+\w{4})\w?/i
+
+        console.log(str.match(reg3))
+        console.log(str.match(reg4))
+            // 结果显示，点符号不加转义，即使是放在原子表前面
+            // 也不能只表示点符号本身
+
+        // 结论就是，在原子表中如果要单纯表示点符号，都要加转义
+    </script>
+</body>
+
+</html>

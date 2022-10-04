@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let hd = `
+        https://www.houdunren.com
+        `
+
+        let reg = /https:\/\/(w{3}\.\w+\.(?:com|org|cn))/i
+
+        // 在域名尾缀的原子组中添加?:之后，匹配结果的数组中不会记录这个原子组
+        console.log(hd.match(reg))
+
+        // 在使用?:之后，原子组也会失去编号，$1 \1都会失效
+    </script>
+</body>
+
+</html>

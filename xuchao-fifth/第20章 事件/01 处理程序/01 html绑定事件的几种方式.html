@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="alert(`houdunren.com`)">后盾人</button>
+    <button onclick="show()">后盾人</button>
+    <input type="text" onkeyup="HD.show()">
+    <button onclick="render(this,'houdunren','hdcms','向军大叔',event)">后盾人</button>
+    <script>
+        function show() {
+            alert('houdunren.com')
+        }
+
+        class HD {
+            static show() {
+                console.log('houdunren')
+            }
+        }
+
+        function render(...args) {
+            console.log(args)
+        }
+    </script>
+</body>
+
+</html>

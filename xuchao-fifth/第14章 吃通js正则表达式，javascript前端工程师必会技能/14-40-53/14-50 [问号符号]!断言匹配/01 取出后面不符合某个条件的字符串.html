@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 假如有一个字符串，希望可以取出后面不是数字的字符串
+
+        // 首先来看一个正则，/[a-z]+(?!\d)/i
+        // 如果不加上结尾限定的话，就表示匹配出后面接的字符不是数字
+        // 那么会匹配出houdunre，因为后面接的字符是n，不是数字
+
+        // 修改这个正则变成/[a-z]+(?![a-z\d])/i，即可满足条件
+        // 也就是匹配出来的字符的后接字符不是数字也不是字母
+
+
+        let hd = 'houdunren2010hdcms'
+        let reg = /[a-z]+(?![a-z\d])/i
+        console.log(hd.match(reg))
+    </script>
+</body>
+
+</html>

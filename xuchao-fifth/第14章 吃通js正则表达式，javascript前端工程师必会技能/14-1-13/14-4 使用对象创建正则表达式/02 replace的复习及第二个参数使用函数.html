@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // replace的基本用法
+        // 先定义一个字符串
+        let a = 'abc'
+        console.log(a.replace("b", "bb"))
+            // 即把abc换成abbc
+
+
+        // 把一个数字字符串中数值3加1
+        // 使用replace第二个参数中的函数
+        let numStr = '23232323'
+        let numStrPlusOne = numStr.replace(/3/g, item => {
+            item = item * 1 + 1
+            console.log(item)
+            return item
+        })
+
+        console.log(numStrPlusOne)
+
+        // 这里有几个区别
+        // 如果只写一个replace第一个参数只写一个3，则只会替换第一个出现的3数值
+        // 如果写/3/，和上面的结果是一样的
+        // 只有/3/g才会匹配到所有的数值3
+    </script>
+</body>
+
+</html>

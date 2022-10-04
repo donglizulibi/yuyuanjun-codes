@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+
+    </div>
+    <script>
+        // 网页很多都是多屏（通过滚动条显示看不见的内容），所以文档尺寸一般大于视口尺寸
+        // 视口尺寸不包括浏览器工具条、菜单、标签、状态栏等
+        // 当你打开控制台后，视口尺寸就相应变小了
+        // position 使用文档定位，fixed 使用视口定位
+        // 文档坐标在页面滚动时不发生改变
+        // 视口坐标的操作需要考虑滚动条的位置
+
+
+        console.log(window.innerHeight)
+        console.log(window.innerWidth)
+
+        console.log(document.documentElement.clientHeight)
+        console.log(document.documentElement.clientWidth)
+    </script>
+</body>
+
+</html>

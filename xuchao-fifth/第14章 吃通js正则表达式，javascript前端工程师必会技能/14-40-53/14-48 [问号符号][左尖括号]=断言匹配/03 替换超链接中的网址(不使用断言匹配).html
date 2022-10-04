@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <a href="https://baidu.com">百度</a>
+        <a href="https://yahoo.com">雅虎</a>
+    </main>
+    <script>
+        let main = document.querySelector('main')
+        let reg = /(<a.+)(['"])(https:\/\/)(?<url>.+)(\2)/ig
+        console.log(main.innerHTML)
+
+        console.log(main.innerHTML.match(reg))
+
+        // main.innerHTML = main.innerHTML.replace(reg, `$1$2$3houdunren.com$5`)
+
+        // 或者使用replace函数方法
+        const res = main.innerHTML.replace(reg, (item, ...args) => {
+            console.log(args)
+            args[3] = 'houdunren.com'
+            let arr1 = args.splice(0, 5)
+            return arr1.join('')
+        })
+        console.log(res)
+        main.innerHTML = res
+    </script>
+</body>
+
+</html>

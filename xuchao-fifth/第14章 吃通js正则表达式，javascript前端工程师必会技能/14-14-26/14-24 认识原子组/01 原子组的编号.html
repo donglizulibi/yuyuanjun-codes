@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先是上一个小节的例子
+        let hd = `
+        <h2></h2>
+        <h1>houdunren</h1>
+    <h3>
+        hdcms
+    </h3>    
+        `
+
+        // 这个正则匹配的原则还是把双标签的左边部分用一个原子组包裹起来
+        // 然后右边用这个原子组出现的序号表示，右边这个序号所占位的地方
+        // 就是前面原子组的内容
+
+        // 先定义一个正则，不开启全局模式 
+        let reg1 = /<(h[1-6])>[\s\S]*<\/\1>/ig
+        console.log(hd.match(reg1))
+            // 会把所有的符合条件的字符串都匹配出来
+
+        let reg2 = /<(h[1-6])>[\s\S]*<\/\1>/i
+        console.log(hd.match(reg2))
+            // 当不开启全局模式的时候，只会匹配出第一个符合条件的字符串
+            // 匹配结果会放在一个数组中，原子组中的内容也会成为数组中的项目
+            // 而且原子组在数组中的位置就是该原子组的编号
+            // 在这里groups没有定义，是因为还没有为原子组设置别名
+    </script>
+</body>
+
+</html>

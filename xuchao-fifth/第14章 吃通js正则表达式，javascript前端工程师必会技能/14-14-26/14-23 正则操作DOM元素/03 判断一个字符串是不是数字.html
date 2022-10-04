@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str1 = '1'
+        let str2 = 'd'
+
+        // 首先，不能使用typeof，因为都会显示true
+        console.log(typeof parseInt(str1) == 'number')
+        console.log(typeof parseInt(str2) == 'number')
+
+        // isNaN方法,注意还有取一下反
+        console.log(!isNaN(parseInt(str1)))
+        console.log(!isNaN(parseInt(str2)))
+
+        // Number方法
+        console.log(!isNaN(Number(str1)))
+        console.log(!isNaN(Number(str2)))
+
+        // ASCII的charCodeAt方法
+        console.log(str1.charCodeAt() > 47 && str1.charCodeAt() < 58)
+        console.log(str2.charCodeAt() > 47 && str2.charCodeAt() < 58)
+    </script>
+</body>
+
+</html>

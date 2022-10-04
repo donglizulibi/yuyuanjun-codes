@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个例子介绍了在replace和正则联用且replace第二个参数不使用函数的情况下
+        // 使用（$+数字）指代原子组的操作
+
+        // 本例的讨论范围仍然是在相同的情况的三种指代方式
+        // $` $符号加上`模板字符串的符号，表示匹配字符或字符串在原字符串中
+        //    前面一个字符
+        // $' $符号加上一个单引号'，表示匹配后面一个字符
+        // $& $符号加上&连接符，表示匹配字符或字符串本身
+
+        // 这些操作放在replace第二个参数里的时候也要放在一个字符串里面
+
+        // 现在定义一个字符串，要求把字符串左右两边的符号都重复写一次
+        let hd = '-houdunren='
+
+        // 先设置一个正则，只匹配一个字母
+        let reg = /[a-z]/i
+        console.log(hd.replace(reg, "$&"))
+            // 显示原字符串
+        console.log(hd.replace(reg, "$`"))
+            // 匹配到第一个字母h，把h左边的-替换到h的位置
+        console.log(hd.replace(reg, "$'"))
+            // 匹配到第一个字母h，把h右边的oudunren=放在h的位置
+
+        // 再来实现一下本例的要求
+        let reg1 = /[a-z]+/i
+        console.log(hd.replace(reg1, "$`$`$&$'$'"))
+    </script>
+</body>
+
+</html>

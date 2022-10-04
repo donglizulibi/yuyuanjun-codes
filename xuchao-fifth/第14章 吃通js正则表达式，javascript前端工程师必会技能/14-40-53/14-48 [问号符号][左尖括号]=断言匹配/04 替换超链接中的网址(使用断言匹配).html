@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <a href="https://baidu.com">百度</a>
+        <a href="https://yahoo.com">雅虎</a>
+    </main>
+    <script>
+        let main = document.querySelector('main')
+
+        // 这个正则前后都有断言匹配
+        let reg = /(?<=href=(['"]))(.+)(?=\1)/ig
+
+        console.log(main.innerHTML.match(reg))
+        main.innerHTML = main.innerHTML.replace(reg, 'https://houdunren.com')
+    </script>
+</body>
+
+</html>

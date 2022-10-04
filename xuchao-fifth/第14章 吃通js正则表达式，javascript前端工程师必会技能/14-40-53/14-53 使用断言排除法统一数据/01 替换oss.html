@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <a href="https://www.houdunren.com/1.jpg">1.jpg</a>
+        <a href="https://oss.houdunren.com/2.jpg">2.jpg</a>
+        <a href="https://cdn.houdunren.com/3.jpg">3.jpg</a>
+        <a href="https://houdunren.com/4.jpg">4.jpg</a>
+    </main>
+    <script>
+        // 要求把超链接中https:// 后面全部换成或添加oss
+        const main = document.querySelector('main')
+
+        let reg = /https:\/\/(\w+)?(?<!oss)\..+?(?=\/)/ig
+        console.log(main.innerHTML.match(reg))
+
+        main.innerHTML = main.innerHTML.replace(reg, v => {
+            return 'https://oss.houdunren.com'
+        })
+    </script>
+</body>
+
+</html>
