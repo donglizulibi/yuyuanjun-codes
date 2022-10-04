@@ -10,6 +10,10 @@
 
 <body>
     <script>
+        // 上个例子演示了在页面中使用script标签直接引入模块的做法
+        // 这个例子尝试封装一个引入模块的函数
+        // 直接在这个函数里面创建script标签，然后放在body标签里面
+
         function load(src, resovle) {
             let script = document.createElement('script')
             console.dir(script)
@@ -38,7 +42,8 @@
 
         console.log('index.html')
 
-        // 在这个例子中，js主线程遇到加载文件的操作，就会把相关部分放到加载文件模块里
+        // 在这个例子中，js主线程遇到加载文件的操作
+        // 就会把相关部分放到加载文件模块里
         // 然后等主线程的任务都执行完了，在这里就是打印index.html执行完了
         // 才会去任务队列里找加载文件模块执行的结果，也就是打印链接加载成功
     </script>

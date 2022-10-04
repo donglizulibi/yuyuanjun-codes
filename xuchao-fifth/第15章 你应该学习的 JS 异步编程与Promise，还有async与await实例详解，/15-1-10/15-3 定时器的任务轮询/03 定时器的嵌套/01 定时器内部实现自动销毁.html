@@ -24,27 +24,39 @@
         // 实现定时器的自动销毁
 
         let div = document.querySelector('div')
+
+        // 这里使用了slice字符串方法，不改变原字符串，返回的是截走的一部分
+        // slice第二个参数填负数，表示截到倒数第几位为止
+
         let left = window.getComputedStyle(div).left.slice(0, -2) * 1
         console.log(left)
 
         let id = setInterval(() => {
-            console.log(id)
+            console.log('定时器中的id', id)
             left += 10
             div.style.left = left + 'px'
             if (left >= 200) {
-                console.log(id)
+                console.log('if中的id', id)
                 clearInterval(id)
             }
         }, 100);
 
-        console.log('页面', id) // 这个id是最先打印的
+        console.log('页面中的id', id) // 这个id是最先打印的
         console.log(typeof id)
 
-        // 这个例子中打印了三次id，第一次打印的是页面的id
+        console.time('for')
+        for (let i = 0; i < 2000000000; i++) {}
+        console.timeEnd('for')
+
+        // 这个例子中三个位置的id先后顺序为
+
+        // 第一出现的id是页面的id
         // 因为js顺序往下执行，碰到了定时器之后就把定时器放到了浏览器的定时器模块
         // 这里也可以说明，id这个变量在js去轮询事件队列之前就已经有了
 
-        // 然后是定时器内部的打印id，而在清除定时器的if语句里面的id
+        // 第二出现的是定时器内部的打印id，往后每个定时器间隔都会打印一次
+
+        // 第三出现的在清除定时器的if语句里面的id
         // 要等符合if条件才会打印
     </script>
 </body>

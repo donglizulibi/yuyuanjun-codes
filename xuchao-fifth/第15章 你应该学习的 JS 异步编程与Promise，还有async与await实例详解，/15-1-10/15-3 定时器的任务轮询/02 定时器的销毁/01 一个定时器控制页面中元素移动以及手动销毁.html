@@ -24,16 +24,17 @@
         // 要求设置一个定时器来控制页面中元素块的移动
         // 当点击销毁按钮后，就销毁这个定时器
 
-        let div = document.querySelector('div')
+        let divNode = document.querySelector('div')
 
 
         let id = setInterval(() => {
             // 在这里就需要先拿到元素块的初始左边距
-            let left = parseInt(window.getComputedStyle(div).left)
-            div.style.left = left + 10 + 'px'
+
+            let left = parseInt(window.getComputedStyle(divNode).left)
+            divNode.style.left = left + 10 + 'px'
             console.log(left)
 
-        }, 100)
+        }, 100);
 
         document.querySelector('button').addEventListener('click', () => {
             clearInterval(id)

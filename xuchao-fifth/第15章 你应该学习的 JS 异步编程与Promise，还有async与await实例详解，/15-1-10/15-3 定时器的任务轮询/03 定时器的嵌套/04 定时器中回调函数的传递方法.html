@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <button onclick="id1_Func()">开始id1定时器</button>
+    <button name="id1">停止id1定时器</button>
+    <hr>
+    <button onclick="id2_Func()">开始id2定时器</button>
+    <button name="id2">停止id2定时器</button>
+    <hr>
+    <button onclick="id3_Func()">开始id3定时器</button>
+    <button name="id3">停止id3定时器</button>
+    <script>
+        // 关于上个例子的定时器中传递回调函数的方法，本例做一个分析
+        // 给出四种可能性
+
+
+        let button = document.querySelector('button')
+
+        let callback = (val) => {
+            console.log('这里是callback定时器')
+            console.log(val)
+        }
+
+        // 第一种传递回调方法的方式
+        // 用回调函数代替定时器第一个参数箭头函数的{}
+        function id1_Func() {
+            let id1 = setInterval(() => callback('id1'), 200)
+
+            console.log(id1)
+            document.querySelector(`[name='id1']`)
+                .addEventListener('click', () => {
+                    clearInterval(id1)
+                })
+        }
+
+        // 第二种方式，用回调函数完全代替定时器的第一个参数
+        function id2_Func() {
+            let id2 = setInterval(callback('id2'), 200)
+            console.log(id2)
+
+            document.querySelector(`[name='id2']`)
+                .addEventListener('click', () => {
+                    clearInterval(id2)
+                })
+        }
+
+        // 第三种方式，把回调函数放到第一个参数回调函数的方法体里面
+        function id3_Func() {
+            let id3 = setInterval(() => {
+                callback('id3')
+            }, 200)
+
+            document.querySelector(`[name='id3']`)
+                .addEventListener('click', () => {
+                    clearInterval(id3)
+                })
+        }
+
+        // 这种直接把函数放进去构成连续的箭头函数是不行的
+        // let id4 = setInterval(() =>()=>{}, 200)
+
+        // 第二种方式只会点一次执行一次，失去了回调函数的效果
+    </script>
+</body>
+
+</html>
