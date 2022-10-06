@@ -12,8 +12,12 @@
     <button>按键</button>
     <script>
         // 在promise之后，会有一个后续的动作来对应成功或者失败
+        // 比如promise里面的操作成功了就执行成功后的操作
+        // 失败了就执行失败以后的操作
         // 这些动作就放在.then函数里
 
+        // 在这里设置一个状态，点击按钮使状态发生改变
+        // 让promise在成功和失败之间切换
         let status = 2
         document.querySelector('button').addEventListener('click', () => {
             status == 1 ? status = 2 : status = 1
@@ -25,6 +29,7 @@
                     reject('拒绝状态')
                 }
             }).then((value) => {
+                console.log('value:', value) // 显示resovle里的字符串
                 console.log('操作成功后执行的动作')
             }, (reason) => {
                 console.log('操作失败后执行的动作')
@@ -33,7 +38,8 @@
             console.log(promise)
         })
 
-        // then的第一个参数写的回调函数表示操作成功后执行的动作
+        // then里面有两个参数，两个参数都是放入回调函数
+        // 第一个参数写的回调函数表示操作成功后执行的动作
         // 第二个回调函数表示操作失败后执行的动作
     </script>
 </body>

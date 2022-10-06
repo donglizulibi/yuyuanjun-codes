@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 再把宏任务也加上
+        setTimeout(() => {
+            console.log('setTimeout')
+        }, 0);
+
+        new Promise(resolve => {
+            resolve('成功')
+            console.log('promise')
+        }).then(value => {
+            console.log('调用then成功')
+        })
+
+        console.log('houdunren')
+
+        // 所以在这里的执行顺序是
+        // 1 打印promise （同步执行，先出现）
+        // 2 打印houdunre （同步执行，后出现）
+        // 3 打印调用then成功（微任务队列）
+        // 4 打印setTimeout（宏任务队列）
+    </script>
+</body>
+
+</html>

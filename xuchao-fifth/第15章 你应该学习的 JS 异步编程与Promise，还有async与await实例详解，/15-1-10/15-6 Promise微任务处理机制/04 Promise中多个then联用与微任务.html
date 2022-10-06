@@ -9,35 +9,37 @@
 </head>
 
 <body>
+    <button>按键</button>
     <script>
         let status = 2
+        let button = document.querySelector('button')
 
-        // then的第一个参数写的回调函数表示操作成功后执行的动作
-        // 第二个回调函数表示操作失败后执行的动作
-
-        console.log(new Promise((resovle, reject) => {
+        button.addEventListener('click', function() {
+            status == 1 ? status = 2 : status = 1
+            let promise = new Promise((resovle, reject) => {
                 // 
                 if (status == 1) {
                     resovle('操作成功')
                 } else {
                     reject('拒绝状态')
                 }
-            })
-
-            .then((value) => {
+            }).then((value) => {
                 console.log('操作成功后执行的动作 1')
             }, (reason) => {
                 console.log('操作失败后执行的动作 1')
-            })
-
-            .then(value => {
+            }).then(value => {
                 console.log('操作成功后执行的动作 2')
             }, reason => {
                 console.log('操作失败后执行的动作 2')
-            }))
+            })
+
+            console.log(promise)
+        })
 
         // Promise还有一个任务队列，成为微任务队列
         // 或者说每个宏任务下面都有一个微任务队列
+
+        // 可以先粗糙地理解，.then里面的就是微任务队列
 
         // 每个宏任务在执行的时候也会把一些任务放到其他模块执行
         // 其他模块执行完之后会放到微任务队列中等待主线程轮询

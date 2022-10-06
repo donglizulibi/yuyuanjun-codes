@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Promise调用then之后就把其中的操作结果放进微任务队列
+        // 由上一节可知，Promise实例化对象中需要调用resolve或者reject
+        // 才能调用.then里面的操作
+
+        new Promise(resolve => {
+            resolve('成功')
+            console.log('promise')
+        }).then(value => {
+            console.log('调用then成功')
+        })
+
+        console.log('houdunren')
+
+        // 所以在这里的执行顺序是
+        // 1 打印promise （同步执行，先出现）
+        // 2 打印houdunre （同步执行，后出现）
+        // 3 打印调用then成功（微任务队列）
+    </script>
+</body>
+
+</html>

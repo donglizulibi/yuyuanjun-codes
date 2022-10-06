@@ -15,15 +15,16 @@
         console.log(new Promise(() => {}))
         console.log(new Promise((resovle, reject) => {}))
 
-        // 当准备阶段接受之后，会出现两种可能的结果，一种的成功了，一种是失败了
+        // 当准备阶段结束之后，会出现两种可能的结果
+        // 一种的成功了，一种是失败了
         // 成功了就调用resovle，失败了就调用reject
 
         // 如果在promise中调用了resovle
         // PromiseState为fulfilled
         // PromiseResult: "成功状态"
         console.log(new Promise((resovle, reject) => {
-            resovle('成功状态')
-                // resovle('')
+            // resovle('成功状态')
+            resovle('')
         }))
 
         // 调用了reject
@@ -33,6 +34,14 @@
             reject('失败状态')
                 // reject('')
         }))
+
+        console.log(123)
+            // 其中，resovle或者reject里面传入的字符串参数
+            // 就是PromiseResult里面的值
+            // 如果后面接上.then
+            // 这个字符串就会成为.then两个回调函数的参数传入的实参
+
+
 
         // 具体调用哪个会根据内部的判断标准来判定
     </script>

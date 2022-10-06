@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        new Promise(resolve => {
+            console.log('promise')
+        })
+
+        console.log('houdunren')
+
+        // 实例化Promise对象的时候，如果不加.then
+        // 其内部的操作也是同步执行的，并没有什么操作是放在任务队列里面的
+        // 所以在打印houdunren前面
+    </script>
+</body>
+
+</html>

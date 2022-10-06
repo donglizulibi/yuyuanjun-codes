@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 由前面关于定时器的例子可知，js主线程在往下执行的时候
+        // 碰到定时器，会把里面操作放进定时器模块，然后继续往下执行
+
+        // 而定时器模块在执行结束之后，会把结果放在任务队列里
+        // 等待主线程处理完页面的操作的时候，再去任务队列里取
+        setTimeout(() => {
+            console.log('setTimeout')
+        }, 0);
+
+        console.log('houdunren')
+
+        // 所以这个例子中，虽然定时器的定时是0，但是执行结果还是在页面打印之后
+    </script>
+</body>
+
+</html>

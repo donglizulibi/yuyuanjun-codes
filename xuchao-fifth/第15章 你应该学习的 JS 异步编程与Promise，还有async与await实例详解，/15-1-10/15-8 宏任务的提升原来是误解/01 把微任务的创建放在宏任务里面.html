@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面的例子已经讲到
+        // 如果Promise实例化对象里面不调用resolve或者reject
+        // .then里面的方法就不会执行，也就没有微任务产生
+
+        new Promise(resolve => {
+            setTimeout(() => {
+                console.log('setTimeout 1')
+                resolve('')
+                console.log('setTimeout 1')
+            }, 0)
+
+            console.log('promise')
+        }).then(value => {
+            console.log('调用then成功')
+        })
+
+        console.log('houdunren')
+
+        // 这里的执行顺序是
+        // js主线程进入Promise实例化对象内部
+        // 先碰到了一个定时器，交给定时器模块，继续往下执行
+
+        // 在Promise实例化对象内部打印promise （同步执行）
+        // 打印houdunren（同步执行，后出现）
+
+        // 此时js主线程发现页面中没有了同步执行的代码，于是去遍历任务队列
+        // 而定时器模块已经把操作结果放在了任务队列
+
+        // js主线程执行这个操作结果
+        // 打印setTimeout 1 （宏任务，先出现）
+        // 调用resolve方法，创建一个微任务放进任务队列，等待下次遍历
+        // 打印setTimeout 2 （宏任务，后出现）
+
+        // js主线程在打印setTimeout 2之后，表示这次遍历的结果已经全部完成
+        // 再次遍历任务队列，发现有一个微任务结果
+
+        // 打印调用then成功
+    </script>
+</body>
+
+</html>
