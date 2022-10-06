@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 那么到目前为止已经演示了
+        // 1 图片加载
+        // 2 定时器
+        // 3 文件依赖
+        // 4 ajax异步请求
+        // 这四种需要有前后依赖关系的程序执行方式
+        // 而上面四种方式都有可能会产生函数中再次调用回调函数
+        // 以致于形成回调地狱的场景
+
+        // 所以前面的例子既展示了回调地狱的产生
+        // 也证明了js的单线程和消息队列的机制
+
+        // 再举一个点餐的例子
+        // 相互有依赖关系的方法构成的回调地狱，就像是在餐厅点餐
+        // 在下单之后就在前台干等着，等餐做好以后就取餐
+        // 这个干等着的过程是无法做其他事情的
+
+        // 而异步函数的操作就相当于取餐厅点餐
+        // 点餐之后回到座位上等前台通知，当餐做好以后
+        // 并不一定非要立刻取餐，可以先在座位上忙完手头上的事
+    </script>
+</body>
+
+</html>

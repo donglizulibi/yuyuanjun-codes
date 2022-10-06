@@ -10,17 +10,9 @@
 
 <body>
     <script>
-        // 那么到目前为止，上面就已经演示了
-        // 1 图片加载
-        // 2 定时器
-        // 3 文件依赖
-        // 4 ajax异步请求
-        // 这四种需要有前后依赖关系的程序执行方式
-        // 上面四种方式都有可能会产生回调函数中再次调用
-        // 以致于形成回调函数的场景
-
-
+        // 新建一个Promise对象，并不在其内部调用resovle或者reject函数
         // PromiseState为pending阶段，也就是准备阶段
+        console.log(new Promise(() => {}))
         console.log(new Promise((resovle, reject) => {}))
 
         // 当准备阶段接受之后，会出现两种可能的结果，一种的成功了，一种是失败了
@@ -33,9 +25,6 @@
             resovle('成功状态')
                 // resovle('')
         }))
-
-        // 
-        // 
 
         // 调用了reject
         // PromiseState为rejected
