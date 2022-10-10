@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子演示把一个Promise实例的状态传入另一个的实例的四种情况
+        // 首先来看第一种，外部是resolve，接收也用resolve
+
+        //  两个实例都是fulfilled，第二个实例的.then会用val这个回调函数
+        //  来接收
+        let p1 = new Promise((resolve, reject) => {
+            resolve('成功')
+        })
+
+        console.log(p1)
+
+        new Promise((resolve, reject) => {
+            resolve(p1)
+            console.log(p1)
+        }).then(val => {
+            console.log('val:', val)
+        }, msg => {
+            console.log('msg:' + msg)
+        })
+    </script>
+</body>
+
+</html>

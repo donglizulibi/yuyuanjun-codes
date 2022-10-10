@@ -15,9 +15,12 @@
         console.log(new Promise(() => {}))
         console.log(new Promise((resovle, reject) => {}))
 
-        // 当准备阶段结束之后，会出现两种可能的结果
+        // 一般来说，会在Promise实例对象内部放一些业务代码
+        // 在不同的逻辑之下，会调用不同的结果
+
         // 一种的成功了，一种是失败了
         // 成功了就调用resovle，失败了就调用reject
+        // 不管调用哪个方法，都是结束了准备状态
 
         // 如果在promise中调用了resovle
         // PromiseState为fulfilled
@@ -28,20 +31,29 @@
         }))
 
         // 调用了reject
+        // 分为两种情况
+
+        // 如果调用之后不加.then以及里面的回调函数
+        // 结果就是
         // PromiseState为rejected
         // PromiseResult: "失败状态"
+        // 并且因为没有抓取失败信息，会报错
+
+        // 但是如果加上.then并且在里面加上了回调函数抓取信息
+        // 就会开启一个新的promise，也就是新的微任务
+        // 所以直接打印的话，又回到了pending
+
         console.log(new Promise((resovle, reject) => {
-            reject('失败状态')
-                // reject('')
-        }))
+                reject('失败状态')
+                    // reject('')
+            }).then(null, () => {}))
+            // 这里一开始会报错是因为没有加上.then来抓取失败信息
 
         console.log(123)
             // 其中，resovle或者reject里面传入的字符串参数
             // 就是PromiseResult里面的值
             // 如果后面接上.then
             // 这个字符串就会成为.then两个回调函数的参数传入的实参
-
-
 
         // 具体调用哪个会根据内部的判断标准来判定
     </script>

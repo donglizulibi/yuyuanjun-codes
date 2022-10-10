@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        new Promise((resolve, reject) => {
+            reject('失败')
+            resolve('成功')
+        }).then(val => {
+            console.log('val:', val)
+        }, msg => {
+            console.log('msg:' + msg)
+
+        })
+
+        // 在promise实例中，只要遇到reject或者resolve就会立即调用.then方法
+        // 后面再调用这两个方法是不能改变状态的
+    </script>
+</body>
+
+</html>

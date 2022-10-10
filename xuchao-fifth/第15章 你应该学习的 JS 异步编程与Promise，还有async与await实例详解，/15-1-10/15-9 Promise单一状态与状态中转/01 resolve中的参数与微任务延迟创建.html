@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('fulfilled')
+            }, 2000);
+        }).then(msg => {
+            console.log(msg)
+        })
+
+        // resolve回调函数中的参数就是.then第一个回调函数传入的实参
+
+        // resolve是创建微任务的标志，如果把resolve放进定时器
+        // 就会延迟创建微任务
+    </script>
+</body>
+
+</html>

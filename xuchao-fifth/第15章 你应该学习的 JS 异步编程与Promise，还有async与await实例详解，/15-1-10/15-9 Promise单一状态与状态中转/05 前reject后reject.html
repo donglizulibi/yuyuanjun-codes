@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第四种情况，外部用reject，接收也用reject
+        // 由上面几节的例子可知，promise实例中如果调用reject方法
+        // 后面一定要用.then方法接收，而且这个.then方法在第二个参数位置上
+        // 必须有一个回调函数存在，否则就会报错Uncaught (in promise)
+
+        // 而在本节第三个前resolve后reject的例子中可知
+        // 后面的reject，是无法接收到前面的例子中的，只会原样返回整个对象
+
+        // 那么在这里，前面已经报错了，后面不仅会返回整个对象
+        // 而且还会把这个错误原样报出来 
+
+        let p1 = new Promise((resolve, reject) => {
+            reject('成功')
+        })
+
+        console.log(p1)
+
+        new Promise((resolve, reject) => {
+            reject(p1)
+            console.log(p1)
+        }).then(val => {
+            console.log('val:', val)
+        }, msg => {
+            console.log('msg:' + msg)
+            console.log(msg)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于.then中回调函数的用法见15-6-03
+
+        // 这里介绍一种两个.then联用的方式
+        // 如果中间的.then没有任何操作，就不把返回的结果传递到下面的.then里
+        new Promise((resolve, reject) => {
+                reject('太贵了，买不起')
+            })
+            .then()
+            .then(null, b => {
+                console.log(`处理了失败的状态：` + b)
+            })
+    </script>
+</body>
+
+</html>

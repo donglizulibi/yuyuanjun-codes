@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第三种情况，外面是reject，用resolve接收
+        // 第二个实例可以接收到第一个实例返回的结果
+        // 而且这个结果是reject发出来的
+        // 所以虽然第二个实例内部调用的resolve方法
+        // 但在回调函数中调用的是msg
+
+        let p1 = new Promise((resolve, reject) => {
+            reject('成功')
+        })
+
+        console.log(p1)
+
+        new Promise((resolve, reject) => {
+            resolve(p1)
+            console.log(p1)
+        }).then(val => {
+            console.log('val:', val)
+        }, msg => {
+            console.log('msg:' + msg)
+        })
+    </script>
+</body>
+
+</html>

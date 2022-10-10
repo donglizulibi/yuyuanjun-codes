@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第二种情况，外面用resolve，用reject接收
+
+        // 此时第二个实例无法接收到第一个实例返回的信息
+        // 只能接收到整个对象
+
+        // 而又由于第二个实例用的reject，所以调用msg回调函数
+        let p1 = new Promise((resolve, reject) => {
+            resolve('成功')
+        })
+
+        console.log(p1)
+
+        new Promise((resolve, reject) => {
+            reject(p1)
+            console.log(p1)
+        }).then(val => {
+            console.log('val:', val)
+        }, msg => {
+            console.log('msg:' + msg) // 这里发生字符串的拼接
+            console.log(msg)
+        })
+    </script>
+</body>
+
+</html>
