@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 初步论述见15-6-02
+
+        let p1 = new Promise((resolve, reject) => {
+            resolve('fulfilled')
+        })
+
+        let p2 = p1.then(
+            val => {
+                console.log('val', val)
+            },
+            rea => {
+                console.log('rea', rea)
+            }
+        )
+
+        console.log(123)
+        console.log(p1)
+        console.log(p2)
+
+        setTimeout(() => {
+            console.log(p1)
+            console.log(p2)
+        })
+
+        // 这段代码的执行过程是
+
+        // 第一阶段，主线程遇到p2的创建，把这个promise放进微任务队列
+        // 也就说，这一次的轮询并不会执行p2这个promise的操作
+        // 然后继续执行页面的同步代码，也就是
+        // console.log(123)
+        // console.log(p1)
+        // console.log(p2)
+        // 此时p1已经已经运行完毕，处在fulfilled状态
+        // （有些浏览器可能是resolved状态）
+        // 而p2刚刚创建，还在pending的准备阶段
+        // 再往下遇到定时器，放进宏任务队列中
+        // js主线程第一次轮询结束
+
+        // 第二阶段，js主线程开始第二次轮询，而由于微任务队列高于宏任务
+        // 执行p2中的操作，也就是进入到val => {console.log('val', val)}
+        // 这个回调函数，打印出p1的状态
+        // 第二次轮询结束
+
+        // 第三阶段，js主线程开始第三次轮询，执行宏任务里的操作
+        // 由于p2在第二阶段已经运行了，所以p2的状态从pending变成fulfilled
+    </script>
+</body>
+
+</html>

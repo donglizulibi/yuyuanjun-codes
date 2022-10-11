@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 初次探索见15-6-04
+
+        let p1 = new Promise((resolve, reject) => {
+            // resolve('fulfilled')
+            reject('rejected')
+        })
+
+        let p2 = p1
+            .then(
+                val => {
+                    console.log('val', val)
+                },
+                rea => {
+                    console.log('rea', rea)
+                }
+            ).then(a => {
+                console.log('成功')
+            }, b => {
+                console.log(b)
+            })
+
+        console.log(123)
+        console.log(p1)
+        console.log(p2)
+
+        setTimeout(() => {
+            console.log(p1)
+            console.log(p2)
+        })
+
+        // 在多个then连续调用的情况中，每个.then都是对前面一个promise的处理
+        // 在这里每个.then都生成一个微任务，也是需要等所有微任务都执行完了
+        // 才会执行定时器的宏任务,
+
+        // 而且在默认情况下,如果出现两个及以上的.then
+        // 不管最开始的promise对象是返回什么状态
+        // 不管第一个.then是执行哪个回调函数
+        // 第二个.then都是调用第一个回调函数
+    </script>
+</body>
+
+</html>
