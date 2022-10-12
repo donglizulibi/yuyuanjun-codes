@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 由上面15-11-02的多个then的例子可以到
+        // 如果有两个then联用,最后一个then会默认调用第一个回调函数
+        // 但是从这个例子可以看到,虽然调用了第二个.then的第一个回调函数
+        // 但是回调函数中的参数是没有值的
+        // console.log('a', a)打印的是undefined
+
+        // 根据后面的then是对前面返回的promise的处理的原则
+        // 如果希望后面的then去处理前面的内容
+        // 或者说让前面的then的逻辑处理的结果通过参数传入后面的then
+        // 前面then里面需要加上return
+
+        // 一个then的return返回的出来的东西
+        //  就会成为后面的then的回调函数传入的实参
+        let p1 = new Promise((resolve, reject) => {
+                resolve('fulfilled');
+            })
+            .then(value => {
+                console.log('value', value)
+                return `第一个then的返回值${value}`
+            }, reason => {
+                console.log('reason', reason)
+            })
+            .then(value => {
+                console.log('第二个then:' + value)
+                console.log('成功')
+            })
+
+        // 这种多个then联用的方式可以应对,第一个任务从后台抓取资料
+        // 第二个任务要调用这些资料再抓取其他的信息
+    </script>
+</body>
+
+</html>

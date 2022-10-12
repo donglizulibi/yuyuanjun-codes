@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 把上面的几个例子综合一下
+
+        // 1 把外层第一个then中新建的promise返回出来
+        // 2 在这个新建的promise中放一个定时器,并调用reject
+        // 3 在新建的promise后面再调用一个.then来接收reject
+        // 4 在新建promise后买你的then里也用一个return
+        // 5 这个return就会被外层第二个then接收到
+        let p1 = new Promise((resolve, reject) => {
+            resolve('fulfilled');
+        })
+
+        .then(value => {
+
+            console.log('value', value)
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('send:value', value)
+                    reject('新建的promise的reject')
+                }, 2000)
+            }).then(null, r => {
+                console.log(r)
+                return r + '新建promise的then'
+            })
+
+        }, reason => {
+            console.log('reason', reason)
+        })
+
+        .then(value => {
+            console.log('第二个then:' + value)
+            console.log('成功')
+        }, reason => {
+            console.log('第二个then的reason：', reason)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子虽然也没有在第一个then中加return
+        // 处理的这个then中新建promise的reject接收问题
+
+        // 这里可以看出，还是要等第一个then内部所有的操作都结束了
+        // 才会执行第二个then的操作，而且由于第一个没有return
+        // 第二个还是undefined
+        let p1 = new Promise((resolve, reject) => {
+                resolve('fulfilled');
+            })
+            .then(value => {
+                console.log('value', value)
+                new Promise((resolve, reject) => {
+                    console.log('send:value', value)
+                    reject('第一个then中新建的promise的reject')
+                }).then(null, r => console.log(r))
+            }, reason => {
+                console.log('reason', reason)
+            })
+            .then(value => {
+                console.log('第二个then:' + value)
+                console.log('成功')
+            }, reason => {
+                console.log('第二个then的reason：', reason)
+            })
+    </script>
+</body>
+
+</html>

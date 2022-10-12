@@ -26,6 +26,7 @@
                     console.log('rea', rea)
                 }
             ).then(a => {
+                console.log('a', a)
                 console.log('成功')
             }, b => {
                 console.log(b)
@@ -42,7 +43,7 @@
 
         // 在多个then连续调用的情况中，每个.then都是对前面一个promise的处理
         // 在这里每个.then都生成一个微任务，也是需要等所有微任务都执行完了
-        // 才会执行定时器的宏任务,
+        // 才会执行定时器的宏任务
 
         // 而且在默认情况下,如果出现两个及以上的.then
         // 不管最开始的promise对象是返回什么状态

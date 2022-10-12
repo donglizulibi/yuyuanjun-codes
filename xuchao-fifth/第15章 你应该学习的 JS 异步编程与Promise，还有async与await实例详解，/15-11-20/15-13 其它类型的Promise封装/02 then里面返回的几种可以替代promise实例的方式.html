@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子表现了有几种then的返回方式可以代替原来的新建promise对象的方式
+        // 首先来一个上一节的例子
+        let p1 = new Promise((resolve, reject) => {
+            resolve('fulfilled')
+        }).then(val => {
+            return new Promise((resolve, reject) => {
+                resolve("p1 这是对象")
+            })
+        }).then(val => console.log(val))
+
+        // 第一种方式的第一个.then返回一个名字是then的函数
+        // then在这里相当于一个关键字,返回空的then(){}函数的时候
+        // 后面一个.then无法向上个例子一样接收到这个函数
+        let p2 = new Promise((resolve, reject) => {
+            resolve('fulfilled')
+        }).then(val => {
+            return {
+                then(resolve, reject) {
+                    setTimeout(() => {
+
+                        resolve("p2 这是对象")
+                    })
+                }
+            }
+        }).then(val => console.log(val))
+
+        ///////////////////////////////////
+        // 第二种方式,定义一个类,包含then方法
+        // 表示promise会自动往原型链上找then方法
+        class Hd {
+            then(resolve, reject) {
+                resolve("p3 这是对象")
+            }
+        }
+        // 则这个类创建出来的实例的__proto__上就有then方法
+        console.log(new Hd())
+
+        let p3 = new Promise((resolve, reject) => {
+            resolve('fulfilled')
+        }).then(val => {
+            return new Hd() // 注意这里不用放在{}里
+        }).then(val => console.log(val))
+
+        ///////////////////////////////////
+        // 第三种方式,把then方法写成类的静态方法
+        class Show {
+            static then(resolve, reject) {
+                resolve("p4 这是对象")
+            }
+        }
+        console.dir(Show)
+
+        let p4 = new Promise((resolve, reject) => {
+            resolve('fulfilled')
+        }).then(val => {
+            return Show
+        }).then(val => console.log(val))
+
+        // 后面三种方式都是可以调用reject方法的
+
+
+
+        // 另外,本例的事件轮询顺序是
+
+        // 第一次轮询
+        // 打印同步代码Hd和Show两个类,并把四个promise放进微任务
+
+        // 第二次轮询
+        // p1创建一个新的promise，再次放进新的微任务
+        // p2创建一个定时器，放进宏任务
+        // p3和p4分别打印结果
+
+        // 第三次轮询
+        // p1的微任务出来，打印结果
+
+        // 第四次轮询
+        // p2的宏任务出来，打印结果
+    </script>
+</body>
+
+</html>

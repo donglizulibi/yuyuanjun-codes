@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果第一个then不加return，则第二个then就是直接处理第一个then的结果
+        // 所以显示是undefined，而且默认会在第一个回调函数中处理
+
+        // 而在第一个then中新建的promise实例调用了reject，没有.then来接收
+        // 所以会报一个Uncaught的错误
+        let p1 = new Promise((resolve, reject) => {
+                resolve('fulfilled');
+            })
+            .then(value => {
+                console.log('value', value)
+                new Promise((resolve, reject) => {
+                    console.log('send:value', value)
+                    reject('失败')
+                        // resolve('调用了')
+                })
+            }, reason => {
+                console.log('reason', reason)
+            })
+            .then(value => {
+                console.log('第二个then:' + value)
+                console.log('成功')
+            }, reason => {
+                console.log('第二个then的reason：', reason)
+            })
+    </script>
+</body>
+
+</html>

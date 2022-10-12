@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个例子说到一个.then把常数值返回给下一个.then的情况
+        // 这个例子论述一下一个.then把promise对象传给下一个.then的情况 
+
+        // 由上个一个例子可知，.then链式调用的存在的一个价值就是
+        // 上一个.then处理出来的结果可以交给下一个.then来使用
+        // 如果上个.then的操作没有处理完，下一个就不会开启
+
+        // 由前面15-06-02描述的promise状态可知
+        // new Promise((resolve, reject) => {})这样的promise对象
+        // 是没有调用resolve或者reject的，这个promise出于pending状态
+
+        // 先来看一个.then返回pending状态promise的例子
+        // 在这里，第二个.then就是对于第一个.then的return出来的promise实例
+        // 的处理，由于这个return后面的promise在pending状态
+        // 所以第一个.then也不会进行任何操作
+        let p1 = new Promise((resolve, reject) => {
+                resolve('fulfilled');
+            })
+            .then(value => {
+                console.log('value', value)
+                return new Promise((resolve, reject) => {})
+            }, reason => {
+                console.log('reason', reason)
+            })
+            .then(value => {
+                console.log('第二个then:' + value)
+                console.log('成功')
+            })
+
+
+        // 那么等第一个.then的return里的promise调用这个.then里返回的参数
+        // 调用resolve或者reject。结束pending状态之后
+        // 就进入到第二个.then中
+        let p2 = new Promise((resolve, reject) => {
+                resolve('fulfilled');
+            })
+            .then(value => {
+                console.log('value', value)
+                return new Promise((resolve, reject) => {
+                    console.log('send:value', value)
+                        // reject('失败')
+                    resolve('调用了')
+                })
+            }, reason => {
+                console.log('reason', reason)
+            })
+            .then(value => {
+                console.log('第二个then:' + value)
+                console.log('成功')
+            }, reason => {
+                console.log('第二个then的reason：', reason)
+            })
+
+        // 再来一个例子就是把第一个then里的return的promise对象
+        // 里的resolve或者reject放在一个定时器里
+        let p3 = new Promise((resolve, reject) => {
+                resolve('fulfilled');
+            })
+            .then(value => {
+                console.log('value', value)
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log('send:value', value)
+                            // reject('失败')
+                        resolve('调用了')
+
+                    }, 3000)
+                })
+            }, reason => {
+                console.log('reason', reason)
+            })
+            .then(value => {
+                console.log('第二个then:' + value)
+                console.log('成功')
+            }, reason => {
+                console.log('第二个then的reason：', reason)
+            })
+    </script>
+</body>
+
+</html>

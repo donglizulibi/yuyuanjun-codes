@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let p1 = new Promise((resolve, reject) => {
+                reject('失败了')
+            })
+            .then((value) => {
+                console.log(value)
+            }, (reason) => {
+                return new Promise((resolve, reject) => {
+                    console.log(reason)
+                    reject('失败了2')
+                }).then(val => {}, rea => {
+                    return new Promise((resolve, reject) => {
+                        console.log(rea)
+                        resolve(rea + '成功了')
+                    })
+                })
+            }).then(val => {
+                console.log(val)
+            }, rea => {
+                console.log(rea)
+            })
+
+        // 再次回到这一节第一个例子的一句话
+        // 后面的then是对前面返回的promise的处理
+        // 那么这就涉及到需要调用后面的then的哪个回调函数来处理的问题
+
+        // 最后return的是一个新建的promise实例,就通过调用resolve和reject
+        // 来区分   
+        // 如果最后return出来的也是一个then,那就可以在这个then里面
+        // 再新建一个promise实例,然后在里面调用resolve和reject
+    </script>
+</body>
+
+</html>
