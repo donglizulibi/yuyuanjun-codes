@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个例子中，虽然promise内部没有调用reject
+        // 但是里面的错误仍然会被.then的第二个回调函数抓取到
+        new Promise((resolve, reject) => {
+                throw new Error('promise fail')
+            })
+            .then(
+                val => console.log(val),
+                // rea => {
+                //     console.log(rea)
+                //     console.dir(rea)
+                //     console.log(rea.message)
+                // }
+            )
+            .catch(val => {
+                console.log(val)
+            })
+
+        // 再来一个例子，在promise实例中不新建Error错误
+        // 而是放一个未定义的变量，这个错误也可以自动被.then的第二个回调函数抓取到
+        new Promise((resolve, reject) => {
+            hd
+        }).then(
+            val => console.log(val),
+            rea => {
+                console.log(rea)
+                console.dir(rea)
+                console.log(rea.message)
+            }
+        )
+
+        // 上个例子就是省略了try catch
+        new Promise((resolve, reject) => {
+            try {
+                hd
+            } catch (err) {
+                console.log(err)
+                console.log(err.message)
+                reject(err)
+            }
+        }).then(
+            val => console.log(val),
+            // rea => {
+            //     console.log(rea)
+            //     console.dir(rea)
+            //     console.log(rea.message)
+            // }
+        ).catch(val => {
+            console.log(val)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在实际开发种，可能会出现把发送请求的操作封装进一个函数
+        // 然后在需要发送请求的地方就可以直接调用这个函数
+
+        // 那么这个函数里面就可以返回一个promise对象
+        // 在调用这个函数可以直接使用.then来发起另一个请求或者操作
+
+        // 函数传入的的参数就是请求地址
+
+        function ajax(url) {
+            return new Promise((resolve, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open('get', url)
+                xhr.send()
+                xhr.onload = function() {
+                    if (this.status == 200) {
+                        resolve(JSON.parse(this.response))
+                    } else {
+                        reject('加载失败')
+                    }
+                }
+                xhr.onerror = function() {
+                    reject(this)
+                }
+            })
+        }
+
+        // 用天气的这个接口试验一下
+        ajax('https://restapi.amap.com/v3/weather/weatherInfo?key=c342b2076be1211ad014ed7fe7c1751f&city=370202&extensions=all')
+            .then(val => console.log(val), rea => console.log(rea))
+
+        // 后面可以再接另外的then再调用ajax函数发送请求
+
+        ajax('ttp://127.0.0.1:3003/posts')
+    </script>
+</body>
+
+</html>

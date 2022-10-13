@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+
+<body>
+
+    <p>请输入 5 和 10 之间的一个数:</p>
+
+    <input id="demo" type="text">
+    <button type="button" onclick="myFunction()">检测输入</button>
+    <p id="message"></p>
+
+    <script>
+        function myFunction() {
+            var message, x;
+            message = document.getElementById("message");
+            message.innerHTML = "";
+            x = document.getElementById("demo").value;
+            try {
+                if (x == "") throw new Error("为空");
+                if (isNaN(x)) throw new Error("不是一个数字");
+                if (x > 10) throw new Error("太大了");
+                if (x < 5) throw new Error("太小了");
+            } catch (err) {
+                console.log(err)
+                message.innerHTML = "输入的值 " + err.message;
+            } finally {
+                console.log(123)
+            }
+        }
+
+        // finally是最终无论如何都会执行
+    </script>
+
+</body>
+
+</html>

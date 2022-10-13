@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.dir(Error)
+        console.dir(new Error('普通错误'))
+
+        class ParamError extends Error {
+            constructor(msg) {
+                super(msg)
+                this.name = 'ParamError'
+            }
+        }
+
+        console.dir(ParamError)
+        console.dir(new ParamError('参数错误'))
+
+        // 所以Error构造函数实例化出的对象的基本格式是
+        // error的name(类别): 具体的错误是什么 at file://错误的位置
+
+        // 这个自定义的错误类就是修改一下"error的name(类别)"
+        // 把这个地方设为特殊,其他都和Error一样
+    </script>
+</body>
+
+</html>

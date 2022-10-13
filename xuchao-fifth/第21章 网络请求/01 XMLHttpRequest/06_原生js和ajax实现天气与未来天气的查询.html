@@ -28,10 +28,15 @@
 
                     //如果数组是空，则用[]访问其角标的错误的写法，需要提前考虑到
                     // 于是将var future=data.forecasts[0].casts改为(三目),若为空则返回空数组
-                    var future = data.forecasts.length ? data.forecasts[0].casts : [];
+                    var future = data.forecasts.length ?
+                        data.forecasts[0].casts : [];
                     for (var i = 0; i < future.length; i++) {
                         var li = document.createElement("li");
-                        li.innerHTML = future[i].date + "的天气是，温度是：" + future[i].daytemp + "，风向是：" + future[i].daywind;
+                        li.innerHTML = future[i].date +
+                            "的天气是，温度是：" +
+                            future[i].daytemp +
+                            "，风向是：" +
+                            future[i].daywind;
                         weather.appendChild(li)
                     }
 

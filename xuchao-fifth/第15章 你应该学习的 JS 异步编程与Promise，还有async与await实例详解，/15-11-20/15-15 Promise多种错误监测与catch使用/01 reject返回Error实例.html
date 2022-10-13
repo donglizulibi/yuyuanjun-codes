@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面的例子表述了当一个promise实例调用reject方法的时候
+        // reject里面的内容会在这个promise实例后面的.then的第二个回调函数中进行处理
+
+        new Promise((resolve, reject) => {
+            reject(new Error('promise fail'))
+            console.log(123)
+        }).then(
+            value => console.log(value),
+            reason => {
+                console.dir(reason)
+                console.log(reason.message)
+            }
+        )
+
+        // Error的实例化对象中可以调用message方法
+        // 123会被打印出来,说明reject只会终止状态,比如后面要是有resolve
+        // 就不会执行,但是要是有其他同步代码还是会执行
+    </script>
+</body>
+
+</html>

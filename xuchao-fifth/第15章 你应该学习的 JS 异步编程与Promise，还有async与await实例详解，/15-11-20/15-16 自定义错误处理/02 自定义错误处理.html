@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./ajax.js"></script>
+    <script>
+        // ajax('http://127.0.0.1:3003/news')
+        // ajax('htp://127.0.0.1:3003/news') // 错误的请求地址
+        ajax('http://127.0.0.1:3003/newssss') // 找不到用户
+            .then(val => console.log(val))
+            .catch(val => {
+                console.dir(val)
+                if (val instanceof ParamError) {
+                    console.log(val.message)
+                } else if (val instanceof HttpError) {
+                    alert(val.message)
+                } else {
+                    console.log(val.message)
+                }
+            })
+
+        // 不同的错误设置不同的提示方式
+        // 是因为有的错误要给用户看,有的错误是开发人员自己看
+    </script>
+</body>
+
+</html>
