@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 这个例子封装一个函数
+        // 每调用一次这个函数,就可以创建一个promise实例化对象
+        // 实例化对象中又有一个定时器
+
+        function timeout(delay = 1000) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve()
+                }, delay)
+            })
+        }
+
+        // 这里resolve里面不需要添加东西,then的回调函数中的参数也不必要加
+        // then里面再次调用timeout只是创建了一个新的promise
+        // 要是要想后面的then来处理这个新的promise
+        // 就还需要再return一次
+        timeout(2000)
+            .then(() => {
+                console.log('houdunren')
+                return timeout(2000)
+            })
+            .then(() => {
+                console.log('hdcms')
+            })
+    </script>
+</body>
+
+</html>

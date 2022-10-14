@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            background-color: aquamarine;
+            left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 封装这个函数需要遵循几个原则
+        // 1 间隔定时器必须要有一个停止的机制
+        // 2 函数内部在创建setInterval的时候要赋值给一个id
+        // 3 函数需要传入一个回调函数,回调函数中有id和resolve两个参数
+        // 4 后面传入的回调函数中的操作满足了某个条件的时候
+        //   就清除定时器,并调用resolve,表示这个promise的操作已经结束了
+        function timeinterval(delay, callback) {
+            return new Promise((resolve, reject) => {
+                let id = setInterval(() => {
+                    callback(id, resolve)
+                }, delay)
+            })
+        }
+
+        // 这里的id构成了一个闭包,如果把回调函数放回到函数中
+        // 可以看到callback会往上面那个id变量创建出来的作用域里取到id的值
+        timeinterval(100, (id, resolve) => {
+            let div = document.querySelector('div')
+            console.log(div)
+            let left = window.getComputedStyle(div).left
+                .slice(0, -2) * 1 + 10
+            console.log(left)
+            div.style.left = left + 'px'
+
+            if (left == 300) {
+                clearInterval(id)
+                resolve(div)
+            }
+        }).then(div => {
+
+            console.log(div)
+            console.log(1)
+
+            return timeinterval(100, (id, resolve) => {
+                let width = window.getComputedStyle(div).width
+                    .slice(0, -2) * 1 - 10
+                div.style.width = width + 'px'
+                let left = window.getComputedStyle(div).left
+                    .slice(0, -2) * 1 + 10
+                div.style.left = left + 'px'
+                if (width == 10) {
+                    clearInterval(id)
+                    resolve(div)
+                    console.log(div)
+                }
+            })
+        }).then((div) => {
+            console.log(div)
+            console.log(1)
+
+            return timeinterval(100, (id, resolve) => {
+                let height = window.getComputedStyle(div).height
+                    .slice(0, -2) * 1 - 5
+                div.style.height = height + 'px'
+                let top = window.getComputedStyle(div).top
+                    .slice(0, -2) * 1 + 5
+                div.style.top = top + 'px'
+                if (height == 10) {
+                    clearInterval(id)
+                    resolve(div)
+                }
+            })
+        }).then((div) => {
+            console.log(div)
+            console.log(1)
+        })
+
+        // 可以实现每一个then里面都有一个操作
+    </script>
+</body>
+
+</html>
