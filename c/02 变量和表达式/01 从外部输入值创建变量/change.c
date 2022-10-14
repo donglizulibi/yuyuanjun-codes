@@ -3,9 +3,12 @@
 int main()
 {
     int price = 0;
-    printf("请输入金额：");
+    // printf("请输入金额:");
+    printf("please type the price:");
     scanf("%d", &price);
+    printf("this is what you type in: %d\n",price);
     int change = 100 - price;
+    printf("this is result:");
     printf("%d\n", change);
     return 0;
 
