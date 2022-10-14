@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #loading {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">loading</div>
+    <script src="./ajax.js"></script>
+    <script>
+        // 在用户发送请求之后,页面上可能会出现一个加载动画,一般是一直在转的圆圈
+        // 在加载完成之后,不管是成功还是失败,这个加载动画都应该去除
+
+        // 那么在catch之后就应该还有一个不论发生什么样的情况都应该执行的回调函数
+        // 那就是finally,这个和原生的try catch finally是一样的
+
+        // 在这里需要对ajax文件做出修改,在发出请求之后就出现动画
+
+        // ajax('http://127.0.0.1:3003/news')
+        ajax('htp://127.0.0.1:3003/news') // 错误的请求地址
+            // ajax('http://127.0.0.1:3003/newssss') // 找不到用户
+            .then(val => console.log(val))
+            .catch(val => {
+                console.dir(val)
+                if (val instanceof ParamError) {
+                    console.log(val.message)
+                } else if (val instanceof HttpError) {
+                    alert(val.message)
+                } else {
+                    console.log(val.message)
+                }
+            })
+            .finally(() => {
+                loading.style.display = 'none'
+            })
+    </script>
+</body>
+
+</html>

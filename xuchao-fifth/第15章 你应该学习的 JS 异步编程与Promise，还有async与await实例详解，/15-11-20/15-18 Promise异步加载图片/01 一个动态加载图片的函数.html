@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 这个例子是15-2的异步加载的写法
+        // 所以可以把promise的resolve和reject分别放在image实例的
+        // onload和onerror的回调函数里面
+        function loadImage(src) {
+            console.log(src)
+            return new Promise((resolve, reject) => {
+                let image = new Image()
+                image.src = src
+                console.log(image)
+                console.dir(image)
+                document.querySelector('div').appendChild(image)
+
+                image.onload = () => {
+                    // resolve('加载成功')
+                    resolve(image) // 把image对象返回出去交给下一个promise处理
+                }
+                image.onerror = () => {
+                    reject('加载失败')
+                }
+            })
+        }
+
+        loadImage('猪大肠.jpg')
+            .then(val => {
+                console.log(val)
+                val.style.border = "solid 39px red"
+            })
+            .catch(val => console.log(val))
+    </script>
+</body>
+
+</html>

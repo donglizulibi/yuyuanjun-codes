@@ -11,9 +11,9 @@
 <body>
     <script src="./ajax.js"></script>
     <script>
-        // ajax('http://127.0.0.1:3003/news')
-        // ajax('htp://127.0.0.1:3003/news') // 错误的请求地址
-        ajax('http://127.0.0.1:3003/newssss') // 找不到用户
+        ajax('http://127.0.0.1:3003/news')
+            // ajax('htp://127.0.0.1:3003/news') // 错误的请求地址
+            // ajax('http://127.0.0.1:3003/newssss') // 找不到用户
             .then(val => console.log(val))
             .catch(val => {
                 console.dir(val)
