@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./ajax.js"></script>
+    <script>
+        // json-server的用法见15-16
+
+        // 在实际开发中，可能会出现某个请求的发送十分频繁
+        // 为避免中各种情况，可以考虑在第一次发送请求之后，把返回来的数据缓存起来
+
+        // http://127.0.0.1:3003/news
+
+        // 现在创建一个发送请求的函数
+        // function loading(url) {
+        //     let cache = new Map()
+
+        //     return ajax(url)
+        // }
+
+        // ajax("http://127.0.0.1:3003/news").then(val => {
+        //     console.log(val)
+        // })
+
+        let reg = /(?<=3003\/)\w+/ig
+        console.log('http://127.0.0.1:3003/news'.match(reg))
+    </script>
+</body>
+
+</html>

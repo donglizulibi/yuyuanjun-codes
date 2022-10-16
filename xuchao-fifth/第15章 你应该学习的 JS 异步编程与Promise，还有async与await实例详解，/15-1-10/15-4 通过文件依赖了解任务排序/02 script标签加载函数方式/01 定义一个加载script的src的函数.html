@@ -14,12 +14,14 @@
         // 这个例子尝试封装一个引入模块的函数
         // 直接在这个函数里面创建script标签，然后放在body标签里面
 
-        function load(src, resovle) {
+        function load(src, resovle, reject) {
             let script = document.createElement('script')
             console.dir(script)
             script.src = src
 
             // 和image标签对象一样，script标签也有onload和onerror两个回调函数
+            // 如果文件加载成功就会调用onload，否则就会调用onerror
+
             // 下面是直接的用法，也可以在外部定义
             // script.onload = () => {
             //     console.log('加载成功')
@@ -28,15 +30,23 @@
             //     console.log('加载失败')
             // }
 
-            script.onload = resovle
+
 
             document.querySelector('body').appendChild(script)
+
+            script.onload = () => {
+                resovle()
+            }
+            script.onerror = reject
+
         }
 
         // 调用这个函数，第一个参数是外部的js文件
         // 调用这个函数就意味着创建一个script标签，把hd.js引入
         load('hd.js', () => {
-            console.log('链接加载成功')
+            console.log('文件加载成功')
+        }, () => {
+            console.log('文件加载失败')
         })
 
 

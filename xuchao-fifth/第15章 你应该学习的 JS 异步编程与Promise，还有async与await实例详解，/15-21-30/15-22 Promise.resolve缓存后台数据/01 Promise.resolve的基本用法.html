@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Promise.resolve其实是js封装的一个语法糖
+        let p1 = new Promise((resolve, reject) => {
+            resolve('成功')
+        })
+        console.log(p1)
+
+        let p2 = Promise.resolve('成功')
+        console.log(p1)
+
+        // 二者相同
+    </script>
+</body>
+
+</html>
