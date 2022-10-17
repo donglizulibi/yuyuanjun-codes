@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先定义一个函数
+        function hd() {}
+
+        // 给这个函数定义一个内置属性，属性值是一个map类型
+        hd.show = new Map()
+
+        // 创建另一个变量，和函数的内置属性共址
+        let showHd = hd.show
+
+        // 给这个变量添加键值对
+        showHd.set({
+            name: 'housunren'
+        }, 111)
+
+        // 函数的内置属性也改变了
+        console.dir(hd)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./ajax.js"></script>
+    <script>
+        // json-server的用法见15-16
+
+        // 在实际开发中，可能会出现某个请求的发送十分频繁，导致前台用户响应变慢
+        // 为避免中各种情况，可以考虑在第一次发送请求之后，把返回来的数据缓存起来
+
+        // 现在创建一个发送请求的函数
+
+        function loading(name) {
+            // let cache = loading.cache || (loading.cache = new Map())
+
+            let cache = undefined
+            if (loading.cache) {
+                cache = loading.cache
+            } else {
+                loading.cache = new Map()
+                cache = loading.cache
+            }
+
+            if (cache.has(name)) {
+                console.log('走缓存了')
+                return Promise.resolve(cache.get(name))
+            }
+
+            return ajax(`http://127.0.0.1:3003/${name}`).then(val => {
+                console.log('没走缓存')
+                cache.set(name, val)
+                console.log(cache)
+                console.dir(loading)
+                return val
+            })
+        }
+
+        loading('news').then(val => console.log(val))
+
+        setTimeout(() => {
+            loading('news').then(val => console.log(val))
+        }, 1000)
+
+        setTimeout(() => {
+            loading('news').then(val => console.log(val))
+        }, 1000)
+    </script>
+</body>
+
+</html>
