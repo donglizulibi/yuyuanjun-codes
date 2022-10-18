@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Promise.all可以批量处理promise的返回值
+        // 使用方法是把需要批量处理的promise对象放到一个数组里
+        // 然后作为参数传入Promise.all
+
+        // 如果数组中的每个promise对象全部都是返回resolve
+        // 则Promise.all也会把每个promise的返回值收集起来放进一个数组
+        // 传入.then第一个回调函数的参数中
+
+        // 如果有一个promise返回reject，则会进入Promise.all的.then的第二个回调函数
+        // 或者catch
+
+        let p1 = new Promise((resolve, reject) => {
+            resolve('p1 成功')
+        })
+
+        let p2 = new Promise((resolve, reject) => {
+            // resolve('p2 成功')
+            reject('p2 失败')
+        })
+
+        Promise.all([p1, p2]).then(val => {
+            console.log(val)
+        }).catch(val => {
+            console.log(val)
+        })
+    </script>
+</body>
+
+</html>

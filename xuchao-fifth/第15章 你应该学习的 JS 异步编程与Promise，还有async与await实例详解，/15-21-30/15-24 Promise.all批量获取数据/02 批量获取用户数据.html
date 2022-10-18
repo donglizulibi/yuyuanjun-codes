@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        // console.log(ajax(`http://127.0.0.1:3003/news`))
+
+        // 首先来定义一个批量获取数据的函数
+
+        function getUsers(names) {
+            let namePromise = names.map(name => {
+                return ajax(`http://127.0.0.1:3003/${name}`)
+            })
+            return Promise.all(namePromise)
+        }
+
+        // 函数只需要返回一个pending的未处理状态的promise就可以了
+        console.log(getUsers(['news']))
+
+        // 后续可以再处理
+        getUsers(['news', 'posts']).then(val => {
+            console.log(val)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        // 前面介绍的Promise.all只能收集返回了resolve状态的promise实例
+        // 而本例的Promise.allSettled也可以收集返回reject状态的实例
+
+        let promise = ['news', 'hahaha'].map(name => {
+            return ajax(`http://127.0.0.1:3003/${name}`)
+        })
+
+        Promise.allSettled(promise).then(val => {
+            console.log(val)
+            let users = val.filter(item => {
+                return item.status == "fulfilled"
+            })
+            console.log(users)
+        })
+
+        // 当收集到reject状态的promise实例时,status会变成rejected
+        // 还会给出出错的reason
+    </script>
+</body>
+
+</html>
