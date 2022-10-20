@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 把Promise.resolve()放到reduce的第二个参数位置上
+        function queue(num) {
+            num.reduce((promise, val) => {
+                return promise.then(() => {
+                    return new Promise((resolve, reject) => {
+                        console.log(val)
+                        setTimeout(() => {
+                            resolve()
+                        }, 1000)
+                    })
+                })
+
+            }, Promise.resolve())
+        }
+
+        queue([1, 2, 3, 4, 5])
+    </script>
+</body>
+
+</html>

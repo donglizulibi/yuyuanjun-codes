@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这里定义一个数组，使用promise和map依次返回数组中的内容
+        let num = [1, 2, 3, 4]
+
+        let promise = Promise.resolve()
+        num.map(v => {
+            promise = promise.then(() => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log(v)
+                        resolve()
+                    }, 1000)
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

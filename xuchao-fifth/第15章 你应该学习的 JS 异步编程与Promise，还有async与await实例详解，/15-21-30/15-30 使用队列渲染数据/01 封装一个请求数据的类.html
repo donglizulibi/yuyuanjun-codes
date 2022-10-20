@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义一个类，新建实例并调用类中的方法之后可以实现
+        // 用队列获取数据并将数据渲染到页面上
+        class User {
+            ajax(user) {
+                let url = `http://127.0.0.1:3003`
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        let xhr = new XMLHttpRequest();
+                        xhr.open('get', `${url}/${user}`)
+                        xhr.send()
+                        xhr.onload = function() {
+                            if (this.status == 200) {
+                                resolve(JSON.parse(this.response))
+                            } else if (this.status == 404) {
+                                reject(new HttpError('用户不存在'))
+                            } else {
+                                reject('加载失败')
+                            }
+                        }
+                        xhr.onerror = function() {
+                            reject(this)
+                        }
+                    }, 1000)
+
+                })
+            }
+            render(users) {
+                users.reduce((promise, user) => {
+                    console.log(user)
+                    console.log(promise)
+                    return promise.then(() => {
+                        return this.ajax(user)
+                            .then(val => {
+                                return this.view(val)
+                            })
+                    })
+                }, Promise.resolve())
+            }
+            view(val) {
+                return new Promise((resolve, reject) => {
+                    let h2 = document.createElement('h2')
+                    h2.innerHTML = val[0]['name']
+                    document.body.appendChild(h2)
+                    resolve()
+                })
+            }
+        }
+
+        // 在这里的view函数最好也做成返回promise实例的形式
+        // 而且不要忘记在view函数里面调用resolve
+
+        new User().render(['posts', 'comments'])
+    </script>
+</body>
+
+</html>

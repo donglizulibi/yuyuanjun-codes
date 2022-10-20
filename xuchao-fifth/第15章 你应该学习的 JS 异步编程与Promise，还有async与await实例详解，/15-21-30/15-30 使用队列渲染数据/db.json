@@ -1,0 +1,26 @@
+{
+    "posts": [{
+        "name": "hdcms",
+        "id": 1,
+        "title": "json-server",
+        "author": "typicode"
+    }],
+    "comments": [{
+        "name": "houdunren",
+        "id": 1,
+        "body": "some comment",
+        "postId": 1
+    }],
+    "profile": {
+        "name": "typicode"
+    },
+    "news": [{
+            "id": 1,
+            "constent": "houdunren"
+        },
+        {
+            "id": 2,
+            "content": "hdcms"
+        }
+    ]
+}

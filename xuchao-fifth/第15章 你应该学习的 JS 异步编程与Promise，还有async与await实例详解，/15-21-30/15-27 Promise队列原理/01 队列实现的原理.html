@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 所谓Promise队列就是按照顺序来执行promise实例
+        // 前面的promise全部完成，再进入下一个promise
+
+        // 具体的实现的过程就是，就是在前面的promise的then里return出一个新的promise实例
+
+        // 后面再接then，并且在里面return新的promise
+        // 根据promise的特性，如果前面的promise不完成内部的动作
+        // 是不会进入到then里的，也就不会进入下一个promise实例
+
+        let promise = Promise.resolve('完成了')
+
+        promise = promise.then(v => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(1)
+                    resolve('aaa')
+                }, 1000)
+            })
+        })
+
+        promise.then(v => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(2)
+                    resolve('bbb')
+                }, 2000)
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        // 由于本例介绍了Promise.race方法，则可以把调用ajax请求返回过来的实例
+        // 和一个内部包含有定时器的、状态为reject的promise实例放在一起比较
+
+        // 如果ajax请求实例返回过来的速度比这个reject实例的速度还慢
+        // 则视为该请求超时
+
+        // 这个例子需要对ajax函数做一些修改，在函数里面添加一个定时器
+
+        // 设置delay的值表示，只要是超过了这个时间没有返回数据
+        // 就是请求超时
+        function query(url, delay) {
+            console.log(1)
+            let promises = [
+                ajax(url),
+                new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        reject('请求超时')
+                    }, delay)
+                })
+            ]
+
+            console.log(promises)
+            return Promise.race(promises)
+        }
+
+        query(`http://127.0.0.1:3003/news`, 2000).then(val => {
+            console.log(val)
+        }).catch(val => {
+            console.log(val)
+        })
+    </script>
+</body>
+
+</html>
