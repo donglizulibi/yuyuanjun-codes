@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        // 在这里修改一下db数据
+        // 实现先调用依次ajax获取数据
+        // 再用获取到的数据作为参数，第二次调用ajax
+        async function hd(name) {
+            let host = `http://127.0.0.1:3003`
+            let user = await ajax(`${host}/${name}`)
+            console.log(user)
+
+            let lesson = await ajax(`${host}/${user[0].constent}`)
+            console.log(lesson)
+        }
+
+        hd('news')
+
+        // 相当于
+        ajax(`http://127.0.0.1:3003/news`)
+            .then(user => {
+                console.log(user)
+                return ajax(`http://127.0.0.1:3003/${user[0].constent}`)
+            })
+            .then(lesson => {
+                console.log(lesson)
+            })
+    </script>
+</body>
+
+</html>

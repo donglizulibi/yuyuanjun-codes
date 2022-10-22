@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这里定义一个promise实例，返回resolve状态
+        // 后面接一个then，返回一个字符串
+        // 再接一个then来接收上一个then的返回值
+        new Promise((resolve, reject) => {
+                resolve()
+            })
+            .then(val => {
+                return 'houdunren'
+            })
+            .then(val => {
+                console.log(val)
+            })
+
+        // 在函数内部定义一个变量，在变量值前面加上await
+        async function hd() {
+            let val = await 'houdunren'
+            console.log(val)
+        }
+
+        hd()
+
+        // 二者类似
+        // asnyc函数的return值对应的是promise实例中的resolve的值
+        // asnyc函数中用let定义的await变量
+        // 对应的是promise的then的return的值
+    </script>
+</body>
+
+</html>
