@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn1() {
+            console.log('fn1')
+        }
+
+        function fn2() {
+            fn1()
+            console.log('fn2')
+        }
+
+        fn2()
+
+        // 在这里把fn1的调用放在fn2的方法体内
+        // 调用fn2就会调用fn1，但是调用的顺序是先fn2，后fn1
+        // 而出来的结果是先fn1，后fn2
+
+        // 所以这也是一个栈的效果，fn2先入后出，fn1后入先出
+
+        // 到2.3的16:15
+    </script>
+</body>
+
+</html>
