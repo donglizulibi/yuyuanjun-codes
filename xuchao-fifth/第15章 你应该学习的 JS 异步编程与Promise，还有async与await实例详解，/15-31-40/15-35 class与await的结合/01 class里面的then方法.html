@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 关于在类中定义then方法实现promise实例见15-13
+        class User {
+            then(resolve, reject) {
+                resolve('成功')
+            }
+        }
+        let u = new User()
+        u.then(val => {
+            console.log(val)
+        })
+
+        // 类中定义then方法，使产生的实例化对象是promise需要满足几个条件
+        // 类中then方法中需要有resolve参数，方法体内需要调用resolve
+        // 则后面的实例化对象调用then方法，就会往实例的__proto__
+        // 也就是类的prototype上找then方法
+
+        // 然后传一个回调函数【val=>{console.log(val)}】到resolve的位置
+        // 而类中定义的then方法中的resolve括号里的内容【“成功”】
+        // 又成了实例调用then方法传入的回调函数里面的参数【“val”】
+        // 并then方法中调用这个回调函数【resolve('成功')】
+    </script>
+</body>
+
+</html>

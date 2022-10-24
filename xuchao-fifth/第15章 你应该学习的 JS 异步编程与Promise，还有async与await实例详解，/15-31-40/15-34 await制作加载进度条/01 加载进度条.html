@@ -14,7 +14,7 @@
         
         #loading {
             height: 50px;
-            width: 50%;
+            width: 0%;
             background-color: blueviolet;
             display: flex;
             justify-content: center;
@@ -32,6 +32,32 @@
 
     <script src="ajax.js"></script>
     <script>
+        // 上个例子是先定义一个会延迟的promise实例
+        // 然后再定义一个函数来遍历数组，并在每次遍历的过程中
+        // 运行这个promise的async函数
+
+        // 这个例子首先把ajax函数再次封装一下
+        // 把域名的公共部分放进函数里
+
+        // 然后再封装一个可以遍历数组的函数，数组里面是用以放进ajax的参数
+        // 加载进度条的操作也放进这个函数的遍历过程中
+        function query(name) {
+            return ajax(`http://127.0.0.1:3003/${name}`)
+        }
+
+        async function loading(users) {
+            console.log(users)
+            for (let i = 0; i < users.length; i++) {
+                let user = await query(users[i])
+                console.log(user)
+                let pro = Math.round((i + 1) / users.length * 100)
+                let load = document.querySelector('#loading')
+                load.style.width = pro + '%'
+                load.innerHTML = pro + '%'
+            }
+        }
+
+        loading(['posts', 'comments', 'profile', 'news'])
     </script>
 </body>
 

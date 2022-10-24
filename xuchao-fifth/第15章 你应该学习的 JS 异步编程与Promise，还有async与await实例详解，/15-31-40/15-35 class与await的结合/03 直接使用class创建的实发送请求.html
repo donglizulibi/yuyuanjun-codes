@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        // 需要定义一个类，类里面又发送请求的操作
+        // 新建实例的时候可以把参数传进去
+        // 然后在async函数中获取请求结果
+        class User {
+            constructor(name) {
+                this.name = name
+            }
+            then(resolve, reject) {
+                let u = ajax(`http://127.0.0.1:3003/${this.name}`)
+                resolve(u)
+            }
+        }
+
+        new User('news').then(val => {
+            val.then(val => {
+                console.log(val)
+            })
+        })
+    </script>
+</body>
+
+</html>

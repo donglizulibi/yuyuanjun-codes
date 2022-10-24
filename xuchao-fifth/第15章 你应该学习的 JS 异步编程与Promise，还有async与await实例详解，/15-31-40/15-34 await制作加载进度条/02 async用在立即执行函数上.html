@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 前面的async函数都是先定义一个函数，然后再调用、
+        // 如果一个promise对象只用一次的话，可以使用立即执行函数
+        // 和async结合的方式
+
+        // 以下两种都是可以的
+        // (async ()=>{})()
+        // (async function(){})()
+
+        // 先定义一个延时函数
+        async function sleep(delay = 2000) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve()
+                }, delay);
+            })
+        }
+
+        (async(arr) => {
+            for (let i = 0; i < arr.length; i++) {
+                await sleep()
+                console.log(arr[i])
+            }
+        })(['houdunren', 'hdcms'])
+    </script>
+</body>
+
+</html>

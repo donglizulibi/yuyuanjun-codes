@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        class User {
+            constructor(name) {
+                this.name = name
+            }
+            then(resolve, reject) {
+                let u = ajax(`http://127.0.0.1:3003/${this.name}`)
+                resolve(u)
+            }
+        }
+
+        async function get() {
+            let user = await new User('news')
+            console.log(user)
+        }
+        get()
+
+        // 传统版本
+        new Promise((resolve, reject) => {
+                resolve()
+            }).then(() => {
+                return new User('news')
+            })
+            .then(val => {
+                console.log(val)
+            })
+    </script>
+</body>
+
+</html>
