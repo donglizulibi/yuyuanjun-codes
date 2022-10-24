@@ -11,18 +11,15 @@
 <body>
     <script src="ajax.js"></script>
     <script>
-        // 现在这个需求是在类的内部定义一个方法
-        // 在使用这个类实例化对象之后，调用这个方法可以直接返回修改后的数据
-        // 修改数据的步骤也在这个方法中实现
-
+        // 首先是定义一个类，在类中定义一个方法 
+        // 实例化新对象，可以调用这个方法来发送请求
         class User {
             get(name) {
                 return ajax(`http://127.0.0.1:3003/${name}`)
-
             }
         }
 
-        new User().get('news').then(val => {
+        new User().get('hdcms').then(val => {
             console.log(val)
         })
     </script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        // 在async函数内部使用try catch
+        // 把await的那部分放在try的作用域块里面
+
+        // 在错误处理完成之后的代码是可以执行的
+        async function hd(name) {
+            try {
+                let user = await ajax(`http://127.0.0.1:3003/${name}`)
+                console.log(234) // 如果错误发生，这条不会执行
+                    // let user = await ajax(`ttp://127.0.0.1:3003/${name}`)
+                return user
+            } catch (error) {
+                console.log(error)
+            }
+
+            console.log(123)
+                // 发生错误了可以打印，没有错误会在上面直接返回就不打印
+        }
+
+        // hd('news')
+        hd('nessss')
+            .then(val => {
+                console.log(val)
+            })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        // 上面的例子是
+
+        // 现在需要修改这个方法，在方法内部添加修改数据的操作
+        // 以实现实例化对象并调用这个方法
+        // 可以直接返回修改后的数据
+
+        class User {
+            get(name) {
+                let u = ajax(`http://127.0.0.1:3003/${name}`)
+                console.log(u)
+                    // 在这里返回的并不是完成完成状态的promise实例返回的数据
+                    // 而是一个pending状态是promise实例
+                    // 所以下面的数据是无法修改的，只能添加一个name属性
+
+                u.name += '-houdunren.com'
+                    // u.name = u.name + '-houdunren.com'
+                    // u.name是undefined
+
+                console.log(u)
+                return u
+            }
+        }
+
+        // 则调用get方法的时候还是原来的数据
+        new User().get('news').then(val => {
+            console.log(val)
+        })
+    </script>
+</body>
+
+</html>

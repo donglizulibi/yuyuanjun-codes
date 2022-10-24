@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // async函数的错误处理是在调用函数之后
+        // 再链式调用catch或者then的第二个回调函数来捕获的
+
+        // 自定义的错误
+        async function hd() {
+            throw new Error("fail")
+        }
+
+        hd().catch(val => {
+            console.log(val)
+        })
+
+        // 自动捕获的未定义变量
+        async function show() {
+            console.log(a)
+        }
+
+        show()
+            // .catch(val => {
+            //     console.log(val)
+            // })
+            .then(null, val => {
+                console.log(val)
+            })
+    </script>
+</body>
+
+</html>

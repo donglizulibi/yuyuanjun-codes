@@ -11,6 +11,10 @@
 <body>
     <script>
         // async的返回值就是promise的resolve里的值
+        // 所以，如果调用async函数之后，希望再链式调用then方法的话
+        // 需要再async函数中return值
+        // 这和传统的promise实例如果想走到下一个then
+        // 需要调用resolve是一个道理
 
         // 返回字符串
         // 普通版本

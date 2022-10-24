@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        async function hd(name) {
+            // let user = await ajax(`http://127.0.0.1:3003/${name}`)
+            let user = await ajax(`ttp://127.0.0.1:3003/${name}`)
+            return user
+        }
+
+        // 上个例子相当于直接调用ajax(...)
+
+        // 这个例子相当于
+        // new Promise((resolve, reject) => {
+        //     resolve(ajax(...))
+        // })
+
+        hd('news')
+            // hd('nessss')
+            .then(val => {
+                console.log(val)
+            })
+            .catch(val => {
+                console.log(val)
+            })
+    </script>
+</body>
+
+</html>
