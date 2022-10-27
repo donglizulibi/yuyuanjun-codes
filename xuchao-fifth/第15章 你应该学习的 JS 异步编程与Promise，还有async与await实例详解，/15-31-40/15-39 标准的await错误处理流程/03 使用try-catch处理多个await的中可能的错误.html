@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        // 上两个例子演示的async函数中放入await，出现错误的情况
+        // 15-32 演示async函数中放入两个await的情况及其原理
+
+        // 那么两个await的错误处理，在不知道错误是发生在哪个await的情况下
+        // 可以把所有的await都放进try-catch里面
+
+        async function hd(name) {
+
+            let host = `http://127.0.0.1:3003`
+            try {
+                let user = await ajax(`${host}/${name}`)
+                console.log(user)
+
+                let lesson = await ajax(`${host}/${user['name']}`)
+                return lesson
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        hd('news').then(val => {
+            // hd('newssss').then(val => {
+            console.log(val)
+        })
+    </script>
+</body>
+
+</html>

@@ -26,8 +26,8 @@
         })
 
         let p2 = new Promise((resolve, reject) => {
-            // resolve('p2 成功')
-            reject('p2 失败')
+            resolve('p2 成功')
+                // reject('p2 失败')
         })
 
         Promise.all([p1, p2]).then(val => {

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="ajax.js"></script>
+    <script>
+        // 除了try-catch，也可以直接在调用async函数的时候用catch来接收错误
+
+        async function hd(name) {
+
+            let host = `http://127.0.0.1:3003`
+
+            let user = await ajax(`${host}/${name}`)
+            console.log(user)
+
+            let lesson = await ajax(`${host}/${user['name']}`)
+            return lesson
+        }
+
+        hd('news').then(val => {
+            // hd('newssss').then(val => {
+            console.log(val)
+        }).catch(val => {
+            console.log(val)
+        })
+    </script>
+</body>
+
+</html>

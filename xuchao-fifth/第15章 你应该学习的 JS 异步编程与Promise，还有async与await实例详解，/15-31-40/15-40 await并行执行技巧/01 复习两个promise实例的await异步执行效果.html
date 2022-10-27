@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先定义两个可以返回包含有定时器的promise实例的函数
+        // 再分别放在async函数中的两个await里
+        // 执行之后出现的结果是异步执行的
+        // 也就是说，先执行p1的内容，完成之后，再执行p2的内容
+
+        // 这样的做法可以用于p2依赖于p1的情况
+        function p1() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('houdunren')
+                }, 2000)
+            })
+        }
+
+        function p2() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('hdcms')
+                }, 2000)
+            })
+        }
+        async function hd() {
+            let p1Value = await p1()
+            console.log(p1Value)
+            let p2Value = await p2()
+            console.log(p2Value)
+        }
+
+        hd()
+
+        // 那么如果这两个函数并没有依赖关系，需要并行执行的话，就需要其他的方法
+
+
+        // 上面例子的传统写法
+        function hdd() {
+            new Promise((resolve, reject) => {
+                resolve()
+            }).then(() => {
+                console.log('p1')
+                return p1()
+            }).then(val => {
+                console.log(val)
+                return p2()
+            }).then(val => {
+                console.log(val)
+            })
+        }
+
+        hdd()
+
+        // 调用hdd函数的事件循环分析
+        // 首先是新建的promise实例,resolve到下一个then,就是打印p1和调用p1这个then
+        // 也就是下一个微任务,这个微任务在完成之前,不会进入到下一个平行的微任务里
+
+        // 在这个微任务里打印'p1',执行p1函数,新建一个微任务,也就是新建一个promise实例
+        // 在这个实例里有一个定时器,又新建一个宏任务
+        // 等这个宏任务执行完,会resolve出"houdunren"
+        // 逐次向上返回到then的微任务里,return到下一个then里面
+
+        // 上面return的'houdunren'会在这个微任务里打印,然后调用p2
+        // 重复之前的步骤,把'hdcms'return到下一个then
+
+        // 打印hdcms
+    </script>
+</body>
+
+</html>

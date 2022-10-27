@@ -11,13 +11,16 @@
 <body>
     <script src="ajax.js"></script>
     <script>
+        // 上个例子只用了async没有用await
+        // 相当于直接调用ajax(...)
+
+        // 本例加上await
         async function hd(name) {
             // let user = await ajax(`http://127.0.0.1:3003/${name}`)
             let user = await ajax(`ttp://127.0.0.1:3003/${name}`)
             return user
         }
 
-        // 上个例子相当于直接调用ajax(...)
 
         // 这个例子相当于
         // new Promise((resolve, reject) => {

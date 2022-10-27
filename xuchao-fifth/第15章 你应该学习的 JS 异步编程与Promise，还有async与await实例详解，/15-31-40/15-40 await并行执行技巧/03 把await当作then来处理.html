@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function p1() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('houdunren')
+                }, 2000)
+            })
+        }
+
+        function p2() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('hdcms')
+                }, 2000)
+            })
+        }
+
+        async function hd() {
+            let h1 = p1()
+            let h2 = p2()
+            let p1Value = await h1
+            console.log(p1Value)
+            let p2Value = await h2
+            console.log(p2Value)
+        }
+        hd()
+
+        // 本例的传统方式为
+        function hdd() {
+            let h1 = p1()
+            let h2 = p2()
+
+            new Promise((resolve, reject) => {
+                resolve(h1)
+                console.log('h1')
+            }).then(p1Value => {
+                console.log(p1Value)
+            })
+
+            new Promise((resolve, reject) => {
+                resolve(h2)
+            }).then(p2Value => {
+                console.log(p2Value)
+            })
+        }
+        hdd()
+
+        // 本例的事件循环分析为(以传统的方式为例)
+        // 1 第一次遍历 执行hdd 调用p1和p2函数
+        //   返回值是两个pending状态的promise实例,分别赋值给h1和h2
+        //   此时在调用这两个函数的时候遇到两个定时器,创建宏任务等待下一次遍历
+        //   再往下执行新建两个promise实例,调用resolve,创建微任务
+
+        // 2 第二次遍历
+        //   上面的resolve接到的是一个pending状态的promise实例
+        //   需要等这个promise实例内部也resolve出一个值,才能传到下一个then里
+        //   所以两秒后,这两个promise实例都走到下一个then,打印出结果
+
+        // 由此实现await的并行执行
+    </script>
+</body>
+
+</html>
