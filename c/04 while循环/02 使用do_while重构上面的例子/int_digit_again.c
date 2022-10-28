@@ -16,6 +16,4 @@ int main(){
     } while(mid > 0);
 
     printf("the digit of this number is %d",count);
-
-    
 }
