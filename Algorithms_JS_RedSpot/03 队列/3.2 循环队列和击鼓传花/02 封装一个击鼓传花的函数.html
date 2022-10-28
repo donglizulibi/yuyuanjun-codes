@@ -40,13 +40,20 @@
         // 第一个参数是参与击鼓传花的成员，传入一个数组
         // 第二个参数是游戏规则，传到第几个的时候踢出去
         function passParcel(names, number) {
+            // 首先是把把参与的成员都放到循环队列中
             let queue = names.reduce((pre, val) => {
                 pre.enqueue(val)
                 return pre
             }, new Queue());
             console.log(queue)
 
-            for (let j = 0; j < 10000; j++) {
+            // 构建两层循环，内层循环负责在每两次淘汰队员的时刻中间
+            // 把队列的前两个成员添加到队列的尾部
+
+            // 外层循环负责把第三个成员淘汰
+            // 并在每次淘汰人之后检测队列中剩下的人数
+            // 如果只剩一人，就输出这个人的名字
+            for (let j = 0; j < names.length + 1; j++) {
                 for (let i = 0; i < number - 1; i++) {
                     let last = queue.dequeue()
                     console.log(last)
