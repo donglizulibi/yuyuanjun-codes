@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        setTimeout(() => {
+            console.log('定时器')
+            new Promise((resolve, reject) => {
+                console.log('settime promise')
+                resolve()
+            }).then(() => {
+                console.log('settime then')
+            })
+        }, 0)
+
+        new Promise((resolve, reject) => {
+            console.log('promise')
+            resolve()
+        }).then(() => {
+            console.log('then')
+        })
+
+        console.log('houdunren')
+
+        // 本例的事件循环分析为
+        // 1 第一次遍历，执行同步代码，将定时器放入定时器模块
+        //   进入promise实例，打印promise，创建微任务队列
+        //   打印houdunren
+
+        // 2 第二次遍历，优先执行微任务队列内容，打印then
+
+        // 3 第三次遍历，执行宏任务中定时器的内容，打印'定时器'
+        //   执行定时器内的promise实例里的代码，打印settime promise
+        //   创建一个微任务
+
+        // 4 打印settime then
+    </script>
+</body>
+
+</html>

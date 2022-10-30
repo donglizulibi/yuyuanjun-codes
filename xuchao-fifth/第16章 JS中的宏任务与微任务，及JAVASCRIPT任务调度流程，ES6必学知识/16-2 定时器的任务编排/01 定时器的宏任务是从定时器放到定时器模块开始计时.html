@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定时器的宏任务是从定时器放到定时器模块开始计时
+        // 而不是等同步代码执行完的时候再开始执行
+
+        // 下面两个定时器是同时放到定时器模块的
+        // 第二个定时器先完成处理，就先放到宏任务队列里等待
+        setTimeout(() => {
+            console.log('定时器 1')
+        }, 2000)
+
+        setTimeout(() => {
+            console.log('定时器 2')
+        }, 1000)
+
+        console.log('houdunren')
+        for (let i = 0; i < 10000; i++) {
+            console.log('')
+        }
+    </script>
+</body>
+
+</html>

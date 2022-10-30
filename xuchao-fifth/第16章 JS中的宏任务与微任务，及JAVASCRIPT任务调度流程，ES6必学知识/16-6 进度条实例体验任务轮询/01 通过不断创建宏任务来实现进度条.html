@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            width: 400px;
+            border: solid 1px black;
+            text-align: center;
+            position: relative;
+        }
+        
+        #hd {
+            background-color: aqua;
+            height: 40px;
+            line-height: 40px;
+            width: 2%;
+        }
+        
+        span {
+            position: absolute;
+            top: 25%
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <span></span>
+        <div id="hd"></div>
+    </main>
+    <script>
+        let hd = document.querySelector('#hd')
+        let span = document.querySelector('main>span')
+        console.log(hd)
+
+        function loading() {
+            let i = 0;
+            (function run() {
+                i++
+                span.innerHTML = i + '%'
+                hd.style.width = i + '%'
+                if (i < 100) {
+                    setTimeout(() => {
+                        run()
+                    }, 100)
+                }
+            })()
+        }
+        loading()
+    </script>
+</body>
+
+</html>

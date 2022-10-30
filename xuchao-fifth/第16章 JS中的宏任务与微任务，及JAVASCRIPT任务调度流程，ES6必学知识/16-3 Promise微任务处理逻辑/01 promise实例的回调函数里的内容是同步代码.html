@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // promise实例的回调函数里的内容是同步代码
+        // resolve是创建微任务的标志
+        // promise实例后的then的回调函数里的内容就是微任务的代码
+        // 微任务的优先级高于宏任务
+
+        setTimeout(() => {
+            console.log('定时器')
+        }, 0)
+
+        new Promise((resolve, reject) => {
+            console.log('promise')
+            resolve()
+        }).then(() => {
+            console.log('then')
+        })
+
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>

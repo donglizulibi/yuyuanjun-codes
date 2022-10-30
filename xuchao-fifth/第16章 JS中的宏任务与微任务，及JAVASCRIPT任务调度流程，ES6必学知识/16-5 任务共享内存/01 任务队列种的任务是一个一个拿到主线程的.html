@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let i = 0;
+
+        setTimeout(() => {
+            console.log(++i)
+        }, 1000)
+
+        setTimeout(() => {
+            console.log(++i)
+        }, 1000)
+
+        // 上面两个定时器虽然所延迟的时间是一样的
+        // 但是放在宏任务队列的时候是有先后顺序的
+        // 拿到主线程来操作也是符合先进先出的原则
+        // 所以当第一个定时器拿到主线程找到内存里的i变量操作完之后
+        // 第二个定时器拿到主线程的时候，i变量已经的修改过的了
+        // 所以输出为 1 2
+    </script>
+</body>
+
+</html>
