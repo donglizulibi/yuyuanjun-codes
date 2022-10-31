@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // "use strict"
+
+        function hd() {
+            console.log(this)
+        }
+        hd()
+
+        class User {
+            constructor(show) {
+                show(this.callback)
+                this.render()
+            }
+
+            render() {
+                console.log(this)
+            }
+
+            callback() {
+                console.log(this)
+            }
+        }
+
+        let u = new User((callback) => {
+            console.log(this)
+            callback()
+        })
+        console.log(u)
+
+
+        let obj = {
+            fn: (val) => {
+                console.log(this)
+                val()
+            },
+            fnc: function() {
+                console.log(this)
+            }
+        }
+
+        obj.fn(() => {
+            console.log(this)
+        })
+        obj.fnc()
+    </script>
+</body>
+
+</html>

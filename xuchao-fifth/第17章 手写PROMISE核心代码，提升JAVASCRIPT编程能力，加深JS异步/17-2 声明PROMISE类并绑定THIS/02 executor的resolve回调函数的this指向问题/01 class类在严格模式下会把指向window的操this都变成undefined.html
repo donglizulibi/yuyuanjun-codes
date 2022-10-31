@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+
+                // 假设外部传进来的实参是 (resolve, reject) => {resolve('解决')}
+                // 则这个回调函数就是executor函数， 这个回调函数中有两个
+                // 就是executor里面的两个函数的函数体
+                // 回调函数中调用resolve函数，并传“解决”进去作为实参
+                // 也就是调用Hd的resolve内置方法，然后传这个参数进去
+                executor(this.resolve, this.reject)
+            }
+
+            // 两个回调函数作为类的内置方法
+            // 当这个函数被调用的时候，需要改变Hd的status
+            // 外面传看"解决"进来，则实例的value的值
+            // 也就是要转给下一个then方法的这个值，也要随着改变
+            resolve(value) {
+
+                // 指向undefined 见12-6-03
+                // class类在严格模式下会把指向window的操this都变成undefined
+                console.log(this)
+                this.value = value
+                this.status = Hd.FULFILLED
+            }
+            reject(reason) {}
+        }
+
+
+        let promise = new Hd((resolve, reject) => {
+
+            // 指向window
+            console.log(this)
+            resolve('解决')
+        })
+        console.log(promise)
+    </script>
+</body>
+
+</html>
