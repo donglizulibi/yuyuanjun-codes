@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 通过不断创建宏任务的方式把复杂任务拆分的思路是
+        // 1 修改原函数中的for循环的遍历次数，改为一个固定值
+        //   保证在这个值之内的循环是不会卡顿的
+
+        // 2 在函数中添加一个定时器模块，将剩下的循环放在定时器中继续执行
+
+
+        // 需要考虑的一些边界条件
+        // 1 for循环中要考虑到需要计算的数值比遍历中设置的循环次数要小
+        //   如果这种情况发生,则在计算数值变成0的时候要提前break
+
+        // 2 如果计算数值比循环次数大很多倍,则要不断调用定时器
+        //   不断创建宏任务,直到计算数值变为0,就可以输出结果
+
+        // 3 跟上一个例子不同,这里的遍历次数是一个固定值
+        //   所以不需要创建中间变量来存初始计算数值
+
+        let num = 33412111
+        let count = 0
+            // let fator = num
+
+        function hd() {
+            // console.log(num)
+            const looptime = 100000
+            for (let i = 0; i < looptime; i++) {
+                // console.log(fator)
+                if (num < 0) {
+                    break
+                }
+                count += num--;
+            }
+            // console.log(fator) // 这是剩下要计算的值
+            // console.log(count)
+
+            if (num > 0) {
+                setTimeout(hd)
+            } else {
+                // console.log(fator)
+                console.log(count)
+            }
+        }
+
+        hd()
+        setTimeout(() => {
+            console.log(123)
+        })
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>

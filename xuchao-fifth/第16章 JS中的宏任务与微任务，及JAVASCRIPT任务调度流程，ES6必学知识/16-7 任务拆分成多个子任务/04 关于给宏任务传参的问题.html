@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 还是上面的例子做出一点修改,把闭包传值改为参数传值
+        // 就变成了先执行完所有的宏任务,再往下执行同步代码
+        // 异步代码又变回了同步代码
+
+        let num = 33412111
+        let count = 0
+
+        function hd(num) {
+            const looptime = 100000
+            for (let i = 0; i < looptime; i++) {
+                if (num < 0) {
+                    break
+                }
+                count += num--;
+            }
+
+            if (num > 0) {
+                setTimeout(hd(num))
+            } else {
+                console.log(count)
+            }
+        }
+
+        hd(num)
+        setTimeout(() => {
+            console.log(123)
+        })
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>

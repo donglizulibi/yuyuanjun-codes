@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let num = 33412111
+
+        function sum(num) {
+            return new Promise((resolve, reject) => {
+                let count = 0
+                let fator = num
+                setTimeout(() => {
+                    for (let i = 0; i < num; i++) {
+                        // console.log(1)
+                        count += fator--
+                    }
+                    // 注意在这里resolve一定要在定时器的函数体里面
+                    // 放在外面的话会在宏任务执行之前就resolve出去了
+                    resolve(count)
+                });
+            })
+        }
+
+        async function hd(num) {
+            let res = await sum(num)
+            console.log(res)
+        }
+
+        hd(num)
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>

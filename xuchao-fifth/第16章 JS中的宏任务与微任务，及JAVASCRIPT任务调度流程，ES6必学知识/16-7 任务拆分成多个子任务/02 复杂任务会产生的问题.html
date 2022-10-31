@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在又这样一个场景，假设一个函数执行需要花费非常多的时间
+        // 以致于执行完这个函数再执行下面的同步代码会出现一段时间白屏幕
+        function hd() {
+            let fator = num
+            for (let i = 0; i < num; i++) {
+                // console.log(fator)
+                count += fator--;
+            }
+            console.log(count)
+        }
+
+        let num = 323412341
+        let count = 0
+        console.time('hd')
+        hd()
+        console.log('houdunren')
+        console.timeEnd('hd')
+    </script>
+</body>
+
+</html>

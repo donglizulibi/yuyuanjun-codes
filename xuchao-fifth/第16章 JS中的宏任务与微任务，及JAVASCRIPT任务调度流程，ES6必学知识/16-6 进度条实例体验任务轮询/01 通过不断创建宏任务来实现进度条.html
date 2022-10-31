@@ -38,6 +38,15 @@
         let span = document.querySelector('main>span')
         console.log(hd)
 
+        // 创建的这个函数，在一定条件范围内，可以不断地产生新的宏任务
+        // 比如在执行loading函数时候
+        // 1 第一次遍历，先执行同步代码创建i变量保存在内存中
+        //   执行立即执行函数run，改变内存中i的值，dom元素变化，创建定时器宏任务
+
+        // 2 第二次遍历在100毫秒后开始，轮询宏任务列表，执行立即执行函数run
+        //   改变i，dom变化，创建定时器
+
+        // 3 循环下去，宏任务不断被创建和轮询，i和dom不断变化，就形成了进度条
         function loading() {
             let i = 0;
             (function run() {
@@ -45,9 +54,13 @@
                 span.innerHTML = i + '%'
                 hd.style.width = i + '%'
                 if (i < 100) {
+                    // 定时器中回调函数的使用方法见15-3-03-04
                     setTimeout(() => {
                         run()
                     }, 100)
+
+                    // 也可以写成
+                    // setTimeout(run, 100)
                 }
             })()
         }
