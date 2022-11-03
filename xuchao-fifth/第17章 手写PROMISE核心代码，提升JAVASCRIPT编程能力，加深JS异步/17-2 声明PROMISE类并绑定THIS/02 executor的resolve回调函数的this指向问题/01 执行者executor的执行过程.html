@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+
+                // 由后面Hd类创建的promise实例可以看到
+                // 假设外部传进来的实参是(resolve,reject)=>{resolve('解决')}
+                // 则这个回调函数就是executor的函数体
+
+                // 这个回调函数中有两个参数resolve和reject
+                // 就是executor里面的两个函数的函数体
+
+                // 回调函数中调用resolve函数，并传“解决”进去作为实参
+                // 就相当于调用Hd的resolve内置方法，然后传这个参数进去
+                executor(this.resolve, this.reject)
+            }
+
+            resolve(value) {}
+            reject(reason) {}
+        }
+
+
+        let promise = new Hd((resolve, reject) => {
+            resolve('解决')
+        })
+        console.log(promise)
+    </script>
+</body>
+
+</html>
