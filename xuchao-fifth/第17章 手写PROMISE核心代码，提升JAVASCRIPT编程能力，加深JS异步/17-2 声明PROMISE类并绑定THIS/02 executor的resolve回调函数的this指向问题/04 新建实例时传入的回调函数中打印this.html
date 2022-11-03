@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个例子中，在新建promise实例中传入的回调函数里打印this
+        // 指向的是window
+
+        // 现在把这一部分抽象出来
+
+        // 类
+        class User {
+            constructor(func) {
+                func()
+            }
+        }
+
+        // 传统构造函数
+        // function User(func) {
+        //     func()
+        // }
+
+        let uu = new User(() => {
+            console.log(this)
+        })
+
+        let u = new User(function() {
+            console.log(this)
+        })
+
+        // 都是打印window
+    </script>
+</body>
+
+</html>

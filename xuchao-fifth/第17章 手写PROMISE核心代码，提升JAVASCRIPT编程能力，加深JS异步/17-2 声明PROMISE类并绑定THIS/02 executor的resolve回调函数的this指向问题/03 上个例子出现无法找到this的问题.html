@@ -23,11 +23,12 @@
             resolve(value) {
 
                 console.log(value)
+                console.log(this)
 
                 // 仍然是上个例子，这里打印的this是指向undefined 见12-6-03
                 // class类在严格模式下会把指向window的操this都变成undefined
                 // 所以this.value不存在，也就无法赋值
-                console.log(this)
+
                 this.value = value
                 this.status = Hd.FULFILLED
             }
