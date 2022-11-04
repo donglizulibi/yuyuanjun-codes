@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict"
+
+        // 第三种,使用类抽象化,开启严格模式
+        // 两个实例的类的内置函数中的this还是指向undefined
+
+        // 第二个实例传入的回调函数是普通函数
+        // 里面执行的打印this指向的也是undefined
+        class User {
+            constructor(func) {
+                func(this.show)
+            }
+            show(val) {
+                console.log(val)
+                console.log(this) // 打印undefined
+            }
+        }
+
+        let uu = new User((show) => {
+            console.log(this) // window
+            show('show-参数')
+        })
+
+        let u = new User(function(show) {
+            console.log(this) // 打印undefined
+            show('show-参数')
+        })
+    </script>
+</body>
+
+</html>

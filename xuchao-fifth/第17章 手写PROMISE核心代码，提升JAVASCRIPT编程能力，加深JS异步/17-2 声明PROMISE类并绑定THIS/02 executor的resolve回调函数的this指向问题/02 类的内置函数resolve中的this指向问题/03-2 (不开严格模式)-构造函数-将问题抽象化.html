@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第二种情况,使用构造函数抽象化,不开启严格模式
+        // 也是两个实例结果相同,而且上个例子打印undefined的地方
+        // 这里打印window
+
+        // 在这里需要把func函数放到this.show的后面
+        // 因为func要以this.show作为参数
+
+        function User(func) {
+            this.show = function(val) {
+                console.log(val)
+                console.log(this) // window
+            }
+            func(this.show)
+        }
+
+        let uu = new User((show) => {
+            console.log(this) // window
+            show('show-参数')
+        })
+
+        let u = new User(function(show) {
+            console.log(this) // window
+            show('show-参数')
+                // 与上个例子不同,这里的show由于是在构造函数里定义的
+                // 所以也不是严格模式,那么在这里调用show之后
+                // 在构造函数里面的this也是指向window
+        })
+    </script>
+</body>
+
+</html>

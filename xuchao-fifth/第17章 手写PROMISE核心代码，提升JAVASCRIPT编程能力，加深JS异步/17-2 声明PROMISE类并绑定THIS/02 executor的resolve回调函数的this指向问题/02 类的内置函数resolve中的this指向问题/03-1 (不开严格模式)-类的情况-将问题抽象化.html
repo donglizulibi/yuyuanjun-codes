@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 上个例子中，在新建promise实例中传入的回调函数里打印this
+        // 指向的是window
+
+        // 现在把这个问题抽象化
+        // 首先来讨论用类来抽象之前的例子,而且不开启严格模式的情况
+        // 在新建这个类的实例的时候,分别传入箭头函数和普通函数
+
+        // 结果都是,两个实例的打印结果一样
+        // 在类的内置函数show里面的this打印的是undefined
+        // 'show-参数'都可以打印出来
+        // 新建实例传入的回调函数里面打印的this都是指向window
+
+        class User {
+            constructor(func) {
+                func(this.show)
+
+                // 在这里执行的代码就相当于上个例子(02)中func
+                // 是直接运行在window里,如果不开启严格模式
+                // 则这个func函数是普通函数的情况下,也会打印window
+
+                // 但在严格模式下打印的是undefined 见例(04-1 04-2)
+                // 虽然是在这里调用的,但是打印结果是在回调函数里显示的
+            }
+            show(val) {
+                console.log(val)
+                console.log(this) // undefined
+            }
+        }
+
+        let uu = new User((show) => {
+            console.log(this) // window
+                // 由例(01)可知,无论是否是严格模式
+                // 都无法约束普通函数中的this指向window
+                // 所以四个例子在这里都是打印this
+
+            show('show-参数')
+        })
+
+        let u = new User(function(show) {
+            console.log(this) // window
+
+            show('show-参数')
+                // show函数在这里调用
+                // 但是这个函数是在类(或者其他例子构造函数)中定义的
+                // 在类中定义函数自动服从严格模式
+                // 所以即使上一句this没有严格,指向window
+                // 但从show开始就严格模式起来,指向undefined
+        })
+    </script>
+</body>
+
+</html>

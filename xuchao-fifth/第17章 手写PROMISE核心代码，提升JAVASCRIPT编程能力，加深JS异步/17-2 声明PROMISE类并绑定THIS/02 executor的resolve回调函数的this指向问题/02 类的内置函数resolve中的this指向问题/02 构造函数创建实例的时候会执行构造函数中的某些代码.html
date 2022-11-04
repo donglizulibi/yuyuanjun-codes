@@ -10,10 +10,19 @@
 
 <body>
     <script>
+        // 首选复习一下构造函数创建实例的四个步骤
+        // 1 创建一个空对象
+        // 2 将this指向新的对象
+        // 3 传入创建实例时的信息到新的对象中
+        // 4 把这个对象返回出来
+
+        // 在第1步之前,到第4步之前这个间隔中
+        // 如果构造函数内部有要执行的代码,也都会执行
         function User(func, name) {
-            func()
+            // func()
             console.log(this)
             this.name = name
+            func()
         }
 
         let user = new User(() => {
@@ -22,23 +31,6 @@
         }, 'lisi')
 
         console.log(user)
-
-
-        function show() {
-            let render = () => {
-                console.log(this)
-            }
-            render()
-        }
-        show()
-
-        function fn(value) {
-            value()
-        }
-
-        fn(() => {
-            console.log(this)
-        })
     </script>
 </body>
 

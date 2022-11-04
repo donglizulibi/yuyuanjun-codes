@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在本例中可以看到,如果不开启严格模式
+        // 普通函数中的this会指向window
+        // 开启严格模式之后就改为指向undefined
+
+        // 但是对箭头函数来说,不管有没有开启严格模式
+        // 都是会指向window
+
+        "use strict"
+        let func = () => {
+            console.log(this);
+        }
+        func()
+
+        let show = function() {
+            console.log(this);
+        }
+        show()
+    </script>
+</body>
+
+</html>

@@ -10,6 +10,9 @@
 
 <body>
     <script>
+        // 这个例子主要讨论新建实例的时候传入的实参，也就是那个回调函数
+        // 是如何作用于类中的executor的
+
         class Hd {
             static PENDING = "pending"
             static FULFILLED = "fulfilled"
@@ -20,10 +23,14 @@
 
                 // 由后面Hd类创建的promise实例可以看到
                 // 假设外部传进来的实参是(resolve,reject)=>{resolve('解决')}
-                // 则这个回调函数就是executor的函数体
+                // 相当于传进来一个函数体，则这就是executor的函数体
+                // 而类在constructor中直接调用executor
+                // 也就是相当于在创建实例的时候调用这个函数体
 
                 // 这个回调函数中有两个参数resolve和reject
-                // 就是executor里面的两个函数的函数体
+                // 在回调函数内部有调用这两个参数的语句
+                // 所以这两个参数也要传入函数体进去
+                // 而两个函数体就是在类内部定义,在类的内部传入到executor的
 
                 // 回调函数中调用resolve函数，并传“解决”进去作为实参
                 // 就相当于调用Hd的resolve内置方法，然后传这个参数进去
