@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在promise规范中,新建promise实例里的回调函数的错误
+        // 也会被reject捕获到并返回到下个then当中
+        // 为了实现这一点,可以把类的执行者函数放在try catch中
+        // 如果try里面出现了错误,就直接在catch里调用reject内置函数
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+
+                try {
+                    executor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                console.log(value)
+                console.log(this)
+
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
+            }
+            reject(reason) {
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
+            }
+        }
+
+        let promise = new Hd((resolve, reject) => {
+            // 设置一个未定义变量
+            a
+            resolve('解决')
+            reject('拒绝')
+        })
+        console.log(promise)
+    </script>
+</body>
+
+</html>

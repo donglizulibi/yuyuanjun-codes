@@ -10,6 +10,8 @@
 
 <body>
     <script>
+        // 上个例子中出现了resolve和reject可以同时调用的问题
+        // 可以在类的这两个内置函数里加上一个执行的限定条件
         class Hd {
             static PENDING = "pending"
             static FULFILLED = "fulfilled"
@@ -18,37 +20,30 @@
                 this.status = Hd.PENDING
                 this.value = null
 
-                // 在这里使用bind而不是apply或者call的原因的
-                // 作为executor的参数,需要传入的是函数体
-                // 而不是执行的函数,而bind绑定环境就形成函数体
                 executor(this.resolve.bind(this),
                     this.reject.bind(this))
             }
             resolve(value) {
-
                 console.log(value)
                 console.log(this)
 
-                this.value = value
-                this.status = Hd.FULFILLED
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
             }
             reject(reason) {
-
-                this.value = reason
-                this.status = Hd.REJECTED
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
             }
         }
 
 
         let promise = new Hd((resolve, reject) => {
-            console.log(this) // 打印window
-
-            // 相当于下面这两个函数的执行环境已经被指定了
             resolve('解决')
             reject('拒绝')
-
-            // 新的问题:这里执行了resolve之后,按照promise规范
-            // 应该直接返回出结果,后面的reject就不能再执行了
         })
         console.log(promise)
     </script>
