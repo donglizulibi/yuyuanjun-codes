@@ -11,7 +11,8 @@
 <body>
     <button>我好饿</button>
     <script>
-        // 定义一个对象，实现对象内的方法在被按钮调用时可以往按钮中添加对象内的属性值
+        // 定义一个对象
+        // 实现对象内的方法在被按钮调用时可以往按钮中添加对象内的属性值
         let Dom = {
             site: '我要吃黄焖鸡米饭',
             bind: function() {
@@ -23,13 +24,17 @@
                 // 所以本质上还是属于对象内的方法内的属性调用一个函数
                 let self = this
                 button.addEventListener('click', function() {
-                    // 由于这个函数是被button调用的，且这是一个普通函数，所以this就是button对象
+                    // 由于这个函数是被button调用的
+                    // 且这是一个普通函数，所以this就是button对象
                     console.log(this)
-                        // 而如果这是一个箭头函数，那么由于这个箭头函数在Dom环境中生成
+                        // 而如果这是一个箭头函数
+                        // 那么由于这个箭头函数在Dom环境中生成
                         // 箭头函数内部的this就会指向Dom的this
 
-                    // 事件监听的这个函数内部的this是指向button对象的，button对象中并没有site数据
-                    // 所以要想拿到Dom对象中的site属性，还是要用self手动赋值的方法
+                    // 事件监听的这个函数内部的this是指向button对象的
+                    // button对象中并没有site数据
+                    // 所以要想拿到Dom对象中的site属性
+                    // 还是要用self手动赋值的方法
                     console.log(self.site)
 
                     // 最后的改变标签内容的语句

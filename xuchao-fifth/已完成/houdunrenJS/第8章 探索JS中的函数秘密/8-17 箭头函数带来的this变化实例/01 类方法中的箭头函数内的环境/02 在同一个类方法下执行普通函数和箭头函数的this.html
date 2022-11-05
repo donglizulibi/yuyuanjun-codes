@@ -10,7 +10,7 @@
 
 <body>
     <script>
-        var a = 100
+        var a = 100 // 在这里使用var,见8-15-02
         let obj = {
             a: 10,
             show: function() {
@@ -23,17 +23,20 @@
                     console.log('类方法中的普通函数打印a', this.a) // 100
 
                 }
-                (() => {
+                let fn = () => {
                     console.log('类方法中的箭头函数打印this', this) // 打印对象本身
                     console.log('类方法中的箭头函数打印a', this.a) // 10
 
-                })()
+                }
+
                 render()
+                fn()
             }
         }
         obj.show()
 
-        // 打印的结果是箭头函数的this和类方法直接打印this的结果一致，都是打印对象本身
+        // 打印的结果是箭头函数的this和类方法直接打印this的结果一致
+        // 都是打印对象本身
         // 而普通函数打印的this是全局的window
     </script>
 </body>

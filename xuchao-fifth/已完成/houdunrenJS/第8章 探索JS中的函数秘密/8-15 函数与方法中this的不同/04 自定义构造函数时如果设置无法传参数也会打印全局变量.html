@@ -17,10 +17,12 @@
         var name = "全局的李四"
 
         // 定义一个构造函数，里面有name属性但是没有name的形参，也就是无法传入name参数
+        // 这样的情况情况下,会往全局找name属性
         // function User(name) {
         function User() {
 
-            this.name = name //这一句其实是相当于把构造函数实例化时候传入的参数赋值给this.name
+            this.name = name
+                //这一句其实是相当于把构造函数实例化时候传入的参数赋值给this.name
 
             // 在构造函数中定义一个方法
             this.show = function() {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 再来试验一次在其他对象环境中创建实例的情况
+        // 建立一个obj对象,在这个对象中创建一个函数,里面创建一个箭头函数并立即执行
+
+        // 箭头函数的函数体里是传入两种回调函数的新建实例
+        // 打印结果为,传入箭头函数为回调函数的实例打印的是obj对象
+        // 传入普通函数为回调函数的实例打印的是window
+
+        class User {
+            constructor(func) {
+                func(this.show)
+            }
+            show(val) {
+                console.log(val)
+                console.log(this) // undefined
+            }
+        }
+
+        let obj = {
+            name: 'lisi',
+            render: function() {
+                let fn = () => {
+                    // console.log(this) // obj
+
+                    let uu = new User((show) => {
+                        console.log(this) // obj
+                        show('show-参数')
+                    })
+                    let u = new User(function(show) {
+                        console.log(this) // window
+                        show('show-参数')
+                    })
+                }
+                fn()
+            }
+        }
+
+        obj.render()
+    </script>
+</body>
+
+</html>

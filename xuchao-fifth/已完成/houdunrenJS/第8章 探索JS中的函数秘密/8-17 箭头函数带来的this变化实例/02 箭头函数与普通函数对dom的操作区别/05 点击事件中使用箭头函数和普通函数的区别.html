@@ -12,6 +12,7 @@
     <button id="normal">普通函数</button>
     <button id="arrow">箭头函数</button>
     <script>
+        // 点击事件中使用箭头函数和普通函数的区别
         // 普通函数的例子
         let DomNormal = {
             site: 'houdunren',
@@ -28,7 +29,8 @@
                 // 用addEventListener也是相同的道理
                 btnNormal.addEventListener('click', function() {
                     console.log('点击事件的普通函数的this', this)
-                        // 打印的是dom节点 因为是dom节点的对象调用的这个函数
+                        // 打印的是btnNormal节点 
+                        // 因为是btnNormal节点的对象调用的这个函数
 
                     // 这里还是相当于把这个函数放到全局去调用 
                     function render() {
