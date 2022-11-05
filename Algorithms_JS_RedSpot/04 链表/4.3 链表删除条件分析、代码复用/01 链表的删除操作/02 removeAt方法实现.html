@@ -110,7 +110,6 @@
                         if (current.element == element) {
                             mid.next = current.next
                             bool = true
-                            break
                         }
                     }
                     if (bool) {
@@ -121,6 +120,35 @@
 
                 }
             }
+            removeAt(position) {
+                if (this.length == 0) {
+                    throw new Error('链表中没有节点')
+                } else {
+                    if (position < this.length) {
+                        let current = this.head
+                        if (position == 0) {
+                            this.head = current.next
+                            this.length--
+                        } else if (position > 0) {
+                            let count = 0
+                            while (current.next) {
+                                let mid = current
+                                current = current.next
+                                count++
+                                if (count == position) {
+                                    mid.next = current.next
+                                    this.length--;
+                                    return current
+                                }
+                            }
+                        } else {
+                            throw new Error('输入的位置需要大于零')
+                        }
+                    } else {
+                        throw new Error('删除的位置超出链表长度')
+                    }
+                }
+            }
         }
 
         let list = new LinkedList()
@@ -129,14 +157,17 @@
         list.append(2)
         list.append(3)
         list.append(4)
+        list.insert(1, 9)
+            // console.log(list)
 
-        // list.insert(0, 9)
-        // console.log(list)
-
-        // console.log(list.indexOf(4))
+        console.log(list.indexOf(4))
 
         // list.remove(1)
         // console.log(list.remove(5))
+
+        // list.removeAt(1)
+
+        console.log(list.removeAt(1))
         console.log(list)
     </script>
 </body>

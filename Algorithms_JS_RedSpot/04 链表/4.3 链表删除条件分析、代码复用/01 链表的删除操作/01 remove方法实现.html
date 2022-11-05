@@ -10,7 +10,6 @@
 
 <body>
     <script>
-        // 首先是生成node节点的类
         class Node {
             constructor(element) {
                 this.element = element
@@ -87,18 +86,65 @@
                     return '找不到该节点'
                 }
             }
+            remove(element) {
+                if (this.length == 0) {
+                    throw new Error('链表中没有节点')
+                } else {
+                    let current = this.head;
+                    let bool = false
+
+                    // 如果第一个节点符合条件，就把第一个节点的next
+                    // 赋值给this.head，这样就相当于把第一个节点移除了
+                    if (current.element == element) {
+                        this.head = current.next
+                        bool = true
+                    }
+
+
+                    while (current.next) {
+                        // 在遍历开始把上一个节点保存一下
+                        let mid = current
+
+                        // 然后往下递进一个节点
+                        current = current.next
+
+                        // 再加上递进到当前节点的next，呈这种关系
+                        // mid --> current(mid.next) --> current.next
+
+                        // 然后把第一个和第三个连起来，就相当于删掉了中间的这个
+                        if (current.element == element) {
+                            mid.next = current.next
+                            bool = true
+
+                            // remove删除，包括后面的removeAt
+                            // 可以理解为取出
+                            return current
+                        }
+                    }
+                    if (bool) {
+                        this.length--
+                    } else {
+                        return '找不到该节点'
+                    }
+
+                }
+            }
         }
 
         let list = new LinkedList()
+
         list.append(1)
         list.append(2)
         list.append(3)
         list.append(4)
-        list.insert(0, 9)
 
+        // list.insert(0, 9)
         // console.log(list)
 
-        console.log(list.indexOf(4))
+        // console.log(list.indexOf(4))
+
+        // list.remove(1)
+        // console.log(list.remove(5))
         console.log(list)
     </script>
 </body>

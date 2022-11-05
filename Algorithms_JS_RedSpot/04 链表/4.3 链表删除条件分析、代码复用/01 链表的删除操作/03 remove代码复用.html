@@ -10,7 +10,6 @@
 
 <body>
     <script>
-        // 首先是生成node节点的类
         class Node {
             constructor(element) {
                 this.element = element
@@ -44,62 +43,100 @@
             }
             insert(position, element) {
                 let node = new Node(element)
-
-                // 要想往链表的某个位置上插入新的节点
-                // 一个前提跳条件就是输入的位置不能比链表的长度大
                 if (position < this.length) {
-
-                    // 假如输入的位置是0,也就是要插入第一个位置
-                    // 就直接把新节点的next和链表原来的head接上
-                    // 然后把新节点赋值给head
                     if (position == 0) {
                         node.next = this.head
                         this.head = node
                         this.length++
                     } else if (position > 0) {
-
-                        // 如果不是插入到第一个位置,那就开始遍历
-
-                        // 需要找到插入位置的前一个位置的节点
                         let current = this.head
                         for (let i = 0; i < position - 1; i++) {
                             current = current.next
                             break
                         }
-                        console.log(current)
-
-                        // 找到了这个节点之后,把这个节点后面的那个节点保存下来
-                        // 由于遍历结果是找出目标节点的前一个节点
-                        // 所以这个mid就是目标节点本身
                         let mid = current.next
-
-                        // 然后把目标节点前一个节点的next接上node节点
-                        // 这样就相当于node代替了目标节点的位置
                         current.next = node
-
-                        // 最后把目标节点接在node的next
-                        // 这就形成了 
-                        // current --> node(current.next) --> mid(node.next) 
-                        // 插入就完成了
                         node.next = mid
                         this.length++
                     } else {
                         throw new Error('插入位置需要大于零')
                     }
-
                 } else {
                     throw new Error('插入位置超出链表长度')
                 }
             }
+            indexOf(element) {
+                if (this.length == 0) {
+                    throw new Error('链表中没有节点')
+                } else {
+                    let count = 0;
+                    let current = this.head;
+                    if (current.element == element) {
+                        return 0
+                    }
+                    while (current.next) {
+                        current = current.next
+                        count++
+                        if (current.element == element) {
+                            return count
+                        }
+                    }
+                    return '找不到该节点'
+                }
+            }
+
+            removeAt(position) {
+                if (this.length == 0) {
+                    throw new Error('链表中没有节点')
+                } else {
+                    if (position < this.length) {
+                        let current = this.head
+                        if (position == 0) {
+                            this.head = current.next
+                            this.length--;
+                            return current
+                        } else if (position > 0) {
+                            let count = 0
+                            while (current.next) {
+                                let mid = current
+                                current = current.next
+                                count++
+                                if (count == position) {
+                                    mid.next = current.next
+                                    this.length--;
+                                    return current
+                                }
+                            }
+                        } else {
+                            throw new Error('输入的位置需要大于零')
+                        }
+                    } else {
+                        throw new Error('删除的位置超出链表长度')
+                    }
+                }
+            }
+
+            remove(element) {
+                return this.removeAt(this.indexOf(element))
+            }
         }
 
         let list = new LinkedList()
+
         list.append(1)
         list.append(2)
         list.append(3)
         list.append(4)
-        console.log(list)
-        list.insert(3, 9)
+
+        list.insert(2, 9)
+            // console.log(list)
+
+        console.log(list.indexOf(4))
+
+        // list.remove(1)
+        // console.log(list.removeAt(2))
+
+        console.log(list.remove(1))
         console.log(list)
     </script>
 </body>
