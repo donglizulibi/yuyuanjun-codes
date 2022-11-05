@@ -47,6 +47,8 @@
 
 
                     // for方法
+                    // 当链表内只有一个节点的时候
+                    // 也不用遍历, 就直接接在这个节点后面就可以
                     if (this.length == 1) {
                         this.head.next = node
                     } else {
