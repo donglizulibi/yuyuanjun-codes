@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 为了达到异步的效果，可以把then回调函数里的代码放到setTimeout里执行 
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+                try {
+                    executor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
+                // console.log(this)
+            }
+            reject(reason) {
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
+            }
+
+            then(onFulfilled, onRejected) {
+                // 判断传进来的参数是不是函数
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = () => {}
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = () => {}
+                }
+
+
+                if (this.status == Hd.FULFILLED) {
+                    // 达到异步
+                    setTimeout(() => {
+                        try {
+                            onFulfilled(this.value)
+                        } catch (error) {
+                            onRejected(error)
+                        }
+                    })
+
+                }
+                if (this.status == Hd.REJECTED) {
+                    setTimeout(() => {
+                        try {
+                            onRejected(this.value)
+                        } catch (error) {
+                            onRejected(error) // 待定
+                        }
+                    })
+
+                }
+            }
+        }
+
+        let promise = new Hd((resolve, reject) => {
+                resolve('解决')
+                    // reject('拒绝')
+            })
+            .then((val) => {
+                // a
+                console.log(val)
+            }, (reason) => {
+                // a
+                console.log(reason)
+            })
+
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>

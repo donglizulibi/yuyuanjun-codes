@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+                try {
+                    executor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
+                console.log(this)
+            }
+            reject(reason) {
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
+            }
+
+            // 添加两个判断条件
+            then(onFulfilled, onRejected) {
+                if (this.status == Hd.FULFILLED) {
+                    onFulfilled(this.value)
+                }
+                if (this.status == Hd.REJECTED) {
+                    onRejected(this.value)
+                }
+            }
+        }
+
+        let promise = new Hd((resolve, reject) => {
+                // resolve('解决')
+                reject('拒绝')
+            })
+            .then((val) => {
+                console.log(val)
+            }, (reason) => {
+                console.log(reason)
+            })
+        console.log(promise)
+
+
+        // 这里有一个存疑的问题，在原生的promise实例中
+        // 如果promise里没有调用resolve或者reject，即使是后面加了then
+        // promise对象也是pending状态的，如下
+        let p1 = new Promise((resolve, reject) => {
+
+        }).then((val) => {
+            console.log(val)
+        })
+
+        console.log(p1)
+
+        // 但是这个例子中，新建实例后面加了then之后
+        // 实例就变成了undefined，说明还是调用了then
+        // 只是没有调用then里面的回调函数
+
+        // 另外一个问题，在原生promise中，then里面的回调函数是可以不传的
+        // 不传也不会报错，但是这里会报错
+    </script>
+</body>
+
+</html>

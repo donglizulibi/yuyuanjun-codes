@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+                try {
+                    executor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
+                console.log(this)
+            }
+            reject(reason) {
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
+            }
+
+            // 创建then内置函数，有两个参数，由外部传入回调函数
+            // 默认当then被调用的时候，这两个回调函数也会自动调用
+            // 先来试验第一个回调函数
+            then(onFulfilled, onRejected) {
+                // 第一个回调函数内部也有一个参数
+                // 接收的是上个promise返回出啦的value
+                onFulfilled(this.value)
+            }
+        }
+
+        let promise = new Hd((resolve, reject) => {
+            resolve('解决')
+                // reject('拒绝')
+        }).then((val) => {
+            console.log(val)
+        })
+        console.log(promise)
+            // 这里是undefined，因为then函数里面没有return值
+
+        // 然后出现的问题就是，当把promise实例中的resolve回调函数注释掉
+        // 相当于前一个promise的状态没有改变，then函数也可以执行
+        // 这并不符合promise规范
+    </script>
+</body>
+
+</html>

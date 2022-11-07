@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+                try {
+                    executor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
+                console.log(this)
+            }
+            reject(reason) {
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
+            }
+
+            then(onFulfilled, onRejected) {
+                console.log(onFulfilled)
+                console.log(onFulfilled instanceof Function)
+
+                // 那么就要在这里加上一个判断传进来的参数是不是函数的操作
+                // 有可能传进来的是null，或者undefined
+                // 总之如果传进来的不是函数，就自己创建一个函数
+                // 如果传进来的是函数，就使用传进来的函数
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = () => {}
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = () => {}
+                }
+
+                if (this.status == Hd.FULFILLED) {
+                    onFulfilled(this.value)
+                }
+                if (this.status == Hd.REJECTED) {
+                    onRejected(this.value)
+                }
+            }
+        }
+
+        let promise = new Hd((resolve, reject) => {
+                resolve('解决')
+                    // reject('拒绝')
+            })
+            .then((val) => {
+                console.log(val)
+            }, (reason) => {
+                console.log(reason)
+            })
+            // .then()
+
+
+        // console.log(promise) 
+        // 这个问题还是没有解决，还是打印undefined
+
+        // 然后就是then的链式调用的问题
+    </script>
+</body>
+
+</html>

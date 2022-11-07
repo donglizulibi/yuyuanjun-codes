@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+                try {
+                    executor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
+            }
+            reject(reason) {
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
+            }
+
+            then(onFulfilled, onRejected) {
+                console.log(1)
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = () => {}
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = () => {}
+                }
+
+                if (this.status == Hd.FULFILLED) {
+                    setTimeout(() => {
+                        try {
+                            onFulfilled(this.value)
+                        } catch (error) {
+                            onRejected(error)
+                        }
+                    })
+                }
+                if (this.status == Hd.REJECTED) {
+                    setTimeout(() => {
+                        try {
+                            onRejected(this.value)
+                        } catch (error) {
+                            onRejected(error) // 待定
+                        }
+                    })
+
+                }
+            }
+        }
+
+        // 在新建promise实例的时候，使用定时器延迟一秒改变状态
+        // 结果then不会执行里面的回调函数
+        let promise = new Hd((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('解决')
+                }, 1000)
+
+                // reject('拒绝')
+            })
+            .then((val) => {
+                console.log(val)
+            }, (reason) => {
+                console.log(reason)
+            })
+
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>
