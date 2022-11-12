@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 那么解决这个问题的方法就是给resolve和reject函数里
+        // 关于调用callbacks数组的操作再套上一个定时器
+
+        // 那么本例的事件循环的顺序是
+        // 1 创建promise实例，但是没有立即调用resolve，也没有改变status状态
+        //   但是创建了一个定时器宏任务
+        // 2 调用了then内置函数，打印123，检测到status状态没有改变
+        //   将then的两个回调函数的函数体压进callbacks内置数组中
+        // 3 打印页面的同步代码houdunren，第一次轮询结束
+        // 4 定时器到时间，开启第二次轮询，执行定时器里面的代码
+        // 5 调用resolve函数,此时status状态是fulfilled，不会执行if判断
+        //   往下又遇到一个定时器，再次创建一个宏任务
+        // 6 回到promise实例里的定时器里面的代码，打印‘执行resolve后的操作’
+        //   第二次轮询结束
+        // 7 执行resolve函数定时器里的代码，检测到callbacks不为空，调用里面的函数
+        //   也就是then的回调函数
+
+        // 由此实现了then必须在promise所有同步代码之后
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+                this.callbacks = []
+                try {
+                    executor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
+                console.log(this.status)
+
+                setTimeout(() => {
+                    console.log(this)
+                    if (this.callbacks.length)
+                        this.callbacks[0].onFulfilled(value)
+                })
+
+                // 普通函数的this指向问题
+                // let _this = this
+                // setTimeout(function() {
+                //     console.log(_this)
+                //     if (_this.callbacks.length)
+                //         _this.callbacks[0].onFulfilled(value)
+                // })
+
+            }
+            reject(reason) {
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
+
+                setTimeout(() => {
+                    if (this.callbacks.length)
+                        this.callbacks[0].onRejected(reason)
+                })
+            }
+
+            then(onFulfilled, onRejected) {
+                console.log(123)
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = () => {}
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = () => {}
+                }
+                if (this.status == Hd.PENDING) {
+                    this.callbacks.push({
+                        onFulfilled: (value) => {
+                            try {
+                                onFulfilled(value)
+                            } catch (error) {
+                                onRejected(error)
+                            }
+                        },
+                        onRejected: (reason) => {
+                            try {
+                                onRejected(reason)
+                            } catch (error) {
+                                console.log(error)
+                            }
+                        }
+                    })
+                }
+
+                if (this.status == Hd.FULFILLED) {
+                    setTimeout(() => {
+                        try {
+                            onFulfilled(this.value)
+                        } catch (error) {
+                            onRejected(error)
+                        }
+                    })
+                }
+                if (this.status == Hd.REJECTED) {
+                    setTimeout(() => {
+                        try {
+                            onRejected(this.value)
+                        } catch (error) {
+                            console.log(error)
+                                // onRejected(error) // 待定
+                        }
+                    })
+                }
+
+            }
+        }
+
+        let promise = new Hd((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('解决')
+                    console.log('执行resolve后的操作')
+                }, 1000)
+
+                // setTimeout(() => {
+                //     console.log('执行reject前的操作')
+                //     reject('拒绝')
+                // }, 1000)
+
+            })
+            .then((val) => {
+                console.log(val)
+            }, (reason) => {
+                console.log(reason)
+            })
+
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>

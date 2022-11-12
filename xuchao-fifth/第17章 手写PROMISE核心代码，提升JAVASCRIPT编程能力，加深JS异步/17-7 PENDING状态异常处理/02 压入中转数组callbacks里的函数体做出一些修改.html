@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 需要在把待执行的回调函数压入callbacks数组的时候
+        // 对函数体做出一些修改，添加try catch相关的操作
+
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+                this.callbacks = []
+                try {
+                    executor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                console.log(333)
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
+
+                if (this.callbacks.length)
+                    this.callbacks[0].onFulfilled(value)
+
+            }
+            reject(reason) {
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
+
+                if (this.callbacks.length)
+                    this.callbacks[0].onRejected(reason)
+            }
+
+            then(onFulfilled, onRejected) {
+                console.log(1)
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = () => {}
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = () => {}
+                }
+
+
+                console.log(this.status)
+
+                if (this.status == Hd.PENDING) {
+                    this.callbacks.push({
+
+                        // 属性名字是then的回调函数的名字
+                        // 属性值是一个箭头函数，then的回调函数和try catch操作
+                        // 在箭头函数的函数体中执行 
+                        onFulfilled: (value) => {
+                            try {
+                                onFulfilled(value)
+                            } catch (error) {
+                                onRejected(error)
+                            }
+                        },
+                        onRejected: (reason) => {
+                            try {
+                                onRejected(reason)
+                            } catch (error) {
+                                console.log(error)
+                                    // onRejected(error)
+                            }
+                        }
+                    })
+                    console.log(this.callbacks)
+                }
+
+                if (this.status == Hd.FULFILLED) {
+                    setTimeout(() => {
+                        try {
+                            onFulfilled(this.value)
+                        } catch (error) {
+                            onRejected(error)
+                        }
+                    })
+                }
+                if (this.status == Hd.REJECTED) {
+                    setTimeout(() => {
+                        try {
+                            onRejected(this.value)
+                        } catch (error) {
+                            console.log(error)
+                                // onRejected(error) // 待定
+                        }
+                    })
+                }
+
+            }
+        }
+
+        let promise = new Hd((resolve, reject) => {
+
+                setTimeout(() => {
+                    // aaa 
+                    console.log('执行resolve前的操作')
+                    resolve('解决')
+                }, 1000)
+
+                // setTimeout(() => {
+                //     console.log('执行reject前的操作')
+                //     reject('拒绝')
+                // }, 1000)
+
+            })
+            .then((val) => {
+                // aaa
+                console.log(val)
+            }, (reason) => {
+                // aaa
+                console.log(reason)
+            })
+
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>
