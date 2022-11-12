@@ -10,8 +10,20 @@
 
 <body>
     <script>
-        // 继续暴露问题
-        // 在新建实例的时候，在实例的回调函数里面添加一个定时器
+        // 解决上一个问题的思路就是，在类中添加一个空数组callbacks的属性
+        // 当进入then方法的内部的时候，如果检测到状态status是pending
+        // 则说明虽然已经执行了then，但是还没有resolve或者reject
+
+        // 则就应该把调用then的回调函数的工作放在resolve或者reject函数中执行
+        // 那么在这种then方法已经执行但是status是pending的状态下
+        // 可以先把then的两个回调函数，onFulfilled和onRejected存到数组callbacks中
+        // 然后在resolve和reject回调函数中可以添加一个判断
+
+        // 如果这两个回调函数之一执行了(比如任务循环遍历到了定时器中的resolve执行)
+        // 就可以把数组callbacks里的回调函数取出来执行
+
+        // 但是也要考虑到resolve或reject立即执行，立即改变状态status的情况
+        // 所以是否调用callbacks也要符合判断条件
         class Hd {
             static PENDING = "pending"
             static FULFILLED = "fulfilled"
@@ -19,6 +31,7 @@
             constructor(executor) {
                 this.status = Hd.PENDING
                 this.value = null
+                this.callbacks = []
                 try {
                     executor(this.resolve.bind(this),
                         this.reject.bind(this))
@@ -27,16 +40,28 @@
                 }
             }
             resolve(value) {
+                console.log(333)
                 if (this.status == Hd.PENDING) {
                     this.value = value
                     this.status = Hd.FULFILLED
                 }
+
+                if (this.callbacks.length)
+                    this.callbacks[0].onFulfilled(value)
+
+                // 视频教程里用到map或许只是预防this.callbacks是空数组的情况
+                // this.callbacks.map(callback => {
+                //     callback.onFulfilled(value)
+                // })
             }
             reject(reason) {
                 if (this.status == Hd.PENDING) {
                     this.value = reason
                     this.status = Hd.REJECTED
                 }
+
+                if (this.callbacks.length)
+                    this.callbacks[0].onRejected(reason)
             }
 
             then(onFulfilled, onRejected) {
@@ -48,13 +73,17 @@
                     onRejected = () => {}
                 }
 
-                // 刚刚进来的实例状态是pending
-                // 而此时resolve还没执行，实例状态还没有变成pending
-                // 所以虽然执行了then函数，但是不会执行then里的回调函数
 
-                // 而原生的promise应该是，无论promise实例的resolve什么时候执行
-                // 只要执行了resolve，就会调用then里的回调函数
                 console.log(this.status)
+
+                if (this.status == Hd.PENDING) {
+                    this.callbacks.push({
+                        onFulfilled,
+                        onRejected
+                    })
+                    console.log(this.callbacks)
+                }
+
                 if (this.status == Hd.FULFILLED) {
                     setTimeout(() => {
                         try {
@@ -89,7 +118,11 @@
                     resolve('解决')
                 }, 1000)
 
-                // reject('拒绝')
+                // setTimeout(() => {
+                //     console.log('执行reject前的操作')
+                //     reject('拒绝')
+                // }, 1000)
+
             })
             .then((val) => {
                 console.log(val)
