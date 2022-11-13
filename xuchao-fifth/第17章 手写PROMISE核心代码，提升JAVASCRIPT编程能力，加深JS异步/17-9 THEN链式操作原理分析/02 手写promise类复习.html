@@ -168,14 +168,14 @@
         }
 
         let hd = new Hd((resolve, reject) => {
-                // setTimeout(() => {
+                setTimeout(() => {
+                    resolve('成功')
 
-                //     // aa
-                // }, 1000)
+                    console.log('resolve的同步代码')
+                        // aa
+                }, 1000)
                 console.log(123)
                     // reject('拒绝')
-                resolve('成功')
-                console.log('resolve的同步代码')
             })
             // .then(null)
             .then(val => {

@@ -10,6 +10,146 @@
 
 <body>
     <script>
+        class HD {
+            static PENDING = 'pending'
+            static FULFILLED = 'fulfilled'
+            static REJECTED = 'rejected'
+            constructor(excutor) {
+                this.status = HD.PENDING
+                this.callbacks = []
+                this.value = null
+                try {
+                    excutor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status == HD.PENDING) {
+                    this.status = HD.FULFILLED
+                    this.value = value
+                }
+
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onFulfilled(value)
+                    }
+                })
+            }
+            reject(reason) {
+                if (this.status == HD.PENDING) {
+                    this.status = HD.REJECTED
+                    this.value = reason
+                }
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onRejected(reason)
+                    }
+                })
+            }
+
+            then(onFulfilled, onRejected) {
+                // console.log(123)
+                // console.log(onFulfilled)
+                // console.log(onFulfilled instanceof Function)
+
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = () => {}
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = () => {}
+                }
+
+                return new HD((resolve, reject) => {
+
+                    if (this.status == HD.PENDING) {
+                        this.callbacks.push({
+                            onFulfilled: (val) => {
+                                try {
+                                    let res = onFulfilled(val)
+                                    resolve(res)
+
+                                    // console.log(res)
+                                } catch (error) {
+                                    onRejected(error)
+                                }
+                            },
+                            onRejected: (rea) => {
+                                try {
+                                    let res = onRejected(rea)
+                                    resolve(res)
+                                } catch (error) {
+                                    console.log(error)
+                                }
+                            }
+                        })
+                    }
+
+
+                    if (this.status == HD.FULFILLED) {
+                        setTimeout(() => {
+                            try {
+                                // onFulfilled(this.value)
+                                let res = onFulfilled(this.value)
+                                    // console.log(res)
+
+                                resolve(res)
+                            } catch (error) {
+                                onRejected(error)
+                            }
+                        })
+                    }
+
+                    // console.log(this.status)
+                    if (this.status == HD.REJECTED) {
+                        // console.log(234)
+                        setTimeout(() => {
+                            try {
+                                let res = onRejected(this.value)
+                                resolve(res)
+                            } catch (error) {
+                                console.log(error)
+                            }
+                        })
+                    }
+                })
+
+
+            }
+        }
+
+        let p1 = new HD((resolve, reject) => {
+                setTimeout(() => {
+                    reject('拒绝')
+                    console.log('reject后面')
+                }, 1000)
+
+                // resolve('成功')
+
+
+
+                // aa
+            })
+            // .then(null)
+            .then((val) => {
+                // aa
+                console.log(val)
+                return 'hdcms'
+            }, (rea) => {
+                // aa
+                console.log(rea)
+                return 'fail'
+            })
+            .then((val) => {
+                // aa
+                console.log('success: ' + val)
+            }, (rea) => {
+                // aa
+                console.log(rea)
+            })
+
+        console.log('houdunren')
     </script>
 </body>
 
