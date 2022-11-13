@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                aaa
+                resolve('解决')
+            })
+        }).then((val) => {
+            console.log(val)
+        }, (rea) => {
+            console.log(rea)
+        })
+
+        // 可见，原生promise也不会在这种情况下
+        // 用then的第二个回调函数来捕获错误
+    </script>
+</body>
+
+</html>

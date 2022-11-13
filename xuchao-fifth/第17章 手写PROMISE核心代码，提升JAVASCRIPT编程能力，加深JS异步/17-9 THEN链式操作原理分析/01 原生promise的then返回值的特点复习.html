@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 then里面如果添加return，则也是返回一个promise，所以then才可以支持链式操作
+        // 2 一个then里面不论是第一个还是第二个回调函数return字符串
+        //   都是默认调用下一个then的第一个回调函数来处理
+        // 3 如果需要第一个then的返回值来让下一个then的第二个回调函数来处理的话
+        //   就在第一个then里返回一个调用reject的新的promise对象
+
+        new Promise((resolve, reject) => {
+            // resolve('成功')
+            reject('失败')
+        }).then(val => {
+            console.log(val)
+            return 'houdunren'
+        }, rea => {
+            console.log(rea)
+
+            // return 'hdcms'
+            return new Promise((resolve, reject) => {
+                reject('hdcms')
+            })
+        }).then(val => {
+            console.log('val:' + val)
+        }, rea => {
+            console.log('rea:' + rea)
+        })
+    </script>
+</body>
+
+</html>

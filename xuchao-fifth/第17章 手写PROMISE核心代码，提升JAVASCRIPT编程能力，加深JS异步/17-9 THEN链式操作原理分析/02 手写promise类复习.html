@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1  在创建实例的时候会在类中放进一个回调函数
+        //    所以类的一个参数就是回调函数，且这个回调函数需要立即执行
+
+        // 2  放进去的这个回调函数里面又有两个参数，分别是resolve和reject
+
+        // 3  原生的promise实例在创建的时候是pending状态，调用resolve以后
+        //    会变成fulfilled状态，调用reject以后，会变成rejected状态
+        //    可以把这三种状态存在自定义类的静态属性当中
+
+        // 4  因为新建实例时候传入的回调函数是一个箭头函数，且是在全局创建的
+        //    所以里面的运行环境的全局，在而里面执行的resolve函数是一个普通函数
+        //    所以运行环境也是全局，则如果想让resolve里的环境指向类本身
+        //    需要在往excutor传函数体的时候主动绑定环境
+
+        // 5  resolve和reject都可以传递值到下一个then，这个值在类中定义
+        //    初始为null 
+
+        // 6  解决resolve和reject只能调用一个的问题，在resolve和reject
+        //    的函数体中假如关于status的判断条件
+
+        // 7  添加then内置函数，创建的实例可以调用then。then函数中有两个
+        //    回调函数onFulfilled和onRejected
+
+        // 8  根据当前status的状态来决定调用onFulfilled还是onRejected
+
+        // 9  判断then有没有传入回调函数，如果没有传入回调函数，就自己
+        //    创建函数，保证后面即使要执行也不报错
+
+        // 10 在新建实例的回调函数中如果出现错误，比如未定义变量之类
+        //    可以直接触发reject，调用then里的onRejected回调函数
+
+        // 11 如果then的第一个或者第二个回调函数中出现错误，希望这个错误统一
+        //    放到第二个回调函数中处理（或者可以直接打印出来，不要交给浏览器处理）
+
+        // 12 创建实例的时候，在实例中的回调函数里套一个定时器，延迟一秒改变状态
+        //    而在创建实例的瞬间就已经执行了then函数，里面没有立即检测到状态改变
+        //    就不会调用then里面的回调函数，所以需要创建一个新的空数组来存then的
+        //    回调函数，等调用resolve或者reject再从这个数组中取出函数来调用
+
+        // 13 解决页面的同步代码在then里的回调函数之后执行的问题，在resolve里面
+        //    再加一个定时器
+
+        // 14（补）在12的基础上，如果在then的回调函数中出现未定义变量错误
+        //    需要有一个捕获机制
+        //    至于在12基础上，在promise实例的定时器中出现未定义变量
+        //    原生的promise也无法捕获
+
+        // 15（注）视频教程里关于页面同步代码在then的代码后面显示的问题的处理
+        //    是在then的改变状态之后两个回调函数里套上定时器 见17-5-02
+
+        //    而对于promise实例的回调函数里有定时器，调用resolve后
+        //    resolve的同步代码在then之后执行问题的处理，是在resolve和reject
+        //    内置函数里从中转数组里取出then的回调函数那步操作外面加上定时器
+        //    见17-8-02
+
+        //    而我直接在resolve里面所有的函数体外套上定时器，把上面两个问题
+        //    同时解决了  
+        //    这样导致的问题就是，then回调函数最开始永远都是只进入pending状态
+
+        class Hd {
+            static PENDING = 'pending'
+            static FULFILLED = 'fulfilled'
+            static REJECTED = 'rejected'
+            constructor(excutor) {
+                // 需要注意的是excutor函数一定要在内置变量定义的后面
+                this.status = Hd.PENDING
+                this.value = null
+                this.callbacks = []
+
+                // excutor(this.resolve, this.reject.bind(this))
+                try {
+                    excutor(this.resolve.bind(this), this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                setTimeout(() => {
+                    // console.log(this)
+                    if (this.status == Hd.PENDING) {
+                        this.status = Hd.FULFILLED
+                        this.value = value
+                    }
+
+                    // console.dir(this.status)
+
+                    // console.log(234)
+
+                    // console.log(this.callbacks)
+                    if (this.callbacks.length) {
+                        try {
+                            this.callbacks[0].onFulfilled(value)
+                        } catch (error) {
+                            this.callbacks[0].onRejected(error)
+                        }
+                    }
+                })
+
+
+            }
+            reject(reason) {
+                setTimeout(() => {
+                    if (this.status == Hd.PENDING) {
+                        this.status = Hd.REJECTED
+                        this.value = reason
+                    }
+
+                    if (this.callbacks.length) {
+                        try {
+                            this.callbacks[0].onRejected(reason)
+                        } catch (error) {
+                            console.log(error)
+                        }
+                    }
+                })
+            }
+            then(onFulfilled, onRejected) {
+                // console.log(onFulfilled)
+                // console.log(typeof onFulfilled)
+                if (typeof onFulfilled != 'function') {
+                    onFulfilled = () => {}
+                }
+                if (typeof onRejected != 'function') {
+                    onRejected = () => {}
+                }
+
+                console.log(this.status)
+                if (this.status == Hd.PENDING) {
+                    this.callbacks.push({
+                        onFulfilled: (val) => {
+                            onFulfilled(val)
+                        },
+                        onRejected: (rea) => {
+                            onRejected(rea)
+                        }
+                    })
+                }
+
+                // if (this.status == Hd.FULFILLED) {
+                //     console.log(1)
+                //     try {
+                //         onFulfilled(this.value)
+                //     } catch (error) {
+                //         console.log(error)
+                //     }
+                // }
+                // if (this.status == Hd.REJECTED) {
+                //     console.log(2)
+                //     try {
+                //         onRejected(this.value)
+                //     } catch (error) {
+                //         console.log(error)
+                //     }
+                // }
+            }
+        }
+
+        let hd = new Hd((resolve, reject) => {
+                // setTimeout(() => {
+
+                //     // aa
+                // }, 1000)
+                console.log(123)
+                    // reject('拒绝')
+                resolve('成功')
+                console.log('resolve的同步代码')
+            })
+            // .then(null)
+            .then(val => {
+                // aa
+                console.log(val)
+            }, rea => {
+                // aa
+                console.log(rea)
+            })
+
+        // 再回到这种写法的弊端，如果只打印新建的promise实例，调用resolve
+        // 而不调用then，则hd应该是fulfilled状态，但是现在永远都在pending状态
+        console.log(hd)
+
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>

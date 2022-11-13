@@ -24,8 +24,8 @@
         //   往下又遇到一个定时器，再次创建一个宏任务
         // 6 回到promise实例里的定时器里面的代码，打印‘执行resolve后的操作’
         //   第二次轮询结束
-        // 7 执行resolve函数定时器里的代码，检测到callbacks不为空，调用里面的函数
-        //   也就是then的回调函数
+        // 7 执行resolve函数定时器里的代码，检测到callbacks不为空，
+        //   调用里面的函数，也就是then的回调函数
 
         // 由此实现了then必须在promise所有同步代码之后
         class Hd {
@@ -131,6 +131,7 @@
                 setTimeout(() => {
                     resolve('解决')
                     console.log('执行resolve后的操作')
+                        // aa
                 }, 1000)
 
                 // setTimeout(() => {

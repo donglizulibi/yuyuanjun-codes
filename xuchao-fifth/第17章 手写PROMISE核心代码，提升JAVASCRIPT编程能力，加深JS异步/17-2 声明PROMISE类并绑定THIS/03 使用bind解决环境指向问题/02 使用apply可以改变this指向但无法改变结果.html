@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+
+                // executor(this.resolve.bind(this),
+                executor(this.resolve,
+                    this.reject.bind(this))
+            }
+            resolve(value) {
+
+                console.log(value)
+
+                this.value = value
+                this.status = Hd.FULFILLED
+                console.dir(this) // 在这里改变了
+            }
+            reject(reason) {
+
+                this.value = reason
+                this.status = Hd.REJECTED
+            }
+        }
+
+
+        let promise = new Hd((resolve, reject) => {
+            console.log(this) // 打印window
+
+            // 相当于下面这两个函数的执行环境已经被指定了
+            // resolve('解决')
+
+            // 如果使用apply在这里改变执行环境
+            resolve.apply(Hd, ['解决'])
+
+
+        })
+
+        console.log(promise)
+    </script>
+</body>
+
+</html>

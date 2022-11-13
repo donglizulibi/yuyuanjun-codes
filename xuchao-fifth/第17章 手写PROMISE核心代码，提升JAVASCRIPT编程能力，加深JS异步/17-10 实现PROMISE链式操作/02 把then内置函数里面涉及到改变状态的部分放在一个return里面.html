@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 把then内置函数里面涉及到改变状态的部分放在一个新的自定义类的新建实例中
+        // 然后再return出去，这样then后面也是Hd的实例，也有then内置方法
+        // 就可以实现链式调用
+        class Hd {
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
+            constructor(executor) {
+                this.status = Hd.PENDING
+                this.value = null
+                this.callbacks = []
+                try {
+                    executor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status == Hd.PENDING) {
+                    this.value = value
+                    this.status = Hd.FULFILLED
+                }
+
+                setTimeout(() => {
+                    if (this.callbacks.length)
+                        this.callbacks[0].onFulfilled(value)
+                })
+            }
+            reject(reason) {
+                if (this.status == Hd.PENDING) {
+                    this.value = reason
+                    this.status = Hd.REJECTED
+                }
+
+                setTimeout(() => {
+                    if (this.callbacks.length)
+                        this.callbacks[0].onRejected(reason)
+                })
+            }
+
+            then(onFulfilled, onRejected) {
+                console.log(123)
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = () => {}
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = () => {}
+                }
+
+
+                // then函数返回一个新的自定义类实例
+                // 涉及到三种状态判断的操作都放在实例里的回调函数里
+                return new Hd((resolve, reject) => {
+
+                    if (this.status == Hd.PENDING) {
+                        this.callbacks.push({
+                            onFulfilled: (value) => {
+                                try {
+                                    onFulfilled(value)
+                                } catch (error) {
+                                    onRejected(error)
+                                }
+                            },
+                            onRejected: (reason) => {
+                                try {
+                                    onRejected(reason)
+                                } catch (error) {
+                                    console.log(error)
+                                }
+                            }
+                        })
+                    }
+
+                    if (this.status == Hd.FULFILLED) {
+                        setTimeout(() => {
+                            try {
+                                onFulfilled(this.value)
+                            } catch (error) {
+                                onRejected(error)
+                            }
+                        })
+                    }
+
+                    if (this.status == Hd.REJECTED) {
+                        setTimeout(() => {
+                            try {
+                                onRejected(this.value)
+                            } catch (error) {
+                                console.log(error)
+                                    // onRejected(error) // 待定
+                            }
+                        })
+                    }
+                })
+            }
+        }
+
+        let p1 = new Hd((resolve, reject) => {
+                resolve('解决')
+            })
+            .then((val) => {
+                // console.log(123123)
+                console.log(val)
+            }, (reason) => {
+                console.log(reason)
+            })
+            .then((val) => {
+                console.log(val)
+            }, (reason) => {
+                console.log(reason)
+            })
+
+        // 原生promise可以在第二个then里面打印undefined
+        // 但是自定义类不会调用第二个then
+        let p2 = new Promise((resolve, reject) => {
+                resolve('解决')
+            })
+            .then((val) => {
+                console.log(val)
+            }, (reason) => {
+                console.log(reason)
+            })
+            .then((val) => {
+                // console.log(123123123)
+                console.log(val)
+            }, (reason) => {
+                console.log(reason)
+            })
+
+        console.log(p1)
+        console.log(p2)
+
+        console.log('houdunren')
+
+        // 所以下一步要解决在第一个then里面调用resolve
+        // 来启动第二个then的问题
+    </script>
+</body>
+
+</html>

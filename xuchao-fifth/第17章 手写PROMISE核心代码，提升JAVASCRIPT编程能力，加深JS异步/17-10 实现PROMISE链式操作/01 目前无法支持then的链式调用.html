@@ -10,20 +10,6 @@
 
 <body>
     <script>
-        // 在这个例子中，在promise实例里面的定时器里调用resolve之后
-        // 打印一个字符串
-
-        // 在原生promise中，这个打印的操作是promise里调用resolve的同步代码
-        // 任务循环的执行顺序是，由resolve的调用，标志着创建一个微任务队列
-        // 然后把resolve下面的同步代码执行完毕，才可以开始微任务
-        // 也就是then的部分
-
-        // 而这个例子的结果是在定时器倒计时结束
-        // 调用resolve的瞬间就启动了then里面的代码
-        // 然后再执行resolve后面的代码
-
-        // 导致的结果就是，调用resolve之后就直接执行then里面的代码了
-        // 而不是限制性resolve后面的同步代码
         class Hd {
             static PENDING = "pending"
             static FULFILLED = "fulfilled"
@@ -44,8 +30,12 @@
                     this.value = value
                     this.status = Hd.FULFILLED
                 }
-                if (this.callbacks.length)
-                    this.callbacks[0].onFulfilled(value)
+
+                setTimeout(() => {
+                    console.log(this)
+                    if (this.callbacks.length)
+                        this.callbacks[0].onFulfilled(value)
+                })
             }
             reject(reason) {
                 if (this.status == Hd.PENDING) {
@@ -53,11 +43,14 @@
                     this.status = Hd.REJECTED
                 }
 
-                if (this.callbacks.length)
-                    this.callbacks[0].onRejected(reason)
+                setTimeout(() => {
+                    if (this.callbacks.length)
+                        this.callbacks[0].onRejected(reason)
+                })
             }
 
             then(onFulfilled, onRejected) {
+                console.log(123)
                 if (!(onFulfilled instanceof Function)) {
                     onFulfilled = () => {}
                 }
@@ -112,11 +105,12 @@
                     console.log('执行resolve后的操作')
                 }, 1000)
 
-                // setTimeout(() => {
-                //     console.log('执行reject前的操作')
-                //     reject('拒绝')
-                // }, 1000)
-
+                // reject('拒绝')
+            })
+            .then((val) => {
+                console.log(val)
+            }, (reason) => {
+                console.log(reason)
             })
             .then((val) => {
                 console.log(val)
