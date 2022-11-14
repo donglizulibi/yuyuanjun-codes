@@ -10,13 +10,19 @@
 
 <body>
     <script>
-        // 那么这个例子就来讨论，为了满足then的链式调用
-        // 需要在什么样的时机调用resolve的问题
+        // 首先来看原生的promise，如果promise实例接一个没有传递回调函数的then
+        // 然后再接一个又回调函数的then，第二个then可以接收到promise实例的数据
+        // 这就是穿透效果
+        new Promise((resolve, reject) => {
+                resolve("解决")
+            })
+            .then()
+            .then(val => {
+                console.log(val)
+            })
 
-        // 而且第一个then不论是是调用第一个还是第二个回调函数
-        // 到第二个及其以后的then都统一调用第一个回调函数
 
-        // 所以在then里面只需要调用resolve就可以了
+        // 下面来看自定义类，是没有这个效果的
         class HD {
             static PENDING = 'pending'
             static FULFILLED = 'fulfilled'
@@ -57,10 +63,6 @@
             }
 
             then(onFulfilled, onRejected) {
-                // console.log(123)
-                // console.log(onFulfilled)
-                // console.log(onFulfilled instanceof Function)
-
                 if (!(onFulfilled instanceof Function)) {
                     onFulfilled = () => {}
                 }
@@ -69,19 +71,14 @@
                 }
 
                 return new HD((resolve, reject) => {
-
-                    // 把onFulfilled和onRejected的返回值
-                    // 作为参数传给resolve传递出去就好了
                     if (this.status == HD.PENDING) {
                         this.callbacks.push({
                             onFulfilled: (val) => {
                                 try {
                                     let res = onFulfilled(val)
                                     resolve(res)
-
-                                    // console.log(res)
                                 } catch (error) {
-                                    onRejected(error)
+                                    reject(error)
                                 }
                             },
                             onRejected: (rea) => {
@@ -89,7 +86,7 @@
                                     let res = onRejected(rea)
                                     resolve(res)
                                 } catch (error) {
-                                    console.log(error)
+                                    reject(error)
                                 }
                             }
                         })
@@ -99,66 +96,35 @@
                     if (this.status == HD.FULFILLED) {
                         setTimeout(() => {
                             try {
-                                // onFulfilled(this.value)
                                 let res = onFulfilled(this.value)
-                                    // console.log(res)
-
                                 resolve(res)
                             } catch (error) {
-                                onRejected(error)
+                                reject(error)
                             }
                         })
                     }
 
-                    // console.log(this.status)
                     if (this.status == HD.REJECTED) {
-                        // console.log(234)
                         setTimeout(() => {
                             try {
                                 let res = onRejected(this.value)
                                 resolve(res)
                             } catch (error) {
-                                console.log(error)
+                                reject(error)
                             }
                         })
                     }
                 })
-
-
             }
         }
 
         let p1 = new HD((resolve, reject) => {
-                // setTimeout(() => {
-                //     reject('拒绝')
-                //     console.log('reject后面')
-                // }, 1000)
-
                 resolve('成功')
-
-
-
-                // aa
             })
-            // .then(null)
+            .then()
             .then((val) => {
-                // aa
                 console.log(val)
-                return 'hdcms'
-            }, (rea) => {
-                // aa
-                console.log(rea)
-                return 'fail'
             })
-            .then((val) => {
-                // aa
-                console.log('success: ' + val)
-            }, (rea) => {
-                // aa
-                console.log(rea)
-            })
-
-        console.log('houdunren')
     </script>
 </body>
 

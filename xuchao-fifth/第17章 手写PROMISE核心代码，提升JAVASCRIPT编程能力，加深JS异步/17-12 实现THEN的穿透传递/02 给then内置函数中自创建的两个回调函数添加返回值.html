@@ -10,13 +10,10 @@
 
 <body>
     <script>
-        // 那么这个例子就来讨论，为了满足then的链式调用
-        // 需要在什么样的时机调用resolve的问题
+        // 解决这个问题的办法就是找到then函数中关于then没有传递回调函数的情况下
+        // 设置的两个防止报错的自定义函数
+        // 在这两个函数的函数体中添加返回resolve的数据的操作
 
-        // 而且第一个then不论是是调用第一个还是第二个回调函数
-        // 到第二个及其以后的then都统一调用第一个回调函数
-
-        // 所以在then里面只需要调用resolve就可以了
         class HD {
             static PENDING = 'pending'
             static FULFILLED = 'fulfilled'
@@ -57,31 +54,30 @@
             }
 
             then(onFulfilled, onRejected) {
-                // console.log(123)
-                // console.log(onFulfilled)
-                // console.log(onFulfilled instanceof Function)
-
                 if (!(onFulfilled instanceof Function)) {
-                    onFulfilled = () => {}
+                    onFulfilled = (val) => {
+                        return val
+                    }
+
+                    // 视频中的方法
+                    // onFulfilled = () => {
+                    //     return this.value
+                    // }
                 }
                 if (!(onRejected instanceof Function)) {
-                    onRejected = () => {}
+                    onRejected = () => this.value
                 }
-
                 return new HD((resolve, reject) => {
 
-                    // 把onFulfilled和onRejected的返回值
-                    // 作为参数传给resolve传递出去就好了
                     if (this.status == HD.PENDING) {
                         this.callbacks.push({
                             onFulfilled: (val) => {
                                 try {
                                     let res = onFulfilled(val)
-                                    resolve(res)
 
-                                    // console.log(res)
+                                    resolve(res)
                                 } catch (error) {
-                                    onRejected(error)
+                                    reject(error)
                                 }
                             },
                             onRejected: (rea) => {
@@ -89,7 +85,7 @@
                                     let res = onRejected(rea)
                                     resolve(res)
                                 } catch (error) {
-                                    console.log(error)
+                                    reject(error)
                                 }
                             }
                         })
@@ -99,66 +95,39 @@
                     if (this.status == HD.FULFILLED) {
                         setTimeout(() => {
                             try {
-                                // onFulfilled(this.value)
                                 let res = onFulfilled(this.value)
-                                    // console.log(res)
 
+                                // 这样就达到了把传入的参数
+                                // 直接返回到下一个then的效果
+                                console.log(res)
                                 resolve(res)
                             } catch (error) {
-                                onRejected(error)
+                                reject(error)
                             }
                         })
                     }
 
-                    // console.log(this.status)
                     if (this.status == HD.REJECTED) {
-                        // console.log(234)
                         setTimeout(() => {
                             try {
                                 let res = onRejected(this.value)
                                 resolve(res)
                             } catch (error) {
-                                console.log(error)
+                                reject(error)
                             }
                         })
                     }
                 })
-
-
             }
         }
 
         let p1 = new HD((resolve, reject) => {
-                // setTimeout(() => {
-                //     reject('拒绝')
-                //     console.log('reject后面')
-                // }, 1000)
-
                 resolve('成功')
-
-
-
-                // aa
             })
-            // .then(null)
+            .then()
             .then((val) => {
-                // aa
                 console.log(val)
-                return 'hdcms'
-            }, (rea) => {
-                // aa
-                console.log(rea)
-                return 'fail'
             })
-            .then((val) => {
-                // aa
-                console.log('success: ' + val)
-            }, (rea) => {
-                // aa
-                console.log(rea)
-            })
-
-        console.log('houdunren')
     </script>
 </body>
 

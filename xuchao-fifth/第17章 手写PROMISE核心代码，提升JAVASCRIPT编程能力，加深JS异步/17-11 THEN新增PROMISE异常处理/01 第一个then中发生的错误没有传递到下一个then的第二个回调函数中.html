@@ -10,13 +10,12 @@
 
 <body>
     <script>
-        // 那么这个例子就来讨论，为了满足then的链式调用
-        // 需要在什么样的时机调用resolve的问题
+        // 一个遗留的问题，之前没有实现then的链式调用的时候
+        // 如果是then中出现了未定义变量的错误，会直接在当前这个then的
+        // 第二个回调函数中报错
 
-        // 而且第一个then不论是是调用第一个还是第二个回调函数
-        // 到第二个及其以后的then都统一调用第一个回调函数
-
-        // 所以在then里面只需要调用resolve就可以了
+        // 现在把报错的位置改成下一个then的第二个回调函数
+        // 所以原来报错的操作改成reject传递下去
         class HD {
             static PENDING = 'pending'
             static FULFILLED = 'fulfilled'
@@ -57,10 +56,6 @@
             }
 
             then(onFulfilled, onRejected) {
-                // console.log(123)
-                // console.log(onFulfilled)
-                // console.log(onFulfilled instanceof Function)
-
                 if (!(onFulfilled instanceof Function)) {
                     onFulfilled = () => {}
                 }
@@ -69,17 +64,12 @@
                 }
 
                 return new HD((resolve, reject) => {
-
-                    // 把onFulfilled和onRejected的返回值
-                    // 作为参数传给resolve传递出去就好了
                     if (this.status == HD.PENDING) {
                         this.callbacks.push({
                             onFulfilled: (val) => {
                                 try {
                                     let res = onFulfilled(val)
                                     resolve(res)
-
-                                    // console.log(res)
                                 } catch (error) {
                                     onRejected(error)
                                 }
@@ -110,9 +100,7 @@
                         })
                     }
 
-                    // console.log(this.status)
                     if (this.status == HD.REJECTED) {
-                        // console.log(234)
                         setTimeout(() => {
                             try {
                                 let res = onRejected(this.value)
@@ -129,25 +117,15 @@
         }
 
         let p1 = new HD((resolve, reject) => {
-                // setTimeout(() => {
-                //     reject('拒绝')
-                //     console.log('reject后面')
-                // }, 1000)
-
                 resolve('成功')
-
-
-
-                // aa
             })
-            // .then(null)
             .then((val) => {
-                // aa
+
                 console.log(val)
+                aa
                 return 'hdcms'
             }, (rea) => {
-                // aa
-                console.log(rea)
+                console.log('then1 rea:' + rea)
                 return 'fail'
             })
             .then((val) => {
@@ -155,7 +133,7 @@
                 console.log('success: ' + val)
             }, (rea) => {
                 // aa
-                console.log(rea)
+                console.log('then2 rea:' + rea)
             })
 
         console.log('houdunren')

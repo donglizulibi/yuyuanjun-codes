@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果未定义变量的错误代码是在resolve之后的同步代码里的
+        // 则在原生promise里面是不会报错的
+        new Promise((resolve, reject) => {
+                // let aa = 'houdunren'
+                resolve('chengong')
+                console.log(aa)
+
+            }).then((val) => {
+                console.log(val)
+                    // return 'houdunren'
+            }, (rea) => {
+                console.log(rea)
+            })
+            // .then((val) => {
+            //     // aa
+            //     console.log(val)
+            // }, (rea) => {
+            //     console.log(rea)
+            // })
+    </script>
+</body>
+
+</html>
