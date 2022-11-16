@@ -10,19 +10,21 @@
 
 <body>
     <script>
+        console.dir(Set)
+
         class SetDiv {
-            constructor() {
+            constructor(array) {
                 this.item = {
 
                 }
+                array.forEach(v => {
+                    this.item[v] = v
+                })
             }
             has(value) {
                 return Object.keys(this.item).some(v => {
                     return v == value
                 })
-
-                // 或者直接返回
-                // return this.item.hasOwnProperty(value)
             }
             add(value) {
                 let bool = this.has(value)
@@ -31,8 +33,6 @@
                     Object.assign(this.item, {
                         [value]: value
                     })
-
-                    // console.log(this.item)
                     return '添加成功'
                 } else {
                     return '该项目已存在，无法添加'
@@ -61,7 +61,6 @@
 
             // 并集
             union(value) {
-                // console.log(this.item)
                 let arr = this.values()
                 let arrValue = value.values()
                 let newSet = new SetDiv()
@@ -71,19 +70,9 @@
                 }).map(v => {
                     arrValue.push(v)
                 })
-
-
-                // value.values().map(v => {
-                //     array.push(v)
-                // })
-
-                // console.log(arrValue)
                 arrValue.forEach(v => {
                     newSet.add(v)
                 });
-
-                // console.log(newSet)
-
                 return newSet
             }
 
@@ -91,50 +80,49 @@
             intersection(value) {
                 let newSet = new SetDiv()
                 this.values().filter(v => {
-                    // console.log(v)
                     return value.has(v)
                 }).forEach(v => {
                     newSet.add(v)
                 })
-
-                // console.log(newSet)
                 return newSet
-                    // console.log(value)
-
-                // console.log(arr)
             }
 
             // 差集
             difference(value) {
                 let newSet = new SetDiv()
                 this.values().filter(v => {
-                    // console.log(v)
                     return !value.has(v)
                 }).forEach(v => {
                     newSet.add(v)
                 })
-
-                // console.log(newSet)
                 return newSet
+            }
+
+            forEachDiv(callback) {
+                this.values().forEach((v, i, arr) => {
+                    callback(v, v, arr)
+                })
+            }
+            entriesDiv() {
+                return this.values().entries()
             }
         }
 
-        let set1 = new SetDiv()
-        set1.add(1)
-        set1.add(2)
-        set1.add(3)
-        set1.add(4)
+        let set = new SetDiv([1, 2, 3])
+        console.log(set)
 
-        let set2 = new SetDiv()
-        set2.add(3)
-        set2.add(4)
-        set2.add(5)
+        set.forEachDiv((v1, v2, setItself) => {
+            console.log(v1)
+            console.log(v2)
+            console.log(setItself)
+        })
 
-
-        console.log(set1.union(set2))
-        console.log(set1.intersection(set2))
-        console.log(set1.difference(set2))
-        console.log(set2.difference(set1))
+        let entries = set.entriesDiv()
+        console.log(entries)
+        console.log(entries.next())
+        console.log(entries.next())
+        console.log(entries.next())
+        console.log(entries.next())
     </script>
 </body>
 
