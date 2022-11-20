@@ -13,12 +13,21 @@
         // 首先来看原生的promise，如果promise实例接一个没有传递回调函数的then
         // 然后再接一个又回调函数的then，第二个then可以接收到promise实例的数据
         // 这就是穿透效果
+
+        // 另外，如果promise实例调用reject，也会传到到第二个then调用第二个回调函数
         new Promise((resolve, reject) => {
+                // reject('拒绝')
+                a
                 resolve("解决")
+                    // setTimeout(() => {
+
+                // }, 1000)
             })
             .then()
             .then(val => {
-                console.log(val)
+                console.log("val: " + val)
+            }, rea => {
+                console.log("rea: " + rea)
             })
 
 
@@ -123,7 +132,7 @@
             })
             .then()
             .then((val) => {
-                console.log(val)
+                console.log(val) // 这里没有穿透效果
             })
     </script>
 </body>

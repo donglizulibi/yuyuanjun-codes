@@ -10,18 +10,14 @@
 
 <body>
     <script>
-        // 解决这个问题的办法就是找到then函数中关于then没有传递回调函数的情况下
-        // 设置的两个防止报错的自定义函数
-        // 在这两个函数的函数体中添加返回resolve的数据的操作
-
         class HD {
-            static PENDING = 'pending'
-            static FULFILLED = 'fulfilled'
-            static REJECTED = 'rejected'
+            static PENDING = "pending"
+            static FULFILLED = "fulfilled"
+            static REJECTED = "rejected"
             constructor(excutor) {
-                this.status = HD.PENDING
                 this.callbacks = []
                 this.value = null
+                this.status = HD.PENDING
                 try {
                     excutor(this.resolve.bind(this),
                         this.reject.bind(this))
@@ -29,6 +25,7 @@
                     this.reject(error)
                 }
             }
+
             resolve(value) {
                 if (this.status == HD.PENDING) {
                     this.status = HD.FULFILLED
@@ -46,35 +43,32 @@
                     this.status = HD.REJECTED
                     this.value = reason
                 }
+
                 setTimeout(() => {
                     if (this.callbacks.length) {
                         this.callbacks[0].onRejected(reason)
                     }
                 })
             }
-
             then(onFulfilled, onRejected) {
-                if (!(onFulfilled instanceof Function)) {
-                    onFulfilled = (val) => {
-                        return val
+                return new HD((resolve, reject) => {
+                    if (!(onFulfilled instanceof Function)) {
+                        onFulfilled = (val) => {
+                            resolve(val)
+                        }
+                    }
+                    if (!(onRejected instanceof Function)) {
+                        onRejected = (rea) => {
+                            resolve(rea)
+                        }
                     }
 
-                    // 视频中的方法
-                    // onFulfilled = () => {
-                    //     return this.value
-                    // }
-                }
-                if (!(onRejected instanceof Function)) {
-                    onRejected = () => this.value
-                }
-                return new HD((resolve, reject) => {
-
                     if (this.status == HD.PENDING) {
+                        // console.log(1)
                         this.callbacks.push({
                             onFulfilled: (val) => {
                                 try {
                                     let res = onFulfilled(val)
-
                                     resolve(res)
                                 } catch (error) {
                                     reject(error)
@@ -90,23 +84,16 @@
                             }
                         })
                     }
-
-
                     if (this.status == HD.FULFILLED) {
                         setTimeout(() => {
                             try {
                                 let res = onFulfilled(this.value)
-
-                                // 这样就达到了把传入的参数
-                                // 直接返回到下一个then的效果
-                                console.log(res)
                                 resolve(res)
                             } catch (error) {
                                 reject(error)
                             }
                         })
                     }
-
                     if (this.status == HD.REJECTED) {
                         setTimeout(() => {
                             try {
@@ -118,19 +105,47 @@
                         })
                     }
                 })
+
+
             }
         }
 
-        let p1 = new HD((resolve, reject) => {
+        // 如果在第一个then的返回值中再次创建一个自定义promise的实例对象
+        // 并在实例内部调用resolve，返回一个字符串
+
+        // 如果在原生promise中这样做，会在第二个then的第一个回调函数中
+        // 接到这个字符串
+
+        // 但是在这个类中接到的是整个对象
+
+        let promise = new HD((resolve, reject) => {
+                // reject('拒绝')
                 setTimeout(() => {
-                    // a
-                    resolve('成功')
+                    resolve("成功")
+
+                    console.log('resolve后面')
                 }, 1000)
             })
-            .then()
-            .then((val) => {
+            // .then()
+            .then(val => {
                 console.log(val)
+                return new HD((resolve, reject) => {
+                    resolve('接收')
+                })
+            }, rea => {
+                // a
+                console.log(rea)
             })
+            .then((val) => {
+                console.log('then2 val:')
+                console.log(val) // 打印整个对象
+                    // console.log('then2 val:' + val)
+            }, (rea) => {
+                console.log(rea)
+            })
+
+        console.log(promise)
+        console.log('houdunren')
     </script>
 </body>
 
