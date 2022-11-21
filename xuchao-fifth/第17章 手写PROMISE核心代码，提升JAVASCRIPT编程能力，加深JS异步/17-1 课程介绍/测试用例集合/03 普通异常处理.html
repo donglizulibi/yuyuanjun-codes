@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./自定义类/1715.js"></script>
+    <script>
+        // 创建实例的回调函数的异常处理
+        let p1 = new HD((resolve, reject) => {
+            aaa
+            resolve('chengong')
+                // aaa
+        }).then((val) => {
+            console.log(val)
+        }, (rea) => {
+            console.log(rea)
+        })
+
+        // then的回调函数中的异常处理
+
+        let p2 = new HD((resolve, reject) => {
+                // resolve('chengong')
+                reject('shibai')
+            })
+            .then((val) => {
+                aaa
+                console.log(val)
+            }, (rea) => {
+                aaa
+                console.log(rea)
+            })
+            .then((val) => {
+                console.log(val)
+            }, (rea) => {
+                console.log(rea)
+            })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class HD {
+            static PENDING = 'pending'
+            static FULFILLED = 'fulfilled'
+            static REJECTED = 'rejected'
+            constructor(excutor) {
+                this.callbacks = []
+                this.status = HD.PENDING
+                this.value = null
+                try {
+                    excutor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status === HD.PENDING) {
+                    this.status = HD.FULFILLED
+                    this.value = value
+                }
+
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onFulfilled(value)
+                    }
+                })
+            }
+            reject(reason) {
+                if (this.status === HD.PENDING) {
+                    this.status = HD.REJECTED
+                    this.value = reason
+                }
+
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onRejected(reason)
+                    }
+                })
+            }
+            then(onFulfilled, onRejected) {
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = val => {
+                        return val
+                    }
+                }
+
+                if (!(onRejected instanceof Function)) {
+                    onRejected = rea => {
+                        return rea
+                    }
+                }
+
+                // 判断的方法是把then的返回值先定义成一个变量
+                // 然后给parse函数添加一个promise参数
+                // 在parse函数里完成比对和报错的工作
+                // 由于这个报错不需要被reject捕获
+                // 所以只需要把then的回调函数的运行操作放在try catch里面
+                // 而parse函数应该运行在try catch之外
+
+                let promise = new HD((resolve, reject) => {
+                    if (this.status === HD.PENDING) {
+                        this.callbacks.push({
+                            onFulfilled: val => {
+                                let result
+                                try {
+                                    result = onFulfilled(val)
+                                        // console.log(promise)
+                                } catch (error) {
+                                    reject(error)
+                                }
+                                this.parse(promise, result, resolve, reject)
+                            },
+                            onRejected: rea => {
+                                let result
+                                try {
+                                    result = onRejected(rea)
+                                } catch (error) {
+                                    reject(error)
+                                }
+                                this.parse(promise, result, resolve, reject)
+                            }
+                        })
+                    }
+
+                    // promise变量是可以在定时器的下一次轮询中打印出来的
+                    if (this.status === HD.FULFILLED) {
+                        setTimeout(() => {
+                            // console.log(promise)
+                            let result
+                            try {
+                                result = onFulfilled(this.value)
+                            } catch (error) {
+                                console.log(error)
+                                reject(error)
+                            }
+                            this.parse(promise, result, resolve, reject)
+                        })
+                    }
+
+                    if (this.status === HD.REJECTED) {
+                        setTimeout(() => {
+                            let result
+                            try {
+                                result = onRejected(this.value)
+                            } catch (error) {
+                                reject(error)
+                            }
+                            this.parse(promise, result, resolve, reject)
+
+                        })
+                    }
+                })
+
+                // console.log(promise)
+                return promise
+
+            }
+
+            parse(promise, result, resolve, reject) {
+                // console.log(result)
+                // console.log(promise)
+                // console.log(promise === result)
+                if (promise === result) {
+                    // console.log(1)
+                    throw new TypeError('Chaining cycle detected for promise')
+                }
+
+                if (result instanceof HD) {
+                    result.then(resolve, reject)
+                } else {
+                    resolve(result)
+                }
+
+
+            }
+        }
+
+        let p3 = new HD((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('chengong')
+                }, 1000)
+            })
+            .then((val) => {
+                // a
+                console.log(val)
+                return p3
+            }, (rea) => {
+                console.log(rea)
+            })
+    </script>
+</body>
+
+</html>

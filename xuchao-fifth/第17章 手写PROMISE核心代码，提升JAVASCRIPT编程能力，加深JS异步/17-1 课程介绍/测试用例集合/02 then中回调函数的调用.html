@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./自定义类/1715.js"></script>
+    <script>
+        // resolve和reject是否可以同时执行
+        let p1 = new HD((resolve, reject) => {
+            resolve('chengong')
+            reject('shibai')
+        }).then((val) => {
+            console.log(val)
+        }, (rea) => {
+            console.log(rea)
+        })
+
+        // then中是否可以不传参数也不报错
+        let p2 = new HD((resolve, reject) => {
+            resolve('chengong')
+        }).then()
+
+        // then的穿透
+        let p3 = new HD((resolve, reject) => {
+                resolve('chengong')
+                    // reject('shibai')
+            })
+            .then()
+            .then((val) => {
+                console.log(val)
+            }, (rea) => {
+                console.log(rea)
+            })
+    </script>
+</body>
+
+</html>

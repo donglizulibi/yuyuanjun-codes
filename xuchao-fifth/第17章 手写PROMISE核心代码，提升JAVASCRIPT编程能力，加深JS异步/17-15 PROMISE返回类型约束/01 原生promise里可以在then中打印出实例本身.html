@@ -12,14 +12,23 @@
     <script>
         // 原生promise里可以在then中打印出实例本身
         let promise = new Promise((resolve, reject) => {
+            // console.log('p1: ', promise)
             resolve('chengong')
+            console.log('p2: ', promise)
         }).then(() => {
             console.log('then: ', promise)
         })
 
         console.log('web: ', promise)
 
-        //
+        // 这里四个打印promise的地方，p1打印的话会报错
+        // p2无法打印，then和web可以打印出来，但then在web之后
+
+        // 所以在promise创建的时刻，resolve前后的打印都无法打印
+        // 一位此时promise还没创建完成
+
+        // 但是then属于微任务，在下一次任务轮询中执行，所以打印web之后
+        // 就可以打印出来
     </script>
 </body>
 

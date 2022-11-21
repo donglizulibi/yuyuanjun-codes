@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./自定义类/1715.js"></script>
+    <script>
+        // 返回字符串
+        let p1 = new HD((resolve, reject) => {
+                resolve('chengong')
+                    // reject('reject')
+            })
+            .then((val) => {
+                console.log(val)
+                return 'houdunren'
+            }, (rea) => {
+                console.log(rea)
+                return 'fail'
+            })
+            .then((val) => {
+                console.log('val: ' + val)
+
+            }, (rea) => {
+                console.log('rea: ' + rea)
+            })
+
+        // 返回新的实例
+        let p2 = new HD((resolve, reject) => {
+                // resolve('chengong')
+                reject('reject')
+            })
+            .then((val) => {
+                console.log(val)
+                return new HD((resolve, reject) => {
+                    // resolve('接受')
+                })
+            }, (rea) => {
+                console.log(rea)
+                return new HD((resolve, reject) => {
+                    // resolve('失败')
+                    reject('失败')
+                })
+            })
+            .then((val) => {
+                console.log('val: ' + val)
+            }, (rea) => {
+                console.log('rea: ' + rea)
+            })
+    </script>
+</body>
+
+</html>
