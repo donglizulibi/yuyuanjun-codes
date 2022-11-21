@@ -54,18 +54,19 @@
             // then函数中的两个回调函数无论如何都会执行
             // 所以可以对上面的例子做出一些修改
             then(onFulfilled, onRejected) {
-                return new HD((resolve, reject) => {
-                    if (!(onFulfilled instanceof Function)) {
-                        onFulfilled = (val) => {
-                            resolve(val)
-                        }
-                    }
-                    if (!(onRejected instanceof Function)) {
-                        onRejected = (rea) => {
-                            resolve(rea)
-                        }
-                    }
 
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = (val) => {
+                        return val
+                    }
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = (rea) => {
+                        return rea
+
+                    }
+                }
+                return new HD((resolve, reject) => {
                     if (this.status == HD.PENDING) {
                         this.callbacks.push({
                             onFulfilled: (val) => {
@@ -163,6 +164,7 @@
                 // }, 1000)
                 // reject('拒绝')
             })
+            // .then()
             .then(val => {
                 console.log(val)
                 return new HD((resolve, reject) => {

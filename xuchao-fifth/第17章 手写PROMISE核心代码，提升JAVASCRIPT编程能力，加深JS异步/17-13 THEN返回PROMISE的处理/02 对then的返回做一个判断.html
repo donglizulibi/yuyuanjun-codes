@@ -51,18 +51,18 @@
                 })
             }
             then(onFulfilled, onRejected) {
-                return new HD((resolve, reject) => {
-                    if (!(onFulfilled instanceof Function)) {
-                        onFulfilled = (val) => {
-                            resolve(val)
-                        }
-                    }
-                    if (!(onRejected instanceof Function)) {
-                        onRejected = (rea) => {
-                            resolve(rea)
-                        }
-                    }
 
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = (val) => {
+                        return val
+                    }
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = (rea) => {
+                        return rea
+                    }
+                }
+                return new HD((resolve, reject) => {
                     if (this.status == HD.PENDING) {
                         this.callbacks.push({
                             onFulfilled: (val) => {

@@ -63,6 +63,9 @@
                     // onFulfilled = () => {
                     //     return this.value
                     // }
+
+                    // 注意这里不能使用resolve(val)或者resolve(this.value)
+                    // 否则这个空的then后面会接两个then
                 }
                 if (!(onRejected instanceof Function)) {
                     onRejected = () => this.value

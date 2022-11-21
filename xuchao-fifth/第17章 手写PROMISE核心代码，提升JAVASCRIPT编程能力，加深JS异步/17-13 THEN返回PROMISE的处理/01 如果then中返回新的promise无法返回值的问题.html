@@ -51,17 +51,17 @@
                 })
             }
             then(onFulfilled, onRejected) {
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = (val) => {
+                        return val
+                    }
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = (rea) => {
+                        return rea
+                    }
+                }
                 return new HD((resolve, reject) => {
-                    if (!(onFulfilled instanceof Function)) {
-                        onFulfilled = (val) => {
-                            resolve(val)
-                        }
-                    }
-                    if (!(onRejected instanceof Function)) {
-                        onRejected = (rea) => {
-                            resolve(rea)
-                        }
-                    }
 
                     if (this.status == HD.PENDING) {
                         // console.log(1)

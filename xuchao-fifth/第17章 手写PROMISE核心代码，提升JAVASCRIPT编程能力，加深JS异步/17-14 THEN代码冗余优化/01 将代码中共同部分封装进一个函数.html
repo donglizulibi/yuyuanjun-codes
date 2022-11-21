@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class HD {
+            static PENDING = 'pending'
+            static FULFILLED = 'fulfilled'
+            static REJECTED = 'rejected'
+            constructor(excutor) {
+                this.value = null
+                this.callbacks = []
+                this.status = HD.PENDING
+                try {
+                    excutor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status === HD.PENDING) {
+                    this.value = value
+                    this.status = HD.FULFILLED
+                }
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onFulfilled(value)
+                    }
+
+                })
+            }
+            reject(reason) {
+                if (this.status === HD.PENDING) {
+                    this.value = reason
+                    this.status = HD.REJECTED
+                }
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onRejected(reason)
+                    }
+
+                })
+            }
+            then(onFulfilled, onRejected) {
+
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = val => {
+                        return val
+                    }
+                }
+
+                if (!(onRejected instanceof Function)) {
+                    onRejected = rea => {
+                        // resolve(val)
+                        return rea
+                    }
+                }
+                return new HD((resolve, reject) => {
+                    if (this.status === HD.PENDING) {
+
+                        this.callbacks.push({
+                            onFulfilled: val => {
+                                this.parse(onFulfilled(val), resolve, reject)
+                                    // try {
+                                    //     let res = onFulfilled(val)
+                                    //     if (res instanceof HD) {
+                                    //         res.then(resolve, reject)
+                                    //     } else {
+                                    //         resolve(res)
+                                    //     }
+                                    // } catch (error) {
+                                    //     reject(error)
+                                    // }
+                            },
+                            onRejected: rea => {
+                                this.parse(onRejected(rea), resolve, reject)
+                                    // try {
+                                    //     let res = onRejected(rea)
+                                    //     if (res instanceof HD) {
+                                    //         res.then(resolve, reject)
+                                    //     } else {
+                                    //         resolve(res)
+                                    //     }
+                                    // } catch (error) {
+                                    //     reject(error)
+                                    // }
+                            }
+                        })
+
+
+                    }
+
+                    if (this.status === HD.FULFILLED) {
+                        setTimeout(() => {
+                            this.parse(onFulfilled(this.value), resolve, reject)
+                        })
+
+                        // setTimeout(() => {
+                        //     try {
+                        //         // console.log(1)
+                        //         let res = onFulfilled(this.value)
+                        //         if (res instanceof HD) {
+                        //             res.then(resolve, reject)
+                        //         } else {
+                        //             resolve(res)
+                        //         }
+                        //     } catch (error) {
+                        //         reject(error)
+                        //     }
+                        // })
+                    }
+                    if (this.status === HD.REJECTED) {
+                        setTimeout(() => {
+                            this.parse(onRejected(this.value), resolve, reject)
+                        })
+
+                        // setTimeout(() => {
+                        //     try {
+                        //         let res = onRejected(this.value)
+                        //         if (res instanceof HD) {
+                        //             res.then(resolve, reject)
+                        //         } else {
+                        //             resolve(res)
+                        //         }
+                        //     } catch (error) {
+                        //         reject(error)
+                        //     }
+                        // })
+                    }
+
+                })
+            }
+            parse(res, resolve, reject) {
+                try {
+                    // let res = onRejected(this.value)
+                    if (res instanceof HD) {
+                        res.then(resolve, reject)
+                    } else {
+                        resolve(res)
+                    }
+                } catch (error) {
+                    reject(error)
+                }
+            }
+        }
+
+        let promise = new HD((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('chengong')
+                    console.log(123)
+                }, 1000)
+
+
+                // reject('fail')
+            })
+            .then()
+            .then((val) => {
+                console.log(val)
+                return new HD((resolve, reject) => {
+                    // resolve('成功')
+                    reject('fail')
+                })
+            }, (rea) => {
+                console.log(rea)
+            })
+            .then((val) => {
+                console.log(val)
+                return
+            }, (rea) => {
+                console.log(rea)
+            })
+
+
+
+        console.log('houdunren')
+    </script>
+</body>
+
+</html>
