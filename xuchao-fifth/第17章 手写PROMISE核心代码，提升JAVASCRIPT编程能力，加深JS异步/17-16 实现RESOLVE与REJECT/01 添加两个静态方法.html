@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class HD {
+            static PENDING = 'pending'
+            static FULFILLED = 'fulfilled'
+            static REJECTED = 'rejected'
+            constructor(excutor) {
+                this.callbacks = []
+                this.status = HD.PENDING
+                this.value = null
+                try {
+                    excutor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject()
+                }
+            }
+            resolve(value) {
+                if (this.status === HD.PENDING) {
+                    this.value = value
+                    this.status = HD.FULFILLED
+                }
+
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onFulfilled(value)
+                    }
+                })
+            }
+            reject(reason) {
+                if (this.status === HD.PENDING) {
+                    this.value = reason
+                    this.status = HD.REJECTED
+                }
+
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onRejected(reason)
+                    }
+                })
+            }
+            then(onFulfilled, onRejected) {
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = () => this.value
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = () => this.value
+                }
+
+                let promise = new HD((resolve, reject) => {
+                    if (this.status === HD.PENDING) {
+                        this.callbacks.push({
+                            onFulfilled: val => {
+                                let result
+                                try {
+                                    result = onFulfilled(val)
+                                } catch (error) {
+                                    reject(error)
+                                }
+                                this.parse(promise, result, resolve, reject)
+                            },
+                            onRejected: rea => {
+                                let result
+                                try {
+                                    result = onRejected(rea)
+                                } catch (error) {
+                                    reject(error)
+                                }
+                                this.parse(promise, result, resolve, reject)
+                            }
+                        })
+                    }
+
+                    if (this.status === HD.FULFILLED) {
+                        setTimeout(() => {
+                            let result
+                            try {
+                                result = onFulfilled(this.value)
+                            } catch (error) {
+                                reject(error)
+                            }
+                            this.parse(promise, result, resolve, reject)
+                        })
+                    }
+
+                    if (this.status === HD.REJECTED) {
+                        setTimeout(() => {
+                            let result
+                            try {
+                                result = onRejected(this.value)
+                            } catch (error) {
+                                reject(error)
+                            }
+                            this.parse(promise, result, resolve, reject)
+                        })
+                    }
+                })
+                return promise
+            }
+            parse(promise, result, resolve, reject) {
+                if (promise === result) {
+                    throw new TypeError(`can\'t return promise itself`)
+                } else {
+                    if (result instanceof HD) {
+                        result.then(resolve, reject)
+                    } else {
+                        resolve(resolve)
+                    }
+                }
+
+            }
+
+            static resolve(value) {
+                return new HD((resolve, reject) => {
+                    if (value instanceof HD) {
+                        value.then(resolve, reject)
+                    } else {
+                        resolve(value)
+                    }
+                })
+            }
+
+            static reject(reason) {
+                return new HD((resolve, reject) => {
+                    reject(reason)
+                })
+            }
+        }
+
+
+        // HD.resolve('chengong')
+        //     .then((val) => {
+        //         console.log(val)
+        //     }, (rea) => {
+        //         console.log(rea)
+        //     })
+
+        let promise = new HD((resolve, reject) => {
+            resolve('jiehsou')
+                // reject('jujue')
+        })
+
+        // HD.resolve(promise)
+        //     .then((val) => {
+        //         console.log('val: ' + val)
+        //     }, (rea) => {
+        //         console.log('rea: ' + rea)
+        //     })
+
+
+        // HD.reject('shibai')
+        //     .then((val) => {
+        //         console.log(val)
+        //     }, (rea) => {
+        //         console.log(rea)
+        //     })
+
+        HD.reject(promise)
+            .then((val) => {
+                console.log('val: ' + val)
+            }, (rea) => {
+                console.log({
+                    'rea': rea
+                })
+            })
+    </script>
+</body>
+
+</html>

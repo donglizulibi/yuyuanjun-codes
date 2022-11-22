@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先定义一个promise实例
+        let pro = new Promise((resolve, reject) => {
+            reject('chengong')
+        })
+
+        // 来看resolve方法
+        Promise.resolve(pro)
+            .then((val) => {
+                console.log('val: ' + val)
+            }, (rea) => {
+                console.log({
+                    'rea': rea
+                })
+            })
+
+
+        // 然后是reject方法
+        Promise.reject(pro)
+            .then((val) => {
+                console.log('val: ' + val)
+            }, (rea) => {
+                console.log({
+                    'rea': rea
+                })
+            })
+
+        // 如果传入的promise实例返回的是reject
+        // 都是走第二个回调函数
+        // 但是resolve内置方法返回的是字符串
+        // reject内置方法返回的是对象
+    </script>
+</body>
+
+</html>
