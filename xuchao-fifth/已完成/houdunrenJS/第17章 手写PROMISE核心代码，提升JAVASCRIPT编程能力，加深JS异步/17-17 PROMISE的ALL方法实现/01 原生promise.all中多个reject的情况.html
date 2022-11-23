@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 当放入promise.all数组中有多个reject的实例的时候
+        // 只会返回第一个reject的实例
+        let p1 = new Promise((resolve, reject) => {
+            resolve('p1 chengong')
+        })
+        let p2 = new Promise((resolve, reject) => {
+            // reject('p2 shibai')
+            resolve('p2 chengong')
+        })
+        let p3 = new Promise((resolve, reject) => {
+            reject('p3 shibai')
+                // resolve('p3 chengong')
+        })
+        let p4 = new Promise((resolve, reject) => {
+            // reject('p3 shibai')
+            resolve('p3 chengong')
+        })
+
+        console.log(p1)
+        console.log(p1.__PromiseState__)
+
+        Promise.all([p1, p2, p3, p4])
+            .then(val => {
+                console.log(val)
+            }, rea => {
+                console.log(rea)
+            })
+    </script>
+</body>
+
+</html>

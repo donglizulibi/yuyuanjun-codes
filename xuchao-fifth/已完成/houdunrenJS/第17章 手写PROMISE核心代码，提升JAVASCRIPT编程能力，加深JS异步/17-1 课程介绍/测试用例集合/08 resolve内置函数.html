@@ -9,23 +9,21 @@
 </head>
 
 <body>
+    <script src="./自定义类/1716.js"></script>
     <script>
         // 返回字符串
-        HD.reject('shibai')
+        HD.resolve('chengong')
             .then((val) => {
                 console.log(val)
             }, (rea) => {
                 console.log(rea)
             })
 
-
         // 返回另一个实例，实例中返回resolve
         let promise1 = new HD((resolve, reject) => {
             resolve('jiehsou')
-
         })
-
-        HD.reject(promise1)
+        HD.resolve(promise1)
             .then((val) => {
                 console.log('val: ' + val)
             }, (rea) => {
@@ -34,13 +32,11 @@
                 })
             })
 
-
         // 返回另一个实例，实例中返回reject
         let promise2 = new HD((resolve, reject) => {
             reject('jujue')
         })
-
-        HD.reject(promise2)
+        HD.resolve(promise2)
             .then((val) => {
                 console.log('val: ' + val)
             }, (rea) => {

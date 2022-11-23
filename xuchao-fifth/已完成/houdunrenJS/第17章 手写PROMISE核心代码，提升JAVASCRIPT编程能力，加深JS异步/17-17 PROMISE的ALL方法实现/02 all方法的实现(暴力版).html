@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class HD {
+            static PENDING = "pending"
+            static REJECTED = "rejected"
+            static FULFILLED = "fulfilled"
+            constructor(excutor) {
+                this.callbacks = []
+                this.status = HD.PENDING
+                this.value = null
+                try {
+                    excutor(this.resolve.bind(this),
+                        this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            resolve(value) {
+                if (this.status === HD.PENDING) {
+                    this.value = value
+                    this.status = HD.FULFILLED
+                }
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onFulfilled(value)
+                    }
+                })
+            }
+            reject(reason) {
+                if (this.status === HD.PENDING) {
+                    this.value = reason
+                    this.status = HD.REJECTED
+                }
+                setTimeout(() => {
+                    if (this.callbacks.length) {
+                        this.callbacks[0].onRejected(reason)
+                    }
+                })
+
+            }
+
+            then(onFulfilled, onRejected) {
+                if (!(onFulfilled instanceof Function)) {
+                    onFulfilled = () => this.value
+                }
+                if (!(onRejected instanceof Function)) {
+                    onRejected = () => this.value
+                }
+
+                // then的回调函数定义的执行的时候应该在reject之后跳出函数
+                // 避免再次往下执行parse函数
+                let promise = new HD((resolve, reject) => {
+                    if (this.status === HD.PENDING) {
+                        this.callbacks.push({
+                            onFulfilled: val => {
+                                let result
+                                try {
+                                    result = onFulfilled(val)
+                                } catch (error) {
+                                    reject(error)
+                                    return 1
+                                }
+                                this.parse(promise, result, resolve, reject)
+
+                            },
+                            onRejected: rea => {
+                                let result
+                                try {
+                                    result = onRejected(rea)
+                                } catch (error) {
+                                    reject(error)
+                                    return 1
+                                }
+                                this.parse(promise, result, resolve, reject)
+                            }
+                        })
+                    }
+
+                    if (this.status === HD.FULFILLED) {
+                        setTimeout(() => {
+                            let result
+                            try {
+                                result = onFulfilled(this.value)
+                            } catch (error) {
+                                reject(error)
+                                return 1
+                            }
+                            this.parse(promise, result, resolve, reject)
+                        })
+                    }
+
+                    if (this.status === HD.REJECTED) {
+                        setTimeout(() => {
+                            let result
+                            try {
+                                result = onRejected(this.value)
+                            } catch (error) {
+                                reject(error)
+                                return 1
+                            }
+                            this.parse(promise, result, resolve, reject)
+                        })
+                    }
+
+                })
+                return promise
+
+            }
+            parse(promise, result, resolve, reject) {
+                if (promise === result) {
+                    throw new TypeError('cycle promise problem')
+                } else {
+                    if (result instanceof HD) {
+                        result.then(resolve, reject)
+                    } else {
+                        resolve(result)
+                    }
+                }
+            }
+
+            static resolve(value) {
+                return new HD((resolve, reject) => {
+                    if (value instanceof HD) {
+                        value.then(resolve, reject)
+                    } else {
+                        resolve(value)
+                    }
+                })
+            }
+            static reject(value) {
+                return new HD((resolve, reject) => {
+                    reject(value)
+                })
+            }
+
+            static all(values) {
+                return new HD((resolve, reject) => {
+
+                    let res = values.find(promise => {
+                        return promise.status === 'rejected'
+                    })
+
+                    if (!res) {
+                        let promiseRes = values.filter(item => {
+                            return item.status === 'fulfilled'
+                        }).map(promise => promise.value)
+
+                        resolve(promiseRes)
+                    } else {
+                        reject(res.value)
+                    }
+
+                })
+            }
+
+        }
+
+        let p1 = new HD((resolve, reject) => {
+            resolve('p1 chengong')
+        })
+        let p2 = new HD((resolve, reject) => {
+            // reject('p2 shibai')
+            resolve('p2 chengong')
+        })
+        let p3 = new HD((resolve, reject) => {
+            // reject('p3 shibai')
+            resolve('p3 chengong')
+        })
+        let p4 = new HD((resolve, reject) => {
+            // reject('p4 shibai')
+            resolve('p4 chengong')
+        })
+
+        let hd = HD.all([p1, p2, p3, p4])
+            .then(val => {
+                console.log(val)
+            }, rea => {
+                console.log(rea)
+            })
+    </script>
+</body>
+
+</html>
