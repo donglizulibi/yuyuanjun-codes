@@ -17,8 +17,6 @@
 
             // 哈希函数
             loseloseHashCode(key) {
-                // let hash
-                // console.log(key[1].charCodeAt())
 
                 // 除以37是约定俗成
                 return key.split('').reduce((pre, val) => {
@@ -44,17 +42,12 @@
         }
 
         let hash = new HashTable()
-        console.log(hash.loseloseHashCode('Adam'))
 
-        hash.put('Jobs', 'jobs@qq.com')
-        hash.put('Adam', 'adam@qq.com')
-        hash.put('John', 'John@qq.com')
+        // 以下两个名字的哈希值都是13
+        console.log(hash.loseloseHashCode('Donnie'))
+        console.log(hash.loseloseHashCode('Ana'))
 
-        console.log(hash)
-
-        hash.remove('Jobs')
-        console.log(hash)
-        console.log(hash.get("Adam"))
+        // 如果把这两个名字加入散列表，后一个加入的会把前一个覆盖
     </script>
 </body>
 
