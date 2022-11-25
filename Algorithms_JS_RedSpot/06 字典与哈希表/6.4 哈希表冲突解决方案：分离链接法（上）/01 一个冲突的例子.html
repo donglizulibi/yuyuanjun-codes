@@ -20,9 +20,10 @@
 
                 // 除以37是约定俗成
                 return key.split('').reduce((pre, val) => {
-                    pre = pre + val.charCodeAt()
-                    return pre
-                }, 0) % 37
+                        pre = pre + val.charCodeAt()
+                        return pre
+                    }, 0) % 37
+                    // }, 0)
             }
 
             // 添加键值对
@@ -46,6 +47,8 @@
         // 以下两个名字的哈希值都是13
         console.log(hash.loseloseHashCode('Donnie'))
         console.log(hash.loseloseHashCode('Ana'))
+        console.log(hash.loseloseHashCode('VK'))
+        console.log(hash.loseloseHashCode('WJ'))
 
         // 如果把这两个名字加入散列表，后一个加入的会把前一个覆盖
     </script>
