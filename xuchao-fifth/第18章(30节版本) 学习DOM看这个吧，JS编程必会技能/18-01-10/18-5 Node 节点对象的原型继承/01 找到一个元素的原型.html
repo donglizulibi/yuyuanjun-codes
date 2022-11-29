@@ -9,12 +9,15 @@
 </head>
 
 <body>
+    <h2>houdunren</h2>
     <script>
-        let el = document.getElementById('h2')
-        console.log(el)
-            // 找不到返回一个null
+        let h2 = document.querySelector('h2')
+        console.dir(h2)
+
+        // 找到h2的原型
+        console.log(h2.__proto__)
+        console.log(Object.getPrototypeOf(h2))
     </script>
-    <h2 id="h2">houdunren</h2>
 </body>
 
 </html>

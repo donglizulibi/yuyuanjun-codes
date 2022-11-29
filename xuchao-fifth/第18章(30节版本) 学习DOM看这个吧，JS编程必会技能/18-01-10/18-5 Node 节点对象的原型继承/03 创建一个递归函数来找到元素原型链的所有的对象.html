@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>houdunren</h2>
+    <script>
+        let h2 = document.querySelector('h2')
+
+        function find(objProto) {
+            let arr = []
+
+            function serch(objProto) {
+                objProto = Object.getPrototypeOf(objProto)
+                arr.push(objProto)
+
+                if (objProto.__proto__ == null) {
+                    return objProto
+                }
+
+                serch(objProto)
+            }
+            serch(objProto)
+
+            return arr
+        }
+
+
+
+        console.log(find(h2))
+    </script>
+</body>
+
+</html>

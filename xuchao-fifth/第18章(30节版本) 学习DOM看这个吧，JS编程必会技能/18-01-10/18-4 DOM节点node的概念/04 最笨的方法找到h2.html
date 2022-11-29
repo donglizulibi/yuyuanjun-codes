@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>
+        houdunren
+        <!-- hdcms -->
+    </h2>
+    <script>
+        // 如果不用getElementById或者querySelector的方法
+        // 则可以用用childNodes的方法找到页面中的元素
+        console.log(document.childNodes)
+        console.log(document.childNodes[1].childNodes)
+        console.log(document.childNodes[1].childNodes[2].childNodes)
+        console.log(document.childNodes[1].childNodes[2].childNodes[1]) // h2
+
+        // 再往下查找
+        let h2 = document.childNodes[1].childNodes[2].childNodes[1]
+        console.log(h2.childNodes)
+            // 文本，注释，文本
+            // 第二个文本节点是从注释后面的空格和换行符和</h2>前面的空格
+    </script>
+</body>
+
+</html>
