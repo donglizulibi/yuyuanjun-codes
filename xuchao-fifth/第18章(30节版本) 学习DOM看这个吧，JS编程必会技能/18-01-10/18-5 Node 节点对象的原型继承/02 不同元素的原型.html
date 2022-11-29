@@ -12,17 +12,20 @@
     <h2 value="h2 value" id="h2Id">houdunren</h2>
     <input type="text" value="input value" id="inputId">
     <script>
-        // 
+        // 首先获取两个元素的元素对象
         let h2 = document.querySelector('h2')
         let input = document.querySelector('input')
         console.dir(h2)
         console.dir(input)
 
-        // 
+        // 找到input的value属性
+        console.log(input.value)
+        console.log(input.id)
 
-        // 找到h2的原型
-        console.log(h2.__proto__)
-        console.log(Object.getPrototypeOf(h2))
+        // h2没有value属性
+        console.log(h2.value)
+        console.log(h2.id)
+            // console.log(Object.getPrototypeOf(h2))
     </script>
 </body>
 

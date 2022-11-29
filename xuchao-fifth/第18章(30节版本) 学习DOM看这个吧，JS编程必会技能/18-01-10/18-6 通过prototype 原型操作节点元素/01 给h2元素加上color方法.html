@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 onclick="this.color('red')">houdunren</h2>
+    <!-- <h2 onclick="console.log(this)">houdunren</h2> -->
+    <script>
+        const h2 = document.querySelector('h2')
+
+        h2.color = function(color) {
+            // console.dir(this)
+            this.style.color = color
+            console.dir(this)
+        }
+    </script>
+</body>
+
+</html>
