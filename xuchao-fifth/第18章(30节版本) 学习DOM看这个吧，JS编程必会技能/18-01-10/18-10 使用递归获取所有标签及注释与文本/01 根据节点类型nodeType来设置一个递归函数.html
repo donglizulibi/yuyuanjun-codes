@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- hdcms -->
+    <div id="app">
+        <!-- houdunren -->
+        <ul>
+            <li>
+                <span></span>
+                <span>
+                    <!-- houdunren.com -->
+                </span>
+            </li>
+            <li><span></span><span></span></li>
+            <li><span></span><span></span></li>
+        </ul>
+    </div>
+    <script>
+        // 这个递归函数可以实现传入一个元素和想获取的节点的节点类型
+        // 就得到在这个元素之下的，所有的符合这个节点类型的节点
+
+        // 默认传入nodeType为1，也就是标签元素节点
+        function all(el, nodeType = 1) {
+            let nodes = [];
+
+            // 首先获取传入元素的childNodes，并将其变成数组
+            let arr = [...el.childNodes]
+
+            arr.map(node => {
+                if (node.nodeType == nodeType) {
+                    nodes.push(node)
+                }
+
+                // 这里另外加一个判断，如果传入的nodeType是1
+                // 则执行往下的递归操作
+
+                // 如果传入的nodeType不是1，比如找注释节点或者文本节点
+                // 也要在下一层的元素节点里面找注释节点
+                if (node.nodeType == 1) {
+                    nodes.push(...all(node, nodeType))
+                }
+            })
+            return nodes
+        }
+        console.log(all(document.body, 8))
+    </script>
+</body>
+
+</html>

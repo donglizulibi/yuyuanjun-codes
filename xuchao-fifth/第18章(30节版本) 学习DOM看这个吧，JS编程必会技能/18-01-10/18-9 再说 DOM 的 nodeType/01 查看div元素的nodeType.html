@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        houdunren
+        <!-- 注释 -->
+    </div>
+    <script>
+        // 查看div元素本身的nodeType
+        const node = document.getElementById('app')
+        console.log(node.nodeType)
+
+        // 获取div的属性
+        console.log(node.attributes)
+
+        // 查看div的id属性的nodeType
+        console.log(node.attributes[0].nodeType)
+
+        // 查看div文本的nodeType
+        console.log(node.childNodes[0].nodeType)
+
+        // 查看div中注释的nodeType
+        console.log(node.childNodes[1].nodeType)
+    </script>
+</body>
+
+</html>

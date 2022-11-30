@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <img src="" alt="">
+    <img src="" alt="">
+    <img src="" alt="">
+    <img src="" alt="">
+
+    <a href="" name="n1"></a>
+    <a href="" name="n2"></a>
+    <a href="" name="n3"></a>
+    <a href="" name="n4"></a>
+
+    <form action=""></form>
+    <form action=""></form>
+    <form action=""></form>
+    <form action=""></form>
+    <script>
+        // 直接获取唯一id的元素(还没有纳入标准规范)
+        console.log(app)
+
+        // 获取页面中所有的img元素
+        console.log(document.images)
+        console.log(document.images[0]) // 取第一个
+
+        // 获取页面中所有超链接元素
+        console.log(document.links)
+
+        // 根据锚点来获取元素(就是有name属性的元素)
+        console.log(document.anchors)
+        console.log(document.anchors[3])
+        console.log(document.anchors.n4)
+
+        // 获取页面中的form元素
+        console.log(document.forms)
+
+        // 获取页面的html元素
+        console.log(document.documentElement)
+    </script>
+</body>
+
+</html>
