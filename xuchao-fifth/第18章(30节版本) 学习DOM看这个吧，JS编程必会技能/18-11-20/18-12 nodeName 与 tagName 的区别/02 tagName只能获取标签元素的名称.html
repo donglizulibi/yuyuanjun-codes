@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        houdunren
+        <!-- hdcms -->
+    </div>
+    <span></span>
+    <script>
+        const div = document.querySelector('#app')
+        const span = document.querySelector('span')
+
+        // nodeName除了可以获取标签元素的节点名称之外
+        // 还可以获取注释节点、文本节点和属性节点等的名称
+
+        // 而标签名称tagName只能获取标签元素的节点名称
+        console.log(div.tagName)
+        console.log(span.tagName)
+
+        console.log(div.attributes.id.tagName)
+        console.log(div.childNodes[0].tagName)
+        console.log(div.childNodes[1].tagName)
+    </script>
+</body>
+
+</html>

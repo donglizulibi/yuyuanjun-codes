@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        houdunren
+        <!-- hdcms -->
+    </div>
+    <span></span>
+    <script>
+        const div = document.querySelector('#app')
+        const span = document.querySelector('span')
+
+        // 以下两个标签的节点类型都是一样的
+        console.log(div.nodeType)
+        console.log(span.nodeType)
+
+        // 来看节点名称nodeName
+        console.log(div.nodeName)
+        console.log(span.nodeName)
+
+        // 注释的节点名称
+        console.log(div.childNodes[1])
+        console.log(div.childNodes[1].nodeName)
+
+        // 文本的节点名称
+        console.log(div.childNodes[0])
+        console.log(div.childNodes[0].nodeName)
+
+        // 属性的节点名称
+        console.log(div.attributes.id.nodeName)
+    </script>
+</body>
+
+</html>
