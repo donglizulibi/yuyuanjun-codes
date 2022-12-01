@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div name="houdunren"></div>
+    <div id="hd"></div>
+    <script>
+        // 分别用querySelectorAll和getElementsByTagName
+        // 来获取页面中的div元素
+
+        let nodeList = document.querySelectorAll('div')
+        let collection = document.getElementsByTagName('div')
+
+        // 第一个为列表数据，第二个为集合数据
+        console.log(nodeList)
+        console.log(collection)
+
+        // 两个数据都有length属性，都可以使用for循环
+
+        // 但是集合数据有item方法，可以用来提取元素
+        for (let i = 0; i < collection.length; i++) {
+            console.log(collection.item(i))
+            console.log(collection[i])
+        }
+
+        // 集合数据还有namedItem方法，传入的参数为元素的属性值
+        // 得到相对于的元素
+        console.log(collection.namedItem('houdunren'))
+        console.log(collection.namedItem('hd'))
+
+        // 上面还可以简化
+        console.log(collection.houdunren)
+        console.log(collection.hd)
+
+        // 或者
+        console.log(collection['houdunren'])
+        console.log(collection['hd'])
+    </script>
+</body>
+
+</html>
