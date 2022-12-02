@@ -11,7 +11,6 @@
 <body>
     <script>
         // 首先是链表的类
-
         class Node {
             constructor(element) {
                 this.element = element
@@ -128,6 +127,7 @@
                 this.value = value
             }
         }
+
         // 分离链接法 separate chaining
         class HashTableSeparateChaining {
             constructor() {
@@ -136,9 +136,6 @@
 
             // 哈希函数
             loseloseHashCode(key) {
-                // let hash
-                // console.log(key[1].charCodeAt())
-
                 // 除以37是约定俗成
                 return key.split('').reduce((pre, val) => {
                     pre = pre + val.charCodeAt()
@@ -146,17 +143,7 @@
                 }, 0) % 37
             }
 
-            // 在添加值这个函数中实现一个逻辑
-            // 给哈希列表实例添加数据的时候，首先还是通过哈希函数计算出这人数据的位置
-            // 然后根据这个位置进行查询，如果位置为空，则创建一个链表
-            // 使用链表中的方法，把数据添加进入链表
-
-            // 如果不为空，说明已经有了一个链表存在，就把这个数据接在链表后面 
-
-            // 另外为了在取出数据的时候可以精确定位到这个数据，需要把key也存进去
             put(key, value) {
-                // this.table[this.loseloseHashCode(key)] = value
-
                 let position = this.loseloseHashCode(key)
                 if (this.table[position]) {
                     this.table[position].append(new Obj(key, value))
@@ -173,12 +160,44 @@
                 let position = this.loseloseHashCode(key)
                 let list = this.table[position]
 
+
+                if (!list) {
+                    return '没有该数据,无法删除'
+                } else {
+                    // console.log(list)
+
+                    if (list['head']['element']['key'] === key) {
+                        let removeItem = list['head']['element']
+                        list['head'] = list['head'].next
+                        list.length--;
+                        return removeItem
+                    } else {
+
+                        console.log(list)
+                        let current = list.head
+
+                        while (current.next) {
+                            if (current.next.element.key == key) {
+                                // console.log(key)
+                                // console.log(current)
+                                let removeItem = current.next.element
+                                current.next = current.next.next
+                                    // console.log(list)
+                                list.length--;
+                                return removeItem
+
+                            }
+                            current = current.next
+                        }
+                        return '没有该数据,无法删除'
+
+                    }
+                }
             }
 
 
             // 获取值
             get(key) {
-                // return this.table[this.loseloseHashCode(key)]
                 let position = this.loseloseHashCode(key)
                 let list = this.table[position]
                 if (!list) {
@@ -195,11 +214,11 @@
                     }
                     return '没有该数据'
                 }
-
-
             }
         }
 
+        // 现在创建一个哈希表，在同一个位置添加四个数据
+        // 则这四个数据都在同一条链表上
         let hash = new HashTableSeparateChaining()
         hash.put('Ana', 'ana@qq.com')
         hash.put('Donnie', 'donnie@qq.com')
@@ -207,9 +226,15 @@
         hash.put('WJ', 'wj@dsaf.com')
         console.log(hash)
 
-
-        // console.log(hash.get('Ana'))
+        // 四个数据都可以取到
+        console.log(hash.get('Ana'))
         console.log(hash.get('Donnie'))
+        console.log(hash.get('VK'))
+        console.log(hash.get('WJ'))
+
+        // 删去其中一个
+        console.log(hash.remove('WJ'))
+        console.log(hash)
     </script>
 </body>
 
