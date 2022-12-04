@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <div id="hd"></div>
+    <script>
+        const app = document.querySelector('#app')
+        const hd = document.querySelector('#hd')
+
+        function parent(app, hd) {
+            let arr1 = []
+            let arr2 = []
+            while (app.parentElement) {
+                arr1.push(app.parentElement)
+                app = app.parentElement
+            }
+            while (hd.parentNode) {
+                arr2.push(hd.parentNode)
+                hd = hd.parentNode
+            }
+
+            // 从结果可见，第一个parentElement不包含document
+            // 说明这个方法只能获取元素标签
+            // parentNode则包括document，说明文档节点也可以获取
+            return [arr1, arr2]
+        }
+
+        console.log(parent(app, hd))
+
+        console.log(document.nodeType)
+    </script>
+</body>
+
+</html>

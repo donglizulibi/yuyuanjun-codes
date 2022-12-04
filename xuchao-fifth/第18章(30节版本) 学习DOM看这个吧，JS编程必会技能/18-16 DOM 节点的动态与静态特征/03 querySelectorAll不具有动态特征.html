@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>1</h2>
+    <h2>2</h2>
+    <button onclick="add()">insert</button>
+    <button onclick="check()">check</button>
+    <script>
+        // 换成querySelectorAll的方法
+        const nodes = document.querySelectorAll('h2')
+        console.log(nodes)
+        console.log(nodes.length)
+
+        function add() {
+            document.body.insertAdjacentHTML('beforeend',
+                `<h2>houdunren.com</h2>`)
+
+            // 查看此时nodes，并没有变化，长度也没有增加
+            console.log(nodes)
+            console.log(nodes.length)
+                // 没有动态的添加
+
+        }
+
+        // 也没有变化，说明NodeList是无法改变的
+        function check() {
+            console.log(nodes)
+            console.log(nodes.length)
+        }
+    </script>
+</body>
+
+</html>

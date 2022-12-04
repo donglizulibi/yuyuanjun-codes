@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <h1></h1>
+            <span></span>
+        </li>
+    </ul>
+    <script>
+        const ul = document.querySelector('ul')
+        console.log(ul.childNodes[1].childNodes)
+
+        const h1 = ul.childNodes[1].childNodes[1]
+        console.log(h1)
+
+        // 找到h1的下一个节点
+        console.log(h1.nextSibling)
+        console.log(h1.nextSibling.nextSibling)
+        console.log(h1.nextSibling.nextSibling.nextSibling)
+        console.log(h1.nextSibling.nextSibling.nextSibling.nextSibling)
+
+        // 找上一个节点
+        const textNode = h1.nextSibling.nextSibling.nextSibling
+        console.log(textNode.previousSibling)
+        console.log(textNode.previousSibling.previousSibling)
+        console.log(textNode.previousSibling.previousSibling.previousSibling)
+
+        // 这两个方法都是可以找到包括标签节点在内的所有节点
+    </script>
+</body>
+
+</html>

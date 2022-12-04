@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>1</h2>
+    <h2>2</h2>
+    <button onclick="add()">insert</button>
+    <script>
+        // 首先使用找TagName的方法，找到页面中所有h2标签的集合
+        const nodes = document.getElementsByTagName('h2')
+        console.log(nodes)
+        console.log(nodes.length)
+            // 可以看到此时这个集合的长度的2
+
+        // 触发一个按钮，添加一个h2标签
+        function add() {
+            document.body.insertAdjacentHTML('beforeend',
+                `<h2>houdunren.com</h2>`)
+
+            // 查看此时nodes的长度
+            console.log(nodes)
+            console.log(nodes.length)
+                // 说明getElementsByTagName会动态的添加
+        }
+    </script>
+</body>
+
+</html>

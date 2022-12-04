@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--  -->
+        <div class="houdunren"></div>
+        <div></div>
+        <div></div>
+    </div>
+    <script>
+        let app = document.querySelector("#app")
+
+        // childNodes会把下一级的注释节点、标签节点、文本节点都获取到
+        // children只会获得标签节点
+        console.log(app.childNodes)
+        console.log(app.children)
+
+        // 二者都不包含后代
+
+        // 则在18-18中的firstChil、lastChild和
+        // firstElementChild、lastElementChild的区别也与本例子类似
+    </script>
+</body>
+
+</html>

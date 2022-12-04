@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <h2></h2>
+    <h2></h2>
+    <h2></h2>
+    <script>
+        const nodes1 = document.querySelectorAll('div')
+        console.log(nodes1)
+        const nodes2 = document.getElementsByTagName('h2')
+        console.log(nodes2)
+
+
+        nodes1.forEach(node1 => {
+            console.log(node1)
+        })
+
+        // getElementsByTagName无法遍历
+        nodes2.forEach(node2 => {
+            console.log(node2)
+        })
+    </script>
+</body>
+
+</html>

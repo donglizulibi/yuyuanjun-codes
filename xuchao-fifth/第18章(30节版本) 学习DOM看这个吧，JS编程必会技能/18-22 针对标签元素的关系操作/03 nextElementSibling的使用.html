@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app1">
+        <div class="hd"></div>
+        <span>hdcms</span>
+        <!-- houdunren -->
+        <div class="houdunwang"></div>
+    </div>
+
+    <div id="app2">
+        <div class="hd"></div>
+        <span>hdcms</span>
+        <!-- houdunren -->
+        <div class="houdunwang"></div>
+    </div>
+    <script>
+        const hd1 = document.querySelector('#app1>.hd')
+        const hd2 = document.querySelector('#app2>.hd')
+        console.log(hd1 == hd2)
+
+        function sibling(app, hd) {
+            let arr1 = []
+            let arr2 = []
+            while (app.nextElementSibling) {
+                arr1.push(app.nextElementSibling)
+                app = app.nextElementSibling
+            }
+            while (hd.nextSibling) {
+                arr2.push(hd.nextSibling)
+                hd = hd.nextSibling
+            }
+
+            // nextSibling包含所有节点
+            // nextElementSibling只包含元素节点
+            return [arr1, arr2]
+        }
+
+        console.log(sibling(hd1, hd2))
+    </script>
+</body>
+
+</html>

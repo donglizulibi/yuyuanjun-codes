@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <span>houdunren</span>
+        <h2>
+            <span>houdunwang</span>
+        </h2>
+    </div>
+    <script>
+        // 现在设置一个函数，包含两个参数
+        // 第一个参数传入父节点，第二个参数传入一个字符串
+        // 这个字符串表示需要需要在父节点的后代中找到字符串名称的所有节点
+
+        function getChildNodeByName(node, name) {
+            const nodesArr = []
+                // console.log(node.children)
+
+            // console.log(name)
+            Array.from(node.children).forEach(item => {
+                // console.log(item)
+                // console.log(item.tagName.toLowerCase())
+                if ((item.tagName.toLowerCase()) == name) {
+                    console.log(1)
+                    nodesArr.push(item)
+                }
+
+                // 在这里不要忘了传第二个参数
+                nodesArr.push(...getChildNodeByName(item, name))
+            })
+
+            return nodesArr
+        }
+
+        const nodes = getChildNodeByName(document, 'span')
+        console.log(nodes)
+
+        // console.dir(String)
+    </script>
+</body>
+
+</html>

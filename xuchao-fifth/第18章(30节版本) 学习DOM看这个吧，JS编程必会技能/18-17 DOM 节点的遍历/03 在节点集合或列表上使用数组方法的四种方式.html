@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        const nodes = document.querySelectorAll('div');
+
+        [...nodes].map(node => {
+            console.log('展开式', node)
+        })
+
+        Array.from(nodes).map(node => {
+            console.log('转化数组', node)
+        })
+
+        Array.prototype.slice.call(nodes).map(node => {
+            console.log('slice复制数组', node)
+        })
+
+        Array.prototype.map.call(nodes, node => {
+            console.log('直接调用map', node)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>1</h2>
+    <h2>2</h2>
+    <button onclick="add()">insert</button>
+    <script>
+        const nodes = document.getElementsByTagName('h2')
+
+        // 将nodes复制一份成为数组，就不具备动态属性了
+        // const clone = Array.prototype.slice.call(nodes)
+        const clone = [...nodes]
+
+
+        console.log(nodes)
+        console.log(nodes.length)
+            // 可以看到此时这个集合的长度的2
+
+        console.log(clone)
+
+        // 触发一个按钮，添加一个h2标签
+        function add() {
+            document.body.insertAdjacentHTML('beforeend',
+                `<h2>houdunren.com</h2>`)
+
+            // 查看此时nodes的长度
+            console.log(nodes)
+            console.log(nodes.length)
+                // 说明getElementsByTagName会动态的添加
+
+
+            console.log(clone)
+            console.log(clone.length)
+        }
+
+        // let arr = [1, 2, 3, 4]
+        // let arr2 = arr.slice()
+        // console.log(arr2)
+        // console.log(arr)
+    </script>
+</body>
+
+</html>
