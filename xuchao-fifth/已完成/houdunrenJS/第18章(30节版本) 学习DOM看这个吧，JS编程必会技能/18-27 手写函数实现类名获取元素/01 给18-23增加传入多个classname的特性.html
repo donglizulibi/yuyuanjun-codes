@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li class="hd item">houdunren</li>
+            <li class="item">houdunwang</li>
+            <li class="houdunren hd">
+                hd
+                <div class="hd houdunren"></div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function getElementTagByClassName(classname, tag = document) {
+
+            let classnameArr = classname.split(/\s+/).filter(f => f)
+            let arr = [];
+            // console.log(arr);
+
+            [...tag.children].forEach(ele => {
+
+                let state = classnameArr.every(item => {
+                    return eval(`/${item}/`).test(ele.className)
+                })
+
+                if (state) {
+                    console.log(ele.className)
+                    arr.push(ele)
+                }
+
+
+                arr.push(...getElementTagByClassName(classname, ele))
+
+            })
+            return arr
+        }
+
+        console.log(getElementTagByClassName('houdunren    hd'))
+        console.log(getElementTagByClassName('hd houdunren   '))
+        console.log(getElementTagByClassName('   item   '))
+    </script>
+</body>
+
+</html>

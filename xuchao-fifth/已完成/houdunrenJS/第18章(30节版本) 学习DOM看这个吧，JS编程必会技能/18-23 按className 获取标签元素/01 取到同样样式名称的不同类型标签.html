@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li class="hd item">houdunren</li>
+            <li class="item">houdunwang</li>
+            <li class="hd">
+                hd
+                <div class="hd"></div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        // 从document开始取值，函数只传入一个参数
+        // 这个参数就是需要取到的样式的名称
+
+        function getElementTagByClassName(classname, tag = document) {
+            let arr = [];
+            [...tag.children].forEach(ele => {
+
+                if (eval(`/${classname}/`).test(ele.className)) {
+                    console.log(ele.className)
+                    arr.push(ele)
+                }
+
+                // getElementTagByClassName(classname, ele)
+
+                arr.push(...getElementTagByClassName(classname, ele))
+
+            })
+            return arr
+        }
+
+        console.log(getElementTagByClassName('hd'))
+        console.log(getElementTagByClassName('item'))
+    </script>
+</body>
+
+</html>

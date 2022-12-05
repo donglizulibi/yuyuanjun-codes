@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="app">
+        <li>houdunren</li>
+        <li>xj</li>
+        <li name="houdunwang">hdcms</li>
+    </ul>
+    <script>
+        const nodes = document.querySelectorAll('ul li')
+            // console.log(nodes)
+
+        let tags = Array.from(nodes).filter(tag => {
+            console.log(tag)
+            return !tag.matches('[name]')
+        }).map(tag => {
+            return new Map([
+                [tag, tag.innerHTML]
+            ])
+        })
+
+        console.log(tags)
+    </script>
+</body>
+
+</html>

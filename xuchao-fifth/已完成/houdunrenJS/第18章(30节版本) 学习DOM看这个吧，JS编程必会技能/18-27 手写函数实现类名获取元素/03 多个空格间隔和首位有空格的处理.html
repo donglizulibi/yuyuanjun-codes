@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在有一个数组包含两个字符串
+        // 把这两个字符串中的单词提取出来放在数组里
+        let arr = [
+            'houdunren     hdcms      hd',
+            '      houdunren hdcms hd        ',
+        ]
+
+        // split中不需要加``,只有要在正则里面加变量，才用到``
+        let res = arr.map(item => {
+            return item.split(/\s+/)
+                .filter(str => {
+                    if (str) {
+                        return str
+                    }
+                })
+        })
+        console.log(res)
+    </script>
+</body>
+
+</html>

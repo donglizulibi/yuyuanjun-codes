@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div name="houdunren"></div>
+    <div></div>
+    <script>
+        let div1 = document.querySelector('div:first-child')
+        let div2 = document.querySelector('div:nth-of-type(2)')
+
+        console.log(div1)
+        console.log(div2)
+
+        // matches方法判断一个标签是否有某个属性
+        // 返回布尔值
+        console.log(div1.matches('[name]'))
+        console.log(div2.matches('[name]'))
+    </script>
+</body>
+
+</html>

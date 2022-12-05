@@ -1,0 +1,6 @@
+1 querySelector和querySelectorAll是css新增的样式选择器
+  里面放css选择器就可以找到元素
+
+2 querySelectorAll选择的元素放在nodelist里，不具备动态特征
+  如果是用getElementsByTagName获取多个元素，是放在一个集合里
+  是有动态特征的，见18-16

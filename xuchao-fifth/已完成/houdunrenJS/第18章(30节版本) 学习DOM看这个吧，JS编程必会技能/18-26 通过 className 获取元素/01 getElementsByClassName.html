@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="houdunren hdcms">houdunren</div>
+        <div class="hd hdcms">houdunwang</div>
+        <div>
+            <div class="houdunren hdcms">houdunren</div>
+        </div>
+    </div>
+    <script>
+        // 可以在标签元素上使用这个方法
+        // 可以取到后代中所有符合条件的方法
+        console.log(app.getElementsByClassName('houdunren'))
+
+        // 取到所有包含这个className的标签
+        console.log(app.getElementsByClassName('hdcms'))
+
+        // 可以写两个classname，表示同时包含这两个name的class
+        console.log(app.getElementsByClassName('hdcms houdunren'))
+    </script>
+</body>
+
+</html>

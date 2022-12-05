@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="user"></div>
+        <div id="age"></div>
+        <span></span>
+    </div>
+    <script>
+        // 存在的window全局变量可以直接取用
+        // 但是不建议这样取用
+        console.log(app.getElementsByTagName('div'))
+        console.log(app.getElementsByTagName('span'))
+
+        // 使用通配符选取所有元素
+        console.log(app.getElementsByTagName("*"))
+    </script>
+</body>
+
+</html>
