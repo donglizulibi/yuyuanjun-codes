@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>我好饿</button>
+    <script>
+        // 关于handleEvent的用法见8-17-02_4
+        // 总结起来就是addEventListener和handleEvent处于同一个对象环境的时候
+        // addEventListener的第二个参数所需要填写的事件方法
+        // 可以写在handleEvent里面
+
+        // handleEvent是一个与addEventListener联用的关键词
+        // 在同一个环境下定义这两个关键字
+        // 将addEventListener的第二个参数设为this
+        // 就会自动找到handleEvent里面的函数体
+
+        // handleEvent里面的e.target表示addEventListener正在调用的标签对象
+        // handleEvent的this环境指向其所在的对象环境
+        obj = {
+            site: '我要吃黄焖鸡米饭',
+            handleEvent(e) {
+                console.log(e.target)
+                console.log(this)
+                e.target.innerHTML += this.site
+            },
+            show() {
+                const btn = document.querySelector('button')
+                btn.addEventListener('click', this)
+            }
+        }
+        obj.show()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>添加一个元素</button>
+    <script>
+        let button = document.querySelector('button')
+        button.addEventListener('click', () => {
+            document.body.insertAdjacentHTML('beforeend',
+                `<h2 id="app">houdunren.com</h2>`)
+
+
+            let h2 = document.querySelector('#app')
+            console.log(h2)
+
+            h2.addEventListener('click', (e) => {
+                e.target.innerHTML = 'hdcms'
+            })
+        })
+    </script>
+</body>
+
+</html>

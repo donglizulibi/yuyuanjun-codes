@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">houdunren.com</div>
+    <script>
+        // 上一个例子表示了addEventListener监听标签对象的时候
+        // 如果把addEventListener的第二个参数放入包含handleEvent的环境
+
+        // 则addEventListener绑定的事件所执行的操作
+        // 就可以在handleEvent里面定义
+
+        // 在这里另外加了几步操作
+        // 首先从事件对象e.type可以获取到当前所执行的操作的类型
+        // 用字符串表示
+
+        // 然后在HD类内部再定义相应操作的内置方法
+        // 使用this[e.type](e)来调用这些方法，并传入参数e
+
+        // 这样就实现了同一个标签绑定多种类型的事件
+        // 而且每个事件都在一个独立的方法中描述，不会产生耦合
+        const app = document.querySelector('#app')
+        class HD {
+            handleEvent(e) {
+                // 首先是可以在
+                console.log(e)
+                console.log(e.type)
+
+                console.log(this)
+                this[e.type](e)
+            }
+
+            click(e) {
+                console.log(e)
+                console.log('单击事件')
+            }
+            mouseover(e) {
+                console.log(e)
+                console.log('鼠标移动事件')
+            }
+        }
+        app.addEventListener('click', new HD())
+        app.addEventListener('mouseover', new HD())
+    </script>
+</body>
+
+</html>

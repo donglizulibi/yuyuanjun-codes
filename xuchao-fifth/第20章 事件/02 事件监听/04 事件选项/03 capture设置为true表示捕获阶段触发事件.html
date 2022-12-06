@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" style="background-color: red">
+        <button id="bt">houdunren.com</button>
+    </div>
+    <script>
+        const app = document.querySelector('#app')
+        const bt = document.querySelector('#bt')
+        app.addEventListener(
+            'click',
+            function() {
+                alert('这是div事件 ')
+            }, {
+                capture: true
+            }
+        )
+
+        bt.addEventListener(
+            'click',
+            function() {
+                alert('这是按钮事件 ')
+            }, {
+                capture: true
+            }
+        )
+    </script>
+</body>
+
+</html>

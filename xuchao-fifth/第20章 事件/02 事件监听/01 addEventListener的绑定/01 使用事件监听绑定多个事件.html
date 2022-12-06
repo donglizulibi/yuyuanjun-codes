@@ -11,6 +11,7 @@
 <body>
     <div id="app">houdunren.com</div>
     <script>
+        // 绑定多个事件
         const app = document.querySelector('#app')
         app.addEventListener('click', function() {
             this.style.color = 'red'
@@ -18,8 +19,6 @@
         app.addEventListener('click', function() {
             this.style.fontSize = '55px'
         })
-
-        // 事件监听除了可以绑定多个事件，还可以对未来出现的元素进行绑定
     </script>
 </body>
 

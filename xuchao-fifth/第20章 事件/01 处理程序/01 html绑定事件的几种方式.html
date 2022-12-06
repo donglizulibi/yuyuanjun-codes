@@ -14,16 +14,19 @@
     <input type="text" onkeyup="HD.show()">
     <button onclick="render(this,'houdunren','hdcms','向军大叔',event)">后盾人</button>
     <script>
+        // 绑定一个方法，需要加()
         function show() {
             alert('houdunren.com')
         }
 
+        // 绑定类的静态方法
         class HD {
             static show() {
                 console.log('houdunren')
             }
         }
 
+        // 多个参数，this和event的特殊含义
         function render(...args) {
             console.log(args)
         }
