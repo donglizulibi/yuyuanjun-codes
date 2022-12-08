@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <style>
+        body,
+        #main,
+        #div,
+        #h1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #main {
+            height: 200px;
+            width: 400px;
+            border: 2px solid black;
+        }
+        
+        #div {
+            height: 120px;
+            width: 280px;
+            border: 2px solid blue;
+        }
+        
+        #h1 {
+            height: 80px;
+            width: 180px;
+            border: 2px solid red;
+            font-size: 20px;
+        }
+    </style>
+    <main id="main">main
+        <div id="div">div
+            <h1 id="h1">h1</h1>
+        </div>
+    </main>
+    <script>
+        console.log(document.querySelector('main').children)
+
+        // 这是一个递归函数，用来把多层嵌套的元素收集到一个数组中
+        function query(el) {
+            let arr = []
+            arr.push(el)
+            if (el.children[0]) {
+                arr.push(...query(el.children[0]))
+            }
+            return arr
+        }
+
+        let [main, div, h1] = query(document.querySelector('main'))
+
+        // 给三层元素都绑定同一个点击事件
+        main.addEventListener('click', click)
+        div.addEventListener('click', click)
+        h1.addEventListener('click', click)
+
+        // 这个点击中可以可以看到，点击哪一层，e.target就会显示哪一层
+        // 如果点击的这一层有从里层往外冒泡的现象发生
+        // e.target也不会改变显示的层级
+
+        // 而e.currentTarget会跟随冒泡层级的移动，来改变显示的结果
+        function click(e) {
+            console.log(e.target.id)
+            console.log(e.currentTarget.id)
+            console.log('')
+        }
+    </script>
+</body>
+
+</html>

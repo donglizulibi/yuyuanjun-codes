@@ -9,16 +9,27 @@
 </head>
 
 <body>
-    <button id="app">houdunren.com</button>
+    <div id="app" style="background-color: red">
+        <button id="bt">houdunren.com</button>
+    </div>
     <script>
-        // 第三个参数once设置为true表示事件只执行一次
         const app = document.querySelector('#app')
+        const bt = document.querySelector('#bt')
         app.addEventListener(
             'click',
             function() {
-                alert('houdunren@向军大叔')
+                alert('这是div事件 ')
             }, {
-                once: true
+                capture: false
+            }
+        )
+
+        bt.addEventListener(
+            'click',
+            function() {
+                alert('这是按钮事件 ')
+            }, {
+                capture: false
             }
         )
     </script>

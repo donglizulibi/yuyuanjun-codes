@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{margin: 0;padding: 0;}
-        .black{width: 200px;height: 170px;background-color: black;margin-left: 200px;padding-top: 30px;}
-        .green{width: 160px;height: 120px;background-color: green;margin: auto;padding-top: 20px;}
-        .blue{width: 120px;height: 100px;background-color: blue;margin: auto;}
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .black {
+            width: 200px;
+            height: 170px;
+            background-color: black;
+            margin-left: 200px;
+            padding-top: 30px;
+        }
+        
+        .green {
+            width: 160px;
+            height: 120px;
+            background-color: green;
+            margin: auto;
+            padding-top: 20px;
+        }
+        
+        .blue {
+            width: 120px;
+            height: 100px;
+            background-color: blue;
+            margin: auto;
+        }
     </style>
 </head>
+
 <body>
     <!-- 本例子要用火狐浏览器 -->
     <div class="black">
@@ -19,9 +44,10 @@
         </div>
     </div>
     <script>
-        //冒泡的核心问题在于当三个标签块同时点击时，为什么标签最里层的块会最先触发，也就是说触发的顺序是从里到外的
+        // 冒泡的核心问题在于当三个标签块同时点击时
+        // 为什么标签最里层的块会最先触发，也就是说触发的顺序是从里到外的
         // 所谓冒泡的形象，就是从里往外的过程
-        
+
         /*
         var divs=document.getElementsByTagName("div");
             for(var i=0;i<divs.length;i++){
@@ -43,7 +69,7 @@
         */
 
         // 如果用addEventListener的方法重构上述代码，用来体现这个方法第三个参数的作用
-        
+
         /*
         var divs=document.getElementsByTagName("div");
             for(var i=0;i<divs.length;i++){
@@ -54,9 +80,9 @@
                 },false)
             }
         */
-        
-        
-        
+
+
+
         /*
         上述的false如果改为true，则就意味着“事件在捕获阶段触发”
         在点击中间蓝色块的时候，最先改变的是外层的黑色块，执行顺序变成了从外向里
@@ -64,15 +90,15 @@
         */
 
 
-        var divs=document.getElementsByTagName("div");
-            for(var i=0;i<divs.length;i++){
-                divs[i].addEventListener("click",function(e){
-                    e.target.style.background="yellow"
-                    alert(e.target.className)
-                    e.target.style.background=""
-                    e.stopPropagation()
-                },false)
-            } 
+        var divs = document.getElementsByTagName("div");
+        for (var i = 0; i < divs.length; i++) {
+            divs[i].addEventListener("click", function(e) {
+                e.target.style.background = "yellow"
+                alert(e.target.className)
+                e.target.style.background = ""
+                e.stopPropagation()
+            }, false)
+        }
         /*
         
 
@@ -91,9 +117,7 @@
         e.target事件源对象
         并不是用来阻止冒泡，但是可以准确地找到事件源
         */
-
-
-
     </script>
 </body>
+
 </html>
