@@ -1,0 +1,9 @@
+1 react项目的创建和启动
+npx create-react-app my-react-app
+（npx create-react-app <project-directory>）
+
+npm start 开发环境下启动
+npm run build 编译环境下启动
+
+2 react的一个注意事项，return后面只能返回一个标签，如果有两个标签及以上
+可以放在<></>里面
