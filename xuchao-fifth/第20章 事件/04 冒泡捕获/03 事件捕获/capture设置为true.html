@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        #app {
+            background: #34495e;
+            width: 300px;
+            padding: 30px;
+        }
+        
+        #app h2 {
+            background-color: #f1c40f;
+            margin-right: -100px;
+        }
+    </style>
+    <div id="app">
+        <h2>houdunren.com</h2>
+    </div>
+
+    <script>
+        const app = document.querySelector('#app')
+        const h2 = document.querySelector('h2')
+        app.addEventListener(
+            'click',
+            (event) => {
+                console.log('app event')
+            }, {
+                // capture: false // 这里不设置相当设置为false
+                capture: true
+            }
+        )
+        h2.addEventListener('click', (event) => {
+            console.log(`h2 event`)
+        })
+    </script>
+</body>
+
+</html>
