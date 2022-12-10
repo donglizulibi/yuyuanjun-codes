@@ -4,6 +4,7 @@
 2 windows系统使用
 npm install typescript -g 或者 yarn add typescript -D
 tsc -v 命令查看是否安装ts成功
+其中tsc是typescript compile的缩写
 
 3 关于独立安装和全局安装的区别
 给项目独立安装ts有一个好处就是可以限定版本库
