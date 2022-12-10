@@ -2,4 +2,4 @@
 //     return a+b
 // }
 // console.log(sum('a',1))
-console.log(sum(3, 1));
+// console.log(sum(3,1))
