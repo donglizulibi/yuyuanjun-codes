@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            border: 1px solid black;
+            width: 100px;
+        }
+        
+        li {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>houdunren</li>
+        <li>hdcms</li>
+    </ul>
+    <script>
+        const ul = document.querySelector('ul')
+        console.log(ul)
+        const lis = document.querySelectorAll('li')
+
+        // 根据前面的论述，e.target不会只显示当前被点击的元素那个对象
+        // 这个显示的范围包括父级和所有自己元素
+        // 也就是说，如果点击了一个父级和子级元素重合的区域，则会显示子集元素
+
+        // 而e.currentTarget显示的是这条打印语句所在元素上
+
+        ul.addEventListener('click', (e) => {
+            console.log(e.target)
+            console.log(e.currentTarget)
+        })
+
+        lis[0].addEventListener('click', (e) => {
+            console.log(e.target)
+            console.log(e.currentTarget)
+        })
+    </script>
+</body>
+
+</html>

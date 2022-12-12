@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li data-action="hidden">houdunren.com</li>
+        <li data-action="color" data-color="red">hdcms.com</li>
+    </ul>
+    <script>
+        class HD {
+            constructor(el) {
+                el.addEventListener('click', (e) => {
+                    console.dir(e.target)
+                    const action = e.target.dataset.action
+                    this[action](e)
+                })
+            }
+            hidden() {
+                event.target.hidden = true
+            }
+            color() {
+                event.target.style.color = event.target.dataset.color
+            }
+        }
+        new HD(document.querySelector('ul'))
+    </script>
+</body>
+
+</html>
