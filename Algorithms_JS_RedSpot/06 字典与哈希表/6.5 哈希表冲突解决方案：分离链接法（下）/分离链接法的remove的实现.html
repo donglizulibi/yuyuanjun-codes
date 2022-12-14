@@ -29,8 +29,11 @@
             put(key, value) {
                 let position = this.loseloseHashCode(key)
                 if (this.table[position]) {
+                    // console.log(this.table[position])
+                    // console.log(1)
                     this.table[position].append(new Obj(key, value))
                 } else {
+
                     let list = new LinkedList()
                     list.append(new Obj(key, value))
                     this.table[position] = list
@@ -53,6 +56,13 @@
                         let removeItem = list['head']['element']
                         list['head'] = list['head'].next
                         list.length--;
+
+                        // 在这里加上一个判断，如果链表上所有数据都被删除
+                        // 为了节省空间，不必保留哈希表上这个位置的空链表
+                        // 把这个位置设置为undefined
+                        if (list.length == 0) {
+                            this.table[position] = undefined
+                        }
                         return removeItem
                     } else {
 
@@ -66,6 +76,7 @@
                                 let removeItem = current.next.element
                                 current.next = current.next.next
                                     // console.log(list)
+
                                 list.length--;
                                 return removeItem
 
@@ -75,6 +86,8 @@
                         return '没有该数据,无法删除'
 
                     }
+
+
                 }
             }
 
@@ -104,19 +117,21 @@
         // 则这四个数据都在同一条链表上
         let hash = new HashTableSeparateChaining()
         hash.put('Ana', 'ana@qq.com')
-        hash.put('Donnie', 'donnie@qq.com')
-        hash.put('VK', 'vk@asdf.com')
         hash.put('WJ', 'wj@dsaf.com')
+        hash.put('Donnie', 'donnie@qq.com')
+            // hash.put('VK', 'vk@asdf.com')
         console.log(hash)
 
         // 四个数据都可以取到
         console.log(hash.get('Ana'))
         console.log(hash.get('Donnie'))
-        console.log(hash.get('VK'))
+            // console.log(hash.get('VK'))
         console.log(hash.get('WJ'))
 
         // 删去其中一个
+        console.log(hash.remove('Ana'))
         console.log(hash.remove('WJ'))
+        console.log(hash.remove('Donnie'))
         console.log(hash)
     </script>
 </body>
