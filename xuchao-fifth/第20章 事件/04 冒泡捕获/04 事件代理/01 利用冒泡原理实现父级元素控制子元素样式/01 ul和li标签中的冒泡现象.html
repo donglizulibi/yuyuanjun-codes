@@ -35,13 +35,14 @@
         // 而e.currentTarget显示的是这条打印语句所在元素上
 
         ul.addEventListener('click', (e) => {
-            console.log(e.target)
-            console.log(e.currentTarget)
+            console.log('e.target: ', e.target)
+            console.log('e.currentTarget: ', e.currentTarget)
         })
 
+        // 这里只给第一个li元素绑定事件
         lis[0].addEventListener('click', (e) => {
-            console.log(e.target)
-            console.log(e.currentTarget)
+            console.log('e.target: ', e.target)
+            console.log('e.currentTarget: ', e.currentTarget)
         })
     </script>
 </body>

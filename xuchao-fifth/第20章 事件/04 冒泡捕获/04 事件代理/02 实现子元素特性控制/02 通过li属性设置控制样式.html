@@ -14,10 +14,19 @@
         <li data-action="color" data-color="red">hdcms.com</li>
     </ul>
     <script>
+        // 这里把对父级元素的绑定放在class的constructor当中
+        // 也就是在创建新时候的时候会给元素绑定好点击事件
+
+        // 把各个子级元素对应的动作放在data-action中
+        // 点击不同子级元素，会调用不同的e.target，就能找到对应的动作
+
+        // 把子元素需要产生的动作设置在类的内置方法里
+
         class HD {
             constructor(el) {
                 el.addEventListener('click', (e) => {
                     console.dir(e.target)
+                        // console.dir(e.currentTarget)
                     const action = e.target.dataset.action
                     this[action](e)
                 })
