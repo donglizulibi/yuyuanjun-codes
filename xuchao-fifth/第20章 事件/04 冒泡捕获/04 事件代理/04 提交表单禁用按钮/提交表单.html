@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <input type="text" />
+        <button type="button" data-submit-disabled data-action="submit,counter">提交表单</button>
+    </form>
+    <form>
+        <input type="text" />
+        <button type="button" data-submit-disabled data-action="submit,counter">提交表单</button>
+    </form>
+    <script>
+        // 本例是需要设置一个类，可以对页面中多个表单进行控制
+        // 点击提交之后会禁用提交按钮
+        // 并记录点击提交按钮的次数
+
+        class Form {
+            constructor(form) {
+                this.form = form
+                this.form.count = 0
+                this.form.addEventListener('click', this.handle.bind(this))
+            }
+            handle() {
+                // this.disableButton(true)
+                console.log(1)
+                console.log(event.target.dataset)
+                let actions = event.target.dataset.action.split(',')
+                console.log(actions)
+                actions.forEach(action => {
+                    if (action)
+                        this[action]()
+                })
+            }
+            submit() {
+                event.preventDefault()
+                this.disableButton(true)
+                console.log('正在提交')
+                setTimeout(() => {
+                    console.log(this)
+                    this.disableButton(false)
+                    console.log('提交成功')
+                }, 1000)
+            }
+            disableButton(state) {
+                let bt = this.form.querySelector('[data-submit-disabled]')
+
+                console.log(bt)
+                bt.disabled = state
+            }
+            counter() {
+                this.form.count++
+                    console.log(this.form.count)
+            }
+        }
+
+        document.querySelectorAll('form').forEach(form => {
+            new Form(form)
+        })
+    </script>
+</body>
+
+</html>

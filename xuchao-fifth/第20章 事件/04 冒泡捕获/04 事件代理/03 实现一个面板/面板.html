@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab {
+            width: 200px;
+            height: 1600px;
+            /* border: 1px solid black; */
+        }
+        
+        dt {
+            background-color: blueviolet;
+            color: aliceblue;
+            height: 40px;
+            line-height: 40px;
+        }
+        
+        dd {
+            background-color: cornsilk;
+            height: 60px;
+            line-height: 60px;
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab">
+        <dl>
+            <dt data-action="toggle">在线教程</dt>
+            <dd data-action="hidden">houdunren.com</dd>
+        </dl>
+        <dl>
+            <dt data-action="toggle">开源软件</dt>
+            <dd data-action="hidden">hdcms.com</dd>
+        </dl>
+    </div>
+    <script>
+        // 这个面板的效果是点击面板内容会隐藏
+        // 点击面板标题会隐藏其他面板标题的内容，并显示自己面板内容
+        class HD {
+            constructor(el) {
+                console.log(el)
+                this.el = el
+                    // 这里需要把this.handle的环境指向到类
+                    // 否则就会指向el元素
+                this.el.addEventListener('click', this.handle.bind(this))
+            }
+            handle() {
+                console.log(1)
+                console.log(event.target)
+                const action = event.target.dataset.action
+                console.log(action)
+                console.log(this)
+                if (action) {
+                    this[action]()
+                }
+                // this.hidden()
+            }
+            hidden() {
+                console.log(2)
+                console.log(event.target.hidden)
+                event.target.hidden = true
+                    // event.target.
+            }
+            toggle() {
+                console.log(3)
+                console.log(this.el)
+
+                // 这里是先把dd元素全部隐藏，在把点击事件的dt元素的相邻的dd显示出来
+                let dds = this.el.querySelectorAll('[data-action="hidden"]')
+                console.log(dds)
+
+                dds.forEach(element => {
+                    element.hidden = true
+                });
+
+                // console.log()
+                event.target.nextElementSibling.hidden = false
+
+            }
+        }
+
+        new HD(document.querySelector('.tab'))
+    </script>
+</body>
+
+</html>
