@@ -17,6 +17,9 @@
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("get", "https://restapi.amap.com/v3/weather/weatherInfo?key=c342b2076be1211ad014ed7fe7c1751f&city=370202&extensions=all", true)
         xmlhttp.send("null")
+
+        // onreadystatechange()的定义是只要返回的状态码只要变化时就回调一次函数
+        // 而onload只有状态码为4时才能回调一次函数。
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 console.log(xmlhttp.responseText)

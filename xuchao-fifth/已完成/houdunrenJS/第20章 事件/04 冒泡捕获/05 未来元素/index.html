@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>houdunren.com</h2>
+    </div>
+
+    <script>
+        function show() {
+            console.log(this.textContent)
+        }
+
+        const app = document.querySelector('#app')
+        const h2 = document.querySelectorAll('h2')
+        console.log(h2)
+
+        app.addEventListener('click', () => {
+            show.call(event.target)
+        })
+
+        let newH2 = document.createElement('h2')
+        newH2.textContent = 'hdcms.com'
+        app.append(newH2)
+    </script>
+</body>
+
+</html>

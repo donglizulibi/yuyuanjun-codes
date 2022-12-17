@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="advForm">
+        <p>广告名称：<input type="text" name="advName"></p>
+        <p>广告类别：
+            <select name="advType">
+                <option value="1">轮播图</option>
+                <option value="2">轮播图底部广告</option>
+                <option value="3">热门回收广告</option>
+                <option value="4">优品精选广告</option>
+            </select>
+        </p>
+        <p><input type="button" id="btn" value="添加"></p>
+    </form>
+    <script>
+        //获得表单按钮元素
+        var btn = document.querySelector("#btn");
+
+        //为按钮添加点击事件
+        btn.onclick = function() {
+            //根据ID获得页面当中的form表单元素
+            var form = document.querySelector("#advForm");
+
+            //将获得的表单元素作为参数，对formData进行初始化
+            var formdata = new FormData(form);
+
+            //通过get方法获得name为advName元素的value值
+            console.log(formdata.get("advName")); //xixi
+
+            //通过get方法获得name为advType元素的value值
+            console.log(formdata.get("advType")); //1 
+        }
+    </script>
+</body>
+
+</html>

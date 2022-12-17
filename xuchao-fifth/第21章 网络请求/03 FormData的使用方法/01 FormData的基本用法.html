@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //通过FormData构造函数创建一个空对象
+        var formdata = new FormData();
+
+        //可以通过append()方法来追加数据
+        formdata.append("name", "xj");
+        console.log(formdata)
+
+        //通过get方法对值进行读取
+        console.log(formdata.get("name")); //laotie
+
+        //通过set方法对值进行修改
+        formdata.set("name", "hd");
+        console.log(formdata.get("name")); //laoliu
+
+        // 使用append继续追加数据
+        formdata.append('name', 'xh')
+
+        // 使用getAll获取全部数据
+        console.log(formdata.getAll('name'))
+
+        formdata.set('age', 19)
+        console.log(formdata.get('age'))
+
+        // 使用has判断是否有某个属性
+        console.log(formdata.has('name'))
+        console.log(formdata.has('age'))
+        console.log(formdata.has('sex'))
+
+        // 使用delete删除属性
+        formdata.delete('name')
+        console.log(formdata.has('name'))
+    </script>
+</body>
+
+</html>

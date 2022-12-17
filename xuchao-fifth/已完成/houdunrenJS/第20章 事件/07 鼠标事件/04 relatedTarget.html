@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">houdunren.com</div>
+    <div id="cms">hdcms.com</div>
+    <script>
+        const app = document.querySelector(`#app`)
+            // const cms = document.querySelector(`#cms`)
+        app.addEventListener('mouseout', () => {
+            // console.log(event.target)
+            console.log(event.relatedTarget)
+        })
+    </script>
+</body>
+
+</html>

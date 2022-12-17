@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 见15-16
+
+        let xhr = new XMLHttpRequest()
+        xhr.open('get', 'http://127.0.0.1:3003/comments')
+
+        // xhr.responseType = 'blob'
+        // xhr.responseType = 'text'
+        xhr.responseType = 'json'
+        xhr.send()
+        xhr.onload = function() {
+            console.log(1)
+            console.log(xhr.response)
+        }
+    </script>
+</body>
+
+</html>

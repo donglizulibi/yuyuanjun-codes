@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const xhr = new XMLHttpRequest() // 第一步创建对象
+        xhr.timeout = 5000
+        xhr.open('GET', 'hd.php') // 设置请求方法和请求地址（初始化请求参数）
+        xhr.send() // 发送网络请求
+        xhr.onload = function() { // 监听请求结果
+            if (xhr.status == 200) {
+                console.log(xhr.response)
+            } else {
+                console.log(`${xhr.status}:${xhr.statusText}`)
+            }
+        }
+        xhr.onerror = function(error) { // 网络发送中断的处理
+            console.log(error)
+        }
+    </script>
+</body>
+
+</html>

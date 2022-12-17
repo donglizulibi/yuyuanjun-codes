@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // FETCH是JS升级后提供的更简便的网络请求的操作方法 
+        // 内部使用Promise来完成异步请求。
+
+        // response.json() 接收 JSON 类型数据
+        // response.text() 接收 TEXT 类型数据
+        // response.blog() 接收 Blog 二进制数据# 请示步骤
+        // 使用 fetch 方法发送异步请求需要分以下两步操作
+
+        // 响应头解析
+        // 第一步对服务器返回的响应头进行解析
+        // 会接到Response类创建的对象实例，里面包含以下属性。
+
+        // status: HTTP 状态码
+        // ok: 状态码为 200 - 299 时为 true 的布尔值
+
+        // 响应内容解析
+        // 第二步对返回的保存在 response.body 中的响应结果进行解析，
+        // 支持了以下几种方式对结果进行解析。
+
+        // response.json() 接收 JSON 类型数据
+        // response.text() 接收 TEXT 类型数据
+        // response.blog() 接收 Blog 二进制数据
+
+        // 以上方法不能同时使用，因为使用一个方法后数据已经被处理
+        // 其他方法就不可以操作了
+    </script>
+</body>
+
+</html>

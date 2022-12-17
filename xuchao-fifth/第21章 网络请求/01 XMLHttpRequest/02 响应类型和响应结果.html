@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 响应类型
+        // 通过设置 xhr.responseType 对响应结果进行声明，来对结果自动进行处理。
+
+        // 下面是可以使用的响应类型
+
+        // text       响应结果为文本
+        // json       响应内容为 JSON， 系统会自动将结果转为 JSON 对象
+        // blob       二进制数据响应
+        // document   XML DOCUMENT 内容
+
+
+        // 2 响应结果
+        // xhr.onload 用于处理响应完毕后的处理
+
+        // 使用以下属性来处理结果
+
+        // xhr.status 为 HTTP 状态码 如 404/422/403 等，当为200时为正确响应
+        // xhr.statusText HTTP 状态码内容，200时为 ok, 404为 Not Found
+        // xhr.response 服务器端响应的内容
+    </script>
+</body>
+
+</html>
