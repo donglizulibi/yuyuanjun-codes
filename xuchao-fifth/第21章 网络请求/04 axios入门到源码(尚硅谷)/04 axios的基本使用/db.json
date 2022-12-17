@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "json-server2",
+      "author": "typicode2"
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "title": "新增文章标题",
+      "author": "文章作者",
+      "id": 5
+    },
+    {
+      "title": "新增文章标题",
+      "author": "zhangsan",
+      "id": 7
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

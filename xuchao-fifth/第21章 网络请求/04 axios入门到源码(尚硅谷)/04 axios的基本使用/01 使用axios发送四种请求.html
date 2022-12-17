@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <button>发送GET请求</button>
+        <button>发送POST请求</button>
+        <button>发送PUT请求</button>
+        <button>发送DELETE请求</button>
+    </div>
+    <script>
+        let btns = document.querySelectorAll('button')
+        console.log(btns)
+
+
+        // 发送get请求
+        btns[0].onclick = function() {
+            axios({
+                // 请求类型
+                method: "GET",
+
+                // URL
+                url: "http://127.0.0.1:3003/posts/2"
+            }).then(response => {
+                console.log(response)
+            })
+        }
+
+        // 发送POST请求来添加一篇文章
+        btns[1].onclick = function() {
+            axios({
+                // 请求类型
+                method: "POST",
+
+                // URL 不用后面的id序号
+                url: "http://127.0.0.1:3003/posts",
+
+                // 添加内容data
+                data: {
+                    title: "新增文章标题",
+                    author: "文章作者"
+                }
+            }).then(response => {
+                console.log(response)
+            })
+        }
+
+        // 发送PUT请求来修改一篇文章
+        btns[2].onclick = function() {
+            axios({
+                // 请求类型
+                method: "PUT",
+
+                // URL 不用后面的id序号
+                url: "http://127.0.0.1:3003/posts/7",
+
+                // 添加内容data,也就是请求体
+                data: {
+                    title: "新增文章标题",
+                    author: "zhangsan"
+                }
+            }).then(response => {
+                console.log(response)
+            })
+        }
+
+
+        // 发送DELETE请求来删除一篇文章
+        btns[3].onclick = function() {
+            axios({
+                // 请求类型
+                method: "DELETE",
+
+                // URL 不用后面的id序号
+                url: "http://127.0.0.1:3003/posts/6",
+
+                // 添加内容data
+                // data: {
+                //     title: "新增文章标题",
+                //     author: "文章作者"
+                // }
+            }).then(response => {
+                console.log(response)
+            })
+        }
+    </script>
+</body>
+
+</html>
