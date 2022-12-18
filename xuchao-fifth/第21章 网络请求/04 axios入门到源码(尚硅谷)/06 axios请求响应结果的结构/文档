@@ -1,0 +1,12 @@
+axios返回的结果包括：
+1 config：配置对象
+
+2 data：响应体的结果，被axios自动进行JSON解析
+
+3 headers：响应头的信息
+
+4 request：原生ajax对象，也就是XMLHttpRequest实例对象
+
+5 status：响应的状态码
+
+6 statusText：响应的状态字符串
