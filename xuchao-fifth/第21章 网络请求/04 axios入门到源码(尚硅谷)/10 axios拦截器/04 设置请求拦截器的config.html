@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        // 请求拦截器中的config参数是请求中配置
+        // 包括请求方式，请求地址，请求参数等
+        // 设置两个请求拦截器
+
+
+        // 第一个请求拦截器中添加config的请求参数
+        // 第二个请求拦截器中修改config的请求地址
+        axios.interceptors.request.use(function(config) {
+            console.log('进入请求拦截器 1')
+            console.log(config)
+            config.params = {
+                a: 1
+            }
+
+            return config;
+        }, function(error) {
+            console.log('请求拦截器 失败 1')
+            return Promise.reject(error);
+        });
+
+        axios.interceptors.request.use(function(config) {
+            console.log('进入请求拦截器 2')
+
+
+            config.url = 'http://127.0.0.1:3003/comments'
+            return config;
+        }, function(error) {
+            console.log('请求拦截器 失败 2')
+            return Promise.reject(error);
+        });
+
+
+
+
+        // 设置三个响应拦截器
+        axios.interceptors.response.use(function(response) {
+            console.log('响应拦截器 成功 1')
+            return response;
+        }, function(error) {
+            console.log('响应拦截器 失败 1')
+            console.log(error)
+            return Promise.reject(error);
+        });
+
+
+
+        axios({
+            method: "GET",
+            url: "http://127.0.0.1:3003/posts"
+        }).then(response => {
+            console.log('自定义回调函数')
+            console.log(response)
+        }, reason => {
+            console.log('自定回调函数 错误处理')
+            console.log(reason)
+        })
+    </script>
+</body>
+
+</html>

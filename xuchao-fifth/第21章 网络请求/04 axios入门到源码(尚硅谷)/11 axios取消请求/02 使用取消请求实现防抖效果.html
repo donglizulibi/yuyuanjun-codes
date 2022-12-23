@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button>发送请求</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        // 防抖节流见9-11-13
+
+        // 防抖是指用户在连续快速触发某个事件的时候，只取最后一次的结果
+        // 在这里特指用户连续快速多次发送请求，只取最后一次的请求的结果
+
+        // 也就是把倒数第二次及之前的请求全部取消
+
+        let btns = document.querySelectorAll('button')
+        console.log(btns)
+
+        let cancel = null
+        btns[0].onclick = function() {
+            // 
+            console.log(cancel)
+
+
+            if (cancel) {
+                cancel()
+            }
+
+            axios({
+                method: 'GET',
+                url: "http://127.0.0.1:3003/posts",
+                cancelToken: new axios.CancelToken((c) => {
+                    cancel = c
+                        // console.log(cancel)
+                })
+            }).then(response => {
+                console.log(response)
+
+                // 主要是一个cancel函数执行的时机问题
+
+                // 在响应结果回来之前，cancel一直是一个函数
+                // 那么在短时间内如果多次执行点击事件来发送请求
+
+                // 就会进入到if判断中，执行cancel函数
+                // 把上一次点击事件发送的请求取消掉
+
+                // 这里设置一个cancel函数的初始化
+                cancel = null
+            }, reason => {
+                console.log(reason)
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        // 设置三个请求拦截器
+        axios.interceptors.request.use(function(config) {
+            console.log('进入请求拦截器 1')
+
+            // throw new Error('请求拦截器错误')
+            return config;
+        }, function(error) {
+            console.log('请求拦截器 失败 1')
+            return Promise.reject(error);
+        });
+
+        axios.interceptors.request.use(function(config) {
+            console.log('进入请求拦截器 2')
+
+            // throw new Error('请求拦截器错误')
+            return config;
+        }, function(error) {
+            console.log('请求拦截器 失败 2')
+            return Promise.reject(error);
+        });
+
+        axios.interceptors.request.use(function(config) {
+            console.log('进入请求拦截器 3')
+
+            // throw new Error('请求拦截器错误')
+            return config;
+        }, function(error) {
+            console.log('请求拦截器 失败 3')
+            return Promise.reject(error);
+        });
+
+
+
+
+        // 设置三个响应拦截器
+        axios.interceptors.response.use(function(response) {
+            console.log('响应拦截器 成功 1')
+            return response;
+        }, function(error) {
+            console.log('响应拦截器 失败 1')
+            console.log(error)
+            return Promise.reject(error);
+        });
+
+        axios.interceptors.response.use(function(response) {
+            console.log('响应拦截器 成功 2')
+            return response;
+        }, function(error) {
+            console.log('响应拦截器 失败 2')
+            console.log(error)
+            return Promise.reject(error);
+        });
+
+        axios.interceptors.response.use(function(response) {
+            console.log('响应拦截器 成功 3')
+            return response;
+        }, function(error) {
+            console.log('响应拦截器 失败 3')
+            console.log(error)
+            return Promise.reject(error);
+        });
+
+        // 显示结果是请求拦截器3 2 1
+        // 响应拦截器1 2 3
+
+        // 所以请求拦截器服从先进后出，是栈的结构
+        // 响应拦截器服从先进先出，是队列的结构
+        axios({
+            method: "GET",
+            url: "http://127.0.0.1:3003/posts"
+        }).then(response => {
+            console.log('自定义回调函数')
+            console.log(response)
+        }, reason => {
+            console.log('自定回调函数 错误处理')
+            console.log(reason)
+        })
+    </script>
+</body>
+
+</html>

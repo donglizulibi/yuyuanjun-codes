@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        // 上个例子演示了给axios整理添加default配置
+        // 但是如果要使用axios给多个域名的发送请求，也就是说要配置多个baseURL的话
+        // 可以创建axios实例，再单独对每个实例进行default配置
+
+        // 见文档
+        // Config order of precedence
+        // Custom instance defaults
+        const send = axios.create({
+            baseURL: 'http://127.0.0.1:3003',
+            timeout: 2000
+        })
+
+        // 如果不指定请求方式，默认是get方法
+        send({
+            url: '/posts'
+        }).then(response => {
+            console.log(response)
+        })
+
+        // 或者使用get方法
+        send.get('/comments')
+            .then(response => {
+                console.log(response)
+            })
+    </script>
+</body>
+
+</html>
