@@ -1,0 +1,47 @@
+输入命令npm install axios
+把axios文件复制出来，把其他依赖包删去
+
+npm install rimraf -g
+rimraf node_modules
+
+axios文件中的dist文件用来存放打包后的文件
+axios.js是压缩前的版本，axios.min.js是压缩后的版本
+
+lib是用来存放源代码，是核心目录
+    adapters用来存放定义请求的适配器
+        http.js文件是用来在nodejs中向远端服务发送http请求的
+        xhr.js前端发送ajax请求的代码
+    
+    cancel文件用来存放取消请求相关的文件
+
+    core是用来存放axios核心功能的文件夹
+        Axios.js是axios的构造函数文件
+        buildFullPath.js用来构造一个完整的url函数文件
+        AxiosError.js用来创建Error对象
+        dispatchRequest.js用来调用adapters中的某个适配器来发送请求
+        interceptorManager.js是拦截器管理的构造函数
+        mergeConfig.js合并配置的文件
+        settle.js根据响应的状态码来改变promise的状态
+        transformData.js对结果做出格式化
+
+    helpers是存放一些axios运行时的功能函数
+        bind.js用来创建一个新函数，来改变函数运行时的this指向
+        buildURL用来创建最终的url，可以添加参数
+        combineURLs用来把baseURL和URL合并形成最终的url
+        cookies.js用来控制和调用cookies
+        deprecatedMethod.js提供控制台提示的不赞成使用的方法，基本用不到
+        isAbsoluteURL.js判断一个url是不是绝对路径
+        isURLSameOrigin.js判断url是不是同源的 
+        parseHeaders.js对头部信息做出解析
+        spread.js对批量的ajax的结果做出处理
+
+    defaults文件夹用来存放axios配置文件的默认配置信息
+
+    axios.js是lib的入口文件
+
+    utils.js用来存放工具函数
+
+CHANGELOG.md升级文档的说明
+
+index.js整个项目包的入口文件
+
