@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 在lib的core的Axios文件中的Axios构造函数的constructor中
+        //   第二句是 this.interceptors ，在添加拦截器的属性
+        //   所以在使用拦截的时候会axios.interceptors.response/request.use
+        //   就是调用这个属性
+
+        // 2 继续看Axios构造函数，里面有两个内置方法request和getUri
+        //   在往下有两个个utils.forEach，其实是调用utils中的forEach方法
+        //   来往Axios.prototype上添加方法
+
+        // 3 Axios的request内置方法是用来发送请求的，在这个方法内部有一句
+        //   const chain = [dispatchRequest.bind(this), undefined]
+        //   里面的dispatchRequest就是来自于core的dispatchRequest文件
+        //   用来调用xhr或者http
+
+        //
+    </script>
+</body>
+
+</html>
