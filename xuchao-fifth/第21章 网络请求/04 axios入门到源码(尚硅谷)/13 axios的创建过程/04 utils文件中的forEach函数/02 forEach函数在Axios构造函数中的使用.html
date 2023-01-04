@@ -10,6 +10,13 @@
 
 <body>
     <script>
+        class Axios {}
+        const {
+            isArray
+        } = Array;
+
+
+
         function forEach(obj, fn, {
             allOwnKeys = false
         } = {}) {
@@ -23,15 +30,22 @@
             let i;
             let l;
 
+            console.log(typeof obj)
+
             // Force an array if not already something iterable
             if (typeof obj !== 'object') {
-                /*eslint no-param-reassign:0*/
+
+
                 obj = [obj];
             }
 
             if (isArray(obj)) {
-                // Iterate over array values
+
+                console.log(123)
+                console.log(fn)
+
                 for (i = 0, l = obj.length; i < l; i++) {
+
                     fn.call(null, obj[i], i, obj);
                 }
             } else {
@@ -47,6 +61,20 @@
                 }
             }
         }
+
+        forEach(['delete', 'get', 'head', 'options'],
+            function(method) {
+                console.log(method)
+
+                Axios.prototype[method] = function() {
+                    return method + 123
+                };
+            });
+
+        console.dir(Axios)
+
+        console.log(new Axios().delete())
+        console.log(new Axios().get())
     </script>
 </body>
 

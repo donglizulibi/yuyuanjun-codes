@@ -11,21 +11,12 @@
 <body>
     <script>
         // 1 axios文件中有createInstance函数来创建axios实例
-        //   传入一个形参defaultConfig
+        //   传入一个形参defaultConfig，也就是defaults对象
         //   函数体第一句const context = new Axios(defaultConfig)
 
         // 2 找到第一句中Axios构造函数，在lib的core的Axios文件中
-        //   发现构造函数只有一个内置参数defaults，被赋予了instanceConfig
-        //   在使用axios的时候，配置默认属性axios.defaults.method等
-        //   就是在调用这个属性
 
-        // 3 也就是函数体第一句的defaultConfig，也就是defaults对象
-        //   从导入的路径发现defaults对象来自lib的defaults的index文件
-
-        // 4 进入defaults的index文件，可以看到，defaults对象有transitional
-        //   adapter transformRequest transformResponse timeout等属性
-
-        // 5 函数体的第二句
+        // 3 函数体的第二句
         //   const instance = bind(Axios.prototype.request, context)
         //   里面的第一个参数是前面定义的request内置方法，作用是发送请求
         //   所以instance也可以用来发送请求
