@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 
+        class Axios {
+            constructor(config) {
+                this.defaults = config
+                this.interceptors = {
+                    request: {},
+                    response: {}
+                }
+            }
+            request(config) {
+                console.log('发送ajax请求 请求类型为：' + config.method)
+            }
+            get(config) {
+                return this.request({
+                    method: 'GET'
+                })
+            }
+            post(config) {
+                return this.request({
+                    method: 'POST'
+                })
+            }
+        }
+
+        console.log(new Axios())
+
+        new Axios().get()
+        new Axios().post()
+    </script>
+</body>
+
+</html>
