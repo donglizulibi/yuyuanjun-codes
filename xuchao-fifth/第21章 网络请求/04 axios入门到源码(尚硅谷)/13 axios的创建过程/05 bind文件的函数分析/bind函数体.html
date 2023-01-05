@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 就是把原来的bind函数的参数顺序换了一下
+        function bind(fn, thisArg) {
+            return function wrap(...arguments) {
+                console.log(arguments)
+                return fn.apply(thisArg, arguments);
+            };
+        }
+
+        function HD(age, gender) {
+            this.age = age
+            this.gender = gender
+            return this.name + '-' + this.age + '-' + this.gender
+        }
+
+        const obj = {
+            name: 'xiaogming'
+        }
+
+        const instance = bind(HD, obj)
+
+        console.log(instance)
+
+        console.log(instance(18, 'male'))
+    </script>
+</body>
+
+</html>

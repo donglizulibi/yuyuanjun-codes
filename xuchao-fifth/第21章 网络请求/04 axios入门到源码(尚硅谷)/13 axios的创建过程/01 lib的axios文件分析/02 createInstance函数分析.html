@@ -21,15 +21,26 @@
         //   里面的第一个参数是前面定义的request内置方法，作用是发送请求
         //   所以instance也可以用来发送请求
         //   而第二个参数context来自本函数体的第一句创造的context变量
-        //   也就是Axios的实例对象
+        //   也就是Axios的实例对象，把Axios.prototype.request的运行指向
+        //   指向到这个实力对象，也就是context变量上面
 
         // 6 其中bind函数来自lib的helpers的bind文件
         //   bind函数在调用后返回一个新的函数体赋值给instance
-        //   所以instance也是一个函数
+        //   所以整个axios文件返回出instance实例，其实就是返回一个函数
+        //   而这个instance函数的功能和bind函数传入的
+        //   第一个参数Axios.prototype.request的功能是一样的
+        //   所以axios可以作为一个函数直接往里面加入一个配置对象来发送请求
 
         // 7 函数体的第三句
-        //   utils.extend(instance, Axios.prototype, context, {allOwnKeys: true})
-        //
+        //   utils.extend(instance, Axios.prototype, context, 
+        //                  {allOwnKeys: true})
+        //   这一句的目的是为了把Axios.prototype上面的方法添加到instance上去
+
+        // 8 第四句 
+        //   utils.extend(instance, context, null, {allOwnKeys: true});
+        //   把context，也就是Axios构造函数的实例上两个属性
+        //   default和interceptors也加到instance上
+        //   所以instance也可以作为一个对象调用内部的各种方法
     </script>
 </body>
 

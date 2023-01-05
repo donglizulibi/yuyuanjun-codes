@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const typeOfTest = type => thing => typeof thing === type;
+
+        const isFunction = typeOfTest('function')
+
+
+        // 传入的实参，第一个是instance，第二个是Axios.prototype
+        // 第三个是context，第四个是{allOwnKeys: true}
+        const extend = (a, b, thisArg, {
+            allOwnKeys
+        } = {}) => {
+
+            // 这里传入的b的实参不是一个数组
+            forEach(b, (val, key) => {
+                if (thisArg && isFunction(val)) {
+                    a[key] = bind(val, thisArg);
+                } else {
+                    a[key] = val;
+                }
+            }, {
+                allOwnKeys
+            });
+            return a;
+        }
+
+
+        extend(instance, Axios.prototype, context, {
+            allOwnKeys: true
+        })
+    </script>
+</body>
+
+</html>
