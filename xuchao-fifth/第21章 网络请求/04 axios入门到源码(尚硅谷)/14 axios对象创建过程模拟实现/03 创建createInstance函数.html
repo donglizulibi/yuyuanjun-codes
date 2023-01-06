@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Axios {
+            constructor(config) {
+                this.defaults = config
+                this.interceptors = {
+                    request: {},
+                    response: {}
+                }
+            }
+            request(config) {
+                console.log('发送ajax请求 请求类型为：' + config.method)
+            }
+            get(config) {
+                return this.request({
+                    method: 'GET'
+                })
+            }
+            post(config) {
+                return this.request({
+                    method: 'POST'
+                })
+            }
+        }
+
+        console.dir(Axios.prototype)
+        console.log(Object.getOwnPropertyDescriptor(Axios.prototype, 'post'))
+
+        // 在这里Axios的内置方法在Axios.prototype中是不可枚举的
+        // 所以先设置可以枚举
+        Object.defineProperties(Axios.prototype, {
+            post: {
+                enumerable: true
+            },
+            get: {
+                enumerable: true
+            },
+            request: {
+                enumerable: true
+            }
+        })
+        console.log(Object.getOwnPropertyDescriptor(Axios.prototype, 'post'))
+
+        // 或者在对Axios.prototype进行遍历的时候使用Object.getOwnPropertyNames
+        // 然后设置一个筛选条件，过滤掉constructor
+
+        function createInstance(config) {
+            // 实例化一个对象
+            let context = new Axios(config)
+                // 这个context实例可以调用get和post方法
+                // 但是到这一步为止还不能当作函数使用
+
+            // 创建请求函数实例
+            let instance = Axios.prototype.request.bind(context)
+                // 这个instance本身是一个函数体，可以当函数使用
+                // 但是到这一步函数不能作为对象来调用get和post方法
+
+            // 将Axios.prototype中的对象方法添加到instance函数中
+            // 则可以对Axios.prototype进行遍历
+            console.log(Object.keys(Axios.prototype))
+            Object.keys(Axios.prototype).forEach(key => {
+                // 这里还要把环境指向绑定到context
+                instance[key] = Axios.prototype[key].bind(context)
+            })
+
+            // 给instance添加Axios的内置属性
+            // 其实也就是context对象的属性
+            console.log(context)
+            Object.keys(context).forEach(key => {
+                instance[key] = context[key]
+            })
+            return instance
+        }
+
+        let axios = createInstance()
+        console.dir(axios)
+
+        axios({
+            method: 'POST'
+        })
+
+        axios.post()
+
+
+        axios({
+            method: 'GET'
+        })
+
+        axios.get()
+    </script>
+</body>
+
+</html>

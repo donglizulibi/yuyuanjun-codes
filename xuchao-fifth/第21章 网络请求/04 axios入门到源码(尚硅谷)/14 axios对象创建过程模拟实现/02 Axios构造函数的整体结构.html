@@ -10,7 +10,6 @@
 
 <body>
     <script>
-        // 
         class Axios {
             constructor(config) {
                 this.defaults = config
@@ -22,6 +21,8 @@
             request(config) {
                 console.log('发送ajax请求 请求类型为：' + config.method)
             }
+
+            // get和post方法可以发送请求的原因是因为在函数内部调用了request方法
             get(config) {
                 return this.request({
                     method: 'GET'
