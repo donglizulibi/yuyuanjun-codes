@@ -60,12 +60,12 @@
                 // 这个context实例可以调用get和post方法
                 // 但是到这一步为止还不能当作函数使用
 
-            // 创建请求函数实例
+            // 1 创建请求函数实例
             let instance = Axios.prototype.request.bind(context)
                 // 这个instance本身是一个函数体，可以当函数使用
                 // 但是到这一步函数不能作为对象来调用get和post方法
 
-            // 将Axios.prototype中的对象方法添加到instance函数中
+            // 2 将Axios.prototype中的对象方法添加到instance函数中
             // 则可以对Axios.prototype进行遍历
             console.log(Object.keys(Axios.prototype))
             Object.keys(Axios.prototype).forEach(key => {
@@ -73,7 +73,7 @@
                 instance[key] = Axios.prototype[key].bind(context)
             })
 
-            // 给instance添加Axios的内置属性
+            // 3 给instance添加Axios的内置属性，defaults和interceptors
             // 其实也就是context对象的属性
             console.log(context)
             Object.keys(context).forEach(key => {
@@ -85,6 +85,9 @@
         let axios = createInstance()
         console.dir(axios)
 
+
+
+        // 下面的例子显示，axios既可以当作函数使用，也可以当作对象使用
         axios({
             method: 'POST'
         })
