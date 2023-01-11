@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1
+        // 如果传进来的configUrl是字符串，则再判断config是否为空
+        // 如果为空则把config赋值为一个空对象
+        // 然后把configUrl作为config的url属性的属性值
+
+        // 如果传进来的configUrl不是字符串，则再判断configUrl是否为空
+        // 如果为空也是把config赋值为一个空对象
+        // 如果不为空就把configUrl赋值为config
+
+        // 2
+        // 可以在发送请求的文件的引入文件中引入本地文件axios文件结构说明/axios/dist/axios.js
+        // 后面由dispatchRequest函数来决定request函数返回的promise的状态
+
+        // 3
+        // dispatchRequest的返回结果会赋值给promise，再经过.then的处理
+        // 然后再返回出去一个成功的promise。此时意味着request函数执行完毕
+        // 也就是axios执行完毕
+
+        // 4
+        // 在页面中就可以执行接下来的.then操作来获取请求结果
+    </script>
+</body>
+
+</html>

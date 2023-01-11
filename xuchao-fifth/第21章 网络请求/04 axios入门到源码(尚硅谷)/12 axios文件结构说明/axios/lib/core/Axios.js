@@ -38,12 +38,17 @@ class Axios {
     request(configOrUrl, config) {
         /*eslint no-param-reassign:0*/
         // Allow for axios('example/url'[, config]) a la fetch API
+
+
+        console.log('Axios的request函数')
         if (typeof configOrUrl === 'string') {
             config = config || {};
             config.url = configOrUrl;
         } else {
             config = configOrUrl || {};
         }
+
+
 
         config = mergeConfig(this.defaults, config);
 

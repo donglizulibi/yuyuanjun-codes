@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 本文件中首先是一个throwIfCancellationRequested
+        //   来处理有取消操作发生时候的操作
+
+        // 2 config.headers和config.data是分别对请求头和请求体内容
+        //   做一个转化
+
+        // 3 这里es5是直接在config.headers上面添加属性和方法
+        //   但是es6中是创立了一个AxiosHeaders构造函数
+
+        // 4 接下来出现const adapter = config.adapter || defaults.adapter
+        //   获取适配器对象，这个对象其实是一个函数，是http和xhr二者之一
+        //   此时右边的信息栏显示adapter是一个名为he的函数
+        //   来源是xhr.js文件
+
+        // 5 由于xhr文件返回的是一个promise实例，所以adapter函数执行成功之后
+        //   会进入到后面.then的第一个回调函数，这个回调函数的参数是response
+        //   函数体内对response，也就是xhr文件promise返回的内容进行格式的处理
+        //   然后再返回出去，就是请求返回的结果，这个结果是一个普通对象
+    </script>
+</body>
+
+</html>

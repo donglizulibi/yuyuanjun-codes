@@ -9,7 +9,7 @@ import formDataToJSON from './helpers/formDataToJSON.js';
 import CanceledError from './cancel/CanceledError.js';
 import CancelToken from './cancel/CancelToken.js';
 import isCancel from './cancel/isCancel.js';
-import {VERSION} from './env/data.js';
+import { VERSION } from './env/data.js';
 import toFormData from './helpers/toFormData.js';
 import AxiosError from './core/AxiosError.js';
 import spread from './helpers/spread.js';
@@ -24,21 +24,21 @@ import AxiosHeaders from "./core/AxiosHeaders.js";
  * @returns {Axios} A new instance of Axios
  */
 function createInstance(defaultConfig) {
-  const context = new Axios(defaultConfig);
-  const instance = bind(Axios.prototype.request, context);
+    const context = new Axios(defaultConfig);
+    const instance = bind(Axios.prototype.request, context);
 
-  // Copy axios.prototype to instance
-  utils.extend(instance, Axios.prototype, context, {allOwnKeys: true});
+    // Copy axios.prototype to instance
+    utils.extend(instance, Axios.prototype, context, { allOwnKeys: true });
 
-  // Copy context to instance
-  utils.extend(instance, context, null, {allOwnKeys: true});
+    // Copy context to instance
+    utils.extend(instance, context, null, { allOwnKeys: true });
 
-  // Factory for creating new instances
-  instance.create = function create(instanceConfig) {
-    return createInstance(mergeConfig(defaultConfig, instanceConfig));
-  };
+    // Factory for creating new instances
+    instance.create = function create(instanceConfig) {
+        return createInstance(mergeConfig(defaultConfig, instanceConfig));
+    };
 
-  return instance;
+    return instance;
 }
 
 // Create the default instance to be exported
@@ -62,7 +62,7 @@ axios.Cancel = axios.CanceledError;
 
 // Expose all/spread
 axios.all = function all(promises) {
-  return Promise.all(promises);
+    return Promise.all(promises);
 };
 
 axios.spread = spread;
