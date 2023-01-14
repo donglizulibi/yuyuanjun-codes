@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="advForm">
+        <p>广告名称：<input type="text" name="advName"></p>
+        <p>广告类别：
+            <select name="advType">
+                <option value="1">轮播图</option>
+                <option value="2">轮播图底部广告</option>
+                <option value="3">热门回收广告</option>
+                <option value="4">优品精选广告</option>
+            </select>
+        </p>
+        <p><input type="button" id="btn" value="添加"></p>
+        <p><input type="button" name="btn" value="测试按钮"></p>
+        <p><input type="file" name="file" value="文件" /></p>
+        <p><input type="text" name="abc" value="文本" /></p>
+    </form>
+    <script>
+        // FormData的方法和特性
+        // append
+        // delete
+        // entries
+        // forEach
+        // get
+        // getAll
+        // has
+        // keys
+        // set
+        // values
+
+        // 如果把form表单元素放进构造函数来实例化对象，会自动添加数据
+        // 添加的key是form子表单的name的值，value是子表单的value
+        // type是button的表单无法被添加
+
+        class FormDataDiv {
+            constructor(form) {
+
+                this.items = []
+                this.appendFormTags(form)
+
+            }
+
+            // 这里需要一个可以找到form所有后代元素的函数
+            searchChild(tag) {
+                let arr = [];
+                [...tag.children].forEach(item => {
+                    arr.push(item, ...this.searchChild(item))
+                })
+                return arr
+            }
+
+            // 设置一个筛选的函数，将一个全是元素对象的数组放进去
+            // 输出一个数组，里面全是符合条件的元素对象
+            filterTag(tag) {
+                let tagArr = this.searchChild(tag)
+
+                // 条件一 去除掉不是表单元素的元素对象，button除外
+                let rule1 = ['option', 'input', 'select', 'textarea', 'datalist', 'output']
+                let arr1 = tagArr.filter(item => {
+
+                    return rule1.includes(item.nodeName.toLowerCase())
+                })
+
+                // console.log(arr1)
+
+                // 条件二 去点没有name属性的元素对象
+                let arr2 = arr1.filter(item => {
+                    return item.hasAttribute('name')
+                })
+
+                // console.log(arr2)
+
+                // 条件三 去掉input表单的type是button的
+                let arr3 = arr2.filter(item => {
+                    if (item.nodeName.toLowerCase() != 'input') {
+                        return true
+                    } else if (item.getAttribute('type') !== 'button') {
+                        return true
+                    }
+                })
+
+                // console.log(arr3)
+
+                return arr3
+            }
+
+            // 设置一个函数可以在实例化对象的时候实现自动append
+            appendFormTags(tag) {
+                if (tag instanceof HTMLFormElement) {
+                    let tagFilterArr = this.filterTag(tag)
+                    tagFilterArr.forEach(item => {
+                        // console.log(item.getAttribute('name'))
+                        // console.log(item.value)
+
+                        console.log(item.getAttribute('name'))
+                        this.append(item.getAttribute('name'), item.value)
+                    })
+                    return tagFilterArr
+                }
+            }
+
+            // 设置一个遍历函数
+            // 把数组里包对象的结构变成数组里包数组
+            entries() {
+                let arr = []
+                this.items.forEach(item => {
+
+                    arr.push(Object.entries(item)[0])
+                })
+
+                return arr
+            }
+
+            append(key, value) {
+                // console.log('append', key)
+                // console.log('append', value)
+
+                let obj = {
+                    [key]: value
+                }
+
+                // console.log(obj)
+
+                this.items.push(obj)
+            }
+            get(key) {
+                // console.log(this.items)
+                let obj = this.items.find(item => {
+                    return Object.keys(item)[0] == key
+                        // Object.keys(item)
+                })
+
+                return Object.values(obj)[0]
+            }
+            getAll(key) {
+                let arr = this.items.filter(item => {
+                    return Object.keys(item)[0] == key
+                        // Object.keys(item)
+                }).map(item => {
+                    return Object.values(item)[0]
+                })
+                return arr
+            }
+        }
+
+
+
+
+        let btn = document.querySelector('#btn')
+        btn.addEventListener('click', () => {
+
+            let formDemo = document.querySelector('#advForm')
+            let formdata = new FormDataDiv(formDemo)
+
+            formdata.append('name', 'xiaoming')
+            formdata.append('name', 'xiaohua')
+
+            console.log(formdata)
+            console.log(formdata.get('name'))
+            console.log(formdata.get('abc'))
+            console.log(formdata.get('advName'))
+            console.log(formdata.getAll('name'))
+
+
+            console.log(formdata.entries())
+
+            for (let key of formdata.entries()) {
+                console.log(key)
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -20,18 +20,32 @@
             </select>
         </p>
         <p><input type="button" id="btn" value="添加"></p>
+        <p><input type="button" name="btn" value="测试按钮"></p>
+        <p><input type="file" name="file" value="文件" /></p>
+        <p><input type="text" name="abc" value="文本" /></p>
     </form>
     <script>
         //获得表单按钮元素
         var btn = document.querySelector("#btn");
 
-        //为按钮添加点击事件
+        // 为按钮添加点击事件
         btn.onclick = function() {
-            //根据ID获得页面当中的form表单元素
+            // 根据ID获得页面当中的form表单元素
             var form = document.querySelector("#advForm");
+            console.dir(form)
 
-            //将获得的表单元素作为参数，对formData进行初始化
+            // 将获得的表单元素作为参数，对formData进行初始化
+            // 把整个表单form元素作为参数放进FormData构造函数中
+            // 构造函数会自动对实例化的对象进行append操作
+            // 将form的子元素中表单作为value添加进formData
+            // 而key就是表单元素中的name的值
+            // button表单无法被添加
             var formdata = new FormData(form);
+
+            for (let key of formdata.entries()) {
+                console.log(key)
+            }
+
 
             //通过get方法获得name为advName元素的value值
             console.log(formdata.get("advName")); //xixi

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <p>
+            <input type="text">
+        </p>
+        <p>
+            <select name="" id=""></select>
+        </p>
+        <p>
+            <option value=""></option>
+        </p>
+        <textarea></textarea>
+        <button></button>
+        <datalist>
+        <output>
+    </form>
+    <script>
+        let form = document.querySelector('form')
+
+        // 设置一个构造函数，实例化对象之后，调用一个内置方法，传入form元素
+        // 可以显示出form元素中后代子元素中所有表单元素的原型
+        class formChildrenPrototype{
+            constructor(){}
+
+            // 设置一个函数可以找到一个元素的所有后代元素
+            searchChild(tag){
+                let arr = [];
+                [...tag.children].forEach(item=>{
+                    arr.push(item,...this.searchChild(item))
+                })
+                return arr
+            }
+
+            // 设置一个函数可以收集一个元素上原型链的所有对象
+            searchPrototype(tag){
+                let arr =[];
+                let reg = /(?<=\[object\s)\w+/ig
+                while(tag.__proto__){
+                    
+                    arr.push(tag.__proto__)
+                    tag = tag.__proto__
+                }
+                return arr.map(item=>{return item.toString().match(reg)[0]})
+            }
+
+            // 设置一个函数可以收集一个元素后代子元素的原型链
+            searchChildrenPrototype(tag){
+                
+                return this.searchChild(tag)
+                .reduce((pre,val)=>{
+                    // console.log(pre,val.nodeName.toLowerCase())
+                    
+                    pre.push({
+                        [val.nodeName.toLowerCase()]:
+                        this.searchPrototype(val)
+                    })
+                    return pre
+                },[])
+                 
+            }
+        }
+
+
+        let formDemo = new formChildrenPrototype()
+        console.log(formDemo.searchChild(form))
+        console.log(formDemo.searchPrototype(form))
+        console.log(formDemo.searchChildrenPrototype(form))
+        
+        // 结论 表单元素在原型链上并没有共同的原型
+        // 只能用穷举法
+    </script>
+</body>
+</html>

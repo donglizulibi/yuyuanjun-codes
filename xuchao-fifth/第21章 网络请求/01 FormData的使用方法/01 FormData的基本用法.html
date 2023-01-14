@@ -38,6 +38,11 @@
         console.log(formdata.has('age'))
         console.log(formdata.has('sex'))
 
+        // 遍历出FormData对象中的全部属性
+        for (let [key, value] of formdata.entries()) {
+            console.log(key, value)
+        }
+
         // 使用delete删除属性
         formdata.delete('name')
         console.log(formdata.has('name'))
