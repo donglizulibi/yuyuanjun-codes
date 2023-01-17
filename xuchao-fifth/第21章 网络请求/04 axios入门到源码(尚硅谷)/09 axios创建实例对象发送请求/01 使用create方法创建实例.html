@@ -11,9 +11,12 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script>
-        // 上个例子演示了给axios整理添加default配置
+        // 上个例子演示了给axios整体添加default配置
+        // 这样所有使用axios来发送的请求都要服从这个默认配置
+
         // 但是如果要使用axios给多个域名的发送请求，也就是说要配置多个baseURL的话
         // 可以创建axios实例，再单独对每个实例进行default配置
+        // 创造实例的方法是create，这个方法会调用Axios构造函数
 
         // 见文档
         // Config order of precedence
