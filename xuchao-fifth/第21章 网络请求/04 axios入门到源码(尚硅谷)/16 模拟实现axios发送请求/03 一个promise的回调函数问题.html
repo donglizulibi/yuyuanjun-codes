@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果把一个函数作为then的回调函数
+        // 这个函数会自动执行
+        let promise = new Promise((resolve, reject) => {
+            resolve()
+        })
+
+        console.log(promise)
+
+        let fun = function() {
+            console.log('fun函数')
+        }
+
+        promise.then(fun, null)
+    </script>
+</body>
+
+</html>

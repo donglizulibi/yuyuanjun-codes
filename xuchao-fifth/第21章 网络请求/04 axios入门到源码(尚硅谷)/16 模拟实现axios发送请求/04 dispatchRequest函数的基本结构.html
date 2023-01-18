@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Axios {
+            constructor(config) {
+                this.config = config
+            }
+
+            request(config) {
+                let promise = Promise.resolve(config)
+                let chains = [dispatchRequest, undefined]
+                let result = promise.then(chains[0], chains[1])
+                return result
+            }
+        }
+
+        function dispatchRequest(config) {
+            // dispatchRequest的基本结构就是调用适配器来发送请求
+            console.log('dispatchRequest函数')
+            return 123
+        }
+
+        function xhrAdapter(config) {}
+
+        let axios = Axios.prototype.request.bind(null)
+
+        axios().then(val => {
+            // 在这里可以打印出dispatchRequest函数的返回值
+            console.log(val)
+        })
+    </script>
+</body>
+
+</html>
