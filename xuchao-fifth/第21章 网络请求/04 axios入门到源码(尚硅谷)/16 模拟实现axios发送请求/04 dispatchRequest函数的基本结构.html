@@ -25,11 +25,26 @@
 
         function dispatchRequest(config) {
             // dispatchRequest的基本结构就是调用适配器来发送请求
+
+            // 在源码中首先是一些数据的处理，然后是执行适配器
+            // 把dispatchRequest传进来的config参数传入适配器函数中
+            // 在适配器函数后面接上一个then,本函数就是返回这个结果
+
             console.log('dispatchRequest函数')
-            return 123
+
+            // 在这里xhrAdapter函数需要返回一个promise对象
+            // 才能调用then方法
+            return xhrAdapter(config).then((response) => {
+                console.log(response)
+            }, (error) => {
+                console.log(error)
+            })
         }
 
-        function xhrAdapter(config) {}
+        function xhrAdapter(config) {
+            console.log('xhrAdapter 函数运行')
+            return Promise.resolve(config)
+        }
 
         let axios = Axios.prototype.request.bind(null)
 
