@@ -24,6 +24,7 @@
             throw new Error('请求拦截器错误')
                 // return config;
         }, function(error) {
+            // 不会走到这一步
             console.log('请求拦截器 失败')
             return Promise.reject(error);
         });
@@ -36,6 +37,7 @@
             console.log('响应拦截器 失败')
             console.log(error)
             return Promise.reject(error);
+            // 这个错误会转到axios的then的第二个回调函数里
         });
 
         axios({

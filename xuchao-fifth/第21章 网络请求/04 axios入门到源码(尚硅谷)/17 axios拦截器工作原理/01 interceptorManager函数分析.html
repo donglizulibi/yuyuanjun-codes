@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1
+        // 在Axios构造函数中定义了一个内置属性就是interceptors
+        // 这个内置属性是一个对象，包含两个属性，request和response
+        // 属性值都是new InterceptorManager()
+        // 也就是InterceptorManager构造函数的实例
+
+        // 2
+        // 在实际使用拦截器的时候，也是调用axios的interceptors方法
+        // 再调用request或者response属性，然后调用use方法
+        // 所以use方法是InterceptorManager构造函数的内置方法
+
+        // 3
+        // 进入到lib/core的InterceptorManager文件内部
+        // 即为InterceptorManager构造函数
+        // 这个构造函数定义了一个内置参数handlers，初始值为一个空数组
+
+        // 4
+        // 构造函数的use方法有三个参数，fulfilled、rejected和options
+        // 方法内部向handlers压入这几个参数
+    </script>
+</body>
+
+</html>

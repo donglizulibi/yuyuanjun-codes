@@ -17,7 +17,6 @@
 
 
         // 第一个请求拦截器中添加config的请求参数
-        // 第二个请求拦截器中修改config的请求地址
         axios.interceptors.request.use(function(config) {
             console.log('进入请求拦截器 1')
             console.log(config)
@@ -31,6 +30,7 @@
             return Promise.reject(error);
         });
 
+        // 第二个请求拦截器中修改config的请求地址
         axios.interceptors.request.use(function(config) {
             console.log('进入请求拦截器 2')
 
@@ -45,7 +45,7 @@
 
 
 
-        // 设置三个响应拦截器
+        // 设置响应拦截器
         axios.interceptors.response.use(function(response) {
             console.log('响应拦截器 成功 1')
             return response;
@@ -56,7 +56,8 @@
         });
 
 
-
+        // 说明两个请求拦截器设置config的不同部分
+        // 效果可以叠加
         axios({
             method: "GET",
             url: "http://127.0.0.1:3003/posts"

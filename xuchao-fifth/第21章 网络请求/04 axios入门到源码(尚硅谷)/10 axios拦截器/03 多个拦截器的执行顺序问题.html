@@ -13,6 +13,7 @@
     <script>
         // 设置三个请求拦截器
         // 三个请求拦截器的顺序是 1 2 3 
+        // 显示结果是请求拦截器3 2 1
         axios.interceptors.request.use(function(config) {
             console.log('进入请求拦截器 1')
 
@@ -43,11 +44,9 @@
             return Promise.reject(error);
         });
 
-
-
-
         // 设置三个响应拦截器
         // 三个响应拦截器的顺序是 1 2 3 
+        // 显示结果是响应拦截器1 2 3
         axios.interceptors.response.use(function(response) {
             console.log('响应拦截器 成功 1')
             return response;
@@ -75,11 +74,9 @@
             return Promise.reject(error);
         });
 
-        // 显示结果是请求拦截器3 2 1
-        // 响应拦截器1 2 3
-
         // 所以请求拦截器服从先进后出，是栈的结构
         // 响应拦截器服从先进先出，是队列的结构
+
         axios({
             method: "GET",
             url: "http://127.0.0.1:3003/posts"

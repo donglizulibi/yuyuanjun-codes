@@ -24,12 +24,17 @@
         // 也可以先创造axios实例，然后对实例进行单独设置
         // 可以使用eject和clear方法请求拦截器
 
-        // 调用axios的interceptors方法，然后觉得是设置请求还是响应拦截器
-        // 再调用use方法设置，里面传入两个回调函数，分别是代表成功或者失败的操作
+        // 调用axios的interceptors方法，然后由调用request或者response
+        // 来是设置请求还是响应拦截器，再调用use方法设置
+        // 里面传入两个回调函数，分别是代表成功或者失败的操作
+
 
         // 设置一个请求拦截器
         axios.interceptors.request.use(function(config) {
             console.log('请求拦截器 成功')
+
+            // 请求拦截器的use方法的回调函数参数是配置对象
+            console.log(config)
             return config;
         }, function(error) {
             console.log('请求拦截器 失败')
@@ -42,6 +47,8 @@
         // 如果响应拦截器中不处理, 就会交给axios.then的第一个回调函数
         axios.interceptors.response.use(function(response) {
             console.log('响应拦截器 成功')
+
+            // 响应拦截器use方法回调函数的参数就是响应结果
             console.log(response)
             return response;
         }, function(error) {
