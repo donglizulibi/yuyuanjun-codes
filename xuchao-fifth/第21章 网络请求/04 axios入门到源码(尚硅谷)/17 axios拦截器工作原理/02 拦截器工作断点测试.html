@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 以文件“多个拦截器的执行顺序问题”为测试
+
+        // 在第一个请求拦截器axios.interceptors.request.use的方法调用上
+        // 设置一个断点
+
+        // 1
+        // 在断点测试刚开始的时候，可以从sourse中看到
+        // axios对象中的interceptors对象中
+        // 有request和response两个属性，属性值都是一个对象
+        // 对象再嵌套一个属性handlers，这个属性的属性值是一个空数组
+
+        // 2
+        // 走完两个请求拦截器，可以看到interceptors中
+        // request中的handlers的数组有两个值，是两个对象
+        // 每个对象中都有各自请求拦截器的成功和失败的回调函数
+
+        // 也就是说，第一个对象中有fulfilled和rejected两个属性
+        // 分别保存oneRequest(config)和oneRequest(error)两个函数
+        // 第二个对象中也有这两个属性，分别是twoRequest(config/error)     
+
+        // 而此时response的handlers数组仍然为空
+
+        // 3
+        // 走完两个响应拦截器之后，在response中的handlers数组中
+        // 也添加了fulfilled和rejected两个属性和相应的内容
+
+        // 4
+        // 走到axios({...}).then(...)之后点击 step into next function call
+        // 再次点击进入到Axios文件，点击几次step over next function call
+        // 进入到request函数中，跳过前面检测参数的操作
+        // 找到requestInterceptorChain变量创建的位置
+        // const requestInterceptorChain = []
+
+        // 5
+        // 接下来是this.interceptors.request.forEach(...)
+        // 就是遍历请求拦截器的handlers的两个对象
+        // 下面的requestInterceptorChain.unshift
+        // 则是把handlers的对象中的两对回调函数从前面添加进requestInterceptorChain中
+        // 此时可以看到requestInterceptorChain里有四个函数
+        // 顺序是0 twoRequest(config)  1 twoRequest(error)
+        //      2 oneRequest(config)  3 oneRequest(error)
+
+        // 6
+        // 接下来是关于响应拦截器的相应的相似操作
+        // 区别是往responseInterceptorChain压入函数是从后面添加
+        // 最后responseInterceptorChain中四个函数的顺序为
+        //     0 oneResponse(response)  1 oneResponse(error)
+        //     2 twoResponse(response)  3 twoResponse(error)
+
+        // ***可见两个数组中的函数对的顺序是相反的
+
+        // 7
+        // 找到chain变量创建的位置
+        // const chain = [dispatchRequest.bind(this), undefined]
+        // 其中dispatchRequest.bind(this)是发送请求的部分
+        // undefined则用来占位
+
+        // 接着对chain进行unshift和push的操作
+        // 把requestInterceptorChain的内容加在chain数组的前面
+        // 把responseInterceptorChain的内容加载chain数组的后面
+
+        // 此时chain的内容变成
+        //     0 twoRequest(config)            1 twoRequest(error)
+        //     2 oneRequest(config)            3 oneRequest(error)
+        //     5 dispatchRequest.bind(this)    6 undefined
+        //     7 oneResponse(response)         8 oneResponse(error)
+        //     9 twoResponse(response)         10 twoResponse(error)
+
+        // 8
+        // 再往下有赋值操作 promise = Promise.resolve(config)
+        // 使promise为一个成功的promise对象
+        // 接下来是一个while循环
+        //     while (i < len) {
+        //          promise = promise.then(chain[i++], chain[i++]);
+        //     }
+        // chain数组内容的特征是一共五组函数，每组两个
+        // 前面是成功的，后面的是失败的，现在分组依次选中
+        // 构成promise.then的两个回调函数，然后再赋值成新的promise
+        // 每次promise.then的第一个回调函数执行
+        // 又会再执行下一个then的第一个回调函数
+
+        // 这种跳板执行的方式直到将chain数组完全遍历，将promise对象返回
+
+        // 最后返回的promise就是最后一个响应拦截器的then返回的promise
+        // 然后就到了页面的axios(...).then()的then中
+        // 由用户进行下一步操作
+
+        // 这样就实现了先倒序执行请求拦截器，再发送请求，最后顺序执行响应拦截器
+    </script>
+</body>
+
+</html>

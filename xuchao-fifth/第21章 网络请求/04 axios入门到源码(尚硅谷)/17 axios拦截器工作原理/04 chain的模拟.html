@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let chain = ['dispatch', undefined]
+        let requestChain = [
+            function twoRequest(config) {},
+            function twoRequest(error) {},
+            function oneRequest(config) {},
+            function oneRequest(error) {}
+        ]
+        let responseChain = [
+            function oneResponse(config) {},
+            function oneResponse(error) {},
+            function twoResponse(config) {},
+            function twoResponse(error) {}
+        ]
+
+        chain.unshift.apply(chain, requestChain)
+        chain.push.apply(chain, responseChain)
+
+        console.log(chain)
+            // 十个内容
+    </script>
+</body>
+
+</html>

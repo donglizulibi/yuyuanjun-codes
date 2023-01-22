@@ -11,69 +11,56 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script>
-        // 设置三个请求拦截器
-        // 三个请求拦截器的顺序是 1 2 3 
-        // 显示结果是请求拦截器3 2 1
-        axios.interceptors.request.use(function(config) {
+        // 将前面的多个拦截器的执行顺序问题的例子略作修改
+        // 将拦截器的use方法中的回调函数都命名
+        // 并将每组拦截器的数量减少为两个
+
+        // 设置两个请求拦截器
+        // 两个请求拦截器的顺序是 1 2  
+        // 显示结果是请求拦截器2 1
+        axios.interceptors.request.use(function oneRequest(config) {
             console.log('进入请求拦截器 1')
 
             // throw new Error('请求拦截器错误')
             return config;
-        }, function(error) {
+        }, function oneRequest(error) {
             console.log('请求拦截器 失败 1')
             return Promise.reject(error);
         });
 
-        axios.interceptors.request.use(function(config) {
+        axios.interceptors.request.use(function twoRequest(config) {
             console.log('进入请求拦截器 2')
 
             // throw new Error('请求拦截器错误')
             return config;
-        }, function(error) {
+        }, function twoRequest(error) {
             console.log('请求拦截器 失败 2')
             return Promise.reject(error);
         });
 
-        axios.interceptors.request.use(function(config) {
-            console.log('进入请求拦截器 3')
 
-            // throw new Error('请求拦截器错误')
-            return config;
-        }, function(error) {
-            console.log('请求拦截器 失败 3')
-            return Promise.reject(error);
-        });
 
-        // 设置三个响应拦截器
-        // 三个响应拦截器的顺序是 1 2 3 
-        // 显示结果是响应拦截器1 2 3
-        axios.interceptors.response.use(function(response) {
+        // 设置两个响应拦截器
+        // 两个响应拦截器的顺序是 1 2 
+        // 显示结果是响应拦截器1 2 
+        axios.interceptors.response.use(function oneResponse(response) {
             console.log('响应拦截器 成功 1')
             return response;
-        }, function(error) {
+        }, function oneResponse(error) {
             console.log('响应拦截器 失败 1')
             console.log(error)
             return Promise.reject(error);
         });
 
-        axios.interceptors.response.use(function(response) {
+        axios.interceptors.response.use(function twoResponse(response) {
             console.log('响应拦截器 成功 2')
             return response;
-        }, function(error) {
+        }, function twoResponse(error) {
             console.log('响应拦截器 失败 2')
             console.log(error)
             return Promise.reject(error);
         });
 
-        // use函数的返回值是拦截器数量减一
-        console.log(axios.interceptors.response.use(function(response) {
-            console.log('响应拦截器 成功 3')
-            return response;
-        }, function(error) {
-            console.log('响应拦截器 失败 3')
-            console.log(error)
-            return Promise.reject(error);
-        }))
 
 
         // 所以请求拦截器服从先进后出，是栈的结构
