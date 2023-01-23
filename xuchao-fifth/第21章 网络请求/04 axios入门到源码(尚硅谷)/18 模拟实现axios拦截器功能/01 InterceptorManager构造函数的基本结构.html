@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 首先是创建一个InterceptorManager构造函数 
+        // 并创建use方法，当使用Axios构造函数创建实例的时候
+        // 就会创建interceptors内置属性，并包含request和response两个属性
+        class InterceptorManager {
+            constructor() {
+                this.handlers = []
+            }
+            use(fulfilled, rejected) {
+                this.handlers.push({
+                    fulfilled,
+                    rejected
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

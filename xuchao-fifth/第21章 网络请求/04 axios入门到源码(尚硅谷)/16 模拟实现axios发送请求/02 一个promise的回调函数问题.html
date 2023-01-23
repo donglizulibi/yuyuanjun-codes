@@ -10,8 +10,9 @@
 
 <body>
     <script>
-        // 如果把一个函数作为then的回调函数
-        // 这个函数会自动执行
+        // 如果把一个函数的函数体作为promise实例的then的回调函数
+        // 在promise调用then的时候，如果如何相应的执行状态
+        // 这个回调函数会自动执行
         let promise = new Promise((resolve, reject) => {
             resolve()
         })

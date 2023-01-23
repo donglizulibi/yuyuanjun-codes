@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class InterceptorManager {
+            constructor() {
+                this.handlers = []
+            }
+            use(fulfilled, rejected) {
+                this.handlers.push({
+                    fulfilled,
+                    rejected
+                })
+            }
+        }
+
+        class Axios {
+            constructor(config) {
+                this.defaults = config
+                this.interceptors = {
+                    request: new InterceptorManager(),
+                    response: new InterceptorManager()
+                }
+            }
+
+            request(config) {
+                console.log(config)
+            }
+
+            post() {}
+
+            get() {}
+        }
+
+        function createInstance(config) {
+            // 1 创建Axios实例，为后面给instance实例添加属性做准备
+            let context = new Axios(config)
+
+            // 2 创建instance实例，其实就是单纯地调用request方法的实例
+            let instance = Axios.prototype.request.bind(context)
+
+            // 3 把Axios的内置方法添加到instance实例上
+            Object.getOwnPropertyNames(Axios.prototype).forEach(item => {
+                console.log(item)
+                if (item !== 'constructor') {
+                    instance[item] = Axios.prototype[item]
+                }
+            })
+
+            // 4 把context实例上属性添加到instance实例上面
+            Object.keys(context).forEach(item => {
+                instance[item] = context[item]
+            })
+
+
+
+            return instance
+        }
+
+        let axios = createInstance()
+
+        console.dir(axios)
+
+        console.dir(axios({
+            method: 'GET',
+            url: ''
+        }))
+    </script>
+</body>
+
+</html>
