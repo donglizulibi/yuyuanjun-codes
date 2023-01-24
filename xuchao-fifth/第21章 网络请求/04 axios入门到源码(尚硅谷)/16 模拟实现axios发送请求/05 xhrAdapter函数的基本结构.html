@@ -28,6 +28,7 @@
 
 
             return xhrAdapter(config).then((response) => {
+                // 这个位置先打印，后面再修改
                 console.log(response)
             }, (error) => {
                 console.log(error)
@@ -43,6 +44,7 @@
                 // 1 创建对象 2 调用open方法 3 调用send方法 4 处理响应结果
 
                 let xhr = new XMLHttpRequest();
+                xhr.responseType = 'json'
                 xhr.open(config.method, config.url)
                 xhr.send()
                 xhr.onreadystatechange = function() {

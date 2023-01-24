@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 
+        class InterceptorManager {
+            constructor() {
+                this.handlers = []
+            }
+            use(fulfilled, rejected) {
+                this.handlers.push({
+                    fulfilled,
+                    rejected
+                })
+            }
+        }
+
+        class Axios {
+            constructor(config) {
+                this.defaults = config
+                this.interceptors = {
+                    request: new InterceptorManager(),
+                    response: new InterceptorManager()
+                }
+            }
+            request(config) {
+                // console.log('发送请求，请求方式为：' + config.method)
+                // return config
+
+                let promise = Promise.resolve(config)
+                let chain = [dispatchReqeust, undefined]
+                let result = promise.then(chain[0], chain[1])
+                return result
+            }
+            get(config) {
+                this.request({
+                    method: "GET"
+                })
+            }
+            post(config) {
+                this.request({
+                    method: "POST"
+                })
+            }
+        }
+
+        function dispatchReqeust(config) {
+            return xhrAdapter(config).then(res => {
+                console.log(res)
+                return res
+            }, rea => {
+
+            })
+        }
+
+        function xhrAdapter(config) {
+            return new Promise((resolve, reject) => {
+                console.log(config)
+                let xhr = new XMLHttpRequest()
+                xhr.responseType = "json"
+                xhr.open(config.method, config.url)
+                xhr.send(null)
+                xhr.onreadystatechange = function() {
+                    // console.log(xhr)
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            // 一些基本规范配置
+                            resolve({
+                                config: config,
+
+                                // 响应数据，或者称为响应体
+                                data: xhr.response,
+
+                                // 响应头
+                                headers: xhr.getAllResponseHeaders(),
+                                // 响应头是字符串格式
+
+                                // XMLHttpRequest对象
+                                request: xhr,
+
+                                // 响应状态码
+                                status: xhr.status,
+
+                                // 响应状态字符串
+                                statusText: xhr.statusText
+                            })
+                        } else {
+                            reject(new Error('请求错误' + xhr.status))
+                        }
+                    }
+                }
+            })
+        }
+
+
+        function createInstance(config) {
+            let context = new Axios()
+
+            let instance = Axios.prototype.request.bind(context)
+
+            Object.getOwnPropertyNames(Axios.prototype).forEach(key => {
+                if (key !== 'constructor') {
+                    instance[key] = Axios.prototype[key]
+                }
+            })
+
+            Object.keys(context).forEach(key => {
+                instance[key] = context[key]
+            })
+
+            return instance
+        }
+
+        let axios = createInstance()
+        console.dir(axios)
+        axios({
+            method: 'get',
+            url: 'http://127.0.0.1:3003/posts'
+        }).then(res => {
+            console.log(res)
+        })
+    </script>
+</body>
+
+</html>
