@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class InterceptorManager {
+            constructor() {
+                this.handlers = []
+            }
+            use(fulfilled, rejected) {
+                this.handlers.push({
+                    fulfilled,
+                    rejected
+                })
+            }
+        }
+
+        class Axios {
+            constructor(config) {
+                this.defaults = config
+                this.interceptors = {
+                    request: new InterceptorManager(),
+                    response: new InterceptorManager()
+                }
+            }
+
+            request(config) {
+                let promise = Promise.resolve(config)
+                let chain = [dispatchRequest, undefined]
+                let result = promise.then(chain[0], chain[1])
+                return result
+            }
+
+            post(config) {
+                return this.reqeust({
+                    method: 'post'
+                })
+            }
+            get(config) {
+                return this.reqeust({
+                    method: 'get'
+                })
+            }
+        }
+
+        function createInstance(config) {
+            let context = new Axios()
+            let instance = Axios.prototype.request.bind(context)
+
+            Object.getOwnPropertyNames(Axios.prototype).forEach(item => {
+                if (item != 'constructor') {
+                    instance[item] = Axios.prototype[item]
+                }
+            })
+
+            Object.keys(context).forEach(key => {
+                instance[key] = context[key]
+            })
+
+            return instance
+        }
+
+        function dispatchRequest(config) {
+            return xhrAdapter(config).then(res => {
+                return res
+            }, rea => {
+
+            })
+        }
+
+        function xhrAdapter(config) {
+            return new Promise((resolve, reject) => {
+                let xhr = new XMLHttpRequest()
+                xhr.responseType = 'json'
+                xhr.open(config.method, config.url)
+                xhr.send()
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            resolve({
+                                config: config,
+                                status: xhr.status,
+                                data: xhr.response
+                            })
+                        } else {
+                            reject(new Error(xhr.status))
+                        }
+                    }
+                }
+            })
+        }
+
+
+        let axios = createInstance()
+
+        // 在这里调用一下use方法，加入两个请求拦截器和两个响应拦截器
+        axios.interceptors.request.use(
+            function oneReqeust(config) {
+                console.log('请求拦截器 1号')
+                return config
+            },
+            function oneReqeust(error) {}
+        )
+
+        axios.interceptors.request.use(
+            function twoReqeust(config) {
+                console.log('请求拦截器 2号')
+                return config
+            },
+            function twoReqeust(error) {}
+        )
+
+        axios.interceptors.response.use(
+            function oneResponse(config) {
+                console.log('响应拦截器 1号')
+                return config
+            },
+            function oneResponse(error) {}
+        )
+        axios.interceptors.response.use(
+            function twoResponse(config) {
+                console.log('响应拦截器 2号')
+                return config
+            },
+            function twoResponse(error) {}
+        )
+
+        // 在这里可以看到，两种拦截器的handlers数组已经建立
+        // 回调函数也已经添加进去数组
+        console.dir(axios.interceptors)
+
+        // 但是拦截器没有起作用
+
+        axios({
+            method: 'get',
+            url: ' http://127.0.0.1:3003/posts'
+        }).then(res => {
+            console.log(res)
+        })
+    </script>
+</body>
+
+</html>
