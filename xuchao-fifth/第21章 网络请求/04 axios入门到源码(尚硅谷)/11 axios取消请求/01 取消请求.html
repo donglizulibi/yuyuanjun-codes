@@ -18,8 +18,6 @@
         let btns = document.querySelectorAll('button')
         console.log(btns)
 
-        // 见文档的 Cancellation
-
         // 这里使用CancelToken来实现取消请求
 
         // 取消请求的方式是在发送请求之后，在响应回来之前启动取消请求的操作
@@ -47,6 +45,7 @@
         // 在控制台的network可以看到，点击发送请求，在请求响应之前点击取消请求
         // 请求信息会变成红色，status会变成canceled
 
+        // 见文档的 Cancellation
         let cancel = undefined
         btns[0].onclick = function() {
             axios({
