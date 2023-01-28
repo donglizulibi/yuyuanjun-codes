@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1
+        // 在使用axios取消请求的功能的时候
+        // 需要在配置参数的对象里加上cancelToken属性
+        // 属性值是CancelToken构造函数的实例对象
+
+        // 2
+
+        // 在CancelToken构造实例的时候，传入了一个函数
+        //    function(c){ cancel = c }  作为参数
+        // 这个函数的函数体是一个赋值的操作
+
+        // 3
+        // 进入到lib/cancel/CancelToken文件
+        // 在构造函数CancelToken的constructor中有executor参数
+        // 传入一个函数体，直接在constructor，也就是创建实例的时候执行
+        // 传入的函数体就是 function(c){ cancel = c }
+
+        // 4 
+        // CancelToken的constructor中首先是一个if判断，如果传入的参数不是函数
+        // 则直接抛出错误
+        // 然后创建一个resolvePromise变量
+        // 再创建一个promise内置属性，属性值是新建一个promise实例
+        // 实例中的回调函数只传入resolve参数，并将这个参数赋值给resolvePromise变量
+
+        // ***到这一步就意味着，执行resolvePromise()就相当于执行resolve()
+        //    也就是promise实例返回一个成功的状态
+
+        // 5
+        // 下面const token = this的意思是保存一下this的指向
+
+        // 6
+        // 再往下执行executor函数，executor函数传入了一个cancel回调函数
+        // 则这个回调函数就会赋值给前面的c，以及cancel参数
+
+        // 7
+        // cancel回调函数中执行resolvePromise(token.reason)
+        // 也就相当于如果cancel回调函数执行，相当于c或者cancel参数
+        // 所代表的函数体执行，反过来也是一样
+        // 也就意味着构造函数的promise实例调用resolve
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 该文件定义了request变量，即为ajax实例
+
+        // 2 在旧版的文件当中，进入到if (config.cancelToken)条件下
+        //   调用了配置config的cancelToken属性的promise属性
+
+        // 3 如果这个这个属性的promise实例返回resolve
+        //   就会执行下面的request.abort()，使得请求被取消
+
+        // 4 在上一个文件中分析得出，如果c或者cancel参数的函数体调用
+        //   则CancelToken实例的promise实例就会调用resolve
+    </script>
+</body>
+
+</html>
