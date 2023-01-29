@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>触发</button>
+    <script>
+        let btn = document.querySelector('button')
+        class CancelToken {
+            constructor(executor) {
+                let resolvePromise
+                this.promise = new Promise((resolve, reject) => {
+                    resolvePromise = resolve
+                })
+
+                console.log(executor)
+
+                executor(function(config) {
+                    resolvePromise(config)
+                })
+            }
+        }
+
+        let cancel
+        let cancelToken = new CancelToken(function(c) {
+            console.log(c)
+            cancel = c
+        })
+
+        console.dir(cancelToken)
+
+        btn.onclick = function() {
+            cancel({
+                method: 'get',
+                url: ''
+            })
+            console.dir(cancelToken)
+        }
+
+        cancelToken.promise.then(res => {
+            console.log(res)
+        })
+    </script>
+</body>
+
+</html>

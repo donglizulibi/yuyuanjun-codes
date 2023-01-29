@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 axios在语法上并不是Axios的实例
+        //   而是Axios.prototype.request的bind的复制函数
+        //   但是由于后续的一些添加，axios拥有Axios所有的内置属性和方法
+
+        // 2 axios的create方法和createInstance相比
+        //   所创造出来的实例要多一些属性和功能
+
+        // 3 axios发送请求的三层结构
+
+        // 4 请求拦截器中的成功的回调函数中的参数都是config，也就是配置对象
+        //   可以在请求拦截器中对config进行修改，再传递到下一个请求拦截器
+        //   或者传递到request函数中
+
+        //   而响应拦截器中的成功回调函数中参数都是response，就是request函数
+        //   返回过来的结果，可以对这个结果进行调整
+
+        // 5 取消请求
+        //   xhrAdapter函数中是否需要执行abort函数
+        //   取决于cancelToken中的promise的状态是否由pending变成fulfilled
+        //   而这个状态是否改变取决于外部的程序员或者用户的控制
+    </script>
+</body>
+
+</html>
