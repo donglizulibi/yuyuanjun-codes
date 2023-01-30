@@ -1,0 +1,13 @@
+vite创建的项目，所用命令为
+yarn create vite b2 --template vue   
+然后yarn安装依赖包
+yarn dev运行项目
+
+项目运行后可以先不使用setup语法
+把根组件中script里面的setup属性删去
+
+卸载依赖包的命令为
+npm install rimraf -g
+rimraf node_modules
+
+安装sass命令为yarn add -D sass
