@@ -11,3 +11,6 @@ npm install rimraf -g
 rimraf node_modules
 
 安装sass命令为yarn add -D sass
+
+安装pinia
+npm install pinia
