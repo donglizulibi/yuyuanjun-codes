@@ -7,6 +7,6 @@
 // 换一个变量名
 // let houdunren = 'houdunren'
 
-// 运行tsc index.ts编译生成index.js文件之后又会出现变量名同名的问题
+// 运行tsc index.ts编译生成index.js文件之后又会出现变量名同名的文件
 
 // 运行tsc index.ts -w可以监听ts文件的变化，一旦变化就会自动更新js文件
