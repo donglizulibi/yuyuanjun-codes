@@ -2,31 +2,20 @@
   <div>
     <h4>computed相关</h4>
     <h5>computed只有在其内部依赖了响应式数据的情况才会自动更新</h5>
-    <div>{{ date }}</div>
+    <computed-time></computed-time>
+
+    <h5>在computed里面使用访问器</h5>
+    <computed-count></computed-count>
   </div>
 </template>
 
 <script>
+import computedCount from "./dComputed/computedCount.vue";
+import computedTime from "./dComputed/computedTime.vue";
 export default {
-  created() {
-    this.interval = setInterval(() => {
-      let time = new Date();
-      this.timer = time.toTimeString();
-    }, 1000);
-  },
-  beforeDestroy() {
-    clearInterval(this.interval);
-  },
-  data() {
-    return {
-      timer: "",
-      interval: "",
-    };
-  },
-  computed: {
-    date() {
-      return this.timer;
-    },
+  components: {
+    computedTime,
+    computedCount,
   },
 };
 </script>

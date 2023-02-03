@@ -12,6 +12,9 @@
     <h3 v-on:click="watchComputedShow">4）增加减少计数例子（watch和computed）</h3>
     <d-watch-count v-if="watchComputedState"></d-watch-count>
     <d-computed-count v-if="watchComputedState"></d-computed-count>
+
+    <h3 v-on:click="classStyleShow">5）vue的样式控制</h3>
+    <e-class-style v-if="classStyleState"></e-class-style>
   </div>
 </template>
 
@@ -21,6 +24,7 @@ import bCountDemo from "./bCountDemo/bCountDemo.vue";
 import cPreventDefault from "./cPreventDefault/cPreventDefault.vue";
 import dComputedCount from "./dWatchComputed/dComputedCount.vue";
 import dWatchCount from "./dWatchComputed/dWatchCount.vue";
+import eClassStyle from "./eClassStyle/eClassStyle.vue";
 export default {
   components: {
     aVDirect,
@@ -28,6 +32,7 @@ export default {
     cPreventDefault,
     dComputedCount,
     dWatchCount,
+    eClassStyle,
   },
   data() {
     return {
@@ -35,6 +40,7 @@ export default {
       countDemoState: true,
       preventDefaultState: true,
       watchComputedState: true,
+      classStyleState: true,
     };
   },
   methods: {
@@ -49,6 +55,10 @@ export default {
     },
     watchComputedShow() {
       this.watchComputedState = !this.watchComputedState;
+    },
+
+    classStyleShow() {
+      this.classStyleState = !this.classStyleState;
     },
   },
 };
