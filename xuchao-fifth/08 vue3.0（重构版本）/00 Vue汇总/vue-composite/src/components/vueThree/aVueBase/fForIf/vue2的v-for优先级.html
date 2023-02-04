@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="lesson in lessons" v-if="lesson.isSell" v-bind:key="lesson.id">
+            {{lesson}}
+        </div>
+
+    </div>
+    <script>
+        // 从结果上来看，遍历可以进行，控制台也不会报错
+        // 但是vue2中将v-if和v-for同时使用，即使是只渲染数据中的一小部分
+        // 由于v-for具有更高的优先级，也会遍历完整个数据，再显示出那一小部分
+
+        // 如果数据本身非常大，则会浪费性能
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                lessons: [{
+                    id: 1,
+                    name: 'html',
+                    isSell: false,
+                    price: 100
+                }, {
+                    id: 2,
+                    name: 'css',
+                    isSell: true,
+                    price: 33
+                }, {
+                    id: 3,
+                    name: 'js',
+                    isSell: true,
+                    price: 45
+                }, {
+                    id: 4,
+                    name: 'nodejs',
+                    isSell: false,
+                    price: 89
+                }, ]
+            },
+
+        })
+    </script>
+</body>
+
+</html>

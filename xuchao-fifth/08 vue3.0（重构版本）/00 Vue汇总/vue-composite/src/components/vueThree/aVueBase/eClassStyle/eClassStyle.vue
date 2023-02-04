@@ -7,7 +7,7 @@
     <class-list></class-list>
 
     <h4>父组件的样式通过$attrs.class作用到子组件</h4>
-    <class-style></class-style>
+    <class-style class="cs"></class-style>
   </div>
 </template>
 
@@ -24,4 +24,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.cs {
+  font-size: 20px;
+  font-weight: bolder;
+  color: blue;
+}
+</style>

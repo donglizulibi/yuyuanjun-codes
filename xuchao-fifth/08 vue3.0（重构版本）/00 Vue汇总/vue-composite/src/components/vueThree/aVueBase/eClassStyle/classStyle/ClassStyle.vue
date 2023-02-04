@@ -1,10 +1,10 @@
 <template>
   <div></div>
-  <div>========间隔========</div>
+
+  <h5>父组件样式影响子组件，需要取消父组件的scoped</h5>
   <div :class="$attrs.class">hdcms</div>
-  <div class="class_style">
-    <div>houdunren</div>
-  </div>
+
+  <h5>两组样式分别来自于data和computed</h5>
   <div :style="[hdStyles, comStyles]">asdf</div>
 </template>
 
@@ -30,11 +30,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.class_style {
-  color: red;
-  height: 80px;
-  border: 5px solid greenyellow;
-  padding: 30px 0 0 0;
-}
-</style>
+<style lang="scss" scoped></style>

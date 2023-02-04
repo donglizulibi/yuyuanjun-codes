@@ -15,6 +15,9 @@
 
     <h3 v-on:click="classStyleShow">5）vue的样式控制</h3>
     <e-class-style v-if="classStyleState"></e-class-style>
+
+    <h3 v-on:click="fForIfShow">6）v-if和v-for相关</h3>
+    <f-for-if v-if="fForIfState"></f-for-if>
   </div>
 </template>
 
@@ -25,6 +28,7 @@ import cPreventDefault from "./cPreventDefault/cPreventDefault.vue";
 import dComputedCount from "./dWatchComputed/dComputedCount.vue";
 import dWatchCount from "./dWatchComputed/dWatchCount.vue";
 import eClassStyle from "./eClassStyle/eClassStyle.vue";
+import fForIf from "./fForIf/fForIf.vue";
 export default {
   components: {
     aVDirect,
@@ -33,6 +37,7 @@ export default {
     dComputedCount,
     dWatchCount,
     eClassStyle,
+    fForIf,
   },
   data() {
     return {
@@ -41,6 +46,7 @@ export default {
       preventDefaultState: true,
       watchComputedState: true,
       classStyleState: true,
+      fForIfState: true,
     };
   },
   methods: {
@@ -59,6 +65,9 @@ export default {
 
     classStyleShow() {
       this.classStyleState = !this.classStyleState;
+    },
+    fForIfShow() {
+      this.fForIfState = !this.fForIfState;
     },
   },
 };

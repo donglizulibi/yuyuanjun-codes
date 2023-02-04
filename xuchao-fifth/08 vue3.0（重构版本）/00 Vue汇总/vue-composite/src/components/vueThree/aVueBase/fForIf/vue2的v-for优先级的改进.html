@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="lesson in filterLessonsData" v-bind:key="lesson.id">
+            {{lesson}}
+        </div>
+    </div>
+    <script>
+        // 针对上个例子的问题，vue官方的解答方案是把过滤的部分放在computed中进行
+        const vm = new Vue({
+            el: "#app",
+            computed: {
+                filterLessonsData() {
+                    return this.lessons.filter(item => {
+                        return item.isSell
+                    })
+                }
+            },
+            data: {
+                lessons: [{
+                    id: 1,
+                    name: 'html',
+                    isSell: false,
+                    price: 100
+                }, {
+                    id: 2,
+                    name: 'css',
+                    isSell: true,
+                    price: 33
+                }, {
+                    id: 3,
+                    name: 'js',
+                    isSell: true,
+                    price: 45
+                }, {
+                    id: 4,
+                    name: 'nodejs',
+                    isSell: false,
+                    price: 89
+                }, ]
+            },
+
+        })
+    </script>
+</body>
+
+</html>
