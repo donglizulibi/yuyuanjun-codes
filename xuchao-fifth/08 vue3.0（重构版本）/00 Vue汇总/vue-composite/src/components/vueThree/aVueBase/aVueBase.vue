@@ -18,6 +18,12 @@
 
     <h3 v-on:click="fForIfShow">6）v-if和v-for相关</h3>
     <f-for-if v-if="fForIfState"></f-for-if>
+
+    <h3 v-on:click="gInputComponentShow">7） input表单相关</h3>
+    <g-input-component v-if="gInputComponentState"></g-input-component>
+
+    <h3 v-on:click="hEventComponentShow">8）event事件相关</h3>
+    <h-event-component v-if="hEventComponentState"></h-event-component>
   </div>
 </template>
 
@@ -29,6 +35,8 @@ import dComputedCount from "./dWatchComputed/dComputedCount.vue";
 import dWatchCount from "./dWatchComputed/dWatchCount.vue";
 import eClassStyle from "./eClassStyle/eClassStyle.vue";
 import fForIf from "./fForIf/fForIf.vue";
+import gInputComponent from "./gInputComponent/gInputComponent.vue";
+import hEventComponent from "./hEventComponent/hEventComponent.vue";
 export default {
   components: {
     aVDirect,
@@ -38,6 +46,8 @@ export default {
     dWatchCount,
     eClassStyle,
     fForIf,
+    gInputComponent,
+    hEventComponent,
   },
   data() {
     return {
@@ -47,6 +57,8 @@ export default {
       watchComputedState: true,
       classStyleState: true,
       fForIfState: true,
+      gInputComponentState: true,
+      hEventComponentState: true,
     };
   },
   methods: {
@@ -68,6 +80,12 @@ export default {
     },
     fForIfShow() {
       this.fForIfState = !this.fForIfState;
+    },
+    gInputComponentShow() {
+      this.gInputComponentState = !this.gInputComponentState;
+    },
+    hEventComponentShow() {
+      this.hEventComponentState = !this.hEventComponentState;
     },
   },
 };

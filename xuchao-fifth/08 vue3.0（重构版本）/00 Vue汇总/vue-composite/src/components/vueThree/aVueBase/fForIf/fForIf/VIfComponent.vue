@@ -1,6 +1,5 @@
 <template>
-  <div>=========间隔========</div>
-  <template v-for="(lesson, key) in Lessons" :key="index">
+  <template v-for="lesson in Lessons" :key="lesson.title">
     <div v-if="lesson.isDelete" style="background-color: red">{{ lesson.title }}</div>
     <div v-else-if="lesson.price > 100" style="background-color: green">
       {{ lesson.title }}
@@ -10,7 +9,7 @@
 </template>
 
 <script>
-import Lessons from "../../data/Lesson_if";
+import Lessons from "./Lesson_if";
 export default {
   data() {
     return {

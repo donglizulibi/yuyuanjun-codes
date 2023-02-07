@@ -1,5 +1,6 @@
 <template>
   <button @click="orderType = 'asc'" :class="{ chose: orderType == 'asc' }">升序</button>
+
   <button @click="orderType = 'desc'" :class="{ chose: orderType == 'desc' }">
     降序
   </button>
@@ -17,7 +18,7 @@
 </template>
 
 <script>
-import Lessons from "../../data/Lesson_demo";
+import Lessons from "./Lesson_demo";
 export default {
   data() {
     return {
@@ -28,16 +29,14 @@ export default {
   },
 
   computed: {
-    // 关于计算属性和访问器的联合使用见本章1-13
-    lessonList: {
-      set(type) {},
-      get() {
-        return this.Lessons.sort((a, b) => {
-          return this.orderType == "asc"
-            ? a[this.orderBy] - b[this.orderBy]
-            : b[this.orderBy] - a[this.orderBy];
-        });
-      },
+    // 在这里lessonList里面有orderType和orderby两个响应式数据
+    // 这两个数据改了，lessonList数据就要跟着改变
+    lessonList() {
+      return this.Lessons.sort((a, b) => {
+        return this.orderType == "asc"
+          ? a[this.orderBy] - b[this.orderBy]
+          : b[this.orderBy] - a[this.orderBy];
+      });
     },
   },
 };

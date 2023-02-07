@@ -1,0 +1,3 @@
+// setting --> 搜索validate --> typescript --> 取消TypeScript校验
+
+// 这样如果由错误就只会在编译阶段显示出来
