@@ -5,7 +5,11 @@
 
     <h5>冒泡修饰符</h5>
     <event-fix-component></event-fix-component>
+
+    <h5>键盘事件</h5>
     <event-key></event-key>
+
+    <h5>passive修饰符和滚动事件</h5>
     <event-passive></event-passive>
   </div>
 </template>

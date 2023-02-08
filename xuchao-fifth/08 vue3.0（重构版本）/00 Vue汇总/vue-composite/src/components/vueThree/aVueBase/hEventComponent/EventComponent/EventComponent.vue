@@ -1,10 +1,13 @@
 <template>
-  <span>执行numFunc函数，使得计数累加</span>
   <div @click="sum(123, 444, 18), ev(1, 2, 3, 4, 5, $event), numFunc()">{{ num }}</div>
-  <!-- <div @click="numFunc">{{ num }}</div> -->
-  <br />
-  <span>计算123, 444, 18的和{{ sumRes }}</span>
+  <h6>1 按钮内的计数累加</h6>
+  <h6>2 计算出123, 444, 18的和</h6>
+  <span>{{ sumRes }}</span>
+  <h6>3 显示所点击按钮的元素名称</h6>
   <span v-if="eventArr">{{ eventArr.target.nodeName }}</span>
+  <br />
+  <br />
+  <br />
 </template>
 
 <script>
