@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.5/vue.global.js"></script>
     <title>Document</title>
 </head>
 
 <body>
     <div id="app">
         <div v-for="data in db" :key="data.id">
-            <!-- <todo :data="data"> -->
+            <todo :data="data">
         </div>
 
         <hd :mid="middle"></hd>
@@ -20,7 +20,7 @@
         <hd></hd>
     </div>
     <script type="module">
-        // import main from './main.js';console.log(main)
+        import main from './main.js';console.log(main)
     </script>
 </body>
 
