@@ -40,6 +40,15 @@
 
     <h4>单项数据流</h4>
     <e-single-data-button></e-single-data-button>
+
+    <h4>props传递数据的标准写法</h4>
+    <f-button-single-norm
+      buttonType="success"
+      contentStr="标准引用"
+    ></f-button-single-norm>
+
+    <h4>使用watch监听props数据的变化</h4>
+    <g-button-single-watch></g-button-single-watch>
   </div>
 </template>
 
@@ -49,6 +58,9 @@ import bButtonStyle from "./AllButtonComponents/bButtonStyle.vue";
 import cButtonDisabled from "./AllButtonComponents/cButtonDisabled.vue";
 import dButtonIcon from "./AllButtonComponents/dButtonIcon.vue";
 import eSingleDataButton from "./AllButtonComponents/eSingleDataButton.vue";
+import fButtonSingleNorm from "./AllButtonComponents/fButtonSingleNorm.vue";
+import gButtonSingleWatch from "./AllButtonComponents/gButtonSingleWatch.vue";
+
 export default {
   components: {
     aBaseButton,
@@ -56,6 +68,8 @@ export default {
     cButtonDisabled,
     dButtonIcon,
     eSingleDataButton,
+    fButtonSingleNorm,
+    gButtonSingleWatch,
   },
   data() {
     return {
