@@ -18,6 +18,10 @@
     <br />
 
     &nbsp;&nbsp;&nbsp;第二个填入这个组件的配置参数
+
+    <br />
+    <br />
+    <br />
   </div>
 </template>
 

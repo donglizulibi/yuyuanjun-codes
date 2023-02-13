@@ -12,7 +12,7 @@
     <br />
 
     <h5>子组件中使用watch监听props数据</h5>
-    <h6>传递的数据是字符串</h6>
+    <h6>传递的数据是字符串可以达到效果</h6>
     <button-single-watch-str
       buttonType="success"
       :contentStr="contentWatchStr"
@@ -32,6 +32,8 @@
     <hr />
     <div>父组件数据：{{ contentWatchObj }}</div>
     <button v-on:click="changeWatchObj">改变父组件需要通过props传递过去的数据</button>
+    <h5>注：所以规范的props写法包括在data里中转数据和在watch里监听数据更新</h5>
+    <br />
   </div>
 </template>
 

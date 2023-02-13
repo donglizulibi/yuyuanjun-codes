@@ -19,6 +19,9 @@
     </div>
 
     <hd :mid="middle"></hd>
+
+    <br />
+    <br />
   </div>
 </template>
 

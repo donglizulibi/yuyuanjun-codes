@@ -49,6 +49,12 @@
 
     <h4>使用watch监听props数据的变化</h4>
     <g-button-single-watch></g-button-single-watch>
+
+    <h4>非props数据的传递</h4>
+    <h-button-single-non-props></h-button-single-non-props>
+
+    <h4>组件间的事件传递</h4>
+    <i-button-single-event></i-button-single-event>
   </div>
 </template>
 
@@ -60,7 +66,8 @@ import dButtonIcon from "./AllButtonComponents/dButtonIcon.vue";
 import eSingleDataButton from "./AllButtonComponents/eSingleDataButton.vue";
 import fButtonSingleNorm from "./AllButtonComponents/fButtonSingleNorm.vue";
 import gButtonSingleWatch from "./AllButtonComponents/gButtonSingleWatch.vue";
-
+import hButtonSingleNonProps from "./AllButtonComponents/hButtonSingleNonProps.vue";
+import iButtonSingleEvent from "./AllButtonComponents/iButtonSingleEvent.vue";
 export default {
   components: {
     aBaseButton,
@@ -70,6 +77,8 @@ export default {
     eSingleDataButton,
     fButtonSingleNorm,
     gButtonSingleWatch,
+    hButtonSingleNonProps,
+    iButtonSingleEvent,
   },
   data() {
     return {
