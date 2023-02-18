@@ -1,9 +1,10 @@
 <template>
-  <h6>使用v-bind="$attrs"将点击事件传递下去</h6>
+  <h6>在父组件上使用v-on绑定点击事件</h6>
+  <h6>在子组件中使用v-bind="$attrs"将点击事件接收过来</h6>
   <h6>v-bind="$attrs"可以绑定在子组件中的多个元素上</h6>
   <div :class="buttonType" v-bind="$attrs">{{ text }}</div>
-  <br />
-  <button v-bind="$attrs">子组件的按钮</button>
+  <!-- <div :class="buttonType">{{ text }}</div> -->
+
   <br />
   <br />
 

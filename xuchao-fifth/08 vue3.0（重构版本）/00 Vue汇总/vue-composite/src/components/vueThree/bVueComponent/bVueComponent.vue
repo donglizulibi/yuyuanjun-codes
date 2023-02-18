@@ -8,6 +8,9 @@
 
     <h3 v-on:click="cButtonComponentShow">3）构建一个button组件</h3>
     <c-button-component v-if="cButtonComponentState"></c-button-component>
+
+    <h3 v-on:click="dEventComponentShow">4）event事件及v-model双向绑定</h3>
+    <d-event-component v-if="dEventCompoentState"></d-event-component>
   </div>
 </template>
 
@@ -15,17 +18,20 @@
 import aGlobalComponent from "./aGlobalComponent/aGlobalComponent.vue";
 import bBaseProps from "./bBaseProps/bBaseProps.vue";
 import cButtonComponent from "./cButtonComponent/cButtonComponent.vue";
+import dEventComponent from "./dEventComponent/dEventComponent.vue";
 export default {
   components: {
     bBaseProps,
     aGlobalComponent,
     cButtonComponent,
+    dEventComponent,
   },
   data() {
     return {
-      bBasePropsState: true,
-      aGlobalComponentState: true,
-      cButtonComponentState: true,
+      bBasePropsState: false,
+      aGlobalComponentState: false,
+      cButtonComponentState: false,
+      dEventCompoentState: true,
     };
   },
   methods: {
@@ -37,6 +43,9 @@ export default {
     },
     cButtonComponentShow() {
       this.cButtonComponentState = !this.cButtonComponentState;
+    },
+    dEventComponentShow() {
+      this.dEventCompoentState = !this.dEventCompoentState;
     },
   },
 };

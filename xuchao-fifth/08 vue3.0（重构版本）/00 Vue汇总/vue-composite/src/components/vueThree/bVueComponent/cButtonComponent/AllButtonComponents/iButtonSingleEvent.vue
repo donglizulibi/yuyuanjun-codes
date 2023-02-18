@@ -6,7 +6,10 @@
       contentStr="按钮"
       v-on:click="nonPropsCli"
     ></button-single-event-non-props>
+    <h6>点击父组件的按钮可以触发点击事件</h6>
     <div v-if="nonPropsText">这里是父组件的区域： {{ nonPropsText }}</div>
+    <br />
+    <br />
 
     <h5>props方式传递事件</h5>
     <button-single-event-props
@@ -14,8 +17,7 @@
       contentStr="按钮"
       v-bind:click="propsCli"
     ></button-single-event-props>
-    <!-- v-on:click="propsCli" -->
-    <button v-on:click="propsCli">测试</button>
+    <!-- <button v-on:click="propsCli">测试</button> -->
     <div v-if="propsText">这里是父组件的区域： {{ propsText }}</div>
   </div>
 </template>
@@ -37,12 +39,11 @@ export default {
   watch: {},
   methods: {
     propsCli() {
-      // if (this.propsText) {
-      //   this.propsText = "";
-      // } else {
-      //   this.propsText = "asdf";
-      // }
-      console.log(123);
+      if (this.propsText) {
+        this.propsText = "";
+      } else {
+        this.propsText = "asdf";
+      }
     },
     nonPropsCli() {
       if (this.nonPropsText) {
