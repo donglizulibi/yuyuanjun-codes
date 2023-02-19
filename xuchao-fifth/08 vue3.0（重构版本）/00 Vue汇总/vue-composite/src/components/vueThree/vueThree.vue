@@ -1,12 +1,21 @@
 <script>
 import aVueBase from "./aVueBase/aVueBase.vue";
 import bVueComponent from "./bVueComponent/bVueComponent.vue";
+
+import db from "../../../data/compoentState";
+import getComponentState from "../../../utls/getComponentState";
+// for (const [key, value] in db) {
+//   console.log(key, value);
+// }
+
+console.log(getComponentState(db, "bBasePropsState"));
+console.log(db);
 export default {
   components: { aVueBase, bVueComponent },
   data() {
     return {
-      baseState: false,
-      bVueComponentState: true,
+      baseState: getComponentState(db, "baseState"),
+      bVueComponentState: getComponentState(db, "bVueComponentState"),
     };
   },
   methods: {

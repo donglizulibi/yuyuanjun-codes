@@ -37,6 +37,8 @@ import eClassStyle from "./eClassStyle/eClassStyle.vue";
 import fForIf from "./fForIf/fForIf.vue";
 import gInputComponent from "./gInputComponent/gInputComponent.vue";
 import hEventComponent from "./hEventComponent/hEventComponent.vue";
+import db from "../../../../data/compoentState";
+import getComponentState from "../../../../utls/getComponentState";
 export default {
   components: {
     aVDirect,
@@ -51,14 +53,14 @@ export default {
   },
   data() {
     return {
-      directState: true,
-      countDemoState: true,
-      preventDefaultState: true,
-      watchComputedState: true,
-      classStyleState: true,
-      fForIfState: true,
-      gInputComponentState: true,
-      hEventComponentState: true,
+      directState: getComponentState(db, "directState"),
+      countDemoState: getComponentState(db, "countDemoState"),
+      preventDefaultState: getComponentState(db, "preventDefaultState"),
+      watchComputedState: getComponentState(db, "watchComputedState"),
+      classStyleState: getComponentState(db, "classStyleState"),
+      fForIfState: getComponentState(db, "fForIfState"),
+      gInputComponentState: getComponentState(db, "gInputComponentState"),
+      hEventComponentState: getComponentState(db, "hEventComponentState"),
     };
   },
   methods: {

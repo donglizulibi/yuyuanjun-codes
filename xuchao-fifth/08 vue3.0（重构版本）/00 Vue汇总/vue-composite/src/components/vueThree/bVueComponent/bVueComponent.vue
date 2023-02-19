@@ -19,6 +19,9 @@ import aGlobalComponent from "./aGlobalComponent/aGlobalComponent.vue";
 import bBaseProps from "./bBaseProps/bBaseProps.vue";
 import cButtonComponent from "./cButtonComponent/cButtonComponent.vue";
 import dEventComponent from "./dEventComponent/dEventComponent.vue";
+import db from "../../../../data/compoentState";
+import getComponentState from "../../../../utls/getComponentState";
+console.log(getComponentState(db, "bBasePropsState"));
 export default {
   components: {
     bBaseProps,
@@ -28,10 +31,10 @@ export default {
   },
   data() {
     return {
-      bBasePropsState: false,
-      aGlobalComponentState: false,
-      cButtonComponentState: false,
-      dEventCompoentState: true,
+      bBasePropsState: getComponentState(db, "bBasePropsState"),
+      aGlobalComponentState: getComponentState(db, "aGlobalComponentState"),
+      cButtonComponentState: getComponentState(db, "cButtonComponentState"),
+      dEventCompoentState: getComponentState(db, "dEventCompoentState"),
     };
   },
   methods: {

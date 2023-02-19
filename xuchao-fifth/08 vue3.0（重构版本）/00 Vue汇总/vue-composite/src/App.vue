@@ -2,6 +2,8 @@
 import vuePinia from "./components/vuePinia/vuePinia.vue";
 import vueRouter from "./components/vueRouter/vueRouter.vue";
 import vueThree from "./components/vueThree/vueThree.vue";
+import db from "../data/compoentState";
+import getComponentState from "../utls/getComponentState";
 export default {
   components: {
     vuePinia,
@@ -10,9 +12,9 @@ export default {
   },
   data() {
     return {
-      threeState: true,
-      piniaState: true,
-      routerState: true,
+      threeState: getComponentState(db, "threeState"),
+      piniaState: getComponentState(db, "piniaState"),
+      routerState: getComponentState(db, "routerState"),
     };
   },
   methods: {
