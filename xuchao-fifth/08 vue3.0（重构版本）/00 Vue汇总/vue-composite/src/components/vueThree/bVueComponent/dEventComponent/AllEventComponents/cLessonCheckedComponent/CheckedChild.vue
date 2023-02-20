@@ -2,26 +2,46 @@
   <div>
     <img :src="lessonData.preview" :alt="lessonData.title" />
     <h3>{{ lessonData.title }}</h3>
-    <span v-bind="$attrs">×</span>
+    <span @click="delClick(lessonData.id)">×</span>
   </div>
 </template>
 
 <script>
 export default {
-  inheritAttrs: false,
   props: {
     lesson: {
       type: Object,
-      validator(v) {
-        // console.log(v);
-        return v;
-      },
+      //   validator(v) {
+      // console.log(v);
+      // return 1;
+      //   },
+    },
+  },
+  emits: {
+    hd(v) {
+      console.log(v);
+      if (/^\d+$/.test(v)) {
+        return 1;
+      } else {
+        throw new Error("hd emit 需要数值参数");
+      }
     },
   },
   data() {
     return {
       lessonData: this.lesson,
     };
+  },
+  methods: {
+    delClick(id) {
+      console.log(id);
+      let state = confirm("确定删除吗？");
+      console.log(state);
+      if (state) {
+        this.$emit("hd", id);
+        // this.$emit("hd", "asdf"); // 这样传递参数就无法通过上面的验证
+      }
+    },
   },
   watch: {
     lesson(v) {

@@ -21,7 +21,8 @@ let data = {
                     bBasePropsState: { state: false },
                     aGlobalComponentState: { state: false },
                     cButtonComponentState: { state: false },
-                    dEventCompoentState: { state: true },
+                    dEventCompoentState: { state: false },
+                    eVmodelComponentState: { state: true }
                 }
             },
         }

@@ -9,8 +9,11 @@
     <h3 v-on:click="cButtonComponentShow">3）构建一个button组件</h3>
     <c-button-component v-if="cButtonComponentState"></c-button-component>
 
-    <h3 v-on:click="dEventComponentShow">4）event事件及v-model双向绑定</h3>
+    <h3 v-on:click="dEventComponentShow">4）emit自定义事件</h3>
     <d-event-component v-if="dEventCompoentState"></d-event-component>
+
+    <h3 v-on:click="eVmodelComponentShow">5）v-model双向绑定</h3>
+    <e-vmodel-component v-if="eVmodelComponentState"></e-vmodel-component>
   </div>
 </template>
 
@@ -21,13 +24,14 @@ import cButtonComponent from "./cButtonComponent/cButtonComponent.vue";
 import dEventComponent from "./dEventComponent/dEventComponent.vue";
 import db from "../../../../data/compoentState";
 import getComponentState from "../../../../utls/getComponentState";
-console.log(getComponentState(db, "bBasePropsState"));
+import eVmodelComponent from "./eVmodelComponent/eVmodelComponent.vue";
 export default {
   components: {
     bBaseProps,
     aGlobalComponent,
     cButtonComponent,
     dEventComponent,
+    eVmodelComponent,
   },
   data() {
     return {
@@ -35,6 +39,7 @@ export default {
       aGlobalComponentState: getComponentState(db, "aGlobalComponentState"),
       cButtonComponentState: getComponentState(db, "cButtonComponentState"),
       dEventCompoentState: getComponentState(db, "dEventCompoentState"),
+      eVmodelComponentState: getComponentState(db, "eVmodelComponentState"),
     };
   },
   methods: {
@@ -49,6 +54,9 @@ export default {
     },
     dEventComponentShow() {
       this.dEventCompoentState = !this.dEventCompoentState;
+    },
+    eVmodelComponentShow() {
+      this.eVmodelComponentState = !this.eVmodelComponentState;
     },
   },
 };

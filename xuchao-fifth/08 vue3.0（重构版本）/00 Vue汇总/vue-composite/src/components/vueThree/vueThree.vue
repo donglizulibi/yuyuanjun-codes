@@ -8,8 +8,8 @@ import getComponentState from "../../../utls/getComponentState";
 //   console.log(key, value);
 // }
 
-console.log(getComponentState(db, "bBasePropsState"));
-console.log(db);
+// console.log(getComponentState(db, "bBasePropsState"));
+// console.log(db);
 export default {
   components: { aVueBase, bVueComponent },
   data() {

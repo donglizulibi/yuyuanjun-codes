@@ -2,26 +2,32 @@
   <div>
     <img :src="lessonData.preview" :alt="lessonData.title" />
     <h3>{{ lessonData.title }}</h3>
-    <span v-bind="$attrs">×</span>
+    <span @click="delClick">×</span>
   </div>
 </template>
 
 <script>
 export default {
-  inheritAttrs: false,
+  emits: ["hd"],
   props: {
     lesson: {
       type: Object,
       validator(v) {
         // console.log(v);
-        return v;
+        return 1;
       },
     },
   },
   data() {
     return {
       lessonData: this.lesson,
+      childData: "子组件的数据",
     };
+  },
+  methods: {
+    delClick() {
+      this.$emit("hd", this.childData);
+    },
   },
   watch: {
     lesson(v) {
