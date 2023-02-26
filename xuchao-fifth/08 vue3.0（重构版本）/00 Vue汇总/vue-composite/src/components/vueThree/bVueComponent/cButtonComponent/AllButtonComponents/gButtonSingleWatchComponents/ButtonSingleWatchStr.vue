@@ -1,7 +1,9 @@
 <template>
+  <h6>在子组件内部可以实现数据响应式，但是子组件数据改变不会影响父组件</h6>
+  <h6>而且保证父组件数据改变会改变子组件数据</h6>
   <div :class="buttonType">{{ text }}</div>
   <br />
-  <span>中间变量text：{{ text }}</span
+  <span>这里是标准写法，使用data中间变量text：{{ text }}</span
   ><br />
   <span>这里是不规范的直接把props数据放在页面的方法： {{ contentStr }}</span>
   <br />
@@ -29,7 +31,11 @@ export default {
   },
   methods: {
     change() {
-      this.text = "gfjh";
+      if (this.text == "gfjh") {
+        this.text = "zxcv";
+      } else {
+        this.text = "gfjh";
+      }
     },
   },
   watch: {

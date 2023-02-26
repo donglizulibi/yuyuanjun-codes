@@ -16,15 +16,18 @@ let data = {
                 }
             },
             bVueComponentState: {
-                state: true,
+                state: false,
                 children: {
                     bBasePropsState: { state: false },
                     aGlobalComponentState: { state: false },
                     cButtonComponentState: { state: false },
                     dEventCompoentState: { state: false },
-                    eVmodelComponentState: { state: true }
+                    eVmodelComponentState: { state: false }
                 }
             },
+            cVueSlotComponentState: {
+                state: true
+            }
         }
     },
     piniaState: {

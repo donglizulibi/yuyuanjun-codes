@@ -1,7 +1,7 @@
 <template>
   <div :class="buttonType">{{ text }}</div>
   <br />
-  <span>中间变量text：{{ text }}</span
+  <span>这里是标准写法，使用data中间变量text：{{ text }}</span
   ><br />
   <span>这里是不规范的直接把props数据放在页面的方法： {{ contentStr }}</span>
   <br />
@@ -29,7 +29,11 @@ export default {
   },
   methods: {
     change() {
-      this.text.name = "gfjh";
+      if (this.text.name == "gfjh") {
+        this.text.name = "zxcv";
+      } else {
+        this.text.name = "gfjh";
+      }
     },
   },
   watch: {

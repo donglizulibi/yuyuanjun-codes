@@ -11,6 +11,8 @@
     <h5>v-model方法</h5>
     <input type="text" v-model="title" />
     <span>{{ title }}</span>
+    <br />
+    <br />
   </div>
 </template>
 
