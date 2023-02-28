@@ -1,0 +1,34 @@
+<template>
+  <div>
+    <slot>
+      <!--  -->
+
+      {{ content }}
+
+      <br />
+      <div class="back">子组件插槽的后备内容（html原生标签）</div>
+      <hd-button>子组件插槽的后备内容（自定义组件）</hd-button>
+    </slot>
+  </div>
+</template>
+
+<script>
+import HdButton from "../Tool/Button.vue";
+export default {
+  components: {
+    HdButton,
+  },
+  data() {
+    return { content: "子组件插槽的后备内容（纯数据）" };
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.back {
+  display: inline-block;
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 5px;
+}
+</style>

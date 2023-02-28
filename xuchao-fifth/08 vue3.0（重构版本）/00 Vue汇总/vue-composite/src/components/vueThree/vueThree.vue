@@ -2,6 +2,7 @@
 import aVueBase from "./aVueBase/aVueBase.vue";
 import bVueComponent from "./bVueComponent/bVueComponent.vue";
 import cVueSlotComponent from "./cVueSlot/cVueSlotComponent.vue";
+import dVueProvideInjectComponent from "./dVueInject/dVueProvideInjectComponent.vue";
 
 import db from "../../../data/compoentState";
 import getComponentState from "../../../utls/getComponentState";
@@ -16,12 +17,14 @@ export default {
     aVueBase,
     bVueComponent,
     cVueSlotComponent,
+    dVueProvideInjectComponent,
   },
   data() {
     return {
       baseState: getComponentState(db, "baseState"),
       bVueComponentState: getComponentState(db, "bVueComponentState"),
       cVueSlotComponentState: getComponentState(db, "cVueSlotComponentState"),
+      dVueProvideInjectState: getComponentState(db, "dVueProvideInjectState"),
     };
   },
   methods: {
@@ -35,6 +38,9 @@ export default {
 
     cVueSlotComponentShow() {
       this.cVueSlotComponentState = !this.cVueSlotComponentState;
+    },
+    dVueProvideInjectShow() {
+      this.dVueProvideInjectState = !this.dVueProvideInjectState;
     },
   },
   setup() {
@@ -55,5 +61,10 @@ export default {
 
     <h2 v-on:click="cVueSlotComponentShow">3.插槽slot</h2>
     <c-vue-slot-component v-if="cVueSlotComponentState"></c-vue-slot-component>
+
+    <h2 v-on:click="dVueProvideInjectShow">4.provide-inject与动态组件</h2>
+    <d-vue-provide-inject-component
+      v-if="dVueProvideInjectState"
+    ></d-vue-provide-inject-component>
   </div>
 </template>
