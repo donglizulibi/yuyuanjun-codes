@@ -12,7 +12,7 @@
     <br />
     <br />
 
-    &nbsp;&nbsp;&nbsp;二者在调用component方法的时候都是填入两个参数
+    3 二者在调用component方法的时候都是填入两个参数
     <br />
     &nbsp;&nbsp;&nbsp;第一个参数填这个全局组件的名字
     <br />
@@ -20,6 +20,8 @@
     &nbsp;&nbsp;&nbsp;第二个填入这个组件的配置参数
 
     <br />
+    <br />
+    4 注册全局组件在main.js中实现
     <br />
     <br />
   </div>

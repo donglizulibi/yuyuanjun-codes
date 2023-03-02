@@ -29,7 +29,7 @@ let data = {
                 state: false
             },
             dVueProvideInjectState: {
-                state: true
+                state: false
             }
         }
     },

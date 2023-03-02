@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h5>动态绑定style，控制display属性</h5>
     <div class="btn">
       <button
         v-for="(item, index) in components"
@@ -17,9 +18,9 @@
 </template>
 
 <script>
-import Pay from "./Child/pay.vue";
-import WeXin from "./Child/wexin.vue";
-import turnWhite from "../../utils/turnWhite";
+import Pay from "../Child/pay.vue";
+import WeXin from "../Child/wexin.vue";
+import turnWhite from "../../../../../../utls/turnWhite";
 export default {
   components: { Pay, WeXin },
   data() {
