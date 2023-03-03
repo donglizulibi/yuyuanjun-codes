@@ -30,6 +30,9 @@ let data = {
             },
             dVueProvideInjectState: {
                 state: false
+            },
+            eVueLifeCycleState: {
+                state: true
             }
         }
     },

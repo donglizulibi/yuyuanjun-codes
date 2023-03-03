@@ -3,6 +3,7 @@ import aVueBase from "./aVueBase/aVueBase.vue";
 import bVueComponent from "./bVueComponent/bVueComponent.vue";
 import cVueSlotComponent from "./cVueSlot/cVueSlotComponent.vue";
 import dVueProvideInjectComponent from "./dVueInject/dVueProvideInjectComponent.vue";
+import eVueLifeCycleComponent from "./eVueLifecycle/eVueLifeCycleComponent.vue";
 
 import db from "../../../data/compoentState";
 import getComponentState from "../../../utls/getComponentState";
@@ -18,6 +19,7 @@ export default {
     bVueComponent,
     cVueSlotComponent,
     dVueProvideInjectComponent,
+    eVueLifeCycleComponent,
   },
   data() {
     return {
@@ -25,6 +27,7 @@ export default {
       bVueComponentState: getComponentState(db, "bVueComponentState"),
       cVueSlotComponentState: getComponentState(db, "cVueSlotComponentState"),
       dVueProvideInjectState: getComponentState(db, "dVueProvideInjectState"),
+      eVueLifeCycleState: getComponentState(db, "eVueLifeCycleState"),
     };
   },
   methods: {
@@ -41,6 +44,10 @@ export default {
     },
     dVueProvideInjectShow() {
       this.dVueProvideInjectState = !this.dVueProvideInjectState;
+    },
+
+    eVueLifeCycleShow() {
+      this.eVueLifeCycleState = !this.eVueLifeCycleState;
     },
   },
   setup() {
@@ -66,5 +73,8 @@ export default {
     <d-vue-provide-inject-component
       v-if="dVueProvideInjectState"
     ></d-vue-provide-inject-component>
+
+    <h2 v-on:click="eVueLifeCycleShow">5.生命周期</h2>
+    <e-vue-life-cycle-component v-if="eVueLifeCycleState"></e-vue-life-cycle-component>
   </div>
 </template>
