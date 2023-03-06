@@ -15,7 +15,6 @@
   <h5>3 最后回到父组件：父组件mounted</h5>
   <h5>也就是说，子组件先mounted，父组件再mounted</h5>
   <br />
-  <br />
 </template>
 
 <script>

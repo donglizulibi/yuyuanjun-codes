@@ -32,6 +32,9 @@ let data = {
                 state: false
             },
             eVueLifeCycleState: {
+                state: false
+            },
+            fVueCompositionApiState: {
                 state: true
             }
         }

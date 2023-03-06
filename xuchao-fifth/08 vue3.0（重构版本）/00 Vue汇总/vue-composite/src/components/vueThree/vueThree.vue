@@ -4,6 +4,7 @@ import bVueComponent from "./bVueComponent/bVueComponent.vue";
 import cVueSlotComponent from "./cVueSlot/cVueSlotComponent.vue";
 import dVueProvideInjectComponent from "./dVueInject/dVueProvideInjectComponent.vue";
 import eVueLifeCycleComponent from "./eVueLifecycle/eVueLifeCycleComponent.vue";
+import fVueCompositionApi from "./fVueCompositionAPI/fVueCompositionApi.vue";
 
 import db from "../../../data/compoentState";
 import getComponentState from "../../../utls/getComponentState";
@@ -20,6 +21,7 @@ export default {
     cVueSlotComponent,
     dVueProvideInjectComponent,
     eVueLifeCycleComponent,
+    fVueCompositionApi,
   },
   data() {
     return {
@@ -28,6 +30,7 @@ export default {
       cVueSlotComponentState: getComponentState(db, "cVueSlotComponentState"),
       dVueProvideInjectState: getComponentState(db, "dVueProvideInjectState"),
       eVueLifeCycleState: getComponentState(db, "eVueLifeCycleState"),
+      fVueCompositionApiState: getComponentState(db, "fVueCompositionApiState"),
     };
   },
   methods: {
@@ -48,6 +51,9 @@ export default {
 
     eVueLifeCycleShow() {
       this.eVueLifeCycleState = !this.eVueLifeCycleState;
+    },
+    fVueCompositionApiShow() {
+      this.fVueCompositionApiState = !this.fVueCompositionApiState;
     },
   },
   setup() {
@@ -76,5 +82,8 @@ export default {
 
     <h2 v-on:click="eVueLifeCycleShow">5.生命周期</h2>
     <e-vue-life-cycle-component v-if="eVueLifeCycleState"></e-vue-life-cycle-component>
+
+    <h2 v-on:click="fVueCompositionApiShow">6. Composition Api基础</h2>
+    <f-vue-composition-api v-if="fVueCompositionApiState"></f-vue-composition-api>
   </div>
 </template>
