@@ -3,17 +3,8 @@
     <h4>vue3的composition Api（组合api）对应的是vue2的option api（选项api）</h4>
     <h5>以一个计数的例子来观察两种编码方式的区别</h5>
     <count />
-    <div class="showChange">
-      <div>
-        <h4>option Api</h4>
-        <pre>{{ optionData }}</pre>
-      </div>
-      <p>==></p>
-      <div>
-        <h4>composition Api</h4>
-        <pre>{{ compositionData }}</pre>
-      </div>
-    </div>
+
+    <show-change :change-data="database"></show-change>
     <h4>总结</h4>
     <h5>1 composition Api是把方法、数据等都放在一个名为setup的api中</h5>
     <h5>2 composition Api可以使用传统的let方法定义各种变量</h5>
@@ -25,21 +16,25 @@
     <h5>
       6 两种编码方式的模板相同，使用composition Api在模板显示数据也不必调用value属性
     </h5>
+    <br />
+    <br />
   </div>
 </template>
 
 <script>
 import count from "./aCompositionApiBaseChild/count.vue";
 import database from "./aCompositionApiBaseChild/data";
-console.log(database);
+import ShowChange from "./Tool/ShowChange.vue";
 export default {
   components: {
     count,
+    ShowChange,
   },
   data() {
     return {
-      compositionData: database.compositionData,
-      optionData: database.optionData,
+      database,
+      //   compositionData: database.compositionData,
+      //   optionData: database.optionData,
     };
   },
 };
