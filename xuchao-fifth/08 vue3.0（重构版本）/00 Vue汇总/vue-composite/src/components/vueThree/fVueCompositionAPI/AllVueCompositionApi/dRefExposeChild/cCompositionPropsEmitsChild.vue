@@ -5,7 +5,6 @@
     <button v-on:click="add">+</button>
     <br />
     <br />
-    <!-- <button v-on:click="stopWatchEffect">按键</button> -->
   </div>
 </template>
 
@@ -14,11 +13,7 @@ import { ref, watch, watchEffect } from "vue";
 
 export default {
   emits: ["change"],
-  //   methods: {
-  //     stopWatchEffect() {
-  //       this.$emit("change", "子组件的数据");
-  //     },
-  //   },
+
   props: {
     init: {
       type: Number,

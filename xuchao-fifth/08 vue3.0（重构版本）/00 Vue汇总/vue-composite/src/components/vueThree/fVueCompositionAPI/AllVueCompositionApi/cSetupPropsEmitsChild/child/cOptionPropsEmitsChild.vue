@@ -17,9 +17,11 @@ export default {
   },
   watch: {
     valueData(v) {
+      console.log(v);
       this.propsData = v;
     },
   },
+
   methods: {
     send(event) {
       console.log(event);

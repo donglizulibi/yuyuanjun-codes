@@ -8,6 +8,9 @@
 
     <h3>3）setup中的props和自定义事件调用</h3>
     <c-setup-props-emits></c-setup-props-emits>
+
+    <h3>4）父组件操作子组件数据与expose限定</h3>
+    <d-ref-expose></d-ref-expose>
   </div>
 </template>
 
@@ -15,11 +18,13 @@
 import aCompositionApiBase from "./AllVueCompositionApi/aCompositionApiBase.vue";
 import bSetupWatchEffect from "./AllVueCompositionApi/bSetupWatchEffect.vue";
 import cSetupPropsEmits from "./AllVueCompositionApi/cSetupPropsEmits.vue";
+import dRefExpose from "./AllVueCompositionApi/dRefExpose.vue";
 export default {
   components: {
     aCompositionApiBase,
     bSetupWatchEffect,
     cSetupPropsEmits,
+    dRefExpose,
   },
 };
 </script>

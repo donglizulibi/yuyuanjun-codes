@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       database: "父组件数组初始值",
-      //   valueData: "父组件数组初始值",
+      // valueData: "父组件数组初始值",
     };
   },
   methods: {
