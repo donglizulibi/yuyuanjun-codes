@@ -10,7 +10,7 @@
       class="hd"
     ></non-props-inherit-attrs>
 
-    <h5>在子组件中需要接收父组件的非props的元素上使用v-bind="$attrs"</h5>
+    <h5>在子组件中需要接收来自父组件的非props属性或数据的元素上使用v-bind="$attrs"</h5>
     <non-props-v-bind
       buttonType="success"
       contentStr="houdunren"

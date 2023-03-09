@@ -11,6 +11,9 @@
 
     <h3>4）父组件操作子组件数据与expose限定</h3>
     <d-ref-expose></d-ref-expose>
+
+    <h3>5）expose中的slots和attrs处理</h3>
+    <e-expose-slots-attrs></e-expose-slots-attrs>
   </div>
 </template>
 
@@ -19,12 +22,14 @@ import aCompositionApiBase from "./AllVueCompositionApi/aCompositionApiBase.vue"
 import bSetupWatchEffect from "./AllVueCompositionApi/bSetupWatchEffect.vue";
 import cSetupPropsEmits from "./AllVueCompositionApi/cSetupPropsEmits.vue";
 import dRefExpose from "./AllVueCompositionApi/dRefExpose.vue";
+import eExposeSlotsAttrs from "./AllVueCompositionApi/eExposeSlotsAttrs.vue";
 export default {
   components: {
     aCompositionApiBase,
     bSetupWatchEffect,
     cSetupPropsEmits,
     dRefExpose,
+    eExposeSlotsAttrs,
   },
 };
 </script>

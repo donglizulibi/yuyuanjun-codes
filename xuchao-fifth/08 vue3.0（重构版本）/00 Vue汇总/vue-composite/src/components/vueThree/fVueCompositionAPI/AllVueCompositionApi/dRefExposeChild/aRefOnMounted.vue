@@ -11,12 +11,14 @@
       4
       因此需要调用onMounted（在setup中使用的mounted生命周期函数），在回调函数中获得ref组件实例和其中的数据
     </h5>
+    <h5>5 这个方法无法将数据显示在页面上</h5>
   </div>
 </template>
 
 <script>
 import aRefOnMountedChild from "./child/aRefOnMountedChild.vue";
 import { ref, onMounted } from "vue";
+
 export default {
   components: {
     aRefOnMountedChild,

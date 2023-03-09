@@ -55,6 +55,7 @@ export default {
 
     const stop = watchEffect(() => {
       if (num.value > 5) num.value = 5;
+      emit("change", num.value);
     });
     console.dir(stop);
 
