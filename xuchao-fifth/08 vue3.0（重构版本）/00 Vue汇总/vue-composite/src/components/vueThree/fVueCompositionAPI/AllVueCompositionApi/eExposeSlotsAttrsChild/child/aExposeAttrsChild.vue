@@ -1,9 +1,16 @@
 <template>
-  <div>hjkl</div>
+  <div>
+    <a-expose-attrs-grand-child style="color: red"></a-expose-attrs-grand-child>
+  </div>
 </template>
 
 <script>
-export default {};
+import aExposeAttrsGrandChild from "./aExposeAttrsGrandChild.vue";
+export default {
+  components: {
+    aExposeAttrsGrandChild,
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

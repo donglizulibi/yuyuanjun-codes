@@ -24,7 +24,7 @@ export default {
   setup() {
     const childComponent = ref();
     onMounted(() => {
-      console.log(123);
+      // console.log(123);
       console.log(childComponent);
       console.log(childComponent.value.num);
       console.log(childComponent.value.add);

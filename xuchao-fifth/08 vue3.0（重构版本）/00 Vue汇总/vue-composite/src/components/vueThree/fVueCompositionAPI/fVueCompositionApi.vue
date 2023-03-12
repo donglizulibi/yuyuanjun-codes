@@ -14,6 +14,12 @@
 
     <h3>5）expose中的slots和attrs处理</h3>
     <e-expose-slots-attrs></e-expose-slots-attrs>
+
+    <h3>6）setup中使用computed计算属性和生命周期</h3>
+    <f-setup-computed-life-cycle></f-setup-computed-life-cycle>
+
+    <h3>7）setup中使用provide-inject依赖注入</h3>
+    <g-setup-provide-inject></g-setup-provide-inject>
   </div>
 </template>
 
@@ -23,6 +29,8 @@ import bSetupWatchEffect from "./AllVueCompositionApi/bSetupWatchEffect.vue";
 import cSetupPropsEmits from "./AllVueCompositionApi/cSetupPropsEmits.vue";
 import dRefExpose from "./AllVueCompositionApi/dRefExpose.vue";
 import eExposeSlotsAttrs from "./AllVueCompositionApi/eExposeSlotsAttrs.vue";
+import fSetupComputedLifeCycle from "./AllVueCompositionApi/fSetupComputedLifeCycle.vue";
+import gSetupProvideInject from "./AllVueCompositionApi/gSetupProvideInject.vue";
 export default {
   components: {
     aCompositionApiBase,
@@ -30,6 +38,8 @@ export default {
     cSetupPropsEmits,
     dRefExpose,
     eExposeSlotsAttrs,
+    fSetupComputedLifeCycle,
+    gSetupProvideInject,
   },
 };
 </script>
