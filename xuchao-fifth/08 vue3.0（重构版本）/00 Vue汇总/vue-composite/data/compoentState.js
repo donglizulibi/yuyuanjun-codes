@@ -35,15 +35,18 @@ let data = {
                 state: false
             },
             fVueCompositionApiState: {
+                state: false
+            },
+            gCompositionApiScriptSetupState: {
                 state: true
             }
         }
     },
     piniaState: {
-        state: false
+        state: true
     },
     routerState: {
-        state: false
+        state: true
     }
 }
 

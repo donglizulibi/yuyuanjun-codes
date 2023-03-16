@@ -5,9 +5,11 @@ import cVueSlotComponent from "./cVueSlot/cVueSlotComponent.vue";
 import dVueProvideInjectComponent from "./dVueInject/dVueProvideInjectComponent.vue";
 import eVueLifeCycleComponent from "./eVueLifecycle/eVueLifeCycleComponent.vue";
 import fVueCompositionApi from "./fVueCompositionAPI/fVueCompositionApi.vue";
+import gCompositionApiScriptSetup from "./gVueSetup/gCompositionApiScriptSetup.vue";
 
 import db from "../../../data/compoentState";
 import getComponentState from "../../../utls/getComponentState";
+
 // for (const [key, value] in db) {
 //   console.log(key, value);
 // }
@@ -22,6 +24,7 @@ export default {
     dVueProvideInjectComponent,
     eVueLifeCycleComponent,
     fVueCompositionApi,
+    gCompositionApiScriptSetup,
   },
   data() {
     return {
@@ -31,6 +34,10 @@ export default {
       dVueProvideInjectState: getComponentState(db, "dVueProvideInjectState"),
       eVueLifeCycleState: getComponentState(db, "eVueLifeCycleState"),
       fVueCompositionApiState: getComponentState(db, "fVueCompositionApiState"),
+      gCompositionApiScriptSetupState: getComponentState(
+        db,
+        "gCompositionApiScriptSetupState"
+      ),
     };
   },
   methods: {
@@ -54,6 +61,9 @@ export default {
     },
     fVueCompositionApiShow() {
       this.fVueCompositionApiState = !this.fVueCompositionApiState;
+    },
+    gCompositionApiScriptSetupShow() {
+      this.gCompositionApiScriptSetupState = !this.gCompositionApiScriptSetupState;
     },
   },
   setup() {
@@ -85,5 +95,10 @@ export default {
 
     <h2 v-on:click="fVueCompositionApiShow">6. Composition Api基础</h2>
     <f-vue-composition-api v-if="fVueCompositionApiState"></f-vue-composition-api>
+
+    <h2 v-on:click="gCompositionApiScriptSetupShow">7.CompositionApi之script-setup</h2>
+    <g-composition-api-script-setup
+      v-if="gCompositionApiScriptSetupState"
+    ></g-composition-api-script-setup>
   </div>
 </template>

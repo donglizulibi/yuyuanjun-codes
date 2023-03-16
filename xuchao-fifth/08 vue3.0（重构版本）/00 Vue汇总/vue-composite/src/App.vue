@@ -4,7 +4,18 @@ import vueRouter from "./components/vueRouter/vueRouter.vue";
 import vueThree from "./components/vueThree/vueThree.vue";
 import db from "../data/compoentState";
 import getComponentState from "../utls/getComponentState";
+import { provide, ref } from "vue";
 export default {
+  setup() {
+    let user = ref("根组件的数据");
+    setTimeout(() => {
+      user.value = "在根组件的定时器中修改后的数据";
+    }, 1000);
+    provide("user", user);
+    provide("updataUser", (newValue) => {
+      user.value = newValue;
+    });
+  },
   components: {
     vuePinia,
     vueRouter,

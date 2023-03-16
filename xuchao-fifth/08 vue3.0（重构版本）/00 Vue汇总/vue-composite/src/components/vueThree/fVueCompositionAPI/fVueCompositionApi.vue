@@ -20,6 +20,12 @@
 
     <h3>7）setup中使用provide-inject依赖注入</h3>
     <g-setup-provide-inject></g-setup-provide-inject>
+
+    <h3>8）专门处理引用类型数据的响应式：reactive，对比ref</h3>
+    <h-setup-reactive></h-setup-reactive>
+
+    <h3>9）批量处理需要解构的引用类型数据：toRefs</h3>
+    <i-setup-to-refs></i-setup-to-refs>
   </div>
 </template>
 
@@ -31,6 +37,8 @@ import dRefExpose from "./AllVueCompositionApi/dRefExpose.vue";
 import eExposeSlotsAttrs from "./AllVueCompositionApi/eExposeSlotsAttrs.vue";
 import fSetupComputedLifeCycle from "./AllVueCompositionApi/fSetupComputedLifeCycle.vue";
 import gSetupProvideInject from "./AllVueCompositionApi/gSetupProvideInject.vue";
+import hSetupReactive from "./AllVueCompositionApi/hSetupReactive.vue";
+import iSetupToRefs from "./AllVueCompositionApi/iSetupToRefs.vue";
 export default {
   components: {
     aCompositionApiBase,
@@ -40,6 +48,8 @@ export default {
     eExposeSlotsAttrs,
     fSetupComputedLifeCycle,
     gSetupProvideInject,
+    hSetupReactive,
+    iSetupToRefs,
   },
 };
 </script>

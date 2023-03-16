@@ -1,6 +1,6 @@
 <template>
   <div>
-    这里是子组件
+    <p>这里是子组件</p>
     <a-provide-inject-base-grandchild></a-provide-inject-base-grandchild>
   </div>
 </template>
@@ -14,4 +14,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+p {
+  margin: auto;
+  width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+</style>
