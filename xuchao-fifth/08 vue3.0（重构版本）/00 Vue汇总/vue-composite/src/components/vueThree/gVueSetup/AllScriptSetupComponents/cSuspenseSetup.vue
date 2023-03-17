@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import cSuspenseSetupChild from "./allComponentsChild/cSuspenseSetupChild.vue";
+import cSuspenseSetupChild from "./cSuspenseSetupChild/cSuspenseSetupChild.vue";
 </script>
 
 <style lang="scss" scoped></style>
