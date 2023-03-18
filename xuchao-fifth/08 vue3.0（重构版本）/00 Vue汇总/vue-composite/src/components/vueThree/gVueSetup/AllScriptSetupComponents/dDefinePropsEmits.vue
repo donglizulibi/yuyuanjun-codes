@@ -6,7 +6,7 @@
     <h4>2.script-setup中使用defineEmits</h4>
     <b-define-emits></b-define-emits>
 
-    <h4>3.todo例子初步</h4>
+    <h4>3.todo例子渲染数据及实现增删改查功能</h4>
     <c-define-props-emits-demo></c-define-props-emits-demo>
   </div>
 </template>

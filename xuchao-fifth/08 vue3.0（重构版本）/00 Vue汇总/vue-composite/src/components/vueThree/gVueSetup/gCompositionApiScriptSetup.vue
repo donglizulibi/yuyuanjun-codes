@@ -11,6 +11,16 @@
 
     <h3>4）defineProps与defineEmits的使用</h3>
     <d-define-props-emits></d-define-props-emits>
+
+    <h3>5）todo例子封装网络请求与复用数据维护</h3>
+    <suspense>
+      <e-enclosure-request-data />
+    </suspense>
+
+    <h3>6）继续抽离Todo的其他功能以及将添加数据功能组件化</h3>
+    <suspense>
+      <f-enclosure-todo-add-component></f-enclosure-todo-add-component>
+    </suspense>
   </div>
 </template>
 
@@ -19,12 +29,16 @@ import aMockJsonServer from "./AllScriptSetupComponents/aMockJsonServer.vue";
 import bAxiosScriptSetup from "./AllScriptSetupComponents/bAxiosScriptSetup.vue";
 import cSuspenseSetup from "./AllScriptSetupComponents/cSuspenseSetup.vue";
 import dDefinePropsEmits from "./AllScriptSetupComponents/dDefinePropsEmits.vue";
+import eEnclosureRequestData from "./AllScriptSetupComponents/eEnclosureRequestData.vue";
+import fEnclosureTodoAddComponent from "./AllScriptSetupComponents/fEnclosureTodoAddComponent.vue";
 export default {
   components: {
     aMockJsonServer,
     bAxiosScriptSetup,
     cSuspenseSetup,
     dDefinePropsEmits,
+    eEnclosureRequestData,
+    fEnclosureTodoAddComponent,
   },
 };
 </script>

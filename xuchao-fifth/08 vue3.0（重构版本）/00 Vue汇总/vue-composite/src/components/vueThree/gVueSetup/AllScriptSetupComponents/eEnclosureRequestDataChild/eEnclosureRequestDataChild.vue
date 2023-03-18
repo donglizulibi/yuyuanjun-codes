@@ -7,8 +7,14 @@
 </template>
 
 <script setup>
+import useRequest from "./useRequest";
 import axios from "axios";
 import { ref, watch } from "vue";
+// console.log(request());
+
+let request = useRequest();
+console.log(request);
+
 let props = defineProps({
   todo: {
     type: Object,
@@ -34,45 +40,38 @@ const change = () => {
     console.log(state);
 
     if (state) {
-      axios({
-        method: "PUT",
-        url: `http://127.0.0.1:3003/news/${props.todo.id}`,
-        data: {
-          title: sendData.value,
-        },
-      }).then((val) => {
-        console.log(val);
-        alert("已修改成功");
-        sendData.value = "";
-      });
+      request.put(props.todo.id, sendData.value);
+
+      //   axios({
+      //     method: "PUT",
+      //     url: `http://127.0.0.1:3003/news/${props.todo.id}`,
+      //     data: {
+      //       title: sendData.value,
+      //     },
+      //   }).then((val) => {
+
+      //   })
+
+      //   console.log(val);
+      alert("已修改成功");
+      sendData.value = "";
       emit("hd");
     } else {
       inputEle.value.value = changeData.value;
     }
   }
-  // if (state) {
-  //   console.log(123);
+};
+
+const del = async () => {
+  console.log(props.todo.id);
+  await request.delete(props.todo.id);
+
   //   axios({
-  //     method: "PUT",
+  //     method: "delete",
   //     url: `http://127.0.0.1:3003/news/${props.todo.id}`,
-  //     data: {
-  //       title: sendData.value,
-  //     },
   //   }).then((val) => {
   //     console.log(val);
   //   });
-  //   emit("hd");
-  // }
-};
-
-const del = () => {
-  console.log(props.todo.id);
-  axios({
-    method: "delete",
-    url: `http://127.0.0.1:3003/news/${props.todo.id}`,
-  }).then((val) => {
-    console.log(val);
-  });
 
   emit("hd");
 };

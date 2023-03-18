@@ -12,8 +12,9 @@ const arr = ref([]);
 
 let res = await axios({
   method: "get",
-  url: "http://127.0.0.1:3003/news?id=1",
+  url: "http://127.0.0.1:3003/news",
 }).then((val) => {
+  console.log(val);
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(val);
