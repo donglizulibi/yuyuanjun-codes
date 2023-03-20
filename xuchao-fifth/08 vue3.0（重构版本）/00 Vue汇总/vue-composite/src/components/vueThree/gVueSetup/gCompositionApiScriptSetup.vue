@@ -21,6 +21,9 @@
     <suspense>
       <f-enclosure-todo-add-component></f-enclosure-todo-add-component>
     </suspense>
+
+    <h3>7）添加排序相关组件</h3>
+    <g-todo-sort-component></g-todo-sort-component>
   </div>
 </template>
 
@@ -31,6 +34,7 @@ import cSuspenseSetup from "./AllScriptSetupComponents/cSuspenseSetup.vue";
 import dDefinePropsEmits from "./AllScriptSetupComponents/dDefinePropsEmits.vue";
 import eEnclosureRequestData from "./AllScriptSetupComponents/eEnclosureRequestData.vue";
 import fEnclosureTodoAddComponent from "./AllScriptSetupComponents/fEnclosureTodoAddComponent.vue";
+import gTodoSortComponent from "./AllScriptSetupComponents/gTodoSortComponent.vue";
 export default {
   components: {
     aMockJsonServer,
@@ -39,6 +43,7 @@ export default {
     dDefinePropsEmits,
     eEnclosureRequestData,
     fEnclosureTodoAddComponent,
+    gTodoSortComponent,
   },
 };
 </script>

@@ -1,21 +1,16 @@
 <template>
   <div>
     <div class="main">
-      <f-enclosure-todo-component-child
-        :todo="todo"
-        class="item"
-        v-for="todo in todos"
-        :key="todo.id"
-      ></f-enclosure-todo-component-child>
+      <todo :todo="todo" class="item" v-for="todo in todos" :key="todo.id"></todo>
       <add />
     </div>
   </div>
 </template>
 
 <script setup>
-import fEnclosureTodoComponentChild from "./fEnclosureTodoAddComponentChild/fEnclosureTodoComponentChild.vue";
-import useTodo from "./fEnclosureTodoAddComponentChild/useTodo";
-import add from "./fEnclosureTodoAddComponentChild/add.vue";
+import todo from "./gTodoSortComponentChild/todo.vue";
+import useTodo from "./gTodoSortComponentChild/useTodo";
+import add from "./gTodoSortComponentChild/add.vue";
 const { todos, load } = useTodo();
 load();
 console.log(todos.value);
