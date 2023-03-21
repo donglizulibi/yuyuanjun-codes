@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- {{ changeData.id }} -->
     <input ref="inputEle" type="text" :value="changeData.title" @input="changeInput" />
 
     <button v-on:click="del(changeData.id)">删除</button>
@@ -36,6 +37,7 @@ div {
   button {
     margin-left: 10px;
     font-size: 14px;
+    font-weight: bold;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 let data = {
     threeState: {
-        state: true,
+        state: false,
         children: {
             baseState: {
                 state: false,
@@ -38,7 +38,7 @@ let data = {
                 state: false
             },
             gCompositionApiScriptSetupState: {
-                state: true
+                state: false
             }
         }
     },
