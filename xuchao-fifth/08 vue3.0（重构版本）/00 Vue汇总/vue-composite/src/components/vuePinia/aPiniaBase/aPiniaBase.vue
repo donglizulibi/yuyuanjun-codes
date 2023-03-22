@@ -12,15 +12,31 @@
     <h5>2）使用容器中的state</h5>
     <h5>3）修改state</h5>
     <h5>4）容器中的action的使用</h5>
-    <h4>数据：{{ mianStore.count }}</h4>
+    <h4>数据：{{ mianStore.foo }}</h4>
+    <h3>使用storeToRefs使容器中的数据具有响应式</h3>
+    <p>{{ count }}</p>
+    <p>
+      <button v-on:click="add">增加</button>
+    </p>
+    <h5>pinia会通过storeToRefs把state的数据都做reactive处理</h5>
   </div>
 </template>
 
 <script setup>
 import useMainStore from "../../../store/index";
+import { storeToRefs } from "pinia";
 const mianStore = useMainStore();
 console.log(mianStore);
 console.log(mianStore.count);
+
+const { count } = storeToRefs(mianStore);
+// const { count } = mianStore;
+const add = () => {
+  console.log(count);
+  //   count++;
+  count.value++;
+  mianStore.count++;
+};
 </script>
 
 <style lang="scss" scoped></style>

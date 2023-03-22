@@ -17,7 +17,8 @@ const useMainStore = defineStore('main', {
      */
     state: () => {
         return {
-            count: '这里是pinia的数据'
+            count: 100,
+            foo: '这里的pinia的数据'
         }
     },
 
