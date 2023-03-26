@@ -20,6 +20,7 @@
     </p>
     <h5>pinia会通过storeToRefs把state的数据都做reactive处理</h5>
   </div>
+  <br />
 </template>
 
 <script setup>
