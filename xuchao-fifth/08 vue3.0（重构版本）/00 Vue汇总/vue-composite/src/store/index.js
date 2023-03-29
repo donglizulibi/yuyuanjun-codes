@@ -18,7 +18,8 @@ const useMainStore = defineStore('main', {
     state: () => {
         return {
             count: 100,
-            foo: '这里的pinia的数据'
+            foo: '这里的pinia的数据',
+            arr: [1, 2, 3]
         }
     },
 
@@ -26,12 +27,25 @@ const useMainStore = defineStore('main', {
      * getters 类似于组件的组件的计算属性，用来封装计算属性，有缓存的功能
     
      */
-    getters: {},
+    getters: {
+        count20(state) {
+            console.log('调用getters')
+            console.log(state)
+            return state.count + 20
+        }
+    },
 
     /*
-     * actions 类似于methods，用于封装罗技，修改state 
+     * actions 类似于methods，用于封装逻辑，修改state，但是调用这里面的方法要在页面中进行 
      */
-    actions: {}
+    actions: {
+        stateAction(num) {
+            this.arr.push(5)
+            this.foo = '这是在state的actions中修改的数据'
+            this.count += num
+        }
+
+    }
 })
 
 

@@ -3,6 +3,11 @@
     <button v-on:click="add">增加</button>
     <button v-on:click="desc">减少</button>
     <div>{{ num }}</div>
+    <h6>下面连续调用三次关于数据num的computed，但是在控制显示，computed只会执行一次</h6>
+    <h6>computed自带缓存的功能，如果关联的响应式数据不改变就不会执行</h6>
+    <div>{{ num10 }}</div>
+    <div>{{ num10 }}</div>
+    <div>{{ num10 }}</div>
     <span style="background: red">{{ error }}</span>
   </div>
 </template>
@@ -18,6 +23,10 @@ export default {
     };
   },
   computed: {
+    num10() {
+      console.log("调用computed的num10");
+      return this.num + 10;
+    },
     error: {
       set(tip) {
         this.tip = tip;

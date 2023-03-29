@@ -35,6 +35,13 @@
         })
         console.log(status)
 
+        // 如果完全遍历整个数组之后还没有找到符合条件的项目，就会返回undefined
+        let state = lessons.find(function(item) {
+            return item.name == 'asdf'
+        })
+
+        console.log(state)
+
         //  返回的是这个对象在数组里面的位置
         let index = lessons.findIndex(function(item) {
             return item.name == "mysql"
