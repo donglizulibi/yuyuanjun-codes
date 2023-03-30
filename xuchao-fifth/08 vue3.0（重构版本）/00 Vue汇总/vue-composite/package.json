@@ -2,7 +2,6 @@
     "name": "vue-composite",
     "private": true,
     "version": "0.0.0",
-
     "type": "commonjs",
     "scripts": {
         "dev": "vite",
@@ -10,6 +9,8 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "big.js": "^6.2.1",
+        "mathjs": "^11.7.0",
         "pinia": "^2.0.30",
         "vue": "^3.2.45"
     },

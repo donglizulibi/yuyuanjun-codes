@@ -9,11 +9,11 @@
         {{ item.title }} - ${{ item.price }} × {{ item.quantity }}
       </li>
     </ul>
-    <p>商品总价：×××</p>
+    <p>商品总价：{{ cartStore.totalPrice }}</p>
     <p>
-      <button>结算</button>
+      <button v-on:click="cartStore.checkout">结算</button>
     </p>
-    <p>结算成功 / 失败.</p>
+    <p v-show="cartStore.checkoutState">结算{{ cartStore.checkoutState }}.</p>
   </div>
 </template>
 

@@ -19,7 +19,7 @@ export const useProductStore = defineStore("products", {
         descProducts(products) {
             const choseProduct = this.all.find(item => item.id == products.id)
             choseProduct.inventory--
-                console.log(this.all)
+                // console.log(this.all)
         }
     }
 })
