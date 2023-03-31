@@ -1,6 +1,6 @@
 let data = {
     threeState: {
-        state: false,
+        state: true,
         children: {
             baseState: {
                 state: false,
@@ -43,10 +43,18 @@ let data = {
         }
     },
     piniaState: {
-        state: false
-    },
-    routerState: {
-        state: true
+        state: true,
+        children: {
+            piniaBaseState: {
+                state: false
+            },
+            actionGettersState: {
+                state: false
+            },
+            showCartState: {
+                state: false
+            }
+        }
     }
 }
 

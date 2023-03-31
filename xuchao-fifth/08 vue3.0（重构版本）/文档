@@ -1,7 +1,6 @@
 vite创建的项目，所用命令为
 yarn create vite b2 --template vue   
 然后yarn安装依赖包
-yarn dev运行项目
 
 项目运行后可以先不使用setup语法
 把根组件中script里面的setup属性删去
@@ -14,3 +13,11 @@ rimraf node_modules
 
 安装pinia
 npm install pinia
+
+运行vue-composite项目的顺序
+先安装依赖包，其中axios、json-server、mockjs可能需要重新安装
+yarn add axios
+npm install -g json-server
+npm install mockjs
+然后yarn dev运行项目
+然后在data的目录下运行json-server --watch --port 3003 --host 127.0.0.1 db.js
