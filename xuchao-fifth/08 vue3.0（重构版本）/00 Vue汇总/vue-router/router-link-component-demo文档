@@ -1,0 +1,16 @@
+router-link-component-demo例子的一些要点
+
+1 展示页面是router-view和负责跳转的router-link两个组件在全局注册
+
+2 显示当下的地址栏的path变量在外部成为响应数据，这样在router-link组件中
+  改变path变量的值，就可以影响router-view组件的显示效果
+
+3 router-link组件设置一个props，用来接收在上层组件定义的路由值
+  在router-link内部引入path变量，设置按钮来将props的值赋值给path
+  在这个组件内部还需要设置默认插槽，放在a标签中，a标签需要阻止默认跳转
+
+4 定义路由表文件router/index，引入到router-view组件中，同时引入
+  computed函数来监听path数据的变化，并在路由表文件中找到path数据
+  把路由表中对应的组件显示在页面上
+
+5 这个例子可以实现只在最开始发送一次请求，随后的页面调换不会重新发送请求

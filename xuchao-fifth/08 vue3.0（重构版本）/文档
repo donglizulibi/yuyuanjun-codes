@@ -14,10 +14,17 @@ rimraf node_modules
 安装pinia
 npm install pinia
 
+安装版本四的router
+yarn add vue-router@4
+
 运行vue-composite项目的顺序
 先安装依赖包，其中axios、json-server、mockjs可能需要重新安装
 yarn add axios
 npm install -g json-server
 npm install mockjs
 然后yarn dev运行项目
+然后创建data文件夹和其下的db.js，配置基本的mock数据
 然后在data的目录下运行json-server --watch --port 3003 --host 127.0.0.1 db.js
+
+可能需要修改package.js的type到commonjs
+

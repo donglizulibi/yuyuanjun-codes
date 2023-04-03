@@ -4,12 +4,25 @@
 
 <script setup>
 import { router } from "../router/index";
-import About from "../views/About.vue";
+// import About from "../views/About.vue";
 import { computed } from "vue";
-console.log(About);
-console.log(router);
+import { path } from "../router/index";
 
-const view = computed(() => {});
+// console.log(About);
+console.log(router);
+console.log(window.location);
+
+const view = computed(() => {
+  //   const path = window.location.pathname;
+  console.log(path);
+  const rez = router.routes.find((item) => {
+    return item.path == path.value;
+  });
+  console.log(rez);
+  console.log(rez.component);
+  return rez.component;
+  //   return About;
+});
 </script>
 
 <style lang="scss" scoped></style>
