@@ -26,6 +26,12 @@ hash模式用井号键作为锚点把路径和域名隔开，history模式并不
 关于在路由表中添加name属性，以及把router-link的跳转方式转为name
 如果后续需要修改路由的地址路径，则只需要在路由表中修改，而不需要批量修改router-link
 
-建立mock数据文件，建立api文件来发送请求获取数据
+建立mock数据文件，建立api文件来发送请求获取数据，在App根组件使用suspense标签包裹
+
+创立ListItem组件，并引入到home组件中，在home组件调用api文件的数据
+然后遍历数据，并将遍历的每一项数据传递到ListItem组件中
+
+创立Navigation组件，把router-link相关内容移到这个组件当中
+
 
 
