@@ -26,7 +26,7 @@ let data = {
                 }
             },
             cVueSlotComponentState: {
-                state: false
+                state: true
             },
             dVueProvideInjectState: {
                 state: false

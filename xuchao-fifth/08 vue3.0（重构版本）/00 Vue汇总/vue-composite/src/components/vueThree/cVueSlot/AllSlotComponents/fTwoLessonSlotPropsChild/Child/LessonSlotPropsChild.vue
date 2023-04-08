@@ -6,6 +6,7 @@
     {{ lessonData.title }}
     <slot content="houdunren" status="hd" :id="lessonData.id" />
     <!-- <slot content="houdunren" status="hd" :id="lessonData.id" name="abc" /> -->
+    <!-- 添加name属性使之成为具名插槽 -->
   </div>
 </template>
 

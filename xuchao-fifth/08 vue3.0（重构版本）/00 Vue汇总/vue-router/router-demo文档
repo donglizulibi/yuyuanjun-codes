@@ -45,5 +45,25 @@ router-link-active 和 router-link-exact-active
 另一种是在router-link标签上调用exact-active-class和active-class两个标签属性
 来设置新的样式名称
 
+给router-view标签添加样式可能会报错，因为要保证只有一个根元素
+所以可以把样式添加在router-view外面套的div上
 
+使用更非常规的方法实现点击不同路由，显示不同背景颜色的效果
+回到路由表，可以在表中定义meta参数，来存放当下这个路径路由的信息
+在这里可以存放各自页面背景颜色的样式名称
+这些信息可以在slotprops的route的meta中找到
+在调用meta的时候要先判断meta是否存在，如slotprops.route.meta?.class
 
+slotprops的Component属性可以调用不同的页面给componentIs使用
+
+建立一个show组件，并设置路由，路由要跟id相关联
+把ListItem中的div标签换成可以跳转的router-link标签，对于to的设置要用模板字符串
+注意样式
+
+vue-router提供useRoute方法，注意和useRouter方法区别
+前者可以调出当下页面的路由信息，后者负责路由跳转
+新建一个接口，可以通过传入id来显示单个文章信息，并添加文章内容的模拟数据
+使用useRoute方法返回一个对象，在params属性中，或者其他属性也可以找到当前页面的id
+传入新的接口的函数，返回数据渲染到页面中
+
+在页面中可以使用$route来调出当前的路由实例

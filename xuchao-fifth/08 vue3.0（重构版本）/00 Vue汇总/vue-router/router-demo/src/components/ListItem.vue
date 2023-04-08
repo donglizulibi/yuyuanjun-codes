@@ -1,7 +1,9 @@
 <template>
-  <div class="list-item">
-    {{ article.title }}
-  </div>
+  <router-link :to="`/show/${article.id}`">
+    <div class="list-item">
+      {{ article.title }}
+    </div>
+  </router-link>
 </template>
 
 <script setup>

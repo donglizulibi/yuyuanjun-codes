@@ -9,9 +9,14 @@ import Navigation from "./components/Navigation.vue";
     <template #default>
       <div>
         <Navigation />
-
-        <hr />
-        <router-view></router-view>
+        <!-- 视频中使用的解构语法 -->
+        <!-- <router-view #default="{route, Component }"> -->
+        <router-view #default="slotprops">
+          <!-- {{ slotprops.route }} -->
+          <div :class="slotprops.route.meta?.class">
+            <component :is="slotprops.Component" />
+          </div>
+        </router-view>
       </div>
     </template>
   </suspense>
@@ -20,5 +25,17 @@ import Navigation from "./components/Navigation.vue";
 <style scoped>
 a {
   margin: 20px;
+}
+/* .router-view {
+  padding: 20px;
+  background-color: aliceblue;
+} */
+.home {
+  padding: 20px;
+  background-color: brown;
+}
+.article {
+  padding: 20px;
+  background-color: aliceblue;
 }
 </style>

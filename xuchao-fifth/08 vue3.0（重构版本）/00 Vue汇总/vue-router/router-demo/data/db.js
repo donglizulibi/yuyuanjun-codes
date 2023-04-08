@@ -6,7 +6,8 @@ module.exports = () => {
     for (let i = 1; i <= 5; i++) {
         data.article.push({
             id: i,
-            title: Random.cword(10, 20)
+            title: Random.cword(10, 20),
+            content: Random.cparagraph(10)
         })
     }
     return data

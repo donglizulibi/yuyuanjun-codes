@@ -13,4 +13,18 @@ const all = async() => {
     })
 }
 
-export default { all }
+const find = async(id) => {
+    return axios({
+        method: 'get',
+        url: host + `/${id}`
+            // url: host + `?id=${id}`
+    }).then((val) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(val.data)
+            }, 200)
+        })
+    })
+}
+
+export default { all, find }

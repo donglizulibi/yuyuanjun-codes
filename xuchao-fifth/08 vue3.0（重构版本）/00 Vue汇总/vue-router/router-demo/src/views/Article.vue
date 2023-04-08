@@ -1,7 +1,13 @@
 <template>
-  <div>article...</div>
+  <list-item v-for="article of articles" :key="article.id" :article="article"></list-item>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import api from "../api";
+import ListItem from "../components/ListItem.vue";
+
+const articles = ref(await api.all());
+</script>
 
 <style lang="scss" scoped></style>

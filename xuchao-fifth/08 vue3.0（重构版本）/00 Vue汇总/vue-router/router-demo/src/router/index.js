@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
 import Home from "../views/Home.vue"
 import Article from "../views/Article.vue"
+import Show from "../views/Show.vue"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -8,9 +9,12 @@ const router = createRouter({
     // linkActiveClass:""
     // linkExactActiveClass:""
 
+
     routes: [
-        { path: '/', name: "home", component: Home },
-        { path: '/article', name: "article", component: Article },
+        { path: '/', meta: { class: "home" }, name: "home", component: Home },
+        { path: '/article', meta: { class: "article" }, name: "article", component: Article },
+        { path: '/show/:id', name: "show", component: Show },
+        // { path: '/show', name: "show", component: Show },
     ]
 })
 
