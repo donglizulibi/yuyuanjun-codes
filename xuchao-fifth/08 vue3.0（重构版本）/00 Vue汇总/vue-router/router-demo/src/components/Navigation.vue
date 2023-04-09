@@ -1,13 +1,13 @@
 <template>
   <div class="navigation">
     <router-link exact-active-class="routerLinkClass" :to="{ name: 'home' }"
-      >home</router-link
+      >首页</router-link
     >
     <router-link
       exact-active-class="routerLinkClass"
       :class="{ show: showState }"
       :to="{ name: 'article' }"
-      >article</router-link
+      >文章列表</router-link
     >
     <!-- <router-link :to="{ name: 'home' }">home</router-link>
     <router-link :to="{ name: 'article' }">article</router-link> -->
@@ -23,7 +23,7 @@ const route = useRoute();
 console.log(route);
 const showState = ref(true);
 watch(route, (v) => {
-  console.log(route);
+  // console.log(route);
   if (v.params.id) {
     showState.value = true;
   } else {

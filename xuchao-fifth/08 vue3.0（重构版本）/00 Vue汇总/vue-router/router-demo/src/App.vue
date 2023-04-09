@@ -1,5 +1,5 @@
 <script setup>
-import Navigation from "./components/Navigation.vue";
+import Navigation from "@/components/Navigation.vue";
 </script>
 
 <template>
@@ -13,7 +13,10 @@ import Navigation from "./components/Navigation.vue";
         <!-- <router-view #default="{route, Component }"> -->
         <router-view #default="slotprops">
           <!-- {{ slotprops.route }} -->
-          <div :class="slotprops.route.meta?.class">
+          <!-- <div :class="slotprops.route.meta?.class">
+            <component :is="slotprops.Component" />
+          </div> -->
+          <div class="router-view">
             <component :is="slotprops.Component" />
           </div>
         </router-view>
@@ -26,16 +29,16 @@ import Navigation from "./components/Navigation.vue";
 a {
   margin: 20px;
 }
-/* .router-view {
+.router-view {
   padding: 20px;
   background-color: aliceblue;
-} */
-.home {
+}
+/* .home {
   padding: 20px;
   background-color: brown;
 }
 .article {
   padding: 20px;
   background-color: aliceblue;
-}
+} */
 </style>

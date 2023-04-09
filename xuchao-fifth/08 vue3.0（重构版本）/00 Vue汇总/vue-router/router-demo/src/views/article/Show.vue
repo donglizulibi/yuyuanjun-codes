@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import api from "../api";
+import useArticle from "@/api/article";
 import { useRoute } from "vue-router";
 const route = useRoute();
 // console.log(route);
@@ -16,7 +16,7 @@ const id = route.params.id;
 // const id = route.query.id;
 // console.log(id);
 // console.log($route);
-const article = await api.find(id);
+const article = await useArticle.find(id);
 // console.log(article);
 </script>
 

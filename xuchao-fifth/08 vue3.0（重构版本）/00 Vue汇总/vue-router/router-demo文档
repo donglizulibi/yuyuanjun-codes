@@ -66,4 +66,13 @@ vue-router提供useRoute方法，注意和useRouter方法区别
 使用useRoute方法返回一个对象，在params属性中，或者其他属性也可以找到当前页面的id
 传入新的接口的函数，返回数据渲染到页面中
 
-在页面中可以使用$route来调出当前的路由实例
+在页面中可以使用$route来调出当前的路由实例，调用其中query和hash可以得到路径中的相关参数
+
+给模拟数据加上用户的部分，调整一些项目结构，建立专门存放article相关页面的文件夹
+把遍历article数据的操作放在list-item中
+这样list-item这个显示文章列表的组件可以复用
+
+创建专门存放api的文件夹，设置user接口的文件
+
+为了在各个文件中引入模块的方便，在vite.config.js文件中引入path模块
+添加resolve属性，设置alias，把@符号定义为src位置
