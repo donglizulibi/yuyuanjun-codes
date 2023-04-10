@@ -9,25 +9,61 @@
       :to="{ name: 'article' }"
       >文章列表</router-link
     >
+    <router-link
+      exact-active-class="routerLinkClass"
+      :class="{ user: userState }"
+      :to="{ name: 'user' }"
+      >用户</router-link
+    >
     <!-- <router-link :to="{ name: 'home' }">home</router-link>
     <router-link :to="{ name: 'article' }">article</router-link> -->
   </div>
 </template>
 
 <script setup>
-import { watch } from "vue";
+import { watch, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import { ref } from "vue";
 
 const route = useRoute();
+
 console.log(route);
-const showState = ref(true);
-watch(route, (v) => {
-  // console.log(route);
-  if (v.params.id) {
-    showState.value = true;
+
+const showState = ref();
+const userState = ref();
+
+// const stop = watchEffect(() => {
+//   let path = route.path;
+//   console.log(path);
+//   let length = path.match(/\//g).length;
+//   if (length > 1) {
+//     if (/show/.test(path)) {
+//       showState.value = true;
+//     }
+//     if (/user/.test(path)) {
+//       userState.value = true;
+//     }
+//   } else {
+//     showState.value = false;
+//     userState.value = false;
+//   }
+// });
+// console.dir(stop);
+
+watch(route, () => {
+  let path = route.path;
+
+  let length = path.match(/\//g).length;
+  if (length > 1) {
+    if (/show/.test(path)) {
+      showState.value = true;
+    }
+    if (/user/.test(path)) {
+      userState.value = true;
+    }
   } else {
     showState.value = false;
+    userState.value = false;
   }
 });
 </script>
@@ -46,6 +82,9 @@ watch(route, (v) => {
       background-color: orange;
     }
     &.show {
+      background-color: orange;
+    }
+    &.user {
       background-color: orange;
     }
   }

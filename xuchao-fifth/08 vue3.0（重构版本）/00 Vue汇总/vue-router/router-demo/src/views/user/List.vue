@@ -1,9 +1,9 @@
 <template>
-  <list-article />
+  <list-user />
 </template>
 
 <script setup>
-import ListArticle from "@/components/ListArticle.vue";
+import ListUser from "@/components/ListUser.vue";
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,16 +1,16 @@
 <template>
-  <router-link v-for="article of articles" :key="article.id" :to="`/show/${article.id}`">
+  <router-link v-for="user of users" :key="user.id" :to="`/user/${user.id}`">
     <div class="list-item">
-      {{ article.title }}
+      {{ user.name }}
     </div>
   </router-link>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import useArticle from "@/api/article";
+import useUser from "@/api/user.js";
 
-const articles = ref(await useArticle.all());
+const users = ref(await useUser.all());
 // const props = defineProps({
 //   article: {
 //     type: Object,
@@ -20,7 +20,7 @@ const articles = ref(await useArticle.all());
 
 <style lang="scss" scoped>
 .list-item {
-  background-color: forestgreen;
+  background-color: chocolate;
   color: aliceblue;
   margin-bottom: 10px;
   padding: 10px;

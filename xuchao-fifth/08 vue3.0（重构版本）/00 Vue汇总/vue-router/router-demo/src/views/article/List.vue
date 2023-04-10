@@ -1,9 +1,9 @@
 <template>
-  <list-item></list-item>
+  <list-article />
 </template>
 
 <script setup>
-import ListItem from "@/components/ListItem.vue";
+import ListArticle from "@/components/ListArticle.vue";
 </script>
 
 <style lang="scss" scoped></style>

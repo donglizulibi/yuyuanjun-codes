@@ -11,6 +11,7 @@ module.exports = () => {
         })
 
         data.user.push({
+            id: i,
             name: Random.cword(3)
         })
     }

@@ -74,11 +74,12 @@ button:focus-visible {
 
 #app {
     max-width: 1280px;
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 50px;
     padding: 2rem;
     text-align: center;
     /* border: 1px solid black; */
-    height: 350px;
+    /* height: 450px; */
     width: 500px;
     background-color: teal;
 }

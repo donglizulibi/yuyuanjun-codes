@@ -16,6 +16,7 @@ import Navigation from "@/components/Navigation.vue";
           <!-- <div :class="slotprops.route.meta?.class">
             <component :is="slotprops.Component" />
           </div> -->
+
           <div class="router-view">
             <component :is="slotprops.Component" />
           </div>
