@@ -5,12 +5,6 @@
     >
     <router-link
       exact-active-class="routerLinkClass"
-      :class="{ show: showState }"
-      :to="{ name: 'article' }"
-      >文章列表</router-link
-    >
-    <router-link
-      exact-active-class="routerLinkClass"
       :class="{ user: userState }"
       :to="{ name: 'user' }"
       >用户</router-link
@@ -74,12 +68,12 @@ watch(route, () => {
   text-align: left;
   a {
     // margin-left: 10px;
+    display: inline-block;
     color: black;
     font-weight: bold;
     background-color: aliceblue;
     padding: 5px 10px;
     border-radius: 2px;
-    display: inline-block;
     &.routerLinkClass {
       background-color: orange;
     }

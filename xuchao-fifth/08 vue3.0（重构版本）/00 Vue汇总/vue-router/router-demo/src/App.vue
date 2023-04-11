@@ -8,19 +8,33 @@ import Navigation from "@/components/Navigation.vue";
   <suspense>
     <template #default>
       <div>
-        <Navigation />
+        <!-- <Navigation /> -->
+        <router-view name="navigationUser" #default="slotprops">
+          <component :is="slotprops.Component ?? Navigation" />
+        </router-view>
+        <!-- <router-view #default="slotprops"> -->
+        <!-- <router-view name="navigationUser"> -->
+        <!-- <component :is="Navigation" /> -->
+        <!-- </router-view> -->
+
         <!-- 视频中使用的解构语法 -->
         <!-- <router-view #default="{route, Component }"> -->
-        <router-view #default="slotprops">
-          <!-- {{ slotprops.route }} -->
-          <!-- <div :class="slotprops.route.meta?.class">
+        <!-- {{ slotprops.route }} -->
+        <!-- <div :class="slotprops.route.meta?.class">
             <component :is="slotprops.Component" />
-          </div> -->
+          </div> 
+        </router-view> -->
 
+        <!-- <router-view  #default="slotprops">
           <div class="router-view">
             <component :is="slotprops.Component" />
           </div>
-        </router-view>
+        </router-view> -->
+
+        <!-- 直接使用 -->
+        <div class="router-view">
+          <router-view name="default" />
+        </div>
       </div>
     </template>
   </suspense>

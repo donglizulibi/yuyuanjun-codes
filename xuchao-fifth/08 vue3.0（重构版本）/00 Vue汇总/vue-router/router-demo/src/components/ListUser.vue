@@ -1,5 +1,10 @@
 <template>
-  <router-link v-for="user of users" :key="user.id" :to="`/user/${user.id}`">
+  <!-- <router-link v-for="user of users" :key="user.id" :to="`/user/${user.id}`"> -->
+  <router-link
+    v-for="user of users"
+    :key="user.id"
+    :to="{ name: 'user-show', params: { id: user.id } }"
+  >
     <div class="list-item">
       {{ user.name }}
     </div>
