@@ -1,1 +1,12 @@
-现在出现一个新的需求，需要在点击用户栏的时候显示不同的导航栏
+现在出现一个新的需求，需要在点击用户选项的时候显示不同的导航栏
+1 另建一个关于用户选项的导航栏组件，把这个组件引入到路由表中
+2 在路由表中找到name是user的那一项，也就是点击导航栏用户选项会调转的那个路径
+  把component改成components，有两个属性，default和navigationUser
+  将用户列表组件UserList和新建导航栏组件
+3 在App组件中将原来的导航栏Navigation去除，另外添加一个router-view组件
+  将其name属性赋值为navigationUser，则在点击用户选项的时候会找到新导航栏组件显示出来
+  而点击导航栏其他选项的时候，还是会显示原来的导航栏
+  ??（空值合并运算符，只会过滤掉null和undefined，不会忽略空字符串）
+4 而原来就存在的router-view的name属性就是default（不写也可以）
+  在点击用户选项的时候，就会显示路由表中name=user的default的内容
+  也就说用户列表组件UserList
