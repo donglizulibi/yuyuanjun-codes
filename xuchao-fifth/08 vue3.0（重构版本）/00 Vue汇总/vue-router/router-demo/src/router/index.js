@@ -8,24 +8,27 @@ import NotFound from "@/views/common/NotFound.vue"
 import NavigationUser from "@/components/NavigationUser.vue"
 import Front from "@/layout/Front.vue"
 import Member from "@/layout/Member.vue"
+import Email from "@/views/member/Email.vue"
+import Mobile from "@/views/member/Mobile.vue"
 
 const router = createRouter({
     history: createWebHistory(),
     // history: createWebHashHistory(),
     // linkActiveClass:""
-    // linkExactActiveClass:""
+    linkExactActiveClass: "link-active",
 
 
     routes: [{
             path: '/',
             component: Front,
+            name: 'front',
             children: [
                 { path: '/', meta: { class: "home" }, name: "home", component: Home },
                 { path: 'article', meta: { class: "article" }, name: "article", component: Article },
                 // { path: '/show/:id(\\d+)', name: "show", component: Show },
 
                 // 给地址加上前后缀的效果
-                { path: 'show/article-:id(\\d+).html', name: "show", component: Show },
+                { path: 'show/article-:id(\\d+).html', name: "show", component: Show, alias: '/:id(\\d+).html' },
 
                 {
                     path: 'user',
@@ -34,6 +37,7 @@ const router = createRouter({
                         default: UserList,
                         navigationUser: NavigationUser
                     },
+                    alias: ['/hd', '/abc']
 
                 },
                 {
@@ -50,7 +54,11 @@ const router = createRouter({
         {
             path: '/member',
             component: Member,
-            children: []
+            name: 'member',
+            children: [
+                { path: 'mobile', name: 'mobile', component: Mobile },
+                { path: 'email', name: 'email', component: Email }
+            ]
         },
         // { path: '/show', name: "show", component: Show },
 

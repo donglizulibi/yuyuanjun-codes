@@ -7,11 +7,14 @@
       v-for="article of articles"
       :key="article.id"
       :to="{ name: 'show', params: { id: article.id } }"
+      class="list-item"
     >
+      <!-- 别名用法 -->
+      <!-- :to="`${article.id}.html`" -->
       <!-- :to="`/show/${article.id}`" -->
-      <div class="list-item">
-        {{ article.title }}
-      </div>
+      <!-- <div >
+      </div> -->
+      {{ article.title }}
     </router-link>
   </Card>
 </template>
@@ -29,11 +32,14 @@ const articles = ref(await useArticle.all());
 // });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .list-item {
-  background-color: forestgreen;
-  color: aliceblue;
   margin-bottom: 10px;
+  background-color: forestgreen;
+  padding: 10px;
+  color: aliceblue;
+
+  display: block;
   padding: 10px;
 }
 </style>

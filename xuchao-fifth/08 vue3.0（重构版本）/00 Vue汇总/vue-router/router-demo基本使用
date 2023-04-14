@@ -1,3 +1,6 @@
+安装vue-router
+yarn add vue-router@4
+
 关于router-view的初始配置
 
 1 创立router文件夹，建立路由表文件，引入createRouter函数和需要进入路由的页面
