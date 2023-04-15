@@ -1,8 +1,0 @@
-在nodejs中实现不同js文件相互依赖的方法是使用require方法
-
-如commonjs文件夹所示
-在index文件中使用require方法来加载lib文件
-当执行index文件之后，在代码运行到require的时候会执行lib里面的代码
-
-如果把require的值赋给一个变量，则会把被require的文件中
-exports出来的数据，放在一个对象里，在index执行的时候显示出来
