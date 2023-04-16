@@ -1,5 +1,5 @@
 <template>
-  <div>asdf</div>
+  <div>home</div>
 </template>
 
 <script>

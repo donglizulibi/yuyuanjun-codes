@@ -2,21 +2,24 @@
 
 <template>
   <div>
+    <router-link to="/home">home</router-link>
+    <router-link to="/about">about</router-link>
+  </div>
+  <div class="router-view">
     <router-view />
   </div>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+a {
+  display: inline-block;
+  color: aliceblue;
+  background-color: sienna;
+  padding: 20px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.router-view {
+  background-color: aliceblue;
+  padding: 20px;
+  margin-top: 20px;
 }
 </style>

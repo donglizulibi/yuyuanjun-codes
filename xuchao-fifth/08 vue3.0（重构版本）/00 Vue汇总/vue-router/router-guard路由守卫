@@ -1,0 +1,11 @@
+在路由表中使用beforeEach设置一个全局路由守卫
+1 这个beforeEach函数传入一个回调函数作为参数，回调函数中有to和from两个参数
+  在切换页面的时候，to和from会分别指代目标页面和初始页面的路由对象
+  如果要显示路由的name，则需要在路由表中设置每个路由的name
+
+2 如果在beforeEach函数中不添加返回值，或者return true，则表示路由守卫放行通过
+  如果reture false则无法跳转到其他页面，当下的页面也无法解析
+
+3 beforeEach是一个promise的环境，如果return一个pending状态或者是
+  resolve出false的promise对象，则也等同于return false，页面无法解析
+  beforeEach的回调函数可以加上async，然后在函数体内使用await
