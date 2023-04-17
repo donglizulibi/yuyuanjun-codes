@@ -1,4 +1,4 @@
-在路由表中使用beforeEach设置一个全局路由守卫
+在路由表中使用全局前置守卫beforeEach设置一个全局路由守卫
 1 这个beforeEach函数传入一个回调函数作为参数，回调函数中有to和from两个参数
   在切换页面的时候，to和from会分别指代目标页面和初始页面的路由对象
   如果要显示路由的name，则需要在路由表中设置每个路由的name
@@ -9,3 +9,24 @@
 3 beforeEach是一个promise的环境，如果return一个pending状态或者是
   resolve出false的promise对象，则也等同于return false，页面无法解析
   beforeEach的回调函数可以加上async，然后在函数体内使用await
+
+4 beforeEach函数中有第三个参数next，是旧版本router的用法
+  next是一个回调函数，如果添加了第三个参数，则在beforeEach中添加return会报错
+  如果添加这个参数而不调用，或者调用，但是传入false参数，如果next（false）
+  则视作所有路由守卫都不放行通过，如果添加这个回调函数，不传入参数或者传入true
+  则是做路由守卫放行
+
+5 在某个判断条件之下调用next，并传入页面的路径，则在符合判断条件的时候就会跳转到相应的页面
+  或者直接return到这个路径的字符串也可以达到同样的效果，但是为避免路由条件出现死循环
+  next只要成为形参，旧必须至少调用一次，所以要加上else，无参数调用next，无条件放行
+  而如果使用return则不用加上else，因为beforeEach函数undefined也表示无条件放行
+
+全局解析守卫beforeResolve与全局后置守卫afterEach
+1 页面刷新之后顺序就是，全局前置守卫，各个组件路由单独设置的守卫
+  然后是全局解析守卫，最后是全局后置守卫
+
+2 假如在全局前置守卫中return false，则不会进入到全局解析守卫中，但还是会执行全局后置守卫
+  全局后置守卫的第三个参数不是next，而是fail，页面刷新后进行路由解析
+  如果解析不成功，则返回一个对象表达守卫解析不成功的原因
+  如果解析成功则显示undefined，所以如果需要在解析成功之后进行某些操作
+  则!fail会显示为true，可以以此作为判断条件
