@@ -2,18 +2,24 @@ import { createRouter, createWebHistory } from "vue-router"
 import home from "@/views/home.vue"
 import about from "@/views/about.vue"
 import login from "@/views/login.vue"
+import { loginCheck } from "../helper"
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [{
             path: '/home',
             name: 'home',
-            component: home
+            component: home,
+            beforeEnter: () => {
+                console.log('beforeEnter')
+            }
         },
         {
             path: '/about',
             name: 'about',
-            component: about
+            component: about,
+            meta: { auth: false }, // 表示是否需要验证
+            beforeEnter: [loginCheck]
         },
         {
             path: '/login',
