@@ -26,6 +26,12 @@ export default {
       }, 100);
     });
   },
+
+  beforeRouteLeave(to, from, next) {
+    if (confirm("确认要离开吗")) {
+      next();
+    }
+  },
 };
 </script>
 

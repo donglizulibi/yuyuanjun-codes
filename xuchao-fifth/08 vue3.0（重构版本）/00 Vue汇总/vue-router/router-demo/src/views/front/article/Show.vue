@@ -10,34 +10,39 @@
     </div>
   </div>
 </template>
-
-<script setup>
+<script>
 import useArticle from "@/api/article";
 import { useRoute } from "vue-router";
 import ListArticle from "@/components/ListArticle.vue";
-import { ref, watch, watchEffect } from "vue";
-const route = useRoute();
-// console.log(route);
-// const id = route.params.id;
-
-// const id = route.query.id;
-// console.log(id);
-// console.log($route);
-const article = ref();
-
-// console.log(article);
-
-watch(route, async () => {
-  // console.log(route.params.id);
-  if (route.params.id) {
-    article.value = await useArticle.find(route.params.id);
-  }
-});
-article.value = await useArticle.find(route.params.id);
-// watchEffect(async () => {
-//   article.value = await useArticle.find(route.params.id);
-//   // console.log(route.params.id);
-// });
+import { watch, ref } from "vue";
+export default {
+  async setup() {
+    const route = useRoute();
+    const article = ref(await useArticle.find(route.params.id));
+    watch(route, async (v, m) => {
+      if (m.params.id) {
+        article.value = await useArticle.find(m.params.id);
+      }
+    });
+    return { route, article };
+  },
+  components: {
+    ListArticle,
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log("beforeRouteLeave");
+    next();
+  },
+  beforeRouteUpdate() {
+    console.log("beforeRouteUpdate");
+  },
+  beforeUnmount() {
+    console.log("beforeUnmount");
+  },
+  beforeUpdate() {
+    console.log("beforeUpdate");
+  },
+};
 </script>
 
 <style lang="scss" scoped>

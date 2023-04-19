@@ -41,7 +41,7 @@ const router = createRouter({
 
                 },
                 {
-                    path: 'user/:id',
+                    path: 'user?id=:id',
                     name: "user-show",
                     components: {
                         default: UserShow,

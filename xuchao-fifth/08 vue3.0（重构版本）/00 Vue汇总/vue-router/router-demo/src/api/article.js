@@ -22,7 +22,7 @@ const find = async(id) => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(val.data)
-            }, 200)
+            }, 100)
         })
     })
 }
