@@ -2,12 +2,15 @@ import { createRouter, createWebHistory } from "vue-router"
 import home from "@/views/home.vue"
 import about from "@/views/about.vue"
 import login from "@/views/login.vue"
+import article from "@/views/article.vue"
+import articleSetup from "@/views/articleSetup.vue"
+import articleWatch from "@/views/articleWatch.vue"
 import { loginCheck } from "../helper"
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [{
-            path: '/home',
+            path: '/',
             name: 'home',
             component: home,
             beforeEnter: () => {
@@ -25,6 +28,19 @@ const router = createRouter({
             path: '/login',
             name: 'login',
             component: login
+        },
+        {
+            path: `/article/:id`,
+            name: 'article',
+            component: article
+        }, {
+            path: `/articleSetup/:id`,
+            name: 'articleSetup',
+            component: articleSetup
+        }, {
+            path: `/articleWatch/:id`,
+            name: 'articleWatch',
+            component: articleWatch
         }
     ]
 })
@@ -59,8 +75,8 @@ router.beforeResolve((to, from) => {
 })
 const routesArr = []
 router.afterEach((to, from, fail) => {
-    console.log('afterEach')
-    console.log('afterEach', to.name)
+    // console.log('afterEach')
+    // console.log('afterEach', to.name)
     if (!fail) {
         routesArr.push(to.name)
             // 把浏览过的页面存在本地缓存中

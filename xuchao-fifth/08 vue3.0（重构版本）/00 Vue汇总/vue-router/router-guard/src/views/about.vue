@@ -4,6 +4,8 @@
 
 <script>
 export default {
+  components: {},
+  methods: {},
   beforeCreate() {
     console.log("beforeCreate");
   },

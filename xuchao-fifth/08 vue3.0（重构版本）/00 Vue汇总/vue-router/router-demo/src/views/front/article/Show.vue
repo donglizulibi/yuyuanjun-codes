@@ -33,8 +33,9 @@ export default {
     console.log("beforeRouteLeave");
     next();
   },
-  beforeRouteUpdate() {
+  beforeRouteUpdate(to, from, next) {
     console.log("beforeRouteUpdate");
+    next();
   },
   beforeUnmount() {
     console.log("beforeUnmount");

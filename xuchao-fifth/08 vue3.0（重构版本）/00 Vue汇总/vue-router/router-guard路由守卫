@@ -36,7 +36,8 @@
   也可以是一个包含多个回调函数的数组。这些回调函数也有to from next三个参数
 
 2 在需要添加验证的页面配置中添加auth的meta自定义属性
-  然后在beforeEnter中依据token和auth来决定是否放行，如果不符合放行条件，则跳转到登陆页面
+  然后在beforeEnter中依据token和auth来决定是否放行
+  如果不符合放行条件，则跳转到登陆页面
 
 
 给某个组件单独设置导航守卫beforeRouteEnter
@@ -52,4 +53,20 @@
 1 如果某个组件页面被用来编辑资料，如果用户不小点到了其他页面可能会导致资料数据丢失
   则可以用beforeRouteLeave来跟用户确认是否离开此页面来保护数据
 
-2 
+2 将router-demo的front/article/show页面的script标签从setup改为使用export default语法
+  并添加beforeRouteLeave、beforeRouteUpdate、beforeUnmount、beforeUpdate四个生命周期
+  当在同一个show页面之下改变参数的时候，页面会跳转到其他的文章内容
+  此时会执行beforeRouteUpdate和beforeUpdate，其中beforeUpdate会执行两次
+  而当跳转到其他页面的时候，会执行beforeRouteLeave和beforeUnmount各一次
+  所以在组件内部定义的beforeRouteUpdate只会在同一个路由中改变参数的时候才会调用
+  此时的所有导航守卫的执行顺序是 
+  1）全局前置beforeEach  2）组件中的beforeRouteUpdate  3）全局解析beforeResolve
+  4）全局后置afterEach
+
+3 假如从a页面和b页面，给两个页面的组件内都定义了beforeRouteEnter和beforeRouteLeave
+  且在路由表中给两个页面的路由配置中都定义了beforeEnter
+  在路由表全局定义了beforeEach、beforeResolve和afterEach
+  则从a页面跳转到b页面的时候，导航守卫的执行顺序是
+  1）a组件的beforeRouteLeave  2）全局前置beforeEach  3）路由表中b组件的beforeEnter
+  4）b组件的beforeRouteEnter  5）全局解析beforeResolve 6）全局后置afterEach
+
