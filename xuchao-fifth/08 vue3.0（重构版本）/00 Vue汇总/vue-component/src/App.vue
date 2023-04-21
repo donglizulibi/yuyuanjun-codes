@@ -1,12 +1,12 @@
 <script setup>
 import Pagination from "./components/Pagination/Pagination.vue";
-const getPage = (e) => {
-  console.log(e);
-};
+import { ref } from "vue";
+const currentPage = ref(1);
+const total = ref(10);
 </script>
 
 <template>
-  <Pagination :totalPages="10" @current="getPage" />
+  <Pagination :totalPagesData="total" v-model="currentPage" />
 </template>
 
 <style scoped></style>

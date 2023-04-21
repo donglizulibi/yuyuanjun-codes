@@ -7,8 +7,8 @@
       {{ articles.content }}
     </main>
   </div>
-  <router-link :to="{ name: 'articleWatch', params: { id: params } }">
-    <Pagination :totalPages="10" @current="getpage" :currentPageData="currentPageData" />
+  <router-link :to="{ name: 'articleWatch', params: { id: currentPageData } }">
+    <Pagination :totalPagesData="articles.total" v-model="currentPageData" />
   </router-link>
 </template>
 
@@ -17,25 +17,22 @@ import axios from "axios";
 import Pagination from "../components/Pagination.vue";
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
-const load = (id) => {
-  return axios({
+const load = async (id) => {
+  const res = await axios({
     url: `http://127.0.0.1:3003/article/${id}`,
   });
+  return res.data;
 };
 const route = useRoute();
 const articles = ref("");
-const params = ref(route.params.id);
 const currentPageData = ref(route.params.id);
-const getpage = (e) => {
-  params.value = e;
-};
 
 watch(
   route,
   async (route) => {
     if (route.name == "articleWatch") {
       currentPageData.value = route.params.id;
-      articles.value = await load(route.params.id).then((val) => val.data);
+      articles.value = await load(route.params.id);
     }
   },
   { immediate: true }

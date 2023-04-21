@@ -24,47 +24,50 @@
 
 <script setup>
 import { ref, computed, watch } from "vue";
-let props = defineProps(["totalPages", "currentPageData"]);
-let { currentPageData, totalPages } = props;
-const currentPage = ref(currentPageData);
+let props = defineProps(["totalPagesData", "modelValue"]);
+let { modelValue, totalPagesData } = props;
+const totalPages = ref(totalPagesData);
+const currentPage = ref(modelValue);
+
 watch(props, (v) => {
-  currentPage.value = v.currentPageData;
+  currentPage.value = v.modelValue;
+  totalPages.value = v.totalPagesData;
 });
-let emit = defineEmits(["current"]);
+let emit = defineEmits(["update:modelValue"]);
 const changePage = (i) => {
   currentPage.value = i;
-  emit("current", currentPage.value);
+  emit("update:modelValue", currentPage.value);
 };
 const prePage = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
-    emit("current", currentPage.value);
+    emit("update:modelValue", currentPage.value);
   }
 };
 const nextPage = () => {
-  if (currentPage.value < totalPages) {
+  if (currentPage.value < totalPages.value) {
     currentPage.value++;
-    emit("current", currentPage.value);
+    emit("update:modelValue", currentPage.value);
   }
 };
 
 let pages = computed(() => {
   currentPage.value = currentPage.value * 1;
-  if (totalPages < 9) {
-    return totalPages;
+  if (totalPages.value < 9) {
+    return totalPages.value;
   } else {
     if (currentPage.value < 5) {
-      return [1, 2, 3, 4, 5, 6, "...", totalPages];
-    } else if (currentPage.value > totalPages - 4) {
+      return [1, 2, 3, 4, 5, 6, "...", totalPages.value];
+    } else if (currentPage.value > totalPages.value - 4) {
       return [
         1,
         "...",
-        totalPages - 5,
-        totalPages - 4,
-        totalPages - 3,
-        totalPages - 2,
-        totalPages - 1,
-        totalPages,
+        totalPages.value - 5,
+        totalPages.value - 4,
+        totalPages.value - 3,
+        totalPages.value - 2,
+        totalPages.value - 1,
+        totalPages.value,
       ];
     } else {
       return [
@@ -76,7 +79,7 @@ let pages = computed(() => {
         currentPage.value + 1,
         currentPage.value + 2,
         "...",
-        totalPages,
+        totalPages.value,
       ];
     }
   }

@@ -7,7 +7,8 @@ module.exports = () => {
         data.article.push({
             id: i,
             title: Random.cword(10, 20),
-            content: Random.cparagraph(10)
+            content: Random.cparagraph(10),
+            total: 15
         })
 
         data.user.push({
