@@ -1,5 +1,5 @@
 const hd = ['houdunren'];
-// const hd: string[] = ['houdunren'] 表示对一个数组进行类型限制
+// 相当于const hd: string[] = ['houdunren'] 表示对一个数组进行类型限制
 // 数组里面的项目只能是字符串，往数组里面添加内容也只能字符串
 
 hd.push('hdcms');

@@ -23,12 +23,12 @@ const user1 = { name:"houdunren", lesson:[
 // }
 
 // 也就是说，user1中lesson属性规定了
-// “只能是一个数组，数组只能包含对象，对象中只能有title属性，属性值只能是字符串”
+// “只能是一个数组，数组中的项只能是对象类型，对象中只能有title属性，属性值只能是字符串”
 
 // 可以lesson变成一个空数组
 // user1.lesson = []
 
-// title属性值只能说字符串
+// title属性值只能是字符串
 user1.lesson.push({title:'hdcms'})
 
 // 无法将lesson变成空字符串
