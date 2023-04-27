@@ -3,7 +3,7 @@
 let hd: string | number
 
 hd = 'houdunren'
-console.log(hd) // 不会执行
+console.log(hd) 
 
 hd = 123
 console.log(hd)
@@ -14,7 +14,7 @@ console.log(arr1)
 
 // 如果上面创建中不加上（）,表示这个变量只能是字符串，或者是只包含数值的数组
 let arr2: string | number[] = [12,23]
-console.log(arr2) // 不会执行
+console.log(arr2) 
 arr2 = 'asdf'
 console.log(arr2)
 
