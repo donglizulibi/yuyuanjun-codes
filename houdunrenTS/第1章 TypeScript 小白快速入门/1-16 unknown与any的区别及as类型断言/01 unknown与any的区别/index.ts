@@ -7,28 +7,32 @@
 // 然后再定义一个变量，将这个变量的类型定义为string，变量的值由上个变量所赋予
 // 后定义的变量的类型也成了number
 // let hd:any
-let hd:any = 123
-console.log(typeof hd)
-let a:string = hd
-console.log(a)
-console.log(typeof a)
+let hd: any = 123;
+console.log(typeof hd);
+let a: string = hd;
+console.log(a);
+console.log(typeof a);
 
 // 现在再定义一个变量，设置为unknown类型，并以数值赋值给这个变量
 // 类型检测到这个变量类型是number
 // 再创建一个变量，设置为string，将上面的unknown变量赋值给这个变量
 // 是无法赋值的
 // 但是如果创建的变量是any或者unknown本身，则可以把这个原本的unknown类型赋值上去
-let hdd:unknown = 123
-console.log(typeof hdd)
+let hdd: unknown = 123;
+console.log(typeof hdd);
 // let b:string = hdd
-let c:any = hdd
-let d:unknown = hdd
+let c: any = hdd;
+let d: unknown = hdd;
 
 // any和unknown都是ts中的顶级类型，二者都可以被赋值于任意类型的数据
-// 
+// 但是对any类型的变量进行操作的时候不会进行类型检查
+// 所以调用一个any类型变量中不存在的属性也不会报错
+// 而在unknown类型的值中，任何操作值的行为都是不允许的
+// 如以下两种
 
-let obj:any = {}
-obj.name = 'houdunren'
-console.log(obj)
+// let num:unknown = 123
+// let number:number = num + 1
 
-
+let obj: unknown = { name: "houdunren" };
+// console.log(obj.name)
+// obj.name = 'hdcms'

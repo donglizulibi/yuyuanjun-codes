@@ -1,5 +1,5 @@
 // 上个例子说明了unknow也是一种独特的类型，但是这个类型未知
-// 那么可以通过类型断言的方法来确定这个未知类型到底是什么
+// 那么可以通过类型断言（as）的方法来确定这个未知类型到底是什么
 // 还是上个例子
 // 首先构建出unknow变量
 var xj = 'houdunren';
@@ -8,3 +8,5 @@ var xj = 'houdunren';
 // 使用断言
 var b = xj;
 console.log(b);
+var obj = { name: 'houdunren' };
+var c = obj;

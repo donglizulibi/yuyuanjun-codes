@@ -1,10 +1,12 @@
 // 这里把一个字符串赋值给数值变量
 
-
 let hd:string = '99'
 
 // 这样无法赋值
 // let a:number = hd
+
+// 如果把string类型的变量进行类型断言，转化成数值，也是不允许的
+// let b:number = hd as number
 
 // 可以先转化成unknow，再转化成number
 let a:number = hd as unknown as number

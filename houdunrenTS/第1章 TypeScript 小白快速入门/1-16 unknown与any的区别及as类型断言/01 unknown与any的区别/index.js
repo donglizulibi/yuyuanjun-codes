@@ -21,7 +21,12 @@ console.log(typeof hdd);
 var c = hdd;
 var d = hdd;
 // any和unknown都是ts中的顶级类型，二者都可以被赋值于任意类型的数据
-// 
-var obj = {};
-obj.name = 'houdunren';
-console.log(obj);
+// 但是对any类型的变量进行操作的时候不会进行类型检查
+// 所以调用一个any类型变量中不存在的属性也不会报错
+// 而在unknown类型的值中，任何操作值的行为都是不允许的
+// 如以下两种
+// let num:unknown = 123
+// let number:number = num + 1
+var obj = { name: "houdunren" };
+// console.log(obj.name)
+// obj.name = 'hdcms'

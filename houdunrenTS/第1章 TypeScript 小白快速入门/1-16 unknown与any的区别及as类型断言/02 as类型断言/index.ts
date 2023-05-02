@@ -11,3 +11,7 @@ let xj: unknown = 'houdunren'
 // 使用断言
 let b:string = xj as string
 console.log(b)
+
+let obj:unknown = {name:'houdunren'}
+let c:object = obj as object
+
