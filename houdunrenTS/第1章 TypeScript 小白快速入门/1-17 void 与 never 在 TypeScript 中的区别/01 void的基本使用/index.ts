@@ -9,13 +9,14 @@ let hd: void = undefined;
 let hdd: void = null;
 console.log(hdd);
 
-// 如果要把一个类型为控制的变量赋值为null，则需要在tsconfig配置中
+// 如果要把一个类型为空值的变量赋值为null，则需要在tsconfig配置中
 // 把"strictNullChecks"设置为false
-// 这个属性如果设置为true或者不设置，表示只有undefined是所有类型的子类型
-// 但是设置为false表示null和undefined都是所有类型的子类型
 
-// 在这个情况下，如下的赋值也是成立的
+// 这个属性如果设置为true或者不设置，则对于null的校验会更家严格
+// 此时就无法将void类型的变量赋值为null
+// 对于以下这两种，把null和undefined赋值给其他类型的变量的操作也是不允许的
 let hddd: number = null;
+let hdddd: number = undefined;
 
 // 用void可以来定义一个函数的返回值类型，表示这个函数只能返回null或者undefined
 // 则如下的函数就会报错
