@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在类中似乎没有像构造函数那样
+        // 直接定义私有的隐藏的外部不可修改的属性的方法
+        // 所以要用到Symbol
+
+        let ITEMS = Symbol()
+        class Stack {
+            constructor() {
+                this[ITEMS] = []
+            }
+            push(ele) {
+                this[ITEMS].push(ele)
+            }
+            pop() {
+                return this[ITEMS].pop()
+            }
+            peak() {
+                return this[ITEMS][this[ITEMS].length - 1]
+            }
+            isEmpty() {
+                return this[ITEMS].length == 0
+            }
+            clear() {
+                this[ITEMS].length = 0
+            }
+            size() {
+                return this[ITEMS].length
+            }
+        }
+
+        let s = new Stack()
+        console.log(s)
+        s.push(1)
+        s.push(2)
+        s.push(3)
+        console.log(s[Symbol()])
+
+        console.log(s.size())
+    </script>
+</body>
+
+</html>

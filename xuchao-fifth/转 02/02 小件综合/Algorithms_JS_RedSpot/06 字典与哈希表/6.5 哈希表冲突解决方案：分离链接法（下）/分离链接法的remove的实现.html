@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./src.js"></script>
+    <script>
+        // 分离链接法 separate chaining
+        class HashTableSeparateChaining {
+            constructor() {
+                this.table = []
+            }
+
+            // 哈希函数
+            loseloseHashCode(key) {
+                // 除以37是约定俗成
+                return key.split('').reduce((pre, val) => {
+                    pre = pre + val.charCodeAt()
+                    return pre
+                }, 0) % 37
+            }
+
+            put(key, value) {
+                let position = this.loseloseHashCode(key)
+                if (this.table[position]) {
+                    // console.log(this.table[position])
+                    // console.log(1)
+                    this.table[position].append(new Obj(key, value))
+                } else {
+
+                    let list = new LinkedList()
+                    list.append(new Obj(key, value))
+                    this.table[position] = list
+                }
+            }
+
+            // 删除键值对
+            remove(key) {
+                // this.table[this.loseloseHashCode(key)] = undefined
+                let position = this.loseloseHashCode(key)
+                let list = this.table[position]
+
+
+                if (!list) {
+                    return '没有该数据,无法删除'
+                } else {
+                    // console.log(list)
+
+                    if (list['head']['element']['key'] === key) {
+                        let removeItem = list['head']['element']
+                        list['head'] = list['head'].next
+                        list.length--;
+
+                        // 在这里加上一个判断，如果链表上所有数据都被删除
+                        // 为了节省空间，不必保留哈希表上这个位置的空链表
+                        // 把这个位置设置为undefined
+                        if (list.length == 0) {
+                            this.table[position] = undefined
+                        }
+                        return removeItem
+                    } else {
+
+                        // console.log(list)
+                        let current = list.head
+
+                        while (current.next) {
+                            if (current.next.element.key == key) {
+                                // console.log(key)
+                                // console.log(current)
+                                let removeItem = current.next.element
+                                current.next = current.next.next
+                                    // console.log(list)
+
+                                list.length--;
+                                return removeItem
+
+                            }
+                            current = current.next
+                        }
+                        return '没有该数据,无法删除'
+
+                    }
+
+
+                }
+            }
+
+
+            // 获取值
+            get(key) {
+                let position = this.loseloseHashCode(key)
+                let list = this.table[position]
+                if (!list) {
+                    return '没有该数据'
+                } else {
+                    let current = list.head
+
+                    while (current) {
+                        if (current['element']['key'] === key) {
+                            return current['element']['value']
+                        }
+                        current = current.next
+
+                    }
+                    return '没有该数据'
+                }
+            }
+        }
+
+        // 现在创建一个哈希表，在同一个位置添加四个数据
+        // 则这四个数据都在同一条链表上
+        let hash = new HashTableSeparateChaining()
+        hash.put('Ana', 'ana@qq.com')
+        hash.put('WJ', 'wj@dsaf.com')
+        hash.put('Donnie', 'donnie@qq.com')
+            // hash.put('VK', 'vk@asdf.com')
+        console.log(hash)
+
+        // 四个数据都可以取到
+        console.log(hash.get('Ana'))
+        console.log(hash.get('Donnie'))
+            // console.log(hash.get('VK'))
+        console.log(hash.get('WJ'))
+
+        // 删去其中一个
+        console.log(hash.remove('Ana'))
+        console.log(hash.remove('WJ'))
+        console.log(hash.remove('Donnie'))
+        console.log(hash)
+    </script>
+</body>
+
+</html>

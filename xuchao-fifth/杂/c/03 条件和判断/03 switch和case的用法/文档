@@ -1,0 +1,7 @@
+switch case和if elseif else比较的好处的
+
+if elseif else是从第一个if条件开始，逐次往下检测符合条件的分支
+
+而switch case是一开始就会跳到符合条件的分支
+
+这是时间复杂度O(n)和O(1) 区别

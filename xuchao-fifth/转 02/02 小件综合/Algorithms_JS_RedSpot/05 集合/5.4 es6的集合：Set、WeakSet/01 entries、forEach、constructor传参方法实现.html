@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.dir(Set)
+
+        class SetDiv {
+            constructor(array) {
+                this.item = {
+
+                }
+                array.forEach(v => {
+                    this.item[v] = v
+                })
+            }
+            has(value) {
+                return Object.keys(this.item).some(v => {
+                    return v == value
+                })
+            }
+            add(value) {
+                let bool = this.has(value)
+
+                if (!bool) {
+                    Object.assign(this.item, {
+                        [value]: value
+                    })
+                    return '添加成功'
+                } else {
+                    return '该项目已存在，无法添加'
+                }
+            }
+            remove(value) {
+                let bool = this.has(value)
+
+                if (!bool) {
+                    return '该项目不存在，无法删除'
+                } else {
+                    delete this.item[value]
+                    console.log(this.item)
+                    return '删除成功'
+                }
+            }
+            clear() {
+                this.item = {}
+            }
+            size() {
+                return Object.keys(this.item).length
+            }
+            values() {
+                return Object.values(this.item)
+            }
+
+            // 并集
+            union(value) {
+                let arr = this.values()
+                let arrValue = value.values()
+                let newSet = new SetDiv()
+
+                arr.filter(v => {
+                    return !value.has(v)
+                }).map(v => {
+                    arrValue.push(v)
+                })
+                arrValue.forEach(v => {
+                    newSet.add(v)
+                });
+                return newSet
+            }
+
+            // intersection 交集
+            intersection(value) {
+                let newSet = new SetDiv()
+                this.values().filter(v => {
+                    return value.has(v)
+                }).forEach(v => {
+                    newSet.add(v)
+                })
+                return newSet
+            }
+
+            // 差集
+            difference(value) {
+                let newSet = new SetDiv()
+                this.values().filter(v => {
+                    return !value.has(v)
+                }).forEach(v => {
+                    newSet.add(v)
+                })
+                return newSet
+            }
+
+            forEachDiv(callback) {
+                this.values().forEach((v, i, arr) => {
+                    callback(v, v, arr)
+                })
+            }
+            entriesDiv() {
+                return this.values().entries()
+            }
+        }
+
+        let set = new SetDiv([1, 2, 3])
+        console.log(set)
+
+        set.forEachDiv((v1, v2, setItself) => {
+            console.log(v1)
+            console.log(v2)
+            console.log(setItself)
+        })
+
+        let entries = set.entriesDiv()
+        console.log(entries)
+        console.log(entries.next())
+        console.log(entries.next())
+        console.log(entries.next())
+        console.log(entries.next())
+    </script>
+</body>
+
+</html>
