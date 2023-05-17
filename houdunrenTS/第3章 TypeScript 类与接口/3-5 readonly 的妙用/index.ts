@@ -1,4 +1,4 @@
-// constructor前面也可以加上public
+// constructor前面也可以加上public，不加就默认为public
 // readonly前面默认加上public，也可以加其他的
 // readonly的数据只有在constructor中初始化的时候，才可以被修改
 class User {
