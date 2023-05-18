@@ -1,3 +1,4 @@
+{
 // 在定义一些属性时, 需要用数值来作为属性值
 // 而有时候单纯的数值让人难以辨认具体是哪个属性值
 
@@ -17,3 +18,6 @@ let user: { name: string; gender: number } = {
 };
 
 console.log(user);
+
+
+}
