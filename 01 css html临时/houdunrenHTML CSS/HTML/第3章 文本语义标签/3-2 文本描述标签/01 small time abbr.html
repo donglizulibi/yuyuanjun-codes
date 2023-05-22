@@ -24,8 +24,8 @@
         #span div:nth-of-type(2) {
             display: block;
             position: absolute;
-            /* top: 0;
-            left: 0; */
+            top: 0;
+            left: 0;
             border-top: solid #444 1px;
             border-left: 1px solid #444;
             width: 140px;
@@ -63,13 +63,19 @@
         console.log(span)
 
         span.addEventListener('mouseenter', (e) => {
-            console.log(e)
-            setTimeout(() => {
-                div.style.display = 'block'
-            }, 800)
+            console.log(1, e)
+                // setTimeout(() => {
+                // }, 800)
+            div.style.display = 'block'
         })
-        span.addEventListener('mouseout', (e) => {
-            console.log(e)
+
+        // 在这里改用mouseleave而不是mouseout
+        // 因为mouseout是会冒泡的，如果鼠标移除元素中的子元素，即使还停留在元素之中
+        // 也是会视作鼠标移除，从而触发mouseout
+
+        // 而mouseleave不会冒泡，是需要完全移除整个元素，才会触发，更符合本场景
+        span.addEventListener('mouseleave', (e) => {
+            console.log(2, e)
             div.style.display = 'none'
         })
     </script>

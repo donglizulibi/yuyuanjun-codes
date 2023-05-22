@@ -50,20 +50,30 @@
         let progress = document.querySelector('progress')
         let btn1 = document.querySelector('#button1')
         btn1.addEventListener('click', () => {
-            console.log(progress.value)
             progress.value += 10
+            console.log(progress.value)
         })
-        let progressWidth = window.getComputedStyle(progress).width.slice(0, -2)
-        let progressWidthEle = progressWidth * 0.1
 
 
         // 仿制
+        // 进度条总长度
+        let progressWidth = window.getComputedStyle(progress).width.slice(0, -2)
+        console.log(progressWidth)
+
+        // 每次点击时增加的长度 
+        let progressWidthEle = progressWidth * 0.1
+        console.log(progressWidthEle)
+
+        // 进度条初始长度
         let widthData = progressWidthEle * 6
         console.log(widthData)
+
+        // 将初始长度渲染到页面中
         let div = document.querySelector('#div>div')
         div.style.width = widthData + 'px'
         console.log(div.style)
 
+        // 绑定事件
         let btn2 = document.querySelector('#button2')
         btn2.addEventListener('click', () => {
             let width = window.getComputedStyle(div).width.slice(0, -2) * 1
@@ -76,8 +86,11 @@
                     div.style.borderTopRightRadius = 8 + 'px'
 
                 }
+
+                // 显示进度百分占比
+                console.log(div.style.width.slice(0, -2) * 100 / 160)
+
             }
-            console.log(width)
 
         })
     </script>
