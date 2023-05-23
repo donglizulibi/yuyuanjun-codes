@@ -2,6 +2,8 @@ vite创建的项目，所用命令为
 yarn create vite b2 --template vue   
 然后yarn安装依赖包
 
+如果只运行yarn create vite则需要进一步设置项目名称、所支持的框架和所支持的类型
+
 项目运行后可以先不使用setup语法
 把根组件中script里面的setup属性删去
 
