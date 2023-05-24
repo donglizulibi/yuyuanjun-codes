@@ -35,5 +35,5 @@ export default function twoBox() {
 
   app.stroke(); // 画圆的线条
   // app.fill(); // 填充圆
-  // 最后把
+
 }

@@ -1,3 +1,5 @@
-import twoBox from './twoBox'
+// import twoBox from './twoBox'
+// twoBox()
 
-twoBox()
+import nonNormal from './nonNormal'
+nonNormal()
