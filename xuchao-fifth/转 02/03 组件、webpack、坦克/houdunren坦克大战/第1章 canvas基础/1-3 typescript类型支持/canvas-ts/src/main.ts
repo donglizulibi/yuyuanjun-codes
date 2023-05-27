@@ -1,20 +1,5 @@
-// import twoBox from './twoBox'
-// twoBox()
+// import canvaseBase from "./canvasBase/canvaseBase";
+// canvaseBase()
 
-// import nonNormal from './nonNormal'
-// nonNormal()
-
-// import gradientColor from "./gradientColor"
-// gradientColor()
-
-// import wordText from "./wordText"
-// wordText()
-
-// import addImage from "./addImage"
-// addImage()
-
-// import addImagePosition from "./addImagePosition";
-// addImagePosition()
-
-import randomBlock from "./randomBlock";
-randomBlock()
+import canvaseDemo from "./canvasDemo/canvaseDemo"
+canvaseDemo()
