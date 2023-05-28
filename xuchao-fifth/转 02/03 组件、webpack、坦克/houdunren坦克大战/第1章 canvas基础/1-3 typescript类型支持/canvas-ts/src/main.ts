@@ -1,5 +1,5 @@
 // import canvaseBase from "./canvasBase/canvaseBase";
 // canvaseBase()
 
-import canvaseDemo from "./canvasDemo/canvaseDemo"
-canvaseDemo()
+import canvasDemo from "./canvasDemo/canvasDemo"
+canvasDemo()
