@@ -4,5 +4,5 @@
 // import canvasDemo from "./canvasDemo/canvasDemo"
 // canvasDemo()
 
-import tank from "./tank/tank"
-tank()
+import tankProject from "./tank/tankProject"
+tankProject()
