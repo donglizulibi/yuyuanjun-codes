@@ -1,10 +1,13 @@
 import canvasAbstract from "./canvasAbstract";
 
 class tank extends canvasAbstract {
+  render(): void {
+
+  }
   constructor() {
     super();
-    this.canvas.fillStyle = "black";
-    this.canvas.fillRect(0, 0, 100, 100);
+    this.canvas.fillStyle = "green";
+    this.canvas.fillRect(0,0,this.el.width,this.el.height)
   }
 }
 

@@ -1,11 +1,13 @@
 import canvasAbstract from "./canvasAbstract"
+import config from "../config"
 
 class straw extends canvasAbstract{
- constructor(){
-    super()
-    this.canvas.fillStyle = 'white'
-    this.canvas.fillRect(0,0,100,100)
- }
+   constructor(){
+      super() 
+   }
+   render(): void {
+      this.drawModels(config.straw.num)
+   }
 }
 
 const strawApp = new straw()
