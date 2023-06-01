@@ -3,7 +3,7 @@ import config from "./config.ts";
 import straw from "./canvas/straw.ts";
 // import "./canvas/tank.ts"
 
-import { image } from "./service/image.ts";
+// import { image } from "./service/image.ts";
 
 import { promises } from "./service/image.ts";
 console.log(promises);

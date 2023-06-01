@@ -1,3 +1,4 @@
+{
 // 在类中的内置属性，访问器和constructor参数中调用interface接口
 interface UserInterface {
   name: string;
@@ -16,3 +17,6 @@ class User {
 
 const user = new User({name:'houdunren',age:19,gender:'male'})
 console.log(user.info)
+
+
+}

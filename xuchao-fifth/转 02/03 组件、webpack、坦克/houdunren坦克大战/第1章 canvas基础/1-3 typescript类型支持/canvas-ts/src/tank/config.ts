@@ -5,7 +5,7 @@ export default {
     height: 600,
   },
   straw: {
-    num: 20,
+    num: 50,
   },
   model: {
     width: 30,
