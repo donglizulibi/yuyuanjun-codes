@@ -1,9 +1,10 @@
 import "./tankStyle.scss";
 import config from "./config.ts";
-import straw from "./canvas/straw.ts";
-// import "./canvas/tank.ts"
+import strawCanvas from "./canvas/straw.ts";
+import wallCanvas from "./canvas/wall.ts"
+import waterCanvas from "./canvas/water.ts"
+import steelCanvas from "./canvas/steel.ts"
 
-// import { image } from "./service/image.ts";
 
 import { promises } from "./service/image.ts";
 console.log(promises);
@@ -17,10 +18,12 @@ export default function tankProject() {
     const all = await Promise.all(promises) // 第一步 加载贴图
     console.log(all)
 
-    straw.render() // 第二步 渲染画布
+    strawCanvas.render() // 第二步 渲染画布
+
+    wallCanvas.render()
+    waterCanvas.render()
+    steelCanvas.render()
   }
-  //   console.log(image)
-  //   console.log(image.get('straw'))
 
   bootstrap();
 

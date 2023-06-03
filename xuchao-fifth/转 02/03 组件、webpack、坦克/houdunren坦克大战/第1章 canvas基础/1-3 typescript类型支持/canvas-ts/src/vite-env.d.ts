@@ -1,5 +1,12 @@
-declare module '*.png'
+// 此文件用来指定全局类型
 
-interface ModelConstructor{
-    new(canvas:CanvasRenderingContext2D,)
+declare module "*.png";
+declare module "*.gif";
+
+interface ModelConstructor {
+  new (canvas: CanvasRenderingContext2D, x: number, y: number): IModel;
+}
+
+interface IModel {
+  renderModel(): void;
 }
