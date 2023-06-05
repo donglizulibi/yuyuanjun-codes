@@ -1,14 +1,31 @@
 import canvasAbstract from "./canvasAbstract";
+import tankModel from "../model/tank";
+import config from "../config";
+import position from "../service/position";
 
-class tank extends canvasAbstract {
-  render(): void {
+class tank extends canvasAbstract implements ICanvas {
+  num(): number {
+    return config.tank.num;
+  }
+  model(): ModelConstructor {
+    return tankModel;
+  }
+  render() {
+    this.createModels();
+    super.renderModels();
+  }
 
+  createModels() {
+    new Array(this.num()).fill("").forEach(() => {
+      const pos = position.position();
+      const model = this.model();
+      const Yposition = Math.floor(Math.random() * 2) * 30;
+      const instance = new model(this.canvas, pos.x, Yposition);
+      this.models.push(instance);
+    });
   }
-  constructor() {
-    super();
-    this.canvas.fillStyle = "green";
-    this.canvas.fillRect(0,0,this.el.width,this.el.height)
-  }
+
+  // 坦克的生成需要都出现在画布上方的空白处，且可以重复，所以createModels方法需要重写
 }
 
 const tankApp = new tank();

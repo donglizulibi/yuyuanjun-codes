@@ -1,15 +1,18 @@
 import canvasAbstract from "./canvasAbstract.ts";
 import config from "../config.ts";
-import wallModel from "../model/wall.ts";
 import steelModel from "../model/steel.ts";
 
-class steel extends canvasAbstract {
-  constructor() {
-      super();
-      super.createModel(config.wall.num, steelModel);
+class steel extends canvasAbstract implements ICanvas{
+  num(): number {
+    return config.steel.num;
   }
+  model(): ModelConstructor {
+    return steelModel;
+  }
+
   render(): void {
-    super.renderModels()
+    super.createModels();
+    super.renderModels();
   }
 }
 

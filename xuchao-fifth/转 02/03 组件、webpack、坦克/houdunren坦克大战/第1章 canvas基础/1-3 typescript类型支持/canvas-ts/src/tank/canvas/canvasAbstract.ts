@@ -3,6 +3,9 @@ import position from "../service/position";
 
 export default abstract class canvasAbstract {
   protected models: IModel[] = [];
+  protected abstract num():number;
+  protected abstract model():ModelConstructor
+
   constructor(
     protected app = document.querySelector<HTMLDivElement>("#app")!,
     protected el = document.createElement("canvas"),
@@ -20,9 +23,11 @@ export default abstract class canvasAbstract {
 
   // 某些模型, 比如坦克需要不断渲染, 所以在这里模型的创建和渲染需要分开
   // 避免会不断创建实例
-  protected createModel(num: number, model: ModelConstructor) {
+  protected createModels() {
     // console.log(model)
-    position.positionCollection(num).forEach((position) => {
+    position.positionCollection(this.num()).forEach((position) => {
+      // console.log(this.model())
+      const model = this.model()
       const instance = new model(this.canvas, position.x, position.y);
       this.models.push(instance);
       // console.log(instance)

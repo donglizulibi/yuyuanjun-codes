@@ -2,6 +2,7 @@ import straw from "./static/images/straw/straw.png";
 import wall from "./static/images/wall/wall.gif";
 import water from "./static/images/water/water.gif";
 import steel from "./static/images/wall/steels.gif"
+import tank from "./static/images/tank/left.gif"
 export default {
   canvas: {
     width: 900,
@@ -19,6 +20,9 @@ export default {
   steel: {
     num: 50,
   },
+  tank: {
+    num: 40,
+  },
   model: {
     width: 30,
     height: 30,
@@ -27,6 +31,7 @@ export default {
     straw,
     wall,
     water,
-    steel
+    steel,
+    tank
   },
 };

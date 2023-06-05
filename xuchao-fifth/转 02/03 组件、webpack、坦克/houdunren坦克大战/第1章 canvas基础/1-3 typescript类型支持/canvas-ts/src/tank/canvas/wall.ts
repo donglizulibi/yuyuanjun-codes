@@ -2,13 +2,17 @@ import canvasAbstract from "./canvasAbstract";
 import config from "../config";
 import wallModel from "../model/wall.ts";
 
-class wall extends canvasAbstract {
-  constructor() {
-      super();
-      super.createModel(config.wall.num, wallModel);
+class wall extends canvasAbstract implements ICanvas {
+  num(): number {
+    return config.wall.num;
   }
+  model(): ModelConstructor {
+    return wallModel;
+  }
+
   render(): void {
-    super.renderModels()
+    super.createModels();
+    super.renderModels();
   }
 }
 
