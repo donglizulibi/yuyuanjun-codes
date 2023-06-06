@@ -46,7 +46,7 @@ class Position {
         }
       }
     }
-    console.log(this.allPositionColletion);
+    // console.log(this.allPositionColletion);
     return colletion;
   }
 }

@@ -3,8 +3,8 @@ import position from "../service/position";
 
 export default abstract class canvasAbstract {
   protected models: IModel[] = [];
-  protected abstract num():number;
-  protected abstract model():ModelConstructor
+  protected abstract num(): number;
+  protected abstract model(): ModelConstructor;
 
   constructor(
     protected app = document.querySelector<HTMLDivElement>("#app")!,
@@ -27,7 +27,7 @@ export default abstract class canvasAbstract {
     // console.log(model)
     position.positionCollection(this.num()).forEach((position) => {
       // console.log(this.model())
-      const model = this.model()
+      const model = this.model();
       const instance = new model(this.canvas, position.x, position.y);
       this.models.push(instance);
       // console.log(instance)
@@ -36,8 +36,17 @@ export default abstract class canvasAbstract {
   }
 
   protected renderModels() {
-    // console.log(123123123)
-    this.models.forEach((model) => model.renderModel());
+    // console.log(123)
+    this.models.forEach((model) => {
+      model.renderModel()
+      // this.canvas.drawImage(
+      //   model.image(),
+      //   model.x,
+      //   model.y,
+      //   config.model.height,
+      //   config.model.width
+      // );
+    });
   }
 
   // 把这两个position相关的方法放到service中

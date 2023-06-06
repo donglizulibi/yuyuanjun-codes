@@ -5,8 +5,8 @@ type mapKey = keyof typeof config.images;
 const image = new Map<mapKey, HTMLImageElement>();
 
 const promises = Object.entries(config.images).map(([key, value]) => {
-  console.log(key, value);
-  
+  // console.log(key, value);
+
   return new Promise((resolve) => {
     const img = document.createElement("img");
     img.src = value;

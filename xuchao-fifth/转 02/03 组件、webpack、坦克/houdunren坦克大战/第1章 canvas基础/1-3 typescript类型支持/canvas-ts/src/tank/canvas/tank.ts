@@ -12,9 +12,17 @@ class tank extends canvasAbstract implements ICanvas {
   }
   render() {
     this.createModels();
-    super.renderModels();
+    this.renderModels();
+
+    setInterval(() => {
+      this.renderModels();
+    }, config.timeout);
   }
 
+  protected renderModels(): void {
+    this.canvas.clearRect(0, 0, config.canvas.width, config.canvas.height);
+    super.renderModels();
+  }
   createModels() {
     new Array(this.num()).fill("").forEach(() => {
       const pos = position.position();

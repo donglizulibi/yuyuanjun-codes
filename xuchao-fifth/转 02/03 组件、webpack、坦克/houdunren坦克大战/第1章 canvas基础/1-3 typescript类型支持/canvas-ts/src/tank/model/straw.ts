@@ -1,7 +1,11 @@
 import modelAbstract from "./modelAbstract";
+import { image } from "../service/image";
 
 export default class strawModel extends modelAbstract implements IModel {
-    renderModel(): void {
-        super.draw('straw')
-    }
+  image(): HTMLImageElement {
+    return image.get("straw")!;
+  }
+  renderModel(): void {
+    this.draw()
+  }
 }
