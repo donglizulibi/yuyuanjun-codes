@@ -2,7 +2,8 @@ import canvasAbstract from "./canvasAbstract.ts";
 import config from "../config.ts";
 import steelModel from "../model/steel.ts";
 
-class steel extends canvasAbstract implements ICanvas{
+class steel extends canvasAbstract implements ICanvas {
+  name: string = "steel";
   num(): number {
     return config.steel.num;
   }
@@ -16,5 +17,5 @@ class steel extends canvasAbstract implements ICanvas{
   }
 }
 
-const steelInstance = new steel();
+const steelInstance = new steel("steel");
 export default steelInstance;

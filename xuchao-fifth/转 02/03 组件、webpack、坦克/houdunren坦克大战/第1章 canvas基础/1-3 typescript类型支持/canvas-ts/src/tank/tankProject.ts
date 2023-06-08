@@ -5,6 +5,7 @@ import wallCanvas from "./canvas/wall.ts"
 import waterCanvas from "./canvas/water.ts"
 import steelCanvas from "./canvas/steel.ts"
 import tankCanvas from "./canvas/tank.ts"
+import bulletCanvas from "./canvas/bullet.ts";
 
 
 import { promises } from "./service/image.ts";
@@ -24,7 +25,10 @@ export default function tankProject() {
     wallCanvas.render()
     waterCanvas.render()
     steelCanvas.render()
-    tankCanvas.render()
+
+
+    // tankCanvas.render()
+    // bulletCanvas.render()
   }
 
   bootstrap();

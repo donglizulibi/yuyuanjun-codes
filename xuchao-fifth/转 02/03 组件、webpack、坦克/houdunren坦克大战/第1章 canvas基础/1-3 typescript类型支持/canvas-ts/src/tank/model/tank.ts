@@ -2,10 +2,19 @@ import modelAbstract from "./modelAbstract";
 import { directionEnum } from "../enum/directionEnum";
 import { image } from "../service/image";
 import { modelType } from "../enum/modelType";
-import config from "../config";
+import tankApp from "../canvas/tank";
+import util from "../util";
 
 export default class tankModel extends modelAbstract implements IModel {
+  public canvas: ICanvas = tankApp;
   renderModel(): void {
+    if (
+      (this.direction == directionEnum.left ||
+        this.direction == directionEnum.right) &&
+      Math.floor(Math.random() * 3) == 1
+    ) {
+      this.direction = directionEnum.bottom;
+    }
     this.move();
   }
 
@@ -19,7 +28,6 @@ export default class tankModel extends modelAbstract implements IModel {
 
   protected move() {
     while (true) {
-        // console.log(1)
       let x = this.x;
       let y = this.y;
 
@@ -37,7 +45,7 @@ export default class tankModel extends modelAbstract implements IModel {
           x++;
           break;
       }
-      if (this.isTouch(x, y) === true) {
+      if (util.isModelTouch(x, y) || util.isCanvasTouch(x,y)) {
         this.randomDirection();
       } else {
         this.x = x;
@@ -46,16 +54,5 @@ export default class tankModel extends modelAbstract implements IModel {
       }
     }
     super.draw();
-  }
-
-  isTouch(x: number, y: number) {
-    if (
-      x <= 0 ||
-      x + this.width > config.canvas.width ||
-      y <= 0 ||
-      y + this.height > config.canvas.height
-    ) {
-      return true;
-    }
   }
 }

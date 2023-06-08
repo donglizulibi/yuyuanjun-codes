@@ -2,19 +2,29 @@
 
 declare module "*.png";
 declare module "*.gif";
+declare module "*.jpg";
 
 interface ModelConstructor {
-  new (canvas: CanvasRenderingContext2D, x: number, y: number): IModel;
+  new (x: number, y: number): IModel;
+}
+interface BulletModelConstructor {
+  new (tank: IModel): IModel;
 }
 
 interface IModel {
   renderModel(): void;
   image(): HTMLImageElement;
+  tank?: IModel;
   x: number;
   y: number;
+  width: number;
+  height: number;
+  direction: directionEnum;
 }
 
 interface ICanvas {
-  model(): ModelConstructor;
+  model(): ModelConstructor | BulletModelConstructor;
   num(): number;
+  ctx: CanvasRenderingContext2D;
+  removeCanvas(model: IModel): void;
 }

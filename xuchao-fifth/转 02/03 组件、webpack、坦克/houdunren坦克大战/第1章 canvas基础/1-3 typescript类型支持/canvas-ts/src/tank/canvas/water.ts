@@ -3,6 +3,7 @@ import config from "../config.ts";
 import waterModel from "../model/water.ts";
 
 class water extends canvasAbstract implements ICanvas {
+  name: string = "water";
   num(): number {
     return config.water.num;
   }
@@ -16,5 +17,5 @@ class water extends canvasAbstract implements ICanvas {
   }
 }
 
-const waterInstance = new water();
+const waterInstance = new water("water");
 export default waterInstance;

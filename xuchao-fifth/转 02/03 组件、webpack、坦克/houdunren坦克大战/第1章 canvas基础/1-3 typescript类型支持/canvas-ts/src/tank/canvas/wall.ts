@@ -3,6 +3,7 @@ import config from "../config";
 import wallModel from "../model/wall.ts";
 
 class wall extends canvasAbstract implements ICanvas {
+  name: string = "wall";
   num(): number {
     return config.wall.num;
   }
@@ -16,5 +17,5 @@ class wall extends canvasAbstract implements ICanvas {
   }
 }
 
-const wallInstance = new wall();
+const wallInstance = new wall("wall");
 export default wallInstance;

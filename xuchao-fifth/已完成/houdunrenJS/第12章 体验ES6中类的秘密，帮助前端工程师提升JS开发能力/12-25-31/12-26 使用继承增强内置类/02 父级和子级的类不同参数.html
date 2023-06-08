@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class User {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+
+            add() {
+                return this.x + this.y;
+            }
+        }
+
+        console.log(new User(1, 3).add());
+
+        class Render extends User {
+            constructor(obj) {
+                super(obj.x, obj.y);
+            }
+            show() {
+                return this.add() * 2;
+            }
+        }
+
+        let obj = {
+            x: 2,
+            y: 3
+        };
+
+        let r = new Render(obj)
+        console.log(r);
+        console.log(r.show());
+    </script>
+</body>
+
+</html>

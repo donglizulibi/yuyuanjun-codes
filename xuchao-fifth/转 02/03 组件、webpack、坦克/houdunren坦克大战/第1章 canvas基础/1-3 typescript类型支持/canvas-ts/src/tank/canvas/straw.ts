@@ -3,6 +3,7 @@ import config from "../config";
 import strawModel from "../model/straw.ts";
 
 class straw extends canvasAbstract implements ICanvas {
+  name: string = "straw";
   num(): number {
     return config.straw.num;
   }
@@ -16,6 +17,6 @@ class straw extends canvasAbstract implements ICanvas {
   }
 }
 
-const strawInstance = new straw();
+const strawInstance = new straw("straw");
 // console.log(strawInstance);
 export default strawInstance;
