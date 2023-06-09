@@ -4,8 +4,11 @@ import bulletInstance from "../canvas/bullet";
 import config from "../config";
 import { directionEnum } from "../enum/directionEnum";
 import util from "../util";
+import wallInstance from "../canvas/wall";
+import steelInstance from "../canvas/steel";
 
 export default class bulletModel extends modelAbstract implements IModel {
+  name: string = "bullet";
   public canvas: ICanvas = bulletInstance;
   constructor(public tank: IModel) {
     super(
@@ -18,10 +21,6 @@ export default class bulletModel extends modelAbstract implements IModel {
     return image.get("bullet")!;
   }
   renderModel(): void {
-    // console.log(123)
-    // console.log(this.x)
-
-    // console.log(this.direction);
     let x = this.x;
     let y = this.y;
     switch (this.direction) {
@@ -38,7 +37,32 @@ export default class bulletModel extends modelAbstract implements IModel {
         x -= 2;
         break;
     }
+    const touchModel = util.isModelTouch(
+      x,
+      y,
+      config.bullet.width,
+      config.bullet.height,
+      [...wallInstance.models, ...steelInstance.models]
+    );
+    const touchModelSteel = util.isModelTouch(
+      x,
+      y,
+      config.bullet.width,
+      config.bullet.height,
+      steelInstance.models
+    );
     if (util.isCanvasTouch(x, y, config.bullet.width, config.bullet.height)) {
+      this.destroy();
+    } else if (touchModel) {
+      this.destroy();
+      if (touchModel.name == "wall") {
+        touchModel.destroy();
+      }
+      this.blash(touchModel);
+
+
+
+    } else if (touchModelSteel) {
       this.destroy();
     } else {
       this.x = x;

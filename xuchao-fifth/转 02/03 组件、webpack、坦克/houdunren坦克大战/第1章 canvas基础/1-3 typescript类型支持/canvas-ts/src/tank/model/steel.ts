@@ -3,11 +3,12 @@ import { image } from "../service/image";
 import steelInstance from "../canvas/steel";
 
 export default class steelModel extends modelAbstract implements IModel {
-  public canvas: ICanvas = steelInstance
+  name: string = "steel";
+  public canvas: ICanvas = steelInstance;
   image(): HTMLImageElement {
     return image.get("steel")!;
   }
   renderModel(): void {
-    this.draw()
+    this.draw();
   }
 }

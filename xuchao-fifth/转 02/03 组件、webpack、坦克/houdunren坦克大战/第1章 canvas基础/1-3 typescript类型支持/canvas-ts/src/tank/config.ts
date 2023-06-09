@@ -14,25 +14,27 @@ export default {
     height: 600,
   },
   straw: {
-    num: 120,
+    num: 10,
   },
   wall: {
-    num: 30,
+    num: 200,
   },
   water: {
-    num: 30,
+    num: 5,
   },
   steel: {
-    num: 20,
+    num: 30,
   },
   tank: {
-    num: 1,
+    num: 2,
+    speed:20
   },
   bullet: {
     width: 4,
     height: 4,
+    speed: 20,
   },
-  timeout: 20,
+
   model: {
     width: 30,
     height: 30,

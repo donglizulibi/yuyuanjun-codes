@@ -1,8 +1,9 @@
 import modelAbstract from "./modelAbstract";
 import { image } from "../service/image";
-import wallInstance from "../canvas/wall";
+import waterInstance from "../canvas/water";
 export default class waterModel extends modelAbstract implements IModel {
-  public canvas: ICanvas = wallInstance;
+  name: string = "water";
+  public canvas: ICanvas = waterInstance;
   image(): HTMLImageElement {
     return image.get("water")!;
   }

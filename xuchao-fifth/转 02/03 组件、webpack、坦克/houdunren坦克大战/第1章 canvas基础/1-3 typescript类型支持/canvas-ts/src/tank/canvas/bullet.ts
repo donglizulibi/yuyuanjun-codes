@@ -19,14 +19,14 @@ class bullet extends canvasAbstract implements ICanvas {
     setInterval(() => {
       this.createBullet();
       this.renderModels();
-    }, 20);
+    }, config.bullet.speed);
    
   }
 
   renderBullet() {
   }
 
-  protected renderModels(): void {
+  public renderModels(): void {
     this.ctx.clearRect(0, 0, config.canvas.width, config.canvas.height);
     super.renderModels();
   }

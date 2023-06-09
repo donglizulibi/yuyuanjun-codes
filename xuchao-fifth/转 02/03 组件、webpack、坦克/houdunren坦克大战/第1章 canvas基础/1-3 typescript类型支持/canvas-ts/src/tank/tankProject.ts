@@ -27,8 +27,8 @@ export default function tankProject() {
     steelCanvas.render()
 
 
-    // tankCanvas.render()
-    // bulletCanvas.render()
+    tankCanvas.render()
+    bulletCanvas.render()
   }
 
   bootstrap();

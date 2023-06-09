@@ -6,6 +6,7 @@ import tankApp from "../canvas/tank";
 import util from "../util";
 
 export default class tankModel extends modelAbstract implements IModel {
+  name: string = "tank";
   public canvas: ICanvas = tankApp;
   renderModel(): void {
     if (
@@ -45,7 +46,7 @@ export default class tankModel extends modelAbstract implements IModel {
           x++;
           break;
       }
-      if (util.isModelTouch(x, y) || util.isCanvasTouch(x,y)) {
+      if (util.isModelTouch(x, y) || util.isCanvasTouch(x, y)) {
         this.randomDirection();
       } else {
         this.x = x;

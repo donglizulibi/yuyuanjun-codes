@@ -17,12 +17,11 @@ export default abstract class canvasAbstract {
   }
 
   abstract render(): void;
-  public removeCanvas(model:IModel){
+  public removeCanvas(model: IModel) {
     // console.log(this.models)
-    
-    const arr = this.models.filter(item=>item!=model)
-    this.models = arr
 
+    const arr = this.models.filter((item) => item != model);
+    this.models = arr;
   }
   protected createCanvas() {
     this.el.width = config.canvas.width;
@@ -45,7 +44,9 @@ export default abstract class canvasAbstract {
     // console.log(this.models);
   }
 
-  protected renderModels() {
+  public renderModels() {
+    // console.log(this.models)
+    this.ctx.clearRect(0, 0, config.canvas.width, config.canvas.height);
     this.models.forEach((model) => {
       model.renderModel();
     });
