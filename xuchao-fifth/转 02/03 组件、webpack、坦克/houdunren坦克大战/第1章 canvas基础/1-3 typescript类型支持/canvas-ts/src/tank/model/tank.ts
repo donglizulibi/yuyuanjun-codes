@@ -27,7 +27,7 @@ export default class tankModel extends modelAbstract implements IModel {
     return image.get(tankDirection as modelType)!;
   }
 
-  protected move() {
+  move() {
     while (true) {
       let x = this.x;
       let y = this.y;

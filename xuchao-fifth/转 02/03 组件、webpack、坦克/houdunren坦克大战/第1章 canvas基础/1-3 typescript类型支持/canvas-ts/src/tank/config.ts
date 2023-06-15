@@ -7,7 +7,11 @@ import tankRight from "./static/images/tank/right.gif";
 import tankTop from "./static/images/tank/top.gif";
 import tankBottom from "./static/images/tank/bottom.gif";
 import bullet from "./static/images/bullet/bullet.jpg";
-import boss from "./static/images/boss/boss.png"
+import boss from "./static/images/boss/boss.png";
+import playerTop from "./static/images/player/top.gif";
+import playerLeft from "./static/images/player/left.gif";
+import playerBottom from "./static/images/player/bottom.gif";
+import playerRight from "./static/images/player/right.gif";
 
 export default {
   canvas: {
@@ -15,25 +19,28 @@ export default {
     height: 600,
   },
   straw: {
-    num: 10,
+    num: 20,
   },
   wall: {
-    num: 200,
+    num: 100,
   },
   water: {
-    num: 5,
+    num: 20,
+  },
+  player: {
+    speed: 15,
   },
   steel: {
-    num: 30,
+    num: 20,
   },
   tank: {
     num: 2,
-    speed:20
+    speed: 20,
   },
   bullet: {
     width: 4,
     height: 4,
-    speed: 20,
+    timeout: 20,
   },
 
   model: {
@@ -50,6 +57,10 @@ export default {
     tankBottom,
     tankRight,
     bullet,
-    boss
+    boss,
+    playerBottom,
+    playerLeft,
+    playerTop,
+    playerRight,
   },
 };

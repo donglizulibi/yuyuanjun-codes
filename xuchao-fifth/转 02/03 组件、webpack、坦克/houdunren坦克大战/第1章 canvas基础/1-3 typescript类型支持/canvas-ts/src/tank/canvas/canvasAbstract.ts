@@ -5,7 +5,7 @@ export default abstract class canvasAbstract {
   // abstract name: string;
   public models: IModel[] = [];
   protected abstract num(): number;
-  protected abstract model(): ModelConstructor | BulletModelConstructor;
+  protected abstract model(): ModelConstructor | BulletModelConstructor | BossModelConstructor;
 
   constructor(
     public name: string,
@@ -19,9 +19,10 @@ export default abstract class canvasAbstract {
   abstract render(): void;
   public removeCanvas(model: IModel) {
     // console.log(this.models)
-
     const arr = this.models.filter((item) => item != model);
     this.models = arr;
+    // console.log(this.models)
+
   }
   protected createCanvas() {
     this.el.width = config.canvas.width;
@@ -45,7 +46,7 @@ export default abstract class canvasAbstract {
   }
 
   public renderModels() {
-    // console.log(this.models)
+    // console.log(this)
     this.ctx.clearRect(0, 0, config.canvas.width, config.canvas.height);
     this.models.forEach((model) => {
       model.renderModel();

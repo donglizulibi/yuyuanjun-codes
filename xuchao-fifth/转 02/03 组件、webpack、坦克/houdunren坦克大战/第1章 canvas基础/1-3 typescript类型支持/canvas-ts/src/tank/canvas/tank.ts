@@ -5,6 +5,10 @@ import position from "../service/position";
 
 class tank extends canvasAbstract implements ICanvas {
   name: string = "tank";
+  interval = 0;
+  stop() {
+    clearInterval(this.interval);
+  }
   num(): number {
     return config.tank.num;
   }
@@ -13,13 +17,10 @@ class tank extends canvasAbstract implements ICanvas {
   }
   render() {
     this.createModels();
-    
-    setInterval(() => {
+    this.interval = setInterval(() => {
+      super.renderModels();
     }, config.tank.speed);
-    super.renderModels();
   }
-
- 
 
   // public renderModels(): void {
   //   this.ctx.clearRect(0, 0, config.canvas.width, config.canvas.height);

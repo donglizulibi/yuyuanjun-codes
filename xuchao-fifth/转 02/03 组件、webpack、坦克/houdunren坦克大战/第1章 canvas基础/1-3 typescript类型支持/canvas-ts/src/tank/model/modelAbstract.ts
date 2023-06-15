@@ -8,6 +8,7 @@ import config from "../config";
 // import blash5 from "../static/images/blasts/blast5.gif";
 // import blash6 from "../static/images/blasts/blast6.gif";
 import blash from "../static/images/blasts/blast7.gif";
+import music from "../service/music";
 export default abstract class modelAbstract {
   // 在这里定义一个抽象方法render，则往后的子类都需要有render方法
   // 每一层画布都需要有加载图片这个动作，如果还有其他的特性动作，可以放在render方法里
@@ -35,10 +36,10 @@ export default abstract class modelAbstract {
 
   public abstract image(): HTMLImageElement;
 
-  protected steelBlash(model:IModel) {
+  protected distanceBlash(model: IModel) {
     let x = model.x;
     let y = model.y;
-    const distance = 10
+    const distance = 10;
     switch (this.direction) {
       case directionEnum.top:
         y += distance;
@@ -56,14 +57,15 @@ export default abstract class modelAbstract {
     return { x, y };
   }
   protected blash(model: IModel) {
-    const steelPosition = this.steelBlash(model);
+    music.blast()
+    const distancePosition = this.distanceBlash(model);
     const wallPosition = {
       x: model.x,
       y: model.y,
     };
     let modelVal: { x: number; y: number };
     if (model.name == "steel") {
-      modelVal = steelPosition;
+      modelVal = distancePosition;
     } else {
       modelVal = wallPosition;
     }
@@ -86,8 +88,8 @@ export default abstract class modelAbstract {
       this.image(),
       this.x,
       this.y,
-      config.model.height,
-      config.model.width
+      this.height,
+      this.width
     );
   }
   public destroy() {

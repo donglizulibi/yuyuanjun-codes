@@ -6,6 +6,9 @@ import { directionEnum } from "../enum/directionEnum";
 import util from "../util";
 import wallInstance from "../canvas/wall";
 import steelInstance from "../canvas/steel";
+import bossInstance from "../canvas/boss";
+import tankApp from "../canvas/tank";
+import playerApp from "../canvas/player";
 
 export default class bulletModel extends modelAbstract implements IModel {
   name: string = "bullet";
@@ -23,18 +26,20 @@ export default class bulletModel extends modelAbstract implements IModel {
   renderModel(): void {
     let x = this.x;
     let y = this.y;
+    let speed = this.tank.name == "player" ? 4 : 1;
+    // console.log(this.tank)
     switch (this.direction) {
       case directionEnum.top:
-        y -= 2;
+        y -= speed;
         break;
       case directionEnum.right:
-        x += 2;
+        x += speed;
         break;
       case directionEnum.bottom:
-        y += 2;
+        y += speed;
         break;
       case directionEnum.left:
-        x -= 2;
+        x -= speed;
         break;
     }
     const touchModel = util.isModelTouch(
@@ -42,28 +47,24 @@ export default class bulletModel extends modelAbstract implements IModel {
       y,
       config.bullet.width,
       config.bullet.height,
-      [...wallInstance.models, ...steelInstance.models]
+      [
+        ...wallInstance.models,
+        ...steelInstance.models,
+        ...bossInstance.models,
+        ...tankApp.models,
+        ...playerApp.models,
+      ]
     );
-    const touchModelSteel = util.isModelTouch(
-      x,
-      y,
-      config.bullet.width,
-      config.bullet.height,
-      steelInstance.models
-    );
+
+
     if (util.isCanvasTouch(x, y, config.bullet.width, config.bullet.height)) {
       this.destroy();
-    } else if (touchModel) {
+    } else if (touchModel && touchModel.name !== this.tank.name) {
       this.destroy();
-      if (touchModel.name == "wall") {
+      if (touchModel.name !== "steel") {
         touchModel.destroy();
       }
       this.blash(touchModel);
-
-
-
-    } else if (touchModelSteel) {
-      this.destroy();
     } else {
       this.x = x;
       this.y = y;

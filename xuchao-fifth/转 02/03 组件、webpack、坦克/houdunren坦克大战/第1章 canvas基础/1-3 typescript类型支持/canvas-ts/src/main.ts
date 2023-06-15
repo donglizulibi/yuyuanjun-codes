@@ -4,5 +4,5 @@
 // import canvasDemo from "./canvasDemo/canvasDemo"
 // canvasDemo()
 
-import tankProject from "./tank/tankProject"
-tankProject()
+import tankApp from "./tank/tankApp.ts"
+tankApp()

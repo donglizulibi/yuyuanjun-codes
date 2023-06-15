@@ -2,6 +2,7 @@ import config from "./config";
 import wallInstance from "./canvas/wall";
 import waterInstance from "./canvas/water";
 import steelInstance from "./canvas/steel";
+import bossInstance from "./canvas/boss";
 export default {
   isCanvasTouch(
     x: number,
@@ -29,6 +30,7 @@ export default {
       ...waterInstance.models,
       ...wallInstance.models,
       ...steelInstance.models,
+      ...bossInstance.models
     ]
   ): IModel | undefined {
     // console.log(models)

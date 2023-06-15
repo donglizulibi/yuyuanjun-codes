@@ -21,7 +21,6 @@ class Position {
         ) * config.model.height,
     };
   }
-
   public positionCollection(num: number) {
     const colletion = [] as colletionInterface[];
     for (let i = 0; i < num; i++) {

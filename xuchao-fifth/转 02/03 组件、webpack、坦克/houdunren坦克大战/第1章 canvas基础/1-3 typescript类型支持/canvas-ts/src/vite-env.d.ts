@@ -4,11 +4,15 @@ declare module "*.png";
 declare module "*.gif";
 declare module "*.jpg";
 
+interface BossModelConstructor {
+  new (x: number, y: number, height: number, width: number): IModel;
+}
 interface ModelConstructor {
   new (x: number, y: number): IModel;
+  isOver?: boolean;
 }
 interface BulletModelConstructor {
-  new (tank: IModel): IModel;
+  new (tank: IModel | undefined): IModel;
 }
 
 interface IModel {
@@ -22,10 +26,12 @@ interface IModel {
   height: number;
   direction: directionEnum;
   destroy(): void;
+  move?(event: KeyboardEvent): void;
+  changeDirection?(event: KeyboardEvent): void;
 }
 
 interface ICanvas {
-  model(): ModelConstructor | BulletModelConstructor;
+  model(): ModelConstructor | BulletModelConstructor | BossModelConstructor;
   num(): number;
   ctx: CanvasRenderingContext2D;
   removeCanvas(model: IModel): void;
