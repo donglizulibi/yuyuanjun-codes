@@ -3,9 +3,13 @@
     <h4>控制class样式</h4>
     <class-control></class-control>
 
+    <br />
+    <br />
     <h4>根据数据中的条件控制样式</h4>
     <class-list></class-list>
 
+    <br />
+    <br />
     <h4>父组件的样式通过$attrs.class作用到子组件</h4>
     <class-style class="cs"></class-style>
   </div>

@@ -1,6 +1,7 @@
 <template>
   <div class="ClassControl">
     <div :class="[{ current: active }]">houdunren</div>
+    <!-- <div :class="{ current: active }">houdunren</div> -->
     <button @click="btn">控制背景颜色</button>
     <!-- 关于绑定样式的控制，可以把需要绑定的样式以“样式名称:布尔值”的形式 -->
     <!-- 放到一个对象里，然后直接放到:class后面绑定起来 -->

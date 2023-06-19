@@ -96,7 +96,9 @@ export default {
     <h2 v-on:click="fVueCompositionApiShow">6. Composition Api基础</h2>
     <f-vue-composition-api v-if="fVueCompositionApiState"></f-vue-composition-api>
 
-    <h2 v-on:click="gCompositionApiScriptSetupShow">7.CompositionApi之script-setup</h2>
+    <h2 v-on:click="gCompositionApiScriptSetupShow">
+      7.CompositionApi之script-setup（需要json-server）
+    </h2>
     <g-composition-api-script-setup
       v-if="gCompositionApiScriptSetupState"
     ></g-composition-api-script-setup>

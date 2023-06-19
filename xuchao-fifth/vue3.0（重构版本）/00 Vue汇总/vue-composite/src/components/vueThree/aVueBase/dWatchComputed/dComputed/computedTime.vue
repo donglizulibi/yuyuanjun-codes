@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- this.time会不断变化 -->
     <div>{{ date }}</div>
   </div>
 </template>
