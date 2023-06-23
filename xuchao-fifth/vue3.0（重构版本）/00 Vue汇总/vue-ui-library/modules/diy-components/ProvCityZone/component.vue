@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import data from "../../../data/prov-city-zone";
+import data from "../../../data/prov-city-zone/prov-city-zone";
 const dataArr = data.dataArr;
 export default {
   data() {

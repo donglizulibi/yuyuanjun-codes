@@ -1,0 +1,10 @@
+总述
+1 作为一个组件库或者其他插件，需要在项目的main.js中全局引用
+  并使用vue实例的use方法注册
+  
+2 在自定义组件库中，导出一个install方法，main.js中的use方法
+  需要传入一个包含install方法的对象
+
+3 
+
+transfer
