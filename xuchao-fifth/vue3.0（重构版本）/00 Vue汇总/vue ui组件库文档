@@ -5,6 +5,19 @@
 2 在自定义组件库中，导出一个install方法，main.js中的use方法
   需要传入一个包含install方法的对象
 
-3 
+3 引入文件的时候，省略vue和js文件的后缀名 
+  在vite.config.js文件中的defineConfig配置里加上
+  resolve: { extensions: ['.vue', '.js'] }
+
+4 统一管理全局组件的方式
+  1） 把所有全局组件写好放在一个文件夹中
+  2） 在文件夹中创建index.js文件，导入所有全局组件，放在一个容器保存
+  3） 默认导出install函数，函数参数为app，在install函数内部遍历容器内的组件
+  4） 逐个在参数app上进行注册 app.component(comp, components[comp])
+  5） 在main.js文件中引入index.js或者其所在文件夹，调用实例的use方法并传入index.js的数据
+  6） 如果是需要单独注册某个全局组件，则在该组件目录下单独创建index.js，并传入install函数
+  7） 如果只是需要组件库中的某一个，不想全部注册，则可以在index文件中将各个组件再单独导出，按需导入
+
+5 
 
 transfer
