@@ -84,7 +84,9 @@ export function useChooseAll(leftListData, rightListData, checkedData, setChecke
     const checkedRight = ref(false)
 
     function chooseAll(chooseAllChecked, list, leftOrRight) {
+
         if (chooseAllChecked) {
+            checkedData[leftOrRight] = []
             list.value.forEach((item) => {
                 if (!item.disabled) {
                     setCheckedData("true", leftOrRight, item);
@@ -92,7 +94,7 @@ export function useChooseAll(leftListData, rightListData, checkedData, setChecke
                 }
             });
         } else {
-            checkedData.left = [];
+            checkedData[leftOrRight] = [];
             list.value.forEach((item) => {
                 if (!item.disabled) {
                     document.getElementById("checkbox__" + `${item.id}`).checked = false;

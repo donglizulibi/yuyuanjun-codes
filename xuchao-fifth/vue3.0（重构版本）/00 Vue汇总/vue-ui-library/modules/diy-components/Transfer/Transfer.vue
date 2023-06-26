@@ -1,90 +1,59 @@
 <template>
   <div>
-    <div>
-      <select @change="setTargetIndex($event.target.value)">
-        <option v-for="(title, index) of options" :value="index">
-          {{ title }}
-        </option>
-      </select>
-    </div>
+    <selector :data="options" @select-change="setTargetIndex"></selector>
 
     <div class="transfer">
       <div class="box left-list">
-        <h1 class="list-title">
-          <input
-            id="chooseAllLeft"
-            type="checkbox"
-            :disabled="chooseDisabledLeft()"
-            @click="chooseAllLeft($event.target.checked, leftListData, checkedData)"
-          />{{ leftTitle }}
-        </h1>
-        <div>
-          <div
-            v-for="item of leftListData"
-            :key="item.id"
-            :class="['list-item', item.disabled ? 'disabled' : '']"
-          >
-            <input
-              type="checkbox"
-              :id="'checkbox__' + item.id"
-              :disabled="item.disabled"
-              @click="setCheckedData($event.target.checked, 'left', item)"
-            />
+        <list-title
+          @choose-all="chooseAllLeft"
+          choose-all-id="chooseAllLeft"
+          :disabled-state="chooseDisabledLeft()"
+          :title="leftTitle"
+          :list-data="leftListData"
+          :checked-data="checkedData"
+          side="left"
+        ></list-title>
+        <list-data
+          @checkbox-click="setCheckedData"
+          :list-data="leftListData"
+          left-or-right="left"
+        ></list-data>
+      </div>
 
-            <label :for="'checkbox__' + item.id">
-              {{ item.phone_name }}
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="box button-group">
-        <button
-          :disabled="transferDisabled.left"
-          @click="removeRightListData(checkedData.right)"
-        >
-          &lt;
-        </button>
-        <button
-          :disabled="transferDisabled.right"
-          @click="addRightListData(checkedData.left)"
-        >
-          &gt;
-        </button>
-      </div>
+      <button-group
+        @left-button-click="removeRightListData(checkedData.right)"
+        @right-button-click="addRightListData(checkedData.left)"
+        :transfer-disabled="transferDisabled"
+      ></button-group>
+
       <div class="box right-list">
-        <h1 class="list-title">
-          <input
-            id="chooseAllRight"
-            type="checkbox"
-            :disabled="rightListData.length == 0"
-            @click="chooseAllRight($event.target.checked, rightListData, checkedData)"
-          />{{ rightTitle }}
-        </h1>
-        <div>
-          <div
-            v-for="item of rightListData"
-            :key="item.id"
-            :class="['list-item', item.disabled ? 'disabled' : '']"
-          >
-            <input
-              type="checkbox"
-              :id="'checkbox__' + item.id"
-              :disabled="item.disabled"
-              @click="setCheckedData($event.target.checked, 'right', item)"
-            />
+        <list-title
+          @choose-all="chooseAllRight"
+          choose-all-id="chooseAllRight"
+          :disabled-state="rightListData.length == 0"
+          :title="rightTitle"
+          :list-data="rightListData"
+          :checked-data="checkedData"
+          side="right"
+        ></list-title>
 
-            <label :for="'checkbox__' + item.id">
-              {{ item.phone_name }}
-            </label>
-          </div>
-        </div>
+        <list-data
+          @checkbox-click="setCheckedData"
+          :list-data="rightListData"
+          left-or-right="right"
+        ></list-data>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import Selector from "./compoments/Selector.vue";
+import ListTitle from "./compoments/ListTitle.vue";
+import ButtonGroup from "./compoments/ButtonGroup.vue";
 import propsDefination from "./extends/props";
+import ListData from "./compoments/ListData.vue";
+import "./css/style.scss";
 import {
   useRightListData,
   useTargetIndex,
@@ -134,63 +103,4 @@ const chooseDisabledLeft = () => {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.transfer {
-  height: 300px;
-  width: 360px;
-  display: flex;
-  flex-direction: row;
-  .box {
-    width: 120px;
-    height: 100%;
-    border: 1px solid grey;
-    .list-item {
-      display: flex;
-      align-items: center;
-      //   background-color: #409eff;
-      color: #666;
-      font-size: 14px;
-      height: 30px;
-      &.disabled {
-        opacity: 0.6;
-      }
-    }
-    &.button-group {
-      border-left: 1px solid grey;
-      border-right: 1px solid grey;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      button {
-        border: none;
-        outline: none;
-        border-radius: 5px;
-        width: 38px;
-        height: 38px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #409eff;
-        color: white;
-
-        &:disabled {
-          opacity: 0.6;
-        }
-      }
-    }
-    .list-title {
-      font-size: 16px;
-      height: 38px;
-      background-color: #ddd;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #666;
-      font-weight: normal;
-      margin: 0;
-      border-bottom: 1px solid #ddd;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

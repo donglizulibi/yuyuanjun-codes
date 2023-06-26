@@ -1,0 +1,13 @@
+.transfer {
+    height: 300px;
+    width: 480px;
+    display: flex;
+    flex-direction: row;
+    .box {
+        height: 100%;
+        border: 1px solid grey;
+        &:nth-child(2n + 1) {
+            width: 180px;
+        }
+    }
+}
