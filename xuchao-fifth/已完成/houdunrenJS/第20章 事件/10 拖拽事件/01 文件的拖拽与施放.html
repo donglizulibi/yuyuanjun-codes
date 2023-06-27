@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            border: 0;
+        }
+        
+        main {
+            height: 100vh;
+            width: 100vw;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            place-items: center;
+            background-color: black;
+        }
+        
+        .draggable-container {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+        }
+        
+        .draggable.droggable {
+            border-radius: 4px;
+        }
+        
+        .draggable {
+            width: 25vw;
+            height: 25vh;
+            background-color: aqua;
+        }
+        
+        .droggable {
+            position: relative;
+            height: 30vh;
+            width: 30vw;
+            border: 8px dashed aqua;
+            display: grid;
+            place-items: center;
+        }
+        
+        .droggable::before {
+            display: block;
+            content: '请放置到此区域';
+            font-size: 3vw;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .dragover {
+            border: 8px dashed orange;
+        }
+        
+        .dropped {
+            border: 8px dashed green;
+        }
+        
+        .dropped::before {
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="draggable-container">
+            <div class="draggable" id="draggable" draggable="true"></div>
+        </div>
+        <div class="droggable" id="droggable"></div>
+    </main>
+    <script>
+    </script>
+</body>
+
+</html>
