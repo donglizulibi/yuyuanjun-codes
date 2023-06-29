@@ -74,11 +74,18 @@
         <div class="draggable-container">
             <div class="draggable" id="draggable" draggable="true"></div>
         </div>
-        <div class="droggable" id="droggable"></div>
+        <div class="dropable" id="dropable"></div>
     </main>
     <script>
+        // 浏览器拖拽事件的默认处理方式是禁止拖拽
+        // 所以需要在时间函数中调用event.preventDefault()
+
+        // ondrag 拖拽开始事件，可以在事件开始时添加数据，如元素、图片或者图片
+        // ondragover 拖拽进入放置区域时触发的事件，可以用于修改放置区域的边框样式
+        // ondrop 元素放置后触发的事件
+
         const draggable = document.querySelector('#draggable')
-        const droggable = document.querySelector('#droggable')
+        const droggable = document.querySelector('#dropable')
     </script>
 </body>
 
