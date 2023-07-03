@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            border: 0;
+        }
+        
+        main {
+            height: 100vh;
+            width: 100vw;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            place-items: center;
+            background-color: black;
+        }
+        
+        .draggable-container {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+        }
+        
+        .draggable .droppable {
+            border-radius: 4px;
+        }
+        
+        .draggable {
+            width: 25vw;
+            height: 25vh;
+            background-color: aqua;
+        }
+        
+        .droppable {
+            position: relative;
+            height: 30vh;
+            width: 30vw;
+            border: 8px dashed aqua;
+            display: grid;
+            place-items: center;
+        }
+        
+        .droppable::before {
+            display: block;
+            content: '请放置到此区域';
+            font-size: 3vw;
+            color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+        }
+        
+        .dragover {
+            border: 8px dashed orange;
+        }
+        
+        .dropped {
+            border: 8px dashed green;
+        }
+        
+        .dropped::before {
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="draggable-container">
+            <div class="draggable" id="draggable" draggable="true"></div>
+        </div>
+        <div class="droppable" id="droppable"></div>
+    </main>
+    <script>
+        // 给需要拖拽的元素设置draggable属性，设置为true
+
+        // 放置拖拽元素的区域元素同时设置ondragover和ondrop事件
+
+        // 直接给元素添加事件
+        // ondrag 拖拽开始事件，可以在事件开始时添加数据，如元素、图片或者图片
+        // ondragover 拖拽进入放置区域时触发的事件，可以用于修改放置区域的边框样式
+        // ondrop 元素放置后触发的事件
+
+        // 监听事件
+        // drag  在用户拖动元素或选择的文本时，每隔几百毫秒就会被触发一次
+        // dragstart 在用户开始拖动元素或被选择的文本时调用
+        // dragenter 在可拖动的元素或者被选择的文本进入一个有效的放置目标时触发
+        // dragover 在可拖动的元素或者被选择的文本被拖进一个有效的放置目标时（每几百毫秒）触发
+        // dragend 在拖放操作结束时触发（通过释放鼠标按钮或单击 escape 键）
+        // dragleave 在拖动的元素或选中的文本离开一个有效的放置目标时被触发
+        // drop 事件在元素或选中的文本被放置在有效的放置目标上时被触发
+
+        // 浏览器拖拽事件的默认处理方式是禁止拖拽
+        // 所以需要在事件函数中调用event.preventDefault()
+
+        // DataTransfer 对象用于保存拖动并放下（drag and drop）过程中的数据
+        const draggable = document.querySelector('#draggable')
+        const droppable = document.querySelector('#droppable')
+
+        draggable.addEventListener('dragstart', (e) => {
+            console.log(e.target.id)
+
+            e.dataTransfer.setData("text/plain", e.target.id)
+                // console.log(e.dataTransfer)
+        })
+
+        droppable.addEventListener('dragover', (e) => {
+            e.preventDefault()
+            droppable.classList.add('dragover')
+        })
+
+        droppable.addEventListener('dragleave', (e) => {
+            e.preventDefault()
+            droppable.classList.remove('dragover')
+        })
+
+        droppable.addEventListener('drop', (e) => {
+            e.preventDefault()
+            const draggedId = e.dataTransfer.getData("text/plain")
+            const ele = document.getElementById(draggedId)
+            droppable.appendChild(ele)
+            droppable.classList.add('dropped')
+        })
+    </script>
+</body>
+
+</html>
