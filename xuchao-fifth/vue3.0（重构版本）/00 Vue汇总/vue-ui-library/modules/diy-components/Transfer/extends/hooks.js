@@ -113,6 +113,18 @@ export function useChooseAll(leftListData, rightListData, checkedData, setChecke
     return [chooseAllLeft, chooseAllRight]
 }
 
+
+export function useDraggedItem() {
+    const draggedItem = ref(null)
+
+    function setDraggedItem(item) {
+        draggedItem.value = item
+    }
+
+    return [draggedItem, setDraggedItem]
+}
+
+
 export function useComputedData(allData, targetIndex, rightListData, checkedData) {
     const leftTitle = computed(() => allData[targetIndex.value].title);
 

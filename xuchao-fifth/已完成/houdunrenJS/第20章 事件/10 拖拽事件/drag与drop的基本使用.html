@@ -73,6 +73,7 @@
 <body>
     <main>
         <div class="draggable-container">
+            <!-- <div class="draggable" id="draggable" draggable="true" ondragstart="start(event)"></div> -->
             <div class="draggable" id="draggable" draggable="true"></div>
         </div>
         <div class="droppable" id="droppable"></div>
@@ -110,18 +111,29 @@
                 // console.log(e.dataTransfer)
         })
 
+        // function start(event) {
+        //     event.dataTransfer.setData("text/plain", event.target.id)
+        //     console.log(event)
+        // }
+
         droppable.addEventListener('dragover', (e) => {
+            // 在进入被选中区域框的时候会循环触发，也就是每几百毫秒触发一次
+            // 这里需要添加阻止默认事件，否则被拖住的元素会弹回去
+
+            // console.log(123)
             e.preventDefault()
             droppable.classList.add('dragover')
         })
 
         droppable.addEventListener('dragleave', (e) => {
-            e.preventDefault()
+            // 如果拖拽元素进入被选区域框，然后又移除区域框，会触发一次
+            // e.preventDefault()
+            console.log(234)
             droppable.classList.remove('dragover')
         })
 
         droppable.addEventListener('drop', (e) => {
-            e.preventDefault()
+            // e.preventDefault()
             const draggedId = e.dataTransfer.getData("text/plain")
             const ele = document.getElementById(draggedId)
             droppable.appendChild(ele)

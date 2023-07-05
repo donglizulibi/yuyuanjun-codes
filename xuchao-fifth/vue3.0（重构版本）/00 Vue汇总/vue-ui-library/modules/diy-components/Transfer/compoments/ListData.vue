@@ -4,6 +4,8 @@
       v-for="item of listData"
       :key="item.id"
       :class="['list-item', item.disabled ? 'disabled' : '']"
+      :draggable="!item.disabled"
+      @dragstart="dragItem(item)"
     >
       <input
         type="checkbox"
@@ -30,8 +32,12 @@ const props = defineProps({
     default: () => [],
   },
 });
+const emit = defineEmits(["checkboxClick", "dragItem"]);
 
-const emit = defineEmits(["checkboxClick"]);
+const dragItem = (item) => {
+  emit("dragItem", item);
+};
+
 const checkboxClick = (checked, leftOrRight, item) => {
   emit("checkboxClick", checked, leftOrRight, item);
 };

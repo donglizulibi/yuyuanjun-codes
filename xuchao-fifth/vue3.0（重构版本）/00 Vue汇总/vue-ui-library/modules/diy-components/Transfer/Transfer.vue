@@ -3,7 +3,11 @@
     <selector :data="options" @select-change="setTargetIndex"></selector>
 
     <div class="transfer">
-      <div class="box left-list">
+      <div
+        class="box left-list"
+        @dragover.prevent
+        @drop="removeRightListData([draggedItem])"
+      >
         <list-title
           @choose-all="chooseAllLeft"
           choose-all-id="chooseAllLeft"
@@ -17,6 +21,7 @@
           @checkbox-click="setCheckedData"
           :list-data="leftListData"
           left-or-right="left"
+          @drag-item="setDraggedItem"
         ></list-data>
       </div>
 
@@ -26,7 +31,11 @@
         :transfer-disabled="transferDisabled"
       ></button-group>
 
-      <div class="box right-list">
+      <div
+        class="box right-list"
+        @dragover.prevent
+        @drop="addRightListData([draggedItem])"
+      >
         <list-title
           @choose-all="chooseAllRight"
           choose-all-id="chooseAllRight"
@@ -41,6 +50,7 @@
           @checkbox-click="setCheckedData"
           :list-data="rightListData"
           left-or-right="right"
+          @drag-item="setDraggedItem"
         ></list-data>
       </div>
     </div>
@@ -48,6 +58,7 @@
 </template>
 
 <script setup>
+import { watch } from "vue";
 import Selector from "./compoments/Selector.vue";
 import ListTitle from "./compoments/ListTitle.vue";
 import ButtonGroup from "./compoments/ButtonGroup.vue";
@@ -60,10 +71,15 @@ import {
   useComputedData,
   useCheckedData,
   useChooseAll,
+  useDraggedItem,
 } from "./extends/hooks";
 
 const props = defineProps(propsDefination);
 const options = props.data.map((item) => item.title);
+
+// const dropEvent = () => {
+//   console.log(123);
+// };
 
 const [targetIndex, setTargetIndex] = useTargetIndex(0);
 
@@ -95,6 +111,12 @@ const [chooseAllLeft, chooseAllRight] = useChooseAll(
   checkedData,
   setCheckedData
 );
+
+const [draggedItem, setDraggedItem] = useDraggedItem();
+
+// watch(draggedItem, (n) => {
+//   console.log(n);
+// });
 
 const chooseDisabledLeft = () => {
   const state = leftListData.value.every((item) => item.disabled);

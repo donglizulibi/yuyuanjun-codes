@@ -2,6 +2,8 @@
   <div>
     <transfer :data="data" right-title="已选择机型"></transfer>
   </div>
+  <br />
+  <br />
 </template>
 
 <script setup>
