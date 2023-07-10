@@ -8,6 +8,7 @@
       :imgHeight="imgHeight"
       :magWidth="magWidth"
       :magHeight="magHeight"
+      :imgAlt="imgAlt"
     ></magnifier>
   </div>
 </template>
@@ -24,6 +25,7 @@ export default {
       link: "https://www.baidu.com",
       imgWidth: 375,
       imgHeight: 500,
+      imgAlt: "裴秀智",
       magWidth: 100,
       magHeight: 100,
     });

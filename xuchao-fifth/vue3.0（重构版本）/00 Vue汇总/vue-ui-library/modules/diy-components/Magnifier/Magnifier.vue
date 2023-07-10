@@ -6,7 +6,14 @@
       height: imgHeight + 'px',
     }"
   >
-    <a class="mag-warp" :href="link" :target="blank ? '_blank' : ''"></a>
+    <a
+      class="mag-warp"
+      :href="link"
+      :target="blank ? '_blank' : ''"
+      :style="{ width: magWidth + 'px', height: magHeight + 'px' }"
+    >
+      <img class="mag-img" :src="imgUrl" :alt="imgAlt" />
+    </a>
   </div>
 </template>
 
