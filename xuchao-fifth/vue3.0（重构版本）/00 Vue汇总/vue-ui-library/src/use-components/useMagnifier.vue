@@ -20,12 +20,13 @@ export default {
   components: { Magnifier },
   setup() {
     const state = reactive({
-      imgUrl: "https://pix2.tvzhe.com/thumb/star/34/52/405x540.jpg",
+      imgUrl: `https://p8.itc.cn/q_70/images03/20230424
+/d58e9cff8ed14d85891a3d1f7d2561cb.jpeg`,
       blank: true,
       link: "https://www.baidu.com",
       imgWidth: 375,
-      imgHeight: 500,
-      imgAlt: "裴秀智",
+      imgHeight: 537,
+      imgAlt: "xiaotian",
       magWidth: 100,
       magHeight: 100,
     });
@@ -38,6 +39,6 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   width: 375px;
-  margin: 100px auto;
+  margin: 20px auto;
 }
 </style>
