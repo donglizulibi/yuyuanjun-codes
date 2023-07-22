@@ -5,9 +5,10 @@
       width: imgWidth + 'px',
       height: imgHeight + 'px',
     }"
+    v-magnifier
   >
     <a
-      class="mag-warp"
+      class="mag-wrap"
       :href="link"
       :target="blank ? '_blank' : ''"
       :style="{ width: magWidth + 'px', height: magHeight + 'px' }"
@@ -26,8 +27,10 @@
 </template>
 
 <script>
+import { magnifier } from "../directives";
 export default {
   name: "Magnifier",
+  directives: { magnifier },
   props: {
     imgWidth: {
       type: Number,
@@ -65,7 +68,7 @@ export default {
     width: 100%;
   }
 
-  .mag-warp {
+  .mag-wrap {
     display: none;
     position: absolute;
     top: 0px;
@@ -75,7 +78,6 @@ export default {
     box-shadow: 0 0 3px #000;
     cursor: move;
     overflow: hidden;
-
     &.show {
       display: block;
       transform: scale(1.5);
