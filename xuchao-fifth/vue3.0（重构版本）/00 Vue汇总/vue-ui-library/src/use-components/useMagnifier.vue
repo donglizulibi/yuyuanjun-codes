@@ -27,8 +27,8 @@ export default {
       imgWidth: 375,
       imgHeight: 537,
       imgAlt: "xiaotian",
-      magWidth: 100,
-      magHeight: 100,
+      magWidth: 150,
+      magHeight: 150,
     });
 
     return { ...toRefs(state) };

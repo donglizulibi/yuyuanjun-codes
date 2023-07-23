@@ -1,9 +1,17 @@
 1 react项目的创建和启动
 npx create-react-app my-react-app
 （npx create-react-app <project-directory>）
+会自动下载依赖包
 
 npm start 开发环境下启动
 npm run build 编译环境下启动
 
-2 react的一个注意事项，return后面只能返回一个标签，如果有两个标签及以上
-可以放在<></>里面
+2 react的一个注意事项，在App.js文件中的return后面只能返回一个标签，如果有两个标签及以上，可以放在<></>里面
+
+3 index.html文件中并没有引入index.js文件的操作
+  在index.js中，引入ReactDOM对象，调用createRoot函数
+  传入根节点的元素对象，来创建root实例
+  然后调用root实例的render函数，传入React.StrictMode标签
+  标签内部放入App组件
+
+4 
