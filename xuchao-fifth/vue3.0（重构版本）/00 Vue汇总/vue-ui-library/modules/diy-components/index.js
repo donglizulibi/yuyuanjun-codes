@@ -1,13 +1,16 @@
 import Transfer from './Transfer/Transfer'
+import Magnifier from "./Magnifier/Magnifier"
 
 
 
 const components = {
-    Transfer
+    Transfer,
+    Magnifier
 }
 
 export {
-    Transfer
+    Transfer,
+    Magnifier
 }
 
 export default {

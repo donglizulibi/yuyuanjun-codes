@@ -1,7 +1,7 @@
 import { getStyle } from "../utils/tools"
 export default {
     mounted(el, binding, vnode, prevVnode) {
-        console.log(el)
+        // console.log(el)
 
         const oImgWrap = el,
             oMagWrap = oImgWrap.querySelector('.mag-wrap'),
@@ -16,9 +16,9 @@ export default {
         const imgX = oImgWrap.offsetLeft,
             imgY = oImgWrap.offsetTop
 
-        console.log(imgHeight, imgWidth)
-        console.log(magHeight, magWidth)
-        console.log(imgX, imgY)
+        // console.log(imgHeight, imgWidth)
+        // console.log(magHeight, magWidth)
+        // console.log(imgX, imgY)
 
         const init = () => {
             bindEvent()

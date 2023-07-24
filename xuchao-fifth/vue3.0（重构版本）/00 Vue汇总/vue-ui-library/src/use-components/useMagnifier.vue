@@ -11,6 +11,7 @@
       :imgAlt="imgAlt"
     ></magnifier>
   </div>
+  <br />
 </template>
 
 <script>

@@ -10,13 +10,15 @@
   resolve: { extensions: ['.vue', '.js'] }
 
 4 统一管理全局组件的方式
-  1） 把所有全局组件写好放在一个文件夹中
+  1） 把所有全局组件写好放在一个文件夹中，如diy-components
   2） 在文件夹中创建index.js文件，导入所有全局组件，放在一个容器保存
   3） 默认导出install函数，函数参数为app，在install函数内部遍历容器内的组件
   4） 逐个在参数app上进行注册 app.component(comp, components[comp])
-  5） 在main.js文件中引入index.js或者其所在文件夹，调用实例的use方法并传入index.js的数据
+  5） 在main.js文件中引入index.js或者其所在文件夹，调用实例的use方法并传入index.js的数据，这个数据是一个包含install函数的对象
   6） 如果是需要单独注册某个全局组件，则在该组件目录下单独创建index.js，并传入install函数
-  7） 如果只是需要组件库中的某一个，不想全部注册，则可以在index文件中将各个组件再单独导出，按需导入
+
+5 如果只是需要组件库中的某一个，不想全部注册，则可以在diy-components的index文件中
+将各个组件放在一个对象中，再导出这个对象，调用的时候按照解构的方法按需导入
 
 5 
 
