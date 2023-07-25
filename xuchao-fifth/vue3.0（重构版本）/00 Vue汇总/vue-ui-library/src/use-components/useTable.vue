@@ -1,12 +1,14 @@
 <template>
   <div>
-    <Transfer :data="data" right-title="已选择机型" />
-    <Magnifier />
+    <Table />
   </div>
 </template>
 
 <script setup>
-import { transferData as data } from "../../data/transfer/transfer";
+import { ref } from "vue";
+import { tableData } from "../../data/table/table";
+import Table from "../../modules/diy-components/Table/Table";
+const data = ref(tableData);
 </script>
 
 <style lang="scss" scoped></style>

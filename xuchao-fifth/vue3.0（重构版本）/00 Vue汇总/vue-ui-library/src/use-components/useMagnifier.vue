@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Magnifier from "../../modules/diy-components/Magnifier/Magnifier.vue";
+import Magnifier from "../../modules/diy-components/Magnifier/Magnifier";
 import { reactive, toRefs } from "vue";
 export default {
   components: { Magnifier },

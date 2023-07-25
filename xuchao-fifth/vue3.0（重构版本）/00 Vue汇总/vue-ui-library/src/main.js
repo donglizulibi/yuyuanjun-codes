@@ -5,7 +5,7 @@ import diyComponents from "../modules/diy-components/index"
 
 console.log(diyComponents)
 const app = createApp(App);
-app.use(diyComponents)
+// app.use(diyComponents)
 
 
 app.mount("#app");
