@@ -5,7 +5,7 @@
         :id="chooseAllId"
         type="checkbox"
         :disabled="disabledState"
-        @click="chooseAll($event.target.checked, listData, checkedData)"
+        @click="chooseAll($event.target.checked)"
       />{{ title }}
     </h1>
     <div>{{ checkedData[side].length }}/{{ listData.length }}</div>
@@ -47,8 +47,8 @@ const props = defineProps({
 
 const emit = defineEmits(["chooseAll"]);
 
-const chooseAll = (checked, listData, checkedData) => {
-  emit("chooseAll", checked, listData, checkedData);
+const chooseAll = (checked) => {
+  emit("chooseAll", checked);
 };
 </script>
 

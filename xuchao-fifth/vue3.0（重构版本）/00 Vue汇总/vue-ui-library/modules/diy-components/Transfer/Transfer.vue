@@ -112,6 +112,8 @@ const [chooseAllLeft, chooseAllRight] = useChooseAll(
   setCheckedData
 );
 
+// console.log(chooseAllLeft);
+
 const [draggedItem, setDraggedItem] = useDraggedItem();
 
 // watch(draggedItem, (n) => {

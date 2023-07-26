@@ -104,6 +104,7 @@ export function useChooseAll(leftListData, rightListData, checkedData, setChecke
     }
 
     function chooseAllLeft(chooseAllChecked) {
+        // console.log(chooseAllChecked)
         chooseAll(chooseAllChecked, leftListData, 'left')
     }
 

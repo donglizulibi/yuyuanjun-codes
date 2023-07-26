@@ -1,19 +1,19 @@
 import Transfer from './Transfer/Transfer'
 import Magnifier from "./Magnifier/Magnifier"
-import Table from "./Table/Table"
+import TableEdited from "./Table/TableEdited"
 
 // console.log(Table)
 
 const components = {
     Transfer,
     Magnifier,
-    Table
+    TableEdited
 }
 
 export {
     Transfer,
     Magnifier,
-    Table
+    TableEdited
 }
 
 export default {
