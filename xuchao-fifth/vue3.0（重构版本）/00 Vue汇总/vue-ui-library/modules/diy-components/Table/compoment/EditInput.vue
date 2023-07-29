@@ -5,7 +5,7 @@
     :value="value"
     @input="onInput"
     @blur="onBlur"
-    @click="onClick"
+    @click.stop="onClick"
   />
 </template>
 
@@ -29,14 +29,25 @@ const onInput = (e) => {
 };
 
 const onClick = (e) => {
-  e.stopPropagation();
+  // e.stopPropagation();
   console.log("onclick");
 };
 
 const onBlur = (e) => {
-  //   console.log(123);
   props.setValue(inputValue.value);
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.edit-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid orange;
+  text-align: center;
+  outline: none;
+}
+</style>

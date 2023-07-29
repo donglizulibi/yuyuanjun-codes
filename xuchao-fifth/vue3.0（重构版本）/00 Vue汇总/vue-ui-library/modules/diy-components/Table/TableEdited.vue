@@ -16,7 +16,7 @@
         <td
           v-for="(value, key) in item"
           :key="key"
-          @click="showEditInput($event, key, index)"
+          @click.stop="showEditInput($event, key, index)"
         >
           {{ value }}
         </td>
@@ -24,11 +24,11 @@
     </tbody>
   </table>
 
-  <edit-input></edit-input>
+  <!-- <edit-input></edit-input> -->
 </template>
 
 <script setup>
-import { toRefs, ref } from "vue";
+import { createApp, toRefs, ref } from "vue";
 import EditInput from "./compoment/EditInput.vue";
 
 const props = defineProps({
@@ -45,18 +45,34 @@ const props = defineProps({
 
 const emit = defineEmits(["submit"]);
 
+let editInputApp = null;
 const showEditInput = (e, key, index) => {
-  // document.addEventListener("click", () => {
-  //   console.log("document");
-  // });
-  console.log(e);
-  console.log(key);
-  console.log(index);
-  console.log(123);
+  editInputApp && removeEditInputApp(editInputApp);
+  const target = e.target;
+  const oFrag = document.createDocumentFragment();
+
+  editInputApp = createApp(EditInput, {
+    value: target.textContent,
+    setValue,
+  });
+
+  if (editInputApp) {
+    editInputApp.mount(oFrag);
+    target.appendChild(oFrag);
+    target.querySelector(".edit-input").select();
+  }
 };
+
+function setValue(value) {}
 
 // const tHead = ref(props.data.tHead);
 // const tBody = ref(props.data.tBody);
+
+window.addEventListener("click", () => removeEditInputApp(editInputApp));
+
+function removeEditInputApp(app) {
+  app && app.unmount();
+}
 
 const { tHead, tBody } = toRefs(props.data);
 // console.log(tBody);
@@ -71,6 +87,7 @@ const { tHead, tBody } = toRefs(props.data);
     td {
       text-align: center;
       cursor: pointer;
+      position: relative;
     }
   }
 }
