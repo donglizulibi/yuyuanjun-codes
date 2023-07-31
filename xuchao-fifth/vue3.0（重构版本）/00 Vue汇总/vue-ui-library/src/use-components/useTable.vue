@@ -10,7 +10,14 @@ import { tableData } from "../../data/table/table";
 import TableEdited from "../../modules/diy-components/Table/TableEdited.vue";
 const data = ref(tableData);
 
-const editData = ({ index, key, value, text }) => {
+const editData = (state, removeEditInput) => {
+  console.log(removeEditInput);
+  console.log("useTable submit");
+  console.log(state);
+  const { index, key, value, text } = state;
+  console.log(value);
+
+  console.log(data.value.tBody[index][key]);
   if (data.value.tBody[index][key] !== value) {
     const cfm = window.confirm(`
       您要确定将数据下标为【${index}】项
@@ -18,12 +25,17 @@ const editData = ({ index, key, value, text }) => {
     `);
 
     if (cfm) {
-      tableData.value.tBody = tableData.value.tBody.map((item, idx) => {
+      console.log(data.value.tBody);
+      let tBody = data.value.tBody;
+      tBody = tBody.map((item, idx) => {
         if (index === idx) {
           item[key] = value;
         }
         return item;
       });
+    } else {
+      // console.log(111);
+      removeEditInput();
     }
   }
 };

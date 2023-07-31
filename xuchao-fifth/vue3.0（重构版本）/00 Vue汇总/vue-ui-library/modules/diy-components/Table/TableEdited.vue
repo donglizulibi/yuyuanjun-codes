@@ -23,12 +23,10 @@
       </tr>
     </tbody>
   </table>
-
-  <!-- <edit-input></edit-input> -->
 </template>
 
 <script setup>
-import { createApp, toRefs, ref } from "vue";
+import { createApp, toRefs, ref, reactive } from "vue";
 import EditInput from "./compoment/EditInput.vue";
 
 const props = defineProps({
@@ -45,9 +43,22 @@ const props = defineProps({
 
 const emit = defineEmits(["submit"]);
 
+const { tHead, tBody } = toRefs(props.data);
+// console.log(tHead.value);
+
+const state = reactive({
+  key: "",
+  value: "",
+  index: -1,
+  text: "",
+});
+
 let editInputApp = null;
 const showEditInput = (e, key, index) => {
-  editInputApp && removeEditInputApp(editInputApp);
+  editInputApp && removeEditInputApp();
+
+  if (!checkEditable(key)) return;
+
   const target = e.target;
   const oFrag = document.createDocumentFragment();
 
@@ -61,20 +72,51 @@ const showEditInput = (e, key, index) => {
     target.appendChild(oFrag);
     target.querySelector(".edit-input").select();
   }
+
+  console.log(state);
+  console.log(key, index);
+  setData({ index, key, text: findText(key) });
+  console.log(state);
 };
 
-function setValue(value) {}
-
-// const tHead = ref(props.data.tHead);
-// const tBody = ref(props.data.tBody);
-
-window.addEventListener("click", () => removeEditInputApp(editInputApp));
-
-function removeEditInputApp(app) {
-  app && app.unmount();
+function setData({ index, key, text, value = "" }) {
+  state.index = index;
+  state.key = key;
+  state.value = value;
+  state.text = text;
 }
 
-const { tHead, tBody } = toRefs(props.data);
+function checkEditable(key) {
+  const check = tHead.value.find((item) => item.key == key);
+  return check.editable;
+}
+
+function findText(key) {
+  const Text = tHead.value.find((item) => item.key == key);
+  return Text.text;
+}
+
+function setValue(value) {
+  console.log("setValue: ", value);
+  state.value = value * 1;
+  console.log(state);
+  console.log({ ...state });
+
+  emit("submit", { ...state }, removeEditInputApp);
+}
+
+// 在父组件中创建一个函数，这个函数的函数体中触发祖父组件的自定义事件
+// 但是这个函数会通过props传到到子组件中，并在子组件中执行这个函数
+
+window.addEventListener("click", () => {
+  removeEditInputApp();
+});
+
+function removeEditInputApp() {
+  editInputApp && editInputApp.unmount();
+  setData({ key: "", value: "", index: -1, text: "" });
+}
+
 // console.log(tBody);
 </script>
 

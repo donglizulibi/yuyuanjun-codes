@@ -24,6 +24,8 @@ const props = defineProps({
 
 const inputValue = ref(props.value);
 
+console.log(props.setValue);
+
 const onInput = (e) => {
   inputValue.value = e.target.value.trim();
 };
