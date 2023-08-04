@@ -43,6 +43,7 @@ const props = defineProps({
 
 const emit = defineEmits(["submit"]);
 
+console.log(props.data);
 const { tHead, tBody } = toRefs(props.data);
 // console.log(tHead.value);
 

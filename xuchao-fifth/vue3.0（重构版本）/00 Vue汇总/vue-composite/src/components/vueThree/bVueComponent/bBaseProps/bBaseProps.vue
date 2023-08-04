@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import hd from "./bBasePropsComponents/hd.vue";
-import Todo from "./bBasePropsComponents/Todo.vue";
+import hd from "./bBasePropsComponents/hd";
+import Todo from "./bBasePropsComponents/Todo";
 export default {
   components: {
     hd,

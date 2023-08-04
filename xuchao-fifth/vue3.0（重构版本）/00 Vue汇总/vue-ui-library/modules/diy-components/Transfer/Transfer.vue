@@ -60,10 +60,10 @@
 <script setup>
 import { watch } from "vue";
 import Selector from "./compoments/Selector.vue";
-import ListTitle from "./compoments/ListTitle.vue";
-import ButtonGroup from "./compoments/ButtonGroup.vue";
+import ListTitle from "./compoments/ListTitle";
+import ButtonGroup from "./compoments/ButtonGroup";
 import propsDefination from "./extends/props";
-import ListData from "./compoments/ListData.vue";
+import ListData from "./compoments/ListData";
 import "./css/style.scss";
 import {
   useRightListData,

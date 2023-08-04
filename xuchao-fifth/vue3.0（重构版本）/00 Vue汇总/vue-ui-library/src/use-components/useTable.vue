@@ -2,6 +2,8 @@
   <div>
     <table-edited :data="data" @submit="editData"></table-edited>
   </div>
+  <br />
+  <br />
 </template>
 
 <script setup>

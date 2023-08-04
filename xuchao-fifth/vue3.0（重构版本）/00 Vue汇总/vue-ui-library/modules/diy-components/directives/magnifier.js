@@ -13,12 +13,14 @@ export default {
             magWidth = getStyle(oMagWrap, 'width'),
             magHeight = getStyle(oMagWrap, 'height')
 
-        const imgX = oImgWrap.offsetLeft,
+        let imgX = oImgWrap.offsetLeft,
             imgY = oImgWrap.offsetTop
 
-        // console.log(imgHeight, imgWidth)
-        // console.log(magHeight, magWidth)
-        // console.log(imgX, imgY)
+        window.addEventListener("resize", (event) => {
+            imgX = oImgWrap.offsetLeft
+            imgY = oImgWrap.offsetTop
+        })
+
 
         const init = () => {
             bindEvent()
