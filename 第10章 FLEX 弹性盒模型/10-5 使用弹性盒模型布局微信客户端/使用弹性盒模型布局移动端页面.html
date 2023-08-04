@@ -11,14 +11,36 @@
             padding: 0;
         }
         
-        main {
-            background: #ddd;
+        body {
             height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
-        footer {}
+        main {
+            background: #ddd;
+            flex: 1;
+        }
         
-        footer div {}
+        footer {
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            background: linear-gradient(to bottom, #f3f3f3, #ddd, #f3f3f3);
+            border-top: solid 1px #ddd;
+        }
+        
+        footer div {
+            line-height: 3em;
+            flex: 1;
+            text-align: center;
+            /* color: #ddd; */
+        }
+        
+        footer div:nth-child(n+2) {
+            border-left: solid 1px #ccc;
+            /* background-color: red; */
+        }
     </style>
 </head>
 
@@ -28,6 +50,7 @@
         <div>后盾人</div>
         <div>直播</div>
         <div>教程</div>
+        <!-- <div>视频</div> -->
     </footer>
 </body>
 

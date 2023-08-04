@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 100px;
+        }
+        
+        article {
+            border: solid 5px #ccc;
+            width: 300px;
+            height: 200px;
+            display: flex;
+            flex-direction: column-reverse;
+            /* flex-wrap: nowrap; */
+            /* 不换行，如果宽度或者高度不够的时候，盒子内的每一项会缩小 */
+            /*                             */
+            /* flex-wrap: wrap; */
+            /* 如果主轴方向为横向,则向下换行, 若主轴方向为纵向,则向右边换行 */
+            /*                             */
+            /* flex-wrap: wrap-reverse; */
+            /* 如果主轴方向为横向,则向上换行, 若主轴方向为纵向,则向左边换行 */
+        }
+        
+        article div {
+            height: 100px;
+            width: 100px;
+            background-clip: content-box;
+            background-color: blue;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #ccc;
+            font-size: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </article>
+</body>
+
+</html>

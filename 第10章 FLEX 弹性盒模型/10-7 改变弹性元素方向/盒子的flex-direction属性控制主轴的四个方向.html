@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 100px;
+        }
+        
+        article {
+            border: solid 5px purple;
+            width: 500px;
+            display: flex;
+            /* 主轴的四个方向，默认为第一个 */
+            /* 1.横向从左到右 */
+            /* flex-direction: row; */
+            /*                                  */
+            /* 2.横向从右到左 */
+            /* flex-direction: row-reverse; */
+            /*                                  */
+            /* 3.纵向从上到下 */
+            /* flex-direction: column; */
+            /*                                  */
+            /* 4.纵向从下到上 */
+            /* flex-direction: column-reverse; */
+        }
+        
+        article div {
+            height: 100px;
+            width: 100px;
+            background: red;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </article>
+</body>
+
+</html>
