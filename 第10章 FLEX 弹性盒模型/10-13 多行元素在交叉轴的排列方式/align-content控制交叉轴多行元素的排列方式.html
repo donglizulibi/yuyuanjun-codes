@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 10px;
+        }
+        
+        article {
+            border: solid 5px #ccc;
+            width: 280px;
+            height: 500px;
+            display: flex;
+            flex-flow: row wrap;
+            /* 当在盒子中开启flex-wrap属性的wrap之后
+               如果主轴宽度，则会发生折行
+               则此时交叉轴上会出现多行的情况
+               align-content就是控制多行之间的排列方式
+            */
+            /* 交叉轴上所有的行紧贴在一起，处在交叉轴的中心 */
+            /* align-content: center; */
+            /*                                              */
+            /* 交叉轴上所有的行紧贴在一起，处在交叉轴的起始位置 */
+            /* align-content: flex-start; */
+            /*                                              */
+            /* 交叉轴上所有的行紧贴在一起，处在交叉轴的末端位置 */
+            /* align-content: flex-end; */
+            /*                                                */
+            /* 交叉轴上第一行和最后一行分别处在交叉轴的两端，紧贴盒子边缘
+                中间其余的行等距排列*/
+            /* align-content: space-between; */
+            /*                                              */
+            /* 交叉轴上所有的行的两侧都有等量的间距，交叉轴首尾两端的行靠近
+               盒子边缘的间距是其他间距的一半 */
+            /* align-content: space-around; */
+            /*                                              */
+            /* 交叉轴上所有行之间、以及行与盒子边缘之间的间距相等 */
+            /* align-content: space-evenly; */
+            /*                                              */
+        }
+        
+        article div {
+            height: 100px;
+            width: 100px;
+            /* background-clip: content-box; */
+            background-color: blue;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #ccc;
+            font-size: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </article>
+</body>
+
+</html>
