@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 100px;
+        }
+        
+        article {
+            border: solid 5px #ccc;
+            width: 550px;
+            height: 240px;
+            display: flex;
+            flex-flow: row wrap;
+            /* justify-content属性设置在盒子模型上
+                控制盒子内的子块在主轴上的排列方式
+            */
+            /* 盒子内的子块在主轴上的左右两边距离相等，主轴上两端
+            的靠近盒子边缘的子块由于只有一侧有相邻子块，所以另一侧的边距
+            是其他边距的一半 */
+            /* justify-content: space-around; */
+            /*                                  */
+            /* 主轴两端各有一个子块紧贴盒子边缘，其余子块在主轴中部均匀排列 */
+            justify-content: space-between;
+            /*                                  */
+            /* 主轴上所有子块两边距离相等，均匀排列 */
+            /* justify-content: space-evenly; */
+            /*                                  */
+            /* 所有子块紧贴，排列在主轴中央 */
+            /* justify-content: center; */
+            /*                                  */
+            /* 所有子块紧贴，排列在主轴起始位置，第一个子块紧贴盒子边缘 */
+            /* justify-content: flex-start; */
+            /*                                  */
+            /* 所有子块紧贴，排列在主轴结束位置，最后一个子块紧贴盒子边缘 */
+            /* justify-content: flex-end; */
+        }
+        
+        article div {
+            height: 100px;
+            width: 100px;
+            /* background-clip: content-box; */
+            background-color: blue;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #ccc;
+            font-size: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </article>
+</body>
+
+</html>

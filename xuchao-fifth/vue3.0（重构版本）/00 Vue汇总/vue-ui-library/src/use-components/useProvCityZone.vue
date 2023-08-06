@@ -6,6 +6,8 @@
     <p>父组件区域</p>
     <p v-if="param">{{ param.prov }} - {{ param.city }} - {{ param.zone }}</p>
   </div>
+  <br />
+  <br />
 </template>
 
 <script setup>

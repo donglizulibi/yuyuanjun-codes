@@ -1,0 +1,4 @@
+<!--pages/welcome/welcome.wxml-->
+<image src="" mode=""/>
+<text>Hello, 七月</text>
+<button></button>

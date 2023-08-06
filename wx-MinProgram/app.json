@@ -1,3 +1,5 @@
 {
-  "page":{}
+  "pages": [
+    "pages/welcome/welcome"
+  ]
 }

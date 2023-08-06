@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 100px;
+        }
+        
+        article {
+            border: solid 5px #ccc;
+            width: 280px;
+            height: 240px;
+            display: flex;
+            /* flex-direction: column-reverse; */
+            /* flex-wrap: nowrap; */
+            flex-flow: row wrap;
+            /* 合并上面个两个属性 */
+        }
+        
+        article div {
+            height: 100px;
+            width: 100px;
+            background-clip: content-box;
+            background-color: blue;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #ccc;
+            font-size: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </article>
+</body>
+
+</html>
