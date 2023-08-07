@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 10px;
+        }
+        
+        article {
+            border: solid 5px #ccc;
+            width: 580px;
+            height: 500px;
+            display: flex;
+            flex-flow: row wrap;
+        }
+        
+        article :first-child {}
+        
+        article div:nth-child(2) {}
+        
+        article div:nth-child(3) {}
+        
+        article div {
+            height: 100px;
+            width: 100px;
+            background-clip: content-box;
+            background-color: blue;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px solid blueviolet;
+            /*  */
+            color: #ccc;
+            font-size: 35px;
+        }
+        /* box-sizing如果不设置，则表示给块元素设置的宽高不包括padding的距离
+        如这个例子，块元素的内容区域宽高是100px, 加上四边padding，在父元素中
+        所占的大小是120px
+
+        如果这个属性设置为conten-box，则内容区域的宽高为80px,
+        在父元素中所占的大小就是所设置的100px
+        在设置了这个属性之后，如果还设置了border边框，在父元素中占据的大小
+        还是100px，border边框位置会挤压内容区域的位置
+        假如边框是2px，则内容区域的宽高则变为76px
+        */
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+
+    </article>
+</body>
+
+</html>

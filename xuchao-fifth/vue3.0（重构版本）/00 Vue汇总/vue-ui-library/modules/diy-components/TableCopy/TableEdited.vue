@@ -27,7 +27,7 @@
 
 <script setup>
 import { createApp, toRefs, ref, reactive } from "vue";
-import EditInput from "./compoment/EditInput.vue";
+// import EditInput from "./compoment/EditInput.vue";
 
 const props = defineProps({
   data: {
@@ -45,7 +45,6 @@ const emit = defineEmits(["submit"]);
 
 console.log(props.data);
 const { tHead, tBody } = toRefs(props.data);
-// console.log(tHead.value);
 
 const state = reactive({
   key: "",
@@ -54,27 +53,41 @@ const state = reactive({
   text: "",
 });
 
-let editInputApp = null;
+let tr = null;
 const showEditInput = (e, key, index) => {
-  editInputApp && removeEditInputApp();
-
+  tr && removeEditInputApp();
   if (!checkEditable(key)) return;
-
+  tr = e.target;
   const target = e.target;
-  const oFrag = document.createDocumentFragment();
+  const input = document.createElement("input");
 
-  editInputApp = createApp(EditInput, {
-    value: target.textContent,
-    setValue,
+  input.style.cssText += `
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+    box-sizing: border-box;
+    border: 1px solid orange;
+    text-align: center;
+    outline: none;
+  `;
+
+  input.value = target.innerHTML;
+  target.innerHTML = "";
+  target.append(input);
+
+  input.select();
+
+  input.addEventListener("click", (event) => {
+    event.stopPropagation();
   });
 
-  if (editInputApp) {
-    editInputApp.mount(oFrag);
-    target.appendChild(oFrag);
-    target.querySelector(".edit-input").select();
-  }
-
-  setData({ index, key, text: findText(key) });
+  input.addEventListener("blur", (event) => {
+    // console.log(event.target.value);
+    setData({ index, key, text: findText(key) });
+    setValue(event.target.value);
+  });
 };
 
 function setData({ index, key, text, value = "" }) {
@@ -95,24 +108,24 @@ function findText(key) {
 }
 
 function setValue(value) {
-  console.log("setValue: ", value);
   state.value = value * 1;
-  // console.log(state);
-  // console.log({ ...state });
-
   emit("submit", { ...state }, removeEditInputApp);
 }
-
-// 在父组件中创建一个函数，这个函数的函数体中触发祖父组件的自定义事件
-// 但是这个函数会通过props传到到子组件中，并在子组件中执行这个函数
 
 window.addEventListener("click", () => {
   removeEditInputApp();
 });
 
-function removeEditInputApp() {
-  editInputApp && editInputApp.unmount();
-  setData({ key: "", value: "", index: -1, text: "" });
+function removeEditInputApp(orignal = null) {
+  // console.log("orignal", orignal);
+  // console.log(tr);
+  if (tr) {
+    tr.removeChild(tr.childNodes[0]);
+    if (orignal) {
+      state.value = orignal;
+    }
+    tr.innerHTML = state.value;
+  }
 }
 </script>
 
@@ -129,4 +142,21 @@ function removeEditInputApp() {
     }
   }
 }
+
+// .input {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   box-sizing: border-box;
+//   border: 1px solid orange;
+//   text-align: center;
+//   outline: none;
+//   background-color: aqua;
+// }
+
+// .input {
+//   background-color: aqua;
+// }
 </style>

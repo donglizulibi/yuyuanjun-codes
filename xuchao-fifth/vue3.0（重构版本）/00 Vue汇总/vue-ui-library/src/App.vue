@@ -4,6 +4,7 @@ import useMagnifier from "./use-components/useMagnifier.vue";
 import useTable from "./use-components/useTable.vue";
 import useProvCityZone from "./use-components/useProvCityZone.vue";
 import usePagination from "./use-components/usePagination.vue";
+import useTableCopy from "./use-components/useTableCopy.vue";
 </script>
 <template>
   <h3>Transfer 穿梭框</h3>
@@ -13,7 +14,8 @@ import usePagination from "./use-components/usePagination.vue";
   <use-magnifier></use-magnifier>
 
   <h3>EditTable 可编辑表格</h3>
-  <use-table></use-table>
+  <use-table-copy></use-table-copy>
+  <!-- <use-table></use-table> -->
 
   <h3>ProvCityZone 省市区联动</h3>
   <use-prov-city-zone></use-prov-city-zone>

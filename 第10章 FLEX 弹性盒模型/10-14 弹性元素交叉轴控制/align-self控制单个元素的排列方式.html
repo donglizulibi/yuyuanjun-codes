@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 10px;
+        }
+        
+        article {
+            border: solid 5px #ccc;
+            width: 580px;
+            height: 500px;
+            display: flex;
+            flex-flow: row wrap;
+        }
+        
+        article :first-child {
+            align-self: center;
+        }
+        
+        article div:nth-child(2) {
+            align-self: flex-end;
+        }
+        
+        .div3 {
+            align-self: center;
+        }
+        
+        article [name] {
+            height: auto;
+            align-self: stretch;
+        }
+        /* align-self属性作用在弹性盒子的子元素上
+        选择器的种类可以是多种的 
+        如果要选择拉抻，则需要先取消固定的高度
+        */
+        
+        article div {
+            height: 100px;
+            width: 100px;
+            /* background-clip: content-box; */
+            background-color: blue;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #ccc;
+            font-size: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>1</div>
+        <div>2</div>
+        <div class="div3">3</div>
+        <div>4</div>
+        <div name>5</div>
+    </article>
+</body>
+
+</html>
