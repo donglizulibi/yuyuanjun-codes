@@ -1,4 +1,5 @@
 import "./tankStyle.scss";
+// 将各层画布导入
 import config from "./config.ts";
 import strawCanvas from "./canvas/straw.ts";
 import wallCanvas from "./canvas/wall.ts";
@@ -9,9 +10,10 @@ import bulletCanvas from "./canvas/bullet.ts";
 import bossCanvas from "./canvas/boss.ts";
 import playerCanvas from "./canvas/player.ts";
 
+// 
 import { promises } from "./service/image.ts";
 import music from "./service/music.ts";
-console.log(promises);
+// console.log(promises);
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const body = document.querySelector<HTMLBodyElement>("body")!;
 app.style.width = config.canvas.width + "px";
@@ -82,22 +84,21 @@ export default {
     playerCanvas.stop()
   },
   async start() {
+    // 如果已经开始游戏，则不执行start后面的操作，否则会多次渲染画布
+    // 导致游戏页面图片不断增加
     if (this.isStart == true) return;
-    music.start();
     this.isStart = true;
+    music.start();
     app.style.backgroundImage = "none";
     const all = await Promise.all(promises); // 第一步 加载贴图
     console.log(all);
 
     strawCanvas.render(); // 第二步 渲染画布
-
     wallCanvas.render();
     waterCanvas.render();
     steelCanvas.render();
-
     tankCanvas.render();
     bulletCanvas.render();
-
     bossCanvas.render();
     playerCanvas.render();
   },
