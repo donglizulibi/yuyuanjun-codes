@@ -18,45 +18,48 @@
         
         article {
             border: solid 5px #ccc;
-            width: 580px;
+            width: 500px;
             height: 500px;
             display: flex;
-            flex-flow: row wrap;
+            flex-flow: row nowrap;
         }
         
         article :first-child {
-            flex-grow: 1;
+            flex-shrink: 1;
         }
         
         article div:nth-child(2) {
-            flex-grow: 3;
+            flex-shrink: 3;
         }
         
         article div:nth-child(3) {
-            flex-grow: 0;
+            flex-shrink: 0;
         }
         /* 
-        flex-grow是设置在弹性盒子的子元素块上的属性
-        其属性值表示该元素块占剩余空间的份数
-        最终该元素块的宽或者高为元素块本身的宽高加上份数乘以单位份数的宽高
+        flex-shrink定义的弹性盒子内的子元素块上
+        在弹性盒子的宽或高小于所有子元素块宽或高的总和
+        且设置不允许换行的时候，为使得所有元素块在同一行显示
+        确定每个子元素块缩放的程度
 
-        以本例来看，盒子的宽为580px
-        第一个元素块的flex-grow为1，第二个元素块为3，第三个为0
-        则总的份数为4份，每个元素块的宽度为100px
-        则剩余空间为580-100*3=280px
-        单位份数的宽为剩余空间除以份数280*4=70px
-        
-        则各个元素块的宽度为
-        第一个：100+70*1=170px
-        第二个：100+70*3=310px
-        第三个：100+70*0=100px
+        以本例来看
+        第一个元素块的属性值为1，第二个为3，则总数为4
+        所有元素块的宽度总和为200*3=600px
+        需要缩放的宽度为600-500=100px
+        则分配到各个元素的缩放宽度为
+        第一个元素块 (1/4)*100=25px
+        第二个元素块 (3/4)*100=75px
+        第三个元素块 0
 
-        如果不设置这个属性，则默认的属性值是0，也就是不占用剩余空间
-         */
+        则在缩放后三个元素块的宽度为
+        第一个元素块 200-25=175px
+        第二个元素块 200-75=125px
+        第三个元素块 200px
+
+        */
         
         article div {
             height: 100px;
-            width: 100px;
+            width: 200px;
             background-clip: content-box;
             background-color: blue;
             padding: 10px;
