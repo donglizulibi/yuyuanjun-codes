@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 10px;
+        }
+        
+        article {
+            border: solid 5px #ccc;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        
+        article div:nth-child(1) {
+            flex: 1;
+            /* flex-grow: 1; */
+            /* flex-basis: 0; */
+            /* flex-basis: auto; */
+        }
+        
+        article div:nth-child(2) {
+            flex: 0;
+            /* flex-grow: 0; */
+            /* flex-basis: 0; */
+        }
+        
+        article div:nth-child(3) {
+            flex: 2;
+            /* flex-grow: 3; */
+            /* flex-basis: 0; */
+        }
+        /* 
+            flex是flex-grow  flex-shrink  flex-basis三者的组合
+            如果不设置flex属性，也不设置上面三个属性
+            则三个属性的默认值分别是
+            flex-grow: 0;  表示盒子过大时，盒子内子元素不占用剩余空间
+            flex-shrink: 1;  表示盒子过小时，盒子内子元素平等缩小
+            flex-basis: auto;  表示盒子内元素在主轴上的尺寸相当于元素的宽或者高
+            
+            
+            如果只填写一个参数flex:1 表示 flex: 1 1 0%
+            表示flex-grow: 0; flex-basis: 0%;
+
+
+            在本例中，三个子块分别设置为flex:1  flex:0  flex:2
+            也就是
+            flex-grow: 1;  
+            flex-shrink: 1;  
+            flex-basis: 0%;
+
+            flex-grow: 0;  
+            flex-shrink: 1;  
+            flex-basis: 0%;
+
+            flex-grow: 2;  
+            flex-shrink: 1;  
+            flex-basis: 0%;
+
+            表示三个子块的缩小比例相同
+            放大的占比为 第一个子块占一份，第二个子块不放大，第三个子块占两份
+            
+            第三个参数flex-basis表示主轴上的基准尺寸为零
+            但是并不代表这个元素块的实际占据的尺寸为0
+            实际尺寸包括子元素的padding 边框
+            当子块不参与放大的时候，实际尺寸包括字体所占据的内容区域
+
+            所以第二个子块包括这三者，宽度为34.53px
+            第一个和第三个子块的初始宽度为边框加上内边距
+            为 (5+2)*2 = 14px
+            则盒子的剩余空间为 500 - 34.53 - 14*2 = 437.47px
+            flex-grow的总份数为3，则一份为437.47 / 3 = 145.82px
+            则第一个子块为145.82 + 14 = 159.82px
+            第三个子块为145.82*2 + 14 = 305.6px
+
+        */
+        
+        article div {
+            height: 100px;
+            width: 50px;
+            background-clip: content-box;
+            background-color: blue;
+            padding: 5px;
+            box-sizing: border-box;
+            border: 2px solid blue;
+            color: #ccc;
+            font-size: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>3</div>
+        <div>3</div>
+        <div>3</div>
+
+    </article>
+</body>
+
+</html>

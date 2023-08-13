@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 引入react和react-dom两个cdn crossorigin表示允许跨域 -->
+    <script>
+        // 实现一个点击按钮显示对应文字的功能 
+        // 首先定义一个按钮组件，组件是以函数的形式存在的
+        console.log(React)
+
+        function LikeButton() {
+            // 函数返回一个对象，这个对象由React对象中的createElement方法创建
+            // 方法中传入三个参数
+            // 第一个是元素名称
+            // 第二个参数是事件方法，传入“事件类型”和“事件逻辑”的键值对
+            // 第三个参数是元素的innerHTML
+            let reactObj = React.createElement(
+                'button', {
+                    onClick: () => {
+                        console.log('button clicked')
+                    }
+                },
+                'click the button')
+            return reactObj
+        }
+
+        // 拿到页面中的根节点
+        const rootNode = document.querySelector('#root')
+
+        // 调用ReactDOM的createRoot方法，传入根节点，创建根实例
+        const root = ReactDOM.createRoot(rootNode)
+
+        // 调用根实例render方法，传入组件
+        root.render(React.createElement(LikeButton))
+    </script>
+</body>
+
+</html>

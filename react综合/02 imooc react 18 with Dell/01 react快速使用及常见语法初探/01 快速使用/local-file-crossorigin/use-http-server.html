@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script crossorigin src="react.development.js"></script>
+    <script crossorigin src="react-dom.development.js"></script>
+    <script>
+        // 在缺少服务器的情况下，一个文件通过文件协议去访问另一个文件时
+        // 会产生跨域的问题
+
+        function LikeButton() {
+            let reactObj = React.createElement(
+                'button', {
+                    onClick: () => {
+                        console.log('button clicked')
+                    }
+                },
+                'click the button')
+            return reactObj
+        }
+
+
+        const rootNode = document.querySelector('#root')
+        const root = ReactDOM.createRoot(rootNode)
+        root.render(React.createElement(LikeButton))
+    </script>
+</body>
+
+</html>

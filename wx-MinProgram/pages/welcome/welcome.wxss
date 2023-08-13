@@ -1,1 +1,48 @@
 /* pages/welcome/welcome.wxss */
+page{
+  background-color: #b3d4db;
+}
+
+/* 
+给整个页面设置背景色的两种方法
+1. 给container设置背景色，并把其高度设置为100vh
+2. 每个页面中所有元素都是自动包裹在page元素中的
+   所以可以直接把背景颜色设置在page元素上
+ */
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* height: 100vh; */
+  /* background-color: #b3d4db; */
+}
+
+
+.avatar{
+  height: 200rpx;
+  width: 200rpx;
+  margin-top: 160rpx;
+}
+
+.motto{
+  margin-top: 100rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.journey-container{
+  /* 在这里边框粗细和圆角可以使用px单位固定 */
+  border: 2px solid #405f80;
+  width: 200rpx;
+  height: 80rpx;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 200rpx;
+}
+
+.journey{
+  font-size: 22rpx;
+  font-weight: bold;
+  line-height: 80rpx;
+  color: #405f80;
+}

@@ -1,6 +1,40 @@
 <!--pages/welcome/welcome.wxml-->
 <!-- <image src="/images/avatar/1.png" mode=""/> -->
+<!-- 
+  关于rpx和px
+  在标准的375px（或者是750rpx）的iPhone6机型上
+  rpx的大小是px的一半，也就是1px = 2rpx
+  如果要在标准机型上设置px单位，并显示原图片大小
+  则需要把图片的宽高都除以二
+  使用rpx则可以使用原图片的大小
 
-<image src="./../../images/avatar/1.png" mode=""/>
-<text>Hello, 七月</text>
-<button></button>
+  如果在小程序使用px单位，则图片的大小不会随着机型大小变化
+  而变化，而rpx单位具备响应性
+
+  在小程序文档的组件部分中提到，如果不给image组件设置任何样式
+  则image组件的默认宽度是320px，高度是240px
+  所以正圆的图片会变成椭圆的图片
+ -->
+
+ <!-- 
+   在小程序中不建议使用原生的button组件
+   因为button组件有很多自带的样式，且不易修改
+   可以用view组件模拟按钮的效果
+  -->
+
+  <!-- 
+    wxss文件会自动引入
+   -->
+
+   <!-- 
+     在初期，小程序中顶部和底部不能通过编程的方式改变
+     而只能在json文件中配置
+     新版小程序中可以设置自定义
+    -->
+<view class="container">
+  <image class="avatar" src="./../../images/avatar/1.png" mode=""/>
+  <text class="motto">Hello, 七月</text>
+  <view class="journey-container">
+    <text class="journey">开启小程序之旅</text>
+  </view>
+</view>

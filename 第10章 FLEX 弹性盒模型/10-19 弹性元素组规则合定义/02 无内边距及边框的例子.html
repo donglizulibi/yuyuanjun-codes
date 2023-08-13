@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 10px;
+        }
+        
+        article {
+            border: solid 5px #ccc;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        
+        article div:nth-child(1) {
+            background-color: blue;
+            flex: 1;
+            /* flex-grow: 1; */
+            /* flex-basis: 0; */
+            /* flex-basis: auto; */
+        }
+        
+        article div:nth-child(2) {
+            background-color: red;
+            flex: 0;
+            /* flex-grow: 0; */
+            /* flex-basis: 0; */
+        }
+        
+        article div:nth-child(3) {
+            background-color: palevioletred;
+            flex: 2;
+            /* flex-grow: 3; */
+            /* flex-basis: 0; */
+        }
+        /* 
+            在本例中，子元素没有边框和内边距
+            三个子块的flex分别为1 0 2
+            则第二个子块占据的位置为字体的宽度
+
+            第三个子块的宽度是第一个的两倍
+            
+        */
+        
+        article div {
+            height: 100px;
+            width: 50px;
+            color: #ccc;
+            font-size: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>3</div>
+        <div>3</div>
+        <div>3</div>
+
+    </article>
+</body>
+
+</html>

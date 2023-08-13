@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding-left: 100px;
+            padding-top: 10px;
+        }
+        
+        article {
+            border: solid 5px #ccc;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            /* flex-flow: row nowrap; */
+            flex-flow: column;
+        }
+        
+        article :first-child {
+            flex-shrink: 1;
+        }
+        
+        article div:nth-child(2) {
+            flex-shrink: 3;
+        }
+        
+        article div:nth-child(3) {
+            flex-shrink: 0;
+        }
+        /* flex-basis设置弹性盒子内元素块在主轴上的初始尺寸
+           如果盒子上flex-direction是row，则flex-basis表示width
+           如果是columm, 则表示height
+
+           flex-basis如果设置为auto，则表示其数值和height或者width一致
+           flex-basis的优先级高于height或者width
+           但优先级小于min-height 或者 min-width
+        */
+        
+        article div {
+            height: 100px;
+            width: 200px;
+            background-clip: content-box;
+            background-color: blue;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px solid blue;
+            /*  */
+            color: #ccc;
+            font-size: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+
+    </article>
+</body>
+
+</html>
