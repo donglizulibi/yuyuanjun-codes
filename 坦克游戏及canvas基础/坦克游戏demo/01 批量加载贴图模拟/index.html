@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div></div>
+    <button>批量加载图片</button>
+    <script>
+        const imgObj = {
+            one: './images/1.png',
+            two: './images/2.png',
+            three: './images/3.png',
+            four: './images/4.png',
+            five: './images/5.png',
+        }
+
+        const promises = Object.entries(imgObj).map(([key, value]) => {
+            return new Promise((resolve, reject) => {
+                const img = new Image()
+                img.src = value
+                resolve(img);
+            })
+        })
+        console.log(promises)
+        const button = document.querySelector('button')
+
+        let div = document.querySelector('div')
+
+
+        async function start() {
+            const res = await Promise.all(promises)
+            return res
+        }
+
+        function bootstrap() {
+            button.addEventListener('click', async() => {
+                const imgs = await start()
+                imgs.forEach(img => div.appendChild(img))
+            })
+        }
+
+        bootstrap()
+    </script>
+</body>
+
+</html>
