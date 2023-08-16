@@ -5,6 +5,7 @@
     <div>父组件区域</div>
     <p>{{ current }}</p>
   </div>
+  <br />
 </template>
 
 <script setup>

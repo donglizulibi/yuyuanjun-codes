@@ -5,6 +5,7 @@ import position from "../service/position";
 
 class tank extends canvasAbstract implements ICanvas {
   name: string = "tank";
+
   interval = 0;
   stop() {
     clearInterval(this.interval);

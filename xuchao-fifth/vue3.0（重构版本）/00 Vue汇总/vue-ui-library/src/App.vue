@@ -1,10 +1,10 @@
 <script setup>
 import useTransfer from "./use-components/useTransfer";
 import useMagnifier from "./use-components/useMagnifier.vue";
-import useTable from "./use-components/useTable.vue";
 import useProvCityZone from "./use-components/useProvCityZone.vue";
 import usePagination from "./use-components/usePagination.vue";
 import useTableCopy from "./use-components/useTableCopy.vue";
+import useFiveStars from "./use-components/useFiveStars.vue";
 </script>
 <template>
   <h3>Transfer 穿梭框</h3>
@@ -22,6 +22,9 @@ import useTableCopy from "./use-components/useTableCopy.vue";
 
   <h3>Pagination 分页栏</h3>
   <use-pagination></use-pagination>
+
+  <h3>FiveStars 五星好评</h3>
+  <use-five-stars></use-five-stars>
 </template>
 
 <style scoped></style>

@@ -9,6 +9,9 @@ page{
 2. 每个页面中所有元素都是自动包裹在page元素中的
    所以可以直接把背景颜色设置在page元素上
  */
+ .l-avatar{
+   margin-top: 160rpx;
+ }
 .container{
   display: flex;
   flex-direction: column;
@@ -18,11 +21,11 @@ page{
 }
 
 
-.avatar{
+/* .avatar{
   height: 200rpx;
   width: 200rpx;
   margin-top: 160rpx;
-}
+} */
 
 .motto{
   margin-top: 100rpx;

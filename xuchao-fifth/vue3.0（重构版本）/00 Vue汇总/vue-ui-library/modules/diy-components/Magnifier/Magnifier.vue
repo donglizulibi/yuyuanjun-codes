@@ -74,7 +74,7 @@ export default {
     top: 0px;
     left: 0px;
     z-index: 999;
-    // border-radius: 50%;
+    border-radius: 50%;
     background-color: #fff;
     box-shadow: 0 0 3px #999;
 

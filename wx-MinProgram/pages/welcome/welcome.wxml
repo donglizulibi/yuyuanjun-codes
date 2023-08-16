@@ -31,8 +31,33 @@
      而只能在json文件中配置
      新版小程序中可以设置自定义
     -->
+
+<!-- 
+  在小程序中要使用某个第三方包，比其他前端库要多一个步骤
+  也就是在使用npm下载组件之后，要在工具-构建npm中再把整个包
+  再加载一遍
+ -->
+
+ <!-- 
+  在小程序页面中使用第三方UI组件库的自定义组件的方法
+  1 在需要引入自定义组件的页面文件下的.json文件里
+    使用usingComponents属性，属性值是一个对象
+  2 在这个对象里自己设置组件的名称作为属性名
+    属性值是这个组件的js文件的绝对路径
+  3 绝对路径并不是node_modules的路径，而是
+    miniprogram_npm的路径
+  -->
+
+  <!-- 
+    微信官方已经弃用open-data属性，不能再调用微信用户头像
+    linUI中可以用text属性来设置昵称
+    可以用placement属性来设置昵称和头像的相对位置
+    如果要引入图片，需要使用绝对路径
+   -->
 <view class="container">
-  <image class="avatar" src="./../../images/avatar/1.png" mode=""/>
+  <!-- <image class="avatar" src="./../../images/avatar/1.png" mode=""/> -->
+  <l-avatar size="180" class="l-avatar" shape="circle" src="/images/avatar/1.png"/>
+
   <text class="motto">Hello, 七月</text>
   <view class="journey-container">
     <text class="journey">开启小程序之旅</text>

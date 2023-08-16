@@ -3,10 +3,10 @@ import position from "../service/position";
 
 export default abstract class canvasAbstract {
   // abstract name: string;
-  public models: IModel[] = [];
   protected abstract num(): number;
   protected abstract model(): ModelConstructor | BulletModelConstructor | BossModelConstructor;
-
+  public models: IModel[] = [];
+  
   constructor(
     public name: string,
     protected app = document.querySelector<HTMLDivElement>("#app")!,

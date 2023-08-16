@@ -1,0 +1,14 @@
+<!--pages/posts/posts.wxml-->
+
+<!-- 
+  三种方法将当前开发页面设置小程序刚进入时的首页
+  1. 可以通过在app.json中设置entryPagePath来设置
+  小程序刚进入时的首页路径
+
+  2. 在app.json中的pages属性里，将需要设置的路径
+  置顶
+
+  3. 在开发者工具中的编译模式下拉框中选择添加编译模式
+  在“启动页面”一栏选择添加的路径地址
+ -->
+<text>pages/posts/posts.wxml</text>
