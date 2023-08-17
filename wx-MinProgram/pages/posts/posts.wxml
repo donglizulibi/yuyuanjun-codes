@@ -11,4 +11,10 @@
   3. 在开发者工具中的编译模式下拉框中选择添加编译模式
   在“启动页面”一栏选择添加的路径地址
  -->
+
+ <!-- 
+   navigationBarBackgroundColor这个属性
+   在全局的app.json中需要放在window对象中
+   但是在单个页面里可以直接设置
+  -->
 <text>pages/posts/posts.wxml</text>

@@ -1,5 +1,5 @@
 vite创建的项目，所用命令为
-yarn create vite b2 --template vue   
+yarn create vite 【项目名称】 --template vue   
 然后yarn安装依赖包
 
 如果只运行yarn create vite则需要进一步设置项目名称、所支持的框架和所支持的类型
@@ -20,7 +20,9 @@ npm install pinia
 yarn add vue-router@4
 
 运行vue-composite项目的顺序
-先安装依赖包，其中axios、json-server、mockjs可能需要重新安装
+先安装依赖包 
+命令yarn
+其中axios、json-server、mockjs可能需要重新安装
 yarn add axios
 npm install -g json-server
 npm install mockjs
