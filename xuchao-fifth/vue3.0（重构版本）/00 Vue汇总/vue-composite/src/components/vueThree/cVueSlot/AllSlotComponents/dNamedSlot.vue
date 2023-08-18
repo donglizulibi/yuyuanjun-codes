@@ -3,24 +3,31 @@
     <h5>具名插槽的使用方法</h5>
     <h5>1 在子组件中使用slot双标签，并使用name属性给不同插槽命名</h5>
     <h5>
-      2 在父组件中使用template标签，在标签内使用v-slot:"name"指令来定位子组件中的插槽
+      2
+      在父组件中使用子组件，在其内部使用template标签，在template标签内使用v-slot:【name】指令来定位子组件中的插槽
     </h5>
     <h5>3 template标签内部需要有一个根标签div，然后插入插槽内容</h5>
     <h5>4 默认插槽的name是default，v-slot可以简写为#</h5>
+    <h5>
+      5
+      在父组件中显示的格式会由子组件内的格式决定，在父组件中随意调换各个template的位置不影响其结构
+    </h5>
     <named-slot-child>
       <template v-slot:header>
         <div>
           {{ headerData }}
         </div>
       </template>
-      <template #main>
-        <div>
-          {{ mainData }}
-        </div>
-      </template>
+
       <template #footer>
         <div>
           {{ footerData }}
+        </div>
+      </template>
+
+      <template #main>
+        <div>
+          {{ mainData }}
         </div>
       </template>
     </named-slot-child>

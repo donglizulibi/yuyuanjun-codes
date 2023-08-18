@@ -1,9 +1,14 @@
+在本项目中，router-link-component-demo的模拟router的案例
+router-demo是路由的基本用法
+router-guard是路由导航首位的基本用法
+
 安装vue-router
 yarn add vue-router@4
 
 关于router-view的初始配置
 
-1 创立router文件夹，建立路由表文件，引入createRouter函数和需要进入路由的页面
+1 在src目录下创立router文件夹，建立路由表文件
+  引入createRouter函数和需要进入路由的页面
   定义history模式，配置路由表，并导出路由实例对象
   
 2 与pinia一样，在main.js文件中，调用app实例的use方法，将路由实例对象填入
@@ -15,14 +20,19 @@ yarn add vue-router@4
 关于vue-router的hash模式和history模式
 vue作为一种单页面应用，只在一开始以初始网址发送一次请求，返回所有页面的数据
 然后根据地址栏后面的路径，在路由表中匹配到相应的页面
+
 而hash模式和history模式的区别首先在于地址栏
-hash模式用井号键作为锚点把路径和域名隔开，history模式并不会隔开
-所以如果页面刷新，再次发送请求的时候，锚点后面的内容不会被包括在http请求中
+hash模式用井号键作为锚点把路径和域名隔开
+history模式并不会隔开
+
+所以如果页面刷新，再次发送请求的时候，hash模式的锚点后面的内容不会被包括在http请求中
 但是history模式没有锚点，域名和路径一起发送到服务器，会出现找不到页面的情况
+
 所以使用history模式的话，需要在服务器端修改配置，使服务器返回初始域名的数据即可
 而hash模式除了出现锚点不美观之外，对搜索引擎检索的识别度也有影响
 
-如果碰到有多个vue项目在服务器中运行的情况，可以在createWebHashHistory或者createWebHistory中
+如果碰到有多个vue项目在服务器中运行的情况
+可以在createWebHashHistory或者createWebHistory中
 加入字符串参数，来表示路径的前缀
 
 

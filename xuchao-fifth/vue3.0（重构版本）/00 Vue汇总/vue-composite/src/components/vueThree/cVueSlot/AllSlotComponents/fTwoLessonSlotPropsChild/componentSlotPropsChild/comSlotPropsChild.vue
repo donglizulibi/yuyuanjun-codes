@@ -9,7 +9,7 @@
 <script setup>
 import About from "./About.vue";
 import Home from "./Home.vue";
-import { shallowRef } from "vue";
+import { shallowRef, ref } from "vue";
 const page = shallowRef(About);
 const check = () => {
   if (page.value == About) {

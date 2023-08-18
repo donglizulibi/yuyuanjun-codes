@@ -3,6 +3,8 @@
     <strong>
       <slot name="icon"></slot>
     </strong>
+    {{ lessonData }}
+    <br />
     {{ lessonData.title }}
     <slot content="houdunren" status="hd" :id="lessonData.id" />
     <!-- <slot content="houdunren" status="hd" :id="lessonData.id" name="abc" /> -->

@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import CardAreaDataChild from "./bCardAreaChild/CardAreaDataChild.vue";
+import CardAreaDataChild from "./bCardAreaChild/CardAreaDataChild";
 import CardAreaClickChild from "./bCardAreaChild/CardAreaClickChild.vue";
-import CardAreaPropsChild from "./bCardAreaChild/CardAreaPropsChild.vue";
+import CardAreaPropsChild from "./bCardAreaChild/CardAreaPropsChild";
 import HdButton from "./Tool/Button.vue";
 export default {
   components: {

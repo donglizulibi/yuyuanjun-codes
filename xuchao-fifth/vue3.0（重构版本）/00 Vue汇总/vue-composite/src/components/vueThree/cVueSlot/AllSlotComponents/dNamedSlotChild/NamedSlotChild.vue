@@ -1,13 +1,16 @@
 <template>
   <div>
     <header>
+      标题
       <slot name="header"></slot>
     </header>
     <main>
-      <slot name="main"></slot>
+      文章
+      <slot name="main"> fff </slot>
     </main>
     <footer>
-      <slot name="footer"></slot>
+      页脚
+      <slot name="footer" />
     </footer>
   </div>
 </template>
