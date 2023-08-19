@@ -1,7 +1,7 @@
 <!--pages/posts/posts.wxml-->
 
 <!-- 
-  三种方法将当前开发页面设置小程序刚进入时的首页
+  三种方法将当前开发页面, 设置为小程序刚进入时的首页
   1. 可以通过在app.json中设置entryPagePath来设置
   小程序刚进入时的首页路径
 
@@ -12,9 +12,22 @@
   在“启动页面”一栏选择添加的路径地址
  -->
 
- <!-- 
+<!-- 
    navigationBarBackgroundColor这个属性
    在全局的app.json中需要放在window对象中
    但是在单个页面里可以直接设置
   -->
-<text>pages/posts/posts.wxml</text>
+
+<view>
+  <swiper>
+    <swiper-item>
+      <image src="/images/bestplayers.png" mode=""/>
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/lpl.png" mode=""/>
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/jumpfly.png" mode=""/>
+    </swiper-item>
+  </swiper>
+</view>
