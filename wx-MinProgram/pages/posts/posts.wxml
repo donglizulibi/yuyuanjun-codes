@@ -18,6 +18,16 @@
    但是在单个页面里可以直接设置
   -->
 
+  <!-- 
+    在轮播容器swiper和swiper-item组件中，存在一个三层的关系
+    其中第一层用swiper包裹，第二层是数量不等的swiper-item组件
+    第三层在swiper-item组件内部，可以是文字、图片组件或者其他组件
+
+    以图片组件为例，假如需要让不同尺寸的图片在轮播容器中显示
+    统一的大小，则需要给第一层的swiper和第三层的swiper-item组件
+    设置宽高
+   -->
+
 <view>
   <swiper>
     <swiper-item>
