@@ -7,6 +7,9 @@ yarn add vue-router@4
 
 关于router-view的初始配置
 
+在data文件夹下运行
+json-server --watch --port 3003 --host 127.0.0.1 db.js
+
 1 在src目录下创立router文件夹，建立路由表文件
   引入createRouter函数和需要进入路由的页面
   定义history模式，配置路由表，并导出路由实例对象

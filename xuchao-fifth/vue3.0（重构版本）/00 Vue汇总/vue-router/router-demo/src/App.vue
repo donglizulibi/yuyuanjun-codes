@@ -7,10 +7,8 @@ import Navigation from "@/components/Navigation.vue";
   <router-link to="article">article</router-link> -->
   <suspense>
     <template #default>
-      <div>
-        <div class="router-view">
-          <router-view />
-        </div>
+      <div class="router-view">
+        <router-view />
       </div>
     </template>
   </suspense>
