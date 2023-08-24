@@ -28,8 +28,12 @@
     设置宽高
    -->
 
+   <!-- 
+     
+    -->
+
 <view>
-  <swiper>
+  <swiper >
     <swiper-item>
       <image src="/images/bestplayers.png" mode=""/>
     </swiper-item>

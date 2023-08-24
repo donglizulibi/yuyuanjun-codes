@@ -1,1 +1,7 @@
-运行java的时候，需要使用项目单独打开一个vscode窗口
+在java中创建新项目
+1 快捷键ctrl+shift+p，然后输入create：
+2 点击标注的一栏，选择No build tools：
+3 出现地址选择框，选择项目保存在java文件后，点击select the project location
+4 vscode再次出现对话框，填写项目名称，然后vscode就会新建项目文件夹
+  以及自动配置项目环境，并且新开一个vscode窗口运行这个项目
+5 下一次再运行的时候，需要使用单独的vscode窗口打开项目
