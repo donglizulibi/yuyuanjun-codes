@@ -1,6 +1,4 @@
-<script setup>
-import Navigation from "@/components/Navigation.vue";
-</script>
+<script setup></script>
 
 <template>
   <!-- <router-link to="/">home</router-link>
@@ -14,17 +12,4 @@ import Navigation from "@/components/Navigation.vue";
   </suspense>
 </template>
 
-<style scoped>
-a {
-  margin: 20px;
-}
-
-/* .home {
-  padding: 20px;
-  background-color: brown;
-}
-.article {
-  padding: 20px;
-  background-color: aliceblue;
-} */
-</style>
+<style scoped></style>

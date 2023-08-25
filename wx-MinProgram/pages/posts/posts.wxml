@@ -29,11 +29,29 @@
    -->
 
    <!-- 
-     
+     按住ctrl，鼠标移到组件名称上，可以进入微信官方文档中
+     查看相应的组件使用方法
     -->
 
+    <!-- 
+      给swiper组件设置indicator-dots属性设置为true
+      则会显示轮播图中下位置的指示点
+
+      如果要让indicator-dots这个属性为false
+      不能直接赋值为false，否则会认为是内容为false的字符串
+      需要用模板语法，indicator-dots="{{false}}"
+      或者不设置这个属性
+
+      所以只要给属性设置值，建议都在外面加上双括号
+      如果只需要表示true，也可以只写属性，不写属性值
+     -->
+
 <view>
-  <swiper >
+  <swiper 
+  indicator-dots="true" 
+  interval="3000" 
+  autoplay="{{true}}"
+  circular="{{true}}">
     <swiper-item>
       <image src="/images/bestplayers.png" mode=""/>
     </swiper-item>
@@ -44,4 +62,7 @@
       <image src="/images/jumpfly.png" mode=""/>
     </swiper-item>
   </swiper>
+
+  <view>
+  </view>
 </view>
