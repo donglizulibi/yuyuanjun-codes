@@ -5,6 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        article {
+            border: solid 5px silver;
+            width: 400px;
+            height: 500px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        article section {
+            flex: 1 0 100px;
+            padding: 10px;
+            background-clip: content-box;
+            background-color: blueviolet;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        article section div {
+            flex: 1;
+        }
+        
+        article section span {
+            background-color: black;
+            color: aliceblue;
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body>

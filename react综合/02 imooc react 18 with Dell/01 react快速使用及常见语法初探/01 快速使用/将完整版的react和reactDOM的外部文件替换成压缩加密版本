@@ -1,0 +1,17 @@
+完整版本react外部文件地址
+https://unpkg.com/react@18.2.0/umd/react.development.js
+
+完整版本reactDOM外部文件地址
+https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js
+
+压缩加密版react外部文件地址
+https://unpkg.com/react@18.2.0/umd/react.production.min.js
+
+压缩加密版reactDOM外部文件地址
+https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js
+
+压缩加密版babel外部文件地址
+https://unpkg.com/@babel/standalone@7.22.11/babel.min.js
+
+建立本地文件，将文件地址网页的内容复制到文件中，即可引用
+

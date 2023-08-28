@@ -9,13 +9,14 @@
 
 <body>
     <div id="root"></div>
-    <script crossorigin src="./react.development.js"></script>
-    <script crossorigin src="./react-dom.development.js"></script>
+    <script crossorigin src="./react.min.js"></script>
+    <script crossorigin src="./react-dom.min.js"></script>
     <script>
         // 在缺少服务器的情况下，一个文件通过文件协议去访问另一个文件时
         // 会产生跨域的问题
 
-        // 使用http-server之后，跨域问题消失
+        // 使用http-server之后，会在本地建立一个服务器
+        // 从文件协议变成http协议
 
         function LikeButton() {
             let reactObj = React.createElement(
