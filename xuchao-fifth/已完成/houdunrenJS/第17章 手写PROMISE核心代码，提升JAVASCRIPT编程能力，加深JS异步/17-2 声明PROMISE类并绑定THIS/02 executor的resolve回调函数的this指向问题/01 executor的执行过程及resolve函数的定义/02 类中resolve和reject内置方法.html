@@ -30,6 +30,7 @@
             // 也要随着改变，以后要传到下一个then，就传这个值
             // 且promise实例的状态status也要改变
             resolve(value) {
+                console.log(this)
                 this.value = value
                 this.status = Hd.FULFILLED
             }

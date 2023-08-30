@@ -28,6 +28,10 @@
         
         article section div {
             flex: 1;
+            display: flex;
+            font-size: 35px;
+            align-items: center;
+            justify-content: center;
         }
         
         article section span {
@@ -42,17 +46,28 @@
     <article>
         <section>
             <div>houdunren.com</div>
-            <span>up</span>
+            <!-- <span onclick="up(event.target)">up</span> -->
+            <span onclick="up(this)">up</span>
         </section>
         <section>
             <div>hdcms.com</div>
-            <span>down</span>
+            <span onclick="up(this)">up</span>
         </section>
         <section>
             <div>houdunren</div>
-            <span>left</span>
+            <span onclick="up(this)">up</span>
         </section>
     </article>
+    <script>
+        function up(el) {
+            console.log(el)
+            let order = getComputedStyle(el.parentElement).order
+
+            // order数值越小, 位置会越靠上
+            el.parentElement.style.order = order * 1 - 1
+            console.log(order)
+        }
+    </script>
 </body>
 
 </html>

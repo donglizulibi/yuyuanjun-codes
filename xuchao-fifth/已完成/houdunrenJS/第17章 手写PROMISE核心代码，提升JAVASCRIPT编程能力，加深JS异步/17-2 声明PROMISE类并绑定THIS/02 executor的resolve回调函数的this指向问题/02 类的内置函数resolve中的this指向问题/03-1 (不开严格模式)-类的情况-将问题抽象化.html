@@ -20,7 +20,9 @@
         // 结果都是,两个实例的打印结果一样
         // 在类的内置函数show里面的this打印的是undefined
         // 'show-参数'都可以打印出来
-        // 新建实例传入的回调函数里面打印的this都是指向window
+
+        // 由于严格模式只存在于User类中
+        // 所以在新建实例的时候，传入的回调函数里面打印的this都是指向window
 
         class User {
             constructor(func) {

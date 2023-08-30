@@ -26,6 +26,13 @@
 
                 console.log(value)
 
+
+                // 在上个例子中, this指向Hd类创建出来的实例
+                // 而在这里指向的Hd类本身
+                // 而value是Hd的内置属性, 不是静态属性
+                // 所以this.value仍然是undefined
+                console.dir(this)
+                console.log(this.value)
                 this.value = value
                 this.status = Hd.FULFILLED
                 console.dir(this) // 在这里改变了
@@ -45,11 +52,15 @@
             // resolve('解决')
 
             // 如果使用apply在这里改变执行环境
+            // 只能指向类本身, 而不能指向这个具体的实例
             resolve.apply(Hd, ['解决'])
 
 
         })
 
+
+        // 最后的打印结果显示, promise实例的status还是pending状态
+        // 说明结果没有改变
         console.log(promise)
     </script>
 </body>

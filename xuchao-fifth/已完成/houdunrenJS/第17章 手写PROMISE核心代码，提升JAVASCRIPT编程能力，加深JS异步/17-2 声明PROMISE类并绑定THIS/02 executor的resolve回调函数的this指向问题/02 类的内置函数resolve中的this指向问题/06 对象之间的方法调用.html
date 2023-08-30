@@ -10,13 +10,9 @@
 
 <body>
     <script>
-        // 再来试验一次在其他对象环境中创建实例的情况
-        // 建立一个obj对象,在这个对象中创建一个函数,在函数体里
-        // 创建一个箭头函数并立即执行
-
-        // 箭头函数的函数体里是传入两种回调函数的新建实例
-        // 打印结果为,传入箭头函数为回调函数的实例打印的是obj对象
-        // 传入普通函数为回调函数的实例打印的是window
+        // 本例中, 使用obj2的环境, 调用obj中的render方法
+        // render函数内部的this指向obj2
+        // 说明了, 普通函数中的this, 是谁调用这个函数, this就指向谁
 
         class User {
             constructor(func) {
@@ -31,12 +27,12 @@
         let obj = {
             name: 'lisi',
             render: function() {
-                console.log(this) // obj
+                console.log(this) // obj2
                 let fn = () => {
-                    console.log(this) // obj
+                    console.log(this) // obj2
 
                     let uu = new User((show) => {
-                        console.log(this) // obj
+                        console.log(this) // obj2
                         show('show-参数')
                     })
                     let u = new User(function(show) {
@@ -48,7 +44,12 @@
             }
         }
 
-        obj.render()
+
+        let obj2 = {
+            age: 19,
+            obj2Fun() {}
+        }
+        obj.render.apply(obj2)
     </script>
 </body>
 
