@@ -48,6 +48,8 @@
                     onRejected = () => {}
                 }
 
+                // console.log(123)
+
 
                 if (this.status == Hd.FULFILLED) {
                     // 达到异步
@@ -74,8 +76,8 @@
         }
 
         let promise = new Hd((resolve, reject) => {
-                resolve('解决')
-                    // reject('拒绝')
+                // resolve('解决')
+                // reject('拒绝')
             })
             .then((val) => {
                 // a

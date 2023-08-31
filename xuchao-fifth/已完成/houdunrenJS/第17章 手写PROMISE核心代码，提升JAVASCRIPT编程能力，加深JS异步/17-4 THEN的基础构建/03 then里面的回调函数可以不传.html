@@ -63,8 +63,8 @@
         }
 
         let promise = new Hd((resolve, reject) => {
-                resolve('解决')
-                    // reject('拒绝')
+                // resolve('解决')
+                // reject('拒绝')
             })
             .then((val) => {
                 console.log(val)
@@ -74,8 +74,16 @@
             // .then()
 
 
-        // console.log(promise) 
+        // console.log(promise)
         // 这个问题还是没有解决，还是打印undefined
+
+        // 原生中返回resolve里的数据
+        let pro = new Promise((resolve) => {
+            resolve('asd')
+        }).then(val => {
+            console.log(val)
+        })
+        console.log(pro)
 
         // 然后就是then的链式调用的问题
     </script>
