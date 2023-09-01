@@ -9,22 +9,60 @@
 </head>
 
 <body>
+    <span></span>
+    <mark>123</mark>
     <script>
-        const cart = [{
-            name: "iphone",
-            price: 12000
-        }, {
-            name: "imac",
-            price: 18000
-        }, {
-            name: "ipad",
-            price: 3200
-        }];
+        // let newlist = [1, 2, 3].push(4)
+        // console.log(newlist.push(5))
+        // "use strict"
+        // var foo = 123
 
-        cart.sort(function(a, b) {
-            return a.price - b.price
-        })
-        console.table(cart)
+        // const user = {
+        //     email: 'aaa',
+        //     udata: (email) => {
+        //         console.log(this)
+        //         this.email = email
+        //     }
+        // }
+
+        // user.udata('ddd')
+        // console.log(user.email)
+
+        (() => {
+            let x, y
+            try {
+                throw new Error()
+            } catch (x) {
+                (x = 1), (y = 2)
+                console.log(x)
+            }
+            console.log(x)
+            console.log(y)
+
+        })()
+
+        // function pr() {
+        //     console.log(this)
+        //     console.log(window.foo)
+        //     console.log(this.foo)
+        // }
+        // console.log(this)
+        // pr()
+        // const cart = [{
+        //     name: "iphone",
+        //     price: 12000
+        // }, {
+        //     name: "imac",
+        //     price: 18000
+        // }, {
+        //     name: "ipad",
+        //     price: 3200
+        // }];
+
+        // cart.sort(function(a, b) {
+        //     return a.price - b.price
+        // })
+        // console.table(cart)
     </script>
 </body>
 
