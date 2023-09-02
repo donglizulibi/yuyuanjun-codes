@@ -14,7 +14,6 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 10px;
-            position: relative;
         }
         
         div {
@@ -25,18 +24,17 @@
             font-size: 50px;
             color: white;
         }
-        /* 
-            在给一个元素设置
+        /* 给某个子元素设置相对定位之后，这个元素仍然会占据空间
+           且仍然可以给这个子元素设置跟父元素的相对位置
+
+           当设置相对位置之后，这个子元素偏离的原来的位置
+           但是弹性盒子内的其他元素并不会挤压这个元素一开始占据的位置
         */
         
         div:nth-of-type(1) {
-            position: absolute;
+            position: relative;
             z-index: -1;
         }
-        /* 
-            
-        
-        */
     </style>
 </head>
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav {
+            margin: auto;
+            height: 60px;
+            width: 800px;
+            background-color: #f3f3f3;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul {
+            list-style: none;
+        }
+        /* 在这里希望第一个ul右边自动占用nav剩下的空间
+            把第二个ul，也就是那个圆，顶到最右边
+            其中一个方法就是给这个ul设置margin-right:auto
+        */
+        
+        nav ul:nth-child(1) {
+            display: flex;
+            align-items: center;
+            margin-right: auto
+        }
+        
+        nav ul:nth-child(1)>li {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        
+        nav ul:nth-child(2)>li {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>首页</li>
+            <li>直播教程</li>
+            <li>晚八点</li>
+        </ul>
+        <ul>
+            <li></li>
+        </ul>
+    </nav>
+</body>
+
+</html>

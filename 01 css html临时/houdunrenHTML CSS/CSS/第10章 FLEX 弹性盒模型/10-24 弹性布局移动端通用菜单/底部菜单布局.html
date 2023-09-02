@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        body main {
+            flex: 1;
+            background-color: #f3f3f3;
+        }
+        
+        body footer {
+            height: 50px;
+            background-color: #eee;
+            display: flex;
+            border-top: solid 1px #aaa;
+            justify-content: space-between;
+        }
+        
+        body footer section {
+            flex: 1;
+            border-right: solid 1px #aaa;
+        }
+        
+        body footer section:last-of-type {
+            border-right: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main></main>
+    <footer>
+        <section></section>
+        <section></section>
+        <section></section>
+    </footer>
+</body>
+
+</html>

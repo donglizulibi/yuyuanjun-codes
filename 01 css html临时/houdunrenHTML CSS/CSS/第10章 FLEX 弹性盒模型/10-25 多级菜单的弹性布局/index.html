@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        body main {
+            flex: 1;
+            background-color: #f3f3f3;
+        }
+        
+        body footer {
+            height: 50px;
+            background-color: #eee;
+            display: flex;
+            border-top: solid 1px #aaa;
+            justify-content: space-between;
+        }
+        
+        body footer section {
+            flex: 1;
+            border-right: solid 1px #aaa;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        
+        body footer section:last-of-type {
+            border-right: none;
+        }
+        /* 在这里不能直接给h4设置高度，还要设置flex-grow和flex-shrink
+           因为h4的父级section并没有一个固定的高度，要靠子级撑开
+        */
+        
+        section h4 {
+            /* height: 50px; */
+            flex: 0 0 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        section ul {
+            list-style: none;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+        /* 这里也是同理，不能直接给li设置height，因为ul是一个没有高度的弹性盒子 */
+        
+        section ul li {
+            flex: 0 0 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid #aaa;
+        }
+        
+        section ul li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main></main>
+    <footer>
+        <section>
+            <h4>教程</h4>
+            <ul>
+                <li>php</li>
+                <li>js</li>
+                <li>css</li>
+            </ul>
+        </section>
+        <section>
+            <h4>教程</h4>
+            <ul>
+                <li>php</li>
+                <li>js</li>
+                <li>css</li>
+            </ul>
+        </section>
+        <section>
+            <h4>教程</h4>
+            <ul>
+                <li>php</li>
+                <li>js</li>
+                <li>css</li>
+            </ul>
+        </section>
+    </footer>
+</body>
+
+</html>
