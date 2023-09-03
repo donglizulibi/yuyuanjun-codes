@@ -2,6 +2,7 @@
     "vue3snippets.enable-compile-vue-file-on-did-save-code": true,
     "typescript.tsdk": "node_modules/typescript/lib",
     "files.associations": {
-        "time.h": "c"
+        "time.h": "c",
+        "*.js": "javascriptreact"
     }
 }
