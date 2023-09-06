@@ -11,8 +11,6 @@ function getNextLetter(squares) {
   return nextLetter;
 }
 
-
-
 function Board({squares,winner,onChange}) {
 
   const nextPlayer = getNextLetter(squares);

@@ -80,6 +80,10 @@ function TicTacToe() {
     console.log(history);
   };
 
+  // 这个组件的History子组件在元素上绑定了点击事件，点击后传递参数
+  // 然后触发在父组件上定义的handleHistoryChange函数
+  // handleHistoryChange这个函数主要是根据参数来找到history容器的数组项目
+  // 然后这个数组项目传入setSquares以改变棋盘布局
   const handleHistoryChange = (index) => {
     const newSquares = history[index];
     setSquares(newSquares);

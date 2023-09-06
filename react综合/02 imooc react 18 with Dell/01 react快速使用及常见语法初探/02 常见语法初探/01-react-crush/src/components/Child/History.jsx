@@ -1,5 +1,4 @@
-function History({ history, onChange }) {
-  console.log(history);
+function getHistoryItems(history, onChange) {
   const historyItems = history.map((item, index) => {
     return (
       <li
@@ -13,10 +12,14 @@ function History({ history, onChange }) {
       </li>
     );
   });
+  return historyItems;
+}
+
+function History({ history, onChange }) {
   return (
     <div>
       <h4 className="history-title">History</h4>
-      <ul className="history-list">{historyItems}</ul>
+      <ul className="history-list">{getHistoryItems(history, onChange)}</ul>
     </div>
   );
 }
