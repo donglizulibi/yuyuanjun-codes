@@ -7,7 +7,7 @@ function AddArrIndexByImmer() {
   const [useStateList, setUseStateList] = useState([]);
   const [useImmerList, setUseImmerList] = useImmer([]);
 
-  const handleClickUseState = () => {
+  const handleClickUseState = () => {   
     // 这里不能使用push改变原数组
     const newList = [...useStateList, useStateIndex];
     setUseStateList(newList);
