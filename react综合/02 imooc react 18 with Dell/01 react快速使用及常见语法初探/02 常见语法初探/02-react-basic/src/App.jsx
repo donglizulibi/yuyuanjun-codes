@@ -1,7 +1,9 @@
 import { useState } from "react";
 import UseStatePrinciple from "./components/UseStatePrinciple";
 import StopPropagation from "./components/StopPropagation";
-import AddArrIndexByImmer from "./components/AddArrIndexByImmer"
+import AddArrIndexByImmer from "./components/AddArrIndexByImmer";
+import PassValueBetweenComps from "./components/PassValueBetweenComps";
+import DestoryComponent from "./components/DestoryComponent";
 import "./App.css";
 
 function App() {
@@ -14,7 +16,13 @@ function App() {
       <StopPropagation />
 
       <h2>分别使用useState和useImmer来实现增加数组项目</h2>
-      <AddArrIndexByImmer/>
+      <AddArrIndexByImmer />
+
+      <h2>组件之间的传值</h2>
+      <PassValueBetweenComps />
+
+      <h2>组件销毁的条件</h2>
+      <DestoryComponent />
     </>
   );
 }
