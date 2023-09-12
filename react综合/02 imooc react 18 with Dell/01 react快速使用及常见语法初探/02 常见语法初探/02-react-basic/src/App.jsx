@@ -4,6 +4,8 @@ import StopPropagation from "./components/StopPropagation";
 import AddArrIndexByImmer from "./components/AddArrIndexByImmer";
 import PassValueBetweenComps from "./components/PassValueBetweenComps";
 import DestoryComponent from "./components/DestoryComponent";
+import UseOfKey from "./components/UseOfKey"
+import UseReducer from "./components/UseReducer";
 import "./App.css";
 
 function App() {
@@ -23,6 +25,12 @@ function App() {
 
       <h2>组件销毁的条件</h2>
       <DestoryComponent />
+
+      <h2>使用key来销毁组件</h2>
+      <UseOfKey />
+
+      <h2>使用reducer</h2>
+      <UseReducer />
     </>
   );
 }
