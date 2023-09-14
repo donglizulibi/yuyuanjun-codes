@@ -6,6 +6,7 @@ import PassValueBetweenComps from "./components/PassValueBetweenComps";
 import DestoryComponent from "./components/DestoryComponent";
 import UseOfKey from "./components/UseOfKey"
 import UseReducer from "./components/UseReducer";
+import UseContext from "./components/UseContext"
 import "./App.css";
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
 
       <h2>使用reducer</h2>
       <UseReducer />
+
+      <h2>使用Context</h2>
+      <UseContext />
     </>
   );
 }

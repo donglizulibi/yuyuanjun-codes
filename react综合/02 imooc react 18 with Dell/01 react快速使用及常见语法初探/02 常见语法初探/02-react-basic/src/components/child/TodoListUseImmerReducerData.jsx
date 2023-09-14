@@ -42,7 +42,7 @@ function TodoListUseImmerReducerData() {
     // 在这里可以不传inputValue
     // 因为changeInput事件
     // 已经让draft的inputValue和里面的action的value同步了
-    const action = {
+    const action = { 
       type: "add",
     };
 
