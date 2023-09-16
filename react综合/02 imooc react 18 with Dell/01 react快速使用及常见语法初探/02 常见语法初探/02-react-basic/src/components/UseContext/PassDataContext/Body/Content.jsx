@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import nameContext from "../../../../../src/nameContext"
+import nameContext from "../nameContext"
 
 function Content(){
     const name = useContext(nameContext)

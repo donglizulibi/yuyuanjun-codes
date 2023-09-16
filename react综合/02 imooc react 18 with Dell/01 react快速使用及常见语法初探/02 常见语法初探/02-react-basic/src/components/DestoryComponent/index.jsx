@@ -1,4 +1,4 @@
-import Counter from "./child/Counter";
+import Counter from "./Counter";
 import { useState } from "react";
 
 // UI 节点位置上的内容发生变化时，原始组件会被销毁

@@ -5,6 +5,13 @@ body {
     min-height: 100vh;
 }
 
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
 .pass-data-context {
     border: 1px solid black;
     height: 200px;

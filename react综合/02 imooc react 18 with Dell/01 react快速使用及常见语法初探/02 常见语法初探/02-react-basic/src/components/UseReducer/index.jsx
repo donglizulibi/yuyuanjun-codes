@@ -1,7 +1,7 @@
-import TodoList from "./child/TodoList"
-import TodoListUseReducer from "./child/TodoListUseReducer"
-import TodoListUseReducerData from "./child/TodoListUseReducerData"
-import TodoListUseImmerReducerData from "./child/TodoListUseImmerReducerData"
+import TodoList from "./TodoList"
+import TodoListUseReducer from "./TodoListUseReducer"
+import TodoListUseReducerData from "./TodoListUseReducerData"
+import TodoListUseImmerReducerData from "./TodoListUseImmerReducerData"
 function UseReducer(){
     return (
         <div>

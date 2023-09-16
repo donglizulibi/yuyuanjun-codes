@@ -1,6 +1,6 @@
 import Header from "./Header";
 import BodyPart from "./Body";
-import nameContext from "../../../../src/nameContext";
+import nameContext from "./nameContext";
 
 // 在这个例子中，有三层组件的关系
 // 本组件PassDataContext ->  Body/Header -> Content/Menu

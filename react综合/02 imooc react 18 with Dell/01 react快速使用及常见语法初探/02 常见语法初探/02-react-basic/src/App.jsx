@@ -1,13 +1,12 @@
 import { useState } from "react";
 import UseStatePrinciple from "./components/UseStatePrinciple";
 import StopPropagation from "./components/StopPropagation";
-import AddArrIndexByImmer from "./components/AddArrIndexByImmer";
-import PassValueBetweenComps from "./components/PassValueBetweenComps";
-import DestoryComponent from "./components/DestoryComponent";
-import UseOfKey from "./components/UseOfKey"
-import UseReducer from "./components/UseReducer";
-import UseContext from "./components/UseContext"
-import "./App.css";
+import AddArrIndexByImmer from "./components/AddArrIndexByImmer/index";
+import PassValueBetweenComps from "./components/PassValueBetweenComps/index";
+import DestoryComponent from "./components/DestoryComponent/index";
+import UseOfKey from "./components/UseOfKey/index"
+import UseReducer from "./components/UseReducer/index";
+import UseContext from "./components/UseContext/index"
 
 function App() {
   return (
