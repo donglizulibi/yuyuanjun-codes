@@ -20,7 +20,10 @@ function UseRefGetEle(){
     // 还有接收到另一个参数，就是ref ，来接受父组件传递过去的ref的值
     // 在这里就是InputComponent
 
-    // 子组件拿到ref之后，在绑定在jsx的元素上 
+    // 子组件拿到ref之后，在绑定在自身jsx的元素上
+    
+    // 这样就可以实现把在父组件中用useRef定义的ref
+    // 传递到子组件
 
     const InputComponentRef = useRef(null)
     function handleCompClick(){
