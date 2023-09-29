@@ -1,3 +1,5 @@
+// 在创建项目的时候选择eslint 标准化，就会在项目根目录下出现这个文件
+
 // ESLint 配置文件遵循 commonJS 的导出规则，所导出的对象就是 ESLint 的配置对象
 // 配置文档：https://zh-hans.eslint.org/docs/latest/use/configure/
 
