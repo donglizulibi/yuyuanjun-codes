@@ -1,4 +1,5 @@
-// 在创建项目的时候选择eslint 标准化，就会在项目根目录下出现这个文件
+// 在使用vue-cli创建项目的时候选择eslint standard标准化
+// 就会在项目根目录下出现这个文件
 
 // ESLint 配置文件遵循 commonJS 的导出规则，所导出的对象就是 ESLint 的配置对象
 // 配置文档：https://zh-hans.eslint.org/docs/latest/use/configure/
@@ -71,9 +72,10 @@ module.exports = {
   // 可以在vscode - Settings - Editor: Tab Size 中改成两个
 
   // eslint和prettier之间还有一个冲突，在定义方法时候
-  // prettier会把方法名和后面的小括号紧挨着，如果手动输入一个空格，则会自动消除
+  // prettier会把方法名和后面的小括号紧挨着，如果手动输入一个空格，也会自动消除
   // 而eslint的规则认为这之间应该有一个空格
 
   // 为了解决这个问题, 找到具体报错的位置，将错误的属性值space-before-function-paren
   // 复制到eslintrc的rules中，并设置为off或者0
+  // 则表示eslintrc忽视这个问题，服从prettier的规则
 }
