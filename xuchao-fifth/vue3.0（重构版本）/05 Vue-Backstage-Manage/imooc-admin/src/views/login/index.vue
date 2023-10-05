@@ -43,6 +43,9 @@ import { Avatar } from '@element-plus/icons'
 </script>
 
 <style lang="scss" scoped>
+// 这里要么去掉scoped，则整个组件下的元素，包括子元素都可以控制
+// 如果要加上scoped，为了使得父组件定义的样式影响到子组件
+// 要使用deep选择器，推荐使用:deep(<inner-selector>)
 $bg: #2d3a4b;
 $dark_gray: #889aa4;
 $light_gray: #eee;
@@ -69,7 +72,7 @@ $cursor: #fff;
       color: #454545;
     }
 
-    ::v-deep .el-input {
+    :deep(.el-input) {
       display: inline-block;
 
       height: 47px;
