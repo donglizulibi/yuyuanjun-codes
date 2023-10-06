@@ -51,10 +51,9 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     quotes: 'off',
     'space-before-function-paren': 'off',
-    'vue/multi-word-component-names': 'off'
-
-    // "semi" : "off",
-    // "comma-dangle" : "off"
+    'vue/multi-word-component-names': 'off',
+    semi: 'off',
+    'comma-dangle': 'off'
   }
 
   // 当然以上的做法是通过改变eslint的配置来符合prettier补齐规则
