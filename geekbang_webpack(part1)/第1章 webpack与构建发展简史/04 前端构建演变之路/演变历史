@@ -1,0 +1,5 @@
+ant + YUI Tool --> grunt --> fis3 --> rollup
+                             gulp     webpack
+                                      parcel
+
+代码混淆是为了在项目上线的时候不让逻辑暴露出来

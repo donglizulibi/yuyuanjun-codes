@@ -1,0 +1,4 @@
+1 JSX和Vue指令无法在浏览器内解析，需要通过webpack编译
+
+2 entry output mode loaders plugins
+  热更新 code-spliting tree-shaking
