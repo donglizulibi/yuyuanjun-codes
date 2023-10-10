@@ -9,7 +9,7 @@
       <el-form-item>
         <span class="svg-container">
           <el-icon>
-            <avatar />
+            <svg-icon icon="user"></svg-icon>
           </el-icon>
         </span>
         <el-input placeholder="username" name="username" type="text"></el-input>
@@ -21,13 +21,13 @@
           <!-- <el-icon>
             <avatar />
           </el-icon> -->
-          <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon>
+          <svg-icon icon="password"></svg-icon>
         </span>
         <el-input placeholder="password" name="password"></el-input>
         <span class="show-pwd">
-          <el-icon>
-            <avatar />
-          </el-icon>
+          <span class="svg-container">
+            <svg-icon icon="eye"></svg-icon>
+          </span>
         </span>
       </el-form-item>
 
@@ -39,10 +39,7 @@
   </div>
 </template>
 
-<script setup>
-import { Avatar } from '@element-plus/icons'
-import SvgIcon from '@/components/SvgIcon/index.vue'
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 // 这里要么去掉scoped，则整个组件下的元素，包括子元素都可以控制

@@ -11,7 +11,7 @@
     ></div>
 
     <svg v-else class="svg-icon" :class="className" aria-hidden="true">
-      <use :xlink-href="iconName" />
+      <use :xlink:href="iconName" />
     </svg>
 
     <!-- 展示内部图标 -->
@@ -19,26 +19,26 @@
 </template>
 
 <script setup>
-import { isExternal as external } from "@/utils/validate";
-import { defineProps, computed } from "vue";
+import { isExternal as external } from '@/utils/validate'
+import { defineProps, computed } from 'vue'
 const props = defineProps({
   icon: {
     type: String,
-    required: true,
+    required: true
   },
   className: {
     type: String,
-    default: "",
-  },
-});
+    default: ''
+  }
+})
 
 /**
  *   判断当前图标是否为外部图标
  *    创建一个外部方法
  */
 const isExternal = computed(() => {
-  return external(props.icon);
-});
+  return external(props.icon)
+})
 
 /**
  *   外部图标样式
@@ -47,9 +47,9 @@ const isExternal = computed(() => {
 const styleExternalIcon = computed(() => {
   return {
     mask: `url(${props.icon}) no-repeat 50% 50%`,
-    "-webkit-mask": `url(${props.icon}) no-repeat 50% 50%`,
-  };
-});
+    '-webkit-mask': `url(${props.icon}) no-repeat 50% 50%`
+  }
+})
 
 /* *
  *   内部图标
@@ -57,8 +57,8 @@ const styleExternalIcon = computed(() => {
  */
 
 const iconName = computed(() => {
-  return `#icon-${props.icon}`;
-});
+  return `#icon-${props.icon}`
+})
 </script>
 
 <style lang="scss" scoped>
