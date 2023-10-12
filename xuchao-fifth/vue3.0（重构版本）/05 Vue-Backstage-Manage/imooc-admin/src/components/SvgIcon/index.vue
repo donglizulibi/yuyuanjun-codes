@@ -13,6 +13,7 @@
     <svg v-else class="svg-icon" :class="className" aria-hidden="true">
       <use :xlink:href="iconName" />
     </svg>
+    <!-- <div v-else>asdf</div> -->
 
     <!-- 展示内部图标 -->
   </div>
@@ -37,6 +38,8 @@ const props = defineProps({
  *    创建一个外部方法
  */
 const isExternal = computed(() => {
+  // console.log(props.icon)
+  // console.log(external(props.icon))
   return external(props.icon)
 })
 
