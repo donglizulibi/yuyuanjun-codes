@@ -8,7 +8,9 @@ import '@/styles/index.scss'
 
 // 导入 svgIcon
 import installIcons from '@/icons'
-console.log(installIcons)
+// import axios from 'axios'
+// console.log(axios)
+// console.log(installIcons)
 
 const app = createApp(App)
 installElementPlus(app)

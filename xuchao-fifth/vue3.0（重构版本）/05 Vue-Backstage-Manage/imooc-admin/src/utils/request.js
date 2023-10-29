@@ -1,6 +1,6 @@
-import axois from 'axois'
+import axios from 'axios'
 
-const service = axois.create({
+const service = axios.create({
   basURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
 })

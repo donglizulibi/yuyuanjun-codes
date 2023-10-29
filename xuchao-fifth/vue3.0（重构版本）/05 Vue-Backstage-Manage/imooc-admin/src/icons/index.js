@@ -1,5 +1,5 @@
 import SvgIcon from '@/components/SvgIcon'
-console.log(SvgIcon)
+// console.log(SvgIcon)
 // 1. 导入所有的 svg 的图标
 
 // webpack 依赖管理 require.context方法
@@ -14,7 +14,7 @@ const svgRequire = require.context('./svg', false, /\.svg$/)
 // 遍历图标，把图标作为 request 参数导入到 svgRequire 导入函数中
 // 完成本地 svg 图标的导入
 
-console.log(svgRequire.keys())
+// console.log(svgRequire.keys())
 svgRequire.keys().forEach((svgIcon) => {
   svgRequire(svgIcon)
 })
