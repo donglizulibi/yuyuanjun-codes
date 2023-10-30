@@ -1,6 +1,11 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" :model="loginForm" :rules="loginRules">
+    <el-form
+      class="login-form"
+      ref="loginFormRef"
+      :model="loginForm"
+      :rules="loginRules"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -36,26 +41,35 @@
         ></el-input>
         <span class="show-pwd">
           <span class="svg-container" v-on:click="onChangePwdType">
-            <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'"></svg-icon>
+            <svg-icon
+              :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+            ></svg-icon>
           </span>
         </span>
       </el-form-item>
 
       <!-- 登录按钮 -->
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px">登录</el-button>
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="handlerLogin"
+        >登录</el-button
+      >
     </el-form>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { validatePassword } from "./rules";
+import { ref } from 'vue'
+import { validatePassword } from './rules'
+import { useStore } from 'vuex'
 
 // 数据源
 const loginForm = ref({
-  username: "super-admin",
-  password: "123456",
-});
+  username: 'super-admin',
+  password: '123456'
+})
 
 // 验证规则
 // 如果要给一个变量添加校验规则，则必须使用validator关键字
@@ -64,29 +78,56 @@ const loginRules = ref({
   username: [
     {
       required: true,
-      trigger: "blur",
-      message: "用户名为必填项目",
-    },
+      trigger: 'blur',
+      message: '用户名为必填项目'
+    }
   ],
   password: [
     {
       required: true,
-      trigger: "blur",
-      validator: validatePassword(),
-    },
-  ],
-});
+      trigger: 'blur',
+      validator: validatePassword()
+    }
+  ]
+})
 
 // 处理密码框文本是显示密文或者明文
-const passwordType = ref("password");
+const passwordType = ref('password')
 
 const onChangePwdType = () => {
-  if (passwordType.value === "password") {
-    passwordType.value = "text";
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
   } else {
-    passwordType.value = "password";
+    passwordType.value = 'password'
   }
-};
+}
+
+// 处理登录
+const loading = ref(false)
+const store = useStore()
+const loginFormRef = ref(null)
+const handlerLogin = () => {
+  // 1 进行表单校验
+  console.log(loginFormRef.value.validate)
+  console.log(store)
+  loginFormRef.value.validate((valid) => {
+    console.log(valid)
+    if (!valid) return
+
+    // 2 触发登录动作
+    loading.value = true
+    store
+      .dispatch('user/login', loginForm.value)
+      .then(() => {
+        loading.value = false
+        // 3 进行登录后处理
+      })
+      .catch((err) => {
+        console.log(err)
+        loading.value = false
+      })
+  })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -100,6 +141,7 @@ $cursor: #fff;
 
 .login-container {
   min-height: 100%;
+  // height: 100vh;
   width: 100%;
   background-color: $bg;
   overflow: hidden;
