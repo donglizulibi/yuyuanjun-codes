@@ -114,8 +114,11 @@ const handlerLogin = () => {
     console.log(valid)
     if (!valid) return
 
+    // console.log('login page-dispatch:', loginForm.value)
+
     // 2 触发登录动作
     loading.value = true
+    // 分发dispatch，传入用户名和密码
     store
       .dispatch('user/login', loginForm.value)
       .then(() => {

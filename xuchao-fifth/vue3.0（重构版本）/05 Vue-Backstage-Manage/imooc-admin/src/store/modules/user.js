@@ -2,19 +2,34 @@
 
 import { login } from '@/api/sys'
 import md5 from 'md5'
+import { setItem, getItem } from '@/utils/storage'
+import { TOKEN } from '@/constant'
 
 export default {
   namespaced: true,
   // 设置这个属性为true表示这是一个单独的模块，不会被合并到其他模块中
 
-  state: () => ({}),
-  mutations: {},
+  state: () => ({
+    // 为了达到用户自动登录的目的，不能将token的初始值设置为空字符串
+    // 而是先看看浏览器中是不是已经保存了token
+    token: getItem(TOKEN) || ''
+  }),
+  mutations: {
+    // 因为需要在vuex另外存一份token数据，所以把保存token的操作放在mutations中
+    // 这个mutation动作在actions里的登陆成功之后进行触发
+    setToken(state, token) {
+      state.token = token
+      // console.log(state)
+      setItem(TOKEN, token)
+    }
+  },
   actions: {
     /**
      *
      * 登录请求动作
      */
     login(context, userInfo) {
+      console.log('store user context:', context)
       const { username, password } = userInfo
       return new Promise((resolve, reject) => {
         login({
@@ -23,6 +38,8 @@ export default {
           // 这里的password使用md5进行加密处理
         })
           .then((data) => {
+            console.log('vuex login:', data)
+            this.commit('user/setToken', data.data.data.token)
             resolve()
           })
           .catch((error) => {
