@@ -4,6 +4,7 @@ import { login } from '@/api/sys'
 import md5 from 'md5'
 import { setItem, getItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
+import router from '@/router'
 
 export default {
   namespaced: true,
@@ -40,6 +41,9 @@ export default {
           .then((data) => {
             console.log('vuex login:', data)
             this.commit('user/setToken', data.token)
+            // 登录完成之后跳转到layout
+            // 在vuex中使用vue-router
+            router.push('/')
             resolve()
           })
           .catch((error) => {

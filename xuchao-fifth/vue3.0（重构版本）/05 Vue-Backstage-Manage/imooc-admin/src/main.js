@@ -12,6 +12,9 @@ import installIcons from '@/icons'
 // console.log(axios)
 // console.log(installIcons)
 
+// 导入路由鉴权模块
+import '@/permission.js'
+
 const app = createApp(App)
 installElementPlus(app)
 installIcons(app)
