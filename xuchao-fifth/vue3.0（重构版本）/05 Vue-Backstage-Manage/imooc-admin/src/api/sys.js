@@ -19,3 +19,17 @@ export const login = (data) => {
     data
   })
 }
+
+/**
+ * 获取用户信息
+ * return promise
+ */
+
+// 在用户登录，获取token之后的几乎所有请求都要以token作为参数
+// 可以把token放在axios的请求拦截器中
+export const getUserInfo = () => {
+  return request({
+    url: '/sys/profile',
+    method: 'GET'
+  })
+}

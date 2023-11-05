@@ -14,7 +14,7 @@ const whiteList = ['/login']
  * @param {*} next 是否要去
  */
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   /**
    * 对于登录鉴权的定义
    *  1  当用户没有登录的时候，不允许进入除 login 之外的其他页面
@@ -30,10 +30,15 @@ router.beforeEach((to, from, next) => {
   if (store.getters.token) {
     // 可以拿到 token，表示用户已经登录的情况
     // 如果在这个状态下用户要进入 login 页面，则强行跳转至 layout 首页
-    // 如果用户要进入的页面不是 login 页面，则正常跳转就可以了
     if (to.path === '/login') {
       next('/')
     } else {
+      // 如果用户要进入的页面不是 login 页面，则正常跳转就可以了
+      // 这里判断用户资料是否存在，如果不存在，则获取用户信息
+      // 使用store的getters的计算属性来判断用户信息的存在
+      if (!store.getters.hasUserInfo) {
+        await store.dispatch('user/getUserInfo')
+      }
       next()
     }
   } else {
