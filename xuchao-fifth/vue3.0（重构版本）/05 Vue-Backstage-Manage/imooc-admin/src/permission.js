@@ -31,6 +31,7 @@ router.beforeEach(async (to, from, next) => {
     // 可以拿到 token，表示用户已经登录的情况
     // 如果在这个状态下用户要进入 login 页面，则强行跳转至 layout 首页
     if (to.path === '/login') {
+      console.log(123)
       next('/')
     } else {
       // 如果用户要进入的页面不是 login 页面，则正常跳转就可以了

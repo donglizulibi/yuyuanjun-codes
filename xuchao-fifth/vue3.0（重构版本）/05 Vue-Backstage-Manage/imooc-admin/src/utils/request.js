@@ -18,7 +18,7 @@ service.interceptors.request.use(
     }
 
     // 添加 icode  注意课程验证码过期时间
-    config.headers.icode = '56A8BEF350C1016B'
+    config.headers.icode = 'D3492F2072598248'
     return config
   },
   (error) => {
