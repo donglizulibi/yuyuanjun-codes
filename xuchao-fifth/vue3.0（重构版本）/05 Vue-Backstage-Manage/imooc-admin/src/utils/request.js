@@ -9,7 +9,7 @@ const service = axios.create({
 // 添加一个请求拦截器
 service.interceptors.request.use(
   (config) => {
-    // console.log(config)
+    console.log(config)
 
     // 在这里统一注入token，首先判断token是否存在
     if (store.getters.token) {

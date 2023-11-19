@@ -34,7 +34,7 @@ export default {
      * 登录请求动作
      */
     login(context, userInfo) {
-      // console.log('store user context:', context)
+      console.log('store user context:', context)
       const { username, password } = userInfo
       return new Promise((resolve, reject) => {
         login({
@@ -58,7 +58,10 @@ export default {
 
     // 获取用户信息
     async getUserInfo(context) {
+      console.log('getUserInfoStoreFunc')
+      console.log(getUserInfo)
       const res = await getUserInfo()
+      console.log(res)
       this.commit('user/setUserInfo', res)
       return res
     }

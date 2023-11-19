@@ -122,6 +122,7 @@ const handlerLogin = () => {
     store
       .dispatch('user/login', loginForm.value)
       .then(() => {
+        // console.log(999)
         loading.value = false
         // 3 进行登录后处理
       })

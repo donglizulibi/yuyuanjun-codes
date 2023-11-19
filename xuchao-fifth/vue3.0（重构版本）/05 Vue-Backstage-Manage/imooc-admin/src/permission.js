@@ -38,7 +38,9 @@ router.beforeEach(async (to, from, next) => {
       // 这里判断用户资料是否存在，如果不存在，则获取用户信息
       // 使用store的getters的计算属性来判断用户信息的存在
       if (!store.getters.hasUserInfo) {
+        console.log('getUserInfo')
         await store.dispatch('user/getUserInfo')
+        console.log(999)
       }
       next()
     }
