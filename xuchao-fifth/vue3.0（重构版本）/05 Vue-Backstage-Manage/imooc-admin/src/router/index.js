@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import layout from '@/layout/index.vue'
 
 /**
  * 公开路由表
@@ -10,7 +11,7 @@ const publicRoutes = [
   },
   {
     path: '/',
-    component: () => import('@/layout/index.vue')
+    component: layout
   }
 ]
 
