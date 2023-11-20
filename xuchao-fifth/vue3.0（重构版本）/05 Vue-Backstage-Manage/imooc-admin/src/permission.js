@@ -40,8 +40,11 @@ router.beforeEach(async (to, from, next) => {
       if (!store.getters.hasUserInfo) {
         console.log('getUserInfo')
         await store.dispatch('user/getUserInfo')
-        console.log(999)
+        // console.log(999)
       }
+
+      // 如果登录的时候出现了401的错误, 说明code过期了
+      // 则需要在浏览器控制栏的application中, 手动删除token
       next()
     }
   } else {

@@ -43,7 +43,7 @@ export default {
           // 这里的password使用md5进行加密处理
         })
           .then((data) => {
-            console.log('vuex login:', data)
+            // console.log('vuex login:', data)
             this.commit('user/setToken', data.token)
             // 登录完成之后跳转到layout
             // 在vuex中使用vue-router
@@ -58,10 +58,10 @@ export default {
 
     // 获取用户信息
     async getUserInfo(context) {
-      console.log('getUserInfoStoreFunc')
-      console.log(getUserInfo)
+      // console.log('getUserInfoStoreFunc')
+      // console.log(getUserInfo)
       const res = await getUserInfo()
-      console.log(res)
+      // console.log(res)
       this.commit('user/setUserInfo', res)
       return res
     }
