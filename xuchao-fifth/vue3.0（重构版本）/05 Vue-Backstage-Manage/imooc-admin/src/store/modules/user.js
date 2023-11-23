@@ -43,8 +43,8 @@ export default {
           // 这里的password使用md5进行加密处理
         })
           .then((data) => {
-            // console.log('vuex login:', data)
             this.commit('user/setToken', data.token)
+            console.log('vuex login:', data)
             // 登录完成之后跳转到layout
             // 在vuex中使用vue-router
             router.push('/')
