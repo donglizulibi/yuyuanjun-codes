@@ -61,7 +61,7 @@ export default {
       // console.log('getUserInfoStoreFunc')
       // console.log(getUserInfo)
       const res = await getUserInfo()
-      // console.log(res)
+      console.log(res)
       this.commit('user/setUserInfo', res)
       return res
     }
