@@ -5,6 +5,7 @@ import md5 from 'md5'
 import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 import router from '@/router'
+import { setTimeStamp } from '@/utils/auth'
 
 export default {
   namespaced: true,
@@ -48,6 +49,8 @@ export default {
             // 登录完成之后跳转到layout
             // 在vuex中使用vue-router
             router.push('/')
+            setTimeStamp()
+            // 保存登录时间
             resolve()
           })
           .catch((error) => {
