@@ -2,7 +2,7 @@
 
 import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
-import { setItem, getItem } from '@/utils/storage'
+import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 import router from '@/router'
 
@@ -64,6 +64,17 @@ export default {
       console.log(res)
       this.commit('user/setUserInfo', res)
       return res
+    },
+
+    // 退出登录
+    logout() {
+      // 1 清除当前用户的缓存数据, 包括vuex中的和缓存中的数据
+      this.commit('user/setToken', '')
+      this.commit('user/setUserInfo', {})
+      removeAllItem()
+      // 2 清除权限相关配置（暂时没有设置权限相关配置）
+      // 3 返回到登陆页面
+      router.push('/login')
     }
   }
 }
