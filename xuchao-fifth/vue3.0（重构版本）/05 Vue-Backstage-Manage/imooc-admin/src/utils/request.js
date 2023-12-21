@@ -7,6 +7,10 @@ const service = axios.create({
   timeout: 5000
 })
 
+// 这里在请求和响应拦截器中都设置了对token超时的处理
+// 其中请求拦截器中的处理是前端部分设置的
+// 响应拦截器的处理是模拟后端服务器设置了token超时时间，在拦截器中进行鉴别
+
 // 添加一个请求拦截器
 service.interceptors.request.use(
   (config) => {
@@ -52,6 +56,14 @@ service.interceptors.response.use(
   },
   // 请求失败后的处理
   (error) => {
+    // token过期的处理
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.code === 401
+    ) {
+      store.dispatch('user/logout')
+    }
     ElMessage.error(error.message)
     return Promise.reject(new Error(error))
   }
