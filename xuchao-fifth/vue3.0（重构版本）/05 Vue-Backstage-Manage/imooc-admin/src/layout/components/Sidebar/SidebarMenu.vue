@@ -20,13 +20,16 @@
     <!-- 具体菜单 -->
     <el-menu-item index="2">
       <template #title>
-        <i class="el-icon-location"></i>
+        <!-- <i class="el-icon-location"></i> -->
+        <el-icon><Location /></el-icon>
         <span>导航4</span>
       </template>
     </el-menu-item>
   </el-menu>
 </template>
 
-<script setup></script>
+<script setup>
+import { Location } from '@element-plus/icons'
+</script>
 
 <style lang="scss" scoped></style>
