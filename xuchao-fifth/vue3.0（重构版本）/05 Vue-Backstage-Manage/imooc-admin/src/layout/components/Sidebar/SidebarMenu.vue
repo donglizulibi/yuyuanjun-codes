@@ -29,7 +29,12 @@
 </template>
 
 <script setup>
-import { Location } from '@element-plus/icons'
+import { Location } from "@element-plus/icons";
+
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+console.log(router.getRoutes());
 </script>
 
 <style lang="scss" scoped></style>
