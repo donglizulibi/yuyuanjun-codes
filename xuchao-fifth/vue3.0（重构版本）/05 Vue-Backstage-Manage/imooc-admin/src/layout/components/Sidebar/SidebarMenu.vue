@@ -35,6 +35,8 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 console.log(router.getRoutes());
+// 通过useRouter和getRoutes获得的路由表数组存在重复的数据
+//
 </script>
 
 <style lang="scss" scoped></style>
