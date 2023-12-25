@@ -8,9 +8,16 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-module.exports = {
-  // webpack devServer提供了代理功能
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
+module.exports = {
+  // webpack4 到 webpack5 之后的改变，需要自己配置node-polyfill-webpack-plugin
+  transpileDependencies: true,
+  configureWebpack: {
+    plugins: [new NodePolyfillPlugin()]
+  },
+
+  // webpack devServer提供了代理功能
   devServer: {
     proxy: {
       api: {
