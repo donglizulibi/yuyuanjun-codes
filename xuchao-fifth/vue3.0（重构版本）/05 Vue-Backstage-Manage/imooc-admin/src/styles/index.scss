@@ -1,6 +1,7 @@
 @import './variables.module.scss';
 @import './mixin.scss';
 @import './sidebar.scss';
+@import './element.scss';
 html,
 body {
     height: 100%;
@@ -15,7 +16,7 @@ body {
 #app {
     height: 100%;
     margin-top: 0;
-    color: white;
+    // color: white;
 }
 
 *,

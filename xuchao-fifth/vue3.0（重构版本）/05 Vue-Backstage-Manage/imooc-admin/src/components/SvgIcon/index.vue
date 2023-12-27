@@ -38,7 +38,7 @@ const props = defineProps({
  *    创建一个外部方法
  */
 const isExternal = computed(() => {
-  console.log(props.icon)
+  // console.log(props.icon)
   // console.log(external(props.icon))
   return external(props.icon)
 })

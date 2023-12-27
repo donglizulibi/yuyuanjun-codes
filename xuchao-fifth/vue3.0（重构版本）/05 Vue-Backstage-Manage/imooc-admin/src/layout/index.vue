@@ -1,5 +1,8 @@
 <template>
-  <div class="app-warpper">
+  <div
+    class="app-warpper"
+    :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']"
+  >
     <!-- 左侧menu -->
     <sidebar
       class="sidebar-container"
@@ -41,5 +44,10 @@ import variables from '@/styles/variables.module.scss'
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
+  transition: width #{$sideBarDuration};
+}
+
+.hideSidebar .fixed-header {
+  width: calc(100% - #{$hideSideBarWidth});
 }
 </style>

@@ -1,9 +1,12 @@
 <template>
   <el-menu
+    :collapse="!$store.getters.sidebarOpened"
+    :default-active="activeMenu"
     :unique-opened="true"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
+    :background-color="$store.getters.cssVar.menuBg"
+    :text-color="$store.getters.cssVar.menuText"
+    :active-text-color="$store.getters.cssVar.menuActiveText"
+    router
   >
     <!-- 子级 -->
     <!-- <el-submenu index="1"> -->
@@ -36,10 +39,13 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 // import { filterRoutes } from '@/utils/route'
 import { filterRoutes, generateMenus } from '@/utils/route'
 import SidebarItem from './SidebarItem.vue'
+import { useStore } from 'vuex'
+const store = useStore()
+console.log('sidebarmenuStore', store.getters.cssVar)
 
 // 通过useRouter和getRoutes获得的路由表数组存在重复的数据
 // 其中二级路由会直接存在于路由表数组中，也会在一级路由的children里面
@@ -50,11 +56,18 @@ import SidebarItem from './SidebarItem.vue'
 const router = useRouter()
 const routes = computed(() => {
   const filterRoutesData = filterRoutes(router.getRoutes())
-  console.log(filterRoutesData)
+  // console.log(filterRoutesData)
   return generateMenus(filterRoutesData)
 })
 // console.log(JSON.stringify(routes.value))
-console.log(routes.value)
+// console.log(routes.value)
+
+// 拿到当前的路由
+const route = useRoute()
+const activeMenu = computed(() => {
+  const { path } = route
+  return path
+})
 </script>
 
 <style lang="scss" scoped></style>

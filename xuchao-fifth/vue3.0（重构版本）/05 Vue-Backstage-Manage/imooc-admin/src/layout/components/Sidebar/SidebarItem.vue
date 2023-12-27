@@ -7,7 +7,7 @@
     </sidebar-item>
   </el-submenu>
 
-  <el-menu-item v-else :index="route.path">
+  <el-menu-item v-else :index="route.path" class="el-menu-item">
     <menu-item :title="route.meta.title" :icon="route.meta.icon"></menu-item>
   </el-menu-item>
 </template>
@@ -16,7 +16,7 @@
 import { defineProps } from 'vue'
 import MenuItem from './MenuItem.vue'
 // import { computed } from 'vue'
-const props = defineProps({
+defineProps({
   route: {
     type: Object,
     required: true
@@ -24,11 +24,16 @@ const props = defineProps({
 })
 
 // console.log(123)
-console.log('sidebaritem: ', props)
+// console.log('sidebaritem: ', props)
 
 // const routeChildren = computed(() => {
 //   return 0
 // })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-menu-item {
+  display: flex;
+  align-items: center;
+}
+</style>

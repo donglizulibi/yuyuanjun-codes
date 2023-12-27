@@ -12,7 +12,7 @@
 <script setup>
 import { defineProps } from 'vue'
 import SvgIcon from '@/components/SvgIcon'
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     required: true
@@ -23,7 +23,7 @@ const props = defineProps({
   }
 })
 
-console.log('menuitem: ', props)
+// console.log('menuitem: ', props)
 </script>
 
 <style lang="scss" scoped>

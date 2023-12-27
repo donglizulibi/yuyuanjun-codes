@@ -1,3 +1,4 @@
+import variables from '@/styles/variables.module.scss'
 // 本模块起到一个快捷访问的作用
 // getters其实就是vuex中的计算属性
 
@@ -8,7 +9,9 @@ const getters = {
   hasUserInfo: (state) => {
     return JSON.stringify(state.user.userInfo) !== '{}'
   },
-  userInfo: (state) => state.user.userInfo
+  userInfo: (state) => state.user.userInfo,
+  cssVar: (state) => variables,
+  sidebarOpened: (state) => state.app.sidebarOpened
 }
 
 export default getters
