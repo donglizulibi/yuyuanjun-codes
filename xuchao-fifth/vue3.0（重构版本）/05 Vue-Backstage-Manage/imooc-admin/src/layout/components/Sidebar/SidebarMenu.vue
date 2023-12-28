@@ -44,6 +44,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { filterRoutes, generateMenus } from '@/utils/route'
 import SidebarItem from './SidebarItem.vue'
 import { useStore } from 'vuex'
+
 const store = useStore()
 console.log('sidebarmenuStore', store.getters.cssVar)
 
@@ -54,6 +55,7 @@ console.log('sidebarmenuStore', store.getters.cssVar)
 // 存在不必放在导航菜单中的 路由页面
 
 const router = useRouter()
+// console.log('router: ', router)
 const routes = computed(() => {
   const filterRoutesData = filterRoutes(router.getRoutes())
   // console.log(filterRoutesData)
