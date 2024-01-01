@@ -24,7 +24,21 @@ import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain.vue'
 import variables from '@/styles/variables.module.scss'
-// console.log(variables)
+import { onBeforeUpdate } from 'vue'
+// import { onMounted } from 'vue'
+// import { onUpdated } from 'vue'
+import h1StateChecked from '@/utils/ref'
+import { useStore } from 'vuex'
+const store = useStore()
+onBeforeUpdate(() => {
+  if (h1StateChecked.value) {
+    h1StateChecked.value = store.getters.sidebarOpened
+  } else {
+    setTimeout(() => {
+      h1StateChecked.value = store.getters.sidebarOpened
+    }, 150)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
