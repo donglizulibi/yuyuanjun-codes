@@ -25,13 +25,36 @@
 
 <script setup>
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import { computed, defineProps } from 'vue'
 import { useStore } from 'vuex'
+import { useI18n } from 'vue-i18n'
+import { ElMessage } from 'element-plus'
+defineProps({
+  effect: {
+    type: String,
+    default: 'dart',
+    validator(value) {
+      return ['dark', 'light'].indexOf(value) !== -1
+    }
+  }
+})
+
 const store = useStore()
 const language = computed(() => {
   return store.getters.language
 })
+const i18n = useI18n()
 
-const handleSetLanguage = () => {}
+const handleSetLanguage = (lang) => {
+  // 切换 i18n 的 locale
+  i18n.locale.value = lang
+
+  // 修改 vuex 中保存的language
+  store.commit('app/setLanguage', lang)
+
+  // 提示
+  ElMessage.success('更新成功')
+}
 </script>
 
 <style lang="scss" scoped></style>
