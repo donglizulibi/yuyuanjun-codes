@@ -32,7 +32,7 @@ import { ElMessage } from 'element-plus'
 defineProps({
   effect: {
     type: String,
-    default: 'dart',
+    default: 'dark',
     validator(value) {
       return ['dark', 'light'].indexOf(value) !== -1
     }
