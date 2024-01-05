@@ -5,8 +5,8 @@
       <Breadcrumb class="breadcrumb-container" />
     </div>
     <div class="right-menu">
-      <lang-select class="lang-container"></lang-select>
       <!-- 国际化 -->
+      <lang-select class="lang-container"></lang-select>
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -78,7 +78,7 @@ const logout = () => {
     :deep(.lang-container) {
       font-size: 24px;
       display: inline-block;
-      padding: 0 18px 0 0;
+      // padding: 0 18px 0 0;
       color: #5a5e66;
       &:hover {
         cursor: pointer;
@@ -86,7 +86,7 @@ const logout = () => {
     }
     :deep(.avatar-container) {
       cursor: pointer;
-      margin-left: 5px;
+      margin-left: 15px;
       .avatar-wrapper {
         margin-top: 5px;
         position: relative;

@@ -74,6 +74,7 @@ const iconName = computed(() => {
 }
 
 .svg-external-icon {
+  // margin-right: ;
   background-color: currentColor;
   mask-size: cover !important;
   display: inline-block;

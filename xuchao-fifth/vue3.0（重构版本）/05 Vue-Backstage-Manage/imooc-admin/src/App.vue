@@ -1,12 +1,13 @@
 <template>
-  <router-view />
+  <el-config-provider :locale="$store.getters.language === 'en' ? en : zhCn">
+    <router-view />
+  </el-config-provider>
 </template>
 
-<script>
-export default {
-  name: 'App',
-  components: {}
-}
+<script setup>
+import { ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import en from 'element-plus/dist/locale/en.mjs'
 </script>
 
 <style>

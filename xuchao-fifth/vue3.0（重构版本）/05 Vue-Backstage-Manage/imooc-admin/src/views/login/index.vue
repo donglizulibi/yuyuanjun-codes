@@ -166,18 +166,23 @@ $cursor: #fff;
     }
 
     :deep(.el-input) {
-      display: inline-block;
+      // display: inline-block;
 
       height: 47px;
       width: 85%;
-      input {
-        background: transparent;
-        border: 0px;
+      .el-input__wrapper {
+        // background: transparent;
+        background-color: rgba($color: $bg, $alpha: 0.1);
+        // opacity: 0.1;
+        // border: 0px;
         height: 47px;
-        border-radius: 0px;
+        border-radius: 5px;
         padding: 12px 5px 12px 15px;
-        color: $light_gray;
         caret-color: $cursor;
+        box-shadow: none;
+        input {
+          color: #eee;
+        }
       }
     }
     .svg-container {
