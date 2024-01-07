@@ -1,9 +1,0 @@
-一、使用npm或者cnpm安装
-npm install cnpm -g
-cnpm install create-react-app -g
-create-react-app <project-directory>
-
-
-二、使用vite安装
-yarn create vite
-然后按照指示运行

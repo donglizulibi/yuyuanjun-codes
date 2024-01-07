@@ -1,7 +1,0 @@
-用html文件调用本地js文件时，出现跨域的问题
-可以使用http-server将该文件夹放在服务器，使用http地址来访问html文件
-
-具体步骤是
-1 全局安装http-server，  使用命令npm install --global http-server
-2 进入到目标文件夹，使用命令http-server，出现http地址
-3 在浏览器地址栏输入http地址/文件名
